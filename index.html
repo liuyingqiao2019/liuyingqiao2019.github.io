@@ -225,7 +225,7 @@
               <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
-              <time title="Erstellt: 2020-02-11 18:23:14 / Geändert am: 20:41:59" itemprop="dateCreated datePublished" datetime="2020-02-11T18:23:14+08:00">2020-02-11</time>
+              <time title="Erstellt: 2020-02-11 18:23:14 / Geändert am: 20:59:16" itemprop="dateCreated datePublished" datetime="2020-02-11T18:23:14+08:00">2020-02-11</time>
             </span>
 
           <br>
@@ -234,7 +234,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbole im Artikel gezählt: </span>
-              <span>1.1k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="Lesezeit">
               <span class="post-meta-item-icon">
@@ -263,26 +263,24 @@
 <p>完了发现又多了其他问题，最严重的一个是–<strong>Mysql服务无法启动</strong></p>
 <p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/3.png" alt="3"><br>可以看到下图中XAPMM的Mysql以及无法启动且报一大堆的错</p>
 <p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/4.png" alt="4"></p>
-<h2 id="OK-现在开始第一次尝试："><a href="#OK-现在开始第一次尝试：" class="headerlink" title="OK,现在开始第一次尝试："></a>OK,现在开始第一次尝试：</h2><p>在Mysql目录bin里下找到<code>**my.ini**</code>文件用记事本打开，查找<code>**[mysqld]**</code>并在下面增加一行代码<code>innodb_force_recovery =4</code></p>
 <p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/5.png" alt="5"></p>
-<p>结果XAMPP报错：</p>
+<h2 id="OK-现在开始第一次尝试："><a href="#OK-现在开始第一次尝试：" class="headerlink" title="OK,现在开始第一次尝试："></a>OK,现在开始第一次尝试：</h2><p>在Mysql目录bin里下找到<code>**my.ini**</code>文件用记事本打开，查找<code>**[mysqld]**</code>并在下面增加一行代码<code>innodb_force_recovery =4</code></p>
 <p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/6.png" alt="6"></p>
-<h2 id="第二次尝试："><a href="#第二次尝试：" class="headerlink" title="第二次尝试："></a>第二次尝试：</h2><p>看日志发现是3306端口被占用，既然3306不能用，那我就换一个端口呗</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/7.png" alt="7"><br>修改Mysql目录里bin中的<code>**my.ini**</code>文件的端口如下：</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/8.png" alt="8"><br>顺便修改了<strong>默认ip地址</strong>：</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/9.png" alt="9"><br>结果还是不行：</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/10.png" alt="10"></p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/11.png" alt="11"><br>10+小时过去了，试了各种办法都没法启动Mysql服务，于是，我直接<strong>重装XAMPP</strong></p>
-<h2 id="文章后面为XAMPP对Apache的初始化"><a href="#文章后面为XAMPP对Apache的初始化" class="headerlink" title="文章后面为XAMPP对Apache的初始化"></a>文章后面为XAMPP对Apache的初始化</h2><p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/12.png" alt="12"><br>更改<code>Apache</code>的端口</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/13.png" alt="13"></p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/14.png" alt="14"><br>确保画<strong>蓝圈</strong>的地方是选择<code>Apache</code>的，更改画<strong>黄线</strong>里的端口值（在数字后面加个零即可）。记住原来的两个值，这里我原来的值分别是80和443</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/15.png" alt="15"></p>
-<p>然后在XAMPP中找到Apache里conf目录的<code>**httpd.conf**</code>文件，用记事本打开并查找未更改端口前的第一个数值，将其改成更改后的端口值。如我这里是将80改为800，Ctrl+S保存</p>
+<p>结果XAMPP报错：<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/7.png" alt="7"></p>
+<h2 id="第二次尝试："><a href="#第二次尝试：" class="headerlink" title="第二次尝试："></a>第二次尝试：</h2><p>看日志最后几行发现是3306端口被占用，既然3306不能用</p>
+<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/8.png" alt="8"><br>那我就换一个端口呗<br>修改Mysql目录里bin中的<code>**my.ini**</code>文件的端口如下：<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/9.png" alt="9"></p>
+<p>顺便修改了<strong>默认ip地址</strong>：<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/10.png" alt="10"></p>
+<p>结果还是不行：<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/11.png" alt="11"></p>
+<p>10+小时过去了，试了各种办法都没法启动Mysql服务，于是，我直接<strong>重装XAMPP</strong><br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/13.png" alt="13"></p>
+<h2 id="文章后面为XAMPP对Apache的初始化"><a href="#文章后面为XAMPP对Apache的初始化" class="headerlink" title="文章后面为XAMPP对Apache的初始化"></a>文章后面为XAMPP对Apache的初始化</h2><p>在XAMPP中选择配置<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/14.png" alt="14"><br>更改<code>Apache</code>的端口<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/15.png" alt="15"></p>
+<p>确保画<strong>蓝圈</strong>的地方是选择<code>Apache</code>的，更改画<strong>黄线</strong>里的端口值（在数字后面加个零即可）。记住原来的两个值，这里我原来的值分别是80和443</p>
 <p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/16.png" alt="16"></p>
-<p>再在conf目录里的extra中找到<code>**httpd-ssl.conf**</code>文件，用记事本打开并查找未更改端口前的第二个数值，将其改成更改后的端口值。如我这里是将443改为4430 ，<strong>Ctrl+S</strong>保存</p>
+<p>然后在XAMPP中找到Apache里conf目录的<code>**httpd.conf**</code>文件，用记事本打开并查找未更改端口前的第一个数值，将其改成更改后的端口值。如我这里是将80改为800，Ctrl+S保存</p>
 <p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/17.png" alt="17"></p>
-<p>现在回到XAMPP，点击<strong>Apache</strong>中的<strong>Start</strong>,看到如下页面即完成;</p>
+<p>再在conf目录里的extra中找到<code>**httpd-ssl.conf**</code>文件，用记事本打开并查找未更改端口前的第二个数值，将其改成更改后的端口值。如我这里是将443改为4430 ，<strong>Ctrl+S</strong>保存</p>
 <p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/18.png" alt="18"></p>
+<p>现在回到XAMPP，点击<strong>Apache</strong>中的<strong>Start</strong>,看到Apache和Mysql底色是绿色即完成;</p>
+<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/19.png" alt="19"></p>
 
       
     </div>

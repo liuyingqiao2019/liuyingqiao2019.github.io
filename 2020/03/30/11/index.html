@@ -73,37 +73,17 @@
   </script>
 
 
-  <meta name="description" content="（小白）记录一次XAMPP使用的报错实例昨天在用服务器构建网页时，使用到了XAMPP，但在访问服务器本身的IP时，却出现了如下的报错： Uncaught error with message ‘[db.WindConnection.init] SQLSTATE[HY000] [1045] Access denied for user ‘root’@’localhost’ (using passwo">
-<meta property="og:type" content="article">
-<meta property="og:title" content="记一次XAMPP的报错实例">
-<meta property="og:url" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="11">
+<meta property="og:url" content="http://yoursite.com/2020/03/30/11/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="（小白）记录一次XAMPP使用的报错实例昨天在用服务器构建网页时，使用到了XAMPP，但在访问服务器本身的IP时，却出现了如下的报错： Uncaught error with message ‘[db.WindConnection.init] SQLSTATE[HY000] [1045] Access denied for user ‘root’@’localhost’ (using passwo">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/2.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/3.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/4.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/5.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/6.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/7.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/8.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/9.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/10.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/11.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/13.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/14.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/15.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/16.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/17.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/18.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/19.png">
-<meta property="article:published_time" content="2020-02-11T10:23:14.899Z">
-<meta property="article:modified_time" content="2020-03-30T11:47:45.734Z">
+<meta property="article:published_time" content="2020-03-30T11:59:18.000Z">
+<meta property="article:modified_time" content="2020-03-30T12:01:04.389Z">
 <meta property="article:author" content="TangJue">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/2.png">
 
-<link rel="canonical" href="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/">
+<link rel="canonical" href="http://yoursite.com/2020/03/30/11/">
 
 
 <script id="page-configurations">
@@ -115,7 +95,7 @@
   };
 </script>
 
-  <title>记一次XAMPP的报错实例 | Hexo</title>
+  <title>11 | Hexo</title>
   
 
 
@@ -253,7 +233,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/30/11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -266,7 +246,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          记一次XAMPP的报错实例
+          11
         </h1>
 
         <div class="post-meta">
@@ -275,16 +255,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-02-11 18:23:14" itemprop="dateCreated datePublished" datetime="2020-02-11T18:23:14+08:00">2020-02-11</time>
+              <time title="创建时间：2020-03-30 19:59:18 / 修改时间：20:01:04" itemprop="dateCreated datePublished" datetime="2020-03-30T19:59:18+08:00">2020-03-30</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 19:47:45" itemprop="dateModified" datetime="2020-03-30T19:47:45+08:00">2020-03-30</time>
-              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -299,7 +273,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>0</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -318,35 +292,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="（小白）记录一次XAMPP使用的报错实例"><a href="#（小白）记录一次XAMPP使用的报错实例" class="headerlink" title="（小白）记录一次XAMPP使用的报错实例"></a>（小白）记录一次XAMPP使用的报错实例</h1><p>昨天在用服务器构建网页时，使用到了XAMPP，但在访问服务器本身的IP时，却出现了如下的报错：</p>
-<p><strong><em>Uncaught error with message ‘[db.WindConnection.init] SQLSTATE[HY000] [1045] Access denied for user ‘root’@’localhost’ (using password: YES)’</em></strong></p>
-<p><strong><em>The server encountered an internal error and failed to process your request. Please try again later. If this error is temporary, reloading the page might resolve the problem.<br>If you are able to contact the administrator report this error message(<a href="http://www.windframework.com/" target="_blank" rel="noopener">http://www.windframework.com/</a>)</em></strong></p>
-<p>内容大体上是说，权限不够或密码错误，于是我重新看了一下<strong>phpasmin</strong>里的账号密码</p>
-<p>img</p>
-<p>图中可以看到<strong>root</strong>的三个账户的密码都是无且授权为是<br>So后面我根据百度的方法一顿操作</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/2.png" alt="2"></p>
-<p>完了发现又多了其他问题，最严重的一个是–<strong>Mysql服务无法启动</strong></p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/3.png" alt="3"><br>可以看到下图中XAPMM的Mysql以及无法启动且报一大堆的错</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/4.png" alt="4"></p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/5.png" alt="5"></p>
-<h2 id="OK-现在开始第一次尝试："><a href="#OK-现在开始第一次尝试：" class="headerlink" title="OK,现在开始第一次尝试："></a>OK,现在开始第一次尝试：</h2><p>在Mysql目录bin里下找到<code>my.ini</code>文件用记事本打开，查找<code>[mysqld]</code>并在下面增加一行代码<code>innodb_force_recovery =4</code></p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/6.png" alt="6"></p>
-<p>结果XAMPP报错：<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/7.png" alt="7"></p>
-<h2 id="第二次尝试："><a href="#第二次尝试：" class="headerlink" title="第二次尝试："></a>第二次尝试：</h2><p>看日志最后几行发现是3306端口被占用，既然3306不能用</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/8.png" alt="8"><br>那我就换一个端口呗<br>修改Mysql目录里bin中的<code>my.ini</code>文件的端口如下：<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/9.png" alt="9"></p>
-<p>顺便修改了<strong>默认ip地址</strong>：<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/10.png" alt="10"></p>
-<p>结果还是不行：<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/11.png" alt="11"></p>
-<p>10+小时过去了，试了各种办法都没法启动Mysql服务，于是，我直接<strong>重装XAMPP</strong><br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/13.png" alt="13"></p>
-<h2 id="文章后面为XAMPP对Apache的初始化"><a href="#文章后面为XAMPP对Apache的初始化" class="headerlink" title="文章后面为XAMPP对Apache的初始化"></a>文章后面为XAMPP对Apache的初始化</h2><p>在XAMPP中选择配置<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/14.png" alt="14"><br>更改<code>Apache</code>的端口<br><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/15.png" alt="15"></p>
-<p>确保画<strong>蓝圈</strong>的地方是选择<code>Apache</code>的，更改画<strong>黄线</strong>里的端口值（在数字后面加个零即可）。记住原来的两个值，这里我原来的值分别是80和443</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/16.png" alt="16"></p>
-<p>然后在XAMPP中找到Apache里conf目录的<code>httpd.conf</code>文件，用记事本打开并查找未更改端口前的第一个数值，将其改成更改后的端口值。如我这里是将80改为800，Ctrl+S保存</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/17.png" alt="17"></p>
-<p>再在conf目录里的extra中找到<code>httpd-ssl.conf</code>文件，用记事本打开并查找未更改端口前的第二个数值，将其改成更改后的端口值。如我这里是将443改为4430 ，<strong>Ctrl+S</strong>保存</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/18.png" alt="18"></p>
-<p>现在回到XAMPP，点击<strong>Apache</strong>中的<strong>Start</strong>,看到Apache和Mysql底色是绿色即完成;</p>
-<p><img src="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/19.png" alt="19"></p>
-
+        
     </div>
 
     
@@ -361,7 +307,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/" title="记一次XAMPP的报错实例">http://yoursite.com/2020/02/11/记一次XAMPP的报错实例/</a>
+    <a href="http://yoursite.com/2020/03/30/11/" title="11">http://yoursite.com/2020/03/30/11/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -378,13 +324,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/01/09/hello-world/" rel="prev" title="Hello World">
-      <i class="fa fa-chevron-left"></i> Hello World
+    <a href="/2020/03/30/Win10%E7%B3%BB%E7%BB%9Fedge%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" rel="prev" title="Win10系统edge浏览器出现闪退的解决方法">
+      <i class="fa fa-chevron-left"></i> Win10系统edge浏览器出现闪退的解决方法
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/03/30/Win10%E7%B3%BB%E7%BB%9Fedge%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" rel="next" title="Win10系统edge浏览器出现闪退的解决方法">
-      Win10系统edge浏览器出现闪退的解决方法 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -444,7 +387,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#（小白）记录一次XAMPP使用的报错实例"><span class="nav-number">1.</span> <span class="nav-text">（小白）记录一次XAMPP使用的报错实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OK-现在开始第一次尝试："><span class="nav-number">1.1.</span> <span class="nav-text">OK,现在开始第一次尝试：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二次尝试："><span class="nav-number">1.2.</span> <span class="nav-text">第二次尝试：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章后面为XAMPP对Apache的初始化"><span class="nav-number">1.3.</span> <span class="nav-text">文章后面为XAMPP对Apache的初始化</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

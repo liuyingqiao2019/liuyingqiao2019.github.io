@@ -1,16 +1,11 @@
 ---
 title: 记一次XAMPP的报错实例
 date: 2020-02-11 20:36:34
-tags:报错
-description:
+tags: 报错
 categories: XAMPP
 ---
 
-#  记一次XAMPP的报错实例
-
-
-
-# （小白）记录一次XAMPP使用的报错实例
+# 记一次XAMPP的报错实例
 
 昨天在用服务器构建网页时，使用到了XAMPP，但在访问服务器本身的IP时，却出现了如下的报错：
 

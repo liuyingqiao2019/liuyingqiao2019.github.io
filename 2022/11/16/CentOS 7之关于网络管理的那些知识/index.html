@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <!-- title -->
+
+
+    
+
+<!-- keywords -->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="唐抉">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="唐抉">
+    
+        <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta name="description" content="CentOS 7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 7之关于网络管理的那些知识">
+<meta property="og:url" content="http://tangmenjue.top/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="唐抉的个人博客">
+<meta property="og:description" content="CentOS 7">
+<meta property="og:image" content="http://tangmenjue.top/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/1.png">
+<meta property="og:image" content="http://tangmenjue.top/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/2.png">
+<meta property="article:published_time" content="2022-11-16T08:15:26.000Z">
+<meta property="article:modified_time" content="2022-11-18T01:14:14.000Z">
+<meta property="article:author" content="唐抉">
+<meta property="article:tag" content="CentOS 7">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="网络管理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tangmenjue.top/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/1.png">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    
+        <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+    
+    <title>CentOS 7之关于网络管理的那些知识 · null</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="/css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+    
+        <body class="post-body">
+    
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+            <div class="header-sidebar-menu">
+        
+            
+                <div style="padding-left: 1px;">&#xe775;</div>
+            
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>唐抉的个人博客</a>
+        </span>
+    </div>
+    <!-- toggle banner for post layout -->
+    
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">唐抉的个人博客</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">CentOS 7之关于网络管理的那些知识</a>
+            </div>
+        </div>
+    
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+            <div class="back-top back-top-hidden">
+        
+        
+            <div>&#xe639;</div>
+        
+        </div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
+
+
+
+
+
+
+    height:50vh;
+
+">
+    
+    <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+                CentOS 7之关于网络管理的那些知识
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+                
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CentOS 7">CentOS 7</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="网络管理">网络管理</a>
+    
+</div>
+
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">6.5k</span>阅读时长: <span class="post-count reading-time">26 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2022/11/16</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="前置知识">前置知识</h1>
+<h2 id="linux常见目录">Linux常见目录</h2>
+<table>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 84%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>目录参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>/</td>
+<td>根目录，文件的最顶端，/etc、/bin、/dev、/lib、/sbin应和根目录放置在一个分区中，而类似/usr/local可以单独位于另一个分区</td>
+</tr>
+<tr class="even">
+<td>/bin</td>
+<td>存放系统所需的重要命令，如文件或目录操作的命令ls、cp、mkdir等。/usr/bin也存放了一些系统命令，这些命令对于的文件都是可执行的，普通用户可以使用大部分的命令</td>
+</tr>
+<tr class="odd">
+<td>/boot</td>
+<td>存放Linux启动时内核及引导系统程序所需要的核心文件，内核文件和grub系统引导管理器都位于此目录</td>
+</tr>
+<tr class="even">
+<td>/dev</td>
+<td>存放Linux系统下的设备文件，如光驱、磁盘等。访问该目录下的文件相当于访问某个硬件设备，常用于挂载光驱</td>
+</tr>
+<tr class="odd">
+<td>/etc</td>
+<td>存放系统的配置文件，作为一些软件启动时默认配置文件读取的目录，如/etc/fstab存放系统分区信息</td>
+</tr>
+<tr class="even">
+<td>/home</td>
+<td>系统默认的用户主目录。若添加用户时不指定用户的主目录，默认在/home下创建与用户名同名的文件夹。代码中可以用HOME环境变量表示当前用户的主目录</td>
+</tr>
+<tr class="odd">
+<td>/lib</td>
+<td>64位系统有/lib64文件夹，主要存放动态链接库，类似的目录还有/usr/lib、/usr/local/lib等</td>
+</tr>
+<tr class="even">
+<td>/lost+found</td>
+<td>存放一些当系统意外崩溃或机器意外关机时产生的文件碎片</td>
+</tr>
+<tr class="odd">
+<td>/mnt</td>
+<td>存放挂载储存设备的挂载目录，如光驱等</td>
+</tr>
+<tr class="even">
+<td>/proc</td>
+<td>存放操作系统运行时的运行信息，如进程信息、内核信息、网络信息等。此目录的内容存在于内存中，实际不占用磁盘空间。如/etc/cpuinfo存放CPU相关信息</td>
+</tr>
+<tr class="odd">
+<td>/root</td>
+<td>Linux超级权限用户root的主目录</td>
+</tr>
+<tr class="even">
+<td>/sbin</td>
+<td>存放一些系统管理的命令，一般只能由超级权限用户root执行。大多数命令普通用户一般无权执行，如/sbin/ifconfig，普通用户使用绝对路径也可执行，用于查看当前系统网络配置，如/usr/sbin、/usr/local/sbin</td>
+</tr>
+<tr class="odd">
+<td>/tmp</td>
+<td>临时文件目录，任何人都可以访问。系统软件或用户运行程序时产生的临时文件存放到这里。此目录数据需要定期清除，重要数据不能放在该目录下，其目录空间也不能过小</td>
+</tr>
+<tr class="even">
+<td>/usr:</td>
+<td>应用程序存放目录，如命令、帮助文件等。安装Linux软件包时默认安装到/usr/local目录下，如/usr/share/fonts存放系统字体，/usr/share/man存放帮助文档，/usr/include存放软件的头文件等。建议将/usr/local目录单独分区并设置较大的磁盘空间</td>
+</tr>
+<tr class="odd">
+<td>/var</td>
+<td>/var/log存放系统日志，/var/lib存放系统库文件。目录内容会经常变动</td>
+</tr>
+<tr class="even">
+<td>/sys</td>
+<td>与/proc类似，是一个虚拟的文件系统，主要记录与系统核心相关的信息，如系统已经载入的模块信息等，该目录实际不占硬盘容量</td>
+</tr>
+</tbody>
+</table>
+<h2 id="网络管理协议">网络管理协议</h2>
+<h3 id="tcpip协议">TCP/IP协议</h3>
+<h4 id="tcpip协议体系">TCP/IP协议体系</h4>
+<p>TCP/IP协议主要包含传输控制协议（TCP）和网际协议（IP）。</p>
+<p>TCP/IP体系是一种分层结构，由基于硬件层次上的4个概念层次构成，从上往下看，即为应用层、传输层、网际互联层和网络接口层。</p>
+<table>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>TCP/IP层次</th>
+<th>功能及作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>应用层</td>
+<td>为用户提供所需要的各自应用服务，如FTP、Telnet、DNS、SMTP等</td>
+</tr>
+<tr class="even">
+<td>传输层</td>
+<td>为应用层提供端到端的通信功能，同时提供流量控制，确保数据完整和正确。TCP协议位于该层，提供一种可靠的、面向连接的数据传输服务，对之对应的是UDP协议，提供不可靠的、无连接的数据报传输服务</td>
+</tr>
+<tr class="odd">
+<td>网际互联层</td>
+<td>解决主机到主机之间的通信问题。其主要协议有：网际协议（IP）、地址解析协议（ARP）、反向地址解析协议（RARP）和互联网控制报文协议（ICMP）</td>
+</tr>
+<tr class="even">
+<td>网络接口层</td>
+<td>为上层提供服务，完成链路控制等功能</td>
+</tr>
+</tbody>
+</table>
+<h4 id="包packet">包（packet）</h4>
+<p>包（packet）是网络上传输的数据片段，也称为分组或IP数据报。用户数据按照规定划分为大小适中的若干组，每个组加上包头构成一个包，该过程便称为封装。网络上使用包为单位进行数据传输。</p>
+<p>包是一种统称，在不同的层次，包有不同的名字。如TCP/IP中称作帧，而IP层称之为IP数据报，TCP层称之为TCP报文等。</p>
+<h4 id="网络字节顺序">网络字节顺序</h4>
+<p>TCP/IP协议定义了一种所有机器在互联网分组的二进制字段中必须使用的网络标准字节顺序，与之对应的是主机字节顺序，主机字节顺序和各个主机密切相关。</p>
+<p>传输时需遵循以下转换规则：<strong>主机字节顺序→网络字节顺序→主机字节顺序</strong>。</p>
+<p>即发送方将主机字节顺序的整数转换为网络字节顺序后发送出去，接收方收到数据后将网络字节顺序的整数转换为自己的主机字节顺序，然后再进行处理。</p>
+<h4 id="地址解析协议arp">地址解析协议（ARP）</h4>
+<p>TCP/IP网络使用IP地址进行寻址，IP包在IP层实现路由选择，但IP包在网络接口层的传输却需要知道设备的物理地址，此时便需要一种IP地址到物理地址的转换协议ARP。</p>
+<p>ARP协议是一种在以太网这种有广播能力的网络中解决地址转换问题的方法，该方法允许在不重新编译代码、不需维护一个集中式数据库的情况下，在网络中动态增加新机器。</p>
+<p>其原理为：当主机A想转换某一IP地址时，通过向网络中广播一个专门的报文分组，要求具有该IP地址的机器以其物理地址做出应答。所有主机都将收到这个请求，但只有符合条件的主机才辨认该IP地址，同时发回一个包括其物理地址的应答。主机A收到应答时便知道该IP地址对应的物理地址，并使用这个地址将数据分组发过去。</p>
+<h3 id="udp协议">UDP协议</h3>
+<p>UDP是一种无连接的传输层协议，主要用于不要求分组顺序到达的传输中。其优点为资源消耗小、处理速度快。由于其不提供数据包分组、组装和不能对数据包进行排序的缺点，当报文发送后，无法得知其是否安全完整到达的，因此UDP协议丢包会比较严重。</p>
+<h3 id="icmp协议">ICMP协议</h3>
+<p>ICMP协议是Internet控制报文协议，属于TCP/IP协议族的一个子协议，用于在IP主机、路由器之间传递控制信息。控制信息是指网络是否通畅、主机是否可达、路由是否可用等网络本身的信息，<strong>其唯一的功能是报告问题</strong>，而不是纠正错误，纠错的任务由发送方完成。</p>
+<h1 id="网络管理命令">网络管理命令</h1>
+<h2 id="ping检查网络连接速度及网络是否通畅">Ping：检查网络连接速度及网络是否通畅</h2>
+<p>ping常用于测试与目标主机或域名是否可达。ping的结果通常是可信的（部分服务器设置了禁止ping的除外）</p>
+<p>ping命令不会自动终止，需要按"ctrl+c"终止，或是用参数"<code>-c</code>"指定要求完成的回应次数。</p>
+<p>在CenOS 7中，ping的常用命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ping目的ip地址如192.168.3.100</span></span><br><span class="line">ping 192.168.3.100</span><br><span class="line"></span><br><span class="line"><span class="comment">#ping外网域名如www.baidu.com</span></span><br><span class="line">ping www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment">#ping目的ip地址n次，下面命令中的n为次数</span></span><br><span class="line">ping -c n 192.168.3.100</span><br><span class="line"></span><br><span class="line"><span class="comment">#以0.01s的时间间隔来ping目的ip地址3次，下面命令中的0.01为指定的时间间隔0.01秒</span></span><br><span class="line">ping -c 3 -i 0.01 192.168.3.100</span><br></pre></td></tr></table></figure>
+<h2 id="ifconfig配置网络或显示当前网络接口状态">ifconfig:配置网络或显示当前网络接口状态</h2>
+<p>ifonfig命令可以用于查看、配置、启用或禁用指定网络接口，如配置网卡的IP地址、掩码、广播地址、网关等。</p>
+<p>在CenOS 7中，查看网卡基本信息：</p>
+<p><img src="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/1.png"></p>
+<p>查看指定网络接口ens33的信息：</p>
+<p><img src="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/2.png"></p>
+<p>其中：</p>
+<ul>
+<li><p>第一行：UP表示该网络接口为启用状态。RUNNING表示网卡设备已连接，MULTICAST表示组播，mtu为数据包最大传输单元</p></li>
+<li><p>第二行：网卡IP、子网掩码、广播地址</p></li>
+<li><p>第三行：IPv6地址</p></li>
+<li><p>第四行：ether为网卡的MAC地址，Ethernet表示连接类型</p></li>
+<li><p>第五行：接收数据包个数、大小统计信息</p></li>
+<li><p>第六行：异常接收数据包的数量，如丢包量、错误等</p></li>
+<li><p>第七行：发送数据包个数、大小统计信息</p></li>
+<li><p>第八行：产生错误数据包的数量，如丢包量，错误等</p></li>
+</ul>
+<p>ifconfig的常用命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#关闭ens33网卡</span></span><br><span class="line">ifconfig ens33 down</span><br><span class="line"></span><br><span class="line"><span class="comment">#开启ens33网卡</span></span><br><span class="line">ifconfig ens33 up</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置ip地址</span></span><br><span class="line">ifconfig ens33:1 192.168.100.100</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置ip地址和子网掩码</span></span><br><span class="line">ifconfig ens33:1 192.168.100.100 netmask 255.255.255.0</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置ip地址、子网掩码和广播地址</span></span><br><span class="line">ifconfig ens33:1 192.168.100.100 netmask 255.255.255.0 broadcast 192.168.1.255</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除ip地址</span></span><br><span class="line">ifconfig ens33 del 192.168.1.100</span><br><span class="line"></span><br><span class="line"><span class="comment">#启用arp协议</span></span><br><span class="line">ifconfig ens33 arp</span><br><span class="line"></span><br><span class="line"><span class="comment">#禁用arp协议</span></span><br><span class="line">ifconfig ens33 -arp</span><br></pre></td></tr></table></figure>
+<h2 id="route显示添加或修改路由表">route：显示添加或修改路由表</h2>
+<p>route命令用于查看或编辑计算机的IP路由表。</p>
+<p>route的常用命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示所有路由表</span></span><br><span class="line">route -n</span><br><span class="line"><span class="comment">#添加一条路由：发往192.168.60.0网段的全部要经过网关192.168.19.1</span></span><br><span class="line">route add -net 192.168.18.0 netmask 255.255.255.0 gw 192.168.18.2</span><br><span class="line"><span class="comment">#删除一条路由：删除时不需要网关</span></span><br><span class="line">route del -net 192.168.18.0 netmask 255.255.255.0</span><br></pre></td></tr></table></figure>
+<h2 id="scplinux系统之间复制文件和目录">scp：Linux系统之间复制文件和目录</h2>
+<p>scp可以将本地文件传送到远程主机或从远程主机拉取文件到本地。注意由于各发行版本不同，scp语法也不同。</p>
+<p>scp使用方法如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将本地/root/lk目录下所有文件传输到远程主机192.168.3.100的/home/lk/cpfile目录下：</span></span><br><span class="line">scp -r /root/lk root@192.168.3.100:/home/lk/cpfile</span><br><span class="line"></span><br><span class="line"><span class="comment">#将远程主机192.168.3.100的/home/lk/目录下所有文件全部复制到本地的/root目录下：</span></span><br><span class="line">scp -r root@192.168.3.100:/home/lk /root</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用端口号4588将本地文件test.py传送至远程主机198.168.3.100的/usr目录下：</span></span><br><span class="line">scp -P 4588 test.py root@192.168.3.100:/usr</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用端口号4588将远程主机198.168.3.100的/etc/1.txt文件复制到本地的/root目录下：</span></span><br><span class="line">scp -P 4588 root@192.168.3.100:/etc/1.txt /root</span><br></pre></td></tr></table></figure>
+<h2 id="rsync数据镜像备份工具">rsync：数据镜像备份工具</h2>
+<p>rsync是Linux系统下常用的数据镜像备份工具，用于在不同的主机之间同步文件。除了单个文件外，rsync还可以保存整个目录树和文件系统，可以增量同步，并保持文件原来的属性，数据传输过程是加密的，保证数据的安全。</p>
+<p><strong>rsync不仅可以远程同步数据，还可以本地同步数据</strong>。与cp或scp不同的是，<strong>使用rsync备份数据时不会直接覆盖已经存在的数据</strong>，而是先判断已经存在的数据和新数据的差异，只有数据不同时才会把不相同的部分覆盖。</p>
+<p>rsync使用方法如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将本地/etc/passwd文件同步到本地的/tmp/目录下，并改名为1.txt</span></span><br><span class="line">rsync -av /etc/passwd /tmp/1.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">#将本地/etc/passwd文件备份到远程主机192.168.3.100的/tmp/目录下，并改名为1.txt</span></span><br><span class="line">rsync -av /etc/passwd 192.168.3.100:/tmp/1.txt</span><br></pre></td></tr></table></figure>
+<h2 id="netstat显示网络连接路由表或接口状态">netstat：显示网络连接、路由表或接口状态</h2>
+<p>netstat命令用于监控系统网络配置和工作状况，可以显示内核路由表、活动的网络状态以及每个网络接口有用的统计数字。</p>
+<p>netstat的常用命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示所有端口，包含UDP和TCP端口</span></span><br><span class="line">netstat -a|head -4</span><br><span class="line"><span class="comment">#显示所有TCP端口</span></span><br><span class="line">netstat -at</span><br><span class="line"><span class="comment">#显示所有UDP端口</span></span><br><span class="line">netstat -au</span><br><span class="line"><span class="comment">#显示所有处于监听状态的端口并以数字方式显示而非服务名</span></span><br><span class="line">netstat -ln</span><br><span class="line"><span class="comment">#显示所有TCP端口并显示对应的进程名称或进程号</span></span><br><span class="line">netstat -plnt</span><br><span class="line"><span class="comment">#显示核心路由信息</span></span><br><span class="line">netstat -r</span><br><span class="line"><span class="comment">#显示网络接口列表</span></span><br><span class="line">netstat -i</span><br><span class="line"><span class="comment">#统计各个TCP连接的各个状态对应的数量</span></span><br><span class="line">netstat -plinta|sed <span class="string">'1,2d'</span>|awk <span class="string">'&#123;print $6&#125;'</span>|sort|uniq -c</span><br></pre></td></tr></table></figure>
+<h2 id="traceroute探测至目的地址的路由信息">traceroute：探测至目的地址的路由信息</h2>
+<p>traceroute跟踪数据包到达网络主机所经过的路由，其原理是试图以最小的TTL发出探测包来跟踪数据包到达目标主机所经过的网关，然后监听一个来自网关ICMP的应答。</p>
+<p>traceroute的常用命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先检查主机与www.baidu.com之间的网络是否通畅</span></span><br><span class="line">ping www.baidu.com</span><br><span class="line"><span class="comment">#显示本地主机到www.baidu.com所经过的路由信息</span></span><br><span class="line">traceroute -n www.baidu.com</span><br><span class="line"><span class="comment">#运行结果的每行记录对应一跳，每跳表示一个网关，最大30跳。每行有3个时间，单位是ms。星号则表示ICMP信息没有返回</span></span><br></pre></td></tr></table></figure>
+<h2 id="telnet测试登录或控制远程主机">telnet：测试、登录或控制远程主机</h2>
+<p>telnet通常用来远程登录。在客户端使用telnet在程序中输入命令，可以在本地控制服务器。由于telnet采用明文传送报文，安全性较差。telnet可以确定远程服务端口的状态，以便确认服务是否正常。</p>
+<p>telnet常用命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查198.168.3.100对应的56789端口服务是否正常</span></span><br><span class="line">telnet 198.168.3.100 56789</span><br><span class="line"><span class="comment">#检查www.pjp.net对应的80端口服务是否正常</span></span><br><span class="line">telnet www.php.net 80</span><br></pre></td></tr></table></figure>
+<h2 id="wget下载网络文件">wget：下载网络文件</h2>
+<p>wget可以断点续传，同时支持FTP或HTTP协议下载，并可以设置代理服务器。</p>
+<p>wgett常用命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载文件http://ftp.gnu.org/gnu/wget/wget-1.14.tar.gz</span></span><br><span class="line">wget http://ftp.gnu.org/gnu/wget/wget-1.14.tar.gz</span><br><span class="line"><span class="comment">#断点续传</span></span><br><span class="line">wget -c http://ftp.gnu.org/gnu/wget/wget-1.14.tar.gz</span><br><span class="line"><span class="comment">#批量下载，其中download.txt文件里是一系列网址</span></span><br><span class="line">wget -i download.txt</span><br></pre></td></tr></table></figure>
+<h1 id="linux网络配置">Linux网络配置</h1>
+<p>与Linux网络配置相关的文件主要有以下这些：</p>
+<table>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>目录</th>
+<th>功能及作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>/etc/hostname</td>
+<td>主要用于修改主机名称</td>
+</tr>
+<tr class="even">
+<td>/etc/sysconfig/network-scrips/ifcfg-enoN</td>
+<td>设置网卡参数的文件，如IP地址、子网掩码、广播地址、网关等，N为一串数字</td>
+</tr>
+<tr class="odd">
+<td>/etc/resolv.conf</td>
+<td>设置DNS相关的信息，用于将域名解析到IP</td>
+</tr>
+<tr class="even">
+<td>/etc/hosts</td>
+<td>计算机IP对应的主机名称或域名对应的IP地址</td>
+</tr>
+<tr class="odd">
+<td>/etc/nsswitch.conf</td>
+<td>规定通过哪些途径、按照什么顺序通过这些途径来查找特定类型的信息。通过修改选项可以选择是DNS解析优先还是本地设置优先</td>
+</tr>
+</tbody>
+</table>
+<h2 id="配置linux系统的ip地址">配置Linux系统的IP地址</h2>
+<p>可以通过终端命令直接设置主机的IP地址，如想设置在系统重启后依然生效，可以通过设置对应的网络端口文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">oot@localhost admin]<span class="comment"># cat /etc/sysconfig/network-scripts/ifcfg-ens33</span></span><br><span class="line"></span><br><span class="line">TYPE=<span class="string">"Ethernet"</span>  <span class="comment">#设备连接类型，此处为以太网</span></span><br><span class="line">PROXY_METHOD=<span class="string">"none"</span>  </span><br><span class="line">BROWSER_ONLY=<span class="string">"no"</span></span><br><span class="line">BOOTPROTO=<span class="string">"dhcp"</span>  <span class="comment">#使用动态IP</span></span><br><span class="line">DEFROUTE=<span class="string">"yes"</span>  <span class="comment">#是否为默认路由</span></span><br><span class="line">IPV4_FAILURE_FATAL=<span class="string">"no"</span></span><br><span class="line">IPV6INIT=<span class="string">"yes"</span></span><br><span class="line">IPV6_AUTOCONF=<span class="string">"yes"</span></span><br><span class="line">IPV6_DEFROUTE=<span class="string">"yes"</span></span><br><span class="line">IPV6_FAILURE_FATAL=<span class="string">"no"</span></span><br><span class="line">IPV6_ADDR_GEN_MODE=<span class="string">"stable-privacy"</span></span><br><span class="line">NAME=<span class="string">"ens33"</span></span><br><span class="line">UUID=<span class="string">"cc581056-9262-44ab-877f-645d0b306352"</span></span><br><span class="line">DEVICE=<span class="string">"ens33"</span></span><br><span class="line">ONBOOT=<span class="string">"yes"</span>  <span class="comment">#系统启动时是否设置此网络接口</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">#可以使用命令</span></span><br><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line"><span class="comment">#将BOOTPROTO="dhcp" 修改为BOOTPROTO=none 后，增加以下字段。按i键即可输入，输入完成后按下Esc键，输入冒号：和wq将更改保存后退出</span></span><br><span class="line"></span><br><span class="line">IPADDR0=设定的ip地址</span><br><span class="line">PREFIX0=设定的子网掩码</span><br><span class="line">GATEWAT0=设定的网关</span><br><span class="line">DNS1=DNS服务器地址1</span><br><span class="line">DNS2=DNS服务器地址2</span><br></pre></td></tr></table></figure>
+<p>设置完接口文件后，需要重启网络服务才能生效，重启后使用ifconfig查看设置是否生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+<p>同一个网络接口可以使用子接口的方式设置多个IP地址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置网络接口ens33子接口1的ip地址和子网掩码</span></span><br><span class="line">ifconfig ens33:1 192.168.100.100 netmask 255.255.255.0</span><br></pre></td></tr></table></figure>
+<p>当服务器重启或网络服务重启后，子接口的配置将消失。若需要重启后仍生效，可以将配置子接口命令加入/etc/rc.local文件中。</p>
+<h2 id="使用hostname设置主机名">使用hostname设置主机名</h2>
+<p>主机名是识别某个计算机在网络中的标识。在单机情况下，主机名可任意设置。执行以下命令修改主机名，重新登录后可以发现主机名已改变。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname mycomputername</span><br></pre></td></tr></table></figure>
+<p>如要修改重启后依然生效，可以将主机名写入文件/etc/hostname中。</p>
+<h2 id="设置默认网关">设置默认网关</h2>
+<p>设置好IP地址后，若要访问其他的子网或Internet，用户还需要设置路由，这里采用设置默认网关的方法来设置路由。</p>
+<p>在Linux中，设置默认网关有两种方法：</p>
+<ul>
+<li><p>第一种是直接使用route命令。在设置默认网关之前，先用<code>route -n</code> 命令查看路由表，而后执行下面命令设置网关：</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route add default gw 192.168.10.254</span><br></pre></td></tr></table></figure></p>
+<p>若不想每次开机都执行route命令，则应把要执行的命令写入/etc/rc.d/re.local文件中。</p></li>
+<li><p>第二种是在/ect/sysconfig/network-scripts/ifcfg-接口文件中添加如下字段：</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GATEWAY=192.168.10.254</span><br></pre></td></tr></table></figure></p>
+<p>然后重启网络服务来使设置生效。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<h2 id="设置dns服务器">设置DNS服务器</h2>
+<p>设置DNS服务器只需修改/etc/resolv.conf文件即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost admin]<span class="comment"># cat /etc/resolv.conf</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Generated by NetworkManager</span></span><br><span class="line">search localdomain</span><br><span class="line">nameserver 192.168.18.2  <span class="comment">#第一名字服务器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#如需添加DNS服务器，直接在下面添加nameserver即可，注意nameserver指定的DNS服务器只有前三条生效</span></span><br><span class="line"><span class="comment">#resolv.conf文件还有其他参数如下：</span></span><br><span class="line">option rotate  <span class="comment">#在这DNS server之间轮询</span></span><br><span class="line">option timeout:1  <span class="comment">#表示解析超时时间1s（默认为5s）</span></span><br><span class="line">attempts:2  <span class="comment">#表示解析域名尝试的次数</span></span><br></pre></td></tr></table></figure>
+<h1 id="ftp服务器">FTP服务器</h1>
+<h2 id="ftp服务概述">FTP服务概述</h2>
+<p>FTP文件共享基于TCP/IP协议，是一种通用性比较强的网络文件共享方式。FTP是仅基于TCP的服务，不支持UDP。FTP使用两个端口，一个数据端口和一个命令端口（控制端口）。通常这两个端口是21（命令端口）和20（数据端口）。由于FTP工作方式的不同，数据端口并不总是20，分为主动FTP和被动FTP。</p>
+<ul>
+<li>主动FTP
+<ul>
+<li>主动模式是从服务器向客户端发起连接。主动模式下，服务端开启的是20和21端口，客户端开启的是1024以上的端口</li>
+</ul></li>
+<li>被动FTP
+<ul>
+<li>被动模式是客户端向服务端发起连接。被动模式下，服务端开启的是21命令端口和大于1024的数据连接端口，客户端开启的是大于1024的两个端口</li>
+</ul></li>
+</ul>
+<p>两者的共同点是都使用21端口进行用户验证及管理，差别在于传送数据的方式不同。</p>
+<h2 id="vsftp的安装与配置">vsftp的安装与配置</h2>
+<p>在Linux系统下，vsftp是一款应用比较广泛的FTP软件，其特点是小巧轻快、安全易用。</p>
+<h3 id="vsftp安装">vsftp安装</h3>
+<p>使用yum工具安装vsftp：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用yum工具下载vsftp</span></span><br><span class="line">yum install -y vsftpd</span><br><span class="line"><span class="comment">#使用rpm安装vsftp</span></span><br><span class="line">rpm -qa|grep vsftp</span><br><span class="line"><span class="comment">#安装依赖的库文件</span></span><br><span class="line">yum install -y libcap libcap-devel</span><br></pre></td></tr></table></figure>
+<h3 id="匿名ftp设置">匿名FTP设置</h3>
+<p>这种运行匿名用户访问并上传文件，配置文件路径一般为<code>/etc/vsftpd.conf</code>，若是使用rpm包安装，则配置文件位于<code>/etc/vsftpd/vsftpd.conf</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将默认目录赋予用户ftp权限以便可以上传文件</span></span><br><span class="line">[root@localhost admin]<span class="comment"># chown -R ftp.users /var/ftp/pub/</span></span><br><span class="line"><span class="comment">#取消配置文件中的注释并显示有效行</span></span><br><span class="line">[root@localhost admin]<span class="comment"># grep -v ^# /etc/vsftpd/vsftpd.conf</span></span><br><span class="line">anonymous_enable=YES  <span class="comment">#允许匿名用户登录和上传</span></span><br><span class="line">local_enable=YES  </span><br><span class="line">write_enable=YES  <span class="comment">#允许写</span></span><br><span class="line">local_umask=022  </span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">xferlog_std_format=YES</span><br><span class="line">listen=NO <span class="comment">#是否允许在监听</span></span><br><span class="line">listen_ipv6=YES <span class="comment">#是否允许IPv6上的监听</span></span><br><span class="line"></span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">userlist_enable=YES</span><br><span class="line">tcp_wrappers=YES</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置文件使用vim /etc/vsftpd/vsftpd.conf修改为如下：</span></span><br><span class="line">anonymous_enable=YES</span><br><span class="line">local_enable=YES</span><br><span class="line">write_enable=YES</span><br><span class="line">local_umask=022</span><br><span class="line">anon_upload_enable=YES</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">xferlog_std_format=YES</span><br><span class="line">listen=YES</span><br><span class="line">listen_ipv6=NO</span><br><span class="line"></span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">userlist_enable=YES</span><br><span class="line">tcp_wrappers=YES</span><br></pre></td></tr></table></figure>
+<h3 id="启动ftp服务">启动FTP服务</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动vsftpd</span></span><br><span class="line">[root@localhost admin]<span class="comment"># systemctl start vsftpd</span></span><br><span class="line"><span class="comment">#检查是否启动成功，默认配置文件位于/etc/vsftpd/vsftpd.conf</span></span><br><span class="line">[root@localhost admin]<span class="comment"># ps -ef|grep vsftp</span></span><br><span class="line">root      60170      1  0 00:55 ?        00:00:00 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf</span><br><span class="line">root      60223  54792  0 00:56 pts/0    00:00:00 grep --color=auto vsftp</span><br></pre></td></tr></table></figure>
+<h3 id="匿名用户登录测试">匿名用户登录测试</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#登录ftp</span></span><br><span class="line">[root@localhost admin]<span class="comment"># ftp 192.168.18.128 21</span></span><br><span class="line">Connected to 192.168.18.128 (192.168.18.128).</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br><span class="line"><span class="comment">#输入匿名用户名</span></span><br><span class="line">Name (192.168.18.128:root): anonymous</span><br><span class="line">331 Please specify the password.</span><br><span class="line"><span class="comment">#密码为空</span></span><br><span class="line">Password:</span><br><span class="line"><span class="comment">#登录成功</span></span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system <span class="built_in">type</span> is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line">ftp&gt; </span><br><span class="line"><span class="comment">#切换目录</span></span><br><span class="line">ftp&gt; <span class="built_in">cd</span> pub</span><br><span class="line">250 Directory successfully changed.</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看当前目录下的文件</span></span><br><span class="line">ftp&gt; !ls -l</span><br><span class="line">总用量 3048</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Desktop</span><br><span class="line">drwxr-xr-x. 2 admin admin      19 11月 16 01:18 Documents</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Downloads</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Music</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Pictures</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Public</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Templates</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Videos</span><br><span class="line">-rw-r--r--. 1 root  root  3118130 8月   5 2012 wget-1.14.tar.gz</span><br><span class="line"><span class="comment">#上传文件测试</span></span><br><span class="line">ftp&gt; put wget-1.14.tar.gz</span><br><span class="line"><span class="built_in">local</span>: wget-1.14.tar.gz remote: wget-1.14.tar.gz</span><br><span class="line">227 Entering Passive Mode (192,168,18,128,72,253).</span><br><span class="line">553 Could not create file.</span><br></pre></td></tr></table></figure>
+<p>上述上传文件时，遇到了553 Could not create file错误。解决方式如下：</p>
+<ul>
+<li><p>输入quit退出vsftpd，在ftp的目录创建一个目录，然后设置权限为777：</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost admin]<span class="comment"># mkdir /var/ftp/write</span></span><br><span class="line">[root@localhost admin]<span class="comment"># chmod -R 777 /var/ftp/write</span></span><br><span class="line">[root@localhost admin]<span class="comment"># vim /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>然后修改位于/etc/vsftpd/vsftpd.conf的配置文件，在文件最后加上以下代码：</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">local_root=/var/ftp</span><br></pre></td></tr></table></figure></p></li>
+<li><p>杀死vsftpd进程，然后重启vsftpd服务器程序：</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#杀死vsftpd进程</span></span><br><span class="line">[root@localhost admin]<span class="comment"># pkill vsftpd</span></span><br><span class="line"><span class="comment">#查看是否还有vsftpd进程</span></span><br><span class="line">[root@localhost admin]<span class="comment"># pgrep vsftpd</span></span><br><span class="line"><span class="comment">#启动vsftpd服务器</span></span><br><span class="line">[root@localhost admin]<span class="comment"># /usr/sbin/vsftpd &amp;</span></span><br><span class="line">[1] 61422</span><br><span class="line"><span class="comment">#查看是否有vsftpd进程</span></span><br><span class="line">[root@localhost admin]<span class="comment"># pgrep vsftpd</span></span><br><span class="line">61418</span><br></pre></td></tr></table></figure></p></li>
+<li><p>然后再试试登录ftp上传文件：</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#上传文件测试</span></span><br><span class="line">ftp&gt; put wget-1.14.tar.gz</span><br><span class="line"><span class="built_in">local</span>: wget-1.14.tar.gz remote: wget-1.14.tar.gz</span><br><span class="line">227 Entering Passive Mode (192,168,18,128,122,212).</span><br><span class="line">150 Ok to send data.</span><br><span class="line">226 Transfer complete.</span><br><span class="line">3118130 bytes sent <span class="keyword">in</span> 0.00845 secs (368834.88 Kbytes/sec)</span><br><span class="line"><span class="comment">#上传文件成功退出ftp</span></span><br><span class="line">ftp&gt; quit</span><br><span class="line">221 Goodbye.</span><br><span class="line"><span class="comment">#查看上传后的文件信息，文件属于ftp用户</span></span><br><span class="line">[root@localhost admin]<span class="comment"># ll /var/ftp/pub/</span></span><br><span class="line">总用量 3048</span><br><span class="line">-rw-------. 1 ftp ftp 3118130 11月 16 01:29 wget-1.14.tar.gz</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<h3 id="实名ftp设置">实名FTP设置</h3>
+<p>除了配置匿名FTP服务外，vsftp还可以配置实名FTP服务器，以便实现更精确的权限控制。</p>
+<p>实名需要的用户认证信息位于/etc/vsftpd/目录下，用户启动时可以单独指定其他的配置文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置文件使用vim /etc/vsftpd/vsftpd.conf修改为如下：</span></span><br><span class="line">[root@localhost admin]<span class="comment"># grep -v ^# /etc/vsftpd/vsftpd.conf</span></span><br><span class="line">anonymous_enable=NO  <span class="comment">#禁止匿名用户登录</span></span><br><span class="line">local_enable=YES    <span class="comment">#允许本地用户访问，默认为YES</span></span><br><span class="line">write_enable=YES  <span class="comment">#允许写入</span></span><br><span class="line">local_umask=022  <span class="comment">#上传后的文件默认的权限掩码</span></span><br><span class="line">anon_upload_enable=NO  <span class="comment">#匿名用户上传权限 </span></span><br><span class="line">anon_mkdir_write_enable=NO  <span class="comment">#匿名用户创建目录的同时上传文件</span></span><br><span class="line">anon_other_write_enable=NO  <span class="comment">#匿名用户删除权限</span></span><br><span class="line">chroot_local_user=YES <span class="comment">#禁止本地用户离开自己的ftp主目录</span></span><br><span class="line">chroot_list_enable=NO   <span class="comment">#禁止ftp用户离开自己的ftp主目录</span></span><br><span class="line">chroot_list_file=/etc/vsftpd.chroot_list  <span class="comment">#虚拟用户列表，每行一个用户名</span></span><br><span class="line">listen=YES</span><br><span class="line">listen_address=192.168.18.128  <span class="comment">#绑定本机ip</span></span><br><span class="line"></span><br><span class="line">pam_service_name=vsftpd.vu  <span class="comment">#验证方式</span></span><br><span class="line">local_root=/var/ftp  <span class="comment">#</span></span><br><span class="line"></span><br><span class="line">guest_enable=YES  <span class="comment">#开启虚拟用户功能</span></span><br><span class="line">guest_username=ftp  <span class="comment">#虚拟用户的宿主目录</span></span><br><span class="line">virtual_use_local_privs=YES  <span class="comment">#用户登录后操作主目录和本地用户具有同样的权限</span></span><br><span class="line">user_config_dir=/etc/vsftpd/vconf  <span class="comment">#虚拟用户主目录设置文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#新建/etc/vsftpd.chroot_list文件</span></span><br><span class="line">[root@localhost admin]<span class="comment"># touch /etc/vsftpd.chroot_list</span></span><br><span class="line"><span class="comment">#编辑/etc/vsftpd.chroot_list如下，每行一个用户名</span></span><br><span class="line">[root@localhost admin]<span class="comment"># vim /etc/vsftpd.chroot_list</span></span><br><span class="line">[root@localhost admin]<span class="comment"># cat /etc/vsftpd.chroot_list</span></span><br><span class="line">user1</span><br><span class="line">user2</span><br><span class="line"></span><br><span class="line"><span class="comment">#增加用户并指定主目录</span></span><br><span class="line">[root@localhost admin]<span class="comment"># mkdir /data</span></span><br><span class="line">[root@localhost admin]<span class="comment"># mkdir /data/user1</span></span><br><span class="line">[root@localhost admin]<span class="comment"># mkdir /data/user2</span></span><br><span class="line">[root@localhost admin]<span class="comment"># chmod -R 775 /data/user1 /data/user2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置用户名密码数据库</span></span><br><span class="line">[root@localhost admin]<span class="comment"># echo -e "user1\npass1\nuser2\npass2"&gt;/etc/vsftpd/vusers.list</span></span><br><span class="line">[root@localhost admin]<span class="comment"># cd /etc/vsftpd</span></span><br><span class="line">[root@localhost vsftpd]<span class="comment"># db_load -T -t hash -f vusers.list vusers.db</span></span><br><span class="line">[root@localhost vsftpd]<span class="comment"># chmod 600 vusers.*</span></span><br><span class="line"><span class="comment">#指定认证方式</span></span><br><span class="line">[root@localhost vsftpd]<span class="comment"># echo -e "#%PAM-1.0\n\nauth required pam_userdb.so db=/etc/vsftpd/vusers\naccount required pam_userdb.so db=/etc/vsftpd/vusers"&gt;/etc/pam.d/vsftpd.vu</span></span><br><span class="line">[root@localhost vsftpd]<span class="comment"># mkdir -p /etc/vsftpd/vconf</span></span><br><span class="line">[root@localhost vsftpd]<span class="comment"># cd /etc/vsftpd/vconf</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># ls</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># touch user1</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># touch user2</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># ls</span></span><br><span class="line">user1  user2</span><br><span class="line"></span><br><span class="line"><span class="comment">#编辑用户的用户名文件，指定主目录</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># vim user1</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># cat user1</span></span><br><span class="line">local_root=/data/user1</span><br><span class="line">[root@localhost vconf]<span class="comment"># vim user2</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># cat user2</span></span><br><span class="line">local_root=/data/user2</span><br><span class="line"><span class="comment">#创建标识文件</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># touch /data/user1/user1</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># touch /data/user2/user2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#若连接ftp显示连接被拒绝，重启vsftpd服务后即可解决</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># ftp 192.168.18.128 21</span></span><br><span class="line">Connected to 192.168.18.128 (192.168.18.128).</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br><span class="line"><span class="comment">#输入用户名user1</span></span><br><span class="line">Name (192.168.18.128:root): user1</span><br><span class="line">331 Please specify the password.</span><br><span class="line"><span class="comment">#密码为之前设置的pass1</span></span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system <span class="built_in">type</span> is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line"><span class="comment">#查看文件</span></span><br><span class="line">ftp&gt; ls</span><br><span class="line">227 Entering Passive Mode (192,168,18,128,47,84).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 0        0               0 Nov 17 01:53 user1</span><br><span class="line">226 Directory send OK.</span><br><span class="line"><span class="comment">#退出vsftpd</span></span><br><span class="line">ftp&gt; quit</span><br><span class="line">221 Goodbye.</span><br><span class="line"></span><br><span class="line"><span class="comment">#测试用户user2</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># ftp 192.168.18.128 21</span></span><br><span class="line">Connected to 192.168.18.128 (192.168.18.128).</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br><span class="line">Name (192.168.18.128:root): user2</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system <span class="built_in">type</span> is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line">ftp&gt; ls</span><br><span class="line">227 Entering Passive Mode (192,168,18,128,75,91).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 0        0               0 Nov 17 01:53 user2</span><br><span class="line">226 Directory send OK.</span><br><span class="line"><span class="comment">#退出vsftpd</span></span><br><span class="line">ftp&gt; quit</span><br><span class="line">221 Goodbye.</span><br></pre></td></tr></table></figure>
+
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://tangmenjue.top">唐抉</a>
+            <p>原文链接：<a href="http://tangmenjue.top/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/">http://tangmenjue.top/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/</a>
+            <p>发表日期：<a href="http://tangmenjue.top/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/">November 16th 2022, 4:15:26 pm</a>
+            <p>更新日期：<a href="http://tangmenjue.top/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/">November 18th 2022, 9:14:14 am</a>
+            <p>版权声明：
+			<!--如果有设置theme.since，并且时间小于当前时间（年份），形式为：@ 2018 - 2019(+作者/标题)；否则默认为当前年份(+作者/标题)。 -->
+			
+			    &copy; 2020-2022
+			
+			本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+			</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" title="企业微信之企业应用开发流程">
+                    <div class="nextTitle">企业微信之企业应用开发流程</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%E4%B9%8B%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/" title="Vue.js实战之博客页面前端">
+                    <div class="prevTitle">Vue.js实战之博客页面前端</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC81MjY0MS8yOTExOA==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+            
+            var intervalFunctionID = setInterval(function(){ myTimer() }, 1000);
+            function myTimer() {
+                if (document.getElementById("taboola-livere") != null)
+                {
+                  if (document.getElementById("taboola-livere").style.display == "none")
+                  {
+                    //alert("Interval function stopped");
+                    clearInterval(intervalFunctionID);
+                  }
+                }
+                document.getElementById("taboola-livere").style.display="none";
+                //alert("Interval function running");
+            }
+        </script>
+        <noscript>为正常使用来必力评论功能请激活 JavaScript</noscript>
+    </div>
+
+
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
+    
+</main>
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+        <div class="social">
+            
+    
+        
+            
+                <a href="mailto:2630272905@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/liuyingqiao2019" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                    
+                    <img class="profile-qr" src="/assets/wecat.png" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                    
+                    <img class="profile-qr" src="/assets/qq.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <!-- 不蒜子  -->
+    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">本站总阅读量: <span id="busuanzi_value_site_pv"></span>次</span>
+            
+        </div>
+    	
+</footer>
+
+        </div>
+        <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前置知识"><span class="toc-number">1.</span> <span class="toc-text">前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux常见目录"><span class="toc-number">1.1.</span> <span class="toc-text">Linux常见目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络管理协议"><span class="toc-number">1.2.</span> <span class="toc-text">网络管理协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcpip协议"><span class="toc-number">1.2.1.</span> <span class="toc-text">TCP&#x2F;IP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tcpip协议体系"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">TCP&#x2F;IP协议体系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#包packet"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">包（packet）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络字节顺序"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">网络字节顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#地址解析协议arp"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">地址解析协议（ARP）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udp协议"><span class="toc-number">1.2.2.</span> <span class="toc-text">UDP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#icmp协议"><span class="toc-number">1.2.3.</span> <span class="toc-text">ICMP协议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网络管理命令"><span class="toc-number">2.</span> <span class="toc-text">网络管理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ping检查网络连接速度及网络是否通畅"><span class="toc-number">2.1.</span> <span class="toc-text">Ping：检查网络连接速度及网络是否通畅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ifconfig配置网络或显示当前网络接口状态"><span class="toc-number">2.2.</span> <span class="toc-text">ifconfig:配置网络或显示当前网络接口状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#route显示添加或修改路由表"><span class="toc-number">2.3.</span> <span class="toc-text">route：显示添加或修改路由表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scplinux系统之间复制文件和目录"><span class="toc-number">2.4.</span> <span class="toc-text">scp：Linux系统之间复制文件和目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rsync数据镜像备份工具"><span class="toc-number">2.5.</span> <span class="toc-text">rsync：数据镜像备份工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#netstat显示网络连接路由表或接口状态"><span class="toc-number">2.6.</span> <span class="toc-text">netstat：显示网络连接、路由表或接口状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#traceroute探测至目的地址的路由信息"><span class="toc-number">2.7.</span> <span class="toc-text">traceroute：探测至目的地址的路由信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#telnet测试登录或控制远程主机"><span class="toc-number">2.8.</span> <span class="toc-text">telnet：测试、登录或控制远程主机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wget下载网络文件"><span class="toc-number">2.9.</span> <span class="toc-text">wget：下载网络文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux网络配置"><span class="toc-number">3.</span> <span class="toc-text">Linux网络配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置linux系统的ip地址"><span class="toc-number">3.1.</span> <span class="toc-text">配置Linux系统的IP地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用hostname设置主机名"><span class="toc-number">3.2.</span> <span class="toc-text">使用hostname设置主机名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置默认网关"><span class="toc-number">3.3.</span> <span class="toc-text">设置默认网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置dns服务器"><span class="toc-number">3.4.</span> <span class="toc-text">设置DNS服务器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ftp服务器"><span class="toc-number">4.</span> <span class="toc-text">FTP服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ftp服务概述"><span class="toc-number">4.1.</span> <span class="toc-text">FTP服务概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vsftp的安装与配置"><span class="toc-number">4.2.</span> <span class="toc-text">vsftp的安装与配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vsftp安装"><span class="toc-number">4.2.1.</span> <span class="toc-text">vsftp安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名ftp设置"><span class="toc-number">4.2.2.</span> <span class="toc-text">匿名FTP设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动ftp服务"><span class="toc-number">4.2.3.</span> <span class="toc-text">启动FTP服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名用户登录测试"><span class="toc-number">4.2.4.</span> <span class="toc-text">匿名用户登录测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实名ftp设置"><span class="toc-number">4.2.5.</span> <span class="toc-text">实名FTP设置</span></a></li></ol></li></ol></li></ol>
+            </div>
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 44
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+        
+            
+            
+            <div class="archive-year"> 2022 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/06</span>
+            <a class="archive-post-title" href="/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">Docker应用部署基础（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/21</span>
+            <a class="archive-post-title" href="/2022/11/21/%E4%BC%81%E5%BE%AE%E5%BA%94%E7%94%A8%E4%B9%8Bpython%E5%BC%80%E5%8F%91/">企微应用之python开发</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/18</span>
+            <a class="archive-post-title" href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">企业微信之企业应用开发流程</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/16</span>
+            <a class="archive-post-title" href="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/">CentOS 7之关于网络管理的那些知识</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/14</span>
+            <a class="archive-post-title" href="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%E4%B9%8B%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/">Vue.js实战之博客页面前端</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/11</span>
+            <a class="archive-post-title" href="/2022/11/11/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%85%AD%EF%BC%89/">前端框架之Vue.js（六）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/10</span>
+            <a class="archive-post-title" href="/2022/11/10/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%BA%94%EF%BC%89/">前端框架之Vue.js（五）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/09</span>
+            <a class="archive-post-title" href="/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/">前端框架之Vue.js（四）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span>
+            <a class="archive-post-title" href="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%E4%B9%8Btodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/">Vue.js实战之todolist待办项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span>
+            <a class="archive-post-title" href="/2022/11/04/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%89%EF%BC%89/">前端框架之Vue.js（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span>
+            <a class="archive-post-title" href="/2022/11/04/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%BA%8C%EF%BC%89/">前端框架之Vue.js（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/03</span>
+            <a class="archive-post-title" href="/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%80%EF%BC%89/">前端框架之Vue.js（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span>
+            <a class="archive-post-title" href="/2022/11/01/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%B8%89%EF%BC%89/">前端三件套之JavaScript（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span>
+            <a class="archive-post-title" href="/2022/10/31/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之JavaScript（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之JavaScript（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之CSS（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之CSS（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/27</span>
+            <a class="archive-post-title" href="/2022/10/27/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BHTML%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之HTML（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/26</span>
+            <a class="archive-post-title" href="/2022/10/26/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BHTML%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之HTML（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span>
+            <a class="archive-post-title" href="/2022/10/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/">python学习笔记(十三)</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span>
+            <a class="archive-post-title" href="/2022/10/24/Flask%E5%AE%9E%E6%88%98%E4%B9%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/">Flask实战之搭建博客后端</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/21</span>
+            <a class="archive-post-title" href="/2022/10/21/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">Flask Web开发学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/20</span>
+            <a class="archive-post-title" href="/2022/10/20/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">Flask Web开发学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span>
+            <a class="archive-post-title" href="/2022/10/19/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/">python学习笔记（十二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span>
+            <a class="archive-post-title" href="/2022/10/18/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">Flask Web开发学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span>
+            <a class="archive-post-title" href="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">PgSQL数据库学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span>
+            <a class="archive-post-title" href="/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">PgSQL数据库学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span>
+            <a class="archive-post-title" href="/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">PgSQL数据库学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span>
+            <a class="archive-post-title" href="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/">python学习笔记（十一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span>
+            <a class="archive-post-title" href="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/">python学习笔记（十）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span>
+            <a class="archive-post-title" href="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89/">python学习笔记（九）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span>
+            <a class="archive-post-title" href="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/">python学习笔记（八）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span>
+            <a class="archive-post-title" href="/2022/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89/">python学习笔记（七）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span>
+            <a class="archive-post-title" href="/2022/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">python学习笔记（六）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span>
+            <a class="archive-post-title" href="/2022/10/10/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/">python学习笔记（五）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span>
+            <a class="archive-post-title" href="/2022/10/10/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/">python学习笔记（四）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2022/10/09/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">python学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2022/10/09/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">python学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/08</span>
+            <a class="archive-post-title" href="/2022/10/08/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">python学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span>
+            <a class="archive-post-title" href="/2022/08/07/%E7%BB%93%E6%9E%84%E6%80%A7%E6%80%9D%E7%BB%B4%E7%AC%94%E8%AE%B0/">结构性思维笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span>
+            <a class="archive-post-title" href="/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">设计模式的学习（一）</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2020 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span>
+            <a class="archive-post-title" href="/2020/03/30/Win10%E7%B3%BB%E7%BB%9Fedge%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">Win10系统edge浏览器出现闪退的解决方法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span>
+            <a class="archive-post-title" href="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/">记一次XAMPP的报错实例</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/09</span>
+            <a class="archive-post-title" href="/2020/01/09/hello-world/">Hello World</a>
+        </li>
+    
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+        
+            <span class="sidebar-tag-name" data-tags="CentOS 7">
+                <span class="iconfont-archer">&#xe606;</span>
+                CentOS 7
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络管理">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络管理
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Flask Web">
+                <span class="iconfont-archer">&#xe606;</span>
+                Flask Web
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="后端">
+                <span class="iconfont-archer">&#xe606;</span>
+                后端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Web框架">
+                <span class="iconfont-archer">&#xe606;</span>
+                Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue.js">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue.js
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="前端">
+                <span class="iconfont-archer">&#xe606;</span>
+                前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="python">
+                <span class="iconfont-archer">&#xe606;</span>
+                python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="企业微信">
+                <span class="iconfont-archer">&#xe606;</span>
+                企业微信
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用开发">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="CSS">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="HTML">
+                <span class="iconfont-archer">&#xe606;</span>
+                HTML
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="XAMPP">
+                <span class="iconfont-archer">&#xe606;</span>
+                XAMPP
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="报错">
+                <span class="iconfont-archer">&#xe606;</span>
+                报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Linux">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Linux
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="edge">
+            <span class="iconfont-archer">&#xe60a;</span>
+            edge
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="应用开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            应用开发
+        </span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "http://tangmenjue.top",
+        root: siteMetaRoot,
+        author: "唐抉"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+
+        <!-- main func -->
+        <script src="/scripts/main.js?v=20211217"></script>
+        <!-- dark mode -->
+        <script src="/scripts/dark.js?v=20211217"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid -->
+        
+    </body>
+</html>

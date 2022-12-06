@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <!-- title -->
+
+
+    
+
+<!-- keywords -->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="唐抉">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="唐抉">
+    
+        <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta name="description" content="做python题目整理的笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习笔记（十二）">
+<meta property="og:url" content="http://tangmenjue.top/2022/10/19/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="唐抉的个人博客">
+<meta property="og:description" content="做python题目整理的笔记">
+<meta property="article:published_time" content="2022-10-19T09:05:39.000Z">
+<meta property="article:modified_time" content="2022-12-06T12:39:28.669Z">
+<meta property="article:author" content="唐抉">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    
+        <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+    
+    <title>python学习笔记（十二） · null</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="/css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+    
+        <body class="post-body">
+    
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+            <div class="header-sidebar-menu">
+        
+            
+                <div style="padding-left: 1px;">&#xe775;</div>
+            
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>唐抉的个人博客</a>
+        </span>
+    </div>
+    <!-- toggle banner for post layout -->
+    
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">唐抉的个人博客</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">python学习笔记（十二）</a>
+            </div>
+        </div>
+    
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+            <div class="back-top back-top-hidden">
+        
+        
+            <div>&#xe639;</div>
+        
+        </div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
+
+
+
+
+
+
+    height:50vh;
+
+">
+    
+    <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+                python学习笔记（十二）
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+                
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
+    
+</div>
+
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">4.8k</span>阅读时长: <span class="post-count reading-time">20 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2022/10/19</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="python语言特点">python语言特点</h2>
+<p>python语言特点：</p>
+<ul>
+<li>开源</li>
+<li>免费</li>
+<li>跨平台</li>
+<li>解析执行</li>
+</ul>
+<h3 id="复制copy和deepcopy">复制=、copy()和deepcopy()</h3>
+<ul>
+<li>用=复制元素，原object改变，现object也随之改变</li>
+<li>用copy()复制object，原object改变，现object不变，若object中包含了list，改变原object的list元素，现object的list元素也随之改变。</li>
+<li>用deepcopy()复制object，原object改变，现object的任何元素都不会变。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>]]</span><br><span class="line">b = a<span class="comment">#a变b也变,</span></span><br><span class="line">c = copy.copy(a)<span class="comment">#a变c不变,a里的list['a', 'b']变，c也会变</span></span><br><span class="line">d = copy.deepcopy(a)<span class="comment">#a变d不变，a里的list['a', 'b']变，d也不会变</span></span><br><span class="line">a.append(<span class="number">5</span>)</span><br><span class="line">a[<span class="number">4</span>].append(<span class="string">'c'</span>)</span><br><span class="line">print(a)</span><br><span class="line">print(b)</span><br><span class="line">print(c)</span><br><span class="line">print(d)</span><br><span class="line"><span class="comment">#运行结果如下</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>], <span class="number">5</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>], <span class="number">5</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>]]</span><br></pre></td></tr></table></figure>
+<h2 id="python自带的模块">Python自带的模块</h2>
+<p>Python有着形形色色爬虫相关的库,以下哪个库Python自带不需要额外下载。A</p>
+<p>A.urlib python内置，用于爬虫</p>
+<p>B.urlib3 第三方库</p>
+<p>C.Requests python内置，用于http</p>
+<p>D.lxml 第三方库</p>
+<h2 id="extend方法">extend方法</h2>
+<p>extend() 函数用于在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表），添加数据时要用<code>[]</code>把数据括起来。</p>
+<p>在Python3中，程序运行结果为： lists = [1, 1, 2, 3, 4, 5, 6] lists.remove(1) lists.extend([7,8,9]) print(lists)。C</p>
+<p>A.[2,3,4,5,6]</p>
+<p>B.[1,2,3,4,5,6,[7,8,9]]</p>
+<p>C.[1,2,3,4,5,6,7,8,9]</p>
+<p>D.[2,3,4,5,6,7,8,9]</p>
+<h2 id="del方法">del方法</h2>
+<p>将列表内的所有元素均删除，且列表存在，使用del方法</p>
+<h2 id="字符串变换">字符串变换</h2>
+<p>字符串是不可变类型，无法直接修改字符串的某一位字符。replace()函数用于替换字符串，其用法为<code>字符串序列.replace(旧子串, 新子串, 替换次数)</code>。</p>
+<p>若a = 'abcd'，若想将a变为'ebcd'，则下列语句正确的是。 D</p>
+<p>A.a[0] = 'e'</p>
+<p>B.a.replace('a", "e')</p>
+<p>C.a[1] = 'e'</p>
+<p>D.a = 'e' + "bcd"</p>
+<h2 id="divmod函数">divmod()函数</h2>
+<p>divmod(a,b)函数把除数和余数运算结果结合起来，返回一个包含商和余数的元组(a//b,a%b)</p>
+<p>下面代码的输出结果是 x=10 y=3 print(divmod(x,y))。D</p>
+<p>A.(1, 3)</p>
+<p>B.3,1</p>
+<p>C.1,3</p>
+<p>D.(3, 1)</p>
+<h2 id="python2与python3除法的区别">python2与python3除法的区别</h2>
+<p>在python2中，由于“地板除”的 缘故，每次除完后只剩整数。在python3中的除法是精确计算。</p>
+<p>在Python3中，下列程序循环的次数为： n = 1000 while n &gt; 1: print(n) n = n / 2。B</p>
+<p>A.9</p>
+<p>B.10</p>
+<p>C.11</p>
+<p>D.无限循环</p>
+<p>python2里只有9次，因为500、250、125、62、31、15、7、3、1 。python3里有10次，因为500、250、125、62.5、31.25、15.625、7.8125、3.90625、1.953125、0.9765625。</p>
+<h2 id="函数返回值">函数返回值</h2>
+<p>以下程序的输出结果是 def hub(ss, x = 2.0,y = 4.0): ss += x * y ss = 10 print(ss, hub(ss, 3))。B</p>
+<p>A.22.0 None</p>
+<p>B.10 None 函数hub设置没有返回值，ss默认为10，hub默认返回done</p>
+<p>C.22 None</p>
+<p>D.10.0 22.0</p>
+<h2 id="python查找顺序">python查找顺序</h2>
+<p>当使用import导入模块时，按python查找模块的不同顺序可划分为以下几种： ①环境变量中的PYTHONPATH ②内建模块 ③python安装路径 ④当前路径，即执行python脚本文件所在的路径 其中查找顺序正确的一组是。C</p>
+<p>A.①④②③ B.②①④③ C.②④①③ D.①②③④</p>
+<h2 id="range范围">range范围</h2>
+<p>range(n)实际上是取值0~n-1。</p>
+<p>sum([i*i for i in range(3)])的计算结果是。B</p>
+<p>A.3</p>
+<p>B.5</p>
+<p>C.2</p>
+<p>D.14</p>
+<h2 id="readlines函数">readlines函数</h2>
+<p><code>read(size)</code>方法，每次最多读取size个字节的内容。不需要通过close函数关闭文件。</p>
+<p>关于以下代码的描述，错误的选项是()with open( ' abtxt ' , ' r+' ) as f:lines = f.readlines() for item in lines:print(item)。A</p>
+<p>A.执行代码后，abc.txt文件未关闭，必须通过close()函数关闭</p>
+<p>B.打印输出abc.txt文件内容</p>
+<p>C.item是字符串类型</p>
+<p>D.lines是列表类型</p>
+<h2 id="lambda表达式">lambda表达式</h2>
+<ul>
+<li>lambda只是一个表达式不是代码块，而def是一个语句。</li>
+<li>在内部只能包含一行代码，自动返回最后一个表达式的值，没有return，参数列表不需要用括号。</li>
+<li>if、for或print语句不能用于lambda中，不能共享给其他程序调用。</li>
+</ul>
+<p>关于匿名函数叙述正确的是（）。ABC</p>
+<p>A.lambda只是一个表达式，函数体比def简单很多</p>
+<p>B.lambda的主体不是一个代码块</p>
+<p>C.lambda函数只能写一行</p>
+<p>D.可以访问全局变量和函数体以外的变量</p>
+<h2 id="运算符优先级">运算符优先级</h2>
+<ol type="1">
+<li>括号：()</li>
+<li>幂运算：**</li>
+<li>按位取反：~</li>
+<li>正号、负号：+、-</li>
+<li>乘除、取模、取整除：*、/、%、//</li>
+<li>加、减：+、-</li>
+<li>左移、右移：&lt;&lt;、&gt;&gt;</li>
+<li>按位“与”：&amp;</li>
+<li>按位“异或”、按位“或”：^、|</li>
+<li>比较运算符：&lt;=、&lt;、&gt;、&gt;=</li>
+<li>等于、不等于：==、!=</li>
+<li>赋值运算符：=、%=、/=、//、//=、-=、+=、*=、**=</li>
+<li>身份运算符：is、is not</li>
+<li>成员运算符：in、not in</li>
+<li>逻辑运算符：and、or、not</li>
+</ol>
+<p>Python中，运算符由高到低为。C</p>
+<p>A.逻辑运算符&gt;比较运算符&gt;赋值运算符&gt;位运算符</p>
+<p>B.位运算符&gt;赋值运算符&gt;比较运算符&gt;逻辑运算符</p>
+<p>C.位运算符&gt;比较运算符&gt;赋值运算符&gt;逻辑运算符</p>
+<p>D.逻辑运算符&gt;赋值运算符&gt;比较运算符&gt;位运算符</p>
+<p>下列哪些语句在Python中是合法的。ACD</p>
+<p>A.x = y = z=1</p>
+<p>B.x =(y = z+ 1)</p>
+<p>C.x,y = y,x</p>
+<p>D.x+= y</p>
+<h2 id="for-ix-in-enumerate-函数">for i,x in enumerate() 函数</h2>
+<p>enumerate是枚举的意思，把元素一个个列举出来，它返回的是元素以及对应的索引。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i,j <span class="keyword">in</span> enumerate(line):</span><br><span class="line"><span class="meta">... </span>    print(i,j)</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span></span><br><span class="line"><span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="number">3</span> <span class="number">4</span></span><br><span class="line"><span class="number">4</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>在Python3中，下列程序运行结果为： lists = [1, 2, 3, 4] tmp = 0 for i,j in enumerate(lists): tmp += i * j print(tmp) 。A</p>
+<p>A.20 <code>tmp=0+1*2+2*3+3*4=2+6+12=20</code></p>
+<p>B.30</p>
+<p>C.100</p>
+<p>D.None</p>
+<h2 id="replace函数">replace函数</h2>
+<p><strong>replace函数不会改变原string的内容。</strong></p>
+<p>执行以下程序，输入”93python22”，输出结果是 w = input("请输入数字和字母构成的字符串：") for x in w: if '0'&lt;= x &lt;= '9': continue else: w.replace(x,'') print(w)。C</p>
+<p>A.python9322</p>
+<p>B.python</p>
+<p>C.93python22</p>
+<p>D.9322</p>
+<h2 id="floor函数">floor函数</h2>
+<p><strong>math.floor(x)函数</strong>用于将x向下取整，它接收数字/数字表达式并<strong>返回不大于数字的最大整数值</strong>。<strong>math.ceil(x)函数</strong>用于x向上取整，它接收数字/数字表达式并<strong>返回最接近的数字最小整数值</strong>。</p>
+<p>以下代码运行结果是什么?0import math print math.floor(5.5)。A</p>
+<p>A.5</p>
+<p>B.5.0</p>
+<p>C.5.5</p>
+<p>D.6</p>
+<h2 id="按位与计算">按位与&amp;计算</h2>
+<p>python 中 &amp; (按位与) 和 | (按位或) 是把 2个数据转为二进制然后在做相应的计算。如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span>  <span class="comment"># 10的二进制为1010</span></span><br><span class="line">b = <span class="number">18</span>  <span class="comment"># 18的二进制为10010</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">按位与运算符:</span></span><br><span class="line"><span class="string">&amp; : 如果两个相应位都为1,则该位的结果为1,否则为0</span></span><br><span class="line"><span class="string">01010</span></span><br><span class="line"><span class="string">10010</span></span><br><span class="line"><span class="string">计算的结果为:</span></span><br><span class="line"><span class="string">00010</span></span><br><span class="line"><span class="string">把二进制00010转10进制结果为2,所以下面的打印结果应该为2</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">print(a &amp; b)  <span class="comment"># 打印结果为2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">按位或运算符:</span></span><br><span class="line"><span class="string">| : 只要对应的二个二进位有一个为1时，结果位就为1</span></span><br><span class="line"><span class="string">01010</span></span><br><span class="line"><span class="string">10010</span></span><br><span class="line"><span class="string">计算的结果为:</span></span><br><span class="line"><span class="string">11010</span></span><br><span class="line"><span class="string">把二进制11010转10进制结果为26,所以下面的打印结果应该为26</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">print(a | b)  <span class="comment"># 打印结果为26</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">按位异或运算符:</span></span><br><span class="line"><span class="string">^ : 当两对应的二进位相异时，结果为1</span></span><br><span class="line"><span class="string">01010</span></span><br><span class="line"><span class="string">10010</span></span><br><span class="line"><span class="string">计算的结果为:</span></span><br><span class="line"><span class="string">11000</span></span><br><span class="line"><span class="string">把二进制11000转10进制结果为24,所以下面的打印结果应该为24</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">print(a ^ b)  <span class="comment"># 打印结果为24</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">按位取反运算符:</span></span><br><span class="line"><span class="string">~ : 对数据的每个二进制位取反,即把1变为0,把0变为1 </span></span><br><span class="line"><span class="string">01010</span></span><br><span class="line"><span class="string">计算的结果为:</span></span><br><span class="line"><span class="string">10101</span></span><br><span class="line"><span class="string">把二进制10101转10进制结果为-11,所以下面的打印结果应该为-11</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">print(~a)  <span class="comment"># 打印结果为-11</span></span><br></pre></td></tr></table></figure>
+<p>下面描述正确的是。ABC</p>
+<p>A. 在python中逻辑与运算符不能写作&amp;&amp;，要写作and</p>
+<p>B.&amp;是两个数字按二进制位作与运算的操作符</p>
+<p>C.3&amp;2的结果为2 00011 00010=&gt;00010=2</p>
+<p>D.3&amp;3的结果为0 00011 00011=&gt;00011=3</p>
+<h2 id="python保留字符">python保留字符</h2>
+<p>以下哪些是Python中的保留字符?ABCD</p>
+<p>A.def</p>
+<p>B.global</p>
+<p>C.finally</p>
+<p>D.yield</p>
+<h2 id="可变数据类型和不可变数据类型">可变数据类型和不可变数据类型</h2>
+<p>可变数据类型：list(列表)、dict(字典)、set(集合)</p>
+<p>不可变数据类型：数值类型(int、float、bool)、string(字符串)、tuple(元组)</p>
+<p>下列选项属于不可变类型的是。CD</p>
+<p>A.列表</p>
+<p>B.字典</p>
+<p>C.元组</p>
+<p>D.字符串</p>
+<h2 id="python内置函数">python内置函数</h2>
+<table>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">内置函数</th>
+<th></th>
+<th></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>A</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#abs" target="_blank" rel="noopener"><code>abs()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#aiter" target="_blank" rel="noopener"><code>aiter()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#all" target="_blank" rel="noopener"><code>all()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#any" target="_blank" rel="noopener"><code>any()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#anext" target="_blank" rel="noopener"><code>anext()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#ascii" target="_blank" rel="noopener"><code>ascii()</code></a> <strong>B</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#bin" target="_blank" rel="noopener"><code>bin()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#bool" target="_blank" rel="noopener"><code>bool()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#breakpoint" target="_blank" rel="noopener"><code>breakpoint()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#func-bytearray" target="_blank" rel="noopener"><code>bytearray()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#func-bytes" target="_blank" rel="noopener"><code>bytes()</code></a> <strong>C</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#callable" target="_blank" rel="noopener"><code>callable()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#chr" target="_blank" rel="noopener"><code>chr()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#classmethod" target="_blank" rel="noopener"><code>classmethod()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#compile" target="_blank" rel="noopener"><code>compile()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#complex" target="_blank" rel="noopener"><code>complex()</code></a> <strong>D</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#delattr" target="_blank" rel="noopener"><code>delattr()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#func-dict" target="_blank" rel="noopener"><code>dict()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#dir" target="_blank" rel="noopener"><code>dir()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#divmod" target="_blank" rel="noopener"><code>divmod()</code></a></td>
+<td><strong>E</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#enumerate" target="_blank" rel="noopener"><code>enumerate()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#eval" target="_blank" rel="noopener"><code>eval()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#exec" target="_blank" rel="noopener"><code>exec()</code></a> <strong>F</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#filter" target="_blank" rel="noopener"><code>filter()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#float" target="_blank" rel="noopener"><code>float()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#format" target="_blank" rel="noopener"><code>format()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#func-frozenset" target="_blank" rel="noopener"><code>frozenset()</code></a> <strong>G</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#getattr" target="_blank" rel="noopener"><code>getattr()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#globals" target="_blank" rel="noopener"><code>globals()</code></a> <strong>H</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#hasattr" target="_blank" rel="noopener"><code>hasattr()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#hash" target="_blank" rel="noopener"><code>hash()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#help" target="_blank" rel="noopener"><code>help()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#hex" target="_blank" rel="noopener"><code>hex()</code></a> <strong>I</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#id" target="_blank" rel="noopener"><code>id()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#input" target="_blank" rel="noopener"><code>input()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#int" target="_blank" rel="noopener"><code>int()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#isinstance" target="_blank" rel="noopener"><code>isinstance()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#issubclass" target="_blank" rel="noopener"><code>issubclass()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#iter" target="_blank" rel="noopener"><code>iter()</code></a></td>
+<td><strong>L</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#len" target="_blank" rel="noopener"><code>len()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#func-list" target="_blank" rel="noopener"><code>list()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#locals" target="_blank" rel="noopener"><code>locals()</code></a> <strong>M</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#map" target="_blank" rel="noopener"><code>map()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#max" target="_blank" rel="noopener"><code>max()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#func-memoryview" target="_blank" rel="noopener"><code>memoryview()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#min" target="_blank" rel="noopener"><code>min()</code></a> <strong>N</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#next" target="_blank" rel="noopener"><code>next()</code></a> <strong>O</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#object" target="_blank" rel="noopener"><code>object()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#oct" target="_blank" rel="noopener"><code>oct()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#open" target="_blank" rel="noopener"><code>open()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#ord" target="_blank" rel="noopener"><code>ord()</code></a> <strong>P</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#pow" target="_blank" rel="noopener"><code>pow()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#print" target="_blank" rel="noopener"><code>print()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#property" target="_blank" rel="noopener"><code>property()</code></a></td>
+<td style="text-align: left;"><strong>R</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#func-range" target="_blank" rel="noopener"><code>range()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#repr" target="_blank" rel="noopener"><code>repr()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#reversed" target="_blank" rel="noopener"><code>reversed()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#round" target="_blank" rel="noopener"><code>round()</code></a> <strong>S</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#func-set" target="_blank" rel="noopener"><code>set()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#setattr" target="_blank" rel="noopener"><code>setattr()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#slice" target="_blank" rel="noopener"><code>slice()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#sorted" target="_blank" rel="noopener"><code>sorted()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#staticmethod" target="_blank" rel="noopener"><code>staticmethod()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#func-str" target="_blank" rel="noopener"><code>str()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#sum" target="_blank" rel="noopener"><code>sum()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#super" target="_blank" rel="noopener"><code>super()</code></a> <strong>T</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#func-tuple" target="_blank" rel="noopener"><code>tuple()</code></a><a href="https://docs.python.org/zh-cn/3/library/functions.html#type" target="_blank" rel="noopener"><code>type()</code></a> <strong>V</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#vars" target="_blank" rel="noopener"><code>vars()</code></a> <strong>Z</strong><a href="https://docs.python.org/zh-cn/3/library/functions.html#zip" target="_blank" rel="noopener"><code>zip()</code></a> **_**<a href="https://docs.python.org/zh-cn/3/library/functions.html#import__" target="_blank" rel="noopener"><code>__import__()</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>以下属于python3内置函数的是。ABCD</p>
+<p>A.str()</p>
+<p>B.sum()</p>
+<p>C.zip()</p>
+<p>D.sorted()</p>
+<h2 id="python数据类型">python数据类型</h2>
+<p>python中有六个标准的数据类型：</p>
+<ul>
+<li>Number(数字)</li>
+<li>String(字符串)</li>
+<li>List(列表)</li>
+<li>Dict(字典)</li>
+<li>Tuple(元组)</li>
+<li>Set(集合)</li>
+</ul>
+<p>其中Number里包含了int、float、bool、complex(复数)。在python3中只有一种整数类型int，没有python2中的长整型long。</p>
+<p>以下哪些是Python的数字类型。ACD</p>
+<p>A.long</p>
+<p>B.double</p>
+<p>C.float</p>
+<p>D.complex</p>
+<h2 id="控制循环语句">控制循环语句</h2>
+<p><strong>continue：</strong>将控制返回到循环的开始</p>
+<p><strong>break：</strong>将控制带出循环</p>
+<p><strong>pass：</strong>编写空循环，除此之外还用于空的控制语句、函数和类</p>
+<p>Python中，循环控制语句有。BCD</p>
+<p>A.goto</p>
+<p>B.break</p>
+<p>C.continue</p>
+<p>D.pass</p>
+<h2 id="name__"><code>__name__</code></h2>
+<p><code>__name__</code>是python的一个内置类属性，它存储模块的名称。</p>
+<p>python模块既可以被调用，也可以独立运行。而调用时<code>__name__</code>存储的是py文件名（模块名称），独立运行时存储的是<code>__main__</code>。其作用主要是用来区分当前模块是独立运行还是被调用。</p>
+<p>关于<code>__name__</code>的说法，下列描述正确的是。BCD</p>
+<p>A.它是Python提供的一个方法</p>
+<p>B.每个模块内部都有一个<code>__name__</code>属性</p>
+<p>C.当它的值为’main‘时，表示模块自身在运行</p>
+<p>D.当它的值不为’main’时，表示模块被引用</p>
+<h2 id="json.dumps与json.loads">json.dumps()与json.loads()</h2>
+<p><strong>json.dumps()：</strong>将python对象编码成Json字符串</p>
+<p><strong>json.dump()：</strong>将python对象转化成Json储存到文件中</p>
+<p><strong>json.loads()：</strong>将Json字符串解码成python对象</p>
+<p><strong>json.load()：</strong>将文件中的json格式转化成python对象提取</p>
+<p>运行下列代码段，输出结果为True的是（ ）。BD</p>
+<ol type="A">
+<li></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">data=<span class="string">'&#123;"one":"1","two":"2","three":"3","four":"4","five":"5"&#125;'</span></span><br><span class="line">text = json.loads(data)</span><br><span class="line">print(type(data)==type(text))</span><br></pre></td></tr></table></figure>
+<ol start="2" type="A">
+<li></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data=<span class="string">'&#123;"one":"1","two":"2","three":"3","four":"4","five":"5"&#125;'</span></span><br><span class="line">print(type(data)==type(<span class="string">'123'</span>))</span><br></pre></td></tr></table></figure>
+<ol start="3" type="A">
+<li></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">data=<span class="string">'&#123;"one":"1","two":"2","three":"3","four":"4","five":"5"&#125;'</span></span><br><span class="line">text = json.loads(data)</span><br><span class="line">print(<span class="string">'1'</span> <span class="keyword">in</span> text)</span><br></pre></td></tr></table></figure>
+<ol start="4" type="A">
+<li></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">data = <span class="string">'&#123;"one":"1","two":"2","three":"3","four":"4","five":"5"&#125;'</span></span><br><span class="line">text = json.dumps(data)</span><br><span class="line">print(<span class="string">'1'</span> <span class="keyword">in</span> text)</span><br></pre></td></tr></table></figure>
+<h2 id="类定义体组成">类定义体组成</h2>
+<p>类定义体组成：</p>
+<ul>
+<li>成员的控制访问信息（public、protected、private)</li>
+<li>数据成员</li>
+<li>成员函数</li>
+</ul>
+<p>在类的定义形式中,组成了类定义体是。ABC</p>
+<p>A.成员的访问控制信息</p>
+<p>B.数据成员</p>
+<p>C.成员函数</p>
+<p>D.私有消息</p>
+<h2 id="关于return函数">关于return函数</h2>
+<p>在python中，关于函数return语句的正确说法是。ACD</p>
+<p>A.return指定函数返回值，用来结束函数</p>
+<p>B.在python中return语句只可返回一个值</p>
+<p>C.无返回值函数中可以没有return语句</p>
+<p>D.如果不给return，函数默认返回None</p>
+<p>无返回值函数是指void这一类的函数。</p>
+<h2 id="万物皆为对象">万物皆为对象</h2>
+<p>容器对象（list、dict、set等）中可以存放任何对象，包括整数、字符串，函数也可以作存放到容器对象中。</p>
+<p>Python中函数是对象，描述正确的是。ABCD</p>
+<p>A.函数可以赋值给一个变量</p>
+<p>B.函数可以作为元素添加到集合对象中</p>
+<p>C.函数可以作为参数值传递给其它函数</p>
+<p>D.函数可以当做函数的返回值</p>
+<h2 id="切片取数">切片取数</h2>
+<p>L[0:3]表示从索引0开始取数，直到索引3为止，但不包括索引3的元素。</p>
+<p>若输入的字符串str=’asdfgh’，想要输出为’asdfg’，则可以使用以下方法。AC</p>
+<p>A.str[:-1]</p>
+<p>B.str[:-2]</p>
+<p>C.str[:5]</p>
+<p>D.str[:4]</p>
+<p>下列可以得到字符串'ccc'的Python语句是。ABD</p>
+<p>A.cc'+'c'</p>
+<p>B.'c'*3</p>
+<p>C.'bcccb'[1:3]</p>
+<p>D.'bcccb'[1:4]</p>
+<p>若a = range(100)，以下哪些操作是合法的。ABCD</p>
+<p>A.a[-3]</p>
+<p>B.a[2:13]</p>
+<p>C.a[::3]</p>
+<p>D.a[2-3]</p>
+<h2 id="函数调用">函数调用</h2>
+<p>在模块A导入B模块的函数func（），并执行函数调用，下列写法正确的是。AC A. 导入：import B 调用 B.func() B. 导入：import B 调用 func() C. 导入：form B import func 调用 func() D. 导入：form B import func 调用B. func()</p>
+<h2 id="python不能正常启动">python不能正常启动</h2>
+<p>python不能正常启动的项有：</p>
+<ul>
+<li>拼写错误</li>
+<li>错误表达式</li>
+<li>缩进错误</li>
+</ul>
+<p>只有手动抛出异常才能正常启动。</p>
+<h2 id="python的六种进程间通信方式">python的六种进程间通信方式</h2>
+<ul>
+<li>msg_queue(消息队列)</li>
+<li>pipeline for single duplex(单工管道)</li>
+<li>pipeline for half duplex(双工管道)</li>
+<li>name pipeline(命名管道)</li>
+<li>share memory(共享内存)</li>
+<li>semaphore(信号量)</li>
+</ul>
+<p>在python3中进程之间通信通常可以采用如下哪些方式。ABD</p>
+<p>A.Queue</p>
+<p>B.Pipe</p>
+<p>C.全局变量</p>
+<p>D.共享数据</p>
+<h2 id="new__和__init__的区别"><code>__new__</code>和<code>__init__</code>的区别</h2>
+<p><strong>相同点：</strong></p>
+<ul>
+<li>两者都是python面向对象语言的函数。</li>
+</ul>
+<p><strong>不同点：</strong></p>
+<ul>
+<li><code>__new__</code>是在实例<strong>创建之前</strong>被调用的，是个<strong>静态方法</strong>。因为它的任务是<strong>创建实例</strong>然后返回该实例对象。</li>
+<li><code>__init__</code>是当实例对象<strong>创建完成后</strong>被调用的，然后设置对象属性的一些初始值，是一个<strong>实例方法</strong>。通常用于<strong>初始化一个类实例</strong>。</li>
+</ul>
+<p>关于<code>__new__</code>与<code>__init__</code>的区别，说法正确的是。ABCD</p>
+<p>A.<code>__new__</code>是一个静态方法，而<code>__init__</code>是一个实例方法</p>
+<p>B.<code>__new__</code>方法会返回一个创建的实例，而<code>__init__</code>什么都不返回</p>
+<p>C.只有在<code>__new__</code>返回一个创建的实例时，后面的<code>__init__</code>才能被调用</p>
+<p>D.当创建一个新实例时调用<code>__new__</code>,初始化一个实例时用<code>__init__</code></p>
+<h2 id="输入输出总结">输入输出总结</h2>
+<h3 id="单行输入">单行输入</h3>
+<ul>
+<li><p><strong>同一行里空格分隔输入两个数</strong>：<code>a,b=list(map(int,input().split()))</code></p></li>
+<li><p><strong>同一行里逗号分隔输入两个数</strong>：<code>a,b=list(map(int,input().split(','))</code>)</p></li>
+<li><p><strong>使用sys模块输入多位数：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="comment">#输入数据，返回一个包含多个字符串的列表a,strip()用于截取掉末尾的换行符</span></span><br><span class="line">a=sys.stdin.readline().strip()</span><br><span class="line"></span><br><span class="line"><span class="comment">#a中的数据以逗号分隔时，去掉逗号，返回一个包含多个字符串的列表b</span></span><br><span class="line">b=list(map(int,a.split(<span class="string">','</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment">#a中的数据以空格分隔时，去掉空格，返回一个包含多个字符串的列表c</span></span><br><span class="line">c=list(map(int,a.split()))</span><br><span class="line"></span><br><span class="line"><span class="comment">#同一行中输入以空格分隔的两位数n,m</span></span><br><span class="line">n,m=list(map(int,sys.stdin.readline().strip().split()))</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="多行输入">多行输入</h3>
+<ul>
+<li><p><strong>把所有行合在一个列表中：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">list=[]</span><br><span class="line">list_new=[]</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    list_new=line.split()</span><br><span class="line">    list.append(list_new)</span><br><span class="line">    <span class="comment"># list.extend(list_new)</span></span><br><span class="line">    print(list)</span><br><span class="line"><span class="comment">#使用append的输出结果：</span></span><br><span class="line"><span class="number">3</span> <span class="number">2</span></span><br><span class="line">[[<span class="string">'3'</span>, <span class="string">'2'</span>]]</span><br><span class="line"><span class="number">1</span> <span class="number">5</span> <span class="number">6</span></span><br><span class="line">[[<span class="string">'3'</span>, <span class="string">'2'</span>], [<span class="string">'1'</span>, <span class="string">'5'</span>, <span class="string">'6'</span>]]</span><br><span class="line"><span class="number">1</span> <span class="number">3</span></span><br><span class="line">[[<span class="string">'3'</span>, <span class="string">'2'</span>], [<span class="string">'1'</span>, <span class="string">'5'</span>, <span class="string">'6'</span>], [<span class="string">'1'</span>, <span class="string">'3'</span>]]</span><br><span class="line"><span class="comment">#使用extend的输出结果：</span></span><br><span class="line"><span class="number">3</span> <span class="number">2</span></span><br><span class="line">[<span class="string">'3'</span>, <span class="string">'2'</span>]</span><br><span class="line"><span class="number">1</span> <span class="number">5</span> <span class="number">6</span></span><br><span class="line">[<span class="string">'3'</span>, <span class="string">'2'</span>, <span class="string">'1'</span>, <span class="string">'5'</span>, <span class="string">'6'</span>]</span><br><span class="line"><span class="number">1</span> <span class="number">3</span></span><br><span class="line">[<span class="string">'3'</span>, <span class="string">'2'</span>, <span class="string">'1'</span>, <span class="string">'5'</span>, <span class="string">'6'</span>, <span class="string">'1'</span>, <span class="string">'3'</span>]</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>行数固定且第一行给出，各行独立获取：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">lines=sys.stdin.readlines()</span><br><span class="line">n=int(lines[<span class="number">0</span>])</span><br><span class="line">x1=list(map(int,lines[<span class="number">1</span>].split()))</span><br><span class="line">x2=list(map(int,lines[<span class="number">2</span>].split()))</span><br><span class="line">x3=list(map(int,lines[<span class="number">3</span>].split()))</span><br><span class="line">print(n,x1,x2,x3)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">输入：</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">1</span> <span class="number">5</span> <span class="number">6</span></span><br><span class="line"><span class="number">1</span>  </span><br><span class="line"><span class="number">8</span></span><br><span class="line">windows系统同时按下ctrl+z+enter结束输入</span><br><span class="line">输出结果为：</span><br><span class="line"><span class="number">3</span> [<span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>] [<span class="number">1</span>] [<span class="number">8</span>]</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>第一行输入人数n和科目m，后续每行录入每人的m科成绩：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">n,m=list(map(int,input().split()))</span><br><span class="line">lines=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    lines.append(list(map(int,input().split())))</span><br><span class="line">print(lines)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">输入：</span><br><span class="line"><span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="number">15</span> <span class="number">32</span> <span class="number">23</span></span><br><span class="line"><span class="number">58</span> <span class="number">20</span> <span class="number">69</span></span><br><span class="line">输出结果为：</span><br><span class="line">[[<span class="number">15</span>, <span class="number">32</span>, <span class="number">23</span>], [<span class="number">58</span>, <span class="number">20</span>, <span class="number">69</span>]]</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>行数未知时，输入多行数字序列：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">res=[]</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        res.append(list(map(int,input().split())))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">print(res)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">输入：</span><br><span class="line"><span class="number">3</span> <span class="number">63</span> <span class="number">72</span> <span class="number">72</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">52</span> <span class="number">62</span> <span class="number">5</span> <span class="number">1</span>  </span><br><span class="line"><span class="number">2</span> <span class="number">4</span> <span class="number">7</span></span><br><span class="line"><span class="number">5</span> <span class="number">8</span> <span class="number">9</span> <span class="number">3</span> <span class="number">53</span> <span class="number">12</span> <span class="number">74</span></span><br><span class="line">windows系统同时按下ctrl+z+enter结束输入</span><br><span class="line">输出结果为：</span><br><span class="line">[[<span class="number">3</span>, <span class="number">63</span>, <span class="number">72</span>, <span class="number">72</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">52</span>, <span class="number">62</span>, <span class="number">5</span>, <span class="number">1</span>], [<span class="number">2</span>, <span class="number">4</span>, <span class="number">7</span>], [<span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">53</span>, <span class="number">12</span>, <span class="number">74</span>]]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="单行输出">单行输出</h3>
+<p><strong>同一行里逗号分隔输出两个数：</strong><code>print(str(a)+','+str(b))</code></p>
+<h3 id="多行输出">多行输出</h3>
+<p><strong>按行遍历输出多行输入中的元素，注意：不是输出一个list或tuple：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">data=[]</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    line=sys.stdin.readline().strip()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> line:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    tmp=list(map(int,line.split()))</span><br><span class="line">    data.append(tmp)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(data)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,len(data[i])):</span><br><span class="line">        <span class="comment"># print(i[k])</span></span><br><span class="line">        <span class="keyword">if</span> j==(len(data[i])<span class="number">-1</span>):</span><br><span class="line">            print(data[i][j])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(str(data[i][j])+<span class="string">' '</span>,end=<span class="string">""</span>)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">输入：</span><br><span class="line"><span class="number">3</span> <span class="number">63</span> <span class="number">72</span> <span class="number">72</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">52</span> <span class="number">62</span> <span class="number">5</span> <span class="number">1</span>  </span><br><span class="line"><span class="number">2</span> <span class="number">4</span> <span class="number">7</span></span><br><span class="line"><span class="number">5</span> <span class="number">8</span> <span class="number">9</span> <span class="number">3</span> <span class="number">53</span> <span class="number">12</span> <span class="number">74</span></span><br><span class="line">windows系统同时按下ctrl+z+enter结束输入</span><br><span class="line">输出结果为：</span><br><span class="line"><span class="number">3</span> <span class="number">63</span> <span class="number">71</span> <span class="number">71</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">52</span> <span class="number">62</span> <span class="number">5</span> <span class="number">1</span></span><br><span class="line"><span class="number">2</span> <span class="number">4</span> <span class="number">7</span></span><br><span class="line"><span class="number">5</span> <span class="number">8</span> <span class="number">9</span> <span class="number">3</span> <span class="number">53</span> <span class="number">12</span> <span class="number">74</span></span><br></pre></td></tr></table></figure>
+<h2 id="补充">补充</h2>
+<ul>
+<li><p>标准库OS的listdir()方法默认只能列出指定文件夹中当前层级的文件和文件夹列表，而不能列出其子文件夹中的文件。</p></li>
+<li><p><strong>递归</strong>是从问题的<strong>最终目标</strong>出发，逐渐将复杂问题化为简单问题，最终求得问题。<strong>递推</strong>是从简单问题触发，一步步的向前，最终求得问题。</p></li>
+<li><p>列表对象的extend()方法属于原地操作，调用前后列表对象的地址不变。</p></li>
+<li><p>Python中子类能继承父类全部的<strong>公有</strong>属性和方法。</p></li>
+<li><p>使用print()函数可以将信息写入文件：<code>print("Hello, World!", file=open('file.txt', 'w'))</code>。</p></li>
+<li><p>两个特殊的形参关键字形参和命名关键字形参不能设定默认值，或者说它们默认值就是空元组和空字典。</p></li>
+<li><p>为了限制开头几个参数只能按位置传递，从python3.8开始，正式引入<strong>限定位置形参，</strong>它们必须放在形参表的最前面，并在后面使用斜杠/（独占一个参数位）与普通形参分隔。如<code>def fun(a,b,c,/,d) #a,b,c成为限定位置形参</code>。</p></li>
+<li><p>默认值可以从限定位置形参或普通形参中的任意一个开始设定，<strong>除了命名关键字形参</strong>，所有带默认值的形参必须位于五默认值的形参之后。</p></li>
+<li><p>定义函数时，带有默认值的参数必须出现在参数列表的最右端，任何一个带有默认值的参数右边不允许出现没有默认值的参数。</p></li>
+<li><p>使用print()函数时，使用<code>\n</code>可以进行换行输出。</p></li>
+<li><p>表达式<code>[1,3,2] &gt; [1,2,3]</code>的值为<code>True</code>，<code>{1,3,2} &gt; {1,2,3}</code>的值为<code>False</code>。</p></li>
+<li><p>使用if <code>'__name__'</code>== <code>'__main__'</code>，可以保证模块被导入时，其内的代码不会被执行。</p></li>
+<li><p>表达式<code>pow(3, 2)==3**2</code>的值为<code>True</code>。其中<code>**</code>代表乘方。</p></li>
+<li><p>所有的except子句一定在else和finally的前面。</p></li>
+<li><p>Python中break和continue语句不可以单独使用，只能在循环中使用。</p></li>
+<li><p>split()将一个字符串分割为子字符串，然后将结果作为字符数组返回。</p></li>
+</ul>
+
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://tangmenjue.top">唐抉</a>
+            <p>原文链接：<a href="http://tangmenjue.top/2022/10/19/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/">http://tangmenjue.top/2022/10/19/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/</a>
+            <p>发表日期：<a href="http://tangmenjue.top/2022/10/19/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/">October 19th 2022, 5:05:39 pm</a>
+            <p>更新日期：<a href="http://tangmenjue.top/2022/10/19/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/">December 6th 2022, 8:39:28 pm</a>
+            <p>版权声明：
+			<!--如果有设置theme.since，并且时间小于当前时间（年份），形式为：@ 2018 - 2019(+作者/标题)；否则默认为当前年份(+作者/标题)。 -->
+			
+			    &copy; 2020-2022
+			
+			本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+			</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2022/10/20/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Flask Web开发学习笔记（二）">
+                    <div class="nextTitle">Flask Web开发学习笔记（二）</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2022/10/18/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="Flask Web开发学习笔记（一）">
+                    <div class="prevTitle">Flask Web开发学习笔记（一）</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC81MjY0MS8yOTExOA==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+            
+            var intervalFunctionID = setInterval(function(){ myTimer() }, 1000);
+            function myTimer() {
+                if (document.getElementById("taboola-livere") != null)
+                {
+                  if (document.getElementById("taboola-livere").style.display == "none")
+                  {
+                    //alert("Interval function stopped");
+                    clearInterval(intervalFunctionID);
+                  }
+                }
+                document.getElementById("taboola-livere").style.display="none";
+                //alert("Interval function running");
+            }
+        </script>
+        <noscript>为正常使用来必力评论功能请激活 JavaScript</noscript>
+    </div>
+
+
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
+    
+</main>
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+        <div class="social">
+            
+    
+        
+            
+                <a href="mailto:2630272905@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/liuyingqiao2019" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                    
+                    <img class="profile-qr" src="/assets/wecat.png" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                    
+                    <img class="profile-qr" src="/assets/qq.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <!-- 不蒜子  -->
+    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">本站总阅读量: <span id="busuanzi_value_site_pv"></span>次</span>
+            
+        </div>
+    	
+</footer>
+
+        </div>
+        <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python语言特点"><span class="toc-number">1.</span> <span class="toc-text">python语言特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复制copy和deepcopy"><span class="toc-number">1.1.</span> <span class="toc-text">复制&#x3D;、copy()和deepcopy()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python自带的模块"><span class="toc-number">2.</span> <span class="toc-text">Python自带的模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#extend方法"><span class="toc-number">3.</span> <span class="toc-text">extend方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#del方法"><span class="toc-number">4.</span> <span class="toc-text">del方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串变换"><span class="toc-number">5.</span> <span class="toc-text">字符串变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#divmod函数"><span class="toc-number">6.</span> <span class="toc-text">divmod()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python2与python3除法的区别"><span class="toc-number">7.</span> <span class="toc-text">python2与python3除法的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数返回值"><span class="toc-number">8.</span> <span class="toc-text">函数返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python查找顺序"><span class="toc-number">9.</span> <span class="toc-text">python查找顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#range范围"><span class="toc-number">10.</span> <span class="toc-text">range范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#readlines函数"><span class="toc-number">11.</span> <span class="toc-text">readlines函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda表达式"><span class="toc-number">12.</span> <span class="toc-text">lambda表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符优先级"><span class="toc-number">13.</span> <span class="toc-text">运算符优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-ix-in-enumerate-函数"><span class="toc-number">14.</span> <span class="toc-text">for i,x in enumerate() 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#replace函数"><span class="toc-number">15.</span> <span class="toc-text">replace函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#floor函数"><span class="toc-number">16.</span> <span class="toc-text">floor函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按位与计算"><span class="toc-number">17.</span> <span class="toc-text">按位与&amp;计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python保留字符"><span class="toc-number">18.</span> <span class="toc-text">python保留字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变数据类型和不可变数据类型"><span class="toc-number">19.</span> <span class="toc-text">可变数据类型和不可变数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python内置函数"><span class="toc-number">20.</span> <span class="toc-text">python内置函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python数据类型"><span class="toc-number">21.</span> <span class="toc-text">python数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制循环语句"><span class="toc-number">22.</span> <span class="toc-text">控制循环语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#name__"><span class="toc-number">23.</span> <span class="toc-text">__name__</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#json.dumps与json.loads"><span class="toc-number">24.</span> <span class="toc-text">json.dumps()与json.loads()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类定义体组成"><span class="toc-number">25.</span> <span class="toc-text">类定义体组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于return函数"><span class="toc-number">26.</span> <span class="toc-text">关于return函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#万物皆为对象"><span class="toc-number">27.</span> <span class="toc-text">万物皆为对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切片取数"><span class="toc-number">28.</span> <span class="toc-text">切片取数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数调用"><span class="toc-number">29.</span> <span class="toc-text">函数调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python不能正常启动"><span class="toc-number">30.</span> <span class="toc-text">python不能正常启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python的六种进程间通信方式"><span class="toc-number">31.</span> <span class="toc-text">python的六种进程间通信方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new__和__init__的区别"><span class="toc-number">32.</span> <span class="toc-text">__new__和__init__的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入输出总结"><span class="toc-number">33.</span> <span class="toc-text">输入输出总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单行输入"><span class="toc-number">33.1.</span> <span class="toc-text">单行输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多行输入"><span class="toc-number">33.2.</span> <span class="toc-text">多行输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单行输出"><span class="toc-number">33.3.</span> <span class="toc-text">单行输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多行输出"><span class="toc-number">33.4.</span> <span class="toc-text">多行输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充"><span class="toc-number">34.</span> <span class="toc-text">补充</span></a></li></ol>
+            </div>
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 44
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+        
+            
+            
+            <div class="archive-year"> 2022 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/06</span>
+            <a class="archive-post-title" href="/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">Docker应用部署基础（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/21</span>
+            <a class="archive-post-title" href="/2022/11/21/%E4%BC%81%E5%BE%AE%E5%BA%94%E7%94%A8%E4%B9%8Bpython%E5%BC%80%E5%8F%91/">企微应用之python开发</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/18</span>
+            <a class="archive-post-title" href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">企业微信之企业应用开发流程</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/16</span>
+            <a class="archive-post-title" href="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/">CentOS 7之关于网络管理的那些知识</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/14</span>
+            <a class="archive-post-title" href="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%E4%B9%8B%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/">Vue.js实战之博客页面前端</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/11</span>
+            <a class="archive-post-title" href="/2022/11/11/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%85%AD%EF%BC%89/">前端框架之Vue.js（六）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/10</span>
+            <a class="archive-post-title" href="/2022/11/10/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%BA%94%EF%BC%89/">前端框架之Vue.js（五）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/09</span>
+            <a class="archive-post-title" href="/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/">前端框架之Vue.js（四）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span>
+            <a class="archive-post-title" href="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%E4%B9%8Btodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/">Vue.js实战之todolist待办项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span>
+            <a class="archive-post-title" href="/2022/11/04/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%89%EF%BC%89/">前端框架之Vue.js（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span>
+            <a class="archive-post-title" href="/2022/11/04/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%BA%8C%EF%BC%89/">前端框架之Vue.js（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/03</span>
+            <a class="archive-post-title" href="/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%80%EF%BC%89/">前端框架之Vue.js（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span>
+            <a class="archive-post-title" href="/2022/11/01/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%B8%89%EF%BC%89/">前端三件套之JavaScript（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span>
+            <a class="archive-post-title" href="/2022/10/31/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之JavaScript（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之JavaScript（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之CSS（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之CSS（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/27</span>
+            <a class="archive-post-title" href="/2022/10/27/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BHTML%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之HTML（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/26</span>
+            <a class="archive-post-title" href="/2022/10/26/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BHTML%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之HTML（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span>
+            <a class="archive-post-title" href="/2022/10/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/">python学习笔记(十三)</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span>
+            <a class="archive-post-title" href="/2022/10/24/Flask%E5%AE%9E%E6%88%98%E4%B9%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/">Flask实战之搭建博客后端</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/21</span>
+            <a class="archive-post-title" href="/2022/10/21/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">Flask Web开发学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/20</span>
+            <a class="archive-post-title" href="/2022/10/20/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">Flask Web开发学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span>
+            <a class="archive-post-title" href="/2022/10/19/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/">python学习笔记（十二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span>
+            <a class="archive-post-title" href="/2022/10/18/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">Flask Web开发学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span>
+            <a class="archive-post-title" href="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">PgSQL数据库学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span>
+            <a class="archive-post-title" href="/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">PgSQL数据库学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span>
+            <a class="archive-post-title" href="/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">PgSQL数据库学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span>
+            <a class="archive-post-title" href="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/">python学习笔记（十一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span>
+            <a class="archive-post-title" href="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/">python学习笔记（十）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span>
+            <a class="archive-post-title" href="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89/">python学习笔记（九）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span>
+            <a class="archive-post-title" href="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/">python学习笔记（八）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span>
+            <a class="archive-post-title" href="/2022/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89/">python学习笔记（七）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span>
+            <a class="archive-post-title" href="/2022/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">python学习笔记（六）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span>
+            <a class="archive-post-title" href="/2022/10/10/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/">python学习笔记（五）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span>
+            <a class="archive-post-title" href="/2022/10/10/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/">python学习笔记（四）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2022/10/09/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">python学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2022/10/09/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">python学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/08</span>
+            <a class="archive-post-title" href="/2022/10/08/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">python学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span>
+            <a class="archive-post-title" href="/2022/08/07/%E7%BB%93%E6%9E%84%E6%80%A7%E6%80%9D%E7%BB%B4%E7%AC%94%E8%AE%B0/">结构性思维笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span>
+            <a class="archive-post-title" href="/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">设计模式的学习（一）</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2020 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span>
+            <a class="archive-post-title" href="/2020/03/30/Win10%E7%B3%BB%E7%BB%9Fedge%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">Win10系统edge浏览器出现闪退的解决方法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span>
+            <a class="archive-post-title" href="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/">记一次XAMPP的报错实例</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/09</span>
+            <a class="archive-post-title" href="/2020/01/09/hello-world/">Hello World</a>
+        </li>
+    
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+        
+            <span class="sidebar-tag-name" data-tags="CentOS 7">
+                <span class="iconfont-archer">&#xe606;</span>
+                CentOS 7
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络管理">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络管理
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Flask Web">
+                <span class="iconfont-archer">&#xe606;</span>
+                Flask Web
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="后端">
+                <span class="iconfont-archer">&#xe606;</span>
+                后端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Web框架">
+                <span class="iconfont-archer">&#xe606;</span>
+                Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue.js">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue.js
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="前端">
+                <span class="iconfont-archer">&#xe606;</span>
+                前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="python">
+                <span class="iconfont-archer">&#xe606;</span>
+                python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="企业微信">
+                <span class="iconfont-archer">&#xe606;</span>
+                企业微信
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用开发">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="CSS">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="HTML">
+                <span class="iconfont-archer">&#xe606;</span>
+                HTML
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="XAMPP">
+                <span class="iconfont-archer">&#xe606;</span>
+                XAMPP
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="报错">
+                <span class="iconfont-archer">&#xe606;</span>
+                报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Linux">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Linux
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="edge">
+            <span class="iconfont-archer">&#xe60a;</span>
+            edge
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="应用开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            应用开发
+        </span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "http://tangmenjue.top",
+        root: siteMetaRoot,
+        author: "唐抉"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+
+        <!-- main func -->
+        <script src="/scripts/main.js?v=20211217"></script>
+        <!-- dark mode -->
+        <script src="/scripts/dark.js?v=20211217"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid -->
+        
+    </body>
+</html>

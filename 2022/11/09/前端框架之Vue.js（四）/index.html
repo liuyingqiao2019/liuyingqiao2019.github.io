@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <!-- title -->
+
+
+    
+
+<!-- keywords -->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="唐抉">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="唐抉">
+    
+        <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta name="description" content="前端Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端框架之Vue.js（四）">
+<meta property="og:url" content="http://tangmenjue.top/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
+<meta property="og:site_name" content="唐抉的个人博客">
+<meta property="og:description" content="前端Vue.js">
+<meta property="article:published_time" content="2022-11-09T09:18:37.000Z">
+<meta property="article:modified_time" content="2022-11-10T15:51:43.641Z">
+<meta property="article:author" content="唐抉">
+<meta property="article:tag" content="Vue.js">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    
+        <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+    
+    <title>前端框架之Vue.js（四） · null</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="/css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+    
+        <body class="post-body">
+    
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+            <div class="header-sidebar-menu">
+        
+            
+                <div style="padding-left: 1px;">&#xe775;</div>
+            
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>唐抉的个人博客</a>
+        </span>
+    </div>
+    <!-- toggle banner for post layout -->
+    
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">唐抉的个人博客</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">前端框架之Vue.js（四）</a>
+            </div>
+        </div>
+    
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+            <div class="back-top back-top-hidden">
+        
+        
+            <div>&#xe639;</div>
+        
+        </div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
+
+
+
+
+
+
+    height:50vh;
+
+">
+    
+    <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+                前端框架之Vue.js（四）
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+                
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue.js">Vue.js</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
+    
+</div>
+
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">6.8k</span>阅读时长: <span class="post-count reading-time">30 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2022/11/09</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="深入了解组件">深入了解组件</h1>
+<h2 id="组件注册">组件注册</h2>
+<h3 id="组件名">组件名</h3>
+<p>注册一个组件时，要给组件起名，如在全局注册中，组件名就是<code>Vue.component</code>的第一个参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue component(<span class="string">'my-component-name'</span>,&#123;&#125;)</span><br></pre></td></tr></table></figure>
+<p>组件名应当遵守W3C规范中的自定义组件名（字母全小写且必须包含一个连字符）</p>
+<h4 id="组件名大小写">组件名大小写</h4>
+<p>定义组件名的方式由两种：</p>
+<ul>
+<li>使用短横线分隔命名:my-component-name</li>
+<li>使用首字母大写命名：MyComponentName</li>
+</ul>
+<p>两种命名法都可以使用，但需注意的是，直接在DOM（即非字符串的模板）中使用时，只有短横线分隔命名是有效的。</p>
+<h3 id="全局注册">全局注册</h3>
+<p>使用全局注册的组件，在它们注册之后可以用在任何新创建的Vue根实例的模板中，在子组件的内部也可以相互使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Vue component(<span class="string">'my-component-name'</span>,&#123;&#125;)</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;<span class="attr">el</span>:<span class="string">'#app'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="局部注册">局部注册</h3>
+<p>若使用webpack这个的构建系统，全局注册所有的组件便意味着即使不再使用这个组件了，它仍然会被包含在最终的构建结果中。此时，可以将组件局部注册：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过一个普通的JavaScript对象来定义组件</span></span><br><span class="line"><span class="keyword">var</span> ComponentA=&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> ComponentB=&#123;&#125;</span><br><span class="line"><span class="comment">// 在component中定义要使用的组件</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  components:&#123;</span><br><span class="line">    <span class="string">'components-a'</span>:ComponentA,</span><br><span class="line">    <span class="string">'components-b'</span>:ComponentB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>对于<code>components</code>对象中的每个property来说，其property名就是自定义元素的名字，其property值就是这个组件的选项对象。</p>
+<p><strong>局部注册的组件在其子组件中不可用。</strong>所希望上述代码中的<code>ComponentA</code>在<code>ComponentB</code>中可用，则要写成：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ComponentA=&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> ComponentB=&#123;</span><br><span class="line">  components:&#123;</span><br><span class="line">    <span class="string">'components-a'</span>:ComponentA</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模块系统">模块系统</h3>
+<h4 id="在模块系统中局部注册">在模块系统中局部注册</h4>
+<p>若使用了注入Babel和webpack的模块系统，需要创建一个<code>components</code>目录，并将每个组件放置在其各自的文件中，然后在局部注册之前导入每个想使用的组件。如在一个<code>ComponentB.vue</code>文件中使用<code>ComponentA</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ComponentA <span class="keyword">from</span> <span class="string">'./ComponentA.vue'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">  components:&#123;</span><br><span class="line">    ComponentA</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在ES2015+中，在对象中放一个类似<code>ComponentA</code>的变量名便是<code>'ComponentsA':ComponentA</code>的缩写，即这个变量名同时是用在模板中的自定义元素的名称，也包含了这个组件选项的变量名。</p>
+<h4 id="基础组件的自动化全局注册">基础组件的自动化全局注册</h4>
+<p>当组件中只是包裹了一个输入框或按钮之类的通用元素时，将其称之为基础组件，它们会在各个组件中被频繁地用到。</p>
+<p>这往往会导致组件里都会由一个包含基础组件的长列表，但用于模板中的仅是一小部分组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;example&quot;&gt;</span><br><span class="line">    &lt;BaseInput v-model&#x3D;&quot;searchText&quot; @keydown.enter&#x3D;&quot;search&quot; &#x2F;&gt;</span><br><span class="line">    &lt;BaseButton @click&#x3D;&quot;search&quot;&gt;</span><br><span class="line">      &lt;BaseIcon name&#x3D;&quot;search&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;BaseButton&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;  </span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import BaseButton from &#39;.&#x2F;BaseButton.vue&#39;</span><br><span class="line">import BaseIcon from &#39;.&#x2F;BaseIcon.vue&#39;</span><br><span class="line">import BaseInput from &#39;.&#x2F;BaseInput.vue&#39;</span><br><span class="line"></span><br><span class="line">export default&#123;</span><br><span class="line">  components:&#123;</span><br><span class="line">    BaseButton,</span><br><span class="line">    BaseIcon,</span><br><span class="line">    BaseInput</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>若使用webpack（或在内部使用了webpack的Vue CLI 3+），则可以使用<code>require.context</code>只全局注册这些通用的基础组件。如在应用入口文件（如<code>src/main.js</code>）中全局导入基础组件的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;example&quot;&gt;</span><br><span class="line">    &lt;BaseInput v-model&#x3D;&quot;searchText&quot; @keydown.enter&#x3D;&quot;search&quot; &#x2F;&gt;</span><br><span class="line">    &lt;BaseButton @click&#x3D;&quot;search&quot;&gt;</span><br><span class="line">      &lt;BaseIcon name&#x3D;&quot;search&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;BaseButton&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;  </span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import upperFirst from &#39;lodash&#x2F;upperFirst&#39;</span><br><span class="line">import camelCase from &#39;lodash&#x2F;camelCase&#39;</span><br><span class="line"></span><br><span class="line">const requireComponent&#x3D;require.context(</span><br><span class="line">  &#39;.&#x2F;components&#39;,&#x2F;&#x2F;组件目录的相对路径</span><br><span class="line">  false,&#x2F;&#x2F;是否查询其子目录</span><br><span class="line">  &#x2F;&#x2F;匹配基础组件文件名的正则表达式</span><br><span class="line">  &#x2F;Base[A-Z]\w+\.(vue|js)$&#x2F;</span><br><span class="line">)</span><br><span class="line">requireComponent.keys().forEach(fileName&#x3D;&gt;&#123;</span><br><span class="line">  const componentConfig&#x3D;requireComponent(fileName)&#x2F;&#x2F;获取组件配置</span><br><span class="line">  const componentName&#x3D;upperFirst(&#x2F;&#x2F;获取组件的PascalCase命名</span><br><span class="line">    camelCase(</span><br><span class="line">      fileName&#x2F;&#x2F;获取和目录深度无关的文件名</span><br><span class="line">      .split(&#39;&#x2F;&#39;)</span><br><span class="line">      .pop()</span><br><span class="line">      .replace(&#x2F;\.\w+$&#x2F;,&#39;&#39;)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;全局注册组件</span><br><span class="line">  Vue.component(</span><br><span class="line">    componentName,</span><br><span class="line">    &#x2F;&#x2F; 若这个组件选项是通过export default导出的，就优先使用.default，否则回退到使用模块的根</span><br><span class="line">    componentConfig.default||componentConfig</span><br><span class="line">  )</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="prop">Prop</h2>
+<h3 id="prop的大小写">Prop的大小写</h3>
+<p>HTML中的attribute名是大小写不敏感的，浏览器会把所有大写字符解释为小写字符。这意味着在使用DOM模板时，驼峰命名的prop名需要使用其等价的短横线分隔来命名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&#39;blog-post&#39;,&#123;</span><br><span class="line">  &#x2F;&#x2F;在JavaScript中是驼峰命名</span><br><span class="line">  props:&#123;&#39;postTitle&#39;&#125;,</span><br><span class="line">  template:&#39;&lt;h3&gt;&#123;&#123;postTitle&#125;&#125;&lt;&#x2F;h3&gt;&#39;</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F; 在HTML中是短横线分隔命名</span><br><span class="line">&lt;blog-post post-title&#x3D;&quot;hello!&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br></pre></td></tr></table></figure>
+<p>而在字符串模板中便不存在这个限制。</p>
+<h3 id="prop类型">Prop类型</h3>
+<p>Prop的类型有以下八种：</p>
+<ul>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Array</li>
+<li>Object</li>
+<li>Date</li>
+<li>Function</li>
+<li>Symbol</li>
+</ul>
+<p>props的写法（无默认值）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">props:&#123;</span><br><span class="line">  title:String,</span><br><span class="line">  likes:Number,</span><br><span class="line">  isPublished:Boolean,</span><br><span class="line">  commentIds:Array,</span><br><span class="line">  author:Object,</span><br><span class="line">  callback:Function,</span><br><span class="line">  contactsPromise:promise</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="传递静态或动态prop">传递静态或动态Prop</h3>
+<p>任何类型的值都可以传给一个prop，不仅能传入静态的值，还能通过<code>v-bind</code>动态赋值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 给prop传入静态的值</span><br><span class="line">&lt;blog-post title&#x3D;&quot;My journey with Vue&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 通过v-bind动态赋予一个变量的值</span><br><span class="line">&lt;blog-post v-bind:title&#x3D;&quot;post.title&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 通过v-bind动态赋予一个复杂表达式的值</span><br><span class="line">&lt;blog-post v-bind:title&#x3D;&quot;post.title+&#39;by&#39;+post.author.name&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="传入一个数字">传入一个数字</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 即使42是静态的，但仍需v-bind来告诉Vue</span><br><span class="line">&#x2F;&#x2F; 这是一个JavaScript表达式而不是一个字符串</span><br><span class="line">&lt;blog-post v-bind:likes&#x3D;&quot;42&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 通过v-bind动态赋予一个变量的值</span><br><span class="line">&lt;blog-post v-bind:likes&#x3D;&quot;post.likes&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="传入一个布尔值">传入一个布尔值</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 即使prop没有值，结果都是true</span><br><span class="line">&lt;blog-post is-published&gt;&lt;&#x2F;blog-post&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 即使false是静态的，但仍需v-bind来告诉Vue</span><br><span class="line">&#x2F;&#x2F; 这是一个JavaScript表达式而不是一个字符串</span><br><span class="line">&lt;blog-post v-bind:is-published&#x3D;&quot;false&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 通过v-bind动态赋予一个变量的值</span><br><span class="line">&lt;blog-post v-bind:is-published&#x3D;&quot;post.isPublished&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="传入一个数组">传入一个数组</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 即使数组是静态的，但仍需v-bind来告诉Vue</span><br><span class="line">&#x2F;&#x2F; 这是一个JavaScript表达式而不是一个字符串</span><br><span class="line">&lt;blog-post v-bind:comment-ids&#x3D;&quot;[234,266,273]&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 通过v-bind动态赋予一个变量的值</span><br><span class="line">&lt;blog-post v-bind:comment-ids&#x3D;&quot;post.commentIds&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="传入一个对象">传入一个对象</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 即使对象是静态的，但仍需v-bind来告诉Vue</span><br><span class="line">&#x2F;&#x2F; 这是一个JavaScript表达式而不是一个字符串</span><br><span class="line">&lt;blog-post v-bind:author&#x3D;&quot;&#123;</span><br><span class="line">  name:&#39;Veronica&#39;,</span><br><span class="line">  company:&#39;Veridian Dynamics&#39;</span><br><span class="line">  &#125;&quot;</span><br><span class="line">&gt;&lt;&#x2F;blog-post&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 通过v-bind动态赋予一个变量的值</span><br><span class="line">&lt;blog-post v-bind:author&#x3D;&quot;post.author&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="传入一个对象的所有property">传入一个对象的所有property</h4>
+<p>若要将一个对象的所有property都作为prop传入，可以使用不带参数的<code>v-bind</code>来取代<code>v-bind:prop-name</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;给定的对象post</span><br><span class="line">post:&#123;</span><br><span class="line">  id:1,</span><br><span class="line">  title:&#39;My Journey with Vue&#39;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 通过v-bind动态赋予一个变量的值</span><br><span class="line">&lt;blog-post v-bind&#x3D;&quot;post&quot;&gt;&lt;&#x2F;blog-post&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;等价于</span><br><span class="line">&lt;blog-post </span><br><span class="line">  v-bind:id&#x3D;&quot;post.id&quot;</span><br><span class="line">  v-bind:title&#x3D;&quot;post.title&quot;</span><br><span class="line">&gt;&lt;&#x2F;blog-post&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="单向数据流">单向数据流</h3>
+<p>所有的prop都使得其父子prop之间形成了一个单向下行绑定：<strong>父级prop的更新会向下流动到子组件中</strong>，但反过来则不行，这样防止了从子组件意外变更父级组件的状态。</p>
+<p><strong>每次父级组件发生变更时，子组件中所有的prop都将会刷新为最新的值</strong>，因此不应在一个子组件内部改变prop。</p>
+<p>若要变更一个prop，可通过以下方法进行变更：</p>
+<ol type="1">
+<li><p>这样prop用来传递一个初始值，子组件希望将其作为一个本地的prop数据来使用。此时最好定义一个本地的data property并将这个prop用作其初始值：</p>
+<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">props:[<span class="string">'initialCounter'</span>],</span><br><span class="line">data:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    counter:<span class="keyword">this</span>.initialCounter</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+<li><p>这个prop以一种原始的值传入且需要进行转化。此时最好使用这个prop的值来定义一个计算属性：</p>
+<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">props:[<span class="string">'size'</span>],</span><br><span class="line">computed:&#123;</span><br><span class="line">  normalizeSize:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.size.trim().toLowerCase()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+</ol>
+<p><strong>注意：</strong>在JavaScript中对象和数组是通过引用传入的，所以对于一个数组或对象类型的prop来说，在子组件中改变变更这个对象或数组本身将会影响到父组件的状态。</p>
+<h3 id="prop验证">Prop验证</h3>
+<p>可以通过在<code>props</code>中的值提供一个带有验证需求的对象，从而指定组件的prop验证方式。即为<code>props</code>设定默认值如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">props:&#123;</span><br><span class="line">  propA:Number,&#x2F;&#x2F;基础的类型检查</span><br><span class="line">  propB:[String,Number],&#x2F;&#x2F;多个可能的类型</span><br><span class="line">  &#x2F;&#x2F;必填的字符串</span><br><span class="line">  propC:&#123;</span><br><span class="line">    type:String,</span><br><span class="line">    required:true</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 带有默认值的数字</span><br><span class="line">  propD:&#123;</span><br><span class="line">    type:Number,</span><br><span class="line">    default:100</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 带有默认值的对象</span><br><span class="line">  propE:&#123;</span><br><span class="line">    type:Object,</span><br><span class="line">    &#x2F;&#x2F; 对象或数组默认值必须从一个工厂函数获取</span><br><span class="line">    default:function()&#123;</span><br><span class="line">      return &#123;message:&#39;hello&#39;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 自定义验证函数</span><br><span class="line">  propF:&#123;</span><br><span class="line">    validator:function(value)&#123;</span><br><span class="line">      &#x2F;&#x2F; 这个值必须匹配下列字符串中的一个</span><br><span class="line">      return [&#39;success&#39;,&#39;warning&#39;,&#39;danger&#39;].indexOf(value)!&#x3D;&#x3D;-1</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当prop验证失败时，Vue将会产生一个控制台的警告。</p>
+<p>prop会在组件实例创建之前进行验证，因此实例的property（如<code>data</code>、<code>computed</code>等）在<code>default</code>或<code>validator</code>函数中是不可用的。</p>
+<h4 id="类型检查">类型检查</h4>
+<p>prop类型除了可以是八种原生类型之外，还可以是自定义的构造函数，并且通过<code>instanceof</code>来进行检查确认：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//给定构造函数Person</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">firstName,lastName</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.firstName=firstName</span><br><span class="line">  <span class="keyword">this</span>.lastName=lastName</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//验证 author prop的值是否是通过new Person创建的</span></span><br><span class="line">Vue.component(<span class="string">'blog-post'</span>,&#123;</span><br><span class="line">  props:&#123;</span><br><span class="line">    author:Person</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="非prop的attribute">非Prop的Attribute</h3>
+<p>传向一个组件，但组件中没有相应prop定义的attribute称之为非prop的attribute。显式定义的prop适用于向一个子组件传入信息。组件可以接收任意的attribute，而这些attribute会被添加到这个组件的根元素上。</p>
+<h4 id="替换合并已有的attribute">替换/合并已有的Attribute</h4>
+<p>现有一个Bootstrap插件里使用了第三方组件<code>&lt;bootstrap-date-input&gt;</code>，其模板如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"data"</span> <span class="attr">class</span>=<span class="string">"form-control"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>若要为这个插件定制一个主体，则需要添加一个特别的类名如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bootstrap-date-input</span></span></span><br><span class="line"><span class="tag">  <span class="attr">data-date-picker</span>=<span class="string">"activated"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">"date-picker-theme-dark"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">bootstrap-date-input</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在这种情况下共定义了两个不同的class值：</p>
+<ul>
+<li><code>form-control</code>：组件模板内设置好的class</li>
+<li><code>date-picker-theme-dark</code>：从组件父级传入的</li>
+</ul>
+<p>对于绝大多数attribute来说，从外部提供给组件的值会替换掉组件内部设置好的值，<strong>因此若直接传入<code>type="text"</code>就会替换掉<code>type="date"</code>并将其破坏掉。</strong>而<strong><code>class</code>和<code>style</code> attribute会将两边的值合起来</strong>，从而得到最终值：<code>form-control date-picker-theme-dark</code>。</p>
+<h4 id="禁用attribute继承">禁用Attribute继承</h4>
+<p>若不希望组件的根元素继承attribute，可以在组件的选项中设置<code>inheritAttris:false</code>，配合实例的<code>$attrs</code> property使用，便可以手动决定这些attribute会被赋予哪个元素，<strong>常用于撰写基础组件中</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'base-input'</span>,&#123;</span><br><span class="line">  inheritAttrs:<span class="literal">false</span>,</span><br><span class="line">  props:[<span class="string">'label'</span>,<span class="string">'value'</span>],</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;label&gt;</span></span><br><span class="line"><span class="string">      &#123;&#123;label&#125;&#125;</span></span><br><span class="line"><span class="string">      &lt;input</span></span><br><span class="line"><span class="string">        v-bind="$attrs"</span></span><br><span class="line"><span class="string">        v-bind:value="value"</span></span><br><span class="line"><span class="string">        v-on:input="$emit('input',$event.target.value)"</span></span><br><span class="line"><span class="string">      &gt;</span></span><br><span class="line"><span class="string">    &lt;/label&gt;</span></span><br><span class="line"><span class="string">  `</span>    </span><br><span class="line">&#125;)xxxxxxxxxx16 <span class="number">1</span>Vue.component(<span class="string">'base-input'</span>,&#123;<span class="number">2</span>  inheritAttrs:<span class="literal">false</span>,<span class="number">3</span>  props:[<span class="string">'label'</span>,<span class="string">'value'</span>],<span class="number">4</span>  template: <span class="string">`5    &lt;label&gt;6      &#123;&#123;label&#125;&#125;7      &lt;input8        v-bind="$attrs"9        v-bind:value="value"10        v-on:input="$emit('input',$event.target.value)"11      &gt;12    &lt;/label&gt;13  `</span>    <span class="number">14</span>&#125;)Vue.component(<span class="string">'my-component'</span>,&#123;<span class="number">15</span>  inheritAttrs:<span class="literal">false</span>,<span class="number">16</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>其中，<strong><code>inheritAttris:false</code>选项不会影响<code>style</code>和<code>class</code>的绑定。</strong></p>
+<p>这个模式允许在使用基础组件时更像是使用原始的HTML元素，而不用担心哪个元素才是真正的根元素。</p>
+<h2 id="自定义事件">自定义事件</h2>
+<h3 id="事件名">事件名</h3>
+<p>不同于组件和prop，事件名不存在任何自动化的大小写转化，<strong>触发的事件名需要完全匹配监听这个事件所用的名称</strong>。如触发事件名是驼峰式命名的，则监听该名字的短横线分隔命名版本是不会有任何效果的。</p>
+<p>不同于组件和prop，事件名不会被用作一个JavaScript变量名或property名，因此不会使用驼峰命名或首字母大写命名。且<code>v-on</code>事件监听器在DOM模板中会被自动转换为全小写，因此<strong>推荐事件名使用短横线分隔命名</strong>。</p>
+<h3 id="自定义组件的v-model">自定义组件的<code>v-model</code></h3>
+<p>一个组件上的<code>v-model</code>默认会利用名为<code>value</code>的prop和名为<code>input</code>的事件。但像单选框、复选框等类型的输入控件可能会将<code>value</code> attribute用于不同的目的，为避免冲突，可使用<code>model</code>选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id&#x3D;&quot;example&quot;&gt;</span><br><span class="line">    &lt;!-- lovingVue的值将会传如名为checked的prop --&gt;</span><br><span class="line">    &lt;!-- 当&lt;base-checkbox&gt;触发一个change事件并附带一个新值时，lovingVue的property将会被更新 --&gt;</span><br><span class="line">    &lt;base-checkbox v-model&#x3D;&quot;lovingVue&quot;&gt;&lt;&#x2F;base-checkbox&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;  </span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">Vue.component(&#39;base-checkbox&#39;,&#123;</span><br><span class="line">  model:&#123;</span><br><span class="line">    prop:&#39;checked&#39;,</span><br><span class="line">    event:&#39;change&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  props:&#123;</span><br><span class="line">    checked:Boolean&#x2F;&#x2F;props里仍需要声明checked这个prop</span><br><span class="line">  &#125;,</span><br><span class="line">  template:&#96;</span><br><span class="line">    &lt;input </span><br><span class="line">      type&#x3D;&quot;checkbox&quot;</span><br><span class="line">      v-bind:checked&#x3D;&quot;checked&quot;</span><br><span class="line">      v-on:change&#x3D;&quot;$emit(&#39;change&#39;,$event.target.checked)&quot;</span><br><span class="line">    &gt;</span><br><span class="line">  &#96;    </span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="将原生事件绑定到组件">将原生事件绑定到组件</h3>
+<p>若要在一个组件的根元素上直接监听一个原生事件，可以使用<code>v-on</code>的<code>.native</code>修饰符：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base-input</span> <span class="attr">v-on:focus.native</span>=<span class="string">"onFocus"</span>&gt;</span><span class="tag">&lt;/<span class="name">base-input</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当监听一个类似<code>&lt;input&gt;</code>的特定元素时，父级的<code>.native</code>监听器将会静默失败，其不会产生任何报错，但<code>onFocus</code>处理函数也不会被调用。</p>
+<p>Vue提供了一个<code>$listeners</code> property来解决这一问题，它是一个对象，里面包含了作用在这个组件上的所有监听器，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  focus:<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;&#125;,</span><br><span class="line">  input:<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有了<code>$listeners</code> property，再配合<code>v-on=$listeners</code>便可以将所有的事件监听器指向这个组件的某个特定的子元素。</p>
+<p>对于希望<code>&lt;input&gt;</code>也能配合<code>v-model</code>工作的组件，应为这些监听器创建一个<code>inputListeners</code>计算属性如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">Vue.component(&#39;base-input&#39;,&#123;</span><br><span class="line">  inheritAttrs:false,</span><br><span class="line">  props:[&#39;label&#39;,&#39;value&#39;],</span><br><span class="line">  computed:&#123;</span><br><span class="line">    inputListeners:function()&#123;</span><br><span class="line">      var vm&#x3D;this</span><br><span class="line">      return Object.assign(&#123;&#125;,</span><br><span class="line">        this.$listeners,</span><br><span class="line">        &#123;</span><br><span class="line">          input:function(event)&#123;</span><br><span class="line">            vm.$emit(&#39;input&#39;,event.target.value)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: &#96;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      &#123;&#123;label&#125;&#125;</span><br><span class="line">      &lt;input</span><br><span class="line">        v-bind&#x3D;&quot;$attrs&quot;</span><br><span class="line">        v-bind:value&#x3D;&quot;value&quot;</span><br><span class="line">        v-on&#x3D;&quot;inputListeners&quot;</span><br><span class="line">      &gt;</span><br><span class="line">    &lt;&#x2F;label&gt;</span><br><span class="line">  &#96;      </span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>此时<code>&lt;base-input&gt;</code>组件是一个完全透明的包裹器了，即它可以像一个普通的<code>&lt;input&gt;</code>元素一样使用。所有跟<code>&lt;base-input&gt;</code>组件相同的attribute和监听器都可以工作，不必再使用<code>.native</code>监听器来监听事件。</p>
+<h3 id="sync修饰符"><code>.sync</code>修饰符</h3>
+<p>若需要对一个prop进行”双向绑定“时，可以用<code>update:myPropName</code>的模式触发事件来处理。</p>
+<p>如在一个包含<code>title</code> prop的组件中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">Vue.component(&#39;text-document&#39;,&#123;</span><br><span class="line">  props:[&#39;title&#39;],</span><br><span class="line">  template: &#96;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      我是子节点</span><br><span class="line">      &lt;button @click&#x3D;&quot;handleClick&quot;&gt;点击我改变父级Title&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &#96;,</span><br><span class="line">  methods:&#123;</span><br><span class="line">    handleClick()&#123;</span><br><span class="line">      this.count+&#x3D;1;</span><br><span class="line">      newTitle&#x3D;this.title+this.count;&#x2F;&#x2F;对title赋新值</span><br><span class="line">      this.$emit(&#39;update:childTitle&#39;,newTitle)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  data()&#123;</span><br><span class="line">    return&#123;</span><br><span class="line">      count:0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">const app&#x3D;new Vue(&#123;</span><br><span class="line">  el:&#39;#example&#39;,</span><br><span class="line">  data:&#123;</span><br><span class="line">    parentTitle:&quot;我是父级title&quot;,</span><br><span class="line">  &#125;,</span><br><span class="line">    &#x2F;&#x2F;父组件可以监听那个事件并根据需要更新一个本地的数据property</span><br><span class="line">  template: &#96;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      我是父级节点</span><br><span class="line">      &lt;text-document </span><br><span class="line">        v-bind:title&#x3D;&quot;parentTitle&quot; </span><br><span class="line">        v-on:update:title&#x3D;&quot;parentTitle&#x3D;$event&quot;</span><br><span class="line">      &gt;&lt;&#x2F;text-document&gt;</span><br><span class="line">        &#123;&#123;parentTitle&#125;&#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &#96;    </span><br><span class="line">  &#x2F;&#x2F;上述代码可用.sync修饰符缩写为</span><br><span class="line">  &#x2F;&#x2F;&lt;text-document :title&#x3D;&quot;parentTitle&quot; :title.sync&#x3D;&quot;parentTitle&quot;&gt;&lt;&#x2F;text-document&gt;  </span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>注意带有<code>.sync</code>修饰符的<code>v-bind</code>不能和表达式一起使用（如<code>v-bind:title.sync="doc.title+'!'"</code>是无效的），只能提供想绑定的property名，如<code>v-model</code>。</p>
+<p>当用一个对象同时设置多个prop时，也可以将<code>.sync</code>修饰符和<code>v-bind</code>配合使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;text-document v-bind.sync&#x3D;&quot;doc&quot;&gt;&lt;&#x2F;text-document&gt;</span><br></pre></td></tr></table></figure>
+<p>这样会把<code>doc</code>对象中的每个property都作为一个独立的prop传进去，然后各自添加用于更新的<code>v-on</code>监听器。</p>
+<p><strong>注意：</strong>将<code>v-bind.sync</code>用在一个字面量的对象上（如整数、浮点数及字符串等）时是无法正常工作的，如<code>v-bind.sync="{title:doc.title}"</code>。</p>
+<h2 id="插槽">插槽</h2>
+<p>在Vue2.6.0版本中引入了具名插槽和作用域插槽的因语法<code>v-slot</code>指令，它取代了<code>slot</code>和<code>slot-scope</code>这两个已被废除但未被移除的attribute。</p>
+<h3 id="插槽内容">插槽内容</h3>
+<p>Vue实现了一套内容分发的API，其将<code>&lt;slot&gt;</code>元素作为承载分发内容的出口。</p>
+<p>它允许像这样合成组件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">navigation-link</span> <span class="attr">url</span>=<span class="string">"/profile"</span>&gt;</span></span><br><span class="line">  Your Profile</span><br><span class="line"><span class="tag">&lt;/<span class="name">navigation-link</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中，<code>&lt;/navigation-link&gt;</code>的模板如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">"url"</span> <span class="attr">class</span>=<span class="string">"nav-link"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当组件渲染时，<code>&lt;slot&gt;&lt;/slot&gt;</code>将会被替换为Your Profile的内容。插槽内可以包含任何模板代码，包括HTML或是它的组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;navigation-link url&#x3D;&quot;&#x2F;profile&quot;&gt;</span><br><span class="line">  &lt;!-- 添加一个Font Awesome图标 --&gt;</span><br><span class="line">  &lt;span class&#x3D;&quot;fa fa-user&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">    Your Profile</span><br><span class="line">&lt;&#x2F;navigation-link&gt; </span><br><span class="line"></span><br><span class="line">&lt;navigation-link url&#x3D;&quot;&#x2F;profile&quot;&gt;</span><br><span class="line">  &lt;!-- 添加一个图标的组件 --&gt;</span><br><span class="line">  &lt;font-awesome-icon name&#x3D;&quot;user&quot;&gt;&lt;&#x2F;font-awesome-icon&gt;</span><br><span class="line">    Your Profile</span><br><span class="line">&lt;&#x2F;navigation-link&gt;</span><br></pre></td></tr></table></figure>
+<p>若<code>&lt;navigation-link&gt;</code>的<code>template</code>中没有包含一个<code>&lt;slot&gt;</code>元素，则该组件起始标签和结束标签之间的内容都会被抛弃。</p>
+<h3 id="编译作用域">编译作用域</h3>
+<p>当想在一个插槽中使用数据时，<strong>该插槽跟模板其他地方一样可以访问相同的实例property，而不能访问<code>&lt;navigation-link&gt;</code>的作用域</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;navigation-link url&#x3D;&quot;&#x2F;profile&quot;&gt;</span><br><span class="line">  &lt;!-- user.name的数据能正常访问 --&gt;</span><br><span class="line">  Logged in as &#123;&#123;user.name&#125;&#125;</span><br><span class="line">  &lt;!-- 这里的url的值是undefined --&gt;</span><br><span class="line">  &lt;!-- 因为该插槽的内容是传递给&lt;navigation-link&gt;的而不是在其组件内部定义的 --&gt;</span><br><span class="line">  Clicking here will send you to:&#123;&#123;url&#125;&#125;</span><br><span class="line">&lt;&#x2F;navigation-link&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>父级模板里的所有内容都是在父级作用域中编译的，子模板里的所有内容都是在子作用域中编译的。</strong></p>
+<h3 id="后备内容">后备内容</h3>
+<p>为一个插槽设置具体的后备内容（即默认内容）是很有必要的，它只会在没有提供内容的时候被渲染。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;button type&#x3D;&quot;submit&quot;&gt;</span><br><span class="line">  &lt;!-- button绝大多数都渲染文本Submit --&gt;</span><br><span class="line">  &lt;slot&gt;Submit&lt;&#x2F;slot&gt;</span><br><span class="line">&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+<p>此时若在父级组件中使用<code>&lt;submit-button&gt;</code>且不提供任何插槽内容时，后备内容“Submit”将会被渲染；若提供内容时，在这个提供的内容将会取代后备内容被渲染</p>
+<h3 id="具名插槽">具名插槽</h3>
+<p>有时在一个模板里需要多个插槽时，可以使用<code>&lt;slot&gt;</code>元素中的<code>name</code> attribute，其可以用来定义额外的插槽：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">  &lt;header&gt;</span><br><span class="line">    &lt;slot name&#x3D;&quot;header&quot;&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">  &lt;&#x2F;header&gt;</span><br><span class="line">  &lt;main&gt;</span><br><span class="line">    &lt;!-- 不带name的&lt;slot&gt;，会默认带有一个隐含的名字default --&gt;</span><br><span class="line">    &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">  &lt;&#x2F;main&gt;</span><br><span class="line">  &lt;footer&gt;</span><br><span class="line">    &lt;slot name&#x3D;&quot;footer&quot;&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">  &lt;&#x2F;footer&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<p>在向具名插槽提供内容时，可以在一个<code>&lt;template&gt;</code>元素上使用<code>v-slot</code>指令，并以<code>v-slot</code>参数的形式提供其名称：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;base-layout&gt;</span><br><span class="line">  &lt;template v-slot:header&gt;</span><br><span class="line">    &lt;h1&gt;Here might be a page title&lt;&#x2F;h1&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">    </span><br><span class="line">  &lt;p&gt;A paragraph for the main content.&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;And another one.&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line">  &lt;template v-slot:footer&gt;</span><br><span class="line">    &lt;p&gt;Here&#39;s some contact info&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;base-layout&gt;</span><br></pre></td></tr></table></figure>
+<p>现在<code>&lt;template&gt;</code>元素中的所有内容都将会被传入相应的插槽，任何没有被包裹在带有<code>v-slot</code>的<code>&lt;template&gt;</code>中的内容都会被视为默认插槽的内容。</p>
+<p>即上述代码等价于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;base-layout&gt;</span><br><span class="line">  &lt;template v-slot:header&gt;</span><br><span class="line">    &lt;h1&gt;Here might be a page title&lt;&#x2F;h1&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">  &lt;template v-slot:default&gt;</span><br><span class="line">    &lt;p&gt;A paragraph for the main content.&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;p&gt;And another one.&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;&#x2F;template&gt; </span><br><span class="line">  </span><br><span class="line">  &lt;template v-slot:footer&gt;</span><br><span class="line">    &lt;p&gt;Here&#39;s some contact info&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;base-layout&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：<code>v-slot</code>只能添加在<code>&lt;template&gt;</code>上。</strong></p>
+<h3 id="作用域插槽">作用域插槽</h3>
+<p>有时会让插槽内容能够访问子组件中才有的数据。如这里有个组件<code>&lt;current-user&gt;</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;</span><br><span class="line">  &lt;slot&gt;&#123;&#123;user.lastName&#125;&#125;&lt;&#x2F;slot&gt;</span><br><span class="line">&lt;&#x2F;span&gt;</span><br></pre></td></tr></table></figure>
+<p>若想换掉备用内容，用名来显示，直接将组件中的<code>user.lastName</code>换成<code>user.firstName</code>是不行的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;current-user&gt;</span><br><span class="line">  &#123;&#123;user.firstName&#125;&#125;</span><br><span class="line">&lt;&#x2F;current-user&gt;</span><br></pre></td></tr></table></figure>
+<p>由于只有<code>&lt;current-user&gt;</code>组件可以访问到<code>user</code>，而所提供的内容是在父级渲染的。因此为了让<code>user</code>在父级的插槽内容中可用，<strong>将<code>user</code>作为<code>&lt;slot&gt;</code>元素的一个attribute绑定上去</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;</span><br><span class="line">  &lt;slot v-bind:user&#x3D;&quot;user&quot;&gt;&#123;&#123;user.lastName&#125;&#125;&lt;&#x2F;slot&gt;</span><br><span class="line">&lt;&#x2F;span&gt;</span><br></pre></td></tr></table></figure>
+<p>绑定在<code>&lt;slot&gt;</code>元素上的attribute被称为插槽prop。在父级作用域中，可以使用带值的<code>v-slot</code>来定义所提供插槽prop的名字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;current-user&gt;</span><br><span class="line">  &lt;!-- slotProps为包含所有插槽prop的对象 --&gt;</span><br><span class="line">  &lt;template v-slot:default&#x3D;&quot;slotProps&quot;&gt;</span><br><span class="line">    &#123;&#123;slotProps.user.firstName&#125;&#125;</span><br><span class="line">  &lt;&#x2F;template&gt;  </span><br><span class="line">&lt;&#x2F;current-user&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="独占默认插槽的缩写语法">独占默认插槽的缩写语法</h4>
+<p><strong>当被提供的内容只有默认插槽时，组件的标签才可以被当作插槽的模板来使用。</strong>此时可以把<code>v-slot</code>直接用在组件上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;current-user v-slot:default&#x3D;&quot;slotProps&quot;&gt;</span><br><span class="line">  &#123;&#123;slotProps.user.firstName&#125;&#125; </span><br><span class="line">&lt;&#x2F;current-user&gt;</span><br></pre></td></tr></table></figure>
+<p>由于不带参数的<code>v-slot</code>被假定为对应默认的插槽，因此还有更简化的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;current-user v-slot&#x3D;&quot;slotProps&quot;&gt;</span><br><span class="line">  &#123;&#123;slotProps.user.firstName&#125;&#125; </span><br><span class="line">&lt;&#x2F;current-user&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>默认插槽的缩写写法不能和具名插槽混用，这会导致作用域不明确。</strong></p>
+<p>只要出现多个插槽，则始终要为所有的插槽使用完整的基于<code>&lt;template&gt;</code>的语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;current-user&gt;</span><br><span class="line">  &lt;template v-slot:default&#x3D;&quot;slotProps&quot;&gt;</span><br><span class="line">    &#123;&#123;slotProps.user.firstName&#125;&#125;</span><br><span class="line">  &lt;&#x2F;template&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;template v-slot:other&#x3D;&quot;otherSlotProps&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;&#x2F;template&gt;  </span><br><span class="line">&lt;&#x2F;current-user&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="解析插槽prop">解析插槽Prop</h4>
+<p>作用域插槽的内部工作原理是将插槽内容包裹在一个拥有单个参数的函数里：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">slotProps</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//插槽内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这意味着<code>v-slot</code>的值实际上可以是任何能够作为函数定义中参数的JavaScript表达式。因此在支持的环境下（单文件组件或现代浏览器），也可以使用ES2015解构来传入具体的插槽prop：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;current-user v-slot&#x3D;&quot;&#123;user&#125;&quot;&gt;</span><br><span class="line">  &#123;&#123;user.firstName&#125;&#125; </span><br><span class="line">&lt;&#x2F;current-user&gt;</span><br></pre></td></tr></table></figure>
+<p>这样可以在该插槽提供了多个prop时让代码更简洁。它同样开启了prop重命名等功能，如把<code>user</code>重命名为<code>person</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;current-user v-slot&#x3D;&quot;&#123;user:person&#125;&quot;&gt;</span><br><span class="line">  &#123;&#123;person.firstName&#125;&#125; </span><br><span class="line">&lt;&#x2F;current-user&gt;</span><br></pre></td></tr></table></figure>
+<p>还可以定义后备内容，用于插槽prop是undefined的情形：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;current-user v-slot&#x3D;&quot;&#123;user&#x3D;&#123;firstName:&#39;Guest&#39;&#125;&#125;&quot;&gt;</span><br><span class="line">  &#123;&#123;user.firstName&#125;&#125; </span><br><span class="line">&lt;&#x2F;current-user&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="动态插槽名">动态插槽名</h3>
+<p>动态指令参数也可以用在<code>v-slot</code>上，来定义动态的插槽名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;base-layout&gt;</span><br><span class="line">  &lt;template v-slot:[dynamicSlotName]&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;base-layout&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="具名插槽的缩写">具名插槽的缩写</h3>
+<p>与<code>v-on</code>和<code>v-bind</code>一样，<code>v-slot</code>也有缩写，即把参数之前的所有内容（<code>v-slot:</code>）替换为字符<code>#</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;base-layout&gt;</span><br><span class="line">  &lt;template #header&gt;</span><br><span class="line">    &lt;h1&gt;Here might be a page title&lt;&#x2F;h1&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">    </span><br><span class="line">  &lt;p&gt;A paragraph for the main content.&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;And another one.&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line">  &lt;template #footer&gt;</span><br><span class="line">    &lt;p&gt;Here&#39;s some contact info&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;base-layout&gt;</span><br></pre></td></tr></table></figure>
+<p>与其他指令相同，该缩写只在其有参数时才可用。若希望无参数时也能使用缩写的话，就必须始终明确插槽名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;current-user #default&#x3D;&quot;&#123;user&#125;&quot;&gt;</span><br><span class="line">    &#123;&#123;user.firstName&#125;&#125; </span><br><span class="line">&lt;&#x2F;current-user&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="其他实例">其他实例</h3>
+<p>插槽prop允许将插槽转换为可复用的模板，这些模板可以基于输入的prop渲染出不同的内容。这在设<strong>计封装数据逻辑的同时允许父级组件自定义部分布局的可复用组件</strong>是最有用的。</p>
+<p>如要实现一个<code>&lt;todo-list&gt;</code>组件，它是一个列表且包含布局和过滤逻辑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li</span><br><span class="line">    v-for&#x3D;&quot;todo in filteredTodos&quot;</span><br><span class="line">    v-bind:key&#x3D;&quot;todo.id&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    &#123;&#123;todo.text&#125;&#125;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
+<p>可以考虑将每个todo作为父级组件的插槽，以此通过父级组件对其进行控制，然后将<code>todo</code>作为一个插槽prop进行绑定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li</span><br><span class="line">    v-for&#x3D;&quot;todo in filteredTodos&quot;</span><br><span class="line">    v-bind:key&#x3D;&quot;todo.id&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;!-- 为每个todo准备了插槽，将todo对象作为一个插槽的prop传入 --&gt;</span><br><span class="line">    &lt;slot name&#x3D;&quot;todo&quot; v-bind:todo&#x3D;&quot;todo&quot;&gt;</span><br><span class="line">      &#123;&#123;todo.text&#125;&#125;</span><br><span class="line">    &lt;&#x2F;slot&gt;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
+<p>现在使用<code>&lt;itodo-list&gt;</code>组件时，可以选择为todo定义一个不一样的<code>&lt;template&gt;</code>作为替代方案，并且可以从子组件中获取数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;todo-list v-bind:todo&#x3D;&quot;todos&quot;&gt;</span><br><span class="line">  &lt;template v-slot:todo&#x3D;&quot;&#123;todo&#125;&quot;&gt;</span><br><span class="line">    &lt;span v-if&#x3D;&quot;todo.isComplete&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">    &#123;&#123;todo.text&#125;&#125;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;todo-list&gt;</span><br></pre></td></tr></table></figure>
+
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://tangmenjue.top">唐抉</a>
+            <p>原文链接：<a href="http://tangmenjue.top/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/">http://tangmenjue.top/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/</a>
+            <p>发表日期：<a href="http://tangmenjue.top/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/">November 9th 2022, 5:18:37 pm</a>
+            <p>更新日期：<a href="http://tangmenjue.top/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/">November 10th 2022, 11:51:43 pm</a>
+            <p>版权声明：
+			<!--如果有设置theme.since，并且时间小于当前时间（年份），形式为：@ 2018 - 2019(+作者/标题)；否则默认为当前年份(+作者/标题)。 -->
+			
+			    &copy; 2020-2022
+			
+			本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+			</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2022/11/10/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%BA%94%EF%BC%89/" title="前端框架之Vue.js（五）">
+                    <div class="nextTitle">前端框架之Vue.js（五）</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%E4%B9%8Btodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/" title="Vue.js实战之todolist待办项目">
+                    <div class="prevTitle">Vue.js实战之todolist待办项目</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC81MjY0MS8yOTExOA==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+            
+            var intervalFunctionID = setInterval(function(){ myTimer() }, 1000);
+            function myTimer() {
+                if (document.getElementById("taboola-livere") != null)
+                {
+                  if (document.getElementById("taboola-livere").style.display == "none")
+                  {
+                    //alert("Interval function stopped");
+                    clearInterval(intervalFunctionID);
+                  }
+                }
+                document.getElementById("taboola-livere").style.display="none";
+                //alert("Interval function running");
+            }
+        </script>
+        <noscript>为正常使用来必力评论功能请激活 JavaScript</noscript>
+    </div>
+
+
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
+    
+</main>
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+        <div class="social">
+            
+    
+        
+            
+                <a href="mailto:2630272905@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/liuyingqiao2019" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                    
+                    <img class="profile-qr" src="/assets/wecat.png" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                    
+                    <img class="profile-qr" src="/assets/qq.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <!-- 不蒜子  -->
+    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">本站总阅读量: <span id="busuanzi_value_site_pv"></span>次</span>
+            
+        </div>
+    	
+</footer>
+
+        </div>
+        <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#深入了解组件"><span class="toc-number">1.</span> <span class="toc-text">深入了解组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#组件注册"><span class="toc-number">1.1.</span> <span class="toc-text">组件注册</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#组件名"><span class="toc-number">1.1.1.</span> <span class="toc-text">组件名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#组件名大小写"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">组件名大小写</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全局注册"><span class="toc-number">1.1.2.</span> <span class="toc-text">全局注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#局部注册"><span class="toc-number">1.1.3.</span> <span class="toc-text">局部注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块系统"><span class="toc-number">1.1.4.</span> <span class="toc-text">模块系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在模块系统中局部注册"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">在模块系统中局部注册</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基础组件的自动化全局注册"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">基础组件的自动化全局注册</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prop"><span class="toc-number">1.2.</span> <span class="toc-text">Prop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#prop的大小写"><span class="toc-number">1.2.1.</span> <span class="toc-text">Prop的大小写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prop类型"><span class="toc-number">1.2.2.</span> <span class="toc-text">Prop类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传递静态或动态prop"><span class="toc-number">1.2.3.</span> <span class="toc-text">传递静态或动态Prop</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#传入一个数字"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">传入一个数字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#传入一个布尔值"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">传入一个布尔值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#传入一个数组"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">传入一个数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#传入一个对象"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">传入一个对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#传入一个对象的所有property"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">传入一个对象的所有property</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单向数据流"><span class="toc-number">1.2.4.</span> <span class="toc-text">单向数据流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prop验证"><span class="toc-number">1.2.5.</span> <span class="toc-text">Prop验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#类型检查"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">类型检查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非prop的attribute"><span class="toc-number">1.2.6.</span> <span class="toc-text">非Prop的Attribute</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#替换合并已有的attribute"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">替换&#x2F;合并已有的Attribute</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#禁用attribute继承"><span class="toc-number">1.2.6.2.</span> <span class="toc-text">禁用Attribute继承</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义事件"><span class="toc-number">1.3.</span> <span class="toc-text">自定义事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件名"><span class="toc-number">1.3.1.</span> <span class="toc-text">事件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义组件的v-model"><span class="toc-number">1.3.2.</span> <span class="toc-text">自定义组件的v-model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将原生事件绑定到组件"><span class="toc-number">1.3.3.</span> <span class="toc-text">将原生事件绑定到组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sync修饰符"><span class="toc-number">1.3.4.</span> <span class="toc-text">.sync修饰符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插槽"><span class="toc-number">1.4.</span> <span class="toc-text">插槽</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插槽内容"><span class="toc-number">1.4.1.</span> <span class="toc-text">插槽内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译作用域"><span class="toc-number">1.4.2.</span> <span class="toc-text">编译作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后备内容"><span class="toc-number">1.4.3.</span> <span class="toc-text">后备内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具名插槽"><span class="toc-number">1.4.4.</span> <span class="toc-text">具名插槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域插槽"><span class="toc-number">1.4.5.</span> <span class="toc-text">作用域插槽</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#独占默认插槽的缩写语法"><span class="toc-number">1.4.5.1.</span> <span class="toc-text">独占默认插槽的缩写语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解析插槽prop"><span class="toc-number">1.4.5.2.</span> <span class="toc-text">解析插槽Prop</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态插槽名"><span class="toc-number">1.4.6.</span> <span class="toc-text">动态插槽名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具名插槽的缩写"><span class="toc-number">1.4.7.</span> <span class="toc-text">具名插槽的缩写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他实例"><span class="toc-number">1.4.8.</span> <span class="toc-text">其他实例</span></a></li></ol></li></ol></li></ol>
+            </div>
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 44
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+        
+            
+            
+            <div class="archive-year"> 2022 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/06</span>
+            <a class="archive-post-title" href="/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">Docker应用部署基础（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/21</span>
+            <a class="archive-post-title" href="/2022/11/21/%E4%BC%81%E5%BE%AE%E5%BA%94%E7%94%A8%E4%B9%8Bpython%E5%BC%80%E5%8F%91/">企微应用之python开发</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/18</span>
+            <a class="archive-post-title" href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">企业微信之企业应用开发流程</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/16</span>
+            <a class="archive-post-title" href="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/">CentOS 7之关于网络管理的那些知识</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/14</span>
+            <a class="archive-post-title" href="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%E4%B9%8B%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/">Vue.js实战之博客页面前端</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/11</span>
+            <a class="archive-post-title" href="/2022/11/11/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%85%AD%EF%BC%89/">前端框架之Vue.js（六）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/10</span>
+            <a class="archive-post-title" href="/2022/11/10/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%BA%94%EF%BC%89/">前端框架之Vue.js（五）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/09</span>
+            <a class="archive-post-title" href="/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/">前端框架之Vue.js（四）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span>
+            <a class="archive-post-title" href="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%E4%B9%8Btodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/">Vue.js实战之todolist待办项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span>
+            <a class="archive-post-title" href="/2022/11/04/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%89%EF%BC%89/">前端框架之Vue.js（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span>
+            <a class="archive-post-title" href="/2022/11/04/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%BA%8C%EF%BC%89/">前端框架之Vue.js（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/03</span>
+            <a class="archive-post-title" href="/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%80%EF%BC%89/">前端框架之Vue.js（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span>
+            <a class="archive-post-title" href="/2022/11/01/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%B8%89%EF%BC%89/">前端三件套之JavaScript（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span>
+            <a class="archive-post-title" href="/2022/10/31/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之JavaScript（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之JavaScript（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之CSS（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之CSS（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/27</span>
+            <a class="archive-post-title" href="/2022/10/27/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BHTML%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之HTML（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/26</span>
+            <a class="archive-post-title" href="/2022/10/26/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BHTML%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之HTML（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span>
+            <a class="archive-post-title" href="/2022/10/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/">python学习笔记(十三)</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span>
+            <a class="archive-post-title" href="/2022/10/24/Flask%E5%AE%9E%E6%88%98%E4%B9%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/">Flask实战之搭建博客后端</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/21</span>
+            <a class="archive-post-title" href="/2022/10/21/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">Flask Web开发学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/20</span>
+            <a class="archive-post-title" href="/2022/10/20/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">Flask Web开发学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span>
+            <a class="archive-post-title" href="/2022/10/19/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/">python学习笔记（十二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span>
+            <a class="archive-post-title" href="/2022/10/18/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">Flask Web开发学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span>
+            <a class="archive-post-title" href="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">PgSQL数据库学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span>
+            <a class="archive-post-title" href="/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">PgSQL数据库学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span>
+            <a class="archive-post-title" href="/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">PgSQL数据库学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span>
+            <a class="archive-post-title" href="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/">python学习笔记（十一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span>
+            <a class="archive-post-title" href="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/">python学习笔记（十）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span>
+            <a class="archive-post-title" href="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89/">python学习笔记（九）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span>
+            <a class="archive-post-title" href="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/">python学习笔记（八）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span>
+            <a class="archive-post-title" href="/2022/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89/">python学习笔记（七）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span>
+            <a class="archive-post-title" href="/2022/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">python学习笔记（六）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span>
+            <a class="archive-post-title" href="/2022/10/10/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/">python学习笔记（五）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span>
+            <a class="archive-post-title" href="/2022/10/10/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/">python学习笔记（四）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2022/10/09/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">python学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2022/10/09/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">python学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/08</span>
+            <a class="archive-post-title" href="/2022/10/08/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">python学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span>
+            <a class="archive-post-title" href="/2022/08/07/%E7%BB%93%E6%9E%84%E6%80%A7%E6%80%9D%E7%BB%B4%E7%AC%94%E8%AE%B0/">结构性思维笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span>
+            <a class="archive-post-title" href="/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">设计模式的学习（一）</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2020 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span>
+            <a class="archive-post-title" href="/2020/03/30/Win10%E7%B3%BB%E7%BB%9Fedge%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">Win10系统edge浏览器出现闪退的解决方法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span>
+            <a class="archive-post-title" href="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/">记一次XAMPP的报错实例</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/09</span>
+            <a class="archive-post-title" href="/2020/01/09/hello-world/">Hello World</a>
+        </li>
+    
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+        
+            <span class="sidebar-tag-name" data-tags="CentOS 7">
+                <span class="iconfont-archer">&#xe606;</span>
+                CentOS 7
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络管理">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络管理
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Flask Web">
+                <span class="iconfont-archer">&#xe606;</span>
+                Flask Web
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="后端">
+                <span class="iconfont-archer">&#xe606;</span>
+                后端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Web框架">
+                <span class="iconfont-archer">&#xe606;</span>
+                Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue.js">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue.js
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="前端">
+                <span class="iconfont-archer">&#xe606;</span>
+                前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="python">
+                <span class="iconfont-archer">&#xe606;</span>
+                python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="企业微信">
+                <span class="iconfont-archer">&#xe606;</span>
+                企业微信
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用开发">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="CSS">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="HTML">
+                <span class="iconfont-archer">&#xe606;</span>
+                HTML
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="XAMPP">
+                <span class="iconfont-archer">&#xe606;</span>
+                XAMPP
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="报错">
+                <span class="iconfont-archer">&#xe606;</span>
+                报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Linux">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Linux
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="edge">
+            <span class="iconfont-archer">&#xe60a;</span>
+            edge
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="应用开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            应用开发
+        </span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "http://tangmenjue.top",
+        root: siteMetaRoot,
+        author: "唐抉"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+
+        <!-- main func -->
+        <script src="/scripts/main.js?v=20211217"></script>
+        <!-- dark mode -->
+        <script src="/scripts/dark.js?v=20211217"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid -->
+        
+    </body>
+</html>

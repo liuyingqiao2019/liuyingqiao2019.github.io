@@ -455,20 +455,6 @@
   </url>
   
   <url>
-    <loc>http://tangmenjue.top/tags/Docker/</loc>
-    <lastmod>2022-12-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tangmenjue.top/tags/%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/</loc>
-    <lastmod>2022-12-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://tangmenjue.top/tags/Flask-Web/</loc>
     <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -484,6 +470,20 @@
   
   <url>
     <loc>http://tangmenjue.top/tags/Web%E6%A1%86%E6%9E%B6/</loc>
+    <lastmod>2022-12-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tangmenjue.top/tags/Docker/</loc>
+    <lastmod>2022-12-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tangmenjue.top/tags/%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -604,14 +604,14 @@
   </url>
   
   <url>
-    <loc>http://tangmenjue.top/categories/Docker/</loc>
+    <loc>http://tangmenjue.top/categories/Web%E6%A1%86%E6%9E%B6/</loc>
     <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tangmenjue.top/categories/Web%E6%A1%86%E6%9E%B6/</loc>
+    <loc>http://tangmenjue.top/categories/Docker/</loc>
     <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

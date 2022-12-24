@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://tangmenjue.top/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/1.png">
 <meta property="og:image" content="http://tangmenjue.top/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/2.png">
 <meta property="article:published_time" content="2022-12-06T13:06:20.000Z">
-<meta property="article:modified_time" content="2022-12-18T14:12:26.761Z">
+<meta property="article:modified_time" content="2022-12-23T02:24:30.000Z">
 <meta property="article:author" content="唐抉">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="应用部署">
@@ -556,7 +556,7 @@
 <p><strong>删除镜像centos：</strong><code>docker image rm centos:latest</code></p>
 <p><strong>更新镜像</strong>：<code>docker run -t -i ubuntu:15.10 /bin/bash</code></p>
 <p><strong>查看镜像的详细信息：</strong><code>docker image inspect centos</code></p>
-<h3 id="构建镜像">构建镜像</h3>
+<h3 id="使用dockerfile构建镜像">使用Dockerfile构建镜像</h3>
 <p>当从docker镜像仓库中下载的镜像不能满足需求时，可以通过以下两种方式对镜像进行更改：</p>
 <ul>
 <li>从已经创建的容器中更新镜像，并提交这个镜像</li>
@@ -780,7 +780,7 @@
             <p>原文作者：<a href="http://tangmenjue.top">唐抉</a>
             <p>原文链接：<a href="http://tangmenjue.top/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/">http://tangmenjue.top/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/</a>
             <p>发表日期：<a href="http://tangmenjue.top/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/">December 6th 2022, 9:06:20 pm</a>
-            <p>更新日期：<a href="http://tangmenjue.top/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/">December 18th 2022, 10:12:26 pm</a>
+            <p>更新日期：<a href="http://tangmenjue.top/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/">December 23rd 2022, 10:24:30 am</a>
             <p>版权声明：
 			<!--如果有设置theme.since，并且时间小于当前时间（年份），形式为：@ 2018 - 2019(+作者/标题)；否则默认为当前年份(+作者/标题)。 -->
 			
@@ -982,7 +982,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker"><span class="toc-number">1.</span> <span class="toc-text">Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#容器简介"><span class="toc-number">1.1.</span> <span class="toc-text">容器简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是linux容器"><span class="toc-number">1.1.1.</span> <span class="toc-text">什么是Linux容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#容器等同于虚拟化吗"><span class="toc-number">1.1.2.</span> <span class="toc-text">容器等同于虚拟化吗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是docker"><span class="toc-number">1.1.3.</span> <span class="toc-text">什么是Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker的目标"><span class="toc-number">1.1.4.</span> <span class="toc-text">Docker的目标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装docker"><span class="toc-number">1.2.</span> <span class="toc-text">安装Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hello-world"><span class="toc-number">1.3.</span> <span class="toc-text">Hello World</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行交互式的容器"><span class="toc-number">1.3.1.</span> <span class="toc-text">运行交互式的容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后台模式启动容器"><span class="toc-number">1.3.2.</span> <span class="toc-text">后台模式启动容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止容器"><span class="toc-number">1.3.3.</span> <span class="toc-text">停止容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker镜像管理"><span class="toc-number">1.4.</span> <span class="toc-text">Docker镜像管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker镜像常用命令"><span class="toc-number">1.4.1.</span> <span class="toc-text">Docker镜像常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构建镜像"><span class="toc-number">1.4.2.</span> <span class="toc-text">构建镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置镜像标签"><span class="toc-number">1.4.3.</span> <span class="toc-text">设置镜像标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#容器的日常管理"><span class="toc-number">1.5.</span> <span class="toc-text">容器的日常管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动容器"><span class="toc-number">1.5.1.</span> <span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动已停止运行的容器"><span class="toc-number">1.5.2.</span> <span class="toc-text">启动已停止运行的容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入容器"><span class="toc-number">1.5.3.</span> <span class="toc-text">进入容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导入容器快照"><span class="toc-number">1.5.4.</span> <span class="toc-text">导入容器快照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除容器"><span class="toc-number">1.5.5.</span> <span class="toc-text">删除容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用docker构建一个web应用程序"><span class="toc-number">1.5.6.</span> <span class="toc-text">使用docker构建一个web应用程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络端口的快捷方式"><span class="toc-number">1.5.7.</span> <span class="toc-text">网络端口的快捷方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看web应用程序日志"><span class="toc-number">1.5.8.</span> <span class="toc-text">查看WEB应用程序日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#检查web应用程序"><span class="toc-number">1.5.9.</span> <span class="toc-text">检查WEB应用程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止web应用容器"><span class="toc-number">1.5.10.</span> <span class="toc-text">停止WEB应用容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重启web应用容器"><span class="toc-number">1.5.11.</span> <span class="toc-text">重启WEB应用容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除web应用容器"><span class="toc-number">1.5.12.</span> <span class="toc-text">移除WEB应用容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker数据卷的管理"><span class="toc-number">1.6.</span> <span class="toc-text">Docker数据卷的管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#挂载时创建卷"><span class="toc-number">1.6.1.</span> <span class="toc-text">挂载时创建卷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建卷后挂载"><span class="toc-number">1.6.2.</span> <span class="toc-text">创建卷后挂载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手动将容器保存为镜像"><span class="toc-number">1.6.3.</span> <span class="toc-text">手动将容器保存为镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker容器连接"><span class="toc-number">1.7.</span> <span class="toc-text">Docker容器连接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络端口映射"><span class="toc-number">1.7.1.</span> <span class="toc-text">网络端口映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker容器互联"><span class="toc-number">1.7.2.</span> <span class="toc-text">Docker容器互联</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#容器命名"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">容器命名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#连接容器"><span class="toc-number">1.7.2.2.</span> <span class="toc-text">连接容器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker仓库管理"><span class="toc-number">1.8.</span> <span class="toc-text">Docker仓库管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#登录和登出"><span class="toc-number">1.8.1.</span> <span class="toc-text">登录和登出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拉取镜像"><span class="toc-number">1.8.2.</span> <span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推送镜像"><span class="toc-number">1.8.3.</span> <span class="toc-text">推送镜像</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker"><span class="toc-number">1.</span> <span class="toc-text">Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#容器简介"><span class="toc-number">1.1.</span> <span class="toc-text">容器简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是linux容器"><span class="toc-number">1.1.1.</span> <span class="toc-text">什么是Linux容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#容器等同于虚拟化吗"><span class="toc-number">1.1.2.</span> <span class="toc-text">容器等同于虚拟化吗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是docker"><span class="toc-number">1.1.3.</span> <span class="toc-text">什么是Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker的目标"><span class="toc-number">1.1.4.</span> <span class="toc-text">Docker的目标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装docker"><span class="toc-number">1.2.</span> <span class="toc-text">安装Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hello-world"><span class="toc-number">1.3.</span> <span class="toc-text">Hello World</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行交互式的容器"><span class="toc-number">1.3.1.</span> <span class="toc-text">运行交互式的容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后台模式启动容器"><span class="toc-number">1.3.2.</span> <span class="toc-text">后台模式启动容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止容器"><span class="toc-number">1.3.3.</span> <span class="toc-text">停止容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker镜像管理"><span class="toc-number">1.4.</span> <span class="toc-text">Docker镜像管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker镜像常用命令"><span class="toc-number">1.4.1.</span> <span class="toc-text">Docker镜像常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用dockerfile构建镜像"><span class="toc-number">1.4.2.</span> <span class="toc-text">使用Dockerfile构建镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置镜像标签"><span class="toc-number">1.4.3.</span> <span class="toc-text">设置镜像标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#容器的日常管理"><span class="toc-number">1.5.</span> <span class="toc-text">容器的日常管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动容器"><span class="toc-number">1.5.1.</span> <span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动已停止运行的容器"><span class="toc-number">1.5.2.</span> <span class="toc-text">启动已停止运行的容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入容器"><span class="toc-number">1.5.3.</span> <span class="toc-text">进入容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导入容器快照"><span class="toc-number">1.5.4.</span> <span class="toc-text">导入容器快照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除容器"><span class="toc-number">1.5.5.</span> <span class="toc-text">删除容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用docker构建一个web应用程序"><span class="toc-number">1.5.6.</span> <span class="toc-text">使用docker构建一个web应用程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络端口的快捷方式"><span class="toc-number">1.5.7.</span> <span class="toc-text">网络端口的快捷方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看web应用程序日志"><span class="toc-number">1.5.8.</span> <span class="toc-text">查看WEB应用程序日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#检查web应用程序"><span class="toc-number">1.5.9.</span> <span class="toc-text">检查WEB应用程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止web应用容器"><span class="toc-number">1.5.10.</span> <span class="toc-text">停止WEB应用容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重启web应用容器"><span class="toc-number">1.5.11.</span> <span class="toc-text">重启WEB应用容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除web应用容器"><span class="toc-number">1.5.12.</span> <span class="toc-text">移除WEB应用容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker数据卷的管理"><span class="toc-number">1.6.</span> <span class="toc-text">Docker数据卷的管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#挂载时创建卷"><span class="toc-number">1.6.1.</span> <span class="toc-text">挂载时创建卷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建卷后挂载"><span class="toc-number">1.6.2.</span> <span class="toc-text">创建卷后挂载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手动将容器保存为镜像"><span class="toc-number">1.6.3.</span> <span class="toc-text">手动将容器保存为镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker容器连接"><span class="toc-number">1.7.</span> <span class="toc-text">Docker容器连接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络端口映射"><span class="toc-number">1.7.1.</span> <span class="toc-text">网络端口映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker容器互联"><span class="toc-number">1.7.2.</span> <span class="toc-text">Docker容器互联</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#容器命名"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">容器命名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#连接容器"><span class="toc-number">1.7.2.2.</span> <span class="toc-text">连接容器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker仓库管理"><span class="toc-number">1.8.</span> <span class="toc-text">Docker仓库管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#登录和登出"><span class="toc-number">1.8.1.</span> <span class="toc-text">登录和登出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拉取镜像"><span class="toc-number">1.8.2.</span> <span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推送镜像"><span class="toc-number">1.8.3.</span> <span class="toc-text">推送镜像</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1227,6 +1227,14 @@
         
         
     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1935,16 +1943,6 @@
                 网络管理
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -1960,6 +1958,16 @@
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
@@ -1970,19 +1978,19 @@
                 数据库
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue.js">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue.js
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="前端">
-                <span class="iconfont-archer">&#xe606;</span>
-                前端
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
                 闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="YAML">
+                <span class="iconfont-archer">&#xe606;</span>
+                YAML
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Redis">
+                <span class="iconfont-archer">&#xe606;</span>
+                Redis
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2000,6 +2008,16 @@
                 应用开发
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Vue.js">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue.js
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="前端">
+                <span class="iconfont-archer">&#xe606;</span>
+                前端
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CSS">
                 <span class="iconfont-archer">&#xe606;</span>
                 CSS
@@ -2015,11 +2033,6 @@
                 JavaScript
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2030,19 +2043,14 @@
                 报错
             </span>
         
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="设计模式">
                 <span class="iconfont-archer">&#xe606;</span>
                 设计模式
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="YAML">
-                <span class="iconfont-archer">&#xe606;</span>
-                YAML
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Redis">
-                <span class="iconfont-archer">&#xe606;</span>
-                Redis
             </span>
         
     </div>
@@ -2061,14 +2069,14 @@
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
             Web框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2086,19 +2094,34 @@
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端
-        </span>
-    
         <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
+        </span>
+    
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="应用开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            应用开发
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
@@ -2109,21 +2132,6 @@
         <span class="sidebar-category-name" data-categories="XAMPP">
             <span class="iconfont-archer">&#xe60a;</span>
             XAMPP
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="应用开发">
-            <span class="iconfont-archer">&#xe60a;</span>
-            应用开发
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="YAML">
-            <span class="iconfont-archer">&#xe60a;</span>
-            YAML
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
     </div>

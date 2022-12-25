@@ -775,40 +775,28 @@ f(x)=x^2
     <!-- comment -->
     
         <div class="post-comment">
-            <!-- 来必力 City 版安装代码 -->
-
-    <div id="lv-container" data-id="city" data-uid= MTAyMC81MjY0MS8yOTExOA==>
-        <script type="text/javascript">
-            (function (d, s) {
-                var j, e = d.getElementsByTagName(s)[0];
-                if (typeof LivereTower === 'function') { return; }
-                j = d.createElement(s);
-                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                j.async = true;
-
-                e.parentNode.insertBefore(j, e);
-            })(document, 'script');
-            
-            var intervalFunctionID = setInterval(function(){ myTimer() }, 1000);
-            function myTimer() {
-                if (document.getElementById("taboola-livere") != null)
-                {
-                  if (document.getElementById("taboola-livere").style.display == "none")
-                  {
-                    //alert("Interval function stopped");
-                    clearInterval(intervalFunctionID);
-                  }
-                }
-                document.getElementById("taboola-livere").style.display="none";
-                //alert("Interval function running");
-            }
-        </script>
-        <noscript>为正常使用来必力评论功能请激活 JavaScript</noscript>
-    </div>
-
-
-
-
+            <div class="livere-card card" data-aos="fade-up"> 
+    <!-- 来必力City版安装代码 --> 
+    <style> 
+        #taboola-livere {display: none;} 
+    </style>
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC81MjY0MS8yOTExOA=="> 
+        <script type="text/javascript"> 
+            (function (d, s) { 
+                let j, e = d.getElementsByTagName(s)[0]; 
+                if (typeof LivereTower === 'function') { 
+                    return; 
+                } 
+                j = d.createElement(s); 
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js'; 
+                j.async = true; 
+                e.parentNode.insertBefore(j, e); 
+                })(document, 'script'); 
+        </script> 
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript> 
+    </div> 
+    <!-- City版安装代码已完成 --> 
+</div>
             
 
             
@@ -1919,16 +1907,6 @@ f(x)=x^2
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -1957,6 +1935,16 @@ f(x)=x^2
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2009,14 +1997,14 @@ f(x)=x^2
                 应用开发
             </span>
         
-            <span class="sidebar-tag-name" data-tags="HTML">
-                <span class="iconfont-archer">&#xe606;</span>
-                HTML
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="CSS">
                 <span class="iconfont-archer">&#xe606;</span>
                 CSS
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="HTML">
+                <span class="iconfont-archer">&#xe606;</span>
+                HTML
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2055,11 +2043,6 @@ f(x)=x^2
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
             Web框架
@@ -2070,14 +2053,24 @@ f(x)=x^2
             Linux
         </span>
     
+        <span class="sidebar-category-name" data-categories="学习笔记">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="学习笔记">
+        <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
-            学习笔记
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2090,19 +2083,9 @@ f(x)=x^2
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
@@ -2110,9 +2093,9 @@ f(x)=x^2
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="XAMPP">
+        <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
-            XAMPP
+            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="Redis">
@@ -2123,6 +2106,11 @@ f(x)=x^2
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
         </span>
     
     </div>

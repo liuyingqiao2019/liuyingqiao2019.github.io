@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-    <head><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></head>
+    <head><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="唐抉的个人博客" type="application/atom+xml">
+</head>
     <!-- title -->
 
 
@@ -20,19 +21,18 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="CSS前端">
-<meta property="og:type" content="article">
+    <meta property="og:type" content="article">
 <meta property="og:title" content="前端三件套之CSS（二）">
 <meta property="og:url" content="http://tangmenjue.top/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="唐抉的个人博客">
-<meta property="og:description" content="CSS前端">
+<meta property="og:locale">
 <meta property="og:image" content="http://tangmenjue.top/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/1.png">
 <meta property="og:image" content="http://tangmenjue.top/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/2.png">
 <meta property="og:image" content="http://tangmenjue.top/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/3.png">
 <meta property="og:image" content="http://tangmenjue.top/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/4.png">
 <meta property="og:image" content="http://tangmenjue.top/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/5.png">
 <meta property="article:published_time" content="2022-10-28T03:38:49.000Z">
-<meta property="article:modified_time" content="2022-11-10T15:49:38.528Z">
+<meta property="article:modified_time" content="2022-10-28T03:38:49.000Z">
 <meta property="article:author" content="唐抉">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="CSS">
@@ -41,8 +41,6 @@
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
-    
-        <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
     
     <title>前端三件套之CSS（二） · null</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
@@ -221,9 +219,8 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 4.2.0"></head>
+</head>
 
-    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script type="text/javascript">
         if (typeof window.$ == undefined) {
@@ -345,7 +342,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -520,7 +517,7 @@
 <h2 id="表格文字对齐">表格文字对齐</h2>
 <p>表格中的文字对齐可分为水平对齐和垂直对齐。</p>
 <p>使用<code>text-align</code>属性设置水平对齐方式，如向左对齐<code>left</code>、向右对齐<code>right</code>或居中对齐<code>center</code>：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">td</span>&#123;</span><br><span class="line">	<span class="attribute">text-align</span>:right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">td</span>&#123;</span><br><span class="line">	<span class="attribute">text-align</span><span class="selector-pseudo">:right</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用<code>vertical-align</code>属性设置垂直对齐方式，如顶部<code>top</code>、底部<code>bottom</code>或中间<code>center</code>：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">td</span>&#123;</span><br><span class="line">	<span class="attribute">vertical-align</span>:bottom;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="表格填充">表格填充</h2>
@@ -607,39 +604,39 @@
 <li>border-style</li>
 <li>border-color</li>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">border</span><span class="selector-pseudo">:5px</span> <span class="selector-tag">solid</span> <span class="selector-tag">red</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">border</span>:<span class="number">5px</span> solid red;</span><br></pre></td></tr></table></figure>
 <h1 id="css伪类">CSS伪类</h1>
 <p>伪类可以用来添加一些选择器的特殊效果。</p>
 <p>伪类用于当已有元素处于的某个状态时，为其添加对应的样式，这个状态是根据用户行为而动态变化的。<strong>伪类的名称不区分大小写</strong>，伪类的语法如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">selector</span><span class="selector-pseudo">:pseudo-class</span>&#123;</span><br><span class="line">	<span class="attribute">property</span>:value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">selector:pseudo-class&#123;</span><br><span class="line">	property:value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>CSS类中也可以使用伪类：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">selector</span><span class="selector-class">.class</span><span class="selector-pseudo">:pseudo-class</span>&#123;</span><br><span class="line">	<span class="attribute">property</span>:value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">selector<span class="selector-class">.class</span>:pseudo-class&#123;</span><br><span class="line">	property:value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="anchor伪类">anchor伪类</h2>
 <p>在支持CSS的浏览器中，链接的不同状态可以以不同的方式显示。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#FF00FF</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#0000FF</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="伪类和css类">伪类和CSS类</h2>
 <p>伪类可以与CSS类配合使用：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a.red:visited&#123;</span><br><span class="line">    color:#FF0000;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"red"</span> <span class="attr">href</span>=<span class="string">"1.html"</span>&gt;</span>CSS style<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a.red:visited&#123;</span><br><span class="line">    color:#FF0000;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;red&quot;</span> <span class="attr">href</span>=<span class="string">&quot;1.html&quot;</span>&gt;</span>CSS style<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="first-child伪类"><code>first-child</code>伪类</h2>
 <p>可以使用<code>first-child</code>伪类来选择元素的第一个子元素。</p>
 <p><strong>注意：</strong>在IE8之前是版本必须声明<code>&lt;!DOCTYPE&gt;</code>，<code>first-child</code>才会生效。</p>
 <p>如用来匹配第一个<code>&lt;p&gt;</code>元素：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-tag">p</span><span class="selector-pseudo">:first-child</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">color</span><span class="selector-pseudo">:blue</span>;</span></span><br><span class="line">&#125;    </span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是狼<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是小狼<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-tag">p</span><span class="selector-pseudo">:first</span>-child&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">color</span>:blue;</span></span><br><span class="line"><span class="language-css">&#125;    </span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是狼<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是小狼<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>运行结果如下：</p>
 <p><img src="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/2.png"></p>
 <p>如用来匹配所有<code>&lt;p&gt;</code>元素中的第一个<code>&lt;i&gt;</code>元素：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-tag">p</span>&gt;<span class="selector-tag">i</span><span class="selector-pseudo">:first-child</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">color</span><span class="selector-pseudo">:blue</span>;</span></span><br><span class="line">&#125;    </span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是<span class="tag">&lt;<span class="name">i</span>&gt;</span>一只<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;<span class="name">i</span>&gt;</span>狼<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是<span class="tag">&lt;<span class="name">i</span>&gt;</span>一只<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;<span class="name">i</span>&gt;</span>小<span class="tag">&lt;/<span class="name">i</span>&gt;</span>狼<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-tag">p</span>&gt;<span class="selector-tag">i</span><span class="selector-pseudo">:first</span>-child&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">color</span>:blue;</span></span><br><span class="line"><span class="language-css">&#125;    </span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是<span class="tag">&lt;<span class="name">i</span>&gt;</span>一只<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;<span class="name">i</span>&gt;</span>狼<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是<span class="tag">&lt;<span class="name">i</span>&gt;</span>一只<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;<span class="name">i</span>&gt;</span>小<span class="tag">&lt;/<span class="name">i</span>&gt;</span>狼<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>运行结果如下：</p>
 <p><img src="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/3.png"></p>
 <p>如用来匹配所有作为第一个子元素的<code>&lt;p&gt;</code>元素中的所有<code>&lt;i&gt;</code>元素：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-tag">p</span><span class="selector-pseudo">:first-child</span> <span class="selector-tag">i</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">color</span><span class="selector-pseudo">:blue</span>;</span></span><br><span class="line">&#125;    </span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是<span class="tag">&lt;<span class="name">i</span>&gt;</span>一只<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;<span class="name">i</span>&gt;</span>狼<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是<span class="tag">&lt;<span class="name">i</span>&gt;</span>一只<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;<span class="name">i</span>&gt;</span>小<span class="tag">&lt;/<span class="name">i</span>&gt;</span>狼<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-tag">p</span><span class="selector-pseudo">:first</span>-child <span class="selector-tag">i</span>&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">color</span>:blue;</span></span><br><span class="line"><span class="language-css">&#125;    </span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是<span class="tag">&lt;<span class="name">i</span>&gt;</span>一只<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;<span class="name">i</span>&gt;</span>狼<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是<span class="tag">&lt;<span class="name">i</span>&gt;</span>一只<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;<span class="name">i</span>&gt;</span>小<span class="tag">&lt;/<span class="name">i</span>&gt;</span>狼<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>运行结果如下：</p>
 <p><img src="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/4.png"></p>
 <h2 id="lang伪类">lang伪类</h2>
 <p>lang伪类可以为不同的语言定义特殊的规则。</p>
 <p><strong>注意：</strong>在IE8之前是版本必须声明<code>&lt;!DOCTYPE&gt;</code>才能支持lang伪类。</p>
 <p>如lang类为属性值为no的q元素定义引号的类型：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-tag">q</span><span class="selector-pseudo">:lang(no)</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">quotes</span><span class="selector-pseudo">:"</span>~""~";</span></span><br><span class="line">&#125;    </span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是<span class="tag">&lt;<span class="name">q</span> <span class="attr">lang</span>=<span class="string">"no"</span>&gt;</span>一只<span class="tag">&lt;/<span class="name">q</span>&gt;</span>狼<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是一只<span class="tag">&lt;<span class="name">q</span> <span class="attr">lang</span>=<span class="string">"no"</span>&gt;</span>小狼<span class="tag">&lt;/<span class="name">q</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-tag">q</span><span class="selector-pseudo">:lang</span>(no)&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">quotes</span>:<span class="string">&quot;~&quot;</span><span class="string">&quot;~&quot;</span>;</span></span><br><span class="line"><span class="language-css">&#125;    </span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是<span class="tag">&lt;<span class="name">q</span> <span class="attr">lang</span>=<span class="string">&quot;no&quot;</span>&gt;</span>一只<span class="tag">&lt;/<span class="name">q</span>&gt;</span>狼<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我是一只<span class="tag">&lt;<span class="name">q</span> <span class="attr">lang</span>=<span class="string">&quot;no&quot;</span>&gt;</span>小狼<span class="tag">&lt;/<span class="name">q</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>运行结果如下：</p>
 <p><img src="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/5.png"></p>
 
@@ -650,13 +647,13 @@
             <p>原文作者：<a href="http://tangmenjue.top">唐抉</a>
             <p>原文链接：<a href="http://tangmenjue.top/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/">http://tangmenjue.top/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/</a>
             <p>发表日期：<a href="http://tangmenjue.top/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/">October 28th 2022, 11:38:49 am</a>
-            <p>更新日期：<a href="http://tangmenjue.top/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/">November 10th 2022, 11:49:38 pm</a>
+            <p>更新日期：<a href="http://tangmenjue.top/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/">October 28th 2022, 11:38:49 am</a>
             <p>版权声明：
 			<!--如果有设置theme.since，并且时间小于当前时间（年份），形式为：@ 2018 - 2019(+作者/标题)；否则默认为当前年份(+作者/标题)。 -->
 			
 			    &copy; 2020-2022
 			
-			本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+			本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
 			</p>
         </div>
     
@@ -840,7 +837,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#css表格"><span class="toc-number">1.</span> <span class="toc-text">CSS表格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#表格边框"><span class="toc-number">1.1.</span> <span class="toc-text">表格边框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#折叠边框"><span class="toc-number">1.2.</span> <span class="toc-text">折叠边框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表格宽度和高度"><span class="toc-number">1.3.</span> <span class="toc-text">表格宽度和高度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表格文字对齐"><span class="toc-number">1.4.</span> <span class="toc-text">表格文字对齐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表格填充"><span class="toc-number">1.5.</span> <span class="toc-text">表格填充</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表格颜色"><span class="toc-number">1.6.</span> <span class="toc-text">表格颜色</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#盒子模型"><span class="toc-number">2.</span> <span class="toc-text">盒子模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#元素的宽度和高度"><span class="toc-number">2.1.</span> <span class="toc-text">元素的宽度和高度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#边框"><span class="toc-number">2.2.</span> <span class="toc-text">边框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#边框样式"><span class="toc-number">2.3.</span> <span class="toc-text">边框样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#边框宽度"><span class="toc-number">2.4.</span> <span class="toc-text">边框宽度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#边框颜色"><span class="toc-number">2.5.</span> <span class="toc-text">边框颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单独设置各边"><span class="toc-number">2.6.</span> <span class="toc-text">单独设置各边</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#透明边框"><span class="toc-number">2.7.</span> <span class="toc-text">透明边框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简写边框属性"><span class="toc-number">2.8.</span> <span class="toc-text">简写边框属性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css伪类"><span class="toc-number">3.</span> <span class="toc-text">CSS伪类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#anchor伪类"><span class="toc-number">3.1.</span> <span class="toc-text">anchor伪类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#伪类和css类"><span class="toc-number">3.2.</span> <span class="toc-text">伪类和CSS类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#first-child伪类"><span class="toc-number">3.3.</span> <span class="toc-text">first-child伪类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lang伪类"><span class="toc-number">3.4.</span> <span class="toc-text">lang伪类</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#css%E8%A1%A8%E6%A0%BC"><span class="toc-number">1.</span> <span class="toc-text">CSS表格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E8%BE%B9%E6%A1%86"><span class="toc-number">1.1.</span> <span class="toc-text">表格边框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%98%E5%8F%A0%E8%BE%B9%E6%A1%86"><span class="toc-number">1.2.</span> <span class="toc-text">折叠边框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E5%AE%BD%E5%BA%A6%E5%92%8C%E9%AB%98%E5%BA%A6"><span class="toc-number">1.3.</span> <span class="toc-text">表格宽度和高度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E6%96%87%E5%AD%97%E5%AF%B9%E9%BD%90"><span class="toc-number">1.4.</span> <span class="toc-text">表格文字对齐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E5%A1%AB%E5%85%85"><span class="toc-number">1.5.</span> <span class="toc-text">表格填充</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E9%A2%9C%E8%89%B2"><span class="toc-number">1.6.</span> <span class="toc-text">表格颜色</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">盒子模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E7%9A%84%E5%AE%BD%E5%BA%A6%E5%92%8C%E9%AB%98%E5%BA%A6"><span class="toc-number">2.1.</span> <span class="toc-text">元素的宽度和高度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86"><span class="toc-number">2.2.</span> <span class="toc-text">边框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text">边框样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86%E5%AE%BD%E5%BA%A6"><span class="toc-number">2.4.</span> <span class="toc-text">边框宽度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86%E9%A2%9C%E8%89%B2"><span class="toc-number">2.5.</span> <span class="toc-text">边框颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%8B%AC%E8%AE%BE%E7%BD%AE%E5%90%84%E8%BE%B9"><span class="toc-number">2.6.</span> <span class="toc-text">单独设置各边</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%8F%E6%98%8E%E8%BE%B9%E6%A1%86"><span class="toc-number">2.7.</span> <span class="toc-text">透明边框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%86%99%E8%BE%B9%E6%A1%86%E5%B1%9E%E6%80%A7"><span class="toc-number">2.8.</span> <span class="toc-text">简写边框属性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css%E4%BC%AA%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">CSS伪类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#anchor%E4%BC%AA%E7%B1%BB"><span class="toc-number">3.1.</span> <span class="toc-text">anchor伪类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E7%B1%BB%E5%92%8Ccss%E7%B1%BB"><span class="toc-number">3.2.</span> <span class="toc-text">伪类和CSS类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#first-child%E4%BC%AA%E7%B1%BB"><span class="toc-number">3.3.</span> <span class="toc-text">first-child伪类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lang%E4%BC%AA%E7%B1%BB"><span class="toc-number">3.4.</span> <span class="toc-text">lang伪类</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1465,6 +1462,10 @@
         
         
         
+        
+        
+        
+        
     
     
     
@@ -1506,13 +1507,13 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/21</span>
-            <a class="archive-post-title" href="/2022/11/21/%E4%BC%81%E5%BE%AE%E5%BA%94%E7%94%A8%E4%B9%8Bpython%E5%BC%80%E5%8F%91/">企微应用之python开发</a>
+            <a class="archive-post-title" href="/2022/11/21/%E4%BC%81%E5%BE%AE%E5%BA%94%E7%94%A8%E4%B9%8Bpython%E5%BC%80%E5%8F%91/">[Untitled Post]</a>
         </li>
     
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/18</span>
-            <a class="archive-post-title" href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">企业微信之企业应用开发流程</a>
+            <a class="archive-post-title" href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">[Untitled Post]</a>
         </li>
     
         
@@ -1776,6 +1777,21 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
+            <span class="sidebar-tag-name" data-tags="CentOS 7">
+                <span class="iconfont-archer">&#xe606;</span>
+                CentOS 7
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络管理">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络管理
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Docker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Docker
@@ -1819,21 +1835,6 @@
             <span class="sidebar-tag-name" data-tags="前端">
                 <span class="iconfont-archer">&#xe606;</span>
                 前端
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CentOS 7">
-                <span class="iconfont-archer">&#xe606;</span>
-                CentOS 7
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Linux">
-                <span class="iconfont-archer">&#xe606;</span>
-                Linux
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="网络管理">
-                <span class="iconfont-archer">&#xe606;</span>
-                网络管理
             </span>
         
             <span class="sidebar-tag-name" data-tags="闪退">
@@ -1912,6 +1913,11 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
+        <span class="sidebar-category-name" data-categories="Linux">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Linux
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -1920,6 +1926,11 @@
         <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
             Web框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -1935,11 +1946,6 @@
         <span class="sidebar-category-name" data-categories="前端">
             <span class="iconfont-archer">&#xe60a;</span>
             前端
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Linux">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Linux
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -1962,24 +1968,19 @@
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
         </span>
     
-        <span class="sidebar-category-name" data-categories="应用开发">
-            <span class="iconfont-archer">&#xe60a;</span>
-            应用开发
-        </span>
-    
         <span class="sidebar-category-name" data-categories="XAMPP">
             <span class="iconfont-archer">&#xe60a;</span>
             XAMPP
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="应用开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            应用开发
         </span>
     
     </div>

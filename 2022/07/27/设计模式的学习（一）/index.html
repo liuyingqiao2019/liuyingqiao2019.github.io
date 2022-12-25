@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-    <head><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></head>
+    <head><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="唐抉的个人博客" type="application/atom+xml">
+</head>
     <!-- title -->
 
 
@@ -26,16 +27,15 @@
 <meta property="og:url" content="http://tangmenjue.top/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="唐抉的个人博客">
 <meta property="og:description" content="设计模式 设计模式为软件开发人员在开发过程中面临一般问题时的解决方案，共有33种，可将其分为四大类：创建型模式、结构型模式、行为型模式和J2EE模式。 创建型模式 创建型模式致力于将对象的创建与使用分离，着重于如何创建对象。 该分类下的设计模式有5种：工厂模式、抽象工厂模式、单例模式、建造者模式和原型模式。 结构型模式 结构型模式关注于类的继承和组合，着重于简化结构并识别类与对象之间的">
+<meta property="og:locale">
 <meta property="article:published_time" content="2022-07-27T14:40:34.000Z">
-<meta property="article:modified_time" content="2022-10-14T15:53:49.073Z">
+<meta property="article:modified_time" content="2022-07-27T14:40:34.000Z">
 <meta property="article:author" content="唐抉">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
-    
-        <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
     
     <title>设计模式的学习（一） · null</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
@@ -214,9 +214,8 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 4.2.0"></head>
+</head>
 
-    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script type="text/javascript">
         if (typeof window.$ == undefined) {
@@ -540,9 +539,9 @@
 <p>2、策略类较多时，维护难度较大。</p>
 <h2 id="策略模式的使用举例">策略模式的使用举例</h2>
 <p>例如这是伪代码优化前的大致逻辑，如下所示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> worknum;<span class="comment">//工号</span></span><br><span class="line">    <span class="keyword">int</span> age;<span class="comment">//年龄</span></span><br><span class="line">    <span class="keyword">int</span> reqNum;<span class="comment">//查询数量</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果是学生类型</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isStudent</span><span class="params">(Person pto)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pto.type == <span class="string">'student'</span>)&#123;</span><br><span class="line">       </span><br><span class="line">       <span class="comment">//开关关闭不请求</span></span><br><span class="line">       <span class="keyword">if</span>(isstudentSwitchClose)&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">false</span>;           </span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">        <span class="comment">//请求只有一条记录</span></span><br><span class="line">        <span class="keyword">if</span>(pto.reqNum==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> singleRemoteEOIinvoke(pto);<span class="comment">//调用学生数据的点查接口</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">//请求超过一条</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pto.reqNum&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> batchRemoteEOIinvoke(pto);<span class="comment">//调用学生数据的批量接口</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//如果是教师类型</span></span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pto.type==<span class="string">'teacher'</span>)&#123;</span><br><span class="line">    </span><br><span class="line">      <span class="comment">//开关关闭不请求</span></span><br><span class="line">       <span class="keyword">if</span>(isteacherSwitchClose)&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">false</span>;           </span><br><span class="line">       &#125;</span><br><span class="line">        <span class="comment">//请求只有一条记录</span></span><br><span class="line">        <span class="keyword">if</span>(pto.reqNum==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> singleRemoteMarketinvoke(pto);<span class="comment">//调用教师数据的点查接口</span></span><br><span class="line">           </span><br><span class="line">          <span class="comment">//请求超过一条</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pto.reqNum&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> batchRemoteMarketinvoke(pto);<span class="comment">//调用教师数据的批量接口</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    <span class="type">int</span> worknum;<span class="comment">//工号</span></span><br><span class="line">    <span class="type">int</span> age;<span class="comment">//年龄</span></span><br><span class="line">    <span class="type">int</span> reqNum;<span class="comment">//查询数量</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果是学生类型</span></span><br><span class="line"><span class="type">boolean</span> <span class="title function_">isStudent</span><span class="params">(Person pto)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pto.type == <span class="string">&#x27;student&#x27;</span>)&#123;</span><br><span class="line">       </span><br><span class="line">       <span class="comment">//开关关闭不请求</span></span><br><span class="line">       <span class="keyword">if</span>(isstudentSwitchClose)&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;           </span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">        <span class="comment">//请求只有一条记录</span></span><br><span class="line">        <span class="keyword">if</span>(pto.reqNum==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> singleRemoteEOIinvoke(pto);<span class="comment">//调用学生数据的点查接口</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">//请求超过一条</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pto.reqNum&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> batchRemoteEOIinvoke(pto);<span class="comment">//调用学生数据的批量接口</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//如果是教师类型</span></span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pto.type==<span class="string">&#x27;teacher&#x27;</span>)&#123;</span><br><span class="line">    </span><br><span class="line">      <span class="comment">//开关关闭不请求</span></span><br><span class="line">       <span class="keyword">if</span>(isteacherSwitchClose)&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;           </span><br><span class="line">       &#125;</span><br><span class="line">        <span class="comment">//请求只有一条记录</span></span><br><span class="line">        <span class="keyword">if</span>(pto.reqNum==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> singleRemoteMarketinvoke(pto);<span class="comment">//调用教师数据的点查接口</span></span><br><span class="line">           </span><br><span class="line">          <span class="comment">//请求超过一条</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pto.reqNum&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> batchRemoteMarketinvoke(pto);<span class="comment">//调用教师数据的批量接口</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>例子中的代码存在较多的if分支，若使用策略模式来优化，代码将变成下面这样：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">GroupLabel</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">processBiz</span><span class="params">(Person pto)</span></span>;<span class="comment">//该方法对应策略实现类的具体实现</span></span><br><span class="line">  <span class="function">String <span class="title">getType</span><span class="params">()</span></span>;<span class="comment">//该方法是策略类的类型，对应着```if...else```条件判断的类型</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//学生类型的策略实现类</span></span><br><span class="line">studentGroupLablel implements GroupLabel&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//对应学生类型的条件分支里的实现</span></span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">processBiz</span><span class="params">(Person pto)</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">       <span class="comment">//开关关闭不请求</span></span><br><span class="line">     <span class="keyword">if</span>(isstudentSwitchClose)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;           </span><br><span class="line">     &#125;</span><br><span class="line">    </span><br><span class="line">      <span class="comment">//请求只有一条记录</span></span><br><span class="line">      <span class="keyword">if</span>(pto.reqNum==<span class="number">1</span>)&#123;</span><br><span class="line">          <span class="keyword">return</span> singleRemoteEOIinvoke(pto);<span class="comment">//调用学生数据点查接口 </span></span><br><span class="line">          </span><br><span class="line">          <span class="comment">//请求超过一条</span></span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pto.reqNum&gt;<span class="number">1</span>)&#123;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">return</span> batchRemoteEOIinvoke(pto);<span class="comment">//调用远程大数据批量接口    </span></span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">  <span class="comment">//对应学生类型</span></span><br><span class="line">  <span class="function">String <span class="title">getType</span><span class="params">()</span></span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="string">"student"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//教师类型的策略实现类</span></span><br><span class="line">teacherGroupLablel implements GroupLabel&#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//对应教师类型的条件分支里的实现</span></span><br><span class="line">   <span class="function"><span class="keyword">boolean</span> <span class="title">processBiz</span><span class="params">(Person pto)</span></span>&#123;</span><br><span class="line">   </span><br><span class="line">     <span class="comment">//开关关闭不请求</span></span><br><span class="line">     <span class="keyword">if</span>(isteacherSwitchClose)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;           </span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">      <span class="comment">//请求只有一条记录</span></span><br><span class="line">      <span class="keyword">if</span>(pto.reqNum==<span class="number">1</span>)&#123;</span><br><span class="line">          <span class="keyword">return</span> singleRemoteMarketinvoke(pto);<span class="comment">//调用教师数据的点查接口  </span></span><br><span class="line">         </span><br><span class="line">        <span class="comment">//请求超过一条</span></span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pto.reqNum&gt;<span class="number">1</span>)&#123;</span><br><span class="line">          <span class="keyword">return</span> batchRemoteMarketinvoke(pto);<span class="comment">//调用教师数据的批量接口    </span></span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">   <span class="comment">//对应教师类型</span></span><br><span class="line">    <span class="function">String <span class="title">getType</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">"teacher"</span>;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">GroupLabel</span> &#123;</span><br><span class="line">  <span class="type">boolean</span> <span class="title function_">processBiz</span><span class="params">(Person pto)</span>;<span class="comment">//该方法对应策略实现类的具体实现</span></span><br><span class="line">  String <span class="title function_">getType</span><span class="params">()</span>;<span class="comment">//该方法是策略类的类型，对应着```if...else```条件判断的类型</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//学生类型的策略实现类</span></span><br><span class="line">studentGroupLablel <span class="keyword">implements</span> <span class="title class_">GroupLabel</span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//对应学生类型的条件分支里的实现</span></span><br><span class="line">  <span class="type">boolean</span> <span class="title function_">processBiz</span><span class="params">(Person pto)</span>&#123;</span><br><span class="line">  </span><br><span class="line">       <span class="comment">//开关关闭不请求</span></span><br><span class="line">     <span class="keyword">if</span>(isstudentSwitchClose)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;           </span><br><span class="line">     &#125;</span><br><span class="line">    </span><br><span class="line">      <span class="comment">//请求只有一条记录</span></span><br><span class="line">      <span class="keyword">if</span>(pto.reqNum==<span class="number">1</span>)&#123;</span><br><span class="line">          <span class="keyword">return</span> singleRemoteEOIinvoke(pto);<span class="comment">//调用学生数据点查接口 </span></span><br><span class="line">          </span><br><span class="line">          <span class="comment">//请求超过一条</span></span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pto.reqNum&gt;<span class="number">1</span>)&#123;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">return</span> batchRemoteEOIinvoke(pto);<span class="comment">//调用远程大数据批量接口    </span></span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">  <span class="comment">//对应学生类型</span></span><br><span class="line">  String <span class="title function_">getType</span><span class="params">()</span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="string">&quot;student&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//教师类型的策略实现类</span></span><br><span class="line">teacherGroupLablel <span class="keyword">implements</span> <span class="title class_">GroupLabel</span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//对应教师类型的条件分支里的实现</span></span><br><span class="line">   <span class="type">boolean</span> <span class="title function_">processBiz</span><span class="params">(Person pto)</span>&#123;</span><br><span class="line">   </span><br><span class="line">     <span class="comment">//开关关闭不请求</span></span><br><span class="line">     <span class="keyword">if</span>(isteacherSwitchClose)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;           </span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">      <span class="comment">//请求只有一条记录</span></span><br><span class="line">      <span class="keyword">if</span>(pto.reqNum==<span class="number">1</span>)&#123;</span><br><span class="line">          <span class="keyword">return</span> singleRemoteMarketinvoke(pto);<span class="comment">//调用教师数据的点查接口  </span></span><br><span class="line">         </span><br><span class="line">        <span class="comment">//请求超过一条</span></span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pto.reqNum&gt;<span class="number">1</span>)&#123;</span><br><span class="line">          <span class="keyword">return</span> batchRemoteMarketinvoke(pto);<span class="comment">//调用教师数据的批量接口    </span></span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">   <span class="comment">//对应教师类型</span></span><br><span class="line">    String <span class="title function_">getType</span><span class="params">()</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">&quot;teacher&quot;</span>;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -551,13 +550,13 @@
             <p>原文作者：<a href="http://tangmenjue.top">唐抉</a>
             <p>原文链接：<a href="http://tangmenjue.top/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">http://tangmenjue.top/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/</a>
             <p>发表日期：<a href="http://tangmenjue.top/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">July 27th 2022, 10:40:34 pm</a>
-            <p>更新日期：<a href="http://tangmenjue.top/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">October 14th 2022, 11:53:49 pm</a>
+            <p>更新日期：<a href="http://tangmenjue.top/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">July 27th 2022, 10:40:34 pm</a>
             <p>版权声明：
 			<!--如果有设置theme.since，并且时间小于当前时间（年份），形式为：@ 2018 - 2019(+作者/标题)；否则默认为当前年份(+作者/标题)。 -->
 			
 			    &copy; 2020-2022
 			
-			本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+			本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
 			</p>
         </div>
     
@@ -741,7 +740,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#设计模式"><span class="toc-number">1.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建型模式"><span class="toc-number">1.1.</span> <span class="toc-text">创建型模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构型模式"><span class="toc-number">1.2.</span> <span class="toc-text">结构型模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#行为型模式"><span class="toc-number">1.3.</span> <span class="toc-text">行为型模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#j2ee模式"><span class="toc-number">1.4.</span> <span class="toc-text">J2EE模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#设计模式的六大原则solid"><span class="toc-number">2.</span> <span class="toc-text">设计模式的六大原则（SOLID）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单一职责原则single-responsibility-principle"><span class="toc-number">2.1.</span> <span class="toc-text">单一职责原则（Single Responsibility Principle）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开放封闭原则open-closed-principle"><span class="toc-number">2.2.</span> <span class="toc-text">开放封闭原则（Open Closed Principle）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#里氏代换原则liskov-substitution-principle"><span class="toc-number">2.3.</span> <span class="toc-text">里氏代换原则（Liskov Substitution Principle）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迪米特原则又称最少知道原则law-of-demeter"><span class="toc-number">2.4.</span> <span class="toc-text">迪米特原则，又称最少知道原则(Law of Demeter)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接口隔离原则interface-segregation-principle"><span class="toc-number">2.5.</span> <span class="toc-text">接口隔离原则（Interface Segregation Principle）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖倒置原则dependence-inversion-principle"><span class="toc-number">2.6.</span> <span class="toc-text">依赖倒置原则（Dependence Inversion Principle）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#策略模式"><span class="toc-number">3.</span> <span class="toc-text">策略模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#策略模式的优点"><span class="toc-number">3.1.</span> <span class="toc-text">策略模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#策略模式的缺点"><span class="toc-number">3.2.</span> <span class="toc-text">策略模式的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#策略模式的使用举例"><span class="toc-number">3.3.</span> <span class="toc-text">策略模式的使用举例</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">创建型模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">结构型模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">行为型模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#j2ee%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text">J2EE模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99solid"><span class="toc-number">2.</span> <span class="toc-text">设计模式的六大原则（SOLID）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99single-responsibility-principle"><span class="toc-number">2.1.</span> <span class="toc-text">单一职责原则（Single Responsibility Principle）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%94%BE%E5%B0%81%E9%97%AD%E5%8E%9F%E5%88%99open-closed-principle"><span class="toc-number">2.2.</span> <span class="toc-text">开放封闭原则（Open Closed Principle）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8C%E6%B0%8F%E4%BB%A3%E6%8D%A2%E5%8E%9F%E5%88%99liskov-substitution-principle"><span class="toc-number">2.3.</span> <span class="toc-text">里氏代换原则（Liskov Substitution Principle）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AA%E7%B1%B3%E7%89%B9%E5%8E%9F%E5%88%99%E5%8F%88%E7%A7%B0%E6%9C%80%E5%B0%91%E7%9F%A5%E9%81%93%E5%8E%9F%E5%88%99law-of-demeter"><span class="toc-number">2.4.</span> <span class="toc-text">迪米特原则，又称最少知道原则(Law of Demeter)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99interface-segregation-principle"><span class="toc-number">2.5.</span> <span class="toc-text">接口隔离原则（Interface Segregation Principle）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99dependence-inversion-principle"><span class="toc-number">2.6.</span> <span class="toc-text">依赖倒置原则（Dependence Inversion Principle）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">策略模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">3.1.</span> <span class="toc-text">策略模式的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-number">3.2.</span> <span class="toc-text">策略模式的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%BE%E4%BE%8B"><span class="toc-number">3.3.</span> <span class="toc-text">策略模式的使用举例</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1366,6 +1365,10 @@
         
         
         
+        
+        
+        
+        
     
     
     
@@ -1407,13 +1410,13 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/21</span>
-            <a class="archive-post-title" href="/2022/11/21/%E4%BC%81%E5%BE%AE%E5%BA%94%E7%94%A8%E4%B9%8Bpython%E5%BC%80%E5%8F%91/">企微应用之python开发</a>
+            <a class="archive-post-title" href="/2022/11/21/%E4%BC%81%E5%BE%AE%E5%BA%94%E7%94%A8%E4%B9%8Bpython%E5%BC%80%E5%8F%91/">[Untitled Post]</a>
         </li>
     
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/18</span>
-            <a class="archive-post-title" href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">企业微信之企业应用开发流程</a>
+            <a class="archive-post-title" href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">[Untitled Post]</a>
         </li>
     
         
@@ -1677,6 +1680,21 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
+            <span class="sidebar-tag-name" data-tags="CentOS 7">
+                <span class="iconfont-archer">&#xe606;</span>
+                CentOS 7
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络管理">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络管理
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Docker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Docker
@@ -1720,21 +1738,6 @@
             <span class="sidebar-tag-name" data-tags="前端">
                 <span class="iconfont-archer">&#xe606;</span>
                 前端
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CentOS 7">
-                <span class="iconfont-archer">&#xe606;</span>
-                CentOS 7
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Linux">
-                <span class="iconfont-archer">&#xe606;</span>
-                Linux
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="网络管理">
-                <span class="iconfont-archer">&#xe606;</span>
-                网络管理
             </span>
         
             <span class="sidebar-tag-name" data-tags="闪退">
@@ -1813,6 +1816,11 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
+        <span class="sidebar-category-name" data-categories="Linux">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Linux
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -1821,6 +1829,11 @@
         <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
             Web框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -1836,11 +1849,6 @@
         <span class="sidebar-category-name" data-categories="前端">
             <span class="iconfont-archer">&#xe60a;</span>
             前端
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Linux">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Linux
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -1863,24 +1871,19 @@
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
         </span>
     
-        <span class="sidebar-category-name" data-categories="应用开发">
-            <span class="iconfont-archer">&#xe60a;</span>
-            应用开发
-        </span>
-    
         <span class="sidebar-category-name" data-categories="XAMPP">
             <span class="iconfont-archer">&#xe60a;</span>
             XAMPP
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="应用开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            应用开发
         </span>
     
     </div>

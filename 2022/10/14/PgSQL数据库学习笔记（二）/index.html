@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-    <head><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></head>
+    <head><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="唐抉的个人博客" type="application/atom+xml">
+</head>
     <!-- title -->
 
 
@@ -26,8 +27,9 @@
 <meta property="og:url" content="http://tangmenjue.top/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="唐抉的个人博客">
 <meta property="og:description" content="PostgreSQL是一个免费的对象-关系数据库服务器">
+<meta property="og:locale">
 <meta property="article:published_time" content="2022-10-14T08:08:18.000Z">
-<meta property="article:modified_time" content="2022-11-10T15:48:11.663Z">
+<meta property="article:modified_time" content="2022-10-14T08:08:18.000Z">
 <meta property="article:author" content="唐抉">
 <meta property="article:tag" content="PgSQL">
 <meta property="article:tag" content="数据库">
@@ -35,8 +37,6 @@
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
-    
-        <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
     
     <title>PgSQL数据库学习笔记（二） · null</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
@@ -215,9 +215,8 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 4.2.0"></head>
+</head>
 
-    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script type="text/javascript">
         if (typeof window.$ == undefined) {
@@ -339,7 +338,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.7k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.8k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -712,7 +711,7 @@
 </table>
 <h2 id="枚举类型">枚举类型</h2>
 <p>PgSQL种的枚举类型类似于C语言中的enum类型，包含静态和值的有序集合的数据类型。与其他类型不同的是枚举类型需要使用<code>create type</code>命令创建。枚举类型一旦创建，便可用于变和函数定义。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">type</span> mood <span class="keyword">as</span> enum(<span class="string">'sad'</span>,<span class="string">'ok'</span>,<span class="string">'happy'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> type mood <span class="keyword">as</span> enum(<span class="string">&#x27;sad&#x27;</span>,<span class="string">&#x27;ok&#x27;</span>,<span class="string">&#x27;happy&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="几何类型">几何类型</h2>
 <p>几何类型表示二维的平面物体。</p>
 <table>
@@ -849,7 +848,7 @@
 <p>要使用这个数据类型，编译时必须使用<code>configure --with -libxml</code>。</p>
 <p>xmlvalue IS DOCUMENT 表达式可以用来判断一个特定的 xml 值是一个完整的文件还是内容片段。</p>
 <p>使用xmlparse来从字符数据产生xml类型的值：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">XMLPARSE (DOCUMENT '&lt;?xml version="1.0"?&gt;&lt;book&gt;&lt;title&gt;Manual&lt;/title&gt;&lt;chapter&gt;...&lt;/chapter&gt;&lt;/book&gt;')</span><br><span class="line">XMLPARSE (CONTENT 'abc&lt;foo&gt;bar&lt;/foo&gt;&lt;bar&gt;foo&lt;/bar&gt;')</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">XMLPARSE (DOCUMENT <span class="string">&#x27;&lt;?xml version=&quot;1.0&quot;?&gt;&lt;book&gt;&lt;title&gt;Manual&lt;/title&gt;&lt;chapter&gt;...&lt;/chapter&gt;&lt;/book&gt;&#x27;</span>)</span><br><span class="line">XMLPARSE (CONTENT <span class="string">&#x27;abc&lt;foo&gt;bar&lt;/foo&gt;&lt;bar&gt;foo&lt;/bar&gt;&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="json类型">json类型</h2>
 <p>json 数据类型可以用来存储 JSON（JavaScript Object Notation）数据， 这样的数据也可以存储为 text，但是 json 数据类型更有利于检查每个存储的数值是可用的 JSON 值。</p>
 <p>此外还有相关的函数来处理 json 数据：</p>
@@ -862,41 +861,41 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>array_to_json('{ {1,5},{99,100} }'::int[])</code></td>
+<td style="text-align: left;"><code>array_to_json('&#123; &#123;1,5&#125;,&#123;99,100&#125; &#125;'::int[])</code></td>
 <td style="text-align: center;"><code>[ [1,5],[99,100] ]</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>row_to_json(row(1,'foo'))</code></td>
-<td style="text-align: center;"><code>{"f1":1,"f2":"foo"}</code></td>
+<td style="text-align: center;"><code>&#123;"f1":1,"f2":"foo"&#125;</code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="数组类型">数组类型</h2>
 <p>数组类型可以是任何基本类型或用户定义类型，枚举类型或复合类型。</p>
 <p><strong>声明数组</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE sal_emp (</span><br><span class="line">    name            text,</span><br><span class="line">    pay_by_quarter  integer[],</span><br><span class="line">    schedule        text[][]，</span><br><span class="line">    pay_by_quarter integer ARRAY[4]</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE sal_emp (</span><br><span class="line">    name            text,</span><br><span class="line">    pay_by_quarter  integer[],</span><br><span class="line">    schedule        text[][]，</span><br><span class="line">    pay_by_quarter integer ARRAY[4]</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p><strong>插入值：</strong></p>
 <p>插入值使用花括号 {}，元素在 {} 使用逗号隔开：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> sal_emp</span><br><span class="line">    <span class="keyword">VALUES</span> (<span class="string">'Bill'</span>,</span><br><span class="line">    <span class="string">'&#123;10000, 10000, 10000, 10000&#125;'</span>,</span><br><span class="line">    <span class="string">'&#123; &#123; "meeting", "lunch" &#125;, &#123; "training", "presentation" &#125; &#125;'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> sal_emp</span><br><span class="line">    <span class="keyword">VALUES</span> (<span class="string">&#x27;Bill&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;&#123;10000, 10000, 10000, 10000&#125;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;&#123; &#123; &quot;meeting&quot;, &quot;lunch&quot; &#125;, &#123; &quot;training&quot;, &quot;presentation&quot; &#125; &#125;&#x27;</span>);</span><br></pre></td></tr></table></figure>
 <p><strong>访问数组：</strong></p>
 <p>数组的下标数字是写在方括号里的。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span> <span class="keyword">FROM</span> sal_emp <span class="keyword">WHERE</span> pay_by_quarter[<span class="number">1</span>] &lt;&gt; pay_by_quarter[<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> sal_emp <span class="keyword">WHERE</span> pay_by_quarter[<span class="number">1</span>] <span class="operator">&lt;&gt;</span> pay_by_quarter[<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
 <p><strong>修改数组：</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> sal_emp <span class="keyword">SET</span> pay_by_quarter = <span class="string">'&#123;25000,25000,27000,27000&#125;'</span></span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">'Carol'</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> sal_emp <span class="keyword">SET</span> pay_by_quarter = <span class="built_in">ARRAY</span>[<span class="number">25000</span>,<span class="number">25000</span>,<span class="number">27000</span>,<span class="number">27000</span>]</span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">'Carol'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> sal_emp <span class="keyword">SET</span> pay_by_quarter <span class="operator">=</span> <span class="string">&#x27;&#123;25000,25000,27000,27000&#125;&#x27;</span></span><br><span class="line">    <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;Carol&#x27;</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> sal_emp <span class="keyword">SET</span> pay_by_quarter <span class="operator">=</span> <span class="keyword">ARRAY</span>[<span class="number">25000</span>,<span class="number">25000</span>,<span class="number">27000</span>,<span class="number">27000</span>]</span><br><span class="line">    <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;Carol&#x27;</span>;    </span><br></pre></td></tr></table></figure>
 <p><strong>数组中检索：</strong></p>
 <p>要搜索一个数组中的数值，就必须检查该数组的每一个值。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> sal_emp <span class="keyword">WHERE</span> <span class="number">10000</span> = <span class="keyword">ALL</span> (pay_by_quarter);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span></span><br><span class="line">   (<span class="keyword">SELECT</span> pay_by_quarter,</span><br><span class="line">           generate_subscripts(pay_by_quarter, <span class="number">1</span>) <span class="keyword">AS</span> s</span><br><span class="line">      <span class="keyword">FROM</span> sal_emp) <span class="keyword">AS</span> foo</span><br><span class="line"> <span class="keyword">WHERE</span> pay_by_quarter[s] = <span class="number">10000</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> sal_emp <span class="keyword">WHERE</span> <span class="number">10000</span> <span class="operator">=</span> <span class="keyword">ALL</span> (pay_by_quarter);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span></span><br><span class="line">   (<span class="keyword">SELECT</span> pay_by_quarter,</span><br><span class="line">           generate_subscripts(pay_by_quarter, <span class="number">1</span>) <span class="keyword">AS</span> s</span><br><span class="line">      <span class="keyword">FROM</span> sal_emp) <span class="keyword">AS</span> foo</span><br><span class="line"> <span class="keyword">WHERE</span> pay_by_quarter[s] <span class="operator">=</span> <span class="number">10000</span>;</span><br></pre></td></tr></table></figure>
 <h2 id="复合类型">复合类型</h2>
 <p>复合类型表示一行或一条记录的结构，它实际上只是一个字段名和它们的数据类型的列表。<strong>复合类型可以实现建表时可以自定义字段</strong>。</p>
 <p>声明复合类型的语法类似于<code>create table</code>，只是<strong>这里只可以声明字段名字和类型</strong>，定义类型后就可以用它来创建表：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TYPE</span> complex <span class="keyword">AS</span> (</span><br><span class="line">    r       <span class="keyword">double</span> <span class="keyword">precision</span>,</span><br><span class="line">    i       <span class="keyword">double</span> <span class="keyword">precision</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TYPE</span> inventory_item <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">name</span>            <span class="built_in">text</span>,</span><br><span class="line">    supplier_id     <span class="built_in">integer</span>,</span><br><span class="line">    price           <span class="built_in">numeric</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> on_hand (</span><br><span class="line">    item      inventory_item,</span><br><span class="line">    <span class="keyword">count</span>     <span class="built_in">integer</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> on_hand <span class="keyword">VALUES</span> (<span class="keyword">ROW</span>(<span class="string">'fuzzy dice'</span>, <span class="number">42</span>, <span class="number">1.99</span>), <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> TYPE complex <span class="keyword">AS</span> (</span><br><span class="line">    r       <span class="type">double precision</span>,</span><br><span class="line">    i       <span class="type">double precision</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TYPE inventory_item <span class="keyword">AS</span> (</span><br><span class="line">    name            text,</span><br><span class="line">    supplier_id     <span class="type">integer</span>,</span><br><span class="line">    price           <span class="type">numeric</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> on_hand (</span><br><span class="line">    item      inventory_item,</span><br><span class="line">    count     <span class="type">integer</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> on_hand <span class="keyword">VALUES</span> (<span class="type">ROW</span>(<span class="string">&#x27;fuzzy dice&#x27;</span>, <span class="number">42</span>, <span class="number">1.99</span>), <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
 <h3 id="复合类型输入">复合类型输入</h3>
 <p>要用文本常量属性复合类型值，在圆括号里包围字段值并用逗号分隔他们。可以在任何字段周围放上双引号，若<strong>值本身包含逗号或圆括号，则必须要用双引号括起来</strong>。</p>
 <p>复合类型常量的一般格式如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">'( value1 , value2 , ... )'</span><br><span class="line">'("fuzzy dice",42,1.99)'</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;( value1 , value2 , ... )&#x27;</span></span><br><span class="line"><span class="string">&#x27;(&quot;fuzzy dice&quot;,42,1.99)&#x27;</span></span><br></pre></td></tr></table></figure>
 <h3 id="访问复合类型">访问复合类型</h3>
 <p>若要访问复合类型字段的一个域，则必须要用圆括号把域的名字括起来：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> (item).name <span class="keyword">FROM</span> on_hand <span class="keyword">WHERE</span> (item).price &gt; <span class="number">9.99</span>;</span><br><span class="line"><span class="keyword">SELECT</span> (on_hand.item).name <span class="keyword">FROM</span> on_hand <span class="keyword">WHERE</span> (on_hand.item).price &gt; <span class="number">9.99</span>;<span class="comment">#需要用到表名时的写法</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> (item).name <span class="keyword">FROM</span> on_hand <span class="keyword">WHERE</span> (item).price <span class="operator">&gt;</span> <span class="number">9.99</span>;</span><br><span class="line"><span class="keyword">SELECT</span> (on_hand.item).name <span class="keyword">FROM</span> on_hand <span class="keyword">WHERE</span> (on_hand.item).price <span class="operator">&gt;</span> <span class="number">9.99</span>;#需要用到表名时的写法</span><br></pre></td></tr></table></figure>
 <h2 id="范围类型">范围类型</h2>
 <p>范围类型代表这某一元素类型在一定范围内的值。</p>
 <p>PostgreSQL 内置的范围类型有：</p>
@@ -909,9 +908,9 @@
 <li>date的范围：daterange</li>
 </ul>
 <p>此外也可以定义自己的范围类型：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> reservation (room <span class="built_in">int</span>, during tsrange);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> reservation <span class="keyword">VALUES</span></span><br><span class="line">    (<span class="number">1108</span>, <span class="string">'[2010-01-01 14:30, 2010-01-01 15:30)'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 包含</span></span><br><span class="line"><span class="keyword">SELECT</span> int4range(<span class="number">10</span>, <span class="number">20</span>) @&gt; <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 重叠</span></span><br><span class="line"><span class="keyword">SELECT</span> numrange(<span class="number">11.1</span>, <span class="number">22.2</span>) &amp;&amp; numrange(<span class="number">20.0</span>, <span class="number">30.0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 提取上边界</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">upper</span>(int8range(<span class="number">15</span>, <span class="number">25</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 计算交叉</span></span><br><span class="line"><span class="keyword">SELECT</span> int4range(<span class="number">10</span>, <span class="number">20</span>) * int4range(<span class="number">15</span>, <span class="number">25</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 范围是否为空</span></span><br><span class="line"><span class="keyword">SELECT</span> isempty(numrange(<span class="number">1</span>, <span class="number">5</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> reservation (room <span class="type">int</span>, during tsrange);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> reservation <span class="keyword">VALUES</span></span><br><span class="line">    (<span class="number">1108</span>, <span class="string">&#x27;[2010-01-01 14:30, 2010-01-01 15:30)&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 包含</span></span><br><span class="line"><span class="keyword">SELECT</span> int4range(<span class="number">10</span>, <span class="number">20</span>) @<span class="operator">&gt;</span> <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 重叠</span></span><br><span class="line"><span class="keyword">SELECT</span> numrange(<span class="number">11.1</span>, <span class="number">22.2</span>) <span class="operator">&amp;&amp;</span> numrange(<span class="number">20.0</span>, <span class="number">30.0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 提取上边界</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">upper</span>(int8range(<span class="number">15</span>, <span class="number">25</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 计算交叉</span></span><br><span class="line"><span class="keyword">SELECT</span> int4range(<span class="number">10</span>, <span class="number">20</span>) <span class="operator">*</span> int4range(<span class="number">15</span>, <span class="number">25</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 范围是否为空</span></span><br><span class="line"><span class="keyword">SELECT</span> isempty(numrange(<span class="number">1</span>, <span class="number">5</span>));</span><br></pre></td></tr></table></figure>
 <p>范围值的输入必须遵循下面的格式：()、(]、[)、[]和空。圆括号或者方括号显示下边界和上边界是不包含的还是包含的。注意最后的格式是 空，代表着一个空的范围（一个不含有值的范围）。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 包括3，不包括7，并且包括二者之间的所有点</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">'[3,7)'</span>::int4range;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 不包括3和7，但是包括二者之间所有点</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">'(3,7)'</span>::int4range;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 只包括单一值4</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">'[4,4]'</span>::int4range;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 不包括点（被标准化为‘空’）</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">'[4,4)'</span>::int4range;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 包括3，不包括7，并且包括二者之间的所有点</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;[3,7)&#x27;</span>::int4range;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 不包括3和7，但是包括二者之间所有点</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;(3,7)&#x27;</span>::int4range;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 只包括单一值4</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;[4,4]&#x27;</span>::int4range;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 不包括点（被标准化为‘空’）</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;[4,4)&#x27;</span>::int4range;</span><br></pre></td></tr></table></figure>
 <h2 id="对象标识符类型">对象标识符类型</h2>
 <p>PgSQL 在内部使用对象标识符(OID)作为各种系统表的主键。</p>
 <table>
@@ -1057,13 +1056,13 @@
             <p>原文作者：<a href="http://tangmenjue.top">唐抉</a>
             <p>原文链接：<a href="http://tangmenjue.top/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">http://tangmenjue.top/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</a>
             <p>发表日期：<a href="http://tangmenjue.top/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">October 14th 2022, 4:08:18 pm</a>
-            <p>更新日期：<a href="http://tangmenjue.top/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">November 10th 2022, 11:48:11 pm</a>
+            <p>更新日期：<a href="http://tangmenjue.top/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">October 14th 2022, 4:08:18 pm</a>
             <p>版权声明：
 			<!--如果有设置theme.since，并且时间小于当前时间（年份），形式为：@ 2018 - 2019(+作者/标题)；否则默认为当前年份(+作者/标题)。 -->
 			
 			    &copy; 2020-2022
 			
-			本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+			本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
 			</p>
         </div>
     
@@ -1247,7 +1246,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#postgresql数据类型"><span class="toc-number">1.</span> <span class="toc-text">PostgreSQL数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数值类型"><span class="toc-number">1.1.</span> <span class="toc-text">数值类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#货币类型"><span class="toc-number">1.2.</span> <span class="toc-text">货币类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符类型"><span class="toc-number">1.3.</span> <span class="toc-text">字符类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日期时间类型"><span class="toc-number">1.4.</span> <span class="toc-text">日期&#x2F;时间类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#布尔类型"><span class="toc-number">1.5.</span> <span class="toc-text">布尔类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#枚举类型"><span class="toc-number">1.6.</span> <span class="toc-text">枚举类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#几何类型"><span class="toc-number">1.7.</span> <span class="toc-text">几何类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络地址类型"><span class="toc-number">1.8.</span> <span class="toc-text">网络地址类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#位串类型"><span class="toc-number">1.9.</span> <span class="toc-text">位串类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文本搜索类型"><span class="toc-number">1.10.</span> <span class="toc-text">文本搜索类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#uuid类型"><span class="toc-number">1.11.</span> <span class="toc-text">UUID类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml类型"><span class="toc-number">1.12.</span> <span class="toc-text">XML类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#json类型"><span class="toc-number">1.13.</span> <span class="toc-text">json类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组类型"><span class="toc-number">1.14.</span> <span class="toc-text">数组类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复合类型"><span class="toc-number">1.15.</span> <span class="toc-text">复合类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复合类型输入"><span class="toc-number">1.15.1.</span> <span class="toc-text">复合类型输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#访问复合类型"><span class="toc-number">1.15.2.</span> <span class="toc-text">访问复合类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#范围类型"><span class="toc-number">1.16.</span> <span class="toc-text">范围类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象标识符类型"><span class="toc-number">1.17.</span> <span class="toc-text">对象标识符类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#伪类型"><span class="toc-number">1.18.</span> <span class="toc-text">伪类型</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#postgresql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">PostgreSQL数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">数值类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%A7%E5%B8%81%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">货币类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">字符类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text">日期&#x2F;时间类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.</span> <span class="toc-text">布尔类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">枚举类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">几何类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.8.</span> <span class="toc-text">网络地址类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.9.</span> <span class="toc-text">位串类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.10.</span> <span class="toc-text">文本搜索类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#uuid%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.11.</span> <span class="toc-text">UUID类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.12.</span> <span class="toc-text">XML类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#json%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.13.</span> <span class="toc-text">json类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.14.</span> <span class="toc-text">数组类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.15.</span> <span class="toc-text">复合类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B%E8%BE%93%E5%85%A5"><span class="toc-number">1.15.1.</span> <span class="toc-text">复合类型输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.15.2.</span> <span class="toc-text">访问复合类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.16.</span> <span class="toc-text">范围类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%A0%87%E8%AF%86%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.17.</span> <span class="toc-text">对象标识符类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.18.</span> <span class="toc-text">伪类型</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1872,6 +1871,10 @@
         
         
         
+        
+        
+        
+        
     
     
     
@@ -1913,13 +1916,13 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/21</span>
-            <a class="archive-post-title" href="/2022/11/21/%E4%BC%81%E5%BE%AE%E5%BA%94%E7%94%A8%E4%B9%8Bpython%E5%BC%80%E5%8F%91/">企微应用之python开发</a>
+            <a class="archive-post-title" href="/2022/11/21/%E4%BC%81%E5%BE%AE%E5%BA%94%E7%94%A8%E4%B9%8Bpython%E5%BC%80%E5%8F%91/">[Untitled Post]</a>
         </li>
     
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/18</span>
-            <a class="archive-post-title" href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">企业微信之企业应用开发流程</a>
+            <a class="archive-post-title" href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">[Untitled Post]</a>
         </li>
     
         
@@ -2183,6 +2186,21 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
+            <span class="sidebar-tag-name" data-tags="CentOS 7">
+                <span class="iconfont-archer">&#xe606;</span>
+                CentOS 7
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络管理">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络管理
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Docker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Docker
@@ -2226,21 +2244,6 @@
             <span class="sidebar-tag-name" data-tags="前端">
                 <span class="iconfont-archer">&#xe606;</span>
                 前端
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CentOS 7">
-                <span class="iconfont-archer">&#xe606;</span>
-                CentOS 7
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Linux">
-                <span class="iconfont-archer">&#xe606;</span>
-                Linux
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="网络管理">
-                <span class="iconfont-archer">&#xe606;</span>
-                网络管理
             </span>
         
             <span class="sidebar-tag-name" data-tags="闪退">
@@ -2319,6 +2322,11 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
+        <span class="sidebar-category-name" data-categories="Linux">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Linux
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2327,6 +2335,11 @@
         <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
             Web框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2342,11 +2355,6 @@
         <span class="sidebar-category-name" data-categories="前端">
             <span class="iconfont-archer">&#xe60a;</span>
             前端
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Linux">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Linux
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2369,24 +2377,19 @@
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
         </span>
     
-        <span class="sidebar-category-name" data-categories="应用开发">
-            <span class="iconfont-archer">&#xe60a;</span>
-            应用开发
-        </span>
-    
         <span class="sidebar-category-name" data-categories="XAMPP">
             <span class="iconfont-archer">&#xe60a;</span>
             XAMPP
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="应用开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            应用开发
         </span>
     
     </div>

@@ -465,7 +465,7 @@ li {
   background-color: #282c34;
   position: absolute;
   right: 5px;
-  top: 5px;
+  top: 0px;
   cursor: pointer;
   border: none;
   border-radius: 0.2rem;
@@ -1563,7 +1563,7 @@ html::-webkit-scrollbar-track:hover,
 .article-entry .highlight pre {
   border: none;
   margin: 0;
-  padding: 0; }
+  padding: 14px 0px 0px 0px; }
 
 .abstract-content .highlight table,
 .article-entry .highlight table {

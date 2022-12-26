@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-    <head><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="唐抉的个人博客" type="application/atom+xml">
-</head>
     <!-- title -->
 
 
@@ -209,9 +207,11 @@
     
     <!-- 谷歌统计  -->
     
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="唐抉的个人博客" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
     <script type="text/javascript">
         if (typeof window.$ == undefined) {
             console.warn('jquery load from jsdelivr failed, will load local script')
@@ -2112,14 +2112,14 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
             Redis
         </span>
     
-        <span class="sidebar-category-name" data-categories="XAMPP">
-            <span class="iconfont-archer">&#xe60a;</span>
-            XAMPP
-        </span>
-    
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
         </span>
     
     </div>
@@ -2168,7 +2168,8 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
         <!-- codecopy -->
         
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.js"></script>
-            <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
     <script type="text/x-mathjax-config">

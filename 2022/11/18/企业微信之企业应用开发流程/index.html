@@ -355,7 +355,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.1k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.9k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -536,7 +536,7 @@
 <p>配置完成后，在可见范围内的成员，将在工作台看到该应用。</p>
 <p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/3.png"></p>
 <h3 id="配置host">配置HOST</h3>
-<p>为了能在本地进行开发，需要将应用URL的访问指向本地。Window系统下打开C:，右键点击hosts，选择使用记事本打开，在文件末尾增加代码如下：</p>
+<p>为了能在本地进行开发，需要将应用URL的访问指向本地。Window系统下打开<code>C:\Windows\System32\drivers\etc</code>目录，右键点击hosts，选择使用记事本打开，在文件末尾增加代码如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1	localhost</span><br><span class="line">127.0.0.1	tangmenjue.top</span><br></pre></td></tr></table></figure>
 <h1 id="获取应用接口凭证">获取应用接口凭证</h1>
 <h2 id="获取企业id-corp_id">获取企业ID <code>corp_id</code></h2>
@@ -558,14 +558,6 @@
 <p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/9.png"></p>
 <p>然后便可在Body处看到获取的access_token值：</p>
 <p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/10.png"></p>
-<h1 id="本地配置项目信息">本地配置项目信息</h1>
-<h2 id="下载官方代码示例">下载官方代码示例</h2>
-<p>从<a target="_blank" rel="noopener" href="https://github.com/WecomTeam/InnerAppCodeSample">企业微信企业自建应用开发代码示例</a>里下载官方代码示例，下载解压后使用VS打开项目代码。在 <code>/configs</code> 目录将 <code>main.config.demo.js</code> 复制一份到 <code>main.config.js</code> 文件，并根据实际项目情况补充corp_id、app_secret等信息。</p>
-<h2 id="安装启动服务">安装启动服务</h2>
-<p>在一下载的示例代码项目根目录下，使用cmd执行以下代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装依赖</span></span><br><span class="line">cnpm install</span><br><span class="line"><span class="comment">#启动后端服务</span></span><br><span class="line">cnpm run build</span><br><span class="line">cnpm run start</span><br></pre></td></tr></table></figure>
-<h2 id="访问示例页面">访问示例页面</h2>
-<p>在浏览器中访问http://localhost:3000便可访问示例页面</p>
 <h1 id="发送应用信息">发送应用信息</h1>
 <p>通过向企业微信信息推送接口POST对应的消息结构体即可实现应用消息的推送。对应的请求地址为：<code>https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=ACCESS_TOKEN</code>。</p>
 <h2 id="基本参数">基本参数</h2>
@@ -718,7 +710,7 @@
             <p>版权声明：
 			<!--如果有设置theme.since，并且时间小于当前时间（年份），形式为：@ 2018 - 2019(+作者/标题)；否则默认为当前年份(+作者/标题)。 -->
 			
-			    &copy; 2020-2022
+			    &copy; 2020-2023
 			
 			本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
 			</p>
@@ -729,8 +721,8 @@
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2022/11/21/%E4%BC%81%E5%BE%AE%E5%BA%94%E7%94%A8%E4%B9%8Bpython%E5%BC%80%E5%8F%91/" title="企微应用之python开发">
-                    <div class="nextTitle">企微应用之python开发</div>
+                <a href="/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/" title="Docker应用部署基础">
+                    <div class="nextTitle">Docker应用部署基础</div>
                 </a>
             
         </li>
@@ -904,7 +896,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">创建应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%87%86%E5%A4%87"><span class="toc-number">1.1.</span> <span class="toc-text">创建准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-1"><span class="toc-number">1.2.</span> <span class="toc-text">创建应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.</span> <span class="toc-text">配置信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%A7%81%E8%8C%83%E5%9B%B4"><span class="toc-number">1.3.1.</span> <span class="toc-text">可见范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E4%B8%BB%E9%A1%B5"><span class="toc-number">1.3.2.</span> <span class="toc-text">应用主页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEhost"><span class="toc-number">1.3.3.</span> <span class="toc-text">配置HOST</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E5%87%AD%E8%AF%81"><span class="toc-number">2.</span> <span class="toc-text">获取应用接口凭证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E4%BC%81%E4%B8%9Aid-corp_id"><span class="toc-number">2.1.</span> <span class="toc-text">获取企业ID corp_id</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8-secret"><span class="toc-number">2.2.</span> <span class="toc-text">获取应用 Secret</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E5%87%AD%E8%AF%81-access_token"><span class="toc-number">2.3.</span> <span class="toc-text">获取应用接口凭证 access_token</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E9%85%8D%E7%BD%AE%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">本地配置项目信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%98%E6%96%B9%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.1.</span> <span class="toc-text">下载官方代码示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.</span> <span class="toc-text">安装启动服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E7%A4%BA%E4%BE%8B%E9%A1%B5%E9%9D%A2"><span class="toc-number">3.3.</span> <span class="toc-text">访问示例页面</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%BA%94%E7%94%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">4.</span> <span class="toc-text">发送应用信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0"><span class="toc-number">4.1.</span> <span class="toc-text">基本参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">4.2.</span> <span class="toc-text">基本流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E6%B6%88%E6%81%AF"><span class="toc-number">4.2.1.</span> <span class="toc-text">发送基本类型消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B%E6%B6%88%E6%81%AF"><span class="toc-number">4.2.2.</span> <span class="toc-text">发送媒体类型消息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%99%BB%E5%BD%95%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">获取登录用户信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%8F%AF%E4%BF%A1%E5%9F%9F%E5%90%8D"><span class="toc-number">5.1.</span> <span class="toc-text">配置可信域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E7%BD%91%E9%A1%B5%E6%8E%88%E6%9D%83%E9%93%BE%E6%8E%A5"><span class="toc-number">5.2.</span> <span class="toc-text">构造网页授权链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E6%88%90%E5%91%98%E6%8E%88%E6%9D%83code"><span class="toc-number">5.3.</span> <span class="toc-text">解析成员授权code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E4%BF%A1%E6%81%AF"><span class="toc-number">5.4.</span> <span class="toc-text">获取访问用户身份信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E8%BF%87%E7%A8%8B"><span class="toc-number">5.5.</span> <span class="toc-text">实操过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%91%E6%88%90%E5%91%98%E5%8F%91%E9%80%81%E4%BF%A1%E6%81%AF"><span class="toc-number">6.</span> <span class="toc-text">向成员发送信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E8%BF%87%E7%A8%8B-1"><span class="toc-number">6.1.</span> <span class="toc-text">实操过程</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">创建应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%87%86%E5%A4%87"><span class="toc-number">1.1.</span> <span class="toc-text">创建准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-1"><span class="toc-number">1.2.</span> <span class="toc-text">创建应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.</span> <span class="toc-text">配置信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%A7%81%E8%8C%83%E5%9B%B4"><span class="toc-number">1.3.1.</span> <span class="toc-text">可见范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E4%B8%BB%E9%A1%B5"><span class="toc-number">1.3.2.</span> <span class="toc-text">应用主页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEhost"><span class="toc-number">1.3.3.</span> <span class="toc-text">配置HOST</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E5%87%AD%E8%AF%81"><span class="toc-number">2.</span> <span class="toc-text">获取应用接口凭证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E4%BC%81%E4%B8%9Aid-corp_id"><span class="toc-number">2.1.</span> <span class="toc-text">获取企业ID corp_id</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8-secret"><span class="toc-number">2.2.</span> <span class="toc-text">获取应用 Secret</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E5%87%AD%E8%AF%81-access_token"><span class="toc-number">2.3.</span> <span class="toc-text">获取应用接口凭证 access_token</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%BA%94%E7%94%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">发送应用信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">基本参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">3.2.</span> <span class="toc-text">基本流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E6%B6%88%E6%81%AF"><span class="toc-number">3.2.1.</span> <span class="toc-text">发送基本类型消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B%E6%B6%88%E6%81%AF"><span class="toc-number">3.2.2.</span> <span class="toc-text">发送媒体类型消息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%99%BB%E5%BD%95%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-number">4.</span> <span class="toc-text">获取登录用户信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%8F%AF%E4%BF%A1%E5%9F%9F%E5%90%8D"><span class="toc-number">4.1.</span> <span class="toc-text">配置可信域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E7%BD%91%E9%A1%B5%E6%8E%88%E6%9D%83%E9%93%BE%E6%8E%A5"><span class="toc-number">4.2.</span> <span class="toc-text">构造网页授权链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E6%88%90%E5%91%98%E6%8E%88%E6%9D%83code"><span class="toc-number">4.3.</span> <span class="toc-text">解析成员授权code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E4%BF%A1%E6%81%AF"><span class="toc-number">4.4.</span> <span class="toc-text">获取访问用户身份信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E8%BF%87%E7%A8%8B"><span class="toc-number">4.5.</span> <span class="toc-text">实操过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%91%E6%88%90%E5%91%98%E5%8F%91%E9%80%81%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">向成员发送信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E8%BF%87%E7%A8%8B-1"><span class="toc-number">5.1.</span> <span class="toc-text">实操过程</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1143,20 +1135,7 @@
         
         
         
-        
-        
-        
-        
-        
     
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -1539,7 +1518,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 46
+        Total : 45
         </div>
         <!-- search  -->
         
@@ -1569,12 +1548,6 @@
         <li class="archive-post-item">
             <span class="archive-post-date">12/06</span>
             <a class="archive-post-title" href="/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/">Docker应用部署基础</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/21</span>
-            <a class="archive-post-title" href="/2022/11/21/%E4%BC%81%E5%BE%AE%E5%BA%94%E7%94%A8%E4%B9%8Bpython%E5%BC%80%E5%8F%91/">企微应用之python开发</a>
         </li>
     
         

@@ -511,13 +511,13 @@
 <h2 id="安装elasticsearch服务端">安装Elasticsearch服务端</h2>
 <ul>
 <li>在<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">官网</a>中选择所需的合适版本下载即可。本文使用的Elasticsearch版本为5.5.3，下载链接为<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/past-releases/elasticsearch-5-5-3">Elasticsearch 5.5.3 | Elastic</a>，选择zip版本下载。</li>
-<li>下载完成后将程序解压到电脑中，打开解压目录进入到bin文件夹，双击elasticsearch.bat文件即可启动Elasticsearch服务（若启动失败，则查看环境中是否安装了jdk），窗口出现以下结果则表示服务启动成功<img src="/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/0.png"></li>
-<li>服务启动成功后，访问localhost:9200，若看到以下显示，则代表安装成功<img src="/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/1.png"></li>
+<li>下载完成后将程序解压到电脑中，打开解压目录进入到bin文件夹，双击<code>elasticsearch.bat</code>文件即可启动Elasticsearch服务（若启动失败，则查看环境中是否安装了jdk），窗口出现以下结果则表示服务启动成功<img src="/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/0.png"></li>
+<li>服务启动成功后，访问<code>localhost:9200</code>，若看到以下显示，则代表安装成功<img src="/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/1.png"></li>
 </ul>
 <h3 id="相关配置">相关配置</h3>
 <ul>
 <li><p>由于Elasticsearch可直接通过http请求访问，所以将9200端口直接暴露在网络当中是十分危险的，需要对访问进行限制。</p></li>
-<li><p>在Elasticsearch安装目录下，进入config目录，打开elasticsearch.yml配置文件。在配置文件中，修改network.host配置如下：</p>
+<li><p>在Elasticsearch安装目录下，进入config目录，打开<code>elasticsearch.yml</code>配置文件。在配置文件中，修改<code>network.host</code>配置如下：</p>
 <p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置网络请求中的相关参数及设置</span></span><br><span class="line"><span class="attr">network.host:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure></p>
 <p>由于本人是自己测试，因此设为了允许所有来源访问且使Elasticsearch支持跨域请求，如对访问安全有要求或者是线上的服务，建议配置为具体的IP地址<img src="/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/2.png"></p></li>
 </ul>
@@ -546,7 +546,7 @@
 <ul>
 <li><p>点击<a target="_blank" rel="noopener" href="https://github.com/mobz/elasticsearch-head">链接</a>下载head插件，下载后解压即可</p></li>
 <li><p>确保node.js已安装，若未安装可以在<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">官网</a>处下载安装</p></li>
-<li><p>打开cmd，进入到head插件的解压目录中，打开package.json文件查看使用的grunt-版本，输入以下命令安装相应版本的grunt-cli</p>
+<li><p>打开cmd，进入到head插件的解压目录中，打开<code>package.json</code>文件查看使用的grunt版本，输入以下命令安装相应版本的grunt-cli</p>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS D:\elasticsearch-head-master&gt; npm install grunt@1.0.1</span><br><span class="line">PS D:\elasticsearch-head-master&gt; npm install grunt@1.0.1 --save-dev</span><br></pre></td></tr></table></figure></p></li>
 <li><p>继续输入以下命令下载项目所需的插件，启动图形化插件：</p>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS D:\elasticsearch-head-master&gt; npm install</span><br><span class="line">PS D:\elasticsearch-head-master&gt; grunt server</span><br></pre></td></tr></table></figure></p>
@@ -777,10 +777,10 @@
 <h2 id="安装">安装</h2>
 <p>访问<a target="_blank" rel="noopener" href="https://github.com/medcl/elasticsearch-analysis-ik/releases">IK分词器</a>下载与Elasticsearch对应版本的中文分词器，这里下载的版本为5.5.3，具体地址为<a target="_blank" rel="noopener" href="https://github.com/medcl/elasticsearch-analysis-ik/releases/tag/v5.5.3">Release v5.5.3 · medcl/elasticsearch-analysis-ik (github.com)</a>。将解压后的文件夹放入Elasticsearch根目录里的<code>E:\elasticsearch-5.5.3\plugins\ik</code>下，重启Elasticsearch后便可使用</p>
 <h2 id="配置">配置</h2>
-<p>IK分词器提供了两个分词算法ik_smart和ik_max_word。其中ik_smart为智能最少切分，il_max_word为最细粒度划分，</p>
+<p>IK分词器提供了两个分词算法<code>ik_smart</code>和<code>ik_max_word</code>。其中<code>ik_smart</code>为智能最少切分，<code>ik_max_word</code>为最细粒度划分，</p>
 <ul>
-<li>ik_max_word：会将文本做最细粒度划分，如「我是程序员」会被拆分为「我、是、程序员、程序、员」</li>
-<li>ik_smart：会将文本做最少切分，如「我是程序员」会被拆分为「我、是、程序员」</li>
+<li><code>ik_max_word</code>：会将文本做最细粒度划分，如「我是程序员」会被拆分为「我、是、程序员、程序、员」</li>
+<li><code>ik_smart</code>：会将文本做最少切分，如「我是程序员」会被拆分为「我、是、程序员」</li>
 </ul>
 <h2 id="中文分词">中文分词</h2>
 <ul>
@@ -805,7 +805,7 @@
 </ul></li>
 </ul>
 <h2 id="自定义词库">自定义词库</h2>
-<p>随着各种新词的不断出现，分词器并不认识一些网络热词。若要补充新词到ik的词库中，则需要进入目录<code>E:\elasticsearch-5.5.3\plugins\ik\config</code>中创建<code>custom.dic</code>文件，写入新词。同时打开IKAnalyzer.cfg.xml文件，将添加<code>custom.dic</code>配置后，重启Elasticsearch。</p>
+<p>随着各种新词的不断出现，分词器并不认识一些网络热词。若要补充新词到ik的词库中，则需要进入目录<code>E:\elasticsearch-5.5.3\plugins\ik\config</code>中创建<code>custom.dic</code>文件，写入新词。同时打开<code>IKAnalyzer.cfg.xml</code>文件，将添加<code>custom.dic</code>配置后，重启Elasticsearch。</p>
 <p>配置文件参考如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">properties</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;http://java.sun.com/dtd/properties.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">comment</span>&gt;</span>IK Analyzer 扩展配置<span class="tag">&lt;/<span class="name">comment</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--用户可以在这里配置自己的扩展字典 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">&quot;ext_dict&quot;</span>&gt;</span>custom.dic<span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">	 <span class="comment">&lt;!--用户可以在这里配置自己的扩展停止词字典--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">&quot;ext_stopwords&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--用户可以在这里配置远程扩展字典 --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- &lt;entry key=&quot;remote_ext_dict&quot;&gt;words_location&lt;/entry&gt; --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--用户可以在这里配置远程扩展停止词字典--&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- &lt;entry key=&quot;remote_ext_stopwords&quot;&gt;words_location&lt;/entry&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在进行以上配置后，分词器在看到文件中的新词时，便会知道这是一个词汇。</p>
@@ -1652,10 +1652,6 @@
         
         
         
-        
-        
-        
-        
     
     
     
@@ -2077,6 +2073,11 @@
                 JavaScript
             </span>
         
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2085,11 +2086,6 @@
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
             </span>
         
             <span class="sidebar-tag-name" data-tags="设计模式">

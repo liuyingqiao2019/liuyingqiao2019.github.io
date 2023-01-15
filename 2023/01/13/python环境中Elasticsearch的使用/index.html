@@ -22,22 +22,22 @@
     <meta name="description" content="python环境中使用Elasticsearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python环境中Elasticsearch的使用">
-<meta property="og:url" content="http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:url" content="http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="唐抉的个人博客">
 <meta property="og:description" content="python环境中使用Elasticsearch">
 <meta property="og:locale">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/0.png">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/1.png">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/2.png">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/3.png">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/4.png">
-<meta property="article:published_time" content="2022-11-18T08:26:24.000Z">
-<meta property="article:modified_time" content="2022-11-18T08:26:24.000Z">
+<meta property="og:image" content="http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/0.png">
+<meta property="og:image" content="http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/1.png">
+<meta property="og:image" content="http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/2.png">
+<meta property="og:image" content="http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/3.png">
+<meta property="og:image" content="http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/4.png">
+<meta property="article:published_time" content="2023-01-13T09:20:41.000Z">
+<meta property="article:modified_time" content="2023-01-13T09:20:41.000Z">
 <meta property="article:author" content="唐抉">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="Elasticsearch">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/0.png">
+<meta name="twitter:image" content="http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/0.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
@@ -350,7 +350,7 @@
                 <div class="post-intro-meta">
                     <!-- 撰写日期 -->
                     <span class="iconfont-archer post-intro-calander">&#xe676;</span>
-                    <span class="post-intro-time">2022/11/18</span>
+                    <span class="post-intro-time">2023/01/13</span>
                     <!-- busuanzi -->
                     
                         <span id="busuanzi_container_page_pv" class="busuanzi-pv">
@@ -511,15 +511,15 @@
 <h2 id="安装elasticsearch服务端">安装Elasticsearch服务端</h2>
 <ul>
 <li>在<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">官网</a>中选择所需的合适版本下载即可。本文使用的Elasticsearch版本为5.5.3，下载链接为<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/past-releases/elasticsearch-5-5-3">Elasticsearch 5.5.3 | Elastic</a>，选择zip版本下载。</li>
-<li>下载完成后将程序解压到电脑中，打开解压目录进入到bin文件夹，双击<code>elasticsearch.bat</code>文件即可启动Elasticsearch服务（若启动失败，则查看环境中是否安装了jdk），窗口出现以下结果则表示服务启动成功<img src="/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/0.png"></li>
-<li>服务启动成功后，访问<code>localhost:9200</code>，若看到以下显示，则代表安装成功<img src="/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/1.png"></li>
+<li>下载完成后将程序解压到电脑中，打开解压目录进入到bin文件夹，双击<code>elasticsearch.bat</code>文件即可启动Elasticsearch服务（若启动失败，则查看环境中是否安装了jdk），窗口出现以下结果则表示服务启动成功<img src="/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/0.png"></li>
+<li>服务启动成功后，访问<code>localhost:9200</code>，若看到以下显示，则代表安装成功<img src="/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/1.png"></li>
 </ul>
 <h3 id="相关配置">相关配置</h3>
 <ul>
 <li><p>由于Elasticsearch可直接通过http请求访问，所以将9200端口直接暴露在网络当中是十分危险的，需要对访问进行限制。</p></li>
 <li><p>在Elasticsearch安装目录下，进入config目录，打开<code>elasticsearch.yml</code>配置文件。在配置文件中，修改<code>network.host</code>配置如下：</p>
 <p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置网络请求中的相关参数及设置</span></span><br><span class="line"><span class="attr">network.host:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure></p>
-<p>由于本人是自己测试，因此设为了允许所有来源访问且使Elasticsearch支持跨域请求，如对访问安全有要求或者是线上的服务，建议配置为具体的IP地址<img src="/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/2.png"></p></li>
+<p>由于本人是自己测试，因此设为了允许所有来源访问且使Elasticsearch支持跨域请求，如对访问安全有要求或者是线上的服务，建议配置为具体的IP地址<img src="/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/2.png"></p></li>
 </ul>
 <h2 id="安装elasticsearch客户端">安装Elasticsearch客户端</h2>
 <ul>
@@ -550,7 +550,7 @@
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS D:\elasticsearch-head-master&gt; npm install grunt@1.0.1</span><br><span class="line">PS D:\elasticsearch-head-master&gt; npm install grunt@1.0.1 --save-dev</span><br></pre></td></tr></table></figure></p></li>
 <li><p>继续输入以下命令下载项目所需的插件，启动图形化插件：</p>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS D:\elasticsearch-head-master&gt; npm install</span><br><span class="line">PS D:\elasticsearch-head-master&gt; grunt server</span><br></pre></td></tr></table></figure></p>
-<p>图像化插件成功启动的截图如下：<img src="/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/3.png"></p></li>
+<p>图像化插件成功启动的截图如下：<img src="/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/3.png"></p></li>
 </ul>
 <h1 id="python环境下操作elasticsearch">Python环境下操作Elasticsearch</h1>
 <h2 id="基础操作">基础操作</h2>
@@ -789,7 +789,7 @@
 <li>通过postman发送GET请求查询分词：</li>
 </ul>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET http://localhost:9200/_analyze</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;text&quot;</span>:<span class="string">&quot;我是程序员&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>postman操作如图所示：<img src="/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/4.png"></p>
+<p>postman操作如图所示：<img src="/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/4.png"></p>
 <p>得到的结果如下，可以发现Elasticsearch的默认分词器无法识别中文：我、程序、程序员这样的词汇，而是简单地将每个字拆完分为一个词：</p>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;tokens&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;token&quot;</span>: <span class="string">&quot;我&quot;</span>,</span><br><span class="line">            <span class="string">&quot;start_offset&quot;</span>: 0,</span><br><span class="line">            <span class="string">&quot;end_offset&quot;</span>: 1,</span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;&lt;IDEOGRAPHIC&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;position&quot;</span>: 0</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;token&quot;</span>: <span class="string">&quot;是&quot;</span>,</span><br><span class="line">            <span class="string">&quot;start_offset&quot;</span>: 1,</span><br><span class="line">            <span class="string">&quot;end_offset&quot;</span>: 2,</span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;&lt;IDEOGRAPHIC&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;position&quot;</span>: 1</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;token&quot;</span>: <span class="string">&quot;程&quot;</span>,</span><br><span class="line">            <span class="string">&quot;start_offset&quot;</span>: 2,</span><br><span class="line">            <span class="string">&quot;end_offset&quot;</span>: 3,</span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;&lt;IDEOGRAPHIC&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;position&quot;</span>: 2</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;token&quot;</span>: <span class="string">&quot;序&quot;</span>,</span><br><span class="line">            <span class="string">&quot;start_offset&quot;</span>: 3,</span><br><span class="line">            <span class="string">&quot;end_offset&quot;</span>: 4,</span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;&lt;IDEOGRAPHIC&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;position&quot;</span>: 3</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;token&quot;</span>: <span class="string">&quot;员&quot;</span>,</span><br><span class="line">            <span class="string">&quot;start_offset&quot;</span>: 4,</span><br><span class="line">            <span class="string">&quot;end_offset&quot;</span>: 5,</span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;&lt;IDEOGRAPHIC&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;position&quot;</span>: 4</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
 <li><p>使用ik分词器后的效果：</p>
@@ -831,9 +831,9 @@
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://tangmenjue.top">唐抉</a>
-            <p>原文链接：<a href="http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/">http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/</a>
-            <p>发表日期：<a href="http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/">November 18th 2022, 4:26:24 pm</a>
-            <p>更新日期：<a href="http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/">November 18th 2022, 4:26:24 pm</a>
+            <p>原文链接：<a href="http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/">http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/</a>
+            <p>发表日期：<a href="http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/">January 13th 2023, 5:20:41 pm</a>
+            <p>更新日期：<a href="http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/">January 13th 2023, 5:20:41 pm</a>
             <p>版权声明：
 			<!--如果有设置theme.since，并且时间小于当前时间（年份），形式为：@ 2018 - 2019(+作者/标题)；否则默认为当前年份(+作者/标题)。 -->
 			
@@ -847,17 +847,12 @@
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/" title="Docker应用部署基础">
-                    <div class="nextTitle">Docker应用部署基础</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" title="企业微信之企业应用开发流程">
-                    <div class="prevTitle">企业微信之企业应用开发流程</div>
+                <a href="/2022/12/16/YAML%E4%B8%8ERedis%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%94%A8/" title="YAML与Redis的基本运用">
+                    <div class="prevTitle">YAML与Redis的基本运用</div>
                 </a>
             
         </li>
@@ -1648,10 +1643,6 @@
         
         
         
-        
-        
-        
-        
     
     
     
@@ -1668,6 +1659,21 @@
     
         
             
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/13</span>
+            <a class="archive-post-title" href="/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/">python环境中Elasticsearch的使用</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
@@ -1688,12 +1694,6 @@
         <li class="archive-post-item">
             <span class="archive-post-date">12/06</span>
             <a class="archive-post-title" href="/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/">Docker应用部署基础</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/18</span>
-            <a class="archive-post-title" href="/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/">python环境中Elasticsearch的使用</a>
         </li>
     
         
@@ -2048,6 +2048,11 @@
                 Elasticsearch
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="企业微信">
                 <span class="iconfont-archer">&#xe606;</span>
                 企业微信
@@ -2056,11 +2061,6 @@
             <span class="sidebar-tag-name" data-tags="应用开发">
                 <span class="iconfont-archer">&#xe606;</span>
                 应用开发
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS
             </span>
         
             <span class="sidebar-tag-name" data-tags="HTML">
@@ -2124,14 +2124,14 @@
             操作系统
         </span>
     
-        <span class="sidebar-category-name" data-categories="学习笔记">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习笔记
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习笔记
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">

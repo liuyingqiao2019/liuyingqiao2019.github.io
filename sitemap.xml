@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://tangmenjue.top/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2023-01-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://tangmenjue.top/2022/12/16/YAML%E4%B8%8ERedis%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%94%A8/</loc>
     
     <lastmod>2022-12-16</lastmod>
@@ -23,15 +32,6 @@
     <loc>http://tangmenjue.top/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/</loc>
     
     <lastmod>2022-12-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tangmenjue.top/2022/11/18/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2022-11-18</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -571,6 +571,13 @@
   </url>
   
   <url>
+    <loc>http://tangmenjue.top/tags/CSS/</loc>
+    <lastmod>2023-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://tangmenjue.top/tags/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1/</loc>
     <lastmod>2023-01-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -579,13 +586,6 @@
   
   <url>
     <loc>http://tangmenjue.top/tags/%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2023-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tangmenjue.top/tags/CSS/</loc>
     <lastmod>2023-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -664,14 +664,14 @@
   </url>
   
   <url>
-    <loc>http://tangmenjue.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <loc>http://tangmenjue.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2023-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tangmenjue.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <loc>http://tangmenjue.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2023-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

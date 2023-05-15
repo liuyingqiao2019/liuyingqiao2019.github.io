@@ -335,7 +335,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">4.4k</span>阅读时长: <span class="post-count reading-time">20 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.8k</span>阅读时长: <span class="post-count reading-time">18 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -549,19 +549,6 @@
 <h3 id="counter">Counter</h3>
 <p>Counter是一个简单的计数器，也是dict的一个子类，可以统计字符出现的个数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">c=Counter()</span><br><span class="line"><span class="keyword">for</span> ch <span class="keyword">in</span> <span class="string">&#x27;programming&#x27;</span>:</span><br><span class="line">    c[ch]=c[ch]+<span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(c)    </span><br><span class="line">c.update(<span class="string">&#x27;hello&#x27;</span>)<span class="comment">#更新数据</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;r&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;g&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;m&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;p&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;o&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;i&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;n&#x27;</span>: <span class="number">1</span>&#125;)</span><br><span class="line">Counter(&#123;<span class="string">&#x27;r&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;o&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;g&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;m&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;l&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;p&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;i&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;n&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;h&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;e&#x27;</span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="base64">base64</h2>
-<p>Base64是一种用64个字符来表示任意二进制数据的方法。</p>
-<h2 id="struct">struct</h2>
-<p>struct可以解决<code>bytes</code>和其他二进制数据类型的转换。</p>
-<h2 id="hashlib">hashlib</h2>
-<p>Python的hashlib提供了常见的摘要算法，如MD5，SHA1等等。</p>
-<p>摘要算法又称哈希算法、散列算法。它通过一个函数，把任意长度的数据转换为一个长度固定的数据串（通常用16进制的字符串表示）。</p>
-<h2 id="hmac">hmac</h2>
-<p>Python自带的hmac模块实现了标准的Hmac算法，通过一个标准算法，在计算哈希的过程中，把key混入计算过程中。</p>
-<h2 id="itertools">itertools</h2>
-<p>Python的内建模块<code>itertools</code>提供了非常有用的用于操作迭代对象的函数。</p>
-<h2 id="contextlib">contextlib</h2>
-<p>在Python中，读写文件这样的资源要特别注意，必须在使用完毕后正确关闭它们。Python的标准库<code>contextlib</code>提供了更简单的写法，以实现上下文管理。</p>
 <h2 id="urllib">urllib</h2>
 <p>urllib提供了一系列用于操作URL的功能。</p>
 <h3 id="get">Get</h3>
@@ -580,16 +567,7 @@
 <h3 id="handler">Handler</h3>
 <p>若需要更复杂的控制，比如通过一个Proxy去访问网站，需要利用<code>ProxyHandler</code>来处理，例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">proxy_handler = urllib.request.ProxyHandler(&#123;<span class="string">&#x27;http&#x27;</span>: <span class="string">&#x27;http://www.example.com:3128/&#x27;</span>&#125;)</span><br><span class="line">proxy_auth_handler = urllib.request.ProxyBasicAuthHandler()</span><br><span class="line">proxy_auth_handler.add_password(<span class="string">&#x27;realm&#x27;</span>, <span class="string">&#x27;host&#x27;</span>, <span class="string">&#x27;username&#x27;</span>, <span class="string">&#x27;password&#x27;</span>)</span><br><span class="line">opener = urllib.request.build_opener(proxy_handler, proxy_auth_handler)</span><br><span class="line"><span class="keyword">with</span> opener.<span class="built_in">open</span>(<span class="string">&#x27;http://www.example.com/login.html&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h2 id="xml">XML</h2>
-<p>操作XML有两种方法：DOM和SAX。DOM会把整个XML读入内存，解析为树，因此占用内存大，解析慢，优点是可以任意遍历树的节点。SAX是流模式，边读边解析，占用内存小，解析快，缺点是我们需要自己处理事件。</p>
-<p>正常情况下，优先考虑SAX，因为DOM实在太占内存。</p>
-<p>在Python中使用SAX解析XML非常简洁，通常我们关心的事件是<code>start_element</code>，<code>end_element</code>和<code>char_data</code>，准备好这3个函数，然后就可以解析xml了。</p>
-<h2 id="htmlparser">HTMLParser</h2>
-<p>Python提供了HTMLParser来非常方便地解析HTML。</p>
 <h1 id="常用第三方模块">常用第三方模块</h1>
-<h2 id="pillow">Pillow</h2>
-<p>PIL：Python Imaging Library，已经是Python平台事实上的图像处理标准库了。PIL功能非常强大，但API却非常简单易用。</p>
-<p>由于PIL仅支持到Python 2.7，加上年久失修，于是一群志愿者在PIL的基础上创建了兼容的版本，名字叫<a target="_blank" rel="noopener" href="https://github.com/python-pillow/Pillow">Pillow</a>，支持最新Python 3.x，又加入了许多新特性，因此，我们可以直接安装使用Pillow。</p>
 <h2 id="requests">requests</h2>
 <p>Python内置的urllib模块，用于访问网络资源。但是，它用起来比较麻烦，而且，缺少很多实用的高级功能。</p>
 <p>更好的方案是使用requests。它是一个Python第三方库，处理URL资源特别方便。</p>
@@ -610,7 +588,7 @@
 <p>在读取文件时，注意务必使用<code>'rb'</code>即二进制模式读取，这样获取的<code>bytes</code>长度才是文件的长度。</p>
 <p>requests对获取HTTP响应的其他信息也非常简单。例如，获取响应头：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(r.headers)</span><br><span class="line"><span class="built_in">print</span>(r.headers[<span class="string">&#x27;Content-Type&#x27;</span>])</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">&#123;Content-<span class="type">Type</span><span class="string">&#x27;: &#x27;</span>text/html; charset=utf-<span class="number">8</span><span class="string">&#x27;, &#x27;</span>Transfer-Encoding<span class="string">&#x27;: &#x27;</span>chunked<span class="string">&#x27;, &#x27;</span>Content-Encoding<span class="string">&#x27;: &#x27;</span>gzip<span class="string">&#x27;, ...&#125;</span></span><br><span class="line"><span class="string">&#x27;</span>text/html; charset=utf-<span class="number">8</span><span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>requests对Cookie做了特殊处理，使得我们不必解析Cookie就可以轻松获取指定的Cookie：</p>
+<p>requests对Cookie做了特殊处理，使得不必解析Cookie就可以轻松获取指定的Cookie：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(r.cookies[<span class="string">&#x27;ts&#x27;</span>])</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="string">&#x27;example_cookie_12345&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>要在请求中传入Cookie，只需准备一个dict传入<code>cookies</code>参数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cs=&#123;<span class="string">&#x27;token&#x27;</span>:<span class="string">&#x27;12345&#x27;</span>,<span class="string">&#x27;status&#x27;</span>:<span class="string">&#x27;working&#x27;</span>&#125;</span><br><span class="line">r=requests.get(url,cookies=cs)</span><br></pre></td></tr></table></figure>
@@ -621,14 +599,11 @@
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests </span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment">#基础数据</span></span><br><span class="line">headers=&#123;<span class="string">&#x27;Content-Type&#x27;</span>:<span class="string">&#x27;application/json&#x27;</span>&#125;</span><br><span class="line">url=<span class="string">&#x27;GetToken的URL地址&#x27;</span><span class="comment">#URL地址以http://开头，后接ip形式的url</span></span><br><span class="line">url_create=<span class="string">&#x27;CreateTask的URL地址&#x27;</span></span><br><span class="line">url_del=<span class="string">&#x27;DeleteTask的URL地址&#x27;</span></span><br><span class="line">data=&#123;<span class="string">&quot;app_id&quot;</span>:<span class="string">&quot;app_id的数值&quot;</span>,<span class="string">&quot;app_secret&quot;</span>:<span class="string">&quot;app_secret的数值&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取调用凭证access_token</span></span><br><span class="line">r=requests.post(url,json=data)</span><br><span class="line">token=json.loads(r.text)[<span class="string">&#x27;access_token&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成待办事项</span></span><br><span class="line">data_create=&#123;<span class="string">&quot;access_token&quot;</span>:token,<span class="string">&quot;title&quot;</span>:<span class="string">&quot;20221025测试&quot;</span>,<span class="string">&quot;task_segment&quot;</span>:<span class="string">&quot;报名&quot;</span>,\</span><br><span class="line">    <span class="string">&quot;task_url&quot;</span>:<span class="string">&quot;http://tangmenjue.top/&quot;</span>,<span class="string">&quot;staff_id&quot;</span>:<span class="string">&quot;staff_id的数值&quot;</span>&#125;</span><br><span class="line">r_create=requests.post(url_create,json=data_create)</span><br><span class="line"><span class="built_in">print</span>(r_create.text)</span><br><span class="line"></span><br><span class="line">r_del=requests.post(url,json=data)</span><br><span class="line">task_id=json.loads(r_create.text)[<span class="string">&#x27;task_id&#x27;</span>]</span><br><span class="line"><span class="comment"># task_id=&#x27;17837ed5-48e4-4120-964a-477d258aaeb3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#确认待办事项已生成后，调用删除接口删除待办。</span></span><br><span class="line">data_del=&#123;<span class="string">&quot;access_token&quot;</span>:token,<span class="string">&#x27;task_id&#x27;</span>:task_id&#125;</span><br><span class="line">r_del=requests.post(url_del,json=data_del)</span><br><span class="line"><span class="built_in">print</span>(r_del.text)</span><br></pre></td></tr></table></figure>
 <h2 id="chardet">chardet</h2>
-<p>字符串编码一直是令人非常头疼的问题，尤其是我们在处理一些不规范的第三方网页的时候。虽然Python提供了Unicode表示的<code>str</code>和<code>bytes</code>两种数据类型，并且可以通过<code>encode()</code>和<code>decode()</code>方法转换，但是，在不知道编码的情况下，对<code>bytes</code>做<code>decode()</code>不好做。</p>
-<p>对于未知编码的<code>bytes</code>，要把它转换成<code>str</code>，需要先“猜测”编码。猜测的方式是先收集各种编码的特征字符，根据特征字符判断，就能有很大概率“猜对”。</p>
-<p>当然，我们肯定不能从头自己写这个检测编码的功能，这样做费时费力。chardet这个第三方库正好就派上了用场。用它来检测编码，简单易用。</p>
-<h2 id="psutil">psutil</h2>
-<p>在Python中获取系统信息的另一个好办法是使用<code>psutil</code>这个第三方模块。顾名思义，psutil = process and system utilities，它不仅可以通过一两行代码实现系统监控，还可以跨平台使用，支持Linux／UNIX／OSX／Windows等，是系统管理员和运维小伙伴不可或缺的必备模块。</p>
+<p>字符串编码一直是令人非常头疼的问题，尤其是在处理一些不规范的第三方网页的时候。虽然Python提供了Unicode表示的<code>str</code>和<code>bytes</code>两种数据类型，并且可以通过<code>encode()</code>和<code>decode()</code>方法转换，但是，在不知道编码的情况下，对<code>bytes</code>做<code>decode()</code>不好做。</p>
+<p>对于未知编码的<code>bytes</code>，要把它转换成<code>str</code>，需要先“猜测”编码。猜测的方式是先收集各种编码的特征字符，根据特征字符判断，就能有很大概率“猜对”，此时可以用chardet来检测编码。</p>
 <h1 id="venv">venv</h1>
 <p>在开发Python应用程序的时候，系统安装的Python3只有一个版本：3.10。所有第三方的包都会被<code>pip</code>安装到Python3的<code>site-packages</code>目录下。</p>
-<p>如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python 3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？</p>
+<p>如果要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python 3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？</p>
 <p>这种情况下，每个应用可能需要各自拥有一套“独立”的Python运行环境。venv就是用来为一个应用创建一套“隔离”的Python运行环境。</p>
 
     </article>
@@ -828,7 +803,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97"><span class="toc-number">1.</span> <span class="toc-text">常用内建模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#datetime"><span class="toc-number">1.1.</span> <span class="toc-text">datetime</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.1.</span> <span class="toc-text">获取当前日期和时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.2.</span> <span class="toc-text">获取指定日期和时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E8%BD%AC%E6%8D%A2%E4%B8%BAtimestamp"><span class="toc-number">1.1.3.</span> <span class="toc-text">datetime转换为timestamp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#timestamp%E8%BD%AC%E6%8D%A2%E4%B8%BAdatetime"><span class="toc-number">1.1.4.</span> <span class="toc-text">timestamp转换为datetime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#str%E8%BD%AC%E6%8D%A2%E4%B8%BAdatetime"><span class="toc-number">1.1.5.</span> <span class="toc-text">str转换为datetime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E8%BD%AC%E6%8D%A2%E4%B8%BAstr"><span class="toc-number">1.1.6.</span> <span class="toc-text">datetime转换为str</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E5%8A%A0%E5%87%8F"><span class="toc-number">1.1.7.</span> <span class="toc-text">datetime加减</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2%E4%B8%BAutc%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.8.</span> <span class="toc-text">本地时间转换为UTC时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%8C%BA%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.1.9.</span> <span class="toc-text">时区转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#collections"><span class="toc-number">1.2.</span> <span class="toc-text">collections</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#namedtuple"><span class="toc-number">1.2.1.</span> <span class="toc-text">namedtuple</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deque"><span class="toc-number">1.2.2.</span> <span class="toc-text">deque</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#defaultdict"><span class="toc-number">1.2.3.</span> <span class="toc-text">defaultdict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ordereddict"><span class="toc-number">1.2.4.</span> <span class="toc-text">OrderedDict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chainmap"><span class="toc-number">1.2.5.</span> <span class="toc-text">ChainMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#counter"><span class="toc-number">1.2.6.</span> <span class="toc-text">Counter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#base64"><span class="toc-number">1.3.</span> <span class="toc-text">base64</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#struct"><span class="toc-number">1.4.</span> <span class="toc-text">struct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashlib"><span class="toc-number">1.5.</span> <span class="toc-text">hashlib</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hmac"><span class="toc-number">1.6.</span> <span class="toc-text">hmac</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#itertools"><span class="toc-number">1.7.</span> <span class="toc-text">itertools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#contextlib"><span class="toc-number">1.8.</span> <span class="toc-text">contextlib</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#urllib"><span class="toc-number">1.9.</span> <span class="toc-text">urllib</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#get"><span class="toc-number">1.9.1.</span> <span class="toc-text">Get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#post"><span class="toc-number">1.9.2.</span> <span class="toc-text">Post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#handler"><span class="toc-number">1.9.3.</span> <span class="toc-text">Handler</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml"><span class="toc-number">1.10.</span> <span class="toc-text">XML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#htmlparser"><span class="toc-number">1.11.</span> <span class="toc-text">HTMLParser</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">常用第三方模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pillow"><span class="toc-number">2.1.</span> <span class="toc-text">Pillow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#requests"><span class="toc-number">2.2.</span> <span class="toc-text">requests</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requests%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.1.</span> <span class="toc-text">requests的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">2.2.2.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chardet"><span class="toc-number">2.3.</span> <span class="toc-text">chardet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#psutil"><span class="toc-number">2.4.</span> <span class="toc-text">psutil</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#venv"><span class="toc-number">3.</span> <span class="toc-text">venv</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97"><span class="toc-number">1.</span> <span class="toc-text">常用内建模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#datetime"><span class="toc-number">1.1.</span> <span class="toc-text">datetime</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.1.</span> <span class="toc-text">获取当前日期和时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.2.</span> <span class="toc-text">获取指定日期和时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E8%BD%AC%E6%8D%A2%E4%B8%BAtimestamp"><span class="toc-number">1.1.3.</span> <span class="toc-text">datetime转换为timestamp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#timestamp%E8%BD%AC%E6%8D%A2%E4%B8%BAdatetime"><span class="toc-number">1.1.4.</span> <span class="toc-text">timestamp转换为datetime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#str%E8%BD%AC%E6%8D%A2%E4%B8%BAdatetime"><span class="toc-number">1.1.5.</span> <span class="toc-text">str转换为datetime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E8%BD%AC%E6%8D%A2%E4%B8%BAstr"><span class="toc-number">1.1.6.</span> <span class="toc-text">datetime转换为str</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E5%8A%A0%E5%87%8F"><span class="toc-number">1.1.7.</span> <span class="toc-text">datetime加减</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2%E4%B8%BAutc%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.8.</span> <span class="toc-text">本地时间转换为UTC时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%8C%BA%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.1.9.</span> <span class="toc-text">时区转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#collections"><span class="toc-number">1.2.</span> <span class="toc-text">collections</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#namedtuple"><span class="toc-number">1.2.1.</span> <span class="toc-text">namedtuple</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deque"><span class="toc-number">1.2.2.</span> <span class="toc-text">deque</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#defaultdict"><span class="toc-number">1.2.3.</span> <span class="toc-text">defaultdict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ordereddict"><span class="toc-number">1.2.4.</span> <span class="toc-text">OrderedDict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chainmap"><span class="toc-number">1.2.5.</span> <span class="toc-text">ChainMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#counter"><span class="toc-number">1.2.6.</span> <span class="toc-text">Counter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#urllib"><span class="toc-number">1.3.</span> <span class="toc-text">urllib</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#get"><span class="toc-number">1.3.1.</span> <span class="toc-text">Get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#post"><span class="toc-number">1.3.2.</span> <span class="toc-text">Post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#handler"><span class="toc-number">1.3.3.</span> <span class="toc-text">Handler</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">常用第三方模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#requests"><span class="toc-number">2.1.</span> <span class="toc-text">requests</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requests%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">requests的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">2.1.2.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chardet"><span class="toc-number">2.2.</span> <span class="toc-text">chardet</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#venv"><span class="toc-number">3.</span> <span class="toc-text">venv</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1097,7 +1072,24 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1544,7 +1536,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 51
+        Total : 52
         </div>
         <!-- search  -->
         
@@ -1558,6 +1550,12 @@
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span>
+            <a class="archive-post-title" href="/2023/05/08/DBeaver%20Enterprise%20Edition%2022.0%20%E4%BC%81%E4%B8%9A%E7%89%88%E7%A0%B4%E8%A7%A3%E6%96%B9%E6%B3%95/">DBeaver Enterprise Edition 22.0 企业版破解方法</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">03/31</span>
@@ -1888,6 +1886,21 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库工具">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库工具
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -1901,16 +1914,6 @@
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -1928,11 +1931,6 @@
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
-                <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
@@ -1943,24 +1941,14 @@
                 PgSQL
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue.js">
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue.js
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="前端">
-                <span class="iconfont-archer">&#xe606;</span>
-                前端
+                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
                 闪退
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="YAML">
@@ -1971,6 +1959,21 @@
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue.js">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue.js
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="前端">
+                <span class="iconfont-archer">&#xe606;</span>
+                前端
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2034,14 +2037,19 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Linux">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Linux
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库工具">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库工具
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Linux">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Linux
         </span>
     
         <span class="sidebar-category-name" data-categories="Web框架">
@@ -2049,19 +2057,9 @@
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2069,9 +2067,14 @@
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2084,6 +2087,11 @@
             YAML
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Elasticsearch">
             <span class="iconfont-archer">&#xe60a;</span>
             Elasticsearch
@@ -2094,19 +2102,19 @@
             企业微信
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
         </span>
     
-        <span class="sidebar-category-name" data-categories="python">
+        <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            python
+            前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
         </span>
     
         <span class="sidebar-category-name" data-categories="应用开发">
@@ -2114,9 +2122,9 @@
             应用开发
         </span>
     
-        <span class="sidebar-category-name" data-categories="XAMPP">
+        <span class="sidebar-category-name" data-categories="python">
             <span class="iconfont-archer">&#xe60a;</span>
-            XAMPP
+            python
         </span>
     
     </div>

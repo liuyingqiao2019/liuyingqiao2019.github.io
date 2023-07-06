@@ -428,6 +428,53 @@
         
         
             
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/07/06/k8s%E4%B8%8A%E4%BA%91%E6%95%99%E7%A8%8B/">
+                
+                <span class="abstract-title-text">k8s上云教程</span>
+            </a>
+            <div class="abstract-content">
+                请按照gitlab/k8s上云改造指南操作完1-5小结后，再看本文章。
+在做好改造指南里的准备后，需清楚上云步骤为以下三步：
+
+构建后端镜像并推送到Harbor仓库
+构建前端镜像并推送到Harbor仓库
+配置k8s实现应用上云
+
+本文将详细介绍这三步的具体操作。
+构建后端镜像并推送到Harbor仓库
+
+先在后端框架目录(本文中为：F:\wxworksendmsg\sendmsg_back)新建dockerfile文件如下图所示：
+
+dockerfile具体代码如下，其功能为将把后端项目打包进python镜像的code目录下并下载依赖包，指定目录data和logs的...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/07/06">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/06</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="k8s">k8s</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
             
         
         <article class="index-post">
@@ -786,49 +833,6 @@ nginx下载及配置
                 <!-- date -->
                 <div class="abstract-date" title="Last updated: 2022/12/15">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/15</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="应用部署">应用部署</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/">
-                
-                <span class="abstract-title-text">Docker应用部署基础</span>
-            </a>
-            <div class="abstract-content">
-                Docker
-容器简介
-什么是Linux容器
-Linux容器是与系统其他部分隔离开的一系列进程。它在另一个镜像中运行，并由该镜像提供支持进程所需的全部文件。容器提供的镜像包括了应用的所有依赖项，因此在开发到测试再到生产的过程中，容器都具有可移植性和一致性。
-容器等同于虚拟化吗
-容器不完全是虚拟化。虚拟化使得许多系统可同时在单个系统上运行，而容器可共享同一个操作系统的内核，将应用进程与系统其他部分隔离开。
-这便意味着，即使是让多个操作系统在单个虚拟机监控程序上运行以实现虚拟化，也不能达到和使用容器同等的轻量级效果。Linux容器可从单个操作系统运行，在所有容器中共享该操作系统，...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/12/06">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/06</span>
                 </div>
                 <!-- tags -->
                 
@@ -1220,7 +1224,28 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1679,7 +1704,7 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 52
+        Total : 53
         </div>
         <!-- search  -->
         
@@ -1693,6 +1718,12 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span>
+            <a class="archive-post-title" href="/2023/07/06/k8s%E4%B8%8A%E4%BA%91%E6%95%99%E7%A8%8B/">k8s上云教程</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">05/08</span>
@@ -2029,21 +2060,6 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="数据库工具">
-                <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2057,6 +2073,21 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库工具">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库工具
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2074,6 +2105,11 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
@@ -2084,9 +2120,14 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
                 PgSQL
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="Vue.js">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                Vue.js
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="前端">
+                <span class="iconfont-archer">&#xe606;</span>
+                前端
             </span>
         
             <span class="sidebar-tag-name" data-tags="闪退">
@@ -2109,14 +2150,9 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue.js">
+            <span class="sidebar-tag-name" data-tags="k8s">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue.js
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="前端">
-                <span class="iconfont-archer">&#xe606;</span>
-                前端
+                k8s
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2180,9 +2216,9 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Docker">
+        <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
-            Docker
+            Linux
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库工具">
@@ -2190,24 +2226,14 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             数据库工具
         </span>
     
-        <span class="sidebar-category-name" data-categories="Linux">
+        <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
-            Linux
+            Docker
         </span>
     
         <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
             Web框架
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="学习笔记">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习笔记
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="数据库">
-            <span class="iconfont-archer">&#xe60a;</span>
-            数据库
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2220,6 +2246,21 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             Kubernetes
         </span>
     
+        <span class="sidebar-category-name" data-categories="学习笔记">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
             edge
@@ -2230,9 +2271,9 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="k8s">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            k8s
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2245,19 +2286,19 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             企业微信
         </span>
     
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="XAMPP">
+        <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
-            XAMPP
+            Redis
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
         </span>
     
         <span class="sidebar-category-name" data-categories="应用开发">
@@ -2265,9 +2306,9 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             应用开发
         </span>
     
-        <span class="sidebar-category-name" data-categories="python">
+        <span class="sidebar-category-name" data-categories="XAMPP">
             <span class="iconfont-archer">&#xe60a;</span>
-            python
+            XAMPP
         </span>
     
     </div>

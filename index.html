@@ -443,12 +443,53 @@
             
         
         <article class="index-post">
-            <a class="abstract-title" href="/2023/07/06/k8s%E4%B8%8A%E4%BA%91%E6%95%99%E7%A8%8B/">
+            <a class="abstract-title" href="/2023/07/12/Vue%E6%B0%B4%E5%8D%B0%E8%87%AA%E9%80%82%E5%BA%94%E7%AA%97%E5%8F%A3%E6%96%B9%E6%B3%95/">
                 
-                <span class="abstract-title-text">k8s上云教程</span>
+                <span class="abstract-title-text">Vue 水印自适应窗口方法</span>
             </a>
             <div class="abstract-content">
-                请按照gitlab/k8s上云改造指南操作完1-5小结后，再看本文章。
+                通过使用Vue的生命周期钩子函数和window对象的resize事件来实现水印根据窗口大小适配的功能：
+
+在Vue文件的script模块中 引入水印组件：
+1import watermark from &#x27;@zsit/watermark&#x27;;  
+在script模块的export default里，通过钩子函数mounted监听窗口大小的变化，并在销毁组件前移除事件监听器：
+123456mounted()&#123;  window.addEventListener(&#x27;resize&#x27;,this.handleResize)&#125;,befo...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/07/12">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/12</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue">Vue</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/07/06/k8s%E4%B8%8A%E4%BA%91%E5%AE%9E%E6%93%8D%E6%95%99%E7%A8%8B/">
+                
+                <span class="abstract-title-text">k8s上云实操指引</span>
+            </a>
+            <div class="abstract-content">
+                温馨提示
+请按照gitlab/k8s上云改造指南操作完1-5小结后，再看本文章。
 在做好改造指南里的准备后，需清楚上云步骤为以下三步：
 
 构建后端镜像并推送到Harbor仓库
@@ -460,7 +501,7 @@
 
 先在后端框架目录(本文中为：F:\wxworksendmsg\sendmsg_back)新建dockerfile文件如下图所示：
 
-dockerfile具体代码如下，其功能为将把后端项目打包进python镜像的code目录下并下载依赖包，指定目录data和logs的...
+dockerfile具体代码如下，其功能为将把后端项目打包进python镜像的code目录下并下载依赖包，指定目录data...
             </div>
             <!-- read more -->
             
@@ -823,46 +864,6 @@ YAML用#表示注释，且只支持单行注释
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/12/15/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/">
-                
-                <span class="abstract-title-text">Docker应用部署实战</span>
-            </a>
-            <div class="abstract-content">
-                Centos部署应用步骤
-配置代码运行环境
-nginx下载及配置
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#centos下载apache[root@localhost admin]# yum install httpd #centos下载nginx[root@localhost admin]# yum install epel-release[root@localhost httpd]# yum...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/12/15">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/15</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="应用部署">应用部署</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -966,7 +967,7 @@ nginx下载及配置
     <!--添加网站总字数-->
         <p style="font-size:1.2rem;font-weight:bold;color:#777;margin:0.5rem 0;">站点信息</p>
         <div style="margin:0.5rem 0;">
-            <span class="post-count word-count">本站总字数: 187.4k</span>
+            <span class="post-count word-count">本站总字数: 189.3k</span>
             <br/>
         <!--添加网站运行时间-->
             <span id="timeDate">载入天数...</span>
@@ -1381,7 +1382,28 @@ nginx下载及配置
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1856,7 +1878,7 @@ nginx下载及配置
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 53
+        Total : 54
         </div>
         <!-- search  -->
         
@@ -1872,8 +1894,14 @@ nginx下载及配置
             
         
         <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span>
+            <a class="archive-post-title" href="/2023/07/12/Vue%E6%B0%B4%E5%8D%B0%E8%87%AA%E9%80%82%E5%BA%94%E7%AA%97%E5%8F%A3%E6%96%B9%E6%B3%95/">Vue 水印自适应窗口方法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
             <span class="archive-post-date">07/06</span>
-            <a class="archive-post-title" href="/2023/07/06/k8s%E4%B8%8A%E4%BA%91%E6%95%99%E7%A8%8B/">k8s上云教程</a>
+            <a class="archive-post-title" href="/2023/07/06/k8s%E4%B8%8A%E4%BA%91%E5%AE%9E%E6%93%8D%E6%95%99%E7%A8%8B/">k8s上云实操指引</a>
         </li>
     
         
@@ -2282,9 +2310,19 @@ nginx下载及配置
                 前端
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
                 闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="YAML">
@@ -2295,11 +2333,6 @@ nginx下载及配置
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="k8s">
@@ -2342,6 +2375,11 @@ nginx下载及配置
                 结构性思维
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2350,11 +2388,6 @@ nginx下载及配置
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2413,6 +2446,11 @@ nginx下载及配置
             前端
         </span>
     
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
+        </span>
+    
         <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
             edge
@@ -2423,14 +2461,14 @@ nginx下载及配置
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="k8s">
-            <span class="iconfont-archer">&#xe60a;</span>
-            k8s
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Elasticsearch">
             <span class="iconfont-archer">&#xe60a;</span>
             Elasticsearch
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="k8s">
+            <span class="iconfont-archer">&#xe60a;</span>
+            k8s
         </span>
     
         <span class="sidebar-category-name" data-categories="企业微信">

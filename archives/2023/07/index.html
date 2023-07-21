@@ -430,6 +430,46 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/07/18/Vue%20%E7%9B%91%E5%90%AC%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96%E5%B9%B6%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE/">
+                
+                <span class="abstract-title-text">Vue 监听兄弟组件数据变化并实时更新数据</span>
+            </a>
+            <div class="abstract-content">
+                在实际项目开发中，有时会遇到组件B需要监听兄弟组件A的数据是否有改动，并根据兄弟组件A的改动来更新自身数据或执行一定操作的需求。下面将介绍实现这一过程的方法：
+
+在Vue项目的main.js中 添加下面语句：
+1Vue.prototype.$eventBus = new Vue()
+在兄弟组件A中所要监听的事件中添加如下自定义事件的代码this.$eventBus.$emit('SyncData')。如需要监听addDataA事件的变化，则组件A中script模块的代码如下所示：
+123456789101112 methods: &#123;  addDataA() &#123...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/07/18">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/18</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue">Vue</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2023/07/12/Vue%E6%B0%B4%E5%8D%B0%E8%87%AA%E9%80%82%E5%BA%94%E7%AA%97%E5%8F%A3%E6%96%B9%E6%B3%95/">
                 
                 <span class="abstract-title-text">Vue 水印自适应窗口方法</span>
@@ -891,7 +931,18 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1382,7 +1433,7 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 54
+        Total : 55
         </div>
         <!-- search  -->
         
@@ -1396,6 +1447,12 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span>
+            <a class="archive-post-title" href="/2023/07/18/Vue%20%E7%9B%91%E5%90%AC%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96%E5%B9%B6%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE/">Vue 监听兄弟组件数据变化并实时更新数据</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">07/12</span>
@@ -1759,11 +1816,6 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
                 网络管理
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库工具">
-                <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Docker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Docker
@@ -1772,6 +1824,11 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
             <span class="sidebar-tag-name" data-tags="应用部署">
                 <span class="iconfont-archer">&#xe606;</span>
                 应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库工具">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -1789,9 +1846,9 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                PgSQL
             </span>
         
             <span class="sidebar-tag-name" data-tags="数据库">
@@ -1799,9 +1856,14 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
                 数据库
             </span>
         
-            <span class="sidebar-tag-name" data-tags="PgSQL">
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -1814,19 +1876,9 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
                 闪退
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="YAML">
@@ -1837,6 +1889,11 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="k8s">
@@ -1874,16 +1931,6 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
                 JavaScript
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -1892,6 +1939,16 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -1910,14 +1967,14 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库工具">
-            <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库工具">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Web框架">
@@ -1930,11 +1987,6 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
             操作系统
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
@@ -1945,14 +1997,19 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -1965,9 +2022,9 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
+        <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
+            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="k8s">
@@ -1975,19 +2032,19 @@ dockerfile具体代码如下，其功能为将把后端项目打包进python镜�
             k8s
         </span>
     
-        <span class="sidebar-category-name" data-categories="企业微信">
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
             <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="前端框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端框架
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="python">

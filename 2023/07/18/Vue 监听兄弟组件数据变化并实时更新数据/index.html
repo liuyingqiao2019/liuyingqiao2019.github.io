@@ -335,7 +335,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">382</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">611</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -503,9 +503,27 @@
 <li><p>在兄弟组件A中所要监听的事件中添加如下自定义事件的代码<code>this.$eventBus.$emit('SyncData')</code>。如需要监听<code>addDataA</code>事件的变化，则组件A中<code>script</code>模块的代码如下所示：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> methods<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  addDataA() <span class="punctuation">&#123;</span><span class="comment">//函数内容可自行替换</span></span><br><span class="line">    axios.post(&#x27;testA&#x27;)</span><br><span class="line">      .then((res) =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">        console.log(res.data)</span><br><span class="line">        this.$eventBus.$emit(&#x27;SyncData&#x27;)<span class="comment">//SyncData为自定义事件名，可修改</span></span><br><span class="line">      <span class="punctuation">&#125;</span>)</span><br><span class="line">      .catch((err) =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">        console.log(err)</span><br><span class="line">      <span class="punctuation">&#125;</span>)</span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>在需要实时更新的组件B中添加监听方法的变化，就可以实现实时更新数据。在组件B的<code>script</code>模块中添加以下代码：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mounted()<span class="punctuation">&#123;</span></span><br><span class="line">  this.$eventBus.$on(<span class="string">&quot;SyncData&quot;</span><span class="punctuation">,</span>()=&gt;<span class="punctuation">&#123;</span><span class="comment">//监听自定义事件是否被触发</span></span><br><span class="line">    this.onLoadDataB()<span class="comment">//自定义事件被触发时执行该函数</span></span><br><span class="line">  <span class="punctuation">&#125;</span>)</span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">methods<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  onLoadDataB() <span class="punctuation">&#123;</span><span class="comment">//函数内容可自行替换</span></span><br><span class="line">    axios.get(&#x27;testB&#x27;)</span><br><span class="line">      .then((res) =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">       console.log(res.data)</span><br><span class="line">      <span class="punctuation">&#125;</span>)</span><br><span class="line">      .catch((err) =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">        console.log(err)</span><br><span class="line">      <span class="punctuation">&#125;</span>)</span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>至此，当兄弟组件A触发<code>addDataA</code>事件添加数据时，组件B便会触发事件<code>onLoadDataB</code>来加载数据。从而达到组件B随着兄弟组件A数据变化进行实时更新的目的。</p></li>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mounted()<span class="punctuation">&#123;</span></span><br><span class="line">  this.$eventBus.$on(<span class="string">&quot;SyncData&quot;</span><span class="punctuation">,</span>()=&gt;<span class="punctuation">&#123;</span><span class="comment">//监听自定义事件是否被触发</span></span><br><span class="line">    this.onLoadDataB()<span class="comment">//自定义事件被触发时执行该函数</span></span><br><span class="line">  <span class="punctuation">&#125;</span>)</span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">methods<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  onLoadDataB() <span class="punctuation">&#123;</span><span class="comment">//函数内容可自行替换</span></span><br><span class="line">    axios.get(&#x27;testB&#x27;)</span><br><span class="line">      .then((res) =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">       console.log(res.data)</span><br><span class="line">      <span class="punctuation">&#125;</span>)</span><br><span class="line">      .catch((err) =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">        console.log(err)</span><br><span class="line">      <span class="punctuation">&#125;</span>)</span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>为防止叠加调用<code>EventBus</code>，在组件B的<code>beforDestroy</code>生命钩子中，添加以下代码：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforDestroy()<span class="punctuation">&#123;</span></span><br><span class="line">       this.$eventBus.$off(<span class="string">&quot;SyncData&quot;</span>);  <span class="comment">//当这个组件销毁的时候bus也跟着一起销毁</span></span><br><span class="line">   <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>至此，当兄弟组件A触发<code>addDataA</code>事件添加数据时，组件B便会触发事件<code>onLoadDataB</code>来加载数据。从而达到组件B随着兄弟组件A数据变化进行实时更新的目的。</p></li>
 </ul>
+<hr>
+<h1 id="补充">补充：</h1>
+<p>使用EventBus的好处在于：</p>
+<ul>
+<li>可全局使用</li>
+<li>灵活性高，哪里需要放哪里，代码量少</li>
+<li>跨组件通信，无需使用缓存</li>
+</ul>
+<p>相较于vuex，使用EventBus的缺点有：</p>
+<ul>
+<li><code>$EventBus.$emit</code>和<code>$eventBus.$on</code>必须成对出现</li>
+<li>由于高灵活性，事件多了后，难以维护事件</li>
+<li>在<code>$eventBus.$on</code>的组件里必须手动销毁<code>$eventBus</code>，否则会引发多次执行</li>
+<li>复用性较差，需要在多个地方重复写逻辑</li>
+</ul>
+<p>综合优弊端分析可知：中大型项目不推荐用EventBus，建议用vuex做状态管理以便日后维护；若为小型项目，尤其是涉及多处跨组件通信时推荐使用EventBus</p>
 
     </article>
     <!-- license -->
@@ -699,7 +717,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">1.</span> <span class="toc-text">补充：</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -983,20 +1001,7 @@
         
         
         
-        
-        
-        
-        
-        
     
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -1485,7 +1490,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 55
+        Total : 54
         </div>
         <!-- search  -->
         
@@ -1509,12 +1514,6 @@
         <li class="archive-post-item">
             <span class="archive-post-date">07/12</span>
             <a class="archive-post-title" href="/2023/07/12/Vue%E6%B0%B4%E5%8D%B0%E8%87%AA%E9%80%82%E5%BA%94%E7%AA%97%E5%8F%A3%E6%96%B9%E6%B3%95/">Vue 水印自适应窗口方法</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">07/06</span>
-            <a class="archive-post-title" href="/2023/07/06/k8s%E4%B8%8A%E4%BA%91%E5%AE%9E%E6%93%8D%E6%95%99%E7%A8%8B/">k8s上云实操指引</a>
         </li>
     
         
@@ -1868,6 +1867,11 @@
                 网络管理
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库工具">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库工具
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Docker">
                 <span class="iconfont-archer">&#xe606;</span>
                 Docker
@@ -1876,11 +1880,6 @@
             <span class="sidebar-tag-name" data-tags="应用部署">
                 <span class="iconfont-archer">&#xe606;</span>
                 应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="数据库工具">
-                <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -1898,9 +1897,9 @@
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="PgSQL">
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
+                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="数据库">
@@ -1908,9 +1907,9 @@
                 数据库
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                PgSQL
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue">
@@ -1948,11 +1947,6 @@
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="k8s">
-                <span class="iconfont-archer">&#xe606;</span>
-                k8s
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
@@ -1983,6 +1977,11 @@
                 JavaScript
             </span>
         
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -1991,11 +1990,6 @@
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
             </span>
         
             <span class="sidebar-tag-name" data-tags="设计模式">
@@ -2019,14 +2013,14 @@
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库工具">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库工具
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
         </span>
     
         <span class="sidebar-category-name" data-categories="Web框架">
@@ -2039,6 +2033,11 @@
             操作系统
         </span>
     
+        <span class="sidebar-category-name" data-categories="Kubernetes">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Kubernetes
+        </span>
+    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
@@ -2047,11 +2046,6 @@
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2074,29 +2068,29 @@
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端框架
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="k8s">
-            <span class="iconfont-archer">&#xe60a;</span>
-            k8s
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Elasticsearch">
             <span class="iconfont-archer">&#xe60a;</span>
             Elasticsearch
         </span>
     
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
-        </span>
-    
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2107,11 +2101,6 @@
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="XAMPP">
-            <span class="iconfont-archer">&#xe60a;</span>
-            XAMPP
         </span>
     
     </div>

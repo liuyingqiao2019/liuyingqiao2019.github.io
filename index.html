@@ -443,6 +443,88 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/11/21/%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8el-editor%E7%BC%96%E8%BE%91%E5%99%A8/">
+                
+                <span class="abstract-title-text">在Vue中使用el-editor编辑器</span>
+            </a>
+            <div class="abstract-content">
+                前言
+实际项目中，多处使用到富文本编辑器，每次都配置会比较麻烦，故将要用到的功能封装到一起，需要时可直接调用，故发布了el-editor编辑器。
+富文本编辑器v1.0.1
+
+介绍
+
+编辑器基于vue-quill-editor和element封装，目前版本仅支持vue2
+与其他编辑器相比，本编辑器支持秀米编辑器、135编辑器样式的粘贴复制
+注意，当前编辑器仅提供前端代码，编辑器默认不转存秀米图表，若需要开启这一功能，需要向handlePic参数传真值true，然后编写一个后端接口来实现秀米图片的转存，接口名默认为editor/get_xiumi_pic，可通过参数picUR...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/11/21">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/11/21</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue">Vue</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/11/20/Vue%20%E5%B0%86%E7%BB%84%E4%BB%B6%E6%89%93%E5%8C%85%E5%B9%B6%E5%8F%91%E5%B8%83%E5%88%B0npm%E4%BB%93%E5%BA%93/">
+                
+                <span class="abstract-title-text">Vue 将组件打包并发布到npm仓库</span>
+            </a>
+            <div class="abstract-content">
+                在项目中遇到需要反复使用的代码时，通常会将其封装起来以待下一次的调用。若想要在不同项目里也能使用这些代码时，比较难在众多代码中找到需要的代码。而将组件打包并发布到npm库中，只需要记住相应的包名，便可从npm下载直接安装使用。
+全局注册组件
+
+在完成对应组件editor.vue的封装后，在组件存放目录下（这里默认为components)新建一个index.js文件用于将封装好的组件注册为全局组件，内容如下：
+123456789101112131415161718192021import editor from &#x27;./editor.vue&#x27;const compo...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/11/20">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/11/20</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue">Vue</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2023/11/02/js%E6%96%87%E4%BB%B6%E8%B0%83%E7%94%A8vue%E5%86%85%E7%9A%84%E6%96%B9%E6%B3%95%E5%B9%B6%E4%BC%A0%E5%80%BC/">
                 
                 <span class="abstract-title-text">js文件调用vue内的方法并传值</span>
@@ -761,92 +843,6 @@ docke...
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/02/23/%E5%88%9D%E6%8E%A2vue-quill-editor/">
-                
-                <span class="abstract-title-text">初探vue-quill-editor</span>
-            </a>
-            <div class="abstract-content">
-                富文本编辑器：vue-quill-editor
-vue-quill-editor是一款可适配PC端和移动端富文本编辑器，具有可设置自定义配置项、外观简洁且轻量的优点。
-PC端效果图如下：
-移动端的效果图如下：
-vue-quill-editor配置
-
-在项目目录下载vue-quill-editor：
-1npm i vue-quill-editor -S
-在Vue页面的script模块中引入vue-quill-editor：
-123456789import Vue from &#x27;vue&#x27;import Quill from &quot;quill&quot;...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/02/23">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/02/23</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Vue.js">Vue.js</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/">
-                
-                <span class="abstract-title-text">Oracle Sql语句查库</span>
-            </a>
-            <div class="abstract-content">
-                数据库连接工具：DBeaver
-本文中使用的数据库连接工具是DBeaver，其是一款免费且跨平台的数据库连接工具。其优势是会在首次链接数据库时，下载所需驱动，解决了数据库版本不兼容的问题。
-该工具的下载地址为：Download | DBeaver Community，直接根据安装指示点击下一步即可完成安装。
-安装好后打开软件，点击左上角的图标新建连接：
-在弹出的窗口里选择Oracle，填好相应的信息后，点击完成。然后会弹出下载驱动文件的页面，点击下载驱动：
-在左方便可看到已连接的数据库，右键数据库名字-SQL编辑器-SQL编辑器便可打开一个可以编写sql语句的脚本编辑器，其他模...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/02/21">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/02/21</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="数据库">数据库</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -950,7 +946,7 @@ vue-quill-editor配置
     <!--添加网站总字数-->
         <p style="font-size:1.2rem;font-weight:bold;color:#777;margin:0.5rem 0;">站点信息</p>
         <div style="margin:0.5rem 0;">
-            <span class="post-count word-count">本站总字数: 188.1k</span>
+            <span class="post-count word-count">本站总字数: 189.4k</span>
             <br/>
         <!--添加网站运行时间-->
             <span id="timeDate">载入天数...</span>
@@ -1385,7 +1381,45 @@ vue-quill-editor配置
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1906,7 +1940,7 @@ vue-quill-editor配置
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 57
+        Total : 59
         </div>
         <!-- search  -->
         
@@ -1920,6 +1954,18 @@ vue-quill-editor配置
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/21</span>
+            <a class="archive-post-title" href="/2023/11/21/%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8el-editor%E7%BC%96%E8%BE%91%E5%99%A8/">在Vue中使用el-editor编辑器</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span>
+            <a class="archive-post-title" href="/2023/11/20/Vue%20%E5%B0%86%E7%BB%84%E4%BB%B6%E6%89%93%E5%8C%85%E5%B9%B6%E5%8F%91%E5%B8%83%E5%88%B0npm%E4%BB%93%E5%BA%93/">Vue 将组件打包并发布到npm仓库</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/02</span>
@@ -2331,19 +2377,24 @@ vue-quill-editor配置
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
-                <span class="iconfont-archer">&#xe606;</span>
-                数据库
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2356,9 +2407,9 @@ vue-quill-editor配置
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="YAML">
@@ -2369,11 +2420,6 @@ vue-quill-editor配置
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Elasticsearch">
@@ -2477,19 +2523,14 @@ vue-quill-editor配置
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
-            <span class="iconfont-archer">&#xe60a;</span>
-            数据库
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            数据库
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2497,9 +2538,9 @@ vue-quill-editor配置
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="前端">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            前端
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2507,14 +2548,19 @@ vue-quill-editor配置
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="JavaScript">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            JavaScript
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
             <span class="iconfont-archer">&#xe60a;</span>
             Elasticsearch
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="JavaScript">
+            <span class="iconfont-archer">&#xe60a;</span>
+            JavaScript
         </span>
     
         <span class="sidebar-category-name" data-categories="python">

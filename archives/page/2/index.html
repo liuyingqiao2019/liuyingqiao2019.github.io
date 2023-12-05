@@ -430,6 +430,94 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/03/31/Kubernetes%E5%AE%9E%E8%B7%B5%E4%B9%8B%E4%BB%8Eyaml%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/">
+                
+                <span class="abstract-title-text">Kubernetes实践之从yaml创建工作负载</span>
+            </a>
+            <div class="abstract-content">
+                Pod
+Pod是Kubernetes中的基本单位。容器本身不会直接分配到主机上，而会封装到名为Pod的对象中。Kubernetes以Pod为最小单位进行调度、伸缩并共享资源、管理生命周期。
+Pod通常表示单个应用程序，由一个或多个关系紧密的容器构成，这些容器拥有同样的生命周期，作为一个整体一起编排到Node上。这些容器共享环境、存储卷（volume）和IP空间。尽管Pod基于一个或多个容器，但应将Pod视作一个单一的整体、单独的应用程序。
+Pod模板
+在创建Pod时，需要定义一个模板文件（.yml文件），并将其称为Pod模板。可以用Pod模板来定义资源，以下是Pod模板的主要内容...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/03/31">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/03/31</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Kubernetes">Kubernetes</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/03/07/docker-compose%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2Elasticsearch%20Logstash%20elasticsearch-head/">
+                
+                <span class="abstract-title-text">docker-compose一键部署Elasticsearch Logstash Kibana</span>
+            </a>
+            <div class="abstract-content">
+                简介
+在使用Elasticsearch进行全文搜索时，会使用到Elasticsearch（搜索引擎）、Logstash（数据同步）、Kibana（数据可视化）这三个中间件。在开发或测试环境中部署项目时，常使用docker-compose一键部署项目所需的环境，因此本文记录使用docker-compose一键部署Elasticsearch、Logstash和Kibana的过程。
+部署
+端口说明
+
+Elasticsearch：9200（HTTP通信）和9300（TCP通信）
+Logstash：5044和9600（TCP通信）
+Kibana：5601
+
+配置文件
+docke...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/03/07">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/03/07</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="应用部署">应用部署</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Elasticsearch">Elasticsearch</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2023/02/23/%E5%88%9D%E6%8E%A2vue-quill-editor/">
                 
                 <span class="abstract-title-text">初探vue-quill-editor</span>
@@ -773,118 +861,10 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/">
-                
-                <span class="abstract-title-text">CentOS 7之关于网络管理的那些知识</span>
-            </a>
-            <div class="abstract-content">
-                前置知识
-Linux常见目录
-
-
-
-
-
-
-
-目录参数
-说明
-
-
-
-
-/
-根目录，文件的最顶端，/etc、/bin、/dev、/lib、/sbin应和根目录放置在一个分区中，而类似/usr/local可以单独位于另一个分区
-
-
-/bin
-存放系统所需的重要命令，如文件或目录操作的命令ls、cp、mkdir等。/usr/bin也存放了一些系统命令，这些命令对于的文件都是可执行的，普通用户可以使用大部分的命令
-
-
-/boot
-存放Linux启动时内核及引导系统程序所需要的核心文件，内核文件和grub系统引导管理器都位于此目录
-
-
-/dev...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/11/16">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/11/16</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CentOS 7">CentOS 7</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="网络管理">网络管理</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%E4%B9%8B%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/">
-                
-                <span class="abstract-title-text">Vue.js实战之博客页面前端</span>
-            </a>
-            <div class="abstract-content">
-                基于Vue-cli的前端项目初始化
-初始化
-Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“使用npm安装”内容。
-
-初始化一个新项目，创建文件夹tutorproject作为项目目录，打开一个终端将切换路径到tutorproject，运行代码以创建front-end文件夹：
-12345678910PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject&gt; vue create front-end运行结果如下：Vue CLI v5.0.8? Please pick ...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/11/14">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/11/14</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Vue.js">Vue.js</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
-            <a class="extend prev" rel="prev" href="/archives/">&lt; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/3/">NEXT &gt;</a>
+            <a class="extend prev" rel="prev" href="/archives/">&lt; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/3/">NEXT &gt;</a>
         </nav>
     
 </main>
@@ -1290,7 +1270,29 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1839,7 +1841,7 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 59
+        Total : 61
         </div>
         <!-- search  -->
         
@@ -1853,6 +1855,18 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/30</span>
+            <a class="archive-post-title" href="/2023/11/30/Lottie%E5%8A%A8%E6%95%88%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Bodymovin%E6%8F%92%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/">Lottie动效设计指南：（一）Bodymovin插件的安装及初步使用</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/29</span>
+            <a class="archive-post-title" href="/2023/11/29/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%A7%E5%B1%8F%E8%AE%BE%E8%AE%A1%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">可视化大屏设计入门指南</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/21</span>
@@ -2231,6 +2245,16 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2244,16 +2268,6 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="数据库工具">
@@ -2281,6 +2295,21 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
                 Kubernetes
             </span>
         
+            <span class="sidebar-tag-name" data-tags="可视化">
+                <span class="iconfont-archer">&#xe606;</span>
+                可视化
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="大屏设计">
+                <span class="iconfont-archer">&#xe606;</span>
+                大屏设计
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Lottie">
+                <span class="iconfont-archer">&#xe606;</span>
+                Lottie
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
@@ -2306,11 +2335,6 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2319,6 +2343,11 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Elasticsearch">
@@ -2392,14 +2421,14 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Linux">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Linux
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Linux">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Linux
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库工具">
@@ -2412,19 +2441,24 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
         </span>
     
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
             Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2442,14 +2476,19 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
             前端
         </span>
     
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
+        </span>
+    
         <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            JavaScript
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2457,9 +2496,9 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
             Elasticsearch
         </span>
     
-        <span class="sidebar-category-name" data-categories="JavaScript">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            JavaScript
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2477,14 +2516,19 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
             前端框架
         </span>
     
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
+        </span>
+    
         <span class="sidebar-category-name" data-categories="XAMPP">
             <span class="iconfont-archer">&#xe60a;</span>
             XAMPP
         </span>
     
-        <span class="sidebar-category-name" data-categories="Redis">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            Redis
+            Lottie
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">

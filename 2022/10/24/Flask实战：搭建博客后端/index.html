@@ -1,0 +1,2753 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <!-- title -->
+
+
+    
+
+<!-- keywords -->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="唐抉">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="唐抉">
+    
+        <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta name="description" content="Web框架与库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask实战：搭建博客后端">
+<meta property="og:url" content="http://tangmenjue.top/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/index.html">
+<meta property="og:site_name" content="唐抉的个人博客">
+<meta property="og:description" content="Web框架与库">
+<meta property="og:locale">
+<meta property="og:image" content="http://tangmenjue.top/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/1.png">
+<meta property="og:image" content="http://tangmenjue.top/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/2.png">
+<meta property="og:image" content="http://tangmenjue.top/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/3.png">
+<meta property="article:published_time" content="2022-10-24T06:36:53.000Z">
+<meta property="article:modified_time" content="2022-10-24T06:36:53.000Z">
+<meta property="article:author" content="唐抉">
+<meta property="article:tag" content="Flask Web">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="Web框架">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tangmenjue.top/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/1.png">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    
+    <title>Flask实战：搭建博客后端 · null</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="/css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="唐抉的个人博客" type="application/atom+xml">
+</head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+    
+        <body class="post-body">
+    
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+            <div class="header-sidebar-menu">
+        
+            
+                <div style="padding-left: 1px;">&#xe775;</div>
+            
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>唐抉的个人博客</a>
+        </span>
+    </div>
+    <!-- toggle banner for post layout -->
+    
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">唐抉的个人博客</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">Flask实战：搭建博客后端</a>
+            </div>
+        </div>
+    
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+            <div class="back-top back-top-hidden">
+        
+        
+            <div>&#xe639;</div>
+        
+        </div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
+
+
+
+
+
+
+    height:50vh;
+
+">
+    
+    <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+                Flask实战：搭建博客后端
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+                
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Flask Web">Flask Web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="后端">后端</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Web框架">Web框架</a>
+    
+</div>
+
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">5.7k</span>阅读时长: <span class="post-count reading-time">30 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2022/10/24</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="创建一个flask-restful-api">创建一个Flask RESTful API</h1>
+<p>本节的目的为搭建Flask应用，并提供一个测试API，客户端访问<code>/ping</code>后会返回<code>pong!</code>响应。</p>
+<h2 id="配置flask">配置Flask</h2>
+<p>确保python3已安装后，在合适的位置新建<code>tutorproject</code>项目目录，在<code>tutorproject</code>里新建<code>back-end</code>目录，作为后端API应用所在的位置。在<code>C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end</code>的目录下右键，选择在终端打开后，按照以下步骤搭建Flask所需的环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建虚拟环境venv</span></span><br><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;python -m venv venv</span><br><span class="line"><span class="comment">#激活环境venv</span></span><br><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;venv\Scripts\activate</span><br><span class="line"><span class="comment">#虚拟环境中导入flask模块</span></span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install flask</span><br><span class="line"><span class="comment">#把系统环境信息写到txt中</span></span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt;requirements.txt</span><br></pre></td></tr></table></figure>
+<h2 id="应用工厂">应用工厂</h2>
+<p>创建<code>tutorweb</code>目录，并在<code>tutorweb</code>目录下新建<code>__init__.py</code>文件，在<code>__init__.py</code>中，使用应用工厂函数来创建Flask应用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> Config</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_app</span>(<span class="params">config_class=Config</span>):</span><br><span class="line">    app=Flask(__name__)</span><br><span class="line">    app.config.from_object(config_class)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#注册blueprint</span></span><br><span class="line">    <span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp <span class="keyword">as</span> api_bp</span><br><span class="line">    app.register_blueprint(api_bp,url_prefix=<span class="string">&#x27;/api&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> app  </span><br></pre></td></tr></table></figure>
+<p>创建<code>tutorweb/api</code>目录，并在<code>api</code>目录下新建<code>__init__.py</code>文件，定义蓝图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Blueprint</span><br><span class="line">bp=Blueprint(<span class="string">&#x27;api&#x27;</span>,__name__)</span><br><span class="line"><span class="comment">#防止循环导入ping.py文件</span></span><br><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> ping</span><br></pre></td></tr></table></figure>
+<p>在<code>api</code>目录下新建<code>ping.py</code>文件，定义路由函数，当客户端访问<code>/ping</code>时返回包含<code>JSON</code>的数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> jsonify</span><br><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/ping&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ping</span>():</span><br><span class="line">    <span class="comment">#vue.js用来测试与后端Flask API的连通性</span></span><br><span class="line">    <span class="keyword">return</span> jsonify(<span class="string">&#x27;Pong!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="应用启动文件">应用启动文件</h2>
+<p>在<code>back-end</code>目录下新建<code>madblog.py</code>文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> create_app</span><br><span class="line"></span><br><span class="line">app=create_app()</span><br></pre></td></tr></table></figure>
+<h2 id="配置文件">配置文件</h2>
+<p>在<code>back-end</code>目录下新建<code>config.py</code>文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os </span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv</span><br><span class="line"></span><br><span class="line">basedir=os.path.abspath(os.path.dirname(__file__))</span><br><span class="line">load_dotenv(os.path.join(basedir,<span class="string">&#x27;.env&#x27;</span>),encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Config</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h2 id="读取环境变量信息">读取环境变量信息</h2>
+<p>将Flask应用所需的系统环境变量写到<code>back-end/.env</code>中，可先使用<code>python-dotenv</code>这个包来读取环境变量信息，再把系统环境写到txt中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install python-dotenv</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt;requirements.txt</span><br></pre></td></tr></table></figure>
+<p>在<code>back-end</code>目录下新建<code>.env</code>文件，用记事本打开后写入以下信息保存：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FLASK_APP=madblog.py</span><br><span class="line">FLASK_DEBUG=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="启动应用">启动应用</h2>
+<p>输入flask run即可启动应用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask run </span><br><span class="line"></span><br><span class="line"> * Serving Flask app <span class="string">&#x27;madblog.py&#x27;</span></span><br><span class="line"> * Debug mode: on</span><br><span class="line">WARNING: This is a development server. Do not use it <span class="keyword">in</span> a production deployment. Use a production WSGI server instead.</span><br><span class="line"> * Running on http://127.0.0.1:5000</span><br><span class="line">Press CTRL+C to quit</span><br><span class="line"> * Restarting with <span class="built_in">stat</span></span><br><span class="line"> * Debugger is active!</span><br><span class="line"> * Debugger PIN: 354-979-609</span><br></pre></td></tr></table></figure>
+<p>启动应用后，打开浏览器，访问<code>http://127.0.0.1:5000/api/ping</code>，若出现<code>Pong!</code>则说明所定义的<code>Ping-Pong</code>测试路由正常。</p>
+<p><img src="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/1.png"></p>
+<p>在cmd页面按下ctrl+c即可停止应用运行。</p>
+<p><strong>此时的目录结构如下：</strong></p>
+<p><img src="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/2.png"></p>
+<h1 id="flask设计user用户相关api">Flask设计User用户相关API</h1>
+<p>本节的内容为：Flask后端针对“用户资源”提供部分RESTful API，基于token认证，支持添加用户、查看单个或多个用户、修改用户，使用HTTPie或Postman测试API通过。</p>
+<h2 id="数据库">数据库</h2>
+<h3 id="ormsqlalchemy">ORM：SQLAlchemy</h3>
+<p>安装<code>Flask-SQLAlchemy</code>插件和数据表结构有变化后进行迁移的<code>Flask-Migrate</code>插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install flask-sqlalchemy flask-migrate</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+<p>修改配置文件<code>back-end/config.py</code>，默认使用<code>SQLite</code>数据库：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os </span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv</span><br><span class="line"></span><br><span class="line">basedir=os.path.abspath(os.path.dirname(__file__))</span><br><span class="line">load_dotenv(os.path.join(basedir,<span class="string">&#x27;.env&#x27;</span>),encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Config</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    SQLALCHEMY_DATABASE_URI=os.environ.get(<span class="string">&#x27;DATABASE_URL&#x27;</span>) <span class="keyword">or</span> \</span><br><span class="line">        <span class="string">&#x27;sqlite:///&#x27;</span>+os.path.join(basedir,<span class="string">&#x27;tutorweb.db&#x27;</span>)</span><br><span class="line">    SQLALCHEMY_TRACK_MODIFICATIONS=<span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<p>修改<code>tutorweb/__init__.py</code>，引入并初始化插件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"><span class="keyword">from</span> flask_migrate <span class="keyword">import</span> Migrate</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> Config</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义Flack_SQLAlchemy</span></span><br><span class="line">db=SQLAlchemy()</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义Flack_Migrate </span></span><br><span class="line">migrate=Migrate()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_app</span>(<span class="params">config_class=Config</span>):</span><br><span class="line">    app=Flask(__name__)</span><br><span class="line">    app.config.from_object(config_class)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#启用CORS</span></span><br><span class="line">    CORS(app)</span><br><span class="line">    <span class="comment">#初始化Flack_SQLAlchemy</span></span><br><span class="line">    db.init_app(app)</span><br><span class="line">    <span class="comment">#初始化Flack_Migrate </span></span><br><span class="line">    migrate.init_app(app,db)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#注册blueprint</span></span><br><span class="line">    <span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp <span class="keyword">as</span> api_bp</span><br><span class="line">    app.register_blueprint(api_bp,url_prefix=<span class="string">&#x27;/api&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> app   </span><br></pre></td></tr></table></figure>
+<p>在<code>back-end</code>目录下新建tutorweb.db文件作为数据库文件，修改<code>back-end</code>目录下的<code>madblog.py</code>文件如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> create_app,db</span><br><span class="line"></span><br><span class="line">app=create_app()</span><br></pre></td></tr></table></figure>
+<h3 id="定义user用户数据模型">定义User用户数据模型</h3>
+<p>创建<code>tutorweb/models.py</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> db</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(db.Model):</span><br><span class="line">    <span class="built_in">id</span>=db.Column(db.Integer,primary_key=<span class="literal">True</span>)</span><br><span class="line">    username=db.Column(db.String(<span class="number">64</span>),index=<span class="literal">True</span>,unique=<span class="literal">True</span>)</span><br><span class="line">    email=db.Column(db.String(<span class="number">120</span>),index=<span class="literal">True</span>,unique=<span class="literal">True</span>)</span><br><span class="line">    password_hash=db.Column(db.String(<span class="number">128</span>))<span class="comment">#不保留原始密码</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__repr__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&lt;User &#123;&#125;&gt;&#x27;</span>.<span class="built_in">format</span>(self.username)</span><br></pre></td></tr></table></figure>
+<p>修改<code>tutorweb/__init__.py</code>，在文件末尾添加：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> models</span><br></pre></td></tr></table></figure>
+<h3 id="第一次数据库迁移">第一次数据库迁移</h3>
+<p>创建迁移数据库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db init</span><br></pre></td></tr></table></figure>
+<p>生成迁移脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db migrate -m <span class="string">&quot;add users table&quot;</span></span><br></pre></td></tr></table></figure>
+<p>将迁移脚本应用到数据库中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db upgrade</span><br></pre></td></tr></table></figure>
+<p>若要回滚上次的迁移，可用<code>flask db downgrade</code>命令回滚。</p>
+<p>存储用户密码的hash值：</p>
+<p>使用<code>werkzeug.security</code>库的<code>generate_password_hash</code>和<code>check_password_hash</code>来创建哈希密码和验证密码的hash是否一致：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; python</span><br><span class="line">Python <span class="number">3.10</span><span class="number">.5</span> (tags/v3<span class="number">.10</span><span class="number">.5</span>:f377153, Jun  <span class="number">6</span> <span class="number">2022</span>, <span class="number">16</span>:<span class="number">14</span>:<span class="number">13</span>) [MSC v<span class="number">.1929</span> <span class="number">64</span> bit (AMD64)] on win32</span><br><span class="line"><span class="type">Type</span> <span class="string">&quot;help&quot;</span>, <span class="string">&quot;copyright&quot;</span>, <span class="string">&quot;credits&quot;</span> <span class="keyword">or</span> <span class="string">&quot;license&quot;</span> <span class="keyword">for</span> more information.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> werkzeug.security <span class="keyword">import</span> generate_password_hash, check_password_hash</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">hash</span> = generate_password_hash(<span class="string">&#x27;123&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">hash</span></span><br><span class="line"><span class="string">&#x27;pbkdf2:sha256:260000$RBvmqvkVP61YXGy0$52d3ea1ae76f51d284ba66d2665c8bcfdd069b47cdff7e3211e46d5d98a9d01a&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>check_password_hash(<span class="built_in">hash</span>, <span class="string">&#x27;foobar&#x27;</span>)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>check_password_hash(<span class="built_in">hash</span>, <span class="string">&#x27;123&#x27;</span>)</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong>使用<code>generate_password_hash</code>生成不同的3个'123'哈希值，并复制其值保存下来备用，以作为后面用户密码使用。</p>
+<p>修改<code>tutorweb/models.py</code>，增加创建密码和验证密码两个方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> werkzeug.security <span class="keyword">import</span> generate_password_hash,check_password_hash</span><br><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> db</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(db.Model):</span><br><span class="line">    <span class="built_in">id</span>=db.Column(db.Integer,primary_key=<span class="literal">True</span>)</span><br><span class="line">    username=db.Column(db.String(<span class="number">64</span>),index=<span class="literal">True</span>,unique=<span class="literal">True</span>)</span><br><span class="line">    email=db.Column(db.String(<span class="number">120</span>),index=<span class="literal">True</span>,unique=<span class="literal">True</span>)</span><br><span class="line">    password_hash=db.Column(db.String(<span class="number">128</span>))<span class="comment">#不保留原始密码</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__repr__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&lt;User &#123;&#125;&gt;&#x27;</span>.<span class="built_in">format</span>(self.username)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_password</span>(<span class="params">self,password</span>):</span><br><span class="line">        self.password_hash=generate_password_hash(password) </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">check_password</span>(<span class="params">self,password</span>):</span><br><span class="line">        <span class="keyword">return</span> check_password_hash(self.password_hash,password)</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+<p>配置Flask Shell上下文环境：</p>
+<p><code>flask shell</code>命令是继<code>flask run</code>后被实现的第二个“核心”命令，其目的是启动一个python解释器包含应用的上下文：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; flask shell</span><br><span class="line">Python 3.10.5 (tags/v3.10.5:f377153, Jun  6 2022, 16:14:13) [MSC v.1929 64 bit (AMD64)] on win32</span><br><span class="line">App: tutorweb</span><br><span class="line">Instance: C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\instance</span><br><span class="line">&gt;&gt;&gt; tutorweb</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;&lt;console&gt;&quot;</span>, line 1, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">NameError: name <span class="string">&#x27;tutorweb&#x27;</span> is not defined</span><br><span class="line">&gt;&gt;&gt; app</span><br><span class="line">&lt;Flask <span class="string">&#x27;tutorweb&#x27;</span>&gt;</span><br><span class="line">&gt;&gt;&gt; db</span><br><span class="line">&lt;SQLAlchemy sqlite:///C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\tutorweb.db&gt;</span><br></pre></td></tr></table></figure>
+<p>修改<code>back-end/madblog.py</code>，添加一个方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> create_app,db</span><br><span class="line"><span class="keyword">from</span> tutorweb.models <span class="keyword">import</span> User</span><br><span class="line"></span><br><span class="line">app=create_app()</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.shell_context_processor</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_shell_context</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;db&#x27;</span>:db,<span class="string">&#x27;User&#x27;</span>:User&#125;</span><br></pre></td></tr></table></figure>
+<p>再次运行<code>flask shell</code>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; flask shell</span><br><span class="line">Python 3.10.5 (tags/v3.10.5:f377153, Jun  6 2022, 16:14:13) [MSC v.1929 64 bit (AMD64)] on win32</span><br><span class="line">App: tutorweb</span><br><span class="line">Instance: C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\instance</span><br><span class="line">&gt;&gt;&gt; app</span><br><span class="line">&lt;Flask <span class="string">&#x27;tutorweb&#x27;</span>&gt;</span><br><span class="line">&gt;&gt;&gt; db</span><br><span class="line">&lt;SQLAlchemy sqlite:///C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\tutorweb.db&gt;</span><br><span class="line">&gt;&gt;&gt; User</span><br><span class="line">&lt;class <span class="string">&#x27;tutorweb.models.User&#x27;</span>&gt;</span><br><span class="line">&gt;&gt;&gt; u=User(username=<span class="string">&#x27;tom&#x27;</span>,email=<span class="string">&#x27;tom@163.com&#x27;</span>)</span><br><span class="line">&gt;&gt;&gt; u.set_password(<span class="string">&#x27;123456&#x27;</span>)</span><br><span class="line">&gt;&gt;&gt; u.check_password(<span class="string">&#x27;123456&#x27;</span>)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; u.check_password(<span class="string">&#x27;654321&#x27;</span>)</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<h2 id="restful-api设计">RESTful API设计</h2>
+<p>用户资源暂时提供以下几个API：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">HTTP方法</th>
+<th style="text-align: left;">资源URL</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>GET</code></td>
+<td style="text-align: left;"><code>/api/users</code></td>
+<td style="text-align: left;">返回所有用户的集合</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>POST</code></td>
+<td style="text-align: left;"><code>/api/users</code></td>
+<td style="text-align: left;">注册一个新用户</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>GET</code></td>
+<td style="text-align: left;"><code>/api/users/&lt;id&gt;</code></td>
+<td style="text-align: left;">返回一个用户</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>PUT</code></td>
+<td style="text-align: left;"><code>/api/users/&lt;id&gt;</code></td>
+<td style="text-align: left;">修改一个用户</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>DELETE</code></td>
+<td style="text-align: left;"><code>/api/users/&lt;id&gt;</code></td>
+<td style="text-align: left;">删除一个用户</td>
+</tr>
+</tbody>
+</table>
+<p>创建<code>tutorweb/api/users.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users&#x27;</span>, methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_user</span>():</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;注册一个新用户&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_users</span>():</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;返回所有用户的集合&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;返回一个用户&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>, methods=[<span class="string">&#x27;PUT&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;修改一个用户&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>, methods=[<span class="string">&#x27;DELETE&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;删除一个用户&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>修改 <code>tutorweb/api/__init__.py</code>，在末尾添加：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> ping,users</span><br></pre></td></tr></table></figure>
+<h3 id="用户对象转换成json">用户对象转换成JSON</h3>
+<p>Flask使用的都是User实例对象，返回响应给前端时，需要传递<code>JSON</code>对象。</p>
+<p>修改 <code>tutorweb/models.py</code>，给 User 数据模型添加 <code>to_dict</code> 方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> url_for</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(db.Model):</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">to_dict</span>(<span class="params">self, include_email=<span class="literal">False</span></span>):</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&#x27;id&#x27;</span>: self.<span class="built_in">id</span>,</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span>: self.username,</span><br><span class="line">            <span class="string">&#x27;_links&#x27;</span>: &#123;</span><br><span class="line">                <span class="string">&#x27;self&#x27;</span>: url_for(<span class="string">&#x27;api.get_user&#x27;</span>, <span class="built_in">id</span>=self.<span class="built_in">id</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> include_email:</span><br><span class="line">            data[<span class="string">&#x27;email&#x27;</span>] = self.email</span><br><span class="line">        <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+<p>只有当用户请求自己的数据时才包含 <code>email</code>，使用 <code>include_email</code> 标志来确定该字段是否包含在字典中。<strong>调用该方法返回字典，再用 <code>flask.jsonify</code> 将字典转换成 JSON 响应</strong></p>
+<h3 id="用户集合转换成json">用户集合转换成JSON</h3>
+<p>API 中有 <code>POST /users</code> 需要返回用户集合，所以还需要添加 <code>to_collection_dict</code> 方法。考虑到后续会创建 <code>Post</code> 等数据模型。</p>
+<p>在 <code>tutorweb/models.py</code> 中设计一个通用类 <code>PaginatedAPIMixin</code>，放到User类前：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PaginatedAPIMixin</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">to_collection_dict</span>(<span class="params">query, page, per_page, endpoint, **kwargs</span>):</span><br><span class="line">        resources = query.paginate(page=page,per_page=per_page,error_out=<span class="literal">False</span>)</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&#x27;items&#x27;</span>: [item.to_dict() <span class="keyword">for</span> item <span class="keyword">in</span> resources.items],</span><br><span class="line">            <span class="string">&#x27;_meta&#x27;</span>: &#123;</span><br><span class="line">                <span class="string">&#x27;page&#x27;</span>: page,</span><br><span class="line">                <span class="string">&#x27;per_page&#x27;</span>: per_page,</span><br><span class="line">                <span class="string">&#x27;total_pages&#x27;</span>: resources.pages,</span><br><span class="line">                <span class="string">&#x27;total_items&#x27;</span>: resources.total</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&#x27;_links&#x27;</span>: &#123;</span><br><span class="line">                <span class="string">&#x27;self&#x27;</span>: url_for(endpoint, page=page, per_page=per_page,</span><br><span class="line">                                **kwargs),</span><br><span class="line">                <span class="string">&#x27;next&#x27;</span>: url_for(endpoint, page=page + <span class="number">1</span>, per_page=per_page,</span><br><span class="line">                                **kwargs) <span class="keyword">if</span> resources.has_next <span class="keyword">else</span> <span class="literal">None</span>,</span><br><span class="line">                <span class="string">&#x27;prev&#x27;</span>: url_for(endpoint, page=page - <span class="number">1</span>, per_page=per_page,</span><br><span class="line">                                **kwargs) <span class="keyword">if</span> resources.has_prev <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+<p>然后，由User类继承这个类：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(PaginatedAPIMixin, db.Model):</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<h3 id="json转换成用户对象">JSON转换成用户对象</h3>
+<p>前端发送过来 JSON 对象，需要转换成 User 对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">from_dict</span>(<span class="params">self, data, new_user=<span class="literal">False</span></span>):</span><br><span class="line">    <span class="keyword">for</span> field <span class="keyword">in</span> [<span class="string">&#x27;username&#x27;</span>, <span class="string">&#x27;email&#x27;</span>]:</span><br><span class="line">        <span class="keyword">if</span> field <span class="keyword">in</span> data:</span><br><span class="line">            <span class="built_in">setattr</span>(self, field, data[field])</span><br><span class="line">    <span class="keyword">if</span> new_user <span class="keyword">and</span> <span class="string">&#x27;password&#x27;</span> <span class="keyword">in</span> data:</span><br><span class="line">        self.set_password(data[<span class="string">&#x27;password&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="错误处理">错误处理</h3>
+<p>创建 <code>tutorweb/api/errors.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> jsonify</span><br><span class="line"><span class="keyword">from</span> werkzeug.http <span class="keyword">import</span> HTTP_STATUS_CODES</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">error_response</span>(<span class="params">status_code, message=<span class="literal">None</span></span>):</span><br><span class="line">    payload = &#123;<span class="string">&#x27;error&#x27;</span>: HTTP_STATUS_CODES.get(status_code, <span class="string">&#x27;Unknown error&#x27;</span>)&#125;</span><br><span class="line">    <span class="keyword">if</span> message:</span><br><span class="line">        payload[<span class="string">&#x27;message&#x27;</span>] = message</span><br><span class="line">    response = jsonify(payload)</span><br><span class="line">    response.status_code = status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bad_request</span>(<span class="params">message</span>):</span><br><span class="line">    <span class="comment">#最常用的错误：400：错误的请求</span></span><br><span class="line">    <span class="keyword">return</span> error_response(<span class="number">400</span>, message)</span><br></pre></td></tr></table></figure>
+<h3 id="注册新用户">注册新用户</h3>
+<p>修改<code>tutorweb/api/users.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re </span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request,jsonify,url_for</span><br><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> db</span><br><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp</span><br><span class="line"><span class="keyword">from</span> tutorweb.api.errors <span class="keyword">import</span> bad_request</span><br><span class="line"><span class="keyword">from</span> tutorweb.models <span class="keyword">import</span> User</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users&#x27;</span>,methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_user</span>():</span><br><span class="line">    <span class="comment">#注册一个新用户</span></span><br><span class="line">    data=request.get_json()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">return</span> bad_request(<span class="string">&#x27;You must post JSON data.&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    message=&#123;&#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;username&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> data <span class="keyword">or</span> <span class="keyword">not</span> data.get(<span class="string">&#x27;username&#x27;</span>, <span class="literal">None</span>):</span><br><span class="line">        message[<span class="string">&#x27;username&#x27;</span>] = <span class="string">&#x27;Please provide a valid username.&#x27;</span></span><br><span class="line">    pattern = <span class="string">&#x27;^(([^&lt;&gt;()\[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()\[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;email&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> data <span class="keyword">or</span> <span class="keyword">not</span> re.<span class="keyword">match</span>(pattern, data.get(<span class="string">&#x27;email&#x27;</span>, <span class="literal">None</span>)):</span><br><span class="line">        message[<span class="string">&#x27;email&#x27;</span>] = <span class="string">&#x27;Please provide a valid email address.&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;password&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> data <span class="keyword">or</span> <span class="keyword">not</span> data.get(<span class="string">&#x27;password&#x27;</span>, <span class="literal">None</span>):</span><br><span class="line">        message[<span class="string">&#x27;password&#x27;</span>] = <span class="string">&#x27;Please provide a valid password.&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> User.query.filter_by(username=data.get(<span class="string">&#x27;username&#x27;</span>, <span class="literal">None</span>)).first():</span><br><span class="line">        message[<span class="string">&#x27;username&#x27;</span>] = <span class="string">&#x27;Please use a different username.&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> User.query.filter_by(email=data.get(<span class="string">&#x27;email&#x27;</span>, <span class="literal">None</span>)).first():</span><br><span class="line">        message[<span class="string">&#x27;email&#x27;</span>] = <span class="string">&#x27;Please use a different email address.&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> message:</span><br><span class="line">        <span class="keyword">return</span> bad_request(message)      </span><br><span class="line"></span><br><span class="line">    user=User()</span><br><span class="line">    user.from_dict(data,new_user=<span class="literal">True</span>)</span><br><span class="line">    db.session.add(user)</span><br><span class="line">    db.session.commit()</span><br><span class="line">    response=jsonify(user.to_dict())</span><br><span class="line">    response.status_code=<span class="number">201</span></span><br><span class="line">    <span class="comment">#HTTP协议要求201响应包含一个值为新资源URL的Location头部</span></span><br><span class="line">    response.headers[<span class="string">&#x27;Location&#x27;</span>]=url_for(<span class="string">&#x27;api.get_user&#x27;</span>,<span class="built_in">id</span>=user.<span class="built_in">id</span>)</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+<p>在<code>C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end</code>的目录下右键，选择在终端打开后，运行应用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; venv\Scripts\activate</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; pip install --upgrade httpie</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; flask run</span><br><span class="line"></span><br><span class="line"> * Serving Flask app <span class="string">&#x27;madblog.py&#x27;</span></span><br><span class="line">WARNING: This is a development server. Do not use it <span class="keyword">in</span> a production deployment. Use a production WSGI server instead.</span><br><span class="line"> * Running on http://127.0.0.1:5000</span><br><span class="line">Press CTRL+C to quit</span><br><span class="line"> * Restarting with <span class="built_in">stat</span></span><br><span class="line"> * Debugger is active!</span><br><span class="line"> * Debugger PIN: 354-979-609</span><br></pre></td></tr></table></figure>
+<p>保持应用处于运行的状态后，打开另一个终端并激活环境。使用HTTPie或Postman测试API接口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http POST http://localhost:5000/api/users username=lisi password=123 email=lisi@163.com</span><br><span class="line"></span><br><span class="line">HTTP/1.1 201 CREATED</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 82</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 03:12:01 GMT</span><br><span class="line">Location: /api/users/5</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/5&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: 5,</span><br><span class="line">    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;lisi&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若应用没有运行，会报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http POST http://localhost:5000/api/users username=lisi password=123 email=lisi@163.com</span><br><span class="line"></span><br><span class="line">http: error: ConnectionError: HTTPConnectionPool(host=<span class="string">&#x27;localhost&#x27;</span>, port=5000): Max retries exceeded with url: /api/users (Caused by NewConnectionError(<span class="string">&#x27;&lt;urllib3.connection.HTTPConnection object at 0x0000022A6C404550&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。&#x27;</span>)) <span class="keyword">while</span> doing a POST request to URL: http://localhost:5000/api/users</span><br></pre></td></tr></table></figure>
+<h3 id="检索单个用户">检索单个用户</h3>
+<p>修改<code>tutorweb/api/users.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="comment">#返回一个用户</span></span><br><span class="line">    <span class="keyword">return</span> jsonify(User.query.get_or_404(<span class="built_in">id</span>).to_dict())</span><br></pre></td></tr></table></figure>
+<p>保持应用处于运行的状态后，在另一个终端检索用户：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:5000/api/users/4 </span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 03:16:47 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/4&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: 4,</span><br><span class="line">    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;zhangsan&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若查询的用户id不存在，返回404错误</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:5000/api/users/7 </span><br><span class="line"></span><br><span class="line">HTTP/1.1 404 NOT FOUND</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 207</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Date: Mon, 24 Oct 2022 03:19:48 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html lang=en&gt;</span><br><span class="line">&lt;title&gt;404 Not Found&lt;/title&gt;</span><br><span class="line">&lt;h1&gt;Not Found&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>修改<code>tutorweb/api/errors.py</code>，设置返回JSON错误信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> db</span><br><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.app_errorhandler(<span class="params"><span class="number">404</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">not_found_error</span>(<span class="params">error</span>):</span><br><span class="line">    <span class="keyword">return</span> error_response(<span class="number">404</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.app_errorhandler(<span class="params"><span class="number">500</span></span>)  </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">internal_error</span>(<span class="params">error</span>):</span><br><span class="line">    db.session.rollback()</span><br><span class="line">    <span class="keyword">return</span> error_response(<span class="number">500</span>)</span><br></pre></td></tr></table></figure>
+<p>若查询的用户id不存在，此时返回404错误信息为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:5000/api/users/7</span><br><span class="line">HTTP/1.1 404 NOT FOUND</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 27</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 03:17:01 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;Not Found&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="检索用户集合">检索用户集合</h3>
+<p>修改<code>tutorweb/api/users.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_users</span>():</span><br><span class="line">    <span class="comment">#返回所有用户的集合</span></span><br><span class="line">    page=request.args.get(<span class="string">&#x27;page&#x27;</span>,<span class="number">1</span>,<span class="built_in">type</span>=<span class="built_in">int</span>)</span><br><span class="line">    per_page=<span class="built_in">min</span>(request.args.get(<span class="string">&#x27;per_page&#x27;</span>,<span class="number">10</span>,<span class="built_in">type</span>=<span class="built_in">int</span>),<span class="number">100</span>)</span><br><span class="line">    data=User.to_collection_dict(User.query,page,per_page,<span class="string">&#x27;api.get_users&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> jsonify(data)</span><br></pre></td></tr></table></figure>
+<p>终端测试如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:5000/api/users </span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 889</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 06:24:27 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;next&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;prev&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users?page=1&amp;per_page=10&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;_meta&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;page&quot;</span>: 1,</span><br><span class="line">        <span class="string">&quot;per_page&quot;</span>: 10,</span><br><span class="line">        <span class="string">&quot;total_items&quot;</span>: 6,</span><br><span class="line">        <span class="string">&quot;total_pages&quot;</span>: 1</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;items&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/1&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 1,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;alice&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/2&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 2,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;bob&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/3&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 3,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;madman&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/4&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 4,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;zhangsan&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/5&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 5,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;lisi&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/6&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 6,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;wangwu&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="修改用户">修改用户</h3>
+<p>修改<code>tutorweb/api/users.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>,methods=[<span class="string">&#x27;PUT&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="comment">#修改一个用户</span></span><br><span class="line">    user=User.query.get_or_404(<span class="built_in">id</span>)</span><br><span class="line">    data=request.get_json()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">return</span> bad_request(<span class="string">&#x27;You must post JSON data.&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    message=&#123;&#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;username&#x27;</span> <span class="keyword">in</span> data <span class="keyword">and</span> <span class="keyword">not</span> data.get(<span class="string">&#x27;username&#x27;</span>, <span class="literal">None</span>):</span><br><span class="line">        message[<span class="string">&#x27;username&#x27;</span>]=<span class="string">&#x27;Please provide a valid username.&#x27;</span></span><br><span class="line">    pattern=<span class="string">&#x27;^(([^&lt;&gt;()\[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()\[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;email&#x27;</span> <span class="keyword">in</span> data <span class="keyword">and</span> <span class="keyword">not</span> re.<span class="keyword">match</span>(pattern, data.get(<span class="string">&#x27;email&#x27;</span>, <span class="literal">None</span>)):</span><br><span class="line">        message[<span class="string">&#x27;email&#x27;</span>]=<span class="string">&#x27;Please provide a valid email address.&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;username&#x27;</span> <span class="keyword">in</span> data <span class="keyword">and</span> data[<span class="string">&#x27;username&#x27;</span>] != user.username <span class="keyword">and</span> \</span><br><span class="line">            User.query.filter_by(username=data[<span class="string">&#x27;username&#x27;</span>]).first():</span><br><span class="line">        message[<span class="string">&#x27;username&#x27;</span>]=<span class="string">&#x27;Please use a different username.&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;email&#x27;</span> <span class="keyword">in</span> data <span class="keyword">and</span> data[<span class="string">&#x27;email&#x27;</span>] != user.email <span class="keyword">and</span> \</span><br><span class="line">            User.query.filter_by(email=data[<span class="string">&#x27;email&#x27;</span>]).first():</span><br><span class="line">        message[<span class="string">&#x27;email&#x27;</span>]=<span class="string">&#x27;Please use a different email address.&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> message:</span><br><span class="line">        <span class="keyword">return</span> bad_request(message) </span><br><span class="line">        </span><br><span class="line">    user.from_dict(data,new_user=<span class="literal">False</span>)    </span><br><span class="line">    db.session.commit()</span><br><span class="line">    <span class="keyword">return</span> jsonify(user.to_dict())</span><br></pre></td></tr></table></figure>
+<p>终端测试如下： <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http PUT http://localhost:5000/api/users/5 email=madman@gmail.com </span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 82</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 05:16:38 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/5&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: 5,</span><br><span class="line">    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;lisi&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="api认证">API认证</h2>
+<p>为了简化使用 <code>token</code> 认证时客户端和服务器之间的交互，可以使用 <code>Flask-HTTPAuth</code> 插件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install flask-httpauth</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+<p>当客户端想要开始与 API 交互时，它需要使用用户名和密码进行 Basic Auth 验证，然后获得一个临时 token。只要 token 有效，客户端就可以发送附带 token 的 API 请求以通过认证。一旦 token 到期，需要申请新的 token。</p>
+<h3 id="user-数据模型添加-token">User 数据模型添加 token</h3>
+<p>修改 <code>tutorweb/models.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, timedelta</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(PaginatedAPIMixin, db.Model):</span><br><span class="line">    ...</span><br><span class="line">    token = db.Column(db.String(<span class="number">32</span>), index=<span class="literal">True</span>, unique=<span class="literal">True</span>)</span><br><span class="line">    token_expiration = db.Column(db.DateTime)</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_token</span>(<span class="params">self, expires_in=<span class="number">3600</span></span>):</span><br><span class="line">        now = datetime.utcnow()</span><br><span class="line">        <span class="keyword">if</span> self.token <span class="keyword">and</span> self.token_expiration &gt; now + timedelta(seconds=<span class="number">60</span>):</span><br><span class="line">            <span class="keyword">return</span> self.token</span><br><span class="line">        self.token = base64.b64encode(os.urandom(<span class="number">24</span>)).decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        self.token_expiration = now + timedelta(seconds=expires_in)</span><br><span class="line">        db.session.add(self)</span><br><span class="line">        <span class="keyword">return</span> self.token</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">revoke_token</span>(<span class="params">self</span>):</span><br><span class="line">        self.token_expiration = datetime.utcnow() - timedelta(seconds=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">check_token</span>(<span class="params">token</span>):</span><br><span class="line">        user = User.query.filter_by(token=token).first()</span><br><span class="line">        <span class="keyword">if</span> user <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> user.token_expiration &lt; datetime.utcnow():</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> user</span><br></pre></td></tr></table></figure>
+<p>创建数据库迁移脚本并应用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db migrate -m &quot;user add tokens&quot;</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db upgrade</span><br></pre></td></tr></table></figure>
+<h3 id="http-basic-authentication">HTTP Basic Authentication</h3>
+<p>创建 <code>tutorweb/api/auth.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> g</span><br><span class="line"><span class="keyword">from</span> flask_httpauth <span class="keyword">import</span> HTTPBasicAuth,HTTPTokenAuth</span><br><span class="line"><span class="keyword">from</span> tutorweb.models <span class="keyword">import</span> User</span><br><span class="line"><span class="keyword">from</span> tutorweb.api.errors <span class="keyword">import</span> error_response</span><br><span class="line"></span><br><span class="line">basic_auth=HTTPBasicAuth()</span><br><span class="line"></span><br><span class="line"><span class="meta">@basic_auth.verify_password</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">verify_password</span>(<span class="params">username,password</span>):</span><br><span class="line">    <span class="comment">#用于检查用户提供的用户名和密码</span></span><br><span class="line">    user=User.query.filter_by(username=username).first()</span><br><span class="line">    <span class="keyword">if</span> user <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    g.current_user=user</span><br><span class="line">    <span class="keyword">return</span> user.check_password(password)</span><br><span class="line"></span><br><span class="line"><span class="meta">@basic_auth.error_handler</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">basic_auth_error</span>():</span><br><span class="line">    <span class="comment">#用于在认证失败情况下返回错误响应</span></span><br><span class="line">    <span class="keyword">return</span> error_response(<span class="number">401</span>)   </span><br></pre></td></tr></table></figure>
+<h3 id="客户端申请-token">客户端申请 Token</h3>
+<p>目前已经实现了 Basic Auth 验证的支持，因此可以添加一条 token 检索路由，以便客户端在需要 token 时调用。</p>
+<p>创建 <code>tutorweb/api/tokens.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> jsonify,g</span><br><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> db</span><br><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp</span><br><span class="line"><span class="keyword">from</span> tutorweb.api.auth <span class="keyword">import</span> basic_auth,token_auth</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/tokens&#x27;</span>,methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="meta">@basic_auth.login_required</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_token</span>():</span><br><span class="line">    token=g.current_user.get_token()</span><br><span class="line">    db.session.commit()</span><br><span class="line">    <span class="keyword">return</span> jsonify(&#123;<span class="string">&#x27;token&#x27;</span>:token&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/tokens&#x27;</span>,methods=[<span class="string">&#x27;DELETE&#x27;</span>]</span>)    </span></span><br><span class="line"><span class="meta">@token_auth.login_required</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">revoke_token</span>():</span><br><span class="line">    g.current_user.revoke_token()</span><br><span class="line">    db.session.commit()</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>,<span class="number">204</span></span><br></pre></td></tr></table></figure>
+<p>装饰器 <code>@basic_auth.login_required</code> 将指示 <code>Flask-HTTPAuth</code> 验证身份，当通过 Basic Auth 验证后，才使用用户模型的 <code>get_token()</code> 方法来生成 token，数据库提交在生成 token 后发出，以确保 token 及其到期时间被写回到数据库。</p>
+<p>修改 <code>tutorweb/api/__init__.py</code>，在末尾添加：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> ping, users, tokens</span><br></pre></td></tr></table></figure>
+<p>如果尝试直接向 token API 路由发送 POST 请求，则会发生以下情况：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http POST http://localhost:5000/api/tokens</span><br><span class="line"></span><br><span class="line">HTTP/1.1 401 UNAUTHORIZED</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 30</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 04:51:39 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line">WWW-Authenticate: Basic realm=<span class="string">&quot;Authentication Required&quot;</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;Unauthorized&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果在 POST 请求附带上了 Basic Auth 需要的凭证：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http --auth madman:<span class="number">123</span> POST http://localhost:<span class="number">5000</span>/api/tokens</span><br><span class="line">                </span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: <span class="number">50</span></span><br><span class="line">Content-<span class="type">Type</span>: application/json</span><br><span class="line">Date: Mon, <span class="number">24</span> Oct <span class="number">2022</span> 04:<span class="number">52</span>:<span class="number">22</span> GMT</span><br><span class="line">Server: Werkzeug/<span class="number">2.2</span><span class="number">.2</span> Python/<span class="number">3.10</span><span class="number">.5</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;token&quot;</span>: <span class="string">&quot;q2L2Umakr5/iSrf1L4mglZmYoBD/K9Je&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="http-token-authentication">HTTP Token Authentication</h2>
+<p>用户通过 Basic Auth 拿到 token 后，之后的请求只要附带这个 token 就能够访问其它 API，修改 <code>tutorweb/api/auth.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_httpauth <span class="keyword">import</span> HTTPBasicAuth,HTTPTokenAuth</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">token_auth=HTTPTokenAuth()</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">@token_auth.verify_token</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">verify_token</span>(<span class="params">token</span>):</span><br><span class="line">    <span class="comment">#用于检查用户请求是否有token,且token真实存在，还在有效期内</span></span><br><span class="line">    g.current_user=User.check_token(token) <span class="keyword">if</span> token <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">return</span> g.current_user <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@token_auth.error_handler</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">token_auth_error</span>():</span><br><span class="line">    <span class="comment">#用于在Token Auth认证失败的情况下返回错误响应</span></span><br><span class="line">    <span class="keyword">return</span> error_response(<span class="number">401</span>)        </span><br></pre></td></tr></table></figure>
+<p>修改<code>tutorweb/api/users.py</code>，在文件开头导入模块：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb.api.auth <span class="keyword">import</span> token_auth</span><br></pre></td></tr></table></figure>
+<h3 id="使用-token-机制保护-api-路由">使用 Token 机制保护 API 路由</h3>
+<p>除 <code>create_user()</code> 之外的所有 API 视图函数需要添加 <code>@token_auth.login_required</code> 装饰器， <code>create_user()</code>函数不能使用 token 认证，因为用户不存在时不会有 token 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="meta">@token_auth.login_required</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_users</span>():</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="meta">@token_auth.login_required</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>若直接对上面列出的受 token 保护的 endpoint 发起请求，则会得到一个 <code>401</code> 错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:5000/api/users/5</span><br><span class="line"></span><br><span class="line">HTTP/1.1 401 UNAUTHORIZED</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 30</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 04:56:51 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line">WWW-Authenticate: Bearer realm=<span class="string">&quot;Authentication Required&quot;</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;Unauthorized&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了成功访问，需要添加 <code>Authorization</code> 头部，其值是请求 <code>/api/tokens</code> 获得的 token 的值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:<span class="number">5000</span>/api/users/<span class="number">5</span> <span class="string">&quot;Authorization:Bearer q2L2Umakr5/iSrf1L4mglZmYoBD/K9Je&quot;</span></span><br><span class="line"></span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: <span class="number">82</span></span><br><span class="line">Content-<span class="type">Type</span>: application/json</span><br><span class="line">Date: Mon, <span class="number">24</span> Oct <span class="number">2022</span> 04:<span class="number">58</span>:<span class="number">20</span> GMT</span><br><span class="line">Server: Werkzeug/<span class="number">2.2</span><span class="number">.2</span> Python/<span class="number">3.10</span><span class="number">.5</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/5&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;lisi&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="撤销-token">撤销 Token</h3>
+<p>修改 <code>tutorweb/api/tokens.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb.api.auth <span class="keyword">import</span> basic_auth,token_auth</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/tokens&#x27;</span>,methods=[<span class="string">&#x27;DELETE&#x27;</span>]</span>)    </span></span><br><span class="line"><span class="meta">@token_auth.login_required</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">revoke_token</span>():</span><br><span class="line">    g.current_user.revoke_token()</span><br><span class="line">    db.session.commit()</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>,<span class="number">204</span></span><br></pre></td></tr></table></figure>
+<p>客户端可以向 <code>/api/tokens</code> URL发送 <code>DELETE</code> 请求，以使 token 失效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http DELETE http://localhost:5000/api/tokens <span class="string">&quot;Authorization:Bearer QYnLb1pN/l4I4j2KwZWzr7+imtyekI66&quot;</span></span><br><span class="line"></span><br><span class="line">HTTP/1.1 204 NO CONTENT</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Date: Mon, 24 Oct 2022 03:31:11 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http DELETE http://localhost:5000/api/tokens <span class="string">&quot;Authorization:Bearer QYnLb1pN/l4I4j2KwZWzr7+imtyekI66&quot;</span></span><br><span class="line"></span><br><span class="line">HTTP/1.1 401 UNAUTHORIZED</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 03:32:00 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line">WWW-Authenticate: Bearer realm=<span class="string">&quot;Authentication Required&quot;</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;Unauthorized&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>至此，Flask后端已成功配置。最终的代码目录如下：</p>
+<p><img src="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/3.png"></p>
+
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://tangmenjue.top">唐抉</a>
+            <p>原文链接：<a href="http://tangmenjue.top/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/">http://tangmenjue.top/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/</a>
+            <p>发表日期：<a href="http://tangmenjue.top/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/">October 24th 2022, 2:36:53 pm</a>
+            <p>更新日期：<a href="http://tangmenjue.top/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/">October 24th 2022, 2:36:53 pm</a>
+            <p>版权声明：
+			<!--如果有设置theme.since，并且时间小于当前时间（年份），形式为：@ 2018 - 2019(+作者/标题)；否则默认为当前年份(+作者/标题)。 -->
+			
+			    &copy; 2020-2025
+			
+			本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+			</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2022/10/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/" title="python学习笔记（十三）">
+                    <div class="nextTitle">python学习笔记（十三）</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2022/10/21/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" title="Flask Web开发学习笔记（三）">
+                    <div class="prevTitle">Flask Web开发学习笔记（三）</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <div class="livere-card card" data-aos="fade-up"> 
+    <!-- 来必力City版安装代码 --> 
+    <style> 
+        #taboola-livere {display: none;} 
+    </style>
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC81MjY0MS8yOTExOA=="> 
+        <script type="text/javascript"> 
+            (function (d, s) { 
+                let j, e = d.getElementsByTagName(s)[0]; 
+                if (typeof LivereTower === 'function') { 
+                    return; 
+                } 
+                j = d.createElement(s); 
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js'; 
+                j.async = true; 
+                e.parentNode.insertBefore(j, e); 
+                })(document, 'script'); 
+        </script> 
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript> 
+    </div> 
+    <!-- City版安装代码已完成 --> 
+</div>
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
+    
+</main>
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+        <div class="social">
+            
+    
+        
+            
+                <a href="mailto:2630272905@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/liuyingqiao2019" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                    
+                    <img class="profile-qr" src="/assets/wecat.png" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                    
+                    <img class="profile-qr" src="/assets/qq.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <!-- 不蒜子  -->
+    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">本站总阅读量: <span id="busuanzi_value_site_pv"></span>次</span>
+            
+        </div>
+    	
+</footer>
+
+        </div>
+        <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAflask-restful-api"><span class="toc-number">1.</span> <span class="toc-text">创建一个Flask RESTful API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEflask"><span class="toc-number">1.1.</span> <span class="toc-text">配置Flask</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B7%A5%E5%8E%82"><span class="toc-number">1.2.</span> <span class="toc-text">应用工厂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">应用启动文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%BF%A1%E6%81%AF"><span class="toc-number">1.5.</span> <span class="toc-text">读取环境变量信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8"><span class="toc-number">1.6.</span> <span class="toc-text">启动应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#flask%E8%AE%BE%E8%AE%A1user%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3api"><span class="toc-number">2.</span> <span class="toc-text">Flask设计User用户相关API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ormsqlalchemy"><span class="toc-number">2.1.1.</span> <span class="toc-text">ORM：SQLAlchemy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89user%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.2.</span> <span class="toc-text">定义User用户数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB"><span class="toc-number">2.1.3.</span> <span class="toc-text">第一次数据库迁移</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#restful-api%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.2.</span> <span class="toc-text">RESTful API设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%88%90json"><span class="toc-number">2.2.1.</span> <span class="toc-text">用户对象转换成JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E9%9B%86%E5%90%88%E8%BD%AC%E6%8D%A2%E6%88%90json"><span class="toc-number">2.2.2.</span> <span class="toc-text">用户集合转换成JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#json%E8%BD%AC%E6%8D%A2%E6%88%90%E7%94%A8%E6%88%B7%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.2.3.</span> <span class="toc-text">JSON转换成用户对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">2.2.4.</span> <span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E6%96%B0%E7%94%A8%E6%88%B7"><span class="toc-number">2.2.5.</span> <span class="toc-text">注册新用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E5%8D%95%E4%B8%AA%E7%94%A8%E6%88%B7"><span class="toc-number">2.2.6.</span> <span class="toc-text">检索单个用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E7%94%A8%E6%88%B7%E9%9B%86%E5%90%88"><span class="toc-number">2.2.7.</span> <span class="toc-text">检索用户集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7"><span class="toc-number">2.2.8.</span> <span class="toc-text">修改用户</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#api%E8%AE%A4%E8%AF%81"><span class="toc-number">2.3.</span> <span class="toc-text">API认证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#user-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E6%B7%BB%E5%8A%A0-token"><span class="toc-number">2.3.1.</span> <span class="toc-text">User 数据模型添加 token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http-basic-authentication"><span class="toc-number">2.3.2.</span> <span class="toc-text">HTTP Basic Authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%94%B3%E8%AF%B7-token"><span class="toc-number">2.3.3.</span> <span class="toc-text">客户端申请 Token</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-token-authentication"><span class="toc-number">2.4.</span> <span class="toc-text">HTTP Token Authentication</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-token-%E6%9C%BA%E5%88%B6%E4%BF%9D%E6%8A%A4-api-%E8%B7%AF%E7%94%B1"><span class="toc-number">2.4.1.</span> <span class="toc-text">使用 Token 机制保护 API 路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%92%A4%E9%94%80-token"><span class="toc-number">2.4.2.</span> <span class="toc-text">撤销 Token</span></a></li></ol></li></ol></li></ol>
+            </div>
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 66
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+        
+            
+            
+            <div class="archive-year"> 2025 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/06</span>
+            <a class="archive-post-title" href="/2025/04/06/Prompt%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/">Prompt设计技巧</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span>
+            <a class="archive-post-title" href="/2024/07/01/MinIO%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/">MinIO 配置及使用</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span>
+            <a class="archive-post-title" href="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/">自动化接口测试：（一）Postman</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span>
+            <a class="archive-post-title" href="/2023/12/25/CSS3%E5%8A%A8%E7%94%BB%E8%AF%A6%E8%A7%A3/">CSS3动画详解</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span>
+            <a class="archive-post-title" href="/2023/12/25/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%A7%E5%B1%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E5%88%B6%E4%BD%9C%E4%B8%8D%E5%8F%98%E5%BD%A2%E7%9A%84%E5%9B%BE%E7%89%87%E8%BE%B9%E6%A1%86/">可视化大屏设计：制作不变形的图片边框</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/30</span>
+            <a class="archive-post-title" href="/2023/11/30/Lottie%E5%8A%A8%E6%95%88%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Bodymovin%E6%8F%92%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/">Lottie动效设计指南：（一）Bodymovin插件的安装及初步使用</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/29</span>
+            <a class="archive-post-title" href="/2023/11/29/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%A7%E5%B1%8F%E8%AE%BE%E8%AE%A1%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">可视化大屏设计入门指南</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/21</span>
+            <a class="archive-post-title" href="/2023/11/21/%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8el-editor%E7%BC%96%E8%BE%91%E5%99%A8/">在Vue中使用el-editor编辑器</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span>
+            <a class="archive-post-title" href="/2023/11/20/Vue%20%E5%B0%86%E7%BB%84%E4%BB%B6%E6%89%93%E5%8C%85%E5%B9%B6%E5%8F%91%E5%B8%83%E5%88%B0npm%E4%BB%93%E5%BA%93/">Vue 将组件打包并发布到npm仓库</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/02</span>
+            <a class="archive-post-title" href="/2023/11/02/js%E6%96%87%E4%BB%B6%E8%B0%83%E7%94%A8vue%E5%86%85%E7%9A%84%E6%96%B9%E6%B3%95%E5%B9%B6%E4%BC%A0%E5%80%BC/">js文件调用vue内的方法并传值</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span>
+            <a class="archive-post-title" href="/2023/11/01/python%E5%BC%82%E6%AD%A5%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/">python异步多线程下载文件</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span>
+            <a class="archive-post-title" href="/2023/10/16/Vue%20axios%E6%8E%A5%E5%8F%A3%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E5%B9%B6%E5%90%8C%E6%AD%A5%E8%BF%94%E5%9B%9E/">Vue axios接口异步请求数据并同步返回</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span>
+            <a class="archive-post-title" href="/2023/07/18/Vue%20%E7%9B%91%E5%90%AC%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96%E5%B9%B6%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE/">Vue 监听兄弟组件数据变化并实时更新数据</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span>
+            <a class="archive-post-title" href="/2023/07/12/Vue%E6%B0%B4%E5%8D%B0%E8%87%AA%E9%80%82%E5%BA%94%E7%AA%97%E5%8F%A3%E6%96%B9%E6%B3%95/">Vue 水印自适应窗口方法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span>
+            <a class="archive-post-title" href="/2023/05/08/DBeaver%20Enterprise%20Edition%2022.0%20%E4%BC%81%E4%B8%9A%E7%89%88%E7%A0%B4%E8%A7%A3%E6%96%B9%E6%B3%95/">DBeaver Enterprise Edition 22.0 企业版破解方法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span>
+            <a class="archive-post-title" href="/2023/03/31/Kubernetes%E5%AE%9E%E8%B7%B5%EF%BC%9A%E4%BB%8Eyaml%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/">Kubernetes实践：从yaml创建工作负载</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span>
+            <a class="archive-post-title" href="/2023/03/07/docker-compose%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2Elasticsearch%20Logstash%20elasticsearch-head/">docker-compose一键部署Elasticsearch Logstash Kibana</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span>
+            <a class="archive-post-title" href="/2023/02/23/%E5%88%9D%E6%8E%A2vue-quill-editor/">初探vue-quill-editor</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span>
+            <a class="archive-post-title" href="/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/">Oracle Sql语句查库</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/17</span>
+            <a class="archive-post-title" href="/2023/01/17/%E5%AE%9E%E7%8E%B0Postgresql%E4%B8%8EElasticsearch%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/">实现Postgresql与Elasticsearch的数据同步</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/13</span>
+            <a class="archive-post-title" href="/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/">python环境中Elasticsearch的使用</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2022 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/16</span>
+            <a class="archive-post-title" href="/2022/12/16/YAML%E4%B8%8ERedis%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%94%A8/">YAML与Redis的基本运用</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/15</span>
+            <a class="archive-post-title" href="/2022/12/15/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/">Docker应用部署实战</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/06</span>
+            <a class="archive-post-title" href="/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/">Docker应用部署基础</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/18</span>
+            <a class="archive-post-title" href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">企业微信之企业应用开发流程</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/16</span>
+            <a class="archive-post-title" href="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/">CentOS 7之关于网络管理的那些知识</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/14</span>
+            <a class="archive-post-title" href="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/">Vue.js实战：博客页面前端</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/11</span>
+            <a class="archive-post-title" href="/2022/11/11/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%85%AD%EF%BC%89/">前端框架之Vue.js（六）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/10</span>
+            <a class="archive-post-title" href="/2022/11/10/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%BA%94%EF%BC%89/">前端框架之Vue.js（五）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/09</span>
+            <a class="archive-post-title" href="/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/">前端框架之Vue.js（四）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span>
+            <a class="archive-post-title" href="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/">Vue.js实战：todolist待办项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span>
+            <a class="archive-post-title" href="/2022/11/04/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%89%EF%BC%89/">前端框架之Vue.js（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span>
+            <a class="archive-post-title" href="/2022/11/04/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%BA%8C%EF%BC%89/">前端框架之Vue.js（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/03</span>
+            <a class="archive-post-title" href="/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%80%EF%BC%89/">前端框架之Vue.js（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span>
+            <a class="archive-post-title" href="/2022/11/01/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%B8%89%EF%BC%89/">前端三件套之JavaScript（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span>
+            <a class="archive-post-title" href="/2022/10/31/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之JavaScript（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之JavaScript（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之CSS（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之CSS（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/27</span>
+            <a class="archive-post-title" href="/2022/10/27/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BHTML%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之HTML（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/26</span>
+            <a class="archive-post-title" href="/2022/10/26/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BHTML%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之HTML（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span>
+            <a class="archive-post-title" href="/2022/10/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/">python学习笔记（十三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span>
+            <a class="archive-post-title" href="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/">Flask实战：搭建博客后端</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/21</span>
+            <a class="archive-post-title" href="/2022/10/21/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">Flask Web开发学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/20</span>
+            <a class="archive-post-title" href="/2022/10/20/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">Flask Web开发学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span>
+            <a class="archive-post-title" href="/2022/10/19/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/">python学习笔记（十二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span>
+            <a class="archive-post-title" href="/2022/10/18/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">Flask Web开发学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span>
+            <a class="archive-post-title" href="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">PgSQL数据库学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span>
+            <a class="archive-post-title" href="/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">PgSQL数据库学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span>
+            <a class="archive-post-title" href="/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">PgSQL数据库学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span>
+            <a class="archive-post-title" href="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/">python学习笔记（十一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span>
+            <a class="archive-post-title" href="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/">python学习笔记（十）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span>
+            <a class="archive-post-title" href="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89/">python学习笔记（九）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span>
+            <a class="archive-post-title" href="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/">python学习笔记（八）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span>
+            <a class="archive-post-title" href="/2022/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89/">python学习笔记（七）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span>
+            <a class="archive-post-title" href="/2022/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">python学习笔记（六）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span>
+            <a class="archive-post-title" href="/2022/10/10/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/">python学习笔记（五）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span>
+            <a class="archive-post-title" href="/2022/10/10/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/">python学习笔记（四）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2022/10/09/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">python学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2022/10/09/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">python学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/08</span>
+            <a class="archive-post-title" href="/2022/10/08/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">python学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span>
+            <a class="archive-post-title" href="/2022/08/07/%E7%BB%93%E6%9E%84%E6%80%A7%E6%80%9D%E7%BB%B4%E7%AC%94%E8%AE%B0/">结构性思维笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span>
+            <a class="archive-post-title" href="/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">设计模式的学习（一）</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2020 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span>
+            <a class="archive-post-title" href="/2020/03/30/Win10%E7%B3%BB%E7%BB%9Fedge%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">Win10系统edge浏览器出现闪退的解决方法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span>
+            <a class="archive-post-title" href="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/">记一次XAMPP的报错实例</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/09</span>
+            <a class="archive-post-title" href="/2020/01/09/hello-world/">Hello World</a>
+        </li>
+    
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+        
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库工具">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库工具
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="CentOS 7">
+                <span class="iconfont-archer">&#xe606;</span>
+                CentOS 7
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络管理">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络管理
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Flask Web">
+                <span class="iconfont-archer">&#xe606;</span>
+                Flask Web
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="后端">
+                <span class="iconfont-archer">&#xe606;</span>
+                后端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Web框架">
+                <span class="iconfont-archer">&#xe606;</span>
+                Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="可视化">
+                <span class="iconfont-archer">&#xe606;</span>
+                可视化
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="大屏设计">
+                <span class="iconfont-archer">&#xe606;</span>
+                大屏设计
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Lottie">
+                <span class="iconfont-archer">&#xe606;</span>
+                Lottie
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="LLM">
+                <span class="iconfont-archer">&#xe606;</span>
+                LLM
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="人工智能">
+                <span class="iconfont-archer">&#xe606;</span>
+                人工智能
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue.js">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue.js
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="前端">
+                <span class="iconfont-archer">&#xe606;</span>
+                前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="YAML">
+                <span class="iconfont-archer">&#xe606;</span>
+                YAML
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Redis">
+                <span class="iconfont-archer">&#xe606;</span>
+                Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="python">
+                <span class="iconfont-archer">&#xe606;</span>
+                python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="异步IO">
+                <span class="iconfont-archer">&#xe606;</span>
+                异步IO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="企业微信">
+                <span class="iconfont-archer">&#xe606;</span>
+                企业微信
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用开发">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="CSS">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="HTML">
+                <span class="iconfont-archer">&#xe606;</span>
+                HTML
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="自动化测试">
+                <span class="iconfont-archer">&#xe606;</span>
+                自动化测试
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="XAMPP">
+                <span class="iconfont-archer">&#xe606;</span>
+                XAMPP
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="报错">
+                <span class="iconfont-archer">&#xe606;</span>
+                报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库工具">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库工具
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Linux">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Linux
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="大屏设计">
+            <span class="iconfont-archer">&#xe60a;</span>
+            大屏设计
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="MinIO">
+            <span class="iconfont-archer">&#xe60a;</span>
+            MinIO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="edge">
+            <span class="iconfont-archer">&#xe60a;</span>
+            edge
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="JavaScript">
+            <span class="iconfont-archer">&#xe60a;</span>
+            JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Lottie">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="异步IO">
+            <span class="iconfont-archer">&#xe60a;</span>
+            异步IO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="应用开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            应用开发
+        </span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "http://tangmenjue.top",
+        root: siteMetaRoot,
+        author: "唐抉"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+
+        <!-- main func -->
+        <script src="/scripts/main.js?v=20211217"></script>
+        <!-- dark mode -->
+        <script src="/scripts/dark.js?v=20211217"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid -->
+        
+        <!-- codecopy -->
+        
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.js"></script>
+            <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script> $.noConflict(); </script> 
+            <script type="text/javascript" src="/scripts/codecopy.js" async></script>
+        
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

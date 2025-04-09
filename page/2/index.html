@@ -441,6 +441,167 @@
         
         
             
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/11/01/python%E5%BC%82%E6%AD%A5%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/">
+                
+                <span class="abstract-title-text">python异步多线程下载文件</span>
+            </a>
+            <div class="abstract-content">
+                在实际项目中，难免会有短时间下载文件的需要。正常的批量下载文件要等前一个文件下载完成后才进行下一个文件的下载工作，下载速度较慢。而通过异步来下载可以实现多个文件同时下载的多线程操作。下面为异步下载文件的实现方法：
+
+首先需要通过pip install aiohttp下载aiohttp模块。
+引入相关模块如下：
+123456789import requestsimport aiohttpimport asyncioimport osimport uuidimport configfrom services import dbcfrom utils.response_helper i...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/11/01">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/11/01</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="异步IO">异步IO</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/10/16/Vue%20axios%E6%8E%A5%E5%8F%A3%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E5%B9%B6%E5%90%8C%E6%AD%A5%E8%BF%94%E5%9B%9E/">
+                
+                <span class="abstract-title-text">Vue axios接口异步请求数据并同步返回</span>
+            </a>
+            <div class="abstract-content">
+                在实际项目开发中，经常要使用axios来请求数据。
+axios可以通过async/await来实现同步请求。
+其中async用来修饰方法，其声明的方法为异步请求的方法，await只能在异步方法中使用，用于等待指定方法执行完成；await修饰的方法执行完成后，才会执行后续的代码。
+axios的.then模块前把this赋值给一个变量并在.then中代替this来使用，可以防止this指针发生变化导致引用全局变量无效的问题，如：
+
+``json     getData() &#123;               var _this=this         axios.get(h...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/10/16">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/10/16</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue">Vue</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/07/18/Vue%20%E7%9B%91%E5%90%AC%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96%E5%B9%B6%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE/">
+                
+                <span class="abstract-title-text">Vue 监听兄弟组件数据变化并实时更新数据</span>
+            </a>
+            <div class="abstract-content">
+                在实际项目开发中，有时会遇到组件B需要监听兄弟组件A的数据是否有改动，并根据兄弟组件A的改动来更新自身数据或执行一定操作的需求。下面将介绍实现这一过程的方法：
+
+在Vue项目的main.js中 添加下面语句：
+1Vue.prototype.$eventBus = new Vue()
+在兄弟组件A中所要监听的事件中添加如下自定义事件的代码this.$eventBus.$emit('SyncData')。如需要监听addDataA事件的变化，则组件A中script模块的代码如下所示：
+123456789101112 methods: &#123;  addDataA() &#123...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/07/18">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/18</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue">Vue</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/07/12/Vue%E6%B0%B4%E5%8D%B0%E8%87%AA%E9%80%82%E5%BA%94%E7%AA%97%E5%8F%A3%E6%96%B9%E6%B3%95/">
+                
+                <span class="abstract-title-text">Vue 水印自适应窗口方法</span>
+            </a>
+            <div class="abstract-content">
+                通过使用Vue的生命周期钩子函数和window对象的resize事件来实现水印根据窗口大小适配的功能：
+
+在Vue文件的script模块中 引入水印组件：
+1import watermark from &#x27;@zsit/watermark&#x27;;  
+在script模块的export default里，通过钩子函数mounted监听窗口大小的变化，并在销毁组件前移除事件监听器：
+123456mounted()&#123;  window.addEventListener(&#x27;resize&#x27;,this.handleResize)&#125;,befo...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/07/12">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/12</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue">Vue</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
             
         
         <article class="index-post">
@@ -479,9 +640,9 @@
             
         
         <article class="index-post">
-            <a class="abstract-title" href="/2023/03/31/Kubernetes%E5%AE%9E%E8%B7%B5%E4%B9%8B%E4%BB%8Eyaml%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/">
+            <a class="abstract-title" href="/2023/03/31/Kubernetes%E5%AE%9E%E8%B7%B5%EF%BC%9A%E4%BB%8Eyaml%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/">
                 
-                <span class="abstract-title-text">Kubernetes实践之从yaml创建工作负载</span>
+                <span class="abstract-title-text">Kubernetes实践：从yaml创建工作负载</span>
             </a>
             <div class="abstract-content">
                 Pod
@@ -686,179 +847,6 @@ Logstash作为El...
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/">
-                
-                <span class="abstract-title-text">python环境中Elasticsearch的使用</span>
-            </a>
-            <div class="abstract-content">
-                Elasticsearch简介
-Elasticsearch是目前全文搜索引擎的首选项，它可以快速地存储、搜索和分析海量数据。Elastic的底层是开源库Lucene，而Elastic是Lucene的封装，其提供了REST API的操作接口，使之可以开箱即用。维基百科、Stack Overflow、Github等网站的搜索引擎都是采用它。
-Windows系统下Elasticsearch的安装和配置
-安装Elasticsearch服务端
-
-在官网中选择所需的合适版本下载即可。本文使用的Elasticsearch版本为5.5.3，下载链接为Elasticsearch 5.5.3 | ...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/01/13">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/01/13</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Elasticsearch">Elasticsearch</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/12/16/YAML%E4%B8%8ERedis%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%94%A8/">
-                
-                <span class="abstract-title-text">YAML与Redis的基本运用</span>
-            </a>
-            <div class="abstract-content">
-                YAML
-YAML是一种数据序列化语言而不是标记语言，其语法比较简洁直观，特点是使用空格来表达层次结构，其最大的优势是在数据结构的表达上，且能配合大多数编程语言使用，因此YAML更多应用于配置文件的编写，其文件一般以.yml为后缀。
-由于其语法的特殊性，没有编辑器可能容易写错，因而在此推荐一个无广告的yaml在线格式化网站：JS-YAML，其可以直接将yaml转化为json。
-基础语法
-
-YAML对大小写敏感
-YAML用#表示注释，且只支持单行注释
-用缩进表示层级关系
-
-缩进只能使用空格，不能用TAB字符
-缩进的空格数量不做要求，但要求同一层级的元素左侧必须对齐
-...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/12/16">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/16</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="YAML">YAML</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Redis">Redis</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/12/15/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/">
-                
-                <span class="abstract-title-text">Docker应用部署实战</span>
-            </a>
-            <div class="abstract-content">
-                Centos部署应用步骤
-配置代码运行环境
-nginx下载及配置
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#centos下载apache[root@localhost admin]# yum install httpd #centos下载nginx[root@localhost admin]# yum install epel-release[root@localhost httpd]# yum...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/12/15">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/15</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="应用部署">应用部署</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/">
-                
-                <span class="abstract-title-text">Docker应用部署基础</span>
-            </a>
-            <div class="abstract-content">
-                Docker
-容器简介
-什么是Linux容器
-Linux容器是与系统其他部分隔离开的一系列进程。它在另一个镜像中运行，并由该镜像提供支持进程所需的全部文件。容器提供的镜像包括了应用的所有依赖项，因此在开发到测试再到生产的过程中，容器都具有可移植性和一致性。
-容器等同于虚拟化吗
-容器不完全是虚拟化。虚拟化使得许多系统可同时在单个系统上运行，而容器可共享同一个操作系统的内核，将应用进程与系统其他部分隔离开。
-这便意味着，即使是让多个操作系统在单个虚拟机监控程序上运行以实现虚拟化，也不能达到和使用容器同等的轻量级效果。Linux容器可从单个操作系统运行，在所有容器中共享该操作系统，...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/12/06">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/06</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Docker">Docker</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="应用部署">应用部署</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -962,7 +950,7 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
     <!--添加网站总字数-->
         <p style="font-size:1.2rem;font-weight:bold;color:#777;margin:0.5rem 0;">站点信息</p>
         <div style="margin:0.5rem 0;">
-            <span class="post-count word-count">本站总字数: 195.3k</span>
+            <span class="post-count word-count">本站总字数: 202.3k</span>
             <br/>
         <!--添加网站运行时间-->
             <span id="timeDate">载入天数...</span>
@@ -1422,7 +1410,81 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2005,7 +2067,7 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 62
+        Total : 66
         </div>
         <!-- search  -->
         
@@ -2016,6 +2078,42 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         
             
             
+            <div class="archive-year"> 2025 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/06</span>
+            <a class="archive-post-title" href="/2025/04/06/Prompt%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/">Prompt设计技巧</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span>
+            <a class="archive-post-title" href="/2024/07/01/MinIO%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/">MinIO 配置及使用</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span>
+            <a class="archive-post-title" href="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/">自动化接口测试：（一）Postman</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
@@ -2023,6 +2121,12 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         <li class="archive-post-item">
             <span class="archive-post-date">12/25</span>
             <a class="archive-post-title" href="/2023/12/25/CSS3%E5%8A%A8%E7%94%BB%E8%AF%A6%E8%A7%A3/">CSS3动画详解</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span>
+            <a class="archive-post-title" href="/2023/12/25/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%A7%E5%B1%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E5%88%B6%E4%BD%9C%E4%B8%8D%E5%8F%98%E5%BD%A2%E7%9A%84%E5%9B%BE%E7%89%87%E8%BE%B9%E6%A1%86/">可视化大屏设计：制作不变形的图片边框</a>
         </li>
     
         
@@ -2088,7 +2192,7 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         
         <li class="archive-post-item">
             <span class="archive-post-date">03/31</span>
-            <a class="archive-post-title" href="/2023/03/31/Kubernetes%E5%AE%9E%E8%B7%B5%E4%B9%8B%E4%BB%8Eyaml%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/">Kubernetes实践之从yaml创建工作负载</a>
+            <a class="archive-post-title" href="/2023/03/31/Kubernetes%E5%AE%9E%E8%B7%B5%EF%BC%9A%E4%BB%8Eyaml%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/">Kubernetes实践：从yaml创建工作负载</a>
         </li>
     
         
@@ -2163,7 +2267,7 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/14</span>
-            <a class="archive-post-title" href="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%E4%B9%8B%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/">Vue.js实战之博客页面前端</a>
+            <a class="archive-post-title" href="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/">Vue.js实战：博客页面前端</a>
         </li>
     
         
@@ -2187,7 +2291,7 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         
         <li class="archive-post-item">
             <span class="archive-post-date">11/05</span>
-            <a class="archive-post-title" href="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%E4%B9%8Btodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/">Vue.js实战之todolist待办项目</a>
+            <a class="archive-post-title" href="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/">Vue.js实战：todolist待办项目</a>
         </li>
     
         
@@ -2259,7 +2363,7 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         
         <li class="archive-post-item">
             <span class="archive-post-date">10/24</span>
-            <a class="archive-post-title" href="/2022/10/24/Flask%E5%AE%9E%E6%88%98%E4%B9%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/">Flask实战之搭建博客后端</a>
+            <a class="archive-post-title" href="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/">Flask实战：搭建博客后端</a>
         </li>
     
         
@@ -2420,6 +2524,11 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库工具">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库工具
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2443,11 +2552,6 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             <span class="sidebar-tag-name" data-tags="应用部署">
                 <span class="iconfont-archer">&#xe606;</span>
                 应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="数据库工具">
-                <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2485,6 +2589,11 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
@@ -2493,6 +2602,16 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="LLM">
+                <span class="iconfont-archer">&#xe606;</span>
+                LLM
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="人工智能">
+                <span class="iconfont-archer">&#xe606;</span>
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue">
@@ -2520,14 +2639,14 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Elasticsearch">
                 <span class="iconfont-archer">&#xe606;</span>
                 Elasticsearch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2540,6 +2659,11 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
                 python
             </span>
         
+            <span class="sidebar-tag-name" data-tags="异步IO">
+                <span class="iconfont-archer">&#xe606;</span>
+                异步IO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="企业微信">
                 <span class="iconfont-archer">&#xe606;</span>
                 企业微信
@@ -2548,11 +2672,6 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             <span class="sidebar-tag-name" data-tags="应用开发">
                 <span class="iconfont-archer">&#xe606;</span>
                 应用开发
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="异步IO">
-                <span class="iconfont-archer">&#xe606;</span>
-                异步IO
             </span>
         
             <span class="sidebar-tag-name" data-tags="CSS">
@@ -2568,6 +2687,11 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             <span class="sidebar-tag-name" data-tags="结构性思维">
                 <span class="iconfont-archer">&#xe606;</span>
                 结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="自动化测试">
+                <span class="iconfont-archer">&#xe606;</span>
+                自动化测试
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2601,6 +2725,11 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库工具">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库工具
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2609,11 +2738,6 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="数据库工具">
-            <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Web框架">
@@ -2631,11 +2755,6 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             操作系统
         </span>
     
-        <span class="sidebar-category-name" data-categories="学习笔记">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习笔记
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
             Kubernetes
@@ -2646,9 +2765,24 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="MinIO">
+            <span class="iconfont-archer">&#xe60a;</span>
+            MinIO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习笔记
+        </span>
+    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2671,14 +2805,14 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="JavaScript">
-            <span class="iconfont-archer">&#xe60a;</span>
-            JavaScript
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Elasticsearch">
             <span class="iconfont-archer">&#xe60a;</span>
             Elasticsearch
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="JavaScript">
+            <span class="iconfont-archer">&#xe60a;</span>
+            JavaScript
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2686,14 +2820,19 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
         </span>
     
-        <span class="sidebar-category-name" data-categories="python">
+        <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
-            python
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
@@ -2701,14 +2840,19 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             前端框架
         </span>
     
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="应用开发">
-            <span class="iconfont-archer">&#xe60a;</span>
-            应用开发
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2716,9 +2860,9 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
             异步IO
         </span>
     
-        <span class="sidebar-category-name" data-categories="XAMPP">
+        <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
-            XAMPP
+            应用开发
         </span>
     
     </div>

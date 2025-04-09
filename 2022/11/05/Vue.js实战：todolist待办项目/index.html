@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <!-- title -->
+
+
+    
+
+<!-- keywords -->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="唐抉">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="唐抉">
+    
+        <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js实战：todolist待办项目">
+<meta property="og:url" content="http://tangmenjue.top/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="唐抉的个人博客">
+<meta property="og:locale">
+<meta property="og:image" content="http://tangmenjue.top/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/1.png">
+<meta property="og:image" content="http://tangmenjue.top/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/2.png">
+<meta property="article:published_time" content="2022-11-05T09:33:51.000Z">
+<meta property="article:modified_time" content="2022-11-05T09:33:51.000Z">
+<meta property="article:author" content="唐抉">
+<meta property="article:tag" content="Vue.js">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tangmenjue.top/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/1.png">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    
+    <title>Vue.js实战：todolist待办项目 · null</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="/css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="唐抉的个人博客" type="application/atom+xml">
+</head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+    
+        <body class="post-body">
+    
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+            <div class="header-sidebar-menu">
+        
+            
+                <div style="padding-left: 1px;">&#xe775;</div>
+            
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>唐抉的个人博客</a>
+        </span>
+    </div>
+    <!-- toggle banner for post layout -->
+    
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">唐抉的个人博客</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">Vue.js实战：todolist待办项目</a>
+            </div>
+        </div>
+    
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+            <div class="back-top back-top-hidden">
+        
+        
+            <div>&#xe639;</div>
+        
+        </div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
+
+
+
+
+
+
+    height:50vh;
+
+">
+    
+    <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+                Vue.js实战：todolist待办项目
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+                
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue.js">Vue.js</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
+    
+</div>
+
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">3.2k</span>阅读时长: <span class="post-count reading-time">13 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2022/11/05</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="初始化一个新项目">初始化一个新项目</h1>
+<ul>
+<li><p>要初始化一个新项目，创建一个文件夹test作为项目目录，打开一个终端将切换路径到test，运行代码：</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\<span class="built_in">test</span>&gt; vue create <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">运行结果如下：</span><br><span class="line"> Your connection to the default yarn registry seems to be slow.</span><br><span class="line">   Use https://registry.npmmirror.com <span class="keyword">for</span> faster installation? (Y/n)输入Y回车</span><br><span class="line">   Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: (Use arrow keys)</span><br><span class="line">&gt; Default ([Vue 3] babel, eslint)</span><br><span class="line">  Default ([Vue 2] babel, eslint)</span><br><span class="line">  Manually select features</span><br></pre></td></tr></table></figure></p></li>
+<li><p>使用方向键选择<code>“ Manually select features”</code>（手动选择）选项后按下键盘上的回车键继续。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection, and</span><br><span class="line">&lt;enter&gt; to proceed)</span><br><span class="line">&gt;(*) Babel</span><br><span class="line"> ( ) TypeScript</span><br><span class="line"> ( ) Progressive Web App (PWA) Support</span><br><span class="line"> ( ) Router</span><br><span class="line"> ( ) Vuex</span><br><span class="line"> ( ) CSS Pre-processors</span><br><span class="line"> (*) Linter / Formatter</span><br><span class="line"> ( ) Unit Testing</span><br><span class="line"> ( ) E2E Testing</span><br></pre></td></tr></table></figure></p></li>
+<li><p>可以看到第一个菜单允许选择想要包含在项目中的功能，确保<code>“Babel”</code>和<code>“Linter / Formatter”</code>这两项是被选中的。若它们没有被选中，使用方向键切换，按空格键来选中它们，若它们被选中，按下回车键继续。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with (Use arrow keys)</span><br><span class="line">&gt; 3.x</span><br><span class="line">  2.x</span><br></pre></td></tr></table></figure></p></li>
+<li><p>接下来为选择Vue.js版本，使用方向键选中3.x选项后按下键盘上的回车键继续。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with 3.x</span><br><span class="line">? Pick a linter / formatter config: (Use arrow keys)</span><br><span class="line">&gt; ESLint with error prevention only</span><br><span class="line">  ESLint + Airbnb config</span><br><span class="line">  ESLint + Standard config</span><br><span class="line">  ESLint + Prettier</span><br></pre></td></tr></table></figure></p></li>
+<li><p>接下来为<code>linter / formatter</code>选择一个配置，使用方向键选中<code>"ESLint with error prevention only"</code>选项后按下键盘上的回车键继续。这样可以辅助我们捕获常见的错误。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with 3.x</span><br><span class="line">? Pick a linter / formatter config: Basic</span><br><span class="line">? Pick additional lint features: (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection, and &lt;enter&gt; to</span><br><span class="line">proceed)</span><br><span class="line">&gt;(*) Lint on save</span><br><span class="line"> ( ) Lint and fix on commit</span><br></pre></td></tr></table></figure></p></li>
+<li><p>接下来选择需要哪种自动化的Lint，使用方向键选中<code>"Lint on save"</code>选项后按下键盘上的回车键继续。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with 3.x</span><br><span class="line">? Pick a linter / formatter config: Basic</span><br><span class="line">? Pick additional lint features: (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection, and &lt;enter&gt; to</span><br><span class="line">proceed)</span><br><span class="line">&gt;(*) Lint on save</span><br><span class="line"> ( ) Lint and fix on commit</span><br></pre></td></tr></table></figure></p></li>
+<li><p>接下来选择把配置文件放在哪里。<code>"In dedicated config files"</code>这个选项会把配置文件单独放在一个文件里，另一个选项<code>"In package.json"</code>会把配置文件放仅项目文件<code>package.json</code>里。选择<code>"In dedicated config files"</code>选项后按下键盘上的回车键继续。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with 3.x</span><br><span class="line">? Pick a linter / formatter config: Basic</span><br><span class="line">? Pick additional lint features: Lint on save</span><br><span class="line">? Where <span class="keyword">do</span> you prefer placing config <span class="keyword">for</span> Babel, ESLint, etc.? (Use arrow keys)</span><br><span class="line">&gt; In dedicated config files</span><br><span class="line">  In package.json</span><br></pre></td></tr></table></figure></p></li>
+<li><p>最后选择是否把这次的选择作为未来的预设配置。输入<code>y</code>后按下键盘上的回车键后输入保存的配置名称。然后脚手架工具就开始构建项目，并且安装所需的依赖。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with 3.x</span><br><span class="line">? Pick a linter / formatter config: Basic</span><br><span class="line">? Pick additional lint features: Lint on save</span><br><span class="line">? Where <span class="keyword">do</span> you prefer placing config <span class="keyword">for</span> Babel, ESLint, etc.? In dedicated config files</span><br><span class="line">? Save this as a preset <span class="keyword">for</span> future projects? (y/N)</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<h2 id="项目结构">项目结构</h2>
+<p>如果前面的步骤都顺利执行的话，脚手架工具已经在项目中创建了一系列的文件和目录，其项目结构如下：</p>
+<p><img src="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/1.png"></p>
+<ul>
+<li><p><code>eslintrc.js</code>：是<code>eslint</code>的配置文件，可以通过它来管理校验规则</p></li>
+<li><p><code>babel.config.js</code>：是<code>Babel</code>的配置文件，可以在开发中使用JavaScript的新特性，并且将其转换为在生成环境中可以跨浏览器运行的旧语法代码，也可以在这里配置额外的babel插件</p></li>
+<li><p><code>.browserslistrc</code>：是<code>Browserslist</code>的配置文件，可以通过它来控制需要对哪些浏览器进行支持和优化</p></li>
+<li><p><code>public</code>：该目录包含一些在<code>Webpack</code>编译过程中没有架构处理过的文件（<code>index.html</code>除外）</p>
+<ul>
+<li><code>favicon.ico</code>：项目的图标，当前是一个Vue的logo</li>
+<li><code>index.html</code>：应用模板文件，Vue应用会通过这个HTML页面来运行，也可以通过<code>lodash</code>这种模板语法在这个文件里插值</li>
+</ul></li>
+<li><p><code>src</code>：Vue应用的核心代码目录</p>
+<ul>
+<li><code>main.js</code>：应用的入口文件。目前它会初始化Vue应用并指定将应用挂载到index.html文件中的哪个HTML元素上。通常还会做一些注册全局组件或者添加额外的Vue库的操作</li>
+<li><code>App.vue</code>：Vue应用的根节点组件</li>
+<li><code>components</code>：用来存放自定义组件的目录，当前里面会有一个示例组件</li>
+<li><code>assets</code>：用来存放如CSS、图片这类的静态资源，可以用<code>webpack</code>来操作和处理 根据创建项目时的配置项不同，可能会有一些其他的预设目录，比如选择了路由配置，会看到一个<code>views</code>文件夹。</li>
+</ul></li>
+</ul>
+<h2 id="vue文件单文件组件"><code>.vue</code>文件（单文件组件）</h2>
+<p>组件是构建Vue应用中非常重要的一部分，其可以把一个很大的应用程序拆分为独立创建和管理的不相干区块，然后彼此按需传递数据。</p>
+<p>在其他框架鼓励把模板、逻辑和样式的代码区分成不同文件时，Vue提倡使用单文件组件，把模板、相关脚本和CSS整合到一起放在<code>.vue</code>结尾的单文件中。这些文件最终会通过JS打包工具（如<code>Webpack</code>）处理。</p>
+<p>使用Vue CLI创建的项目被配置为开箱即用的情况下，可以在CLI创建项目中的<code>src</code>文件夹里看到第一个<code>.vue</code>文件：<code>App.vue</code>。</p>
+<h2 id="app.vue"><code>App.vue</code></h2>
+<p>打开<code>App.vue</code>文件，可以看到有<code>&lt;template&gt;</code>、<code>&lt;script&gt;</code>和<code>&lt;style&gt;</code>三部分组成，分别包含了组件的模板、脚本和样式相关的内容。所有单文件组件内的结构都是这种类似的结构。</p>
+<p><strong><code>&lt;tamplate&gt;</code>包含了所有的标记结构和组件的展示逻辑。tamplate可以包含任何合法的HTML以及Vue特点的语法。</strong>如通过设置<code>&lt;tamplate lang="pug"&gt;</code>可以使用Pug模板来替代标准HTML。</p>
+<p><strong><code>&lt;script&gt;</code>包含组件中所有的非显示逻辑，<code>&lt;script&gt;</code>标签默认导出一个JS对象。</strong>该对象用于在本地注册组件、定义属性、处理本地状态、定义方法等地方。在构建阶段这个包含<code>&lt;tamplate&gt;</code>的对象会被处理和转换成为一个有<code>render()</code>函数的Vue组件。</p>
+<p>对于<code>App.vue</code>，默认导出将组件的名称设置为<code>app</code>，并通过将<code>HelloWorld</code>组件添加到<code>components</code>属性中来注册它。以这种方式注册组件时，意味着就是在本地注册，本地注册的组件只能在注册它们的组件内部使用，因此需要将其导入并注册到使用它们的每个组件文件中。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="title class_">HelloWorld</span> form <span class="string">&#x27;./components/Helloworld.vue&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">name</span>:<span class="string">&#x27;app&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">components</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//在这里本地注册组件</span></span></span><br><span class="line"><span class="language-javascript">        <span class="title class_">HelloWorld</span></span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>若想要使用<code>TypeScript</code>语法，可以将<code>&lt;script&gt;</code>标签的<code>lang</code>属性设置为<code>&lt;script lang='ts'&gt;</code>。</p>
+<p>组件的CSS应写在<code>&lt;style&gt;</code>标签里，<strong>若添加了<code>&lt;scoped&gt;</code>属性（如<code>&lt;style scoped&gt;</code>)，Vue会把样式的范围显示在单文件组件的内容里。</strong>设置类似于CSS-in-JS的解决方案，只不过是允许书写纯粹的CSS。</p>
+<p><strong>注意：</strong>若通过CLI创建项目是选择了CSS预处理器，则可以将<code>lang</code>属性添加到<code>&lt;style&gt;</code>标签中，以便<code>Webpack</code>可以在构建时处理内容。如<code>&lt;style lang="scss"&gt;</code>将允许在样式信息中使用SCSS语法。</p>
+<h2 id="本地运行程序">本地运行程序</h2>
+<p>Vue CLI带有内置的开发服务器，因此可以无需自己配置服务器便可在本地运行并测试应用程序。CLI会以npm脚本的形式将<code>serve</code>命令添加到项目的<code>package.json</code>文件中，因此可以轻松地运行它。</p>
+<p>在终端中，切换到项目所在的路径，输入<code>npm run serve</code>或者<code>yarn run serve</code>即可运行服务器，此时的终端应输出以下类似的内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\<span class="built_in">test</span>\<span class="built_in">test</span>&gt; npm run serve</span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">test</span>@0.1.0 serve</span><br><span class="line">&gt; vue-cli-service serve</span><br><span class="line"></span><br><span class="line"> INFO  Starting development server...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> DONE  Compiled successfully <span class="keyword">in</span> 1995ms                                                                          14:28:36</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  App running at:</span><br><span class="line">  - Local:   http://localhost:8080/</span><br><span class="line">  - Network: http://10.17.212.3:8080/</span><br><span class="line"></span><br><span class="line">  Note that the development build is not optimized.</span><br><span class="line">  To create a production build, run yarn build.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> WAIT  Compiling...                                                                                             14:28:36</span><br><span class="line"></span><br><span class="line">Compiling...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> DONE  Compiled successfully <span class="keyword">in</span> 70ms                                                                            14:28:36</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  App running at:</span><br><span class="line">  - Local:   http://localhost:8080/</span><br><span class="line">  - Network: http://10.17.212.3:8080/</span><br></pre></td></tr></table></figure>
+<p>若在浏览器中打开<code>http://localhost:8080/</code>或<code>http://10.17.212.3:8080/</code>，便可以看到应用程序。当前它应该包含欢迎信息、Vue文档的链接、使用CLI初始化应用程序时添加的插件链接，以及指向Vue社区和生态系统的其他有用链接。</p>
+<p><img src="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/2.png"></p>
+<h2 id="改动应用">改动应用</h2>
+<p>对应用做出第一步改动，删除Vue logo。打开<code>App.vue</code>文件，在template部分删除<code>&lt;img&gt;</code>元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">alt</span>=<span class="string">&quot;Vue logo&quot;</span> <span class="attr">src</span>=<span class="string">&quot;./assets/logo.png&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>服务器仍在正常运行时，可以看到logo是即时从之前渲染的页面中消失。接下来再把<code>HelloWorld</code>组件也删掉。</p>
+<p>首先删除下面这一行：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">HelloWorld</span> <span class="keyword">from</span> <span class="string">&#x27;./components/HelloWorld.vue&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>若这时候保存<code>App.vue</code>文件，渲染好的应用会因为找不到<code>HelloWorld</code>组件而抛出一个错误。</p>
+<p>在<code>&lt;script&gt;</code>中将引入和注册组件的那几行删掉：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">components</span>: &#123;</span><br><span class="line">  <span class="title class_">HelloWorld</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时渲染好的应用不再显示错误了，只有一个空页面。</p>
+<p>接下来来创建一个任务清单的应用。打开<code>App.vue</code>文件，将下列代码删除：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">HelloWorld</span> <span class="attr">msg</span>=<span class="string">&quot;Welcome to Your Vue.js App&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>编写代码如下，在<code>&lt;div id="app"&gt;</code>中新增一个<code>&lt;h1&gt;</code>标签，并将标题文案设为"To-Do List"：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;h1&gt;To-Do List&lt;/h1&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<p>此时服务器会展示<code>To-Do List</code>标题。</p>
+<h2 id="小结">小结</h2>
+<p>学习至此，我们已经为示例应用程序创建了一些脚手架，使其可以运行，检查并进行了一些初步更改。后续将进一步研究并构建示例应用程序。使之允许存储项目列表，完成后将其选中，并按所有、已完成和未完成待办事项来过滤。</p>
+<h1 id="创建第一个vue组件">创建第一个Vue组件</h1>
+<p>Vue组件是由管理应用程序数据的JavaScript对象和映射到基础DOM结构的基于HTML语法的模板语法组成的。接下来要创建一个组件来表示待办事项列表中的每一个项目。</p>
+<h2 id="创建一个todoitem组件">创建一个<code>ToDoItem</code>组件</h2>
+<p><code>ToDoItem</code>组件将用来显示单一的待办事项，用它来建立待办事项列表。</p>
+<ul>
+<li><p>在<code>test/srx/components</code>目录下，创建一个<code>ToDoItem.vue</code>的新文件并打开</p></li>
+<li><p>在文件顶部添加<code>&lt;template&gt;&lt;/template&gt;</code>部分来创建组件中的模板部分</p></li>
+<li><p>在模板部分下面创建一个<code>&lt;script&gt;&lt;/script&gt;</code>部分。在<code>&lt;script&gt;</code>标签内，添加一个默认导出对象<code>export default&#123;&#125;</code>作为组件对象:</p>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt; &lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default&#123;&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<p>现在加上为<code>ToDoItem</code>添加实际内容。Vue模板目前只允许一个根元素--一个元素需要包裹模板内的所有内容，因此要为该根元素使用一个<code>&lt;div&gt;</code>。</p>
+<ul>
+<li><p>在组件模板中添加一个空的<code>&lt;div&gt;</code></p></li>
+<li><p>在<code>&lt;div&gt;</code>里添加一个<code>checkbox</code>和一个对应的<code>label</code>。给复选框添加一个<code>id</code>，并添加一个<code>for</code>属性，将复选框映射到标签上。</p>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;input type=&quot;checkbox&quot; id=&quot;todo-item&quot; checked=&quot;false&quot; /&gt;</span><br><span class="line">        &lt;label for=&quot;todo-item&quot;&gt;My Todo Item&lt;/label&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<h2 id="在应用程序中使用todoitem组件">在应用程序中使用TodoItem组件</h2>
+<p>​</p>
+
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://tangmenjue.top">唐抉</a>
+            <p>原文链接：<a href="http://tangmenjue.top/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/">http://tangmenjue.top/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/</a>
+            <p>发表日期：<a href="http://tangmenjue.top/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/">November 5th 2022, 5:33:51 pm</a>
+            <p>更新日期：<a href="http://tangmenjue.top/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/">November 5th 2022, 5:33:51 pm</a>
+            <p>版权声明：
+			<!--如果有设置theme.since，并且时间小于当前时间（年份），形式为：@ 2018 - 2019(+作者/标题)；否则默认为当前年份(+作者/标题)。 -->
+			
+			    &copy; 2020-2025
+			
+			本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+			</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/" title="前端框架之Vue.js（四）">
+                    <div class="nextTitle">前端框架之Vue.js（四）</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2022/11/04/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%89%EF%BC%89/" title="前端框架之Vue.js（三）">
+                    <div class="prevTitle">前端框架之Vue.js（三）</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <div class="livere-card card" data-aos="fade-up"> 
+    <!-- 来必力City版安装代码 --> 
+    <style> 
+        #taboola-livere {display: none;} 
+    </style>
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC81MjY0MS8yOTExOA=="> 
+        <script type="text/javascript"> 
+            (function (d, s) { 
+                let j, e = d.getElementsByTagName(s)[0]; 
+                if (typeof LivereTower === 'function') { 
+                    return; 
+                } 
+                j = d.createElement(s); 
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js'; 
+                j.async = true; 
+                e.parentNode.insertBefore(j, e); 
+                })(document, 'script'); 
+        </script> 
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript> 
+    </div> 
+    <!-- City版安装代码已完成 --> 
+</div>
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
+    
+</main>
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+        <div class="social">
+            
+    
+        
+            
+                <a href="mailto:2630272905@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/liuyingqiao2019" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                    
+                    <img class="profile-qr" src="/assets/wecat.png" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                    
+                    <img class="profile-qr" src="/assets/qq.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <!-- 不蒜子  -->
+    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">本站总阅读量: <span id="busuanzi_value_site_pv"></span>次</span>
+            
+        </div>
+    	
+</footer>
+
+        </div>
+        <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%80%E4%B8%AA%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">初始化一个新项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue%E6%96%87%E4%BB%B6%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">.vue文件（单文件组件）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#app.vue"><span class="toc-number">1.3.</span> <span class="toc-text">App.vue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.4.</span> <span class="toc-text">本地运行程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B9%E5%8A%A8%E5%BA%94%E7%94%A8"><span class="toc-number">1.5.</span> <span class="toc-text">改动应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AAvue%E7%BB%84%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">创建第一个Vue组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAtodoitem%E7%BB%84%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">创建一个ToDoItem组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8todoitem%E7%BB%84%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">在应用程序中使用TodoItem组件</span></a></li></ol></li></ol>
+            </div>
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 66
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+        
+            
+            
+            <div class="archive-year"> 2025 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/06</span>
+            <a class="archive-post-title" href="/2025/04/06/Prompt%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/">Prompt设计技巧</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span>
+            <a class="archive-post-title" href="/2024/07/01/MinIO%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/">MinIO 配置及使用</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span>
+            <a class="archive-post-title" href="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/">自动化接口测试：（一）Postman</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span>
+            <a class="archive-post-title" href="/2023/12/25/CSS3%E5%8A%A8%E7%94%BB%E8%AF%A6%E8%A7%A3/">CSS3动画详解</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span>
+            <a class="archive-post-title" href="/2023/12/25/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%A7%E5%B1%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E5%88%B6%E4%BD%9C%E4%B8%8D%E5%8F%98%E5%BD%A2%E7%9A%84%E5%9B%BE%E7%89%87%E8%BE%B9%E6%A1%86/">可视化大屏设计：制作不变形的图片边框</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/30</span>
+            <a class="archive-post-title" href="/2023/11/30/Lottie%E5%8A%A8%E6%95%88%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Bodymovin%E6%8F%92%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/">Lottie动效设计指南：（一）Bodymovin插件的安装及初步使用</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/29</span>
+            <a class="archive-post-title" href="/2023/11/29/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%A7%E5%B1%8F%E8%AE%BE%E8%AE%A1%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">可视化大屏设计入门指南</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/21</span>
+            <a class="archive-post-title" href="/2023/11/21/%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8el-editor%E7%BC%96%E8%BE%91%E5%99%A8/">在Vue中使用el-editor编辑器</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span>
+            <a class="archive-post-title" href="/2023/11/20/Vue%20%E5%B0%86%E7%BB%84%E4%BB%B6%E6%89%93%E5%8C%85%E5%B9%B6%E5%8F%91%E5%B8%83%E5%88%B0npm%E4%BB%93%E5%BA%93/">Vue 将组件打包并发布到npm仓库</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/02</span>
+            <a class="archive-post-title" href="/2023/11/02/js%E6%96%87%E4%BB%B6%E8%B0%83%E7%94%A8vue%E5%86%85%E7%9A%84%E6%96%B9%E6%B3%95%E5%B9%B6%E4%BC%A0%E5%80%BC/">js文件调用vue内的方法并传值</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span>
+            <a class="archive-post-title" href="/2023/11/01/python%E5%BC%82%E6%AD%A5%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/">python异步多线程下载文件</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span>
+            <a class="archive-post-title" href="/2023/10/16/Vue%20axios%E6%8E%A5%E5%8F%A3%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E5%B9%B6%E5%90%8C%E6%AD%A5%E8%BF%94%E5%9B%9E/">Vue axios接口异步请求数据并同步返回</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span>
+            <a class="archive-post-title" href="/2023/07/18/Vue%20%E7%9B%91%E5%90%AC%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96%E5%B9%B6%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE/">Vue 监听兄弟组件数据变化并实时更新数据</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span>
+            <a class="archive-post-title" href="/2023/07/12/Vue%E6%B0%B4%E5%8D%B0%E8%87%AA%E9%80%82%E5%BA%94%E7%AA%97%E5%8F%A3%E6%96%B9%E6%B3%95/">Vue 水印自适应窗口方法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span>
+            <a class="archive-post-title" href="/2023/05/08/DBeaver%20Enterprise%20Edition%2022.0%20%E4%BC%81%E4%B8%9A%E7%89%88%E7%A0%B4%E8%A7%A3%E6%96%B9%E6%B3%95/">DBeaver Enterprise Edition 22.0 企业版破解方法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span>
+            <a class="archive-post-title" href="/2023/03/31/Kubernetes%E5%AE%9E%E8%B7%B5%EF%BC%9A%E4%BB%8Eyaml%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/">Kubernetes实践：从yaml创建工作负载</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span>
+            <a class="archive-post-title" href="/2023/03/07/docker-compose%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2Elasticsearch%20Logstash%20elasticsearch-head/">docker-compose一键部署Elasticsearch Logstash Kibana</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span>
+            <a class="archive-post-title" href="/2023/02/23/%E5%88%9D%E6%8E%A2vue-quill-editor/">初探vue-quill-editor</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span>
+            <a class="archive-post-title" href="/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/">Oracle Sql语句查库</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/17</span>
+            <a class="archive-post-title" href="/2023/01/17/%E5%AE%9E%E7%8E%B0Postgresql%E4%B8%8EElasticsearch%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/">实现Postgresql与Elasticsearch的数据同步</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/13</span>
+            <a class="archive-post-title" href="/2023/01/13/python%E7%8E%AF%E5%A2%83%E4%B8%ADElasticsearch%E7%9A%84%E4%BD%BF%E7%94%A8/">python环境中Elasticsearch的使用</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2022 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/16</span>
+            <a class="archive-post-title" href="/2022/12/16/YAML%E4%B8%8ERedis%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%94%A8/">YAML与Redis的基本运用</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/15</span>
+            <a class="archive-post-title" href="/2022/12/15/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/">Docker应用部署实战</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/06</span>
+            <a class="archive-post-title" href="/2022/12/06/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%9F%BA%E7%A1%80/">Docker应用部署基础</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/18</span>
+            <a class="archive-post-title" href="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">企业微信之企业应用开发流程</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/16</span>
+            <a class="archive-post-title" href="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/">CentOS 7之关于网络管理的那些知识</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/14</span>
+            <a class="archive-post-title" href="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/">Vue.js实战：博客页面前端</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/11</span>
+            <a class="archive-post-title" href="/2022/11/11/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%85%AD%EF%BC%89/">前端框架之Vue.js（六）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/10</span>
+            <a class="archive-post-title" href="/2022/11/10/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%BA%94%EF%BC%89/">前端框架之Vue.js（五）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/09</span>
+            <a class="archive-post-title" href="/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/">前端框架之Vue.js（四）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span>
+            <a class="archive-post-title" href="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/">Vue.js实战：todolist待办项目</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span>
+            <a class="archive-post-title" href="/2022/11/04/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%89%EF%BC%89/">前端框架之Vue.js（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span>
+            <a class="archive-post-title" href="/2022/11/04/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%BA%8C%EF%BC%89/">前端框架之Vue.js（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/03</span>
+            <a class="archive-post-title" href="/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%80%EF%BC%89/">前端框架之Vue.js（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span>
+            <a class="archive-post-title" href="/2022/11/01/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%B8%89%EF%BC%89/">前端三件套之JavaScript（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span>
+            <a class="archive-post-title" href="/2022/10/31/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之JavaScript（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BJavaScript%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之JavaScript（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之CSS（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span>
+            <a class="archive-post-title" href="/2022/10/28/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BCSS%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之CSS（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/27</span>
+            <a class="archive-post-title" href="/2022/10/27/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BHTML%EF%BC%88%E4%BA%8C%EF%BC%89/">前端三件套之HTML（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/26</span>
+            <a class="archive-post-title" href="/2022/10/26/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BHTML%EF%BC%88%E4%B8%80%EF%BC%89/">前端三件套之HTML（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span>
+            <a class="archive-post-title" href="/2022/10/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/">python学习笔记（十三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span>
+            <a class="archive-post-title" href="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/">Flask实战：搭建博客后端</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/21</span>
+            <a class="archive-post-title" href="/2022/10/21/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">Flask Web开发学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/20</span>
+            <a class="archive-post-title" href="/2022/10/20/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">Flask Web开发学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span>
+            <a class="archive-post-title" href="/2022/10/19/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/">python学习笔记（十二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span>
+            <a class="archive-post-title" href="/2022/10/18/Flask%20Web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">Flask Web开发学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span>
+            <a class="archive-post-title" href="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">PgSQL数据库学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span>
+            <a class="archive-post-title" href="/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">PgSQL数据库学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span>
+            <a class="archive-post-title" href="/2022/10/14/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">PgSQL数据库学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span>
+            <a class="archive-post-title" href="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/">python学习笔记（十一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/13</span>
+            <a class="archive-post-title" href="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/">python学习笔记（十）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span>
+            <a class="archive-post-title" href="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89/">python学习笔记（九）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span>
+            <a class="archive-post-title" href="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/">python学习笔记（八）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span>
+            <a class="archive-post-title" href="/2022/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89/">python学习笔记（七）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span>
+            <a class="archive-post-title" href="/2022/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">python学习笔记（六）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span>
+            <a class="archive-post-title" href="/2022/10/10/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/">python学习笔记（五）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span>
+            <a class="archive-post-title" href="/2022/10/10/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/">python学习笔记（四）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2022/10/09/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">python学习笔记（三）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="/2022/10/09/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">python学习笔记（二）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/08</span>
+            <a class="archive-post-title" href="/2022/10/08/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">python学习笔记（一）</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span>
+            <a class="archive-post-title" href="/2022/08/07/%E7%BB%93%E6%9E%84%E6%80%A7%E6%80%9D%E7%BB%B4%E7%AC%94%E8%AE%B0/">结构性思维笔记</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/27</span>
+            <a class="archive-post-title" href="/2022/07/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">设计模式的学习（一）</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2020 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span>
+            <a class="archive-post-title" href="/2020/03/30/Win10%E7%B3%BB%E7%BB%9Fedge%E6%B5%8F%E8%A7%88%E5%99%A8%E5%87%BA%E7%8E%B0%E9%97%AA%E9%80%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">Win10系统edge浏览器出现闪退的解决方法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span>
+            <a class="archive-post-title" href="/2020/02/11/%E8%AE%B0%E4%B8%80%E6%AC%A1XAMPP%E7%9A%84%E6%8A%A5%E9%94%99%E5%AE%9E%E4%BE%8B/">记一次XAMPP的报错实例</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/09</span>
+            <a class="archive-post-title" href="/2020/01/09/hello-world/">Hello World</a>
+        </li>
+    
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+        
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库工具">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库工具
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="CentOS 7">
+                <span class="iconfont-archer">&#xe606;</span>
+                CentOS 7
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="网络管理">
+                <span class="iconfont-archer">&#xe606;</span>
+                网络管理
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Flask Web">
+                <span class="iconfont-archer">&#xe606;</span>
+                Flask Web
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="后端">
+                <span class="iconfont-archer">&#xe606;</span>
+                后端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Web框架">
+                <span class="iconfont-archer">&#xe606;</span>
+                Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="可视化">
+                <span class="iconfont-archer">&#xe606;</span>
+                可视化
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="大屏设计">
+                <span class="iconfont-archer">&#xe606;</span>
+                大屏设计
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Lottie">
+                <span class="iconfont-archer">&#xe606;</span>
+                Lottie
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="LLM">
+                <span class="iconfont-archer">&#xe606;</span>
+                LLM
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="人工智能">
+                <span class="iconfont-archer">&#xe606;</span>
+                人工智能
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue.js">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue.js
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="前端">
+                <span class="iconfont-archer">&#xe606;</span>
+                前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="YAML">
+                <span class="iconfont-archer">&#xe606;</span>
+                YAML
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Redis">
+                <span class="iconfont-archer">&#xe606;</span>
+                Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="python">
+                <span class="iconfont-archer">&#xe606;</span>
+                python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="异步IO">
+                <span class="iconfont-archer">&#xe606;</span>
+                异步IO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="企业微信">
+                <span class="iconfont-archer">&#xe606;</span>
+                企业微信
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用开发">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用开发
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="CSS">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="HTML">
+                <span class="iconfont-archer">&#xe606;</span>
+                HTML
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="自动化测试">
+                <span class="iconfont-archer">&#xe606;</span>
+                自动化测试
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="XAMPP">
+                <span class="iconfont-archer">&#xe606;</span>
+                XAMPP
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="报错">
+                <span class="iconfont-archer">&#xe606;</span>
+                报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库工具">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库工具
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Linux">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Linux
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="大屏设计">
+            <span class="iconfont-archer">&#xe60a;</span>
+            大屏设计
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="MinIO">
+            <span class="iconfont-archer">&#xe60a;</span>
+            MinIO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="学习笔记">
+            <span class="iconfont-archer">&#xe60a;</span>
+            学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="edge">
+            <span class="iconfont-archer">&#xe60a;</span>
+            edge
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="JavaScript">
+            <span class="iconfont-archer">&#xe60a;</span>
+            JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Lottie">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="异步IO">
+            <span class="iconfont-archer">&#xe60a;</span>
+            异步IO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="应用开发">
+            <span class="iconfont-archer">&#xe60a;</span>
+            应用开发
+        </span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "http://tangmenjue.top",
+        root: siteMetaRoot,
+        author: "唐抉"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+
+        <!-- main func -->
+        <script src="/scripts/main.js?v=20211217"></script>
+        <!-- dark mode -->
+        <script src="/scripts/dark.js?v=20211217"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid -->
+        
+        <!-- codecopy -->
+        
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.js"></script>
+            <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script> $.noConflict(); </script> 
+            <script type="text/javascript" src="/scripts/codecopy.js" async></script>
+        
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

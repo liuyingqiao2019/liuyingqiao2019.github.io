@@ -435,13 +435,17 @@
                 <span class="abstract-title-text">docker-compose一键部署Elasticsearch Logstash Kibana</span>
             </a>
             <div class="abstract-content">
-                简介在使用Elasticsearch进行全文搜索时，会使用到Elasticsearch（搜索引擎）、Logstash（数据同步）、Kibana（数据可视化）这三个中间件。在开发或测试环境中部署项目时，常使用docker-compose一键部署项目所需的环境，因此本文记录使用docker-compose一键部署Elasticsearch、Logstash和Kibana的过程。
-部署端口说明
+                简介
+在使用Elasticsearch进行全文搜索时，会使用到Elasticsearch（搜索引擎）、Logstash（数据同步）、Kibana（数据可视化）这三个中间件。在开发或测试环境中部署项目时，常使用docker-compose一键部署项目所需的环境，因此本文记录使用docker-compose一键部署Elasticsearch、Logstash和Kibana的过程。
+部署
+端口说明
+
 Elasticsearch：9200（HTTP通信）和9300（TCP通信）
 Logstash：5044和9600（TCP通信）
 Kibana：5601
 
-配置文件docker-compose.ymlv...
+配置文件
+docke...
             </div>
             <!-- read more -->
             
@@ -481,8 +485,10 @@ Kibana：5601
             </a>
             <div class="abstract-content">
                 遇到一个针对业务数据实现全文搜素的需求，而数据存在于pgsql数据库中，因此要将数据库中的数据同步到ES里。有两种方式可以实现：一是通过ES的API进行增删改查，二是通过中间件来进行数据全量、增量的同步。由于调用API的方式比较麻烦，本文便为第二种实现方式。
-刚开始时是准备使用multicorn插件的，奈何在windows 10的环境下一直都无法进行make&amp;&amp;make install安装，而由于环境问题也无法使用ABC工具（不支持postgresql14），随即作罢，改换成实时数据采集引擎logstash来同步数据。
-logstash概要Logstash作为Elasic...
+刚开始时是准备使用multicorn插件的，奈何在windows
+10的环境下一直都无法进行make&amp;&amp;make install安装，而由于环境问题也无法使用ABC工具（不支持postgresql14），随即作罢，改换成实时数据采集引擎logstash来同步数据。
+logstash概要
+Logstash作为E...
             </div>
             <!-- read more -->
             
@@ -519,9 +525,15 @@ logstash概要Logstash作为Elasic...
                 <span class="abstract-title-text">python环境中Elasticsearch的使用</span>
             </a>
             <div class="abstract-content">
-                Elasticsearch简介Elasticsearch是目前全文搜索引擎的首选项，它可以快速地存储、搜索和分析海量数据。Elastic的底层是开源库Lucene，而Elastic是Lucene的封装，其提供了REST API的操作接口，使之可以开箱即用。维基百科、Stack Overflow、Github等网站的搜索引擎都是采用它。
-Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
-在官网中选择所需的合适版本下载即可。本文使用的Elasticsearch版本为5.5.3，下载链接为Elasticsearch 5.5.3 | Elastic，...
+                Elasticsearch简介
+Elasticsearch是目前全文搜索引擎的首选项，它可以快速地存储、搜索和分析海量数据。Elastic的底层是开源库Lucene，而Elastic是Lucene的封装，其提供了REST
+API的操作接口，使之可以开箱即用。维基百科、Stack
+Overflow、Github等网站的搜索引擎都是采用它。
+Windows系统下Elasticsearch的安装和配置
+安装Elasticsearch服务端
+
+在官网中选择所需的合适版本下载即可。本文使用的Elasticsearch版本为5.5.3，下载链接为Elasticsearch
+5.5.3...
             </div>
             <!-- read more -->
             
@@ -992,18 +1004,6 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2112,6 +2112,16 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2142,29 +2152,14 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2182,9 +2177,24 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2195,16 +2205,6 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2222,11 +2222,6 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2235,6 +2230,11 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2272,19 +2272,9 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2295,6 +2285,16 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2318,6 +2318,11 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2328,29 +2333,9 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2358,9 +2343,19 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2368,19 +2363,24 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2413,6 +2413,16 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -2426,16 +2436,6 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2508,5 +2508,20 @@ Windows系统下Elasticsearch的安装和配置安装Elasticsearch服务端
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

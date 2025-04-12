@@ -340,7 +340,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.9k</span>阅读时长: <span class="post-count reading-time">21 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.5k</span>阅读时长: <span class="post-count reading-time">18 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -501,490 +501,80 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="Centos部署应用步骤"><a href="#Centos部署应用步骤" class="headerlink" title="Centos部署应用步骤"></a>Centos部署应用步骤</h1><h2 id="配置代码运行环境"><a href="#配置代码运行环境" class="headerlink" title="配置代码运行环境"></a>配置代码运行环境</h2><h3 id="nginx下载及配置"><a href="#nginx下载及配置" class="headerlink" title="nginx下载及配置"></a>nginx下载及配置</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#centos下载apache
-[root@localhost admin]# yum install httpd 
-
-#centos下载nginx
-[root@localhost admin]# yum install epel-release
-[root@localhost httpd]# yum install -y update
-[root@localhost httpd]# yum install -y nginx
-
-#打开防火墙端口80和443
-[root@localhost httpd]# firewall-cmd --permanent --zone&#x3D;public --add-service&#x3D;http
-[root@localhost httpd]# firewall-cmd --permanent --zone&#x3D;public --add-service&#x3D;https
-[root@localhost httpd]# firewall-cmd --reload
-
-#启动nignx服务
-[root@localhost httpd]# systemctl start nginx
-
-#查看nignx进程的状态
-[root@localhost admin]# systemctl status nginx
-● nginx.service - The nginx HTTP and reverse proxy server
-   Loaded: loaded (&#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;nginx.service; disabled; vendor preset: disabled)
-   Active: active (running) since 日 2022-12-11 18:32:09 PST; 1min 10s ago
-  Process: 5678 ExecStart&#x3D;&#x2F;usr&#x2F;sbin&#x2F;nginx (code&#x3D;exited, status&#x3D;0&#x2F;SUCCESS)
-  Process: 5675 ExecStartPre&#x3D;&#x2F;usr&#x2F;sbin&#x2F;nginx -t (code&#x3D;exited, status&#x3D;0&#x2F;SUCCESS)
-  Process: 5670 ExecStartPre&#x3D;&#x2F;usr&#x2F;bin&#x2F;rm -f &#x2F;run&#x2F;nginx.pid (code&#x3D;exited, status&#x3D;0&#x2F;SUCCESS)
- Main PID: 5680 (nginx)
-    Tasks: 2
-   CGroup: &#x2F;system.slice&#x2F;nginx.service
-           ├─5680 nginx: master process &#x2F;usr&#x2F;sbin&#x2F;nginx
-           └─5683 nginx: worker process
-
-12月 11 18:32:09 localhost.localdomain systemd[1]: Starting The nginx HTTP a...
-12月 11 18:32:09 localhost.localdomain nginx[5675]: nginx: the configuration...
-12月 11 18:32:09 localhost.localdomain nginx[5675]: nginx: configuration fil...
-12月 11 18:32:09 localhost.localdomain systemd[1]: Started The nginx HTTP an...
-Hint: Some lines were ellipsized, use -l to show in full.
-
-#设置nignx服务开机自启动
-[root@localhost httpd]# systemctl enable nginx
-Created symlink from &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants&#x2F;nginx.service to &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;nginx.service.
-
-#进入conf.d目录新建文件并填入以下内容
-[root@localhost httpd]# cd &#x2F;etc&#x2F;nginx&#x2F;conf.d
-[root@localhost conf.d]# ls
-[root@localhost conf.d]# touch flask_test.conf
-[root@localhost conf.d]# vi flask_test.conf
-server &#123;
-    listen       80;
-    server_name  localhost;
-
-    # api代理转发
-    location &#x2F; &#123;
-        proxy_redirect  off;
-        proxy_set_header    Host $host;
-        proxy_set_header    X-Real-IP            $remote_addr;
-        proxy_set_header    X-Forwarded-For      $proxy_add_x_forwarded_for;
-        proxy_set_header    X-Forwarded-Proto    $scheme;
-        proxy_pass http:&#x2F;&#x2F;127.0.0.1:8000;
-    &#125;
-&#125;
-
-#重启nginx
-[root@localhost conf.d]# systemctl reload nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="pgsql下载及配置"><a href="#pgsql下载及配置" class="headerlink" title="pgsql下载及配置"></a>pgsql下载及配置</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#centos下载pgsql
-[root@localhost httpd]# yum install https:&#x2F;&#x2F;download.postgresql.org&#x2F;pub&#x2F;repos&#x2F;yum&#x2F;reporpms&#x2F;EL-7-x86_64&#x2F;pgdg-redhat-repo-latest.noarch.rpm
-[root@localhost httpd]# yum install postgresql12-server
-
-#启动pgsql服务
-[root@localhost httpd]# postgresql-12-setup initdb
-Initializing database ... OK
-[root@localhost httpd]# systemctl start postgresql-12
-
-#设置pgsql服务开机自启动
-[root@localhost httpd]# systemctl enable postgresql-12
-Created symlink from &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants&#x2F;postgresql-12.service to &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;postgresql-12.service.
-
-#配置pgsql
-[root@localhost bin]# su - postgres
--bash-4.2$ psql
-psql (12.13)
-Type &quot;help&quot; for help.
-postgres&#x3D;# alter user postgres with password &#39;123456&#39;
-postgres-# \q
--bash-4.2$ exit
-logout
-[root@localhost bin]# find &#x2F; -name postgresql.conf
-find: ‘&#x2F;run&#x2F;user&#x2F;1000&#x2F;gvfs’: 权限不够
-&#x2F;var&#x2F;lib&#x2F;pgsql&#x2F;12&#x2F;data&#x2F;postgresql.conf
-
-#配置远程访问
-[root@localhost bin]# vi &#x2F;var&#x2F;lib&#x2F;pgsql&#x2F;12&#x2F;data&#x2F;postgresql.conf
-listen_addressses&#x3D;&quot;*&quot;
-port &#x3D; 5432 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="node-js安装"><a href="#node-js安装" class="headerlink" title="node.js安装"></a>node.js安装</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#安装node.js
-[root@localhost admin]# wget https:&#x2F;&#x2F;nodejs.org&#x2F;dist&#x2F;v16.16.0&#x2F;node-v16.16.0-linux-x64.tar.xz
-[root@localhost admin]# tar -xvf node-v16.16.0-linux-x64.tar.xz
-[root@localhost admin]# mv node-v16.16.0-linux-x64  node.js
-
-#查找node.js路径
-[root@localhost admin]# find &#x2F; -name node.js
-find: ‘&#x2F;run&#x2F;user&#x2F;1000&#x2F;gvfs’: 权限不够
-&#x2F;home&#x2F;admin&#x2F;node.js
-&#x2F;home&#x2F;admin&#x2F;node.js&#x2F;lib&#x2F;node_modules&#x2F;npm&#x2F;node_modules&#x2F;debug&#x2F;src&#x2F;node.js
-&#x2F;home&#x2F;admin&#x2F;node.js&#x2F;lib&#x2F;node_modules&#x2F;npm&#x2F;node_modules&#x2F;@npmcli&#x2F;arborist&#x2F;lib&#x2F;node.js
-&#x2F;home&#x2F;admin&#x2F;node.js&#x2F;lib&#x2F;node_modules&#x2F;npm&#x2F;node_modules&#x2F;@npmcli&#x2F;fs&#x2F;lib&#x2F;common&#x2F;node.js
-&#x2F;home&#x2F;admin&#x2F;node.js&#x2F;lib&#x2F;node_modules&#x2F;npm&#x2F;node_modules&#x2F;util-deprecate&#x2F;node.js
-#检查node版本
-[root@localhost admin]# cd &#x2F;home&#x2F;admin&#x2F;node.js&#x2F;bin
-[root@localhost bin]# .&#x2F;node -v
-v16.16.0
-
-#添加node.js的环境变量：
-[root@localhost bin]# vi &#x2F;etc&#x2F;profile
-#在文件末尾加上两句代码如下：
-#NODE_HOME为实际中node的安装位置目录
-export NODE_HOME&#x3D;&#x2F;home&#x2F;admin&#x2F;node.js
-export PATH&#x3D;$NODE_HOME&#x2F;bin:$PATH
-#按ESC+:+wq退出vim模式，输入以下命令使配置生效
-[root@localhost bin]# source &#x2F;etc&#x2F;profile
-
-#配置软连接将环境配置放到开机自启动的脚本中
-[root@localhost bin]# ln -s &#x2F;usr&#x2F;local&#x2F;node.js&#x2F;bin&#x2F;node &#x2F;usr&#x2F;local&#x2F;bin&#x2F;node
-[root@localhost bin]# ln -s &#x2F;usr&#x2F;local&#x2F;node.js&#x2F;bin&#x2F;npm &#x2F;usr&#x2F;local&#x2F;bin&#x2F;npm
-#查看虚拟机ip
-[root@localhost admin]# ifconfig
-ens33: flags&#x3D;4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
-        inet 192.168.60.129  netmask 255.255.255.0  broadcast 192.168.60.255
-        inet6 fe80::b659:fb9c:695f:5eff  prefixlen 64  scopeid 0x20&lt;link&gt;
-        ether 00:0c:29:b0:6f:2a  txqueuelen 1000  (Ethernet)
-        RX packets 491682  bytes 725762513 (692.1 MiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 49960  bytes 3119454 (2.9 MiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-lo: flags&#x3D;73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
-        loop  txqueuelen 1000  (Local Loopback)
-        RX packets 1411  bytes 485777 (474.3 KiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 1411  bytes 485777 (474.3 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-virbr0: flags&#x3D;4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500
-        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
-        ether 52:54:00:42:aa:9d  txqueuelen 1000  (Ethernet)
-        RX packets 0  bytes 0 (0.0 B)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 0  bytes 0 (0.0 B)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="部署应用"><a href="#部署应用" class="headerlink" title="部署应用"></a>部署应用</h2><h3 id="应用代码传输"><a href="#应用代码传输" class="headerlink" title="应用代码传输"></a>应用代码传输</h3><p>在window系统中下载xftp并安装，官网地址如下：<a target="_blank" rel="noopener" href="https://www.xshell.com/zh/free-for-home-school/">家庭/学校免费 - NetSarang Website (xshell.com)</a>，安装好后打开，点击新建，在主机一栏填上虚拟机的ip地址：192.168.60.129，用户名填root，密码填虚拟机的密码，其他默认，点击连接如下所示：</p>
-<p><img src="/2022/12/15/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/1.png" alt></p>
+        <h1 id="centos部署应用步骤">Centos部署应用步骤</h1>
+<h2 id="配置代码运行环境">配置代码运行环境</h2>
+<h3 id="nginx下载及配置">nginx下载及配置</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#centos下载apache</span></span><br><span class="line">[root@localhost admin]<span class="comment"># yum install httpd </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#centos下载nginx</span></span><br><span class="line">[root@localhost admin]<span class="comment"># yum install epel-release</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># yum install -y update</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># yum install -y nginx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#打开防火墙端口80和443</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># firewall-cmd --permanent --zone=public --add-service=http</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># firewall-cmd --permanent --zone=public --add-service=https</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># firewall-cmd --reload</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#启动nignx服务</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># systemctl start nginx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#查看nignx进程的状态</span></span><br><span class="line">[root@localhost admin]<span class="comment"># systemctl status nginx</span></span><br><span class="line">● nginx.service - The nginx HTTP and reverse proxy server</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since 日 2022-12-11 18:32:09 PST; 1min 10s ago</span><br><span class="line">  Process: 5678 ExecStart=/usr/sbin/nginx (code=exited, status=0/SUCCESS)</span><br><span class="line">  Process: 5675 ExecStartPre=/usr/sbin/nginx -t (code=exited, status=0/SUCCESS)</span><br><span class="line">  Process: 5670 ExecStartPre=/usr/bin/rm -f /run/nginx.pid (code=exited, status=0/SUCCESS)</span><br><span class="line"> Main PID: 5680 (nginx)</span><br><span class="line">    Tasks: 2</span><br><span class="line">   CGroup: /system.slice/nginx.service</span><br><span class="line">           ├─5680 nginx: master process /usr/sbin/nginx</span><br><span class="line">           └─5683 nginx: worker process</span><br><span class="line"></span><br><span class="line">12月 11 18:32:09 localhost.localdomain systemd[1]: Starting The nginx HTTP a...</span><br><span class="line">12月 11 18:32:09 localhost.localdomain nginx[5675]: nginx: the configuration...</span><br><span class="line">12月 11 18:32:09 localhost.localdomain nginx[5675]: nginx: configuration fil...</span><br><span class="line">12月 11 18:32:09 localhost.localdomain systemd[1]: Started The nginx HTTP an...</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show <span class="keyword">in</span> full.</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置nignx服务开机自启动</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># systemctl enable nginx</span></span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/nginx.service to /usr/lib/systemd/system/nginx.service.</span><br><span class="line"></span><br><span class="line"><span class="comment">#进入conf.d目录新建文件并填入以下内容</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># cd /etc/nginx/conf.d</span></span><br><span class="line">[root@localhost conf.d]<span class="comment"># ls</span></span><br><span class="line">[root@localhost conf.d]<span class="comment"># touch flask_test.conf</span></span><br><span class="line">[root@localhost conf.d]<span class="comment"># vi flask_test.conf</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># api代理转发</span></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_redirect  off;</span><br><span class="line">        proxy_set_header    Host <span class="variable">$host</span>;</span><br><span class="line">        proxy_set_header    X-Real-IP            <span class="variable">$remote_addr</span>;</span><br><span class="line">        proxy_set_header    X-Forwarded-For      <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        proxy_set_header    X-Forwarded-Proto    <span class="variable">$scheme</span>;</span><br><span class="line">        proxy_pass http://127.0.0.1:8000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#重启nginx</span></span><br><span class="line">[root@localhost conf.d]<span class="comment"># systemctl reload nginx</span></span><br></pre></td></tr></table></figure>
+<h3 id="pgsql下载及配置">pgsql下载及配置</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#centos下载pgsql</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># yum install postgresql12-server</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#启动pgsql服务</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># postgresql-12-setup initdb</span></span><br><span class="line">Initializing database ... OK</span><br><span class="line">[root@localhost httpd]<span class="comment"># systemctl start postgresql-12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置pgsql服务开机自启动</span></span><br><span class="line">[root@localhost httpd]<span class="comment"># systemctl enable postgresql-12</span></span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/postgresql-12.service to /usr/lib/systemd/system/postgresql-12.service.</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置pgsql</span></span><br><span class="line">[root@localhost bin]<span class="comment"># su - postgres</span></span><br><span class="line">-bash-4.2$ psql</span><br><span class="line">psql (12.13)</span><br><span class="line">Type <span class="string">&quot;help&quot;</span> <span class="keyword">for</span> <span class="built_in">help</span>.</span><br><span class="line">postgres=<span class="comment"># alter user postgres with password &#x27;123456&#x27;</span></span><br><span class="line">postgres-<span class="comment"># \q</span></span><br><span class="line">-bash-4.2$ <span class="built_in">exit</span></span><br><span class="line"><span class="built_in">logout</span></span><br><span class="line">[root@localhost bin]<span class="comment"># find / -name postgresql.conf</span></span><br><span class="line">find: ‘/run/user/1000/gvfs’: 权限不够</span><br><span class="line">/var/lib/pgsql/12/data/postgresql.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置远程访问</span></span><br><span class="line">[root@localhost bin]<span class="comment"># vi /var/lib/pgsql/12/data/postgresql.conf</span></span><br><span class="line">listen_addressses=<span class="string">&quot;*&quot;</span></span><br><span class="line">port = 5432 </span><br></pre></td></tr></table></figure>
+<h3 id="node.js安装">node.js安装</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装node.js</span></span><br><span class="line">[root@localhost admin]<span class="comment"># wget https://nodejs.org/dist/v16.16.0/node-v16.16.0-linux-x64.tar.xz</span></span><br><span class="line">[root@localhost admin]<span class="comment"># tar -xvf node-v16.16.0-linux-x64.tar.xz</span></span><br><span class="line">[root@localhost admin]<span class="comment"># mv node-v16.16.0-linux-x64  node.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#查找node.js路径</span></span><br><span class="line">[root@localhost admin]<span class="comment"># find / -name node.js</span></span><br><span class="line">find: ‘/run/user/1000/gvfs’: 权限不够</span><br><span class="line">/home/admin/node.js</span><br><span class="line">/home/admin/node.js/lib/node_modules/npm/node_modules/debug/src/node.js</span><br><span class="line">/home/admin/node.js/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/node.js</span><br><span class="line">/home/admin/node.js/lib/node_modules/npm/node_modules/@npmcli/fs/lib/common/node.js</span><br><span class="line">/home/admin/node.js/lib/node_modules/npm/node_modules/util-deprecate/node.js</span><br><span class="line"><span class="comment">#检查node版本</span></span><br><span class="line">[root@localhost admin]<span class="comment"># cd /home/admin/node.js/bin</span></span><br><span class="line">[root@localhost bin]<span class="comment"># ./node -v</span></span><br><span class="line">v16.16.0</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加node.js的环境变量：</span></span><br><span class="line">[root@localhost bin]<span class="comment"># vi /etc/profile</span></span><br><span class="line"><span class="comment">#在文件末尾加上两句代码如下：</span></span><br><span class="line"><span class="comment">#NODE_HOME为实际中node的安装位置目录</span></span><br><span class="line"><span class="built_in">export</span> NODE_HOME=/home/admin/node.js</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$NODE_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="comment">#按ESC+:+wq退出vim模式，输入以下命令使配置生效</span></span><br><span class="line">[root@localhost bin]<span class="comment"># source /etc/profile</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#配置软连接将环境配置放到开机自启动的脚本中</span></span><br><span class="line">[root@localhost bin]<span class="comment"># ln -s /usr/local/node.js/bin/node /usr/local/bin/node</span></span><br><span class="line">[root@localhost bin]<span class="comment"># ln -s /usr/local/node.js/bin/npm /usr/local/bin/npm</span></span><br><span class="line"><span class="comment">#查看虚拟机ip</span></span><br><span class="line">[root@localhost admin]<span class="comment"># ifconfig</span></span><br><span class="line">ens33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.60.129  netmask 255.255.255.0  broadcast 192.168.60.255</span><br><span class="line">        inet6 fe80::b659:fb9c:695f:5eff  prefixlen 64  scopeid 0x20&lt;<span class="built_in">link</span>&gt;</span><br><span class="line">        ether 00:0c:29:b0:6f:2a  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 491682  bytes 725762513 (692.1 MiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 49960  bytes 3119454 (2.9 MiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536</span><br><span class="line">        inet 127.0.0.1  netmask 255.0.0.0</span><br><span class="line">        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br><span class="line">        loop  txqueuelen 1000  (Local Loopback)</span><br><span class="line">        RX packets 1411  bytes 485777 (474.3 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 1411  bytes 485777 (474.3 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">virbr0: flags=4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255</span><br><span class="line">        ether 52:54:00:42:aa:9d  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 0  bytes 0 (0.0 B)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 0  bytes 0 (0.0 B)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="部署应用">部署应用</h2>
+<h3 id="应用代码传输">应用代码传输</h3>
+<p>在window系统中下载xftp并安装，官网地址如下：<a target="_blank" rel="noopener" href="https://www.xshell.com/zh/free-for-home-school/">家庭/学校免费 -
+NetSarang Website
+(xshell.com)</a>，安装好后打开，点击新建，在主机一栏填上虚拟机的ip地址：192.168.60.129，用户名填root，密码填虚拟机的密码，其他默认，点击连接如下所示：</p>
+<p><img src="/2022/12/15/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/1.png"></p>
 <p>左侧窗口为本地目录，右侧窗口为虚拟机目录。选中左侧文件后右键，点击传输便可将文件从本地的windows系统传输到Linux虚拟机中。</p>
-<p><img src="/2022/12/15/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/2.png" alt></p>
-<h3 id="应用前端部署"><a href="#应用前端部署" class="headerlink" title="应用前端部署"></a>应用前端部署</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#切换到前端代码目录
-[root@localhost bin]# cd &#x2F;root&#x2F;WeChat_exercise&#x2F;front-end
-
-#下载vue及vue cli、加载项目所需的配置文件
-[root@localhost front-end]# npm install vue
-[root@localhost front-end]# npm install --global @vue&#x2F;cli
-[root@localhost front-end]# npm install yarn
-[root@localhost front-end]# npm install
-
-#运行前端项目
-[root@localhost front-end]# npm run serve
- DONE  Compiled successfully in 51145ms                                                                               01:47:08
-  App running at:
-  - Local:   http:&#x2F;&#x2F;localhost:8080 
-  - Network: http:&#x2F;&#x2F;192.168.60.129:8080
-
-  Note that the development build is not optimized.
-  To create a production build, run yarn build.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="后端环境部署"><a href="#后端环境部署" class="headerlink" title="后端环境部署"></a>后端环境部署</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#编译安装python3
-[root@localhost admin]# wget https:&#x2F;&#x2F;www.Python.org&#x2F;ftp&#x2F;python&#x2F;3.6.1&#x2F;Python-3.6.1.tar.xz
-[root@localhost admin]# tar xJf  Python-3.6.1.tar.xz
-[root@localhost admin]# cd  Python-3.6.1
-[root@localhost Python-3.6.1]# .&#x2F;configure  --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;python3 &amp;&amp; make &amp;&amp; make install
-
-#创建软链接
-[root@localhost Python-3.6.1]# ln -s &#x2F;usr&#x2F;local&#x2F;python3&#x2F;bin&#x2F;python3 &#x2F;usr&#x2F;bin&#x2F;python3
-[root@localhost Python-3.6.1]# ln -s &#x2F;usr&#x2F;local&#x2F;python3&#x2F;bin&#x2F;pip3 &#x2F;usr&#x2F;bin&#x2F;pip3
-
-#更换pip源
-[root@localhost ~]# mkdir ~&#x2F;.pip
-[root@localhost ~]#  vi ~&#x2F;.pip&#x2F;pip.conf
-
-[global]
-index-url &#x3D; http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;
-[install]
-trusted-host&#x3D;mirrors.aliyun.com
-
-#切换到后端项目目录，安装virtualenv
-[root@localhost ~]# cd &#x2F;root&#x2F;WeChat_exercise&#x2F;back-end
-ot@localhost back-end]# yum install python-virtualenv
-
-#创建虚拟环境venv并激活
-[root@localhost back-end]# python3 -m venv venv
-[root@localhost back-end]# . venv&#x2F;bin&#x2F;activate
-[root@localhost back-end]# yum install postgresql-devel
-
-#安装Flask和项目所需环境
-(venv) [root@localhost back-end]# pip3 install --upgrade pip setuptools wheel
-(venv) [root@localhost back-end]# pip install Flask
-(venv) [root@localhost back-end]# pip install -r requirements.txt
-(venv) [root@localhost back-end]# pip install psycopg2
-#运行Flask项目
-(venv) [root@localhost back-end]#flask run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="docker容器部署应用"><a href="#docker容器部署应用" class="headerlink" title="docker容器部署应用"></a>docker容器部署应用</h1><p>这一部分先手动启动Pgsql、Python、Nginx等容器，然后再使用Docker Compose来编排容器。</p>
-<h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#安装并启动docker
-[root@localhost admin]# curl -sSL https:&#x2F;&#x2F;get.daocloud.io&#x2F;docker | sh
-[root@localhost admin]# systemctl start docker
-[root@localhost admin]# systemctl enable docker
-Created symlink from &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants&#x2F;docker.service to &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;docker.service.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="构建PgSQL容器"><a href="#构建PgSQL容器" class="headerlink" title="构建PgSQL容器"></a>构建PgSQL容器</h2><ul>
+<p><img src="/2022/12/15/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/2.png"></p>
+<h3 id="应用前端部署">应用前端部署</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切换到前端代码目录</span></span><br><span class="line">[root@localhost bin]<span class="comment"># cd /root/WeChat_exercise/front-end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#下载vue及vue cli、加载项目所需的配置文件</span></span><br><span class="line">[root@localhost front-end]<span class="comment"># npm install vue</span></span><br><span class="line">[root@localhost front-end]<span class="comment"># npm install --global @vue/cli</span></span><br><span class="line">[root@localhost front-end]<span class="comment"># npm install yarn</span></span><br><span class="line">[root@localhost front-end]<span class="comment"># npm install</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#运行前端项目</span></span><br><span class="line">[root@localhost front-end]<span class="comment"># npm run serve</span></span><br><span class="line"> DONE  Compiled successfully <span class="keyword">in</span> 51145ms                                                                               01:47:08</span><br><span class="line">  App running at:</span><br><span class="line">  - Local:   http://localhost:8080 </span><br><span class="line">  - Network: http://192.168.60.129:8080</span><br><span class="line"></span><br><span class="line">  Note that the development build is not optimized.</span><br><span class="line">  To create a production build, run yarn build.</span><br></pre></td></tr></table></figure>
+<h3 id="后端环境部署">后端环境部署</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#编译安装python3</span></span><br><span class="line">[root@localhost admin]<span class="comment"># wget https://www.Python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz</span></span><br><span class="line">[root@localhost admin]<span class="comment"># tar xJf  Python-3.6.1.tar.xz</span></span><br><span class="line">[root@localhost admin]<span class="comment"># cd  Python-3.6.1</span></span><br><span class="line">[root@localhost Python-3.6.1]<span class="comment"># ./configure  --prefix=/usr/local/python3 &amp;&amp; make &amp;&amp; make install</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#创建软链接</span></span><br><span class="line">[root@localhost Python-3.6.1]<span class="comment"># ln -s /usr/local/python3/bin/python3 /usr/bin/python3</span></span><br><span class="line">[root@localhost Python-3.6.1]<span class="comment"># ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#更换pip源</span></span><br><span class="line">[root@localhost ~]<span class="comment"># mkdir ~/.pip</span></span><br><span class="line">[root@localhost ~]<span class="comment">#  vi ~/.pip/pip.conf</span></span><br><span class="line"></span><br><span class="line">[global]</span><br><span class="line">index-url = http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=mirrors.aliyun.com</span><br><span class="line"></span><br><span class="line"><span class="comment">#切换到后端项目目录，安装virtualenv</span></span><br><span class="line">[root@localhost ~]<span class="comment"># cd /root/WeChat_exercise/back-end</span></span><br><span class="line">ot@localhost back-end]<span class="comment"># yum install python-virtualenv</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#创建虚拟环境venv并激活</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># python3 -m venv venv</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># . venv/bin/activate</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># yum install postgresql-devel</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#安装Flask和项目所需环境</span></span><br><span class="line">(venv) [root@localhost back-end]<span class="comment"># pip3 install --upgrade pip setuptools wheel</span></span><br><span class="line">(venv) [root@localhost back-end]<span class="comment"># pip install Flask</span></span><br><span class="line">(venv) [root@localhost back-end]<span class="comment"># pip install -r requirements.txt</span></span><br><span class="line">(venv) [root@localhost back-end]<span class="comment"># pip install psycopg2</span></span><br><span class="line"><span class="comment">#运行Flask项目</span></span><br><span class="line">(venv) [root@localhost back-end]<span class="comment">#flask run</span></span><br></pre></td></tr></table></figure>
+<h1 id="docker容器部署应用">docker容器部署应用</h1>
+<p>这一部分先手动启动Pgsql、Python、Nginx等容器，然后再使用Docker
+Compose来编排容器。</p>
+<h2 id="docker安装">Docker安装</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装并启动docker</span></span><br><span class="line">[root@localhost admin]<span class="comment"># curl -sSL https://get.daocloud.io/docker | sh</span></span><br><span class="line">[root@localhost admin]<span class="comment"># systemctl start docker</span></span><br><span class="line">[root@localhost admin]<span class="comment"># systemctl enable docker</span></span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.</span><br></pre></td></tr></table></figure>
+<h2 id="构建pgsql容器">构建PgSQL容器</h2>
+<ul>
 <li><p>安装镜像</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost admin]# docker pull postgres<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost admin]<span class="comment"># docker pull postgres</span></span><br></pre></td></tr></table></figure></p></li>
 <li><p>创建配置文件夹，可以看到postgres镜像创建的容器是将数据保存在<code>/var/lib/postgresql/data</code>位置下的：</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost admin]# cd &#x2F;home
-[root@localhost home]# mkdir -p &#x2F;home&#x2F;docker
-[root@localhost home]# mkdir -p &#x2F;home&#x2F;docker&#x2F;postgresql
-[root@localhost home]# mkdir -p &#x2F;home&#x2F;docker&#x2F;postgresql&#x2F;data
-[root@localhost home]# docker image inspect postgres
-[
-    &#123;
-        &quot;Id&quot;: &quot;sha256:a26eb6069868e4bfd0095788e541bb40711861bdfb2a8252103dea85cc0758aa&quot;,
-        &quot;RepoTags&quot;: [
-            &quot;postgres:latest&quot;
-        ],
-        &quot;RepoDigests&quot;: [
-            &quot;postgres@sha256:f4cd32e7a418d9c9ba043e7d561243388202b654c740bcc85ca40b41d9fb4f1e&quot;
-        ],
-        &quot;Parent&quot;: &quot;&quot;,
-        &quot;Comment&quot;: &quot;&quot;,
-        &quot;Created&quot;: &quot;2022-12-22T23:19:59.856808957Z&quot;,
-        &quot;Container&quot;: &quot;938c729969fbf6312f6563590395ed0bb4cbc982b039598c38ffa539c86a5df5&quot;,
-        &quot;ContainerConfig&quot;: &#123;
-            &quot;Hostname&quot;: &quot;938c729969fb&quot;,
-            &quot;Domainname&quot;: &quot;&quot;,
-            &quot;User&quot;: &quot;&quot;,
-            &quot;AttachStdin&quot;: false,
-            &quot;AttachStdout&quot;: false,
-            &quot;AttachStderr&quot;: false,
-            &quot;ExposedPorts&quot;: &#123;
-                &quot;5432&#x2F;tcp&quot;: &#123;&#125;
-            &#125;,
-            &quot;Tty&quot;: false,
-            &quot;OpenStdin&quot;: false,
-            &quot;StdinOnce&quot;: false,
-            &quot;Env&quot;: [
-                &quot;PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;sbin:&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;bin:&#x2F;sbin:&#x2F;bin:&#x2F;usr&#x2F;lib&#x2F;postgresql&#x2F;15&#x2F;bin&quot;,
-                &quot;GOSU_VERSION&#x3D;1.14&quot;,
-                &quot;LANG&#x3D;en_US.utf8&quot;,
-                &quot;PG_MAJOR&#x3D;15&quot;,
-                &quot;PG_VERSION&#x3D;15.1-1.pgdg110+1&quot;,
-                &quot;PGDATA&#x3D;&#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;data&quot;
-            ],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost admin]<span class="comment"># cd /home</span></span><br><span class="line">[root@localhost home]<span class="comment"># mkdir -p /home/docker</span></span><br><span class="line">[root@localhost home]<span class="comment"># mkdir -p /home/docker/postgresql</span></span><br><span class="line">[root@localhost home]<span class="comment"># mkdir -p /home/docker/postgresql/data</span></span><br><span class="line">[root@localhost home]<span class="comment"># docker image inspect postgres</span></span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;Id&quot;</span>: <span class="string">&quot;sha256:a26eb6069868e4bfd0095788e541bb40711861bdfb2a8252103dea85cc0758aa&quot;</span>,</span><br><span class="line">        <span class="string">&quot;RepoTags&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;postgres:latest&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">&quot;RepoDigests&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;postgres@sha256:f4cd32e7a418d9c9ba043e7d561243388202b654c740bcc85ca40b41d9fb4f1e&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">&quot;Parent&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Comment&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Created&quot;</span>: <span class="string">&quot;2022-12-22T23:19:59.856808957Z&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Container&quot;</span>: <span class="string">&quot;938c729969fbf6312f6563590395ed0bb4cbc982b039598c38ffa539c86a5df5&quot;</span>,</span><br><span class="line">        <span class="string">&quot;ContainerConfig&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;Hostname&quot;</span>: <span class="string">&quot;938c729969fb&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Domainname&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;User&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;AttachStdin&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">&quot;AttachStdout&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">&quot;AttachStderr&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">&quot;ExposedPorts&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;5432/tcp&quot;</span>: &#123;&#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;Tty&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">&quot;OpenStdin&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">&quot;StdinOnce&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">&quot;Env&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/15/bin&quot;</span>,</span><br><span class="line">                <span class="string">&quot;GOSU_VERSION=1.14&quot;</span>,</span><br><span class="line">                <span class="string">&quot;LANG=en_US.utf8&quot;</span>,</span><br><span class="line">                <span class="string">&quot;PG_MAJOR=15&quot;</span>,</span><br><span class="line">                <span class="string">&quot;PG_VERSION=15.1-1.pgdg110+1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;PGDATA=/var/lib/postgresql/data&quot;</span></span><br><span class="line">            ],</span><br></pre></td></tr></table></figure></p></li>
 <li><p>执行以下命令创建并启动PgSQL容器，自定义命名为<code>my-postgres</code>：</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost home]# docker run -p 5432:5432 -v &#x2F;home&#x2F;docker&#x2F;postgresql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;data -e POSTGRES_PASSWORD&#x3D;123456 -e TZ&#x3D;PRC -d --name&#x3D;my-postgres postgres
-165c63929bf341497816b85f28a060a2c6f75b7d9144627a560547b9ca92f9f4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost home]<span class="comment"># docker run -p 5432:5432 -v /home/docker/postgresql/data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=123456 -e TZ=PRC -d --name=my-postgres postgres</span></span><br><span class="line">165c63929bf341497816b85f28a060a2c6f75b7d9144627a560547b9ca92f9f4</span><br></pre></td></tr></table></figure></p></li>
 <li><p>现在便可以用<code>docker ps -a</code>查看容器是否已经运行：</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost home]# docker ps
-CONTAINER ID   IMAGE               COMMAND                  CREATED              STATUS                          PORTS                                       NAMES
-165c63929bf3   postgres            &quot;docker-entrypoint.s…&quot;   About a minute ago   Up About a minute               0.0.0.0:5432-&gt;5432&#x2F;tcp, :::5432-&gt;5432&#x2F;tcp   my-postgres
-4c1699cdc854   flask-test:latest   &quot;&#x2F;bin&#x2F;sh -c &#39;gunicor…&quot;   9 days ago           Restarting (1) 45 seconds ago                                               flask_test<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost home]<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE               COMMAND                  CREATED              STATUS                          PORTS                                       NAMES</span><br><span class="line">165c63929bf3   postgres            <span class="string">&quot;docker-entrypoint.s…&quot;</span>   About a minute ago   Up About a minute               0.0.0.0:5432-&gt;5432/tcp, :::5432-&gt;5432/tcp   my-postgres</span><br><span class="line">4c1699cdc854   flask-test:latest   <span class="string">&quot;/bin/sh -c &#x27;gunicor…&quot;</span>   9 days ago           Restarting (1) 45 seconds ago                                               flask_test</span><br></pre></td></tr></table></figure></p></li>
 </ul>
-<h2 id="构建Flask-API镜像"><a href="#构建Flask-API镜像" class="headerlink" title="构建Flask API镜像"></a>构建Flask API镜像</h2><ul>
+<h2 id="构建flask-api镜像">构建Flask API镜像</h2>
+<ul>
 <li><p>由于有多条命令，不方便直接写到Dockerfile中的CMD子命令中，因此在后端项目目录下新建boot.sh</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#切换到后端项目目录
-[root@localhost home]# cd &#x2F;root&#x2F;WeChat_exercise&#x2F;back-end
-[root@localhost back-end]# ls
-app  config.py  invoke  migrations  package.json  __pycache__  Python.gitignore  requirements.txt  venv  weixin.py
-[root@localhost back-end]# touch boot.sh
-[root@localhost back-end]# vi boot.sh
-#内容如下
-#!&#x2F;bin&#x2F;sh
-
-while true; do
-    flask db upgrade
-    if [[ &quot;$?&quot; &#x3D;&#x3D; &quot;0&quot; ]]; then
-        break
-    fi
-    echo Failed to apply the migration to the database, retrying in 3 secs...
-    sleep 3
-done
-flask deploy
-exec gunicorn -w 3 -b 0.0.0.0:5000 --access-logfile - --error-logfile - weixin:app
-#授予可执行权限
-[root@localhost back-end]# chmod +x boot.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切换到后端项目目录</span></span><br><span class="line">[root@localhost home]<span class="comment"># cd /root/WeChat_exercise/back-end</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># ls</span></span><br><span class="line">app  config.py  invoke  migrations  package.json  __pycache__  Python.gitignore  requirements.txt  venv  weixin.py</span><br><span class="line">[root@localhost back-end]<span class="comment"># touch boot.sh</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># vi boot.sh</span></span><br><span class="line"><span class="comment">#内容如下</span></span><br><span class="line"><span class="comment">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    flask db upgrade</span><br><span class="line">    <span class="keyword">if</span> [[ <span class="string">&quot;$?&quot;</span> == <span class="string">&quot;0&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="built_in">echo</span> Failed to apply the migration to the database, retrying <span class="keyword">in</span> 3 secs...</span><br><span class="line">    <span class="built_in">sleep</span> 3</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">flask deploy</span><br><span class="line"><span class="built_in">exec</span> gunicorn -w 3 -b 0.0.0.0:5000 --access-logfile - --error-logfile - weixin:app</span><br><span class="line"><span class="comment">#授予可执行权限</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># chmod +x boot.sh</span></span><br></pre></td></tr></table></figure></p></li>
 <li><p>新建一个Dockerfile</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost back-end]# touch Dockerfile
-[root@localhost back-end]# vi Dockerfile
-
-[root@CentOS www]# vim back-end&#x2F;Dockerfile
-内容如下：
-
-FROM python:3.6-alpine
-
-COPY .&#x2F;back-end &#x2F;usr&#x2F;src&#x2F;app
-WORKDIR &#x2F;usr&#x2F;src&#x2F;app
-RUN pip --no-cache-dir install  -i https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F; --upgrade pip
-RUN pip install -r requirements.txt -i https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F; \ 
-  &amp;&amp; pip install gunicorn
-ENV FLASK_APP weixin.py
-EXPOSE 5000
-ENTRYPOINT [&quot;.&#x2F;boot.sh&quot;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost back-end]<span class="comment"># touch Dockerfile</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># vi Dockerfile</span></span><br><span class="line"></span><br><span class="line">[root@CentOS www]<span class="comment"># vim back-end/Dockerfile</span></span><br><span class="line">内容如下：</span><br><span class="line"></span><br><span class="line">FROM python:3.6-alpine</span><br><span class="line"></span><br><span class="line">COPY ./back-end /usr/src/app</span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line">RUN pip --no-cache-dir install  -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip</span><br><span class="line">RUN pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ \ </span><br><span class="line">  &amp;&amp; pip install gunicorn</span><br><span class="line">ENV FLASK_APP weixin.py</span><br><span class="line">EXPOSE 5000</span><br><span class="line">ENTRYPOINT [<span class="string">&quot;./boot.sh&quot;</span>]</span><br></pre></td></tr></table></figure></p></li>
 <li><p>开始构建后端Flask API镜像</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost back-end]# cd ..&#x2F;
-[root@localhost WeChat_exercise]# docker build -f back-end&#x2F;Dockerfile -t weixin-api:0.0.1 .
-Sending build context to Docker daemon    573MB.2MB
-Step 1&#x2F;8 : FROM python:3.6-alpine
- ---&gt; 3a9e80fa4606
-Step 2&#x2F;8 : COPY .&#x2F;back-end &#x2F;usr&#x2F;src&#x2F;app
- ---&gt; f5a2a7ecb4cf
-...
-Step 6&#x2F;8 : ENV FLASK_APP weixin.py
- ---&gt; Running in e9f4ebef3d13
-Removing intermediate container e9f4ebef3d13
- ---&gt; 7317d7be0b13
-Step 7&#x2F;8 : EXPOSE 5000
- ---&gt; Running in c544718548e6
-Removing intermediate container c544718548e6
- ---&gt; c6e683ab97ff
-Step 8&#x2F;8 : ENTRYPOINT [&quot;.&#x2F;boot.sh&quot;]
- ---&gt; Running in c8e11997efb0
-Removing intermediate container c8e11997efb0
- ---&gt; 64f072fbbbe5
-Successfully built 64f072fbbbe5
-Successfully tagged weixin-api:0.0.1
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost back-end]<span class="comment"># cd ../</span></span><br><span class="line">[root@localhost WeChat_exercise]<span class="comment"># docker build -f back-end/Dockerfile -t weixin-api:0.0.1 .</span></span><br><span class="line">Sending build context to Docker daemon    573MB.2MB</span><br><span class="line">Step 1/8 : FROM python:3.6-alpine</span><br><span class="line"> ---&gt; 3a9e80fa4606</span><br><span class="line">Step 2/8 : COPY ./back-end /usr/src/app</span><br><span class="line"> ---&gt; f5a2a7ecb4cf</span><br><span class="line">...</span><br><span class="line">Step 6/8 : ENV FLASK_APP weixin.py</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> e9f4ebef3d13</span><br><span class="line">Removing intermediate container e9f4ebef3d13</span><br><span class="line"> ---&gt; 7317d7be0b13</span><br><span class="line">Step 7/8 : EXPOSE 5000</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> c544718548e6</span><br><span class="line">Removing intermediate container c544718548e6</span><br><span class="line"> ---&gt; c6e683ab97ff</span><br><span class="line">Step 8/8 : ENTRYPOINT [<span class="string">&quot;./boot.sh&quot;</span>]</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> c8e11997efb0</span><br><span class="line">Removing intermediate container c8e11997efb0</span><br><span class="line"> ---&gt; 64f072fbbbe5</span><br><span class="line">Successfully built 64f072fbbbe5</span><br><span class="line">Successfully tagged weixin-api:0.0.1</span><br><span class="line"></span><br></pre></td></tr></table></figure></p></li>
 <li><p>启动Flask API容器</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost WeChat_exercise]# docker run -d --name weixin-api --link my-postgres:postgres -e DATABASE_URL&#x3D;postgresql:&#x2F;&#x2F;postgres:123456@localhost:5432&#x2F;postgres -p 5000:5000 --rm weixin-api:0.0.1
-2b58b6f9a4984649df15eda6c7b5b849697b3fc6f9cdfd906009e52814763f19<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost WeChat_exercise]<span class="comment"># docker run -d --name weixin-api --link my-postgres:postgres -e DATABASE_URL=postgresql://postgres:123456@localhost:5432/postgres -p 5000:5000 --rm weixin-api:0.0.1</span></span><br><span class="line">2b58b6f9a4984649df15eda6c7b5b849697b3fc6f9cdfd906009e52814763f19</span><br></pre></td></tr></table></figure></p></li>
 </ul>
-<h2 id="构建Nginx容器"><a href="#构建Nginx容器" class="headerlink" title="构建Nginx容器"></a>构建Nginx容器</h2><ul>
+<h2 id="构建nginx容器">构建Nginx容器</h2>
+<ul>
 <li><p>修改WeChat_exercise/front-end/src/main.js文件，增加以下代码，其中192.168.60:131为虚拟机ip</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Vue.use(ElementUI);
-if (process.env.NODE_ENV&#x3D;&#x3D;&#x3D;&#39;production&#39;)&#123;
-  axios.defaults.baseURL&#x3D;&#39;http:&#x2F;&#x2F;192.168.60:131:5000&#39;
-&#125;else &#123;
-  axios.defaults.baseURL &#x3D; &#39;http:&#x2F;&#x2F;127.0.0.1:5000&#39;;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>将打包后的静态文件，拷贝到 <code>../docker/nginx/data</code> 目录中，后续映射到 <code>Nginx</code> 容器中去</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost home]# cd &#x2F;root&#x2F;WeChat_exercise&#x2F;front-end
-[root@localhost front-end]# npm install
-[root@localhost front-end]# npm run build
-[root@localhost front-end]# mkdir -p ..&#x2F;docker&#x2F;nginx&#x2F;data
-[root@localhost front-end]# cp -a dist&#x2F;* ..&#x2F;docker&#x2F;nginx&#x2F;data
-[root@localhost front-end]# cd ..
-[root@localhost WeChat_exercise]# <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue.use(ElementUI);</span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV===<span class="string">&#x27;production&#x27;</span>)&#123;</span><br><span class="line">  axios.defaults.baseURL=<span class="string">&#x27;http://192.168.60:131:5000&#x27;</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  axios.defaults.baseURL = <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+<li><p>将打包后的静态文件，拷贝到 <code>../docker/nginx/data</code>
+目录中，后续映射到 <code>Nginx</code> 容器中去</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost home]<span class="comment"># cd /root/WeChat_exercise/front-end</span></span><br><span class="line">[root@localhost front-end]<span class="comment"># npm install</span></span><br><span class="line">[root@localhost front-end]<span class="comment"># npm run build</span></span><br><span class="line">[root@localhost front-end]<span class="comment"># mkdir -p ../docker/nginx/data</span></span><br><span class="line">[root@localhost front-end]<span class="comment"># cp -a dist/* ../docker/nginx/data</span></span><br><span class="line">[root@localhost front-end]<span class="comment"># cd ..</span></span><br><span class="line">[root@localhost WeChat_exercise]<span class="comment"># </span></span><br></pre></td></tr></table></figure></p></li>
 <li><p>启动Nginx容器</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost WeChat_exercise]# docker run -d --name nginx -p 18080:80 --rm -v $PWD&#x2F;docker&#x2F;nginx&#x2F;data:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html nginx
-50f66f6ad75ec19220e37fe510724b70448b462a7e7c6b335f42de4893f44944<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost WeChat_exercise]<span class="comment"># docker run -d --name nginx -p 18080:80 --rm -v $PWD/docker/nginx/data:/usr/share/nginx/html nginx</span></span><br><span class="line">50f66f6ad75ec19220e37fe510724b70448b462a7e7c6b335f42de4893f44944</span><br></pre></td></tr></table></figure></p></li>
 <li><p>浏览器访问<code>http://192.168.60.131:18080/#/ping</code>，前端应用能够正常访问到后端API接口：</p>
-<p>  <img src="/2022/12/15/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/3.png" alt></p>
-</li>
+<p><img src="/2022/12/15/Docker%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/3.png"></p></li>
 </ul>
-<h2 id="使用Docker-Compose编排容器"><a href="#使用Docker-Compose编排容器" class="headerlink" title="使用Docker Compose编排容器"></a>使用Docker Compose编排容器</h2><ul>
+<h2 id="使用docker-compose编排容器">使用Docker Compose编排容器</h2>
+<ul>
 <li><p>安装docker-compose</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost WeChat_exercise]# cd back-end
-[root@localhost back-end]# curl -L https:&#x2F;&#x2F;get.daocloud.io&#x2F;docker&#x2F;compose&#x2F;releases&#x2F;download&#x2F;v2.4.1&#x2F;docker-compose-&#96;uname -s&#96;-&#96;uname -m&#96; &gt; &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose
-[root@localhost back-end]# chmod +x &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose
-[root@localhost back-end]# ln -s &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose &#x2F;usr&#x2F;bin&#x2F;docker-compose
-[root@localhost back-end]# docker-compose version
-Docker Compose version v2.4.1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost WeChat_exercise]<span class="comment"># cd back-end</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># curl -L https://get.daocloud.io/docker/compose/releases/download/v2.4.1/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># chmod +x /usr/local/bin/docker-compose</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># docker-compose version</span></span><br><span class="line">Docker Compose version v2.4.1</span><br></pre></td></tr></table></figure></p></li>
 <li><p>创建并编写docker-compose.yaml文件</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost back-end]# touch docker-compose.yaml
-[root@localhost back-end]# vi docker-compose.yaml
-#内容如下：
-
-version: &quot;3.7&quot;
-services:
-    my-postgres:
-        image: postgres
-        privileged: true
-        # 权限要加，不然启动会告错
-        environment:
-          POSTGRES_PASSWORD: 123456
-          POSTGRES_USER: postgres
-          POSTGRES_DB: postgres
-          TZ: Asia&#x2F;Shanghai
-        ports:
-          - 5432:5432
-        volumes:
-          - &#x2F;home&#x2F;docker&#x2F;postgresql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;data
-        restart: always
-
-    weixin-api:
-        image: weixin-api:0.0.1
-        build:
-            context: .
-            dockerfile: Dockerfile
-        restart: always
-        ports:
-            - &quot;5000:5000&quot;
-        depends_on:
-            - my-postgres
-
-    nginx:
-        image: nginx
-        ports:
-           - &quot;18080:80&quot;
-        volumes:
-           - &quot;$PWD&#x2F;docker&#x2F;nginx&#x2F;data:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost back-end]<span class="comment"># touch docker-compose.yaml</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># vi docker-compose.yaml</span></span><br><span class="line"><span class="comment">#内容如下：</span></span><br><span class="line"></span><br><span class="line">version: <span class="string">&quot;3.7&quot;</span></span><br><span class="line">services:</span><br><span class="line">    my-postgres:</span><br><span class="line">        image: postgres</span><br><span class="line">        privileged: <span class="literal">true</span></span><br><span class="line">        <span class="comment"># 权限要加，不然启动会告错</span></span><br><span class="line">        environment:</span><br><span class="line">          POSTGRES_PASSWORD: 123456</span><br><span class="line">          POSTGRES_USER: postgres</span><br><span class="line">          POSTGRES_DB: postgres</span><br><span class="line">          TZ: Asia/Shanghai</span><br><span class="line">        ports:</span><br><span class="line">          - 5432:5432</span><br><span class="line">        volumes:</span><br><span class="line">          - /home/docker/postgresql/data:/var/lib/postgresql/data</span><br><span class="line">        restart: always</span><br><span class="line"></span><br><span class="line">    weixin-api:</span><br><span class="line">        image: weixin-api:0.0.1</span><br><span class="line">        build:</span><br><span class="line">            context: .</span><br><span class="line">            dockerfile: Dockerfile</span><br><span class="line">        restart: always</span><br><span class="line">        ports:</span><br><span class="line">            - <span class="string">&quot;5000:5000&quot;</span></span><br><span class="line">        depends_on:</span><br><span class="line">            - my-postgres</span><br><span class="line"></span><br><span class="line">    nginx:</span><br><span class="line">        image: nginx</span><br><span class="line">        ports:</span><br><span class="line">           - <span class="string">&quot;18080:80&quot;</span></span><br><span class="line">        volumes:</span><br><span class="line">           - <span class="string">&quot;<span class="variable">$PWD</span>/docker/nginx/data:/usr/share/nginx/html&quot;</span></span><br></pre></td></tr></table></figure></p></li>
 <li><p>查看正在运行的容器并使它们全部停止运行</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#查看正在运行的容器
-[root@localhost back-end]# docker ps 
-CONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS                          PORTS                                       NAMES
-2b58b6f9a498   weixin-api:0.0.1    &quot;.&#x2F;boot.sh&quot;              47 minutes ago   Up 47 minutes                   0.0.0.0:5000-&gt;5000&#x2F;tcp, :::5000-&gt;5000&#x2F;tcp   weixin-api
-50f66f6ad75e   nginx               &quot;&#x2F;docker-entrypoint.…&quot;   2 hours ago      Up 2 hours                      0.0.0.0:18080-&gt;80&#x2F;tcp, :::18080-&gt;80&#x2F;tcp     nginx
-165c63929bf3   postgres            &quot;docker-entrypoint.s…&quot;   2 hours ago      Up 2 hours                      0.0.0.0:5432-&gt;5432&#x2F;tcp, :::5432-&gt;5432&#x2F;tcp   my-postgres
-4c1699cdc854   flask-test:latest   &quot;&#x2F;bin&#x2F;sh -c &#39;gunicor…&quot;   9 days ago       Restarting (1) 14 seconds ago                                               flask_test
-
-#停止所有正在运行的容器
-[root@localhost back-end]# docker stop $(docker ps -a -q)
-27ddc44b2109
-a0704302049b
-d5e616940191
-2b58b6f9a498
-2d86579808e5
-bb1794163d8e
-be6acf36f0d6
-50f66f6ad75e
-165c63929bf3
-4a78c412395d
-80b4b9b47652
-4c1699cdc854
-d140e8d466d0
-
-#检查是否还有容器正在运行
-[root@localhost back-end]# docker ps 
-CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>使用Docker Compose启动应用所需的所有容器，’-d’ 选项表示在后台运行 compose，否则在前台输出日志</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#启动所有容器
-[root@localhost back-end]# docker-compose up -d
-
-[+] Running 3&#x2F;3
- ⠿ Container back-end-nginx-1        Started                                                                                                                                                                  6.0s
- ⠿ Container back-end-my-postgres-1  Started                                                                                                                                                                  6.1s
- ⠿ Container back-end-weixin-api-1   Started                                                                                                                                                                 11.0s
-
-#查看容器状态
-[root@localhost back-end]# docker-compose ps
-NAME                     COMMAND                  SERVICE             STATUS              PORTS
-back-end-my-postgres-1   &quot;docker-entrypoint.s…&quot;   my-postgres         running             0.0.0.0:5432-&gt;5432&#x2F;tcp, :::5432-&gt;5432&#x2F;tcp
-back-end-nginx-1         &quot;&#x2F;docker-entrypoint.…&quot;   nginx               running             0.0.0.0:18080-&gt;80&#x2F;tcp, :::18080-&gt;80&#x2F;tcp
-back-end-weixin-api-1    &quot;.&#x2F;boot.sh&quot;              weixin-api          running             0.0.0.0:5000-&gt;5000&#x2F;tcp, :::5000-&gt;5000&#x2F;tcp
-
-#查看各容器的运行日志，若含有&#39;-f&#39; 选项则持续输出
-[root@localhost back-end]# docker-compose logs
-#停止全部容器
-[root@localhost back-end]# docker-compose stop
-[+] Running 3&#x2F;3
- ⠿ Container back-end-weixin-api-1   Stopped                                                                                                                                                                 16.3s
- ⠿ Container back-end-nginx-1        Stopped                                                                                                                                                                  4.0s
- ⠿ Container back-end-my-postgres-1  Stopped  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看正在运行的容器</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># docker ps </span></span><br><span class="line">CONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS                          PORTS                                       NAMES</span><br><span class="line">2b58b6f9a498   weixin-api:0.0.1    <span class="string">&quot;./boot.sh&quot;</span>              47 minutes ago   Up 47 minutes                   0.0.0.0:5000-&gt;5000/tcp, :::5000-&gt;5000/tcp   weixin-api</span><br><span class="line">50f66f6ad75e   nginx               <span class="string">&quot;/docker-entrypoint.…&quot;</span>   2 hours ago      Up 2 hours                      0.0.0.0:18080-&gt;80/tcp, :::18080-&gt;80/tcp     nginx</span><br><span class="line">165c63929bf3   postgres            <span class="string">&quot;docker-entrypoint.s…&quot;</span>   2 hours ago      Up 2 hours                      0.0.0.0:5432-&gt;5432/tcp, :::5432-&gt;5432/tcp   my-postgres</span><br><span class="line">4c1699cdc854   flask-test:latest   <span class="string">&quot;/bin/sh -c &#x27;gunicor…&quot;</span>   9 days ago       Restarting (1) 14 seconds ago                                               flask_test</span><br><span class="line"></span><br><span class="line"><span class="comment">#停止所有正在运行的容器</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># docker stop $(docker ps -a -q)</span></span><br><span class="line">27ddc44b2109</span><br><span class="line">a0704302049b</span><br><span class="line">d5e616940191</span><br><span class="line">2b58b6f9a498</span><br><span class="line">2d86579808e5</span><br><span class="line">bb1794163d8e</span><br><span class="line">be6acf36f0d6</span><br><span class="line">50f66f6ad75e</span><br><span class="line">165c63929bf3</span><br><span class="line">4a78c412395d</span><br><span class="line">80b4b9b47652</span><br><span class="line">4c1699cdc854</span><br><span class="line">d140e8d466d0</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查是否还有容器正在运行</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># docker ps </span></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</span><br></pre></td></tr></table></figure></p></li>
+<li><p>使用Docker Compose启动应用所需的所有容器，‘-d’ 选项表示在后台运行
+compose，否则在前台输出日志</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动所有容器</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># docker-compose up -d</span></span><br><span class="line"></span><br><span class="line">[+] Running 3/3</span><br><span class="line"> ⠿ Container back-end-nginx-1        Started                                                                                                                                                                  6.0s</span><br><span class="line"> ⠿ Container back-end-my-postgres-1  Started                                                                                                                                                                  6.1s</span><br><span class="line"> ⠿ Container back-end-weixin-api-1   Started                                                                                                                                                                 11.0s</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看容器状态</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># docker-compose ps</span></span><br><span class="line">NAME                     COMMAND                  SERVICE             STATUS              PORTS</span><br><span class="line">back-end-my-postgres-1   <span class="string">&quot;docker-entrypoint.s…&quot;</span>   my-postgres         running             0.0.0.0:5432-&gt;5432/tcp, :::5432-&gt;5432/tcp</span><br><span class="line">back-end-nginx-1         <span class="string">&quot;/docker-entrypoint.…&quot;</span>   nginx               running             0.0.0.0:18080-&gt;80/tcp, :::18080-&gt;80/tcp</span><br><span class="line">back-end-weixin-api-1    <span class="string">&quot;./boot.sh&quot;</span>              weixin-api          running             0.0.0.0:5000-&gt;5000/tcp, :::5000-&gt;5000/tcp</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看各容器的运行日志，若含有&#x27;-f&#x27; 选项则持续输出</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># docker-compose logs</span></span><br><span class="line"><span class="comment">#停止全部容器</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># docker-compose stop</span></span><br><span class="line">[+] Running 3/3</span><br><span class="line"> ⠿ Container back-end-weixin-api-1   Stopped                                                                                                                                                                 16.3s</span><br><span class="line"> ⠿ Container back-end-nginx-1        Stopped                                                                                                                                                                  4.0s</span><br><span class="line"> ⠿ Container back-end-my-postgres-1  Stopped  </span><br></pre></td></tr></table></figure></p></li>
 </ul>
-<h1 id="端口被占用解决方法"><a href="#端口被占用解决方法" class="headerlink" title="端口被占用解决方法"></a>端口被占用解决方法</h1><p>在docker部署的过程中，若端口被占用，如80端口，可使用以下命令解除端口占用：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#查看占用80端口的进程
-[root@localhost back-end]# netstat -lnp | grep 80
-tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      1159&#x2F;nginx: master  
-tcp6       0      0 :::80                   :::*                    LISTEN      1159&#x2F;nginx: master  
-#杀死占用端口的进程
-[root@localhost back-end]# kill -9 1159
-#查看是否还有进程占用端口，若有，则继续杀死进程，若无，则端口占用已解除
-[root@localhost back-end]# netstat -lnp | grep 80
-tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      1160&#x2F;nginx: worker  
-tcp6       0      0 :::80                   :::*                    LISTEN      1160&#x2F;nginx: worker  
-[root@localhost back-end]# kill -9 1160
-[root@localhost back-end]# netstat -lnp | grep 80<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="端口被占用解决方法">端口被占用解决方法</h1>
+<p>在docker部署的过程中，若端口被占用，如80端口，可使用以下命令解除端口占用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看占用80端口的进程</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># netstat -lnp | grep 80</span></span><br><span class="line">tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      1159/nginx: master  </span><br><span class="line">tcp6       0      0 :::80                   :::*                    LISTEN      1159/nginx: master  </span><br><span class="line"><span class="comment">#杀死占用端口的进程</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># kill -9 1159</span></span><br><span class="line"><span class="comment">#查看是否还有进程占用端口，若有，则继续杀死进程，若无，则端口占用已解除</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># netstat -lnp | grep 80</span></span><br><span class="line">tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      1160/nginx: worker  </span><br><span class="line">tcp6       0      0 :::80                   :::*                    LISTEN      1160/nginx: worker  </span><br><span class="line">[root@localhost back-end]<span class="comment"># kill -9 1160</span></span><br><span class="line">[root@localhost back-end]<span class="comment"># netstat -lnp | grep 80</span></span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -1183,7 +773,7 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Centos%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.</span> <span class="toc-text">Centos部署应用步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">配置代码运行环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx%E4%B8%8B%E8%BD%BD%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">nginx下载及配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pgsql%E4%B8%8B%E8%BD%BD%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.2.</span> <span class="toc-text">pgsql下载及配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#node-js%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.3.</span> <span class="toc-text">node.js安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">部署应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E4%BB%A3%E7%A0%81%E4%BC%A0%E8%BE%93"><span class="toc-number">1.2.1.</span> <span class="toc-text">应用代码传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%89%8D%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="toc-number">1.2.2.</span> <span class="toc-text">应用前端部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2"><span class="toc-number">1.2.3.</span> <span class="toc-text">后端环境部署</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">docker容器部署应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">Docker安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BAPgSQL%E5%AE%B9%E5%99%A8"><span class="toc-number">2.2.</span> <span class="toc-text">构建PgSQL容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BAFlask-API%E9%95%9C%E5%83%8F"><span class="toc-number">2.3.</span> <span class="toc-text">构建Flask API镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BANginx%E5%AE%B9%E5%99%A8"><span class="toc-number">2.4.</span> <span class="toc-text">构建Nginx容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Docker-Compose%E7%BC%96%E6%8E%92%E5%AE%B9%E5%99%A8"><span class="toc-number">2.5.</span> <span class="toc-text">使用Docker Compose编排容器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%8D%A0%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">端口被占用解决方法</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#centos%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.</span> <span class="toc-text">Centos部署应用步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">配置代码运行环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx%E4%B8%8B%E8%BD%BD%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">nginx下载及配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pgsql%E4%B8%8B%E8%BD%BD%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.2.</span> <span class="toc-text">pgsql下载及配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#node.js%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.3.</span> <span class="toc-text">node.js安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">部署应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E4%BB%A3%E7%A0%81%E4%BC%A0%E8%BE%93"><span class="toc-number">1.2.1.</span> <span class="toc-text">应用代码传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%89%8D%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="toc-number">1.2.2.</span> <span class="toc-text">应用前端部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2"><span class="toc-number">1.2.3.</span> <span class="toc-text">后端环境部署</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">docker容器部署应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">Docker安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BApgsql%E5%AE%B9%E5%99%A8"><span class="toc-number">2.2.</span> <span class="toc-text">构建PgSQL容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BAflask-api%E9%95%9C%E5%83%8F"><span class="toc-number">2.3.</span> <span class="toc-text">构建Flask API镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BAnginx%E5%AE%B9%E5%99%A8"><span class="toc-number">2.4.</span> <span class="toc-text">构建Nginx容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8docker-compose%E7%BC%96%E6%8E%92%E5%AE%B9%E5%99%A8"><span class="toc-number">2.5.</span> <span class="toc-text">使用Docker Compose编排容器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%8D%A0%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">端口被占用解决方法</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1533,18 +1123,6 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2653,6 +2231,16 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2683,29 +2271,14 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2723,9 +2296,24 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2736,16 +2324,6 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2763,11 +2341,6 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2776,6 +2349,11 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2813,19 +2391,9 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2836,6 +2404,16 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2859,6 +2437,11 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2869,29 +2452,9 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2899,9 +2462,19 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2909,19 +2482,24 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2954,6 +2532,16 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -2967,16 +2555,6 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -3051,5 +2629,20 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

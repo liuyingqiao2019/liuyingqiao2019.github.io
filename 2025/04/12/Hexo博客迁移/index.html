@@ -340,7 +340,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">575</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">572</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -501,63 +501,49 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="迁移博客文件到新电脑"><a href="#迁移博客文件到新电脑" class="headerlink" title="迁移博客文件到新电脑"></a>迁移博客文件到新电脑</h1><p>将旧电脑里blog文件夹下所有文件拷贝到新电脑中，这个过程持续时间比较长，所以先做。</p>
+        <h1 id="迁移博客文件到新电脑">迁移博客文件到新电脑</h1>
+<p>将旧电脑里blog文件夹下所有文件拷贝到新电脑中，这个过程持续时间比较长，所以先做。</p>
 <p>如果想要加快拷贝速度的话，可以把node_modules文件夹删除，在新电脑里通过<code>npm install</code>的命令重新下载回来</p>
-<h1 id="配置新电脑基础环境"><a href="#配置新电脑基础环境" class="headerlink" title="配置新电脑基础环境"></a>配置新电脑基础环境</h1><h2 id="Git安装-amp-配置"><a href="#Git安装-amp-配置" class="headerlink" title="Git安装&amp;配置"></a>Git安装&amp;配置</h2><p>由于我使用的是window系统，去官网下载Git客户端安装<a target="_blank" rel="noopener" href="https://git-scm.com/downloads/win">Git - Downloading Package</a></p>
+<h1 id="配置新电脑基础环境">配置新电脑基础环境</h1>
+<h2 id="git安装配置">Git安装&amp;配置</h2>
+<p>由于我使用的是window系统，去官网下载Git客户端安装<a target="_blank" rel="noopener" href="https://git-scm.com/downloads/win">Git - Downloading
+Package</a></p>
 <ul>
 <li>安装完成后，在桌面右键单击，看到菜单有git相关的选项即为安装成功。</li>
 </ul>
-<p><img src="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/4.png" alt></p>
+<p><img src="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/4.png"></p>
 <ul>
-<li><p>点击选择 <code>Open Git Bash here</code>打开git终端，输入以下命令将git配置的用户名邮箱设置成github上的用户名与邮箱</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#配置GitHub的用户名与邮箱
-git config --global user.name 用户名
-git config --global user.email 邮箱
-#查看config确认是否配置成功
-git config --list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<li><p>点击选择
+<code>Open Git Bash here</code>打开git终端，输入以下命令将git配置的用户名邮箱设置成github上的用户名与邮箱</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置GitHub的用户名与邮箱</span></span><br><span class="line">git config --global user.name 用户名</span><br><span class="line">git config --global user.email 邮箱</span><br><span class="line"><span class="comment">#查看config确认是否配置成功</span></span><br><span class="line">git config --list</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="SSH生成-amp-amp-配置"><a href="#SSH生成-amp-amp-配置" class="headerlink" title="SSH生成&amp;&amp;配置"></a>SSH生成&amp;&amp;配置</h2><ul>
+<h2 id="ssh生成配置">SSH生成&amp;&amp;配置</h2>
+<ul>
 <li>如果本机没有这个邮箱相关的ssh密钥，输入以下命令生成密钥：</li>
 </ul>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#输入命令后一直按回车键，直到生成密钥
-ssh-keygen -t rsa -C 邮箱
-#显示密钥信息，复制，下一步要用
-cat ~&#x2F;.ssh&#x2F;id_rsa.pub<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#输入命令后一直按回车键，直到生成密钥</span></span><br><span class="line">ssh-keygen -t rsa -C 邮箱</span><br><span class="line"><span class="comment">#显示密钥信息，复制，下一步要用</span></span><br><span class="line"><span class="built_in">cat</span> ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li><p>进入Github的个人设置页面，找到<code>SSH and GPG Keys</code> 选项：</p>
-<p><img src="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/1.png" alt></p>
-<p><img src="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/2.png" alt></p>
-</li>
-<li><p>新建SSH key，把刚刚复制的ssh key粘贴在Key处，设定key的名字后，点击<code>Add SSH key</code> 。</p>
-<p><img src="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/3.png" alt></p>
-</li>
+<li><p>进入Github的个人设置页面，找到<code>SSH and GPG Keys</code>
+选项：</p>
+<p><img src="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/1.png"></p>
+<p><img src="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/2.png"></p></li>
+<li><p>新建SSH key，把刚刚复制的ssh
+key粘贴在Key处，设定key的名字后，点击<code>Add SSH key</code> 。</p>
+<p><img src="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/3.png"></p></li>
 </ul>
-<h2 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h2><ul>
-<li><p>去官网上下载node<a href="https://link.zhihu.com/?target=https%3A//nodejs.org/en">nodejs.org/en</a></p>
-</li>
-<li><p>安装完成后，打开cmd，输入<code>npm -v</code>，看到显示版本号，即表示安装成功</p>
-</li>
+<h2 id="安装node">安装node</h2>
+<ul>
+<li><p>去官网上下载node<a href="https://link.zhihu.com/?target=https%3A//nodejs.org/en">nodejs.org/en</a></p></li>
+<li><p>安装完成后，打开cmd，输入<code>npm -v</code>，看到显示版本号，即表示安装成功</p></li>
 <li><p>输入以下命令给npm更换镜像源：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#换成淘宝源
-npm config set registry https:&#x2F;&#x2F;registry.npmmirror.com
-#检查镜像源是否更换成功
-npm config get registry<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#换成淘宝源</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmmirror.com</span><br><span class="line"><span class="comment">#检查镜像源是否更换成功</span></span><br><span class="line">npm config get registry</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>待博客文件都迁移完成后，进入到博客文件夹里，鼠标右键后点击选择 <code>Open Git Bash here</code>打开git终端，输入以下命令安装Hexo：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm install hexo-cli -g
-npm install hexo-deployer-git --save
-# 如果文件迁移时删除了node_modules文件，这里需要再多执行一个命令： npm install<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="安装hexo">安装Hexo</h3>
+<p>待博客文件都迁移完成后，进入到博客文件夹里，鼠标右键后点击选择
+<code>Open Git Bash here</code>打开git终端，输入以下命令安装Hexo：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"><span class="comment"># 如果文件迁移时删除了node_modules文件，这里需要再多执行一个命令： npm install</span></span><br></pre></td></tr></table></figure>
 <p>至此，博客已完成了迁移，可以在新电脑上使用hexo相关命令正常上传博文了</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#清理缓存
-hexo clean
-#生成文件
-hexo g
-#预览博客
-hexo s
-#推送博客
-hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#清理缓存</span></span><br><span class="line">hexo clean</span><br><span class="line"><span class="comment">#生成文件</span></span><br><span class="line">hexo g</span><br><span class="line"><span class="comment">#预览博客</span></span><br><span class="line">hexo s</span><br><span class="line"><span class="comment">#推送博客</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -751,7 +737,7 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E6%96%87%E4%BB%B6%E5%88%B0%E6%96%B0%E7%94%B5%E8%84%91"><span class="toc-number">1.</span> <span class="toc-text">迁移博客文件到新电脑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%B0%E7%94%B5%E8%84%91%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">配置新电脑基础环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%AE%89%E8%A3%85-amp-%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.</span> <span class="toc-text">Git安装&amp;配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH%E7%94%9F%E6%88%90-amp-amp-%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">SSH生成&amp;&amp;配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85node"><span class="toc-number">2.3.</span> <span class="toc-text">安装node</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Hexo"><span class="toc-number">2.3.1.</span> <span class="toc-text">安装Hexo</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E6%96%87%E4%BB%B6%E5%88%B0%E6%96%B0%E7%94%B5%E8%84%91"><span class="toc-number">1.</span> <span class="toc-text">迁移博客文件到新电脑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%B0%E7%94%B5%E8%84%91%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">配置新电脑基础环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.</span> <span class="toc-text">Git安装&amp;配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">SSH生成&amp;&amp;配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85node"><span class="toc-number">2.3.</span> <span class="toc-text">安装node</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="toc-number">2.3.1.</span> <span class="toc-text">安装Hexo</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1101,18 +1087,6 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2221,6 +2195,16 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2251,29 +2235,14 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2291,9 +2260,24 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2304,16 +2288,6 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2331,11 +2305,6 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2344,6 +2313,11 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2381,19 +2355,9 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2404,6 +2368,16 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2427,6 +2401,11 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2437,29 +2416,9 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2467,9 +2426,19 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2477,19 +2446,24 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2522,6 +2496,16 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -2535,16 +2519,6 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2619,5 +2593,20 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

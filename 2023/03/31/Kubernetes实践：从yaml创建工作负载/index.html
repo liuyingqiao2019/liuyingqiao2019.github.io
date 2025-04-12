@@ -496,219 +496,55 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h1><p>Pod是Kubernetes中的基本单位。容器本身不会直接分配到主机上，而会封装到名为Pod的对象中。Kubernetes以Pod为最小单位进行调度、伸缩并共享资源、管理生命周期。</p>
+        <h1 id="pod">Pod</h1>
+<p>Pod是Kubernetes中的基本单位。容器本身不会直接分配到主机上，而会封装到名为Pod的对象中。Kubernetes以Pod为最小单位进行调度、伸缩并共享资源、管理生命周期。</p>
 <p>Pod通常表示单个应用程序，由一个或多个关系紧密的容器构成，这些容器拥有同样的生命周期，作为一个整体一起编排到Node上。这些容器共享环境、存储卷（volume）和IP空间。尽管Pod基于一个或多个容器，但应将Pod视作一个单一的整体、单独的应用程序。</p>
-<h1 id="Pod模板"><a href="#Pod模板" class="headerlink" title="Pod模板"></a>Pod模板</h1><p>在创建Pod时，需要定义一个模板文件（.yml文件），并将其称为Pod模板。可以用Pod模板来定义资源，以下是Pod模板的主要内容及对应说明：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">---
-apiVersion: v1 # 使用的API版本，V1表示使用 Kubernetes API的稳定版本
-kind: Pod # 要创建的资源对象，这里为关键字Pod
-metadata: # 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息
-  name: String # 元数据，必填，Pod的名字
-  namespace: String # 元数据，Pod的命名空间
-  labels: # 元数据，标签列表
-    - key: value # 元数据，可定义多个标签的键值对 
-  annotations: # 元数据，自定义注解列表
-    - key: value # 元数据，可定义多个标签的键值对 
-spec: # 该资源对象的具体设置，Pod中容器的详细配置，必填
-  containers: # Pod中的容器列表，必填，可以有多个容器
-  - name: String # 要创建的容器名称，必填                
-    image: String # 容器的镜像地址，必填
-    imagePullPolicy: [Always|Never|IfNotPresent] # 镜像的下载策略，支持3种模式
-    command: [String] # 容器的启动命令列表（不配置则使用镜像内部的命令）
-    args: [String] # 启动参数列表
-    workingDir: String # 容器的工作目录
-    volumeMounts: # 挂载到容器内部的存储卷设置
-    - name: String # 为了引用Pod定义的共享存储卷名称，要用volumes[]部分定义的卷名
-      mountPath: String # 存储卷在容器内挂载的绝对路径，应少于512个字符
-      readOnly: Boolean # 是否为只读模式
-    ports: # 容器需要暴露的端口号列表
-    - name: String # 端口名称
-      containerPort: int # 容器要暴露的端口
-      hostPost: int # 容器所在主机监听的端口（把容器暴露的端口映射到宿主机的端口）
-      protocol: String # 端口协议，支持TCP和UDP，默认为TCP
-    env: # 容器运行前要设置的环境变量列表
-    - name: String # 环境变量名称
-      value: String # 环境变量值
-    resources: # 资源限制和请求的设置
-      limits: # 资源限制的设置
-        cpu: String # cpu限制，单位为CPU内核数，也可以使用小数，如0.1，0.1等价于表达式100m，表示100milicpu
-        memory: String # 内存限制，单位可以为MiB&#x2F;GiB&#x2F;MB&#x2F;GB (1MB&#x3D;1024x1024B&#x3D;1024x1024x1000x1000B)。
-      requests: # 资源请求的设置
-        cpu: String # cpu请求，容器启动时的初始可用数量
-        memory: String # 内存请求，容器启动时的初始可用数量
-      livenessProbe: # Pod内容器健康检查的设置，当探测几次无响应后将自动重启该容器。
-      # 检查方法有exec、httpGet、tcpSocket，对一个容器只要设置一种方法即可
-        exec: # 通过exec方式来检查Pod内各容器的健康情况
-          command: [String] # exec方式需要指定的命令或脚本
-        httpGet: # 通过httpGet方式来检查Pod内各容器的健康情况，需要指定path、port
-          path: String
-          port: number
-          host: String
-          scheme: String
-          httpHeaders: 
-          - name: String
-            value: String
-        tcpSocket: # 通过tcpSocket方式来检查Pod内各容器的健康情况
-          port: number    
-        initialDelaySeconds: 0 # 容器启动完成后，首次探测的时间（单位为秒）
-        timeoutSeconds: 0 # 对容器进行健康检查时探测等待响应的超时时间（单位为秒，默认为1s）
-        periodSeconds: 0 # 对容器监控检查的定期探测时间设置（单位为秒，默认10s一次）
-        successThreshold: 0 
-        failureThreshold: 0  
-        securityContext: # 安全配置
-          privileged: false
-      restartPolicy: [Always|Never|OnFailure] # Pod的重启策略，有三种可以选   
-      nodeSelector: # 节点选择，设置nodeSelector表示将该Pod调度到包含这个标签的节点上
-      - key: value 
-      imagePullSecrets: # 拉取镜像时使用的secret名称
-      - name: String
-      hostNetwork: false # 是否使用主机网络模式，默认为false
-    volumes: # 在该Pod上定义的共享存储卷列表
-    - name: String # 共享存储卷名称
-      emptyDir: &#123;&#125; # 类型为emptyDir的存储卷，与Pod有相同生命周期的一个临时目录，为空值
-      hostPath: # 类型为hostPathr的存储卷，将会挂载Pod所在宿主机的目录
-        path: String
-      secret: #类型为secret的存储卷，在容器内部挂载集群中预定义的secret对象
-        secretName: String
-        items: 
-        - key: String
-          path: String
-        configMap: #类型为secret的存储卷，挂载预定义的configMap对象到容器内部
-          name: String
-          items:
-          - key: String
-            path: String    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="控制器——Pod的管理"><a href="#控制器——Pod的管理" class="headerlink" title="控制器——Pod的管理"></a>控制器——Pod的管理</h1><p>一般来说，用户不会直接创建Pod，而是创建控制器，让控制器来管理Pod。在控制器中定义Pod的部署方式，如有多少个副本、需要在哪种Node上运行等。根据不同的业务场景，Kubernetes提供了多种控制器。</p>
-<h2 id="Deployment-控制器（部署）"><a href="#Deployment-控制器（部署）" class="headerlink" title="Deployment 控制器（部署）"></a>Deployment 控制器（部署）</h2><p>Deployment控制器是最常用的工作负载对象之一。</p>
+<h1 id="pod模板">Pod模板</h1>
+<p>在创建Pod时，需要定义一个模板文件（.yml文件），并将其称为Pod模板。可以用Pod模板来定义资源，以下是Pod模板的主要内容及对应说明：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span> <span class="comment"># 使用的API版本，V1表示使用 Kubernetes API的稳定版本</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span> <span class="comment"># 要创建的资源对象，这里为关键字Pod</span></span><br><span class="line"><span class="attr">metadata:</span> <span class="comment"># 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">String</span> <span class="comment"># 元数据，必填，Pod的名字</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">String</span> <span class="comment"># 元数据，Pod的命名空间</span></span><br><span class="line">  <span class="attr">labels:</span> <span class="comment"># 元数据，标签列表</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">key:</span> <span class="string">value</span> <span class="comment"># 元数据，可定义多个标签的键值对 </span></span><br><span class="line">  <span class="attr">annotations:</span> <span class="comment"># 元数据，自定义注解列表</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">key:</span> <span class="string">value</span> <span class="comment"># 元数据，可定义多个标签的键值对 </span></span><br><span class="line"><span class="attr">spec:</span> <span class="comment"># 该资源对象的具体设置，Pod中容器的详细配置，必填</span></span><br><span class="line">  <span class="attr">containers:</span> <span class="comment"># Pod中的容器列表，必填，可以有多个容器</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">String</span> <span class="comment"># 要创建的容器名称，必填                </span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">String</span> <span class="comment"># 容器的镜像地址，必填</span></span><br><span class="line">    <span class="attr">imagePullPolicy:</span> [<span class="string">Always|Never|IfNotPresent</span>] <span class="comment"># 镜像的下载策略，支持3种模式</span></span><br><span class="line">    <span class="attr">command:</span> [<span class="string">String</span>] <span class="comment"># 容器的启动命令列表（不配置则使用镜像内部的命令）</span></span><br><span class="line">    <span class="attr">args:</span> [<span class="string">String</span>] <span class="comment"># 启动参数列表</span></span><br><span class="line">    <span class="attr">workingDir:</span> <span class="string">String</span> <span class="comment"># 容器的工作目录</span></span><br><span class="line">    <span class="attr">volumeMounts:</span> <span class="comment"># 挂载到容器内部的存储卷设置</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">String</span> <span class="comment"># 为了引用Pod定义的共享存储卷名称，要用volumes[]部分定义的卷名</span></span><br><span class="line">      <span class="attr">mountPath:</span> <span class="string">String</span> <span class="comment"># 存储卷在容器内挂载的绝对路径，应少于512个字符</span></span><br><span class="line">      <span class="attr">readOnly:</span> <span class="string">Boolean</span> <span class="comment"># 是否为只读模式</span></span><br><span class="line">    <span class="attr">ports:</span> <span class="comment"># 容器需要暴露的端口号列表</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">String</span> <span class="comment"># 端口名称</span></span><br><span class="line">      <span class="attr">containerPort:</span> <span class="string">int</span> <span class="comment"># 容器要暴露的端口</span></span><br><span class="line">      <span class="attr">hostPost:</span> <span class="string">int</span> <span class="comment"># 容器所在主机监听的端口（把容器暴露的端口映射到宿主机的端口）</span></span><br><span class="line">      <span class="attr">protocol:</span> <span class="string">String</span> <span class="comment"># 端口协议，支持TCP和UDP，默认为TCP</span></span><br><span class="line">    <span class="attr">env:</span> <span class="comment"># 容器运行前要设置的环境变量列表</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">String</span> <span class="comment"># 环境变量名称</span></span><br><span class="line">      <span class="attr">value:</span> <span class="string">String</span> <span class="comment"># 环境变量值</span></span><br><span class="line">    <span class="attr">resources:</span> <span class="comment"># 资源限制和请求的设置</span></span><br><span class="line">      <span class="attr">limits:</span> <span class="comment"># 资源限制的设置</span></span><br><span class="line">        <span class="attr">cpu:</span> <span class="string">String</span> <span class="comment"># cpu限制，单位为CPU内核数，也可以使用小数，如0.1，0.1等价于表达式100m，表示100milicpu</span></span><br><span class="line">        <span class="attr">memory:</span> <span class="string">String</span> <span class="comment"># 内存限制，单位可以为MiB/GiB/MB/GB (1MB=1024x1024B=1024x1024x1000x1000B)。</span></span><br><span class="line">      <span class="attr">requests:</span> <span class="comment"># 资源请求的设置</span></span><br><span class="line">        <span class="attr">cpu:</span> <span class="string">String</span> <span class="comment"># cpu请求，容器启动时的初始可用数量</span></span><br><span class="line">        <span class="attr">memory:</span> <span class="string">String</span> <span class="comment"># 内存请求，容器启动时的初始可用数量</span></span><br><span class="line">      <span class="attr">livenessProbe:</span> <span class="comment"># Pod内容器健康检查的设置，当探测几次无响应后将自动重启该容器。</span></span><br><span class="line">      <span class="comment"># 检查方法有exec、httpGet、tcpSocket，对一个容器只要设置一种方法即可</span></span><br><span class="line">        <span class="attr">exec:</span> <span class="comment"># 通过exec方式来检查Pod内各容器的健康情况</span></span><br><span class="line">          <span class="attr">command:</span> [<span class="string">String</span>] <span class="comment"># exec方式需要指定的命令或脚本</span></span><br><span class="line">        <span class="attr">httpGet:</span> <span class="comment"># 通过httpGet方式来检查Pod内各容器的健康情况，需要指定path、port</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">String</span></span><br><span class="line">          <span class="attr">port:</span> <span class="string">number</span></span><br><span class="line">          <span class="attr">host:</span> <span class="string">String</span></span><br><span class="line">          <span class="attr">scheme:</span> <span class="string">String</span></span><br><span class="line">          <span class="attr">httpHeaders:</span> </span><br><span class="line">          <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">String</span></span><br><span class="line">            <span class="attr">value:</span> <span class="string">String</span></span><br><span class="line">        <span class="attr">tcpSocket:</span> <span class="comment"># 通过tcpSocket方式来检查Pod内各容器的健康情况</span></span><br><span class="line">          <span class="attr">port:</span> <span class="string">number</span>    </span><br><span class="line">        <span class="attr">initialDelaySeconds:</span> <span class="number">0</span> <span class="comment"># 容器启动完成后，首次探测的时间（单位为秒）</span></span><br><span class="line">        <span class="attr">timeoutSeconds:</span> <span class="number">0</span> <span class="comment"># 对容器进行健康检查时探测等待响应的超时时间（单位为秒，默认为1s）</span></span><br><span class="line">        <span class="attr">periodSeconds:</span> <span class="number">0</span> <span class="comment"># 对容器监控检查的定期探测时间设置（单位为秒，默认10s一次）</span></span><br><span class="line">        <span class="attr">successThreshold:</span> <span class="number">0</span> </span><br><span class="line">        <span class="attr">failureThreshold:</span> <span class="number">0</span>  </span><br><span class="line">        <span class="attr">securityContext:</span> <span class="comment"># 安全配置</span></span><br><span class="line">          <span class="attr">privileged:</span> <span class="literal">false</span></span><br><span class="line">      <span class="attr">restartPolicy:</span> [<span class="string">Always|Never|OnFailure</span>] <span class="comment"># Pod的重启策略，有三种可以选   </span></span><br><span class="line">      <span class="attr">nodeSelector:</span> <span class="comment"># 节点选择，设置nodeSelector表示将该Pod调度到包含这个标签的节点上</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">key:</span> <span class="string">value</span> </span><br><span class="line">      <span class="attr">imagePullSecrets:</span> <span class="comment"># 拉取镜像时使用的secret名称</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">String</span></span><br><span class="line">      <span class="attr">hostNetwork:</span> <span class="literal">false</span> <span class="comment"># 是否使用主机网络模式，默认为false</span></span><br><span class="line">    <span class="attr">volumes:</span> <span class="comment"># 在该Pod上定义的共享存储卷列表</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">String</span> <span class="comment"># 共享存储卷名称</span></span><br><span class="line">      <span class="attr">emptyDir:</span> &#123;&#125; <span class="comment"># 类型为emptyDir的存储卷，与Pod有相同生命周期的一个临时目录，为空值</span></span><br><span class="line">      <span class="attr">hostPath:</span> <span class="comment"># 类型为hostPathr的存储卷，将会挂载Pod所在宿主机的目录</span></span><br><span class="line">        <span class="attr">path:</span> <span class="string">String</span></span><br><span class="line">      <span class="attr">secret:</span> <span class="comment">#类型为secret的存储卷，在容器内部挂载集群中预定义的secret对象</span></span><br><span class="line">        <span class="attr">secretName:</span> <span class="string">String</span></span><br><span class="line">        <span class="attr">items:</span> </span><br><span class="line">        <span class="bullet">-</span> <span class="attr">key:</span> <span class="string">String</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">String</span></span><br><span class="line">        <span class="attr">configMap:</span> <span class="comment">#类型为secret的存储卷，挂载预定义的configMap对象到容器内部</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">String</span></span><br><span class="line">          <span class="attr">items:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">key:</span> <span class="string">String</span></span><br><span class="line">            <span class="attr">path:</span> <span class="string">String</span>    </span><br></pre></td></tr></table></figure>
+<h1 id="控制器pod的管理">控制器——Pod的管理</h1>
+<p>一般来说，用户不会直接创建Pod，而是创建控制器，让控制器来管理Pod。在控制器中定义Pod的部署方式，如有多少个副本、需要在哪种Node上运行等。根据不同的业务场景，Kubernetes提供了多种控制器。</p>
+<h2 id="deployment-控制器部署">Deployment 控制器（部署）</h2>
+<p>Deployment控制器是最常用的工作负载对象之一。</p>
 <p>在使用Kubernetes时，通常要管理由多个相同Pod所组成的Pod集合，而不是单个Pod。通过Deployment控制器，可以定义Pod模板，并设置相应控制参数以实现水平伸缩，以调节正在运行的相同Pod数。</p>
 <p>Deployment控制器保证在集群中部署的Pod数量和配置中的Pod数量一致。若Pod或主机出现故障，则会自动启用新的Pod进行补充。</p>
-<p>创建Deployment 控制器也需要定义一个模板文件（.yml文件）。可以用Deployment控制器的模板来定义资源，以下是模板的主要内容及对应说明：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">---
-apiVersion: apps&#x2F;v1 # 使用的API版本，V1表示使用稳定版本
-kind: Deployment # 要创建的资源对象，这里为关键字Deployment
-metadata: # 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息
-  name: String # 元数据，必填，Deployment控制器的名字
-  namespace: String # 元数据，Deployment控制器的命名空间
-  labels: # 元数据，标签列表
-    - key: value # 元数据，可定义多个标签的键值对 
-  annotations: # 元数据，自定义注解列表
-    - key: value # 元数据，可定义多个标签的键值对 
-spec: 
-  selector: # 必填，用于指定Deployment控制器针对的Pod的标签选择器，需要与template中的标签匹配
-    matchLabels:  # 定义需要匹配的标签集合
-      key: value # 需要匹配的标签，可定义多个标签的键值对
-  template: [PodTemplate] # 必填，Pod模板，它与Pod具有完全相同的结构，不过他是嵌套的，且不需要带apiVersion或kind字段
-  replicas: int # 指定所需Pod的数量，默认为1
-  strategy: # 更新时替换旧Pod的策略
-    type: Recreate&#x2F;RollingUpdate # Recreate表示现有的Pod都会在创建新的Pod之前被终止，RollingUpdate表示以滚动更新方式更新Pod
-    rollingUpdate:
-      maxSurge: int&#x2F;int% # 在滚动更新时，在所需数量的Pod上允许创建的最大Pod数，也可用百分比形式
-      maxUnavailable: int&#x2F;int% # 在滚动更新时，同时存在最大不可用Pod数，也可用百分比形式
-  progressDeadlineseconds: int # Deployment控制器处于进行状态时的等待秒数，超过这个时间将会变为失败
-  minReadySeconds: int # 指定新创建的Pod应该在没有任何容器崩溃的情况下准备好的最短秒数
-  revisionHistoryLimit: int # 指定要保留的允许回滚的旧ReplicaSet数量
-  paused: boolean # 默认为false，用于暂停和恢复部署，当暂停部署时，Pod模板中spec属性的任何更改都不会触发新的部署<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="DaemonSet-控制器（有状态副本集）"><a href="#DaemonSet-控制器（有状态副本集）" class="headerlink" title="DaemonSet 控制器（有状态副本集）"></a>DaemonSet 控制器（有状态副本集）</h2><p>DaemonSet 控制器是一种特殊的Pod控制器，会在集群中的各个节点上运行单一的Pod副本。它非常适合部署那些为节点本身提供服务或执行维护的Pod。如对于日志收集和转发、监控以及运行以增加节点本身功能为目的的服务都使用DaemonSet 控制器。</p>
+<p>创建Deployment
+控制器也需要定义一个模板文件（.yml文件）。可以用Deployment控制器的模板来定义资源，以下是模板的主要内容及对应说明：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span> <span class="comment"># 使用的API版本，V1表示使用稳定版本</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span> <span class="comment"># 要创建的资源对象，这里为关键字Deployment</span></span><br><span class="line"><span class="attr">metadata:</span> <span class="comment"># 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">String</span> <span class="comment"># 元数据，必填，Deployment控制器的名字</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">String</span> <span class="comment"># 元数据，Deployment控制器的命名空间</span></span><br><span class="line">  <span class="attr">labels:</span> <span class="comment"># 元数据，标签列表</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">key:</span> <span class="string">value</span> <span class="comment"># 元数据，可定义多个标签的键值对 </span></span><br><span class="line">  <span class="attr">annotations:</span> <span class="comment"># 元数据，自定义注解列表</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">key:</span> <span class="string">value</span> <span class="comment"># 元数据，可定义多个标签的键值对 </span></span><br><span class="line"><span class="attr">spec:</span> </span><br><span class="line">  <span class="attr">selector:</span> <span class="comment"># 必填，用于指定Deployment控制器针对的Pod的标签选择器，需要与template中的标签匹配</span></span><br><span class="line">    <span class="attr">matchLabels:</span>  <span class="comment"># 定义需要匹配的标签集合</span></span><br><span class="line">      <span class="attr">key:</span> <span class="string">value</span> <span class="comment"># 需要匹配的标签，可定义多个标签的键值对</span></span><br><span class="line">  <span class="attr">template:</span> [<span class="string">PodTemplate</span>] <span class="comment"># 必填，Pod模板，它与Pod具有完全相同的结构，不过他是嵌套的，且不需要带apiVersion或kind字段</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="string">int</span> <span class="comment"># 指定所需Pod的数量，默认为1</span></span><br><span class="line">  <span class="attr">strategy:</span> <span class="comment"># 更新时替换旧Pod的策略</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">Recreate/RollingUpdate</span> <span class="comment"># Recreate表示现有的Pod都会在创建新的Pod之前被终止，RollingUpdate表示以滚动更新方式更新Pod</span></span><br><span class="line">    <span class="attr">rollingUpdate:</span></span><br><span class="line">      <span class="attr">maxSurge:</span> <span class="string">int/int%</span> <span class="comment"># 在滚动更新时，在所需数量的Pod上允许创建的最大Pod数，也可用百分比形式</span></span><br><span class="line">      <span class="attr">maxUnavailable:</span> <span class="string">int/int%</span> <span class="comment"># 在滚动更新时，同时存在最大不可用Pod数，也可用百分比形式</span></span><br><span class="line">  <span class="attr">progressDeadlineseconds:</span> <span class="string">int</span> <span class="comment"># Deployment控制器处于进行状态时的等待秒数，超过这个时间将会变为失败</span></span><br><span class="line">  <span class="attr">minReadySeconds:</span> <span class="string">int</span> <span class="comment"># 指定新创建的Pod应该在没有任何容器崩溃的情况下准备好的最短秒数</span></span><br><span class="line">  <span class="attr">revisionHistoryLimit:</span> <span class="string">int</span> <span class="comment"># 指定要保留的允许回滚的旧ReplicaSet数量</span></span><br><span class="line">  <span class="attr">paused:</span> <span class="string">boolean</span> <span class="comment"># 默认为false，用于暂停和恢复部署，当暂停部署时，Pod模板中spec属性的任何更改都不会触发新的部署</span></span><br></pre></td></tr></table></figure>
+<h2 id="daemonset-控制器有状态副本集">DaemonSet
+控制器（有状态副本集）</h2>
+<p>DaemonSet
+控制器是一种特殊的Pod控制器，会在集群中的各个节点上运行单一的Pod副本。它非常适合部署那些为节点本身提供服务或执行维护的Pod。如对于日志收集和转发、监控以及运行以增加节点本身功能为目的的服务都使用DaemonSet
+控制器。</p>
 <p>DaemonSet 控制器的一些典型用法包括但不限于以下几种：</p>
 <ul>
 <li>运行集群存储Daemon控制器，如在每个Node上运行glusterd、ceph。</li>
 <li>在每个Node上运行日志收集Daemon控制器，如Fluentd、logstash。</li>
-<li>在每个Node上运行监控Daemon控制器，如Prometheus Node Exporter、collectd、Datadog代理、New Relic代理或Ganglia gmond。</li>
+<li>在每个Node上运行监控Daemon控制器，如Prometheus Node
+Exporter、collectd、Datadog代理、New Relic代理或Ganglia gmond。</li>
 </ul>
 <p>创建DaemonSet 控制器的模板与Deployment控制器的模板相同</p>
-<h2 id="Job与CronJob控制器"><a href="#Job与CronJob控制器" class="headerlink" title="Job与CronJob控制器"></a>Job与CronJob控制器</h2><h3 id="Job工作负载"><a href="#Job工作负载" class="headerlink" title="Job工作负载"></a>Job工作负载</h3><p>Job的工作负载对象基于某一特定任务而运行，当运行任务的容器完成工作后，就会成功退出。若需要执行一次性任务，而非提供连续的服务，则适合创建job工作负载。</p>
+<h2 id="job与cronjob控制器">Job与CronJob控制器</h2>
+<h3 id="job工作负载">Job工作负载</h3>
+<p>Job的工作负载对象基于某一特定任务而运行，当运行任务的容器完成工作后，就会成功退出。若需要执行一次性任务，而非提供连续的服务，则适合创建job工作负载。</p>
 <p>Job控制器可以执行3种类型的任务：</p>
 <ul>
 <li><p>一次性任务：通常只会启动一个Pod（除非Pod失败）。一旦Pod成功终止，Job就算完成了。其模板如下：</p>
-  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">---
-apiVersion: batch&#x2F;v1 # 使用的API版本，V1表示使用稳定版本
-kind: Job # 要创建的资源对象，这里为关键字Job
-metadata: # 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息
-  name: String # 元数据，必填，Job工作负载的名字
-spec: 
-  template:  # 必填，Pod模板，它与Pod具有完全相同的结构，不过他是嵌套的，且不需要带apiVersion或kind字段
-    spec:
-      activeDeadlineSeconds: int # 指定执行任务的上限时间（单位为秒），超时时任务将强制终止并删除
-      ttlSecondsAfterFinished: int # 用于确定在所有任务执行完成后，需要等待多少秒才可删除Job，默认关闭
-      restartPolicy: [Never|OnFailure] 
-      containers:
-      - name: String
-        image: String
-        imagePullPolicy: 
-        command: [String]
-          - --feature-gates&#x3D;TTLSecondsAfterFinished&#x3D;true # 手动开启自动删除Job功能
-        args: [String] <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">batch/v1</span> <span class="comment"># 使用的API版本，V1表示使用稳定版本</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Job</span> <span class="comment"># 要创建的资源对象，这里为关键字Job</span></span><br><span class="line"><span class="attr">metadata:</span> <span class="comment"># 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">String</span> <span class="comment"># 元数据，必填，Job工作负载的名字</span></span><br><span class="line"><span class="attr">spec:</span> </span><br><span class="line">  <span class="attr">template:</span>  <span class="comment"># 必填，Pod模板，它与Pod具有完全相同的结构，不过他是嵌套的，且不需要带apiVersion或kind字段</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">activeDeadlineSeconds:</span> <span class="string">int</span> <span class="comment"># 指定执行任务的上限时间（单位为秒），超时时任务将强制终止并删除</span></span><br><span class="line">      <span class="attr">ttlSecondsAfterFinished:</span> <span class="string">int</span> <span class="comment"># 用于确定在所有任务执行完成后，需要等待多少秒才可删除Job，默认关闭</span></span><br><span class="line">      <span class="attr">restartPolicy:</span> [<span class="string">Never|OnFailure</span>] </span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">String</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">String</span></span><br><span class="line">        <span class="attr">imagePullPolicy:</span> </span><br><span class="line">        <span class="attr">command:</span> [<span class="string">String</span>]</span><br><span class="line">          <span class="bullet">-</span> <span class="string">--feature-gates=TTLSecondsAfterFinished=true</span> <span class="comment"># 手动开启自动删除Job功能</span></span><br><span class="line">        <span class="attr">args:</span> [<span class="string">String</span>] </span><br></pre></td></tr></table></figure></p></li>
 <li><p>串行式任务：连续、多次地执行某一任务。当上一个任务完成时，接着执行下一个任务，直到全部任务执行完，可以通过spec.completions属性指定执行次数。其模板如下：</p>
-  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">---
-apiVersion: batch&#x2F;v1 # 使用的API版本，V1表示使用稳定版本
-kind: Job # 要创建的资源对象，这里为关键字Job
-metadata: # 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息
-  name: String # 元数据，必填，Job工作负载的名字
-spec: 
-  activeDeadlineSeconds: int # 指定执行任务的上限时间（单位为秒），超时时任务将强制终止并删除
-  completions: int # 设置任务执行次数
-  template:  # 必填，Pod模板，它与Pod具有完全相同的结构，不过他是嵌套的，且不需要带apiVersion或kind字段
-    spec:
-      restartPolicy: [Never|OnFailure] 
-      containers:
-      - name: String
-        image: String
-        imagePullPolicy: 
-        command: [String] 
-        args: [String] 
-  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">batch/v1</span> <span class="comment"># 使用的API版本，V1表示使用稳定版本</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Job</span> <span class="comment"># 要创建的资源对象，这里为关键字Job</span></span><br><span class="line"><span class="attr">metadata:</span> <span class="comment"># 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">String</span> <span class="comment"># 元数据，必填，Job工作负载的名字</span></span><br><span class="line"><span class="attr">spec:</span> </span><br><span class="line">  <span class="attr">activeDeadlineSeconds:</span> <span class="string">int</span> <span class="comment"># 指定执行任务的上限时间（单位为秒），超时时任务将强制终止并删除</span></span><br><span class="line">  <span class="attr">completions:</span> <span class="string">int</span> <span class="comment"># 设置任务执行次数</span></span><br><span class="line">  <span class="attr">template:</span>  <span class="comment"># 必填，Pod模板，它与Pod具有完全相同的结构，不过他是嵌套的，且不需要带apiVersion或kind字段</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">restartPolicy:</span> [<span class="string">Never|OnFailure</span>] </span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">String</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">String</span></span><br><span class="line">        <span class="attr">imagePullPolicy:</span> </span><br><span class="line">        <span class="attr">command:</span> [<span class="string">String</span>] </span><br><span class="line">        <span class="attr">args:</span> [<span class="string">String</span>] </span><br><span class="line">  </span><br></pre></td></tr></table></figure></p></li>
 <li><p>并行式任务：同一时间并发多次执行任务。可以通过spec.parallelism属性指定并发数，也可以配合spec.completions属性指定总任务的执行次数。其模板如下：</p>
-  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">---
-apiVersion: batch&#x2F;v1 # 使用的API版本，V1表示使用稳定版本
-kind: Job # 要创建的资源对象，这里为关键字Job
-metadata: # 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息
-  name: String # 元数据，必填，Job工作负载的名字
-spec: 
-  activeDeadlineSeconds: int # 指定执行任务的上限时间（单位为秒），超时时任务将强制终止并删除
-  completions: int # 设置任务执行次数
-  parallelism: int # 设置任务并行数 
-  template:  # 必填，Pod模板，它与Pod具有完全相同的结构，不过他是嵌套的，且不需要带apiVersion或kind字段
-    spec:
-      restartPolicy: [Never|OnFailure] 
-      containers:
-      - name: String
-        image: String
-        imagePullPolicy: 
-        command: [String] 
-        args: [String] 
-  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">batch/v1</span> <span class="comment"># 使用的API版本，V1表示使用稳定版本</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Job</span> <span class="comment"># 要创建的资源对象，这里为关键字Job</span></span><br><span class="line"><span class="attr">metadata:</span> <span class="comment"># 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">String</span> <span class="comment"># 元数据，必填，Job工作负载的名字</span></span><br><span class="line"><span class="attr">spec:</span> </span><br><span class="line">  <span class="attr">activeDeadlineSeconds:</span> <span class="string">int</span> <span class="comment"># 指定执行任务的上限时间（单位为秒），超时时任务将强制终止并删除</span></span><br><span class="line">  <span class="attr">completions:</span> <span class="string">int</span> <span class="comment"># 设置任务执行次数</span></span><br><span class="line">  <span class="attr">parallelism:</span> <span class="string">int</span> <span class="comment"># 设置任务并行数 </span></span><br><span class="line">  <span class="attr">template:</span>  <span class="comment"># 必填，Pod模板，它与Pod具有完全相同的结构，不过他是嵌套的，且不需要带apiVersion或kind字段</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">restartPolicy:</span> [<span class="string">Never|OnFailure</span>] </span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">String</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">String</span></span><br><span class="line">        <span class="attr">imagePullPolicy:</span> </span><br><span class="line">        <span class="attr">command:</span> [<span class="string">String</span>] </span><br><span class="line">        <span class="attr">args:</span> [<span class="string">String</span>] </span><br><span class="line">  </span><br></pre></td></tr></table></figure></p></li>
 </ul>
-<h3 id="CronJob控制器"><a href="#CronJob控制器" class="headerlink" title="CronJob控制器"></a>CronJob控制器</h3><p>CronJob控制器是在Job的基础上增加了时间调度，可以在给定的时间点运行一个任务，也可以定期地运行。</p>
+<h3 id="cronjob控制器">CronJob控制器</h3>
+<p>CronJob控制器是在Job的基础上增加了时间调度，可以在给定的时间点运行一个任务，也可以定期地运行。</p>
 <p>通过CronJob控制器，可以实现以下类型的Job：</p>
 <ul>
 <li>在未来的某个指定时间执行一次Job，例如某项临时任务</li>
 <li>周期性地运行Job，例如，定期备份，发送邮件等</li>
 </ul>
 <p>CronJob控制器的模板如下所示：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">---
-apiVersion: batch&#x2F;v1betal # CronJob控制器目前只存在betal版本中
-kind: CronJob # 要创建的资源对象，这里为关键字CronJob
-metadata: # 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息
-  name: String # 元数据，必填，CronJob控制器的名字
-  namespace: String # 元数据，CronJob控制器的命名空间
-  labels: # 元数据，标签列表
-    - key: value # 元数据，可定义多个标签的键值对 
-  annotations: # 元数据，自定义注解列表
-    - key: value # 元数据，可定义多个标签的键值对 
-spec: 
-  schedule: String # 必填，指定任务运行周期，格式同Cron
-  jobTemplate: [JobTemplate] # 必填，Job模板
-  startingDeadlineSeconds: int # 启动Job的期限（秒）。若执行时间超时，Job将被任务是失败的。若没有指定，则没有期限
-  concurrencyPolicy: [Allow|Forbid|Replace]
-  # 若上一个周期的Job没执行完，而下一个周期已开始，在这种并发场景下默认采用Allow策略，允许并发运行Job
-  # Forbid表示禁止并发运行，若上一个周期的Job没执行完，则下一个周期会被忽略并不再执行
-  # Replace表示取消当前正在运行的Job，用一个新的来替换
-  suspend: boolean # 若设置为true，而上一个周期的Job没执行完，而下一个周期已开始，则后续所有执行都会被挂起
-  successfulJobsHistoryLimit: int # 保留多少条执行成功的Job记录，默认为3
-  failedJobsHistoryLimit: int # 保留多少条执行失败的Job记录，默认为1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">batch/v1betal</span> <span class="comment"># CronJob控制器目前只存在betal版本中</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CronJob</span> <span class="comment"># 要创建的资源对象，这里为关键字CronJob</span></span><br><span class="line"><span class="attr">metadata:</span> <span class="comment"># 表示该资源对象的元数据，一个资源对象可拥有多个元数据。表示资源的标识信息</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">String</span> <span class="comment"># 元数据，必填，CronJob控制器的名字</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">String</span> <span class="comment"># 元数据，CronJob控制器的命名空间</span></span><br><span class="line">  <span class="attr">labels:</span> <span class="comment"># 元数据，标签列表</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">key:</span> <span class="string">value</span> <span class="comment"># 元数据，可定义多个标签的键值对 </span></span><br><span class="line">  <span class="attr">annotations:</span> <span class="comment"># 元数据，自定义注解列表</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">key:</span> <span class="string">value</span> <span class="comment"># 元数据，可定义多个标签的键值对 </span></span><br><span class="line"><span class="attr">spec:</span> </span><br><span class="line">  <span class="attr">schedule:</span> <span class="string">String</span> <span class="comment"># 必填，指定任务运行周期，格式同Cron</span></span><br><span class="line">  <span class="attr">jobTemplate:</span> [<span class="string">JobTemplate</span>] <span class="comment"># 必填，Job模板</span></span><br><span class="line">  <span class="attr">startingDeadlineSeconds:</span> <span class="string">int</span> <span class="comment"># 启动Job的期限（秒）。若执行时间超时，Job将被任务是失败的。若没有指定，则没有期限</span></span><br><span class="line">  <span class="attr">concurrencyPolicy:</span> [<span class="string">Allow|Forbid|Replace</span>]</span><br><span class="line">  <span class="comment"># 若上一个周期的Job没执行完，而下一个周期已开始，在这种并发场景下默认采用Allow策略，允许并发运行Job</span></span><br><span class="line">  <span class="comment"># Forbid表示禁止并发运行，若上一个周期的Job没执行完，则下一个周期会被忽略并不再执行</span></span><br><span class="line">  <span class="comment"># Replace表示取消当前正在运行的Job，用一个新的来替换</span></span><br><span class="line">  <span class="attr">suspend:</span> <span class="string">boolean</span> <span class="comment"># 若设置为true，而上一个周期的Job没执行完，而下一个周期已开始，则后续所有执行都会被挂起</span></span><br><span class="line">  <span class="attr">successfulJobsHistoryLimit:</span> <span class="string">int</span> <span class="comment"># 保留多少条执行成功的Job记录，默认为3</span></span><br><span class="line">  <span class="attr">failedJobsHistoryLimit:</span> <span class="string">int</span> <span class="comment"># 保留多少条执行失败的Job记录，默认为1</span></span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -907,7 +743,8 @@ spec:
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Pod"><span class="toc-number">1.</span> <span class="toc-text">Pod</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pod%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.</span> <span class="toc-text">Pod模板</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E2%80%94%E2%80%94Pod%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">控制器——Pod的管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployment-%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88%E9%83%A8%E7%BD%B2%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">Deployment 控制器（部署）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DaemonSet-%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88%E6%9C%89%E7%8A%B6%E6%80%81%E5%89%AF%E6%9C%AC%E9%9B%86%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">DaemonSet 控制器（有状态副本集）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Job%E4%B8%8ECronJob%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">Job与CronJob控制器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Job%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD"><span class="toc-number">3.3.1.</span> <span class="toc-text">Job工作负载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CronJob%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">3.3.2.</span> <span class="toc-text">CronJob控制器</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pod"><span class="toc-number">1.</span> <span class="toc-text">Pod</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pod%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.</span> <span class="toc-text">Pod模板</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8pod%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">控制器——Pod的管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#deployment-%E6%8E%A7%E5%88%B6%E5%99%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">3.1.</span> <span class="toc-text">Deployment 控制器（部署）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#daemonset-%E6%8E%A7%E5%88%B6%E5%99%A8%E6%9C%89%E7%8A%B6%E6%80%81%E5%89%AF%E6%9C%AC%E9%9B%86"><span class="toc-number">3.2.</span> <span class="toc-text">DaemonSet
+控制器（有状态副本集）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#job%E4%B8%8Ecronjob%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">Job与CronJob控制器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#job%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD"><span class="toc-number">3.3.1.</span> <span class="toc-text">Job工作负载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cronjob%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">3.3.2.</span> <span class="toc-text">CronJob控制器</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1257,18 +1094,6 @@ spec:
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2377,6 +2202,16 @@ spec:
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2407,29 +2242,14 @@ spec:
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2447,9 +2267,24 @@ spec:
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2460,16 +2295,6 @@ spec:
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2487,11 +2312,6 @@ spec:
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2500,6 +2320,11 @@ spec:
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2537,19 +2362,9 @@ spec:
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2560,6 +2375,16 @@ spec:
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2583,6 +2408,11 @@ spec:
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2593,29 +2423,9 @@ spec:
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2623,9 +2433,19 @@ spec:
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2633,19 +2453,24 @@ spec:
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2678,6 +2503,16 @@ spec:
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -2691,16 +2526,6 @@ spec:
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2775,5 +2600,20 @@ spec:
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

@@ -516,196 +516,132 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h1><h2 id="创建准备"><a href="#创建准备" class="headerlink" title="创建准备"></a>创建准备</h2><ul>
+        <h1 id="创建应用">创建应用</h1>
+<h2 id="创建准备">创建准备</h2>
+<ul>
 <li>成功注册企业微信企业</li>
 <li>企业微信账号拥有当前企业的超级管理员或分级管理员的权限</li>
 </ul>
-<h2 id="创建应用-1"><a href="#创建应用-1" class="headerlink" title="创建应用"></a>创建应用</h2><p>登录 <a target="_blank" rel="noopener" href="https://work.weixin.qq.com/wework_admin/loginpage_wx">企业微信管理后台</a>，在【应用管理】界面-【应用】-【自建】点击【创建应用】，在弹出框填写应用的图标、标题、描述和可见范围基本信息。填写完成后，点击【创建应用】，将会跳转至应用详情页面。</p>
-<h2 id="配置信息"><a href="#配置信息" class="headerlink" title="配置信息"></a>配置信息</h2><h3 id="可见范围"><a href="#可见范围" class="headerlink" title="可见范围"></a>可见范围</h3><p>在【应用管理】界面-【应用】-【自建】点击刚刚创建好的应用，进入应用信息页面，点击编辑。</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/1.png" alt></p>
+<h2 id="创建应用-1">创建应用</h2>
+<p>登录 <a target="_blank" rel="noopener" href="https://work.weixin.qq.com/wework_admin/loginpage_wx">企业微信管理后台</a>，在【应用管理】界面-【应用】-【自建】点击【创建应用】，在弹出框填写应用的图标、标题、描述和可见范围基本信息。填写完成后，点击【创建应用】，将会跳转至应用详情页面。</p>
+<h2 id="配置信息">配置信息</h2>
+<h3 id="可见范围">可见范围</h3>
+<p>在【应用管理】界面-【应用】-【自建】点击刚刚创建好的应用，进入应用信息页面，点击编辑。</p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/1.png"></p>
 <p>点击可见范围旁边的添加，即可编辑可见范围。</p>
-<h3 id="应用主页"><a href="#应用主页" class="headerlink" title="应用主页"></a>应用主页</h3><p>配置成员从工作台打开应用时打开的页面URL，假设应用打开的网页为:<code>http://tangmenjue.top/</code>。</p>
+<h3 id="应用主页">应用主页</h3>
+<p>配置成员从工作台打开应用时打开的页面URL，假设应用打开的网页为:<code>http://tangmenjue.top/</code>。</p>
 <p>在应用信息页面点击编辑，点击应用主页旁边的设置，即可配置工作台打开的应用主页。</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/2.png" alt></p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/2.png"></p>
 <p>配置完成后，在可见范围内的成员，将在工作台看到该应用。</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/3.png" alt></p>
-<h3 id="配置HOST"><a href="#配置HOST" class="headerlink" title="配置HOST"></a>配置HOST</h3><p>为了能在本地进行开发，需要将应用URL的访问指向本地。Window系统下打开<code>C:\Windows\System32\drivers\etc</code>目录，右键点击hosts，选择使用记事本打开，在文件末尾增加代码如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">127.0.0.1	localhost
-127.0.0.1	tangmenjue.top<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h1 id="获取应用接口凭证"><a href="#获取应用接口凭证" class="headerlink" title="获取应用接口凭证"></a>获取应用接口凭证</h1><h2 id="获取企业ID-corp-id"><a href="#获取企业ID-corp-id" class="headerlink" title="获取企业ID corp_id"></a>获取企业ID <code>corp_id</code></h2><p>在登录管理后台后，在【管理后台】-【我的企业】-【企业信息】页面的最下面，便可找到【企业ID】</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/4.png" alt></p>
-<h2 id="获取应用-Secret"><a href="#获取应用-Secret" class="headerlink" title="获取应用 Secret"></a>获取应用 Secret</h2><p>在应用信息页面便可查看Secret</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/5.png" alt></p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/3.png"></p>
+<h3 id="配置host">配置HOST</h3>
+<p>为了能在本地进行开发，需要将应用URL的访问指向本地。Window系统下打开<code>C:\Windows\System32\drivers\etc</code>目录，右键点击hosts，选择使用记事本打开，在文件末尾增加代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1	localhost</span><br><span class="line">127.0.0.1	tangmenjue.top</span><br></pre></td></tr></table></figure>
+<h1 id="获取应用接口凭证">获取应用接口凭证</h1>
+<h2 id="获取企业id-corp_id">获取企业ID <code>corp_id</code></h2>
+<p>在登录管理后台后，在【管理后台】-【我的企业】-【企业信息】页面的最下面，便可找到【企业ID】</p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/4.png"></p>
+<h2 id="获取应用-secret">获取应用 Secret</h2>
+<p>在应用信息页面便可查看Secret</p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/5.png"></p>
 <p>将Secret发送到企业微信中查看，点击【发送】，则在操作者的企业微信会话中，会收到企业微信推送过来的Secret信息</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/6.png" alt></p>
-<h2 id="获取应用接口凭证-access-token"><a href="#获取应用接口凭证-access-token" class="headerlink" title="获取应用接口凭证 access_token"></a>获取应用接口凭证 access_token</h2><p>access_token由corpid和secret产生，所有接口在通信时都需要携带此信息用于验证接口的访问权限。</p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/6.png"></p>
+<h2 id="获取应用接口凭证-access_token">获取应用接口凭证
+access_token</h2>
+<p>access_token由corpid和secret产生，所有接口在通信时都需要携带此信息用于验证接口的访问权限。</p>
 <p>借助PostMan接口工具进行获取：<code>https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=id&amp;corpsecret=secret</code>，链接里的id自行替换为实际的corp_id值，secret自行替换为实际的secret值。</p>
 <p>打开PostMan，在左上角处点击Create collection</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/7.png" alt></p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/7.png"></p>
 <p>然后继续点击Add a request</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/8.png" alt></p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/8.png"></p>
 <p>在新弹出的窗口的Get输入框里输入，点击Send：</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/9.png" alt></p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/9.png"></p>
 <p>然后便可在Body处看到获取的access_token值：</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/10.png" alt></p>
-<h1 id="发送应用信息"><a href="#发送应用信息" class="headerlink" title="发送应用信息"></a>发送应用信息</h1><p>通过向企业微信信息推送接口POST对应的消息结构体即可实现应用消息的推送。对应的请求地址为：<code>https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=ACCESS_TOKEN</code>。</p>
-<h2 id="基本参数"><a href="#基本参数" class="headerlink" title="基本参数"></a>基本参数</h2><ul>
-<li>调用接口凭证<br>  access_token 作为 URL Params 带在请求的 URL 中。</li>
-<li>应用的id<br>  agent_id 代表当前发送消息的应用 ID，可在应用的设置页面查看。</li>
-<li>消息接收范围<br>  touser、toparty、totag 分别表示接收消息的 成员、部门、标签，这几个范围标记不能同时为空。</li>
-<li>消息类型<br>  msgtype 用于指定消息的类型，当指定某一消息类型之后，接口服务只会读取该类型对应字段下的数据。</li>
-<li>消息内容<br>  不同的消息类型，会对应不同的消息内容字段。</li>
-</ul>
-<h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><h3 id="发送基本类型消息"><a href="#发送基本类型消息" class="headerlink" title="发送基本类型消息"></a>发送基本类型消息</h3><p>文本、图文消息、markdown类型的消息仅需要直接在业务后台服务器直接向企业微信消息推送接口发送对应的数据请求即可。</p>
-<p>在示例代码的/server/messageController.js 文件中展示了向消息推送 Api 接口发送消息数据体的基本流程：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> axios <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'axios'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> AccessToken <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./accesstoken'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> Config <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'../configs/main.config.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">router</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 发送推送消息</span>
-    router<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/message/send'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 从前端请求中获取对应的参数</span>
-        <span class="token keyword">let</span> <span class="token punctuation">&#123;</span>form<span class="token operator">:</span>form_parames<span class="token punctuation">&#125;</span> <span class="token operator">=</span> req<span class="token punctuation">.</span>body <span class="token operator">||</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>        
-        <span class="token comment">// 将 agentid 拼入请求的结构体中</span>
-        <span class="token keyword">let</span> request_data  <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-            <span class="token operator">...</span>form_parames<span class="token punctuation">,</span>
-            agentid<span class="token operator">:</span>Config<span class="token punctuation">.</span>agent_id<span class="token punctuation">,</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-        request_data<span class="token punctuation">.</span>safe <span class="token operator">=</span> form_parames<span class="token punctuation">.</span>safe <span class="token operator">?</span> <span class="token string">'1'</span> <span class="token operator">:</span> <span class="token string">'0'</span><span class="token punctuation">;</span>
-        <span class="token comment">// 获取 Access Token</span>
-        <span class="token keyword">const</span> access_token <span class="token operator">=</span> <span class="token keyword">await</span> AccessToken<span class="token punctuation">.</span><span class="token function">getToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 向消息推送的 Api 发送对应的数据结构体</span>
-        <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>data<span class="token punctuation">&#125;</span> <span class="token operator">=</span>  <span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'https://qyapi.weixin.qq.com/cgi-bin/message/send'</span><span class="token punctuation">,</span> 
-        request_data<span class="token punctuation">,</span>
-        <span class="token punctuation">&#123;</span>
-            params<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-                access_token
-            <span class="token punctuation">&#125;</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// 返回请求的结果</span>
-        res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="发送媒体类型消息"><a href="#发送媒体类型消息" class="headerlink" title="发送媒体类型消息"></a>发送媒体类型消息</h3><p>当要推送图片、语言、适配、文件等媒体类型的消息时，需要将对应的文件通过临时素材的接口上传至企业微信的临时素材库。</p>
-<p>在示例代码的 /server/mediaController.js 文件中，展示了通过企业微信临时素材接口上传临时素材的基本流程：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> FormData <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'form-data'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> axios <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'axios'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> AccessToken <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./accesstoken'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">router</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    router<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/media/upload'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-   
-        <span class="token keyword">let</span> <span class="token punctuation">&#123;</span>media<span class="token operator">:</span>file<span class="token punctuation">&#125;</span> <span class="token operator">=</span> req<span class="token punctuation">.</span>files <span class="token operator">||</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>files<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">let</span> <span class="token punctuation">&#123;</span>type<span class="token punctuation">&#125;</span> <span class="token operator">=</span> req<span class="token punctuation">.</span>body <span class="token operator">||</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">;</span>
-        <span class="token keyword">const</span> access_token <span class="token operator">=</span> <span class="token keyword">await</span> AccessToken<span class="token punctuation">.</span><span class="token function">getToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-        <span class="token comment">// 组件一个form，用来上传文件</span>
-        <span class="token keyword">const</span> form <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FormData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        form<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'filename'</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        form<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'filelength'</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span>size<span class="token punctuation">)</span><span class="token punctuation">;</span>   
-        form<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'media'</span><span class="token punctuation">,</span>file<span class="token punctuation">.</span>data<span class="token punctuation">,</span>file<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-        <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>data<span class="token punctuation">&#125;</span> <span class="token operator">=</span>  <span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'https://qyapi.weixin.qq.com/cgi-bin/media/upload'</span><span class="token punctuation">,</span> 
-        form<span class="token punctuation">,</span>
-        <span class="token punctuation">&#123;</span>
-            params<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-                access_token<span class="token punctuation">,</span>
-                type
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            headers<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-                <span class="token string">"Content-Type"</span><span class="token operator">:</span> <span class="token string">"multipart/form-data"</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>        
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="获取登录用户信息"><a href="#获取登录用户信息" class="headerlink" title="获取登录用户信息"></a>获取登录用户信息</h1><p>企业微信提供了OAuth的授权登录方式，可以从企业微信终端打开的网页获取成员的身份信息，从而免去登录的环节。</p>
-<h2 id="配置可信域名"><a href="#配置可信域名" class="headerlink" title="配置可信域名"></a>配置可信域名</h2><p>为了保证访问授权的安全性，需要配置授权链接URL所在域名为可信域名。在【应用详情】-【开发者接口】-【网页授权及 JS-SDK】，点击【设置可信域名】，在【设置可信域名】弹窗，填写网页授权功能的回调域名it.zsnet.net.cn，网页授权回调域名的配置须与实际访问链接的域名完全一致：</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/11.png" alt></p>
-<h2 id="构造网页授权链接"><a href="#构造网页授权链接" class="headerlink" title="构造网页授权链接"></a>构造网页授权链接</h2><p>以下由几个URL要注意区别：</p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/10.png"></p>
+<h1 id="发送应用信息">发送应用信息</h1>
+<p>通过向企业微信信息推送接口POST对应的消息结构体即可实现应用消息的推送。对应的请求地址为：<code>https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=ACCESS_TOKEN</code>。</p>
+<h2 id="基本参数">基本参数</h2>
 <ul>
-<li>应用主页URL<ul>
+<li>调用接口凭证 access_token 作为 URL Params 带在请求的 URL 中。</li>
+<li>应用的id agent_id 代表当前发送消息的应用
+ID，可在应用的设置页面查看。</li>
+<li>消息接收范围 touser、toparty、totag 分别表示接收消息的
+成员、部门、标签，这几个范围标记不能同时为空。</li>
+<li>消息类型 msgtype
+用于指定消息的类型，当指定某一消息类型之后，接口服务只会读取该类型对应字段下的数据。</li>
+<li>消息内容 不同的消息类型，会对应不同的消息内容字段。</li>
+</ul>
+<h2 id="基本流程">基本流程</h2>
+<h3 id="发送基本类型消息">发送基本类型消息</h3>
+<p>文本、图文消息、markdown类型的消息仅需要直接在业务后台服务器直接向企业微信消息推送接口发送对应的数据请求即可。</p>
+<p>在示例代码的/server/messageController.js 文件中展示了向消息推送 Api
+接口发送消息数据体的基本流程：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">&#x27;axios&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">AccessToken</span> = <span class="built_in">require</span>(<span class="string">&#x27;./accesstoken&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Config</span> = <span class="built_in">require</span>(<span class="string">&#x27;../configs/main.config.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">router</span>) &#123;</span><br><span class="line">    <span class="comment">// 发送推送消息</span></span><br><span class="line">    router.<span class="title function_">post</span>(<span class="string">&#x27;/message/send&#x27;</span>, <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">        <span class="comment">// 从前端请求中获取对应的参数</span></span><br><span class="line">        <span class="keyword">let</span> &#123;<span class="attr">form</span>:form_parames&#125; = req.<span class="property">body</span> || &#123;&#125;;        </span><br><span class="line">        <span class="comment">// 将 agentid 拼入请求的结构体中</span></span><br><span class="line">        <span class="keyword">let</span> request_data  = &#123;</span><br><span class="line">            ...form_parames,</span><br><span class="line">            <span class="attr">agentid</span>:<span class="title class_">Config</span>.<span class="property">agent_id</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">        request_data.<span class="property">safe</span> = form_parames.<span class="property">safe</span> ? <span class="string">&#x27;1&#x27;</span> : <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        <span class="comment">// 获取 Access Token</span></span><br><span class="line">        <span class="keyword">const</span> access_token = <span class="keyword">await</span> <span class="title class_">AccessToken</span>.<span class="title function_">getToken</span>();</span><br><span class="line">        <span class="comment">// 向消息推送的 Api 发送对应的数据结构体</span></span><br><span class="line">        <span class="keyword">const</span> &#123;data&#125; =  <span class="keyword">await</span> axios.<span class="title function_">post</span>(<span class="string">&#x27;https://qyapi.weixin.qq.com/cgi-bin/message/send&#x27;</span>, </span><br><span class="line">        request_data,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">params</span>: &#123;</span><br><span class="line">                access_token</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">// 返回请求的结果</span></span><br><span class="line">        res.<span class="title function_">send</span>(data);</span><br><span class="line">    &#125;); </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="发送媒体类型消息">发送媒体类型消息</h3>
+<p>当要推送图片、语言、适配、文件等媒体类型的消息时，需要将对应的文件通过临时素材的接口上传至企业微信的临时素材库。</p>
+<p>在示例代码的 /server/mediaController.js
+文件中，展示了通过企业微信临时素材接口上传临时素材的基本流程：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">FormData</span> = <span class="built_in">require</span>(<span class="string">&#x27;form-data&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">&#x27;axios&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">AccessToken</span> = <span class="built_in">require</span>(<span class="string">&#x27;./accesstoken&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">router</span>) &#123;</span><br><span class="line">    router.<span class="title function_">post</span>(<span class="string">&#x27;/media/upload&#x27;</span>, <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">   </span><br><span class="line">        <span class="keyword">let</span> &#123;<span class="attr">media</span>:file&#125; = req.<span class="property">files</span> || &#123;&#125;;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">files</span>);</span><br><span class="line">        <span class="keyword">let</span> &#123;type&#125; = req.<span class="property">body</span> || &#123;&#125; ;</span><br><span class="line">        <span class="keyword">const</span> access_token = <span class="keyword">await</span> <span class="title class_">AccessToken</span>.<span class="title function_">getToken</span>();</span><br><span class="line">    </span><br><span class="line">        <span class="comment">// 组件一个form，用来上传文件</span></span><br><span class="line">        <span class="keyword">const</span> form = <span class="keyword">new</span> <span class="title class_">FormData</span>();</span><br><span class="line">        form.<span class="title function_">append</span>(<span class="string">&#x27;filename&#x27;</span>, file.<span class="property">name</span>);</span><br><span class="line">        form.<span class="title function_">append</span>(<span class="string">&#x27;filelength&#x27;</span>, file.<span class="property">size</span>);   </span><br><span class="line">        form.<span class="title function_">append</span>(<span class="string">&#x27;media&#x27;</span>,file.<span class="property">data</span>,file.<span class="property">name</span>);</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">const</span> &#123;data&#125; =  <span class="keyword">await</span> axios.<span class="title function_">post</span>(<span class="string">&#x27;https://qyapi.weixin.qq.com/cgi-bin/media/upload&#x27;</span>, </span><br><span class="line">        form,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">params</span>: &#123;</span><br><span class="line">                access_token,</span><br><span class="line">                type</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">headers</span>: &#123;</span><br><span class="line">                <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;multipart/form-data&quot;</span></span><br><span class="line">            &#125;,        </span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">        res.<span class="title function_">send</span>(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="获取登录用户信息">获取登录用户信息</h1>
+<p>企业微信提供了OAuth的授权登录方式，可以从企业微信终端打开的网页获取成员的身份信息，从而免去登录的环节。</p>
+<h2 id="配置可信域名">配置可信域名</h2>
+<p>为了保证访问授权的安全性，需要配置授权链接URL所在域名为可信域名。在【应用详情】-【开发者接口】-【网页授权及
+JS-SDK】，点击【设置可信域名】，在【设置可信域名】弹窗，填写网页授权功能的回调域名it.zsnet.net.cn，网页授权回调域名的配置须与实际访问链接的域名完全一致：</p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/11.png"></p>
+<h2 id="构造网页授权链接">构造网页授权链接</h2>
+<p>以下由几个URL要注意区别：</p>
+<ul>
+<li>应用主页URL
+<ul>
 <li>从工作台点击打开的页面URL，在创建应用时配置填写的，用来授权链接URL跳转。</li>
-</ul>
-</li>
-<li>重定向URL<ul>
+</ul></li>
+<li>重定向URL
+<ul>
 <li>当用户授权成功后，会带着成员授权code跳转的URL，用来接收code并获取成员身份</li>
-</ul>
-</li>
-<li>授权链接URL<ul>
+</ul></li>
+<li>授权链接URL
+<ul>
 <li>企业微信名下的URL，包含了suite_id、重定向URL等信息，当企业微信服务参数验证成功后，会跳转到重定向URL</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p>在示例代码的 /routes/index.js 文件中，展示了构造网页授权链接的基本流程：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>Config<span class="token punctuation">.</span>home_path<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">const</span> login_url <span class="token operator">=</span> <span class="token function">getLoginURL</span><span class="token punctuation">(</span><span class="token string">'base'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    res<span class="token punctuation">.</span><span class="token function">redirect</span><span class="token punctuation">(</span>login_url<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="解析成员授权code"><a href="#解析成员授权code" class="headerlink" title="解析成员授权code"></a>解析成员授权code</h2><p>企业成员从工作台点击应用，打开应用主页URL，向授权链接URL跳转；企业微信对授权链接上的信息进行校验之后，会重定向URL跳转，并以query的形式带上当前访问成员的code信息。</p>
-<p>在示例代码的 /routes/index.js 文件中，展示了从重定向URL里解析成员授权code的基本流程：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>Config<span class="token punctuation">.</span>app_path<span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">let</span> <span class="token punctuation">&#123;</span> code <span class="token punctuation">&#125;</span> <span class="token operator">=</span> req<span class="token punctuation">.</span>query<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>code<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">let</span> access_token <span class="token operator">=</span> <span class="token keyword">await</span> AccessToken<span class="token punctuation">.</span><span class="token function">getToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>access_token<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">let</span> <span class="token punctuation">&#123;</span> data<span class="token operator">:</span> user_data <span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>access_token<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">&amp;code=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>code<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'获取 user_data 成功'</span><span class="token punctuation">,</span> user_data<span class="token punctuation">)</span>
-            <span class="token keyword">let</span> user_id <span class="token operator">=</span> user_data<span class="token punctuation">.</span>UserId<span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-            res<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="获取访问用户身份信息"><a href="#获取访问用户身份信息" class="headerlink" title="获取访问用户身份信息"></a>获取访问用户身份信息</h2><p>在解析出成员授权code之后，使用access_token，调用获取访问用户身份的接口，即可得到访问用户的基本信息user_id，若想访问用户更详细的信息，则需要通过读取成员得到用户的姓名、头像等完整信息。</p>
-<p>在示例代码的 /routes/index.js 文件中，展示了从重定向URL里解析成员授权code的基本流程：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>Config<span class="token punctuation">.</span>app_path<span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">let</span> <span class="token punctuation">&#123;</span> code <span class="token punctuation">&#125;</span> <span class="token operator">=</span> req<span class="token punctuation">.</span>query<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>code<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">let</span> access_token <span class="token operator">=</span> <span class="token keyword">await</span> AccessToken<span class="token punctuation">.</span><span class="token function">getToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>access_token<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">let</span> <span class="token punctuation">&#123;</span> data<span class="token operator">:</span> user_detail_data <span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>access_token<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">&amp;userid=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>user_id<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'获取成员详细信息成功'</span><span class="token punctuation">,</span> user_detail_data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            req<span class="token punctuation">.</span>session<span class="token punctuation">.</span>user <span class="token operator">=</span> user_detail_data<span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-            res<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="实操过程"><a href="#实操过程" class="headerlink" title="实操过程"></a>实操过程</h2><p>借助PostMan接口工具获取用户的userid（用手机号获取）：<code>https://qyapi.weixin.qq.com/cgi-bin/user/getuserid?access_token=ACCESS_TOKEN</code>，链接里的ACCESS_TOKEN自行替换为实际的access_token值。</p>
+<p>在示例代码的 /routes/index.js
+文件中，展示了构造网页授权链接的基本流程：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">router.<span class="title function_">get</span>(<span class="title class_">Config</span>.<span class="property">home_path</span>, <span class="keyword">function</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> login_url = <span class="title function_">getLoginURL</span>(<span class="string">&#x27;base&#x27;</span>);</span><br><span class="line">    res.<span class="title function_">redirect</span>(login_url);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="解析成员授权code">解析成员授权code</h2>
+<p>企业成员从工作台点击应用，打开应用主页URL，向授权链接URL跳转；企业微信对授权链接上的信息进行校验之后，会重定向URL跳转，并以query的形式带上当前访问成员的code信息。</p>
+<p>在示例代码的 /routes/index.js
+文件中，展示了从重定向URL里解析成员授权code的基本流程：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">router.<span class="title function_">get</span>(<span class="title class_">Config</span>.<span class="property">app_path</span>, <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> &#123; code &#125; = req.<span class="property">query</span>;</span><br><span class="line">    <span class="keyword">if</span> (code) &#123;</span><br><span class="line">        <span class="keyword">let</span> access_token = <span class="keyword">await</span> <span class="title class_">AccessToken</span>.<span class="title function_">getToken</span>();</span><br><span class="line">        <span class="keyword">if</span> (access_token) &#123;</span><br><span class="line">            <span class="keyword">let</span> &#123; <span class="attr">data</span>: user_data &#125; = <span class="keyword">await</span> axios.<span class="title function_">get</span>(<span class="string">`https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token=<span class="subst">$&#123;access_token&#125;</span>&amp;code=<span class="subst">$&#123;code&#125;</span>`</span>);</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;获取 user_data 成功&#x27;</span>, user_data)</span><br><span class="line">            <span class="keyword">let</span> user_id = user_data.<span class="property">UserId</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            res.<span class="title function_">render</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="获取访问用户身份信息">获取访问用户身份信息</h2>
+<p>在解析出成员授权code之后，使用access_token，调用获取访问用户身份的接口，即可得到访问用户的基本信息user_id，若想访问用户更详细的信息，则需要通过读取成员得到用户的姓名、头像等完整信息。</p>
+<p>在示例代码的 /routes/index.js
+文件中，展示了从重定向URL里解析成员授权code的基本流程：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">router.<span class="title function_">get</span>(<span class="title class_">Config</span>.<span class="property">app_path</span>, <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> &#123; code &#125; = req.<span class="property">query</span>;</span><br><span class="line">    <span class="keyword">if</span> (code) &#123;</span><br><span class="line">        <span class="keyword">let</span> access_token = <span class="keyword">await</span> <span class="title class_">AccessToken</span>.<span class="title function_">getToken</span>();</span><br><span class="line">        <span class="keyword">if</span> (access_token) &#123;</span><br><span class="line">            <span class="keyword">let</span> &#123; <span class="attr">data</span>: user_detail_data &#125; = <span class="keyword">await</span> axios.<span class="title function_">get</span>(<span class="string">`https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token=<span class="subst">$&#123;access_token&#125;</span>&amp;userid=<span class="subst">$&#123;user_id&#125;</span>`</span>);</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;获取成员详细信息成功&#x27;</span>, user_detail_data);</span><br><span class="line">            req.<span class="property">session</span>.<span class="property">user</span> = user_detail_data;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            res.<span class="title function_">render</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实操过程">实操过程</h2>
+<p>借助PostMan接口工具获取用户的userid（用手机号获取）：<code>https://qyapi.weixin.qq.com/cgi-bin/user/getuserid?access_token=ACCESS_TOKEN</code>，链接里的ACCESS_TOKEN自行替换为实际的access_token值。</p>
 <p>打开PostMan，在左上角New collection处右键选择Add collection：</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/12.png" alt></p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/12.png"></p>
 <p>点击新弹出的窗口的Get输入框选择POST，输入链接，选择下方的Body，选择row，填写对应的参数后，点击Send：</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/13.png" alt></p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/13.png"></p>
 <p>然后便可在下方的Body处看到userid的值：</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/14.png" alt></p>
-<h1 id="向成员发送信息"><a href="#向成员发送信息" class="headerlink" title="向成员发送信息"></a>向成员发送信息</h1><p>调用企业内部的开放接口，都需要带上企业的接口凭证，且必须以 query 参数形式传递。而应用消息推送接口需要指定当前应用的 agent_id。</p>
-<p>企业微信的应用消息推送支持不同的消息类型，比如文本、图片、语音、文件等，不同类型的消息类型需要指定对应的消息种类 msgtype。</p>
-<p>在示例代码的 /routes/index.js 文件中，编写向成员发送信息的代码如下：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">
-router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>Config<span class="token punctuation">.</span>app_path<span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">let</span> <span class="token punctuation">&#123;</span> code <span class="token punctuation">&#125;</span> <span class="token operator">=</span> req<span class="token punctuation">.</span>query<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>code<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">let</span> access_token <span class="token operator">=</span> <span class="token keyword">await</span> AccessToken<span class="token punctuation">.</span><span class="token function">getToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>access_token<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">let</span> <span class="token punctuation">&#123;</span>data<span class="token operator">:</span>message_data<span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>access_token<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-            <span class="token punctuation">&#123;</span><span class="token string">"touser"</span> <span class="token operator">:</span> user_detail_data<span class="token punctuation">.</span>userid<span class="token punctuation">,</span>
-             <span class="token string">"agentid"</span> <span class="token operator">:</span> agent_id<span class="token punctuation">,</span>
-             <span class="token string">"msgtype"</span> <span class="token operator">:</span> <span class="token string">"text"</span><span class="token punctuation">,</span>
-             <span class="token string">"text"</span> <span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-             <span class="token string">"content"</span> <span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hello World! </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>user_detail_data<span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-             <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-            res<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="实操过程-1"><a href="#实操过程-1" class="headerlink" title="实操过程"></a>实操过程</h2><p><strong>参数说明：</strong></p>
-<div class="table-container">
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/14.png"></p>
+<h1 id="向成员发送信息">向成员发送信息</h1>
+<p>调用企业内部的开放接口，都需要带上企业的接口凭证，且必须以 query
+参数形式传递。而应用消息推送接口需要指定当前应用的 agent_id。</p>
+<p>企业微信的应用消息推送支持不同的消息类型，比如文本、图片、语音、文件等，不同类型的消息类型需要指定对应的消息种类
+msgtype。</p>
+<p>在示例代码的 /routes/index.js
+文件中，编写向成员发送信息的代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">router.<span class="title function_">get</span>(<span class="title class_">Config</span>.<span class="property">app_path</span>, <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">req, res, next</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> &#123; code &#125; = req.<span class="property">query</span>;</span><br><span class="line">    <span class="keyword">if</span> (code) &#123;</span><br><span class="line">        <span class="keyword">let</span> access_token = <span class="keyword">await</span> <span class="title class_">AccessToken</span>.<span class="title function_">getToken</span>();</span><br><span class="line">        <span class="keyword">if</span> (access_token) &#123;</span><br><span class="line">            <span class="keyword">let</span> &#123;<span class="attr">data</span>:message_data&#125; = <span class="keyword">await</span> axios.<span class="title function_">post</span>(<span class="string">`https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=<span class="subst">$&#123;access_token&#125;</span>`</span>,</span><br><span class="line">            &#123;<span class="string">&quot;touser&quot;</span> : user_detail_data.<span class="property">userid</span>,</span><br><span class="line">             <span class="string">&quot;agentid&quot;</span> : agent_id,</span><br><span class="line">             <span class="string">&quot;msgtype&quot;</span> : <span class="string">&quot;text&quot;</span>,</span><br><span class="line">             <span class="string">&quot;text&quot;</span> : &#123;</span><br><span class="line">             <span class="string">&quot;content&quot;</span> : <span class="string">`Hello World! <span class="subst">$&#123;user_detail_data.name&#125;</span>`</span>&#125;,</span><br><span class="line">             &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            res.<span class="title function_">render</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实操过程-1">实操过程</h2>
+<p><strong>参数说明：</strong></p>
 <table>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 8%">
+<col style="width: 65%">
+</colgroup>
 <thead>
 <tr>
 <th>参数</th>
@@ -717,20 +653,20 @@ router<span class="token punctuation">.</span><span class="token function">get</
 <tr>
 <td>touser</td>
 <td>否</td>
-<td>指定接收消息的成员，成员ID列表（多个接收者用‘\</td>
-<td>’分隔，最多支持1000个）。 特殊情况：指定为”@all”，则向该企业应用的全部成员发送</td>
+<td>指定接收消息的成员，成员ID列表（多个接收者用‘|’分隔，最多支持1000个）。
+特殊情况：指定为”<span class="citation" data-cites="all">@all</span>“，则向该企业应用的全部成员发送</td>
 </tr>
 <tr>
 <td>toparty</td>
 <td>否</td>
-<td>指定接收消息的部门，部门ID列表，多个接收者用‘\</td>
-<td>’分隔，最多支持100个。 当touser为”@all”时忽略本参数</td>
+<td>指定接收消息的部门，部门ID列表，多个接收者用‘|’分隔，最多支持100个。
+当touser为”<span class="citation" data-cites="all">@all</span>“时忽略本参数</td>
 </tr>
 <tr>
 <td>totag</td>
 <td>否</td>
-<td>指定接收消息的标签，标签ID列表，多个接收者用‘\</td>
-<td>’分隔，最多支持100个。 当touser为”@all”时忽略本参数</td>
+<td>指定接收消息的标签，标签ID列表，多个接收者用‘|’分隔，最多支持100个。
+当touser为”<span class="citation" data-cites="all">@all</span>“时忽略本参数</td>
 </tr>
 <tr>
 <td>msgtype</td>
@@ -740,7 +676,9 @@ router<span class="token punctuation">.</span><span class="token function">get</
 <tr>
 <td>agentid</td>
 <td>是</td>
-<td>企业应用的id，整型。企业内部开发，可在应用的设置页面查看；第三方服务商，可通过接口 <a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/90236#10975/获取企业授权信息">获取企业授权信息</a> 获取该参数值</td>
+<td>企业应用的id，整型。企业内部开发，可在应用的设置页面查看；第三方服务商，可通过接口
+<a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/90236#10975/获取企业授权信息">获取企业授权信息</a>
+获取该参数值</td>
 </tr>
 <tr>
 <td>content</td>
@@ -769,16 +707,16 @@ router<span class="token punctuation">.</span><span class="token function">get</
 </tr>
 </tbody>
 </table>
-</div>
 <blockquote>
 <p>注意：touser、toparty、totag不能同时为空。</p>
 <p>若操作过程中出现IP不合法的错误，在应用信息页面将IP添加进企业可信IP里便可正常访问。</p>
 </blockquote>
 <p>借助PostMan接口工具进行发送信息：<code>https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=ACCESS_TOKEN</code>，链接里的ACCESS_TOKEN自行替换为实际的access_token值。</p>
-<p>打开PostMan，在左上角New collection处右键选择Add collection。点击新弹出的窗口的Get输入框选择POST，输入链接，选择下方的Body，选择row，填写对应的参数后，点击Send：</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/15.png" alt></p>
+<p>打开PostMan，在左上角New collection处右键选择Add
+collection。点击新弹出的窗口的Get输入框选择POST，输入链接，选择下方的Body，选择row，填写对应的参数后，点击Send：</p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/15.png"></p>
 <p>然后便可在下方的Body处看到已经信息发送成功。</p>
-<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/16.png" alt></p>
+<p><img src="/2022/11/18/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E4%B9%8B%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/16.png"></p>
 
     </article>
     <!-- license -->
@@ -977,7 +915,8 @@ router<span class="token punctuation">.</span><span class="token function">get</
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">创建应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%87%86%E5%A4%87"><span class="toc-number">1.1.</span> <span class="toc-text">创建准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-1"><span class="toc-number">1.2.</span> <span class="toc-text">创建应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.</span> <span class="toc-text">配置信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%A7%81%E8%8C%83%E5%9B%B4"><span class="toc-number">1.3.1.</span> <span class="toc-text">可见范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E4%B8%BB%E9%A1%B5"><span class="toc-number">1.3.2.</span> <span class="toc-text">应用主页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHOST"><span class="toc-number">1.3.3.</span> <span class="toc-text">配置HOST</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E5%87%AD%E8%AF%81"><span class="toc-number">2.</span> <span class="toc-text">获取应用接口凭证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E4%BC%81%E4%B8%9AID-corp-id"><span class="toc-number">2.1.</span> <span class="toc-text">获取企业ID corp_id</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8-Secret"><span class="toc-number">2.2.</span> <span class="toc-text">获取应用 Secret</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E5%87%AD%E8%AF%81-access-token"><span class="toc-number">2.3.</span> <span class="toc-text">获取应用接口凭证 access_token</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%BA%94%E7%94%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">发送应用信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">基本参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">3.2.</span> <span class="toc-text">基本流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E6%B6%88%E6%81%AF"><span class="toc-number">3.2.1.</span> <span class="toc-text">发送基本类型消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B%E6%B6%88%E6%81%AF"><span class="toc-number">3.2.2.</span> <span class="toc-text">发送媒体类型消息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%99%BB%E5%BD%95%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-number">4.</span> <span class="toc-text">获取登录用户信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%8F%AF%E4%BF%A1%E5%9F%9F%E5%90%8D"><span class="toc-number">4.1.</span> <span class="toc-text">配置可信域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E7%BD%91%E9%A1%B5%E6%8E%88%E6%9D%83%E9%93%BE%E6%8E%A5"><span class="toc-number">4.2.</span> <span class="toc-text">构造网页授权链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E6%88%90%E5%91%98%E6%8E%88%E6%9D%83code"><span class="toc-number">4.3.</span> <span class="toc-text">解析成员授权code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E4%BF%A1%E6%81%AF"><span class="toc-number">4.4.</span> <span class="toc-text">获取访问用户身份信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E8%BF%87%E7%A8%8B"><span class="toc-number">4.5.</span> <span class="toc-text">实操过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%91%E6%88%90%E5%91%98%E5%8F%91%E9%80%81%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">向成员发送信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E8%BF%87%E7%A8%8B-1"><span class="toc-number">5.1.</span> <span class="toc-text">实操过程</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">创建应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%87%86%E5%A4%87"><span class="toc-number">1.1.</span> <span class="toc-text">创建准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-1"><span class="toc-number">1.2.</span> <span class="toc-text">创建应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.</span> <span class="toc-text">配置信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%A7%81%E8%8C%83%E5%9B%B4"><span class="toc-number">1.3.1.</span> <span class="toc-text">可见范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E4%B8%BB%E9%A1%B5"><span class="toc-number">1.3.2.</span> <span class="toc-text">应用主页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEhost"><span class="toc-number">1.3.3.</span> <span class="toc-text">配置HOST</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E5%87%AD%E8%AF%81"><span class="toc-number">2.</span> <span class="toc-text">获取应用接口凭证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E4%BC%81%E4%B8%9Aid-corp_id"><span class="toc-number">2.1.</span> <span class="toc-text">获取企业ID corp_id</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8-secret"><span class="toc-number">2.2.</span> <span class="toc-text">获取应用 Secret</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E5%87%AD%E8%AF%81-access_token"><span class="toc-number">2.3.</span> <span class="toc-text">获取应用接口凭证
+access_token</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%BA%94%E7%94%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">发送应用信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">基本参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">3.2.</span> <span class="toc-text">基本流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E6%B6%88%E6%81%AF"><span class="toc-number">3.2.1.</span> <span class="toc-text">发送基本类型消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B%E6%B6%88%E6%81%AF"><span class="toc-number">3.2.2.</span> <span class="toc-text">发送媒体类型消息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%99%BB%E5%BD%95%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-number">4.</span> <span class="toc-text">获取登录用户信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%8F%AF%E4%BF%A1%E5%9F%9F%E5%90%8D"><span class="toc-number">4.1.</span> <span class="toc-text">配置可信域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E7%BD%91%E9%A1%B5%E6%8E%88%E6%9D%83%E9%93%BE%E6%8E%A5"><span class="toc-number">4.2.</span> <span class="toc-text">构造网页授权链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E6%88%90%E5%91%98%E6%8E%88%E6%9D%83code"><span class="toc-number">4.3.</span> <span class="toc-text">解析成员授权code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E4%BF%A1%E6%81%AF"><span class="toc-number">4.4.</span> <span class="toc-text">获取访问用户身份信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E8%BF%87%E7%A8%8B"><span class="toc-number">4.5.</span> <span class="toc-text">实操过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%91%E6%88%90%E5%91%98%E5%8F%91%E9%80%81%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">向成员发送信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%93%8D%E8%BF%87%E7%A8%8B-1"><span class="toc-number">5.1.</span> <span class="toc-text">实操过程</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1327,18 +1266,6 @@ router<span class="token punctuation">.</span><span class="token function">get</
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2447,6 +2374,16 @@ router<span class="token punctuation">.</span><span class="token function">get</
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2477,29 +2414,14 @@ router<span class="token punctuation">.</span><span class="token function">get</
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2517,9 +2439,24 @@ router<span class="token punctuation">.</span><span class="token function">get</
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2530,16 +2467,6 @@ router<span class="token punctuation">.</span><span class="token function">get</
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2557,11 +2484,6 @@ router<span class="token punctuation">.</span><span class="token function">get</
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2570,6 +2492,11 @@ router<span class="token punctuation">.</span><span class="token function">get</
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2607,19 +2534,9 @@ router<span class="token punctuation">.</span><span class="token function">get</
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2630,6 +2547,16 @@ router<span class="token punctuation">.</span><span class="token function">get</
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2653,6 +2580,11 @@ router<span class="token punctuation">.</span><span class="token function">get</
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2663,29 +2595,9 @@ router<span class="token punctuation">.</span><span class="token function">get</
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2693,9 +2605,19 @@ router<span class="token punctuation">.</span><span class="token function">get</
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2703,19 +2625,24 @@ router<span class="token punctuation">.</span><span class="token function">get</
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2748,6 +2675,16 @@ router<span class="token punctuation">.</span><span class="token function">get</
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -2761,16 +2698,6 @@ router<span class="token punctuation">.</span><span class="token function">get</
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2845,5 +2772,20 @@ router<span class="token punctuation">.</span><span class="token function">get</
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

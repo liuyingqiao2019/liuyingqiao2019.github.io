@@ -351,7 +351,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.7k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.8k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -512,7 +512,8 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在开发过程中，开发完一个功能后，若是手动一个个取测试新旧功能接口是否正常的操作会比较重复乏味，因此学会对接口自动化测试，一键对新旧接口进行测试可以大大提升功能测试的速度，减少线上出bug的频率。</p>
+        <h1 id="前言">前言</h1>
+<p>在开发过程中，开发完一个功能后，若是手动一个个取测试新旧功能接口是否正常的操作会比较重复乏味，因此学会对接口自动化测试，一键对新旧接口进行测试可以大大提升功能测试的速度，减少线上出bug的频率。</p>
 <p>本文默认读者已掌握Postman基本用法，即已经会使用Postman进行模拟请求的操作。</p>
 <p>本文的软件版本如下，不同版本页面的UI和部分功能位置可能会有点不同：</p>
 <ul>
@@ -526,220 +527,95 @@
 <li>接口定期测试</li>
 <li>接口数据依赖</li>
 </ul>
-<h1 id="接口结果判断"><a href="#接口结果判断" class="headerlink" title="接口结果判断"></a>接口结果判断</h1><p>接口返回结果主要有两个部分组成：请求返回的<code>code</code>和内容<code>data</code>。</p>
+<h1 id="接口结果判断">接口结果判断</h1>
+<p>接口返回结果主要有两个部分组成：请求返回的<code>code</code>和内容<code>data</code>。</p>
 <p>因此在使用Postman测试时，主要从两个方面来判断接口结果是否正确：</p>
 <ul>
 <li>请求返回的code是否符合预期</li>
 <li>请求返回的内容中是否包含预期的内容或关键字</li>
 </ul>
 <p><strong>旧版本</strong>的Postman功能区在最显眼的地方点击<strong><code>Tests</code></strong>字样，将会切换到接口测试功能，可以在当前面板中编写测试脚本，点击字样，将会切换到预请求脚本的编写页面，可以编写请求运行之前所要执行的JavaScript。</p>
-<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/1.png" alt></p>
+<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/1.png"></p>
 <p><strong>新版本</strong>的Postman将预请求脚本和测试脚本合并为一个功能区<strong><code>Scripts</code></strong>，其中在<strong><code>Pre-req</code></strong>面板编写预请求脚本，在<strong><code>Post-res</code></strong>面板里编写测试脚本</p>
-<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/2.png" alt></p>
+<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/2.png"></p>
 <p>注意：在面板中只需要书写结果逻辑判断的代码块，<strong>脚本语言只支持<code>JavaScript</code></strong>。在面板右侧的<strong><code>Snippets</code></strong>功能区中，Postman也提供了一些常用的代码模板，利用模板就能处理大部分的情况。</p>
-<p>注意：在Postman for Windows 11.2.1中tests、responseBody对象已弃用，因此需要使用断言。如以下代码无法在新版本里生效：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//检查response body中是否包含某个string</span>
-tests<span class="token punctuation">[</span><span class="token string">"Body matches string"</span><span class="token punctuation">]</span> <span class="token operator">=</span> responseBody<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">"string_you_want_to_search"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>注意：在Postman for Windows
+11.2.1中tests、responseBody对象已弃用，因此需要使用断言。如以下代码无法在新版本里生效：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检查response body中是否包含某个string</span></span><br><span class="line">tests[<span class="string">&quot;Body matches string&quot;</span>] = responseBody.<span class="title function_">has</span>(<span class="string">&quot;string_you_want_to_search&quot;</span>);</span><br></pre></td></tr></table></figure>
 <p>具体的代码模板及其注释将附在文末的附录中，有需要的可去文章末尾了解</p>
-<h1 id="接口批量测试"><a href="#接口批量测试" class="headerlink" title="接口批量测试"></a>接口批量测试</h1><h2 id="批量管理"><a href="#批量管理" class="headerlink" title="批量管理"></a>批量管理</h2><p>若想要对接口进行批量测试、统一管理，需要将所有带测试接口全部保存到同一个集合<code>Collections</code>中，这样就可以对接口进行统一管理了。</p>
-<p>例如下图中点击save按钮或者按下<code>ctrl+s</code>将<code>test</code>接口保存到test的集合中<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/3.png" alt></p>
-<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/4.png" alt></p>
+<h1 id="接口批量测试">接口批量测试</h1>
+<h2 id="批量管理">批量管理</h2>
+<p>若想要对接口进行批量测试、统一管理，需要将所有带测试接口全部保存到同一个集合<code>Collections</code>中，这样就可以对接口进行统一管理了。</p>
+<p>例如下图中点击save按钮或者按下<code>ctrl+s</code>将<code>test</code>接口保存到test的集合中<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/3.png"></p>
+<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/4.png"></p>
 <p>点击集合名称<code>test</code>打开集合页面，选择<strong><code>Scripts</code></strong>功能区，便可打开集合详情页面</p>
-<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/5.png" alt></p>
+<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/5.png"></p>
 <p>其中<code>Overview</code>为集合概况页；</p>
 <p>切换到<code>Authorization</code>可设置接口验证类型；</p>
 <p>切换到<code>Scripts</code>可设置接口的测试脚本；</p>
 <p>切换到<code>Variables</code>可添加用于编写接口测试脚本的参数变量；</p>
 <p>切换到<code>Runs</code>可设置测试任务中接口运行次数、时间间隔、定期运行等状态，并执行测试任务；</p>
-<h2 id="向接口传递动参"><a href="#向接口传递动参" class="headerlink" title="向接口传递动参"></a>向接口传递动参</h2><p>若想要向接口传入动态变化的参数，可按照下述步骤操作：</p>
+<h2 id="向接口传递动参">向接口传递动参</h2>
+<p>若想要向接口传入动态变化的参数，可按照下述步骤操作：</p>
 <ul>
-<li>对于GET请求，可以在Patams的<code>Value</code>中设置动参引用。如key中输入<code>name</code>， Value中输入<code>&#123;&#123;name&#125;&#125;</code><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/6.png" alt></li>
-<li>对于POST请求，可以将参数输入切换到Body的<code>x-www-form-urlencoded</code>类型，然后在<code>Value</code>中设置动参引用。如key中输入<code>name</code>， Value中输入<code>&#123;&#123;name&#125;&#125;</code><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/7.png" alt></li>
+<li>对于GET请求，可以在Patams的<code>Value</code>中设置动参引用。如key中输入<code>name</code>，
+Value中输入<code>&#123;&#123;name&#125;&#125;</code><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/6.png"></li>
+<li>对于POST请求，可以将参数输入切换到Body的<code>x-www-form-urlencoded</code>类型，然后在<code>Value</code>中设置动参引用。如key中输入<code>name</code>，
+Value中输入<code>&#123;&#123;name&#125;&#125;</code><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/7.png"></li>
 </ul>
 <p>此处设置好Value后，暂无法使用，需要在预请求脚本中或导入数据集给变量赋值后才能正常使用。</p>
 <p><strong>注意：设置好数据集的请求，会将数据集中的数据遍历完成后才视作该接口已完成请求。</strong></p>
-<h3 id="预请求给变量赋值"><a href="#预请求给变量赋值" class="headerlink" title="预请求给变量赋值"></a>预请求给变量赋值</h3><p>点击Scripts功能区的Pre-request模块，即可编写预请求脚本，页面右方提供了一些常用代码模板可供使用，可以在这里参照代码模板给刚刚设定的动参赋值。</p>
-<p>如下图功能为将name变量的值设为’test’并获取name变量的值，<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/8.png" alt></p>
-<h3 id="导入数据集批量赋值"><a href="#导入数据集批量赋值" class="headerlink" title="导入数据集批量赋值"></a>导入数据集批量赋值</h3><p>首先点击集合名称-Runs功能区-Preformance页面，点击<code>Run Performance Test</code>按钮创建测试任务（任务触发方式默认为手动触发）。</p>
-<p>在新弹出的页面中，找到Data File模块，即可在这里上传测试数据文件来实现动参赋值。目前仅支持上传<code>CSV</code>或<code>JSON</code>文件.</p>
+<h3 id="预请求给变量赋值">预请求给变量赋值</h3>
+<p>点击Scripts功能区的Pre-request模块，即可编写预请求脚本，页面右方提供了一些常用代码模板可供使用，可以在这里参照代码模板给刚刚设定的动参赋值。</p>
+<p>如下图功能为将name变量的值设为’test’并获取name变量的值，<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/8.png"></p>
+<h3 id="导入数据集批量赋值">导入数据集批量赋值</h3>
+<p>首先点击集合名称-Runs功能区-Preformance页面，点击<code>Run Performance Test</code>按钮创建测试任务（任务触发方式默认为手动触发）。</p>
+<p>在新弹出的页面中，找到Data
+File模块，即可在这里上传测试数据文件来实现动参赋值。目前仅支持上传<code>CSV</code>或<code>JSON</code>文件.</p>
 <ul>
-<li><p>CSV文件数据格式要求如下：<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/11.png" alt></p>
-</li>
+<li><p>CSV文件数据格式要求如下：<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/11.png"></p></li>
 <li><p>JSON文件数据格式要求如下：</p>
-  <pre class="line-numbers language-json" data-language="json"><code class="language-json">[
-  &#123;
-    &quot;name&quot;: &quot;zhangsan&quot;,
-    &quot;number&quot;: &quot;123&quot;
-  &#125;,
-  &#123;
-    &quot;name&quot;: &quot;lisi&quot;,
-    &quot;number&quot;: &quot;456&quot;
-  &#125;,
-  &#123;
-    &quot;name&quot;: &quot;wangwu&quot;,
-    &quot;number&quot;: &quot;789&quot;
-  &#125;,
-  &#123;
-    &quot;name&quot;: &quot;zhaoliu&quot;,
-    &quot;number&quot;: &quot;012&quot;
-  &#125;
-]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;zhangsan&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;number&quot;</span><span class="punctuation">:</span> <span class="string">&quot;123&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;lisi&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;number&quot;</span><span class="punctuation">:</span> <span class="string">&quot;456&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;wangwu&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;number&quot;</span><span class="punctuation">:</span> <span class="string">&quot;789&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;zhaoliu&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;number&quot;</span><span class="punctuation">:</span> <span class="string">&quot;012&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure></p></li>
 </ul>
-<p>上传文件后看到点击continue按钮即可成功导入数据集<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/12.png" alt></p>
+<p>上传文件后看到点击continue按钮即可成功导入数据集<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/12.png"></p>
 <p>点击Run即可读取测试集里的数据，进行一次接口测试。</p>
-<h1 id="接口定期测试"><a href="#接口定期测试" class="headerlink" title="接口定期测试"></a>接口定期测试</h1><p>Postman提供了Schedule runs的功能，支持提交一个按照定时器运行的测试任务。</p>
-<p>点击集合名称-Runs功能区-Preformance页面，点击<code>Run Performance Test</code>按钮创建测试任务，切换Functional功能区，选择Schedule runs定时运行，设置好定时器参数便可以点击末尾的<code>Schedule Run</code>按钮定时跑测试任务了。</p>
-<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/13.png" alt></p>
-<h1 id="接口数据依赖"><a href="#接口数据依赖" class="headerlink" title="接口数据依赖"></a>接口数据依赖</h1><p>在日常开发中，经常会遇到依赖请求的情况。例如从接口A中查询出记录id，接口B、C、D根据这个id进行一些增删改查的操作。这一过程中，需要处理以下问题：</p>
+<h1 id="接口定期测试">接口定期测试</h1>
+<p>Postman提供了Schedule
+runs的功能，支持提交一个按照定时器运行的测试任务。</p>
+<p>点击集合名称-Runs功能区-Preformance页面，点击<code>Run Performance Test</code>按钮创建测试任务，切换Functional功能区，选择Schedule
+runs定时运行，设置好定时器参数便可以点击末尾的<code>Schedule Run</code>按钮定时跑测试任务了。</p>
+<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/13.png"></p>
+<h1 id="接口数据依赖">接口数据依赖</h1>
+<p>在日常开发中，经常会遇到依赖请求的情况。例如从接口A中查询出记录id，接口B、C、D根据这个id进行一些增删改查的操作。这一过程中，需要处理以下问题：</p>
 <ul>
 <li>接口调用顺序</li>
 <li>将接口A返回的数据传递给后续的接口B、C、D</li>
 </ul>
-<h2 id="接口调用顺序"><a href="#接口调用顺序" class="headerlink" title="接口调用顺序"></a>接口调用顺序</h2><h3 id="默认调用顺序"><a href="#默认调用顺序" class="headerlink" title="默认调用顺序"></a>默认调用顺序</h3><p>集合中接口的默认调用顺序是按照页面左边的目录顺序从上到下执行的（即test-&gt;test1-&gt;test2），因此只需要将优先执行的接口放前面即可固定接口的调用顺序.<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/14.png" alt></p>
-<h3 id="自定义调用顺序"><a href="#自定义调用顺序" class="headerlink" title="自定义调用顺序"></a>自定义调用顺序</h3><p>Postman提供了一个函数<code>setNextRequest()</code>支持跳转到指定接口继续执行；旧版本Postman中该函数的语句为<code>postman.setNextRequest(要跳转的接口名)</code>。</p>
+<h2 id="接口调用顺序">接口调用顺序</h2>
+<h3 id="默认调用顺序">默认调用顺序</h3>
+<p>集合中接口的默认调用顺序是按照页面左边的目录顺序从上到下执行的（即test-&gt;test1-&gt;test2），因此只需要将优先执行的接口放前面即可固定接口的调用顺序.<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/14.png"></p>
+<h3 id="自定义调用顺序">自定义调用顺序</h3>
+<p>Postman提供了一个函数<code>setNextRequest()</code>支持跳转到指定接口继续执行；旧版本Postman中该函数的语句为<code>postman.setNextRequest(要跳转的接口名)</code>。</p>
 <p><strong>注意：</strong></p>
 <ul>
-<li><p>该函数只在运行集合测试时生效，单独接口<code>send</code>时该函数不起作用</p>
-</li>
-<li><p>运行接口从接口A跳到接口C后，若C后面还有接口DEF，则后面的即可仍会按照默认顺序执行，即DEF仍会被执行</p>
-</li>
-<li>指定的跳转接口必须同属于一个集合中</li>
-<li>该函数不管是在何处被调用，都只在当前脚本的最后才会执行</li>
+<li><p>该函数只在运行集合测试时生效，单独接口<code>send</code>时该函数不起作用</p></li>
+<li><p>运行接口从接口A跳到接口C后，若C后面还有接口DEF，则后面的即可仍会按照默认顺序执行，即DEF仍会被执行</p></li>
+<li><p>指定的跳转接口必须同属于一个集合中</p></li>
+<li><p>该函数不管是在何处被调用，都只在当前脚本的最后才会执行</p></li>
 </ul>
 <p>在功能区<strong><code>Scripts</code></strong>，<strong><code>Post-res</code></strong>面板里编写如下代码，可以实现test接口运行成功后跳到test2中继续运行。</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json">&#x2F;&#x2F;test接口运行成功后跳到test2中
-pm.test(&quot;Status code is 200&quot;, function () &#123;
-    pm.response.to.have.status(200);
-    pm.execution.setNextRequest(&#39;localhost&#x2F;test&#x2F;api&#x2F;test2&#39;)
-&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="数据传递"><a href="#数据传递" class="headerlink" title="数据传递"></a>数据传递</h2><p>点击侧边栏的<code>Environments</code>，可以创建不同的变量环境，如下图中创建了测试和线上2个环境<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/15.png" alt></p>
-<p>通过右边的勾选，可以通过切换不同的环境来设置不同的值<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/16.png" alt></p>
-<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/17.png" alt></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//test接口运行成功后跳到test2中</span></span><br><span class="line">pm.test(<span class="string">&quot;Status code is 200&quot;</span><span class="punctuation">,</span> function () <span class="punctuation">&#123;</span></span><br><span class="line">    pm.response.to.have.status(<span class="number">200</span>);</span><br><span class="line">    pm.execution.setNextRequest(&#x27;localhost/test/api/test2&#x27;)</span><br><span class="line"><span class="punctuation">&#125;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="数据传递">数据传递</h2>
+<p>点击侧边栏的<code>Environments</code>，可以创建不同的变量环境，如下图中创建了测试和线上2个环境<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/15.png"></p>
+<p>通过右边的勾选，可以通过切换不同的环境来设置不同的值<img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/16.png"></p>
+<p><img src="/2024/06/14/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89Postman/17.png"></p>
 <p>通过设置当前环境的参数集中的参数，可以实现不同接口之间的参数传递。例如在功能区<strong><code>Scripts</code></strong>，<strong><code>Post-res</code></strong>面板里编写如下代码，可以实现test接口运行成功后取其返回name的值作为后续接口的参数<code>res_name</code>。</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json">&#x2F;&#x2F;注意，这个参数res_name的值只会添加在当前选择环境的参数集中
-pm.test(&quot;Status code is 200&quot;, function () &#123;
-    pm.response.to.have.status(200);
-    var jsonData &#x3D; pm.response.json();
-    pm.environment.set(&quot;res_name&quot;, jsonData[&#39;name&#39;]);
-&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="附录一：旧版本测试模板（直接取值）"><a href="#附录一：旧版本测试模板（直接取值）" class="headerlink" title="附录一：旧版本测试模板（直接取值）"></a>附录一：旧版本测试模板（直接取值）</h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//检查response body中是否包含某个string,注意："value"为自定义命名，但需唯一。</span>
-tests<span class="token punctuation">[</span><span class="token string">"value"</span><span class="token punctuation">]</span> <span class="token operator">=</span> responseBody<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">"test_value"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//检测JSON中的某个值是否等于预期的值</span>
-<span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>responseBody<span class="token punctuation">)</span><span class="token punctuation">;</span>
-tests<span class="token punctuation">[</span><span class="token string">"value2"</span><span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">.</span>value <span class="token operator">===</span> <span class="token number">100</span><span class="token punctuation">;</span>
-tests<span class="token punctuation">[</span><span class="token string">"value3"</span><span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">.</span>programs<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">5</span><span class="token punctuation">;</span>
-
-<span class="token comment">//转换XML body为JSON对象</span>
-<span class="token keyword">var</span> jsonObject <span class="token operator">=</span> <span class="token function">xml2Json</span><span class="token punctuation">(</span>responseBody<span class="token punctuation">)</span><span class="token punctuation">;</span>
-tests<span class="token punctuation">[</span><span class="token string">"value4"</span><span class="token punctuation">]</span> <span class="token operator">=</span> responseBody <span class="token operator">===</span> <span class="token string">"response_body_string"</span><span class="token punctuation">;</span>
-
-<span class="token comment">//测试response Headers中的某个元素是否存在(如:Content-Type),不区分大小写</span>
-tests<span class="token punctuation">[</span><span class="token string">"value5"</span><span class="token punctuation">]</span> <span class="token operator">=</span> postman<span class="token punctuation">.</span><span class="token function">getResponseHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Type"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//测试response Headers中的某个元素是否存在(如:Content-Type),区分大小写</span>
-tests<span class="token punctuation">[</span><span class="token string">"value6"</span><span class="token punctuation">]</span> <span class="token operator">=</span> responseHeaders<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">"Content-Type"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//验证Status code的值</span>
-tests<span class="token punctuation">[</span><span class="token string">"value7"</span><span class="token punctuation">]</span> <span class="token operator">=</span> responseCode<span class="token punctuation">.</span>code <span class="token operator">===</span> <span class="token number">200</span><span class="token punctuation">;</span>
-
-<span class="token comment">//验证Response time是否小于某个值</span>
-tests<span class="token punctuation">[</span><span class="token string">"value8"</span><span class="token punctuation">]</span> <span class="token operator">=</span> responseTime <span class="token operator">&lt;</span> <span class="token number">200</span><span class="token punctuation">;</span>
-
-<span class="token comment">//name是否包含某个值</span>
-tests<span class="token punctuation">[</span><span class="token string">"value9"</span><span class="token punctuation">]</span> <span class="token operator">=</span> responseCode<span class="token punctuation">.</span>name<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">"Created"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//POST请求的状态响应码是否是某个值</span>
-tests<span class="token punctuation">[</span><span class="token string">"value10"</span><span class="token punctuation">]</span> <span class="token operator">=</span> response<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="附录二：新旧版本测试模板（通用断言语句）："><a href="#附录二：新旧版本测试模板（通用断言语句）：" class="headerlink" title="附录二：新旧版本测试模板（通用断言语句）："></a>附录二：新旧版本测试模板（通用断言语句）：</h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//校验响应状态码</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"Status is 200"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span>to<span class="token punctuation">.</span>have<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//断言状态码200-202区间</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"Successful GET request"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-   pm<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span>pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span>code<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">oneOf</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">200</span><span class="token punctuation">,</span><span class="token number">202</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//校验接口返回状态</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"接口返回状态status "</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">var</span> jsonData <span class="token operator">=</span> pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">var</span> status1 <span class="token operator">=</span>jsonData<span class="token punctuation">.</span>status
-    pm<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span>status1<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span><span class="token function">eql</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"status1 is :"</span> <span class="token operator">+</span>status1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//断言响应时间小于200ms</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"Response time is less than 300ms"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-   pm<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span>pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">below</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//断言响应中包含某个字符串</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"Body matches string"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-   pm<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span>pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span><span class="token function">include</span><span class="token punctuation">(</span><span class="token string">"FRM"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//断言响应中的字段等于某个值</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"message test"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-   <span class="token keyword">var</span> jsonData <span class="token operator">=</span> pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   pm<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span>jsonData<span class="token punctuation">[</span><span class="token string">"message"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span><span class="token function">eql</span><span class="token punctuation">(</span><span class="token string">"请求成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//断言响应中的字段不等于某个值</span>
-<span class="token keyword">var</span> jsonData <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>responseBody<span class="token punctuation">)</span><span class="token punctuation">;</span>
-tests<span class="token punctuation">[</span><span class="token string">"message不为failed"</span><span class="token punctuation">]</span> <span class="token operator">=</span> jsonData<span class="token punctuation">[</span><span class="token string">"message"</span><span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token string">"failed"</span><span class="token punctuation">;</span>
-
-<span class="token comment">//断言响应中"list"的字段长度</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"data list test"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">var</span> jsonData <span class="token operator">=</span> pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    pm<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span>jsonData<span class="token punctuation">[</span><span class="token string">"data"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span><span class="token function">eql</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//断言响应中"list 0的"的time字段的值</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"data list 0 test"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-   <span class="token keyword">var</span> jsonData <span class="token operator">=</span> pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   pm<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span>jsonData<span class="token punctuation">[</span><span class="token string">"data"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"time"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span><span class="token function">eql</span><span class="token punctuation">(</span><span class="token string">"2018-11-28 17:27:41"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//测试解析json数据</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"Your test name"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">var</span> jsonData <span class="token operator">=</span> pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    pm<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span>jsonData<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span><span class="token function">eql</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//检查header</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"Content-Type is present"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span>to<span class="token punctuation">.</span>have<span class="token punctuation">.</span><span class="token function">header</span><span class="token punctuation">(</span><span class="token string">"Content-Type"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//测试是否等于某个字段</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"Body is correct"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span>to<span class="token punctuation">.</span>have<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token string">"response_body_string"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//请求时间校验</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"Response time is less than 200ms"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    pm<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span>pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span>responseTime<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token function">below</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-
-<span class="token comment">//返回值在某个区间</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"Status code name has string"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span>to<span class="token punctuation">.</span>have<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token string">"Created"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-
-<span class="token comment">//使用json schema 校验结果</span>
-<span class="token keyword">var</span> schema <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-  <span class="token string">"items"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"type"</span><span class="token operator">:</span> <span class="token string">"boolean"</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> data1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> data2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-pm<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'Schema is valid'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  pm<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span>tv4<span class="token punctuation">.</span><span class="token function">validate</span><span class="token punctuation">(</span>data1<span class="token punctuation">,</span> schema<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token boolean">true</span><span class="token punctuation">;</span>
-  pm<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span>tv4<span class="token punctuation">.</span><span class="token function">validate</span><span class="token punctuation">(</span>data2<span class="token punctuation">,</span> schema<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token boolean">true</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注意，这个参数res_name的值只会添加在当前选择环境的参数集中</span></span><br><span class="line">pm.test(<span class="string">&quot;Status code is 200&quot;</span><span class="punctuation">,</span> function () <span class="punctuation">&#123;</span></span><br><span class="line">    pm.response.to.have.status(<span class="number">200</span>);</span><br><span class="line">    var jsonData = pm.response.json();</span><br><span class="line">    pm.environment.set(<span class="string">&quot;res_name&quot;</span><span class="punctuation">,</span> jsonData<span class="punctuation">[</span>&#x27;name&#x27;<span class="punctuation">]</span>);</span><br><span class="line"><span class="punctuation">&#125;</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="附录">附录</h1>
+<h2 id="附录一旧版本测试模板直接取值">附录一：旧版本测试模板（直接取值）</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检查response body中是否包含某个string,注意：&quot;value&quot;为自定义命名，但需唯一。</span></span><br><span class="line">tests[<span class="string">&quot;value&quot;</span>] = responseBody.<span class="title function_">has</span>(<span class="string">&quot;test_value&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//检测JSON中的某个值是否等于预期的值</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(responseBody);</span><br><span class="line">tests[<span class="string">&quot;value2&quot;</span>] = data.<span class="property">value</span> === <span class="number">100</span>;</span><br><span class="line">tests[<span class="string">&quot;value3&quot;</span>] = data.<span class="property">programs</span>.<span class="property">length</span> === <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//转换XML body为JSON对象</span></span><br><span class="line"><span class="keyword">var</span> jsonObject = <span class="title function_">xml2Json</span>(responseBody);</span><br><span class="line">tests[<span class="string">&quot;value4&quot;</span>] = responseBody === <span class="string">&quot;response_body_string&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试response Headers中的某个元素是否存在(如:Content-Type),不区分大小写</span></span><br><span class="line">tests[<span class="string">&quot;value5&quot;</span>] = postman.<span class="title function_">getResponseHeader</span>(<span class="string">&quot;Content-Type&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试response Headers中的某个元素是否存在(如:Content-Type),区分大小写</span></span><br><span class="line">tests[<span class="string">&quot;value6&quot;</span>] = responseHeaders.<span class="title function_">hasOwnProperty</span>(<span class="string">&quot;Content-Type&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//验证Status code的值</span></span><br><span class="line">tests[<span class="string">&quot;value7&quot;</span>] = responseCode.<span class="property">code</span> === <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//验证Response time是否小于某个值</span></span><br><span class="line">tests[<span class="string">&quot;value8&quot;</span>] = responseTime &lt; <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//name是否包含某个值</span></span><br><span class="line">tests[<span class="string">&quot;value9&quot;</span>] = responseCode.<span class="property">name</span>.<span class="title function_">has</span>(<span class="string">&quot;Created&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//POST请求的状态响应码是否是某个值</span></span><br><span class="line">tests[<span class="string">&quot;value10&quot;</span>] = response</span><br></pre></td></tr></table></figure>
+<h2 id="附录二新旧版本测试模板通用断言语句">附录二：新旧版本测试模板（通用断言语句）：</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//校验响应状态码</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;Status is 200&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    pm.<span class="property">response</span>.<span class="property">to</span>.<span class="property">have</span>.<span class="title function_">status</span>(<span class="number">200</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//断言状态码200-202区间</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;Successful GET request&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">   pm.<span class="title function_">expect</span>(pm.<span class="property">response</span>.<span class="property">code</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">oneOf</span>([<span class="number">200</span>,<span class="number">202</span>]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//校验接口返回状态</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;接口返回状态status &quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> jsonData = pm.<span class="property">response</span>.<span class="title function_">json</span>();</span><br><span class="line">    <span class="keyword">var</span> status1 =jsonData.<span class="property">status</span></span><br><span class="line">    pm.<span class="title function_">expect</span>(status1).<span class="property">to</span>.<span class="title function_">eql</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;status1 is :&quot;</span> +status1);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//断言响应时间小于200ms</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;Response time is less than 300ms&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">   pm.<span class="title function_">expect</span>(pm.<span class="property">response</span>.<span class="property">responseTime</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">below</span>(<span class="number">3000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//断言响应中包含某个字符串</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;Body matches string&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">   pm.<span class="title function_">expect</span>(pm.<span class="property">response</span>.<span class="title function_">text</span>()).<span class="property">to</span>.<span class="title function_">include</span>(<span class="string">&quot;FRM&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//断言响应中的字段等于某个值</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;message test&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">   <span class="keyword">var</span> jsonData = pm.<span class="property">response</span>.<span class="title function_">json</span>();</span><br><span class="line">   pm.<span class="title function_">expect</span>(jsonData[<span class="string">&quot;message&quot;</span>]).<span class="property">to</span>.<span class="title function_">eql</span>(<span class="string">&quot;请求成功&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//断言响应中的字段不等于某个值</span></span><br><span class="line"><span class="keyword">var</span> jsonData = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(responseBody);</span><br><span class="line">tests[<span class="string">&quot;message不为failed&quot;</span>] = jsonData[<span class="string">&quot;message&quot;</span>] != <span class="string">&quot;failed&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//断言响应中&quot;list&quot;的字段长度</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;data list test&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> jsonData = pm.<span class="property">response</span>.<span class="title function_">json</span>();</span><br><span class="line">    pm.<span class="title function_">expect</span>(jsonData[<span class="string">&quot;data&quot;</span>].<span class="property">length</span>).<span class="property">to</span>.<span class="title function_">eql</span>(<span class="number">0</span>);</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//断言响应中&quot;list 0的&quot;的time字段的值</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;data list 0 test&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">   <span class="keyword">var</span> jsonData = pm.<span class="property">response</span>.<span class="title function_">json</span>();</span><br><span class="line">   pm.<span class="title function_">expect</span>(jsonData[<span class="string">&quot;data&quot;</span>][<span class="number">0</span>][<span class="string">&quot;time&quot;</span>]).<span class="property">to</span>.<span class="title function_">eql</span>(<span class="string">&quot;2018-11-28 17:27:41&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试解析json数据</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;Your test name&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> jsonData = pm.<span class="property">response</span>.<span class="title function_">json</span>();</span><br><span class="line">    pm.<span class="title function_">expect</span>(jsonData.<span class="property">value</span>).<span class="property">to</span>.<span class="title function_">eql</span>(<span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//检查header</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;Content-Type is present&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    pm.<span class="property">response</span>.<span class="property">to</span>.<span class="property">have</span>.<span class="title function_">header</span>(<span class="string">&quot;Content-Type&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试是否等于某个字段</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;Body is correct&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    pm.<span class="property">response</span>.<span class="property">to</span>.<span class="property">have</span>.<span class="title function_">body</span>(<span class="string">&quot;response_body_string&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//请求时间校验</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;Response time is less than 200ms&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    pm.<span class="title function_">expect</span>(pm.<span class="property">response</span>.<span class="property">responseTime</span>).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">below</span>(<span class="number">200</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回值在某个区间</span></span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&quot;Status code name has string&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    pm.<span class="property">response</span>.<span class="property">to</span>.<span class="property">have</span>.<span class="title function_">status</span>(<span class="string">&quot;Created&quot;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用json schema 校验结果</span></span><br><span class="line"><span class="keyword">var</span> schema = &#123;</span><br><span class="line">  <span class="string">&quot;items&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;boolean&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> data1 = [<span class="literal">true</span>, <span class="literal">false</span>];</span><br><span class="line"><span class="keyword">var</span> data2 = [<span class="literal">true</span>, <span class="number">123</span>];</span><br><span class="line">pm.<span class="title function_">test</span>(<span class="string">&#x27;Schema is valid&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  pm.<span class="title function_">expect</span>(tv4.<span class="title function_">validate</span>(data1, schema)).<span class="property">to</span>.<span class="property">be</span>.<span class="property">true</span>;</span><br><span class="line">  pm.<span class="title function_">expect</span>(tv4.<span class="title function_">validate</span>(data2, schema)).<span class="property">to</span>.<span class="property">be</span>.<span class="property">true</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -938,7 +814,7 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%BB%93%E6%9E%9C%E5%88%A4%E6%96%AD"><span class="toc-number">2.</span> <span class="toc-text">接口结果判断</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%89%B9%E9%87%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text">接口批量测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E7%AE%A1%E7%90%86"><span class="toc-number">3.1.</span> <span class="toc-text">批量管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E6%8E%A5%E5%8F%A3%E4%BC%A0%E9%80%92%E5%8A%A8%E5%8F%82"><span class="toc-number">3.2.</span> <span class="toc-text">向接口传递动参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%AF%B7%E6%B1%82%E7%BB%99%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="toc-number">3.2.1.</span> <span class="toc-text">预请求给变量赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E9%9B%86%E6%89%B9%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="toc-number">3.2.2.</span> <span class="toc-text">导入数据集批量赋值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%AE%9A%E6%9C%9F%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">接口定期测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%95%B0%E6%8D%AE%E4%BE%9D%E8%B5%96"><span class="toc-number">5.</span> <span class="toc-text">接口数据依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E9%A1%BA%E5%BA%8F"><span class="toc-number">5.1.</span> <span class="toc-text">接口调用顺序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E8%B0%83%E7%94%A8%E9%A1%BA%E5%BA%8F"><span class="toc-number">5.1.1.</span> <span class="toc-text">默认调用顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B0%83%E7%94%A8%E9%A1%BA%E5%BA%8F"><span class="toc-number">5.1.2.</span> <span class="toc-text">自定义调用顺序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92"><span class="toc-number">5.2.</span> <span class="toc-text">数据传递</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-number">6.</span> <span class="toc-text">附录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95%E4%B8%80%EF%BC%9A%E6%97%A7%E7%89%88%E6%9C%AC%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%9B%B4%E6%8E%A5%E5%8F%96%E5%80%BC%EF%BC%89"><span class="toc-number">6.1.</span> <span class="toc-text">附录一：旧版本测试模板（直接取值）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95%E4%BA%8C%EF%BC%9A%E6%96%B0%E6%97%A7%E7%89%88%E6%9C%AC%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%EF%BC%88%E9%80%9A%E7%94%A8%E6%96%AD%E8%A8%80%E8%AF%AD%E5%8F%A5%EF%BC%89%EF%BC%9A"><span class="toc-number">6.2.</span> <span class="toc-text">附录二：新旧版本测试模板（通用断言语句）：</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%BB%93%E6%9E%9C%E5%88%A4%E6%96%AD"><span class="toc-number">2.</span> <span class="toc-text">接口结果判断</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%89%B9%E9%87%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text">接口批量测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E7%AE%A1%E7%90%86"><span class="toc-number">3.1.</span> <span class="toc-text">批量管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E6%8E%A5%E5%8F%A3%E4%BC%A0%E9%80%92%E5%8A%A8%E5%8F%82"><span class="toc-number">3.2.</span> <span class="toc-text">向接口传递动参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%AF%B7%E6%B1%82%E7%BB%99%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="toc-number">3.2.1.</span> <span class="toc-text">预请求给变量赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E9%9B%86%E6%89%B9%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="toc-number">3.2.2.</span> <span class="toc-text">导入数据集批量赋值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%AE%9A%E6%9C%9F%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">接口定期测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%95%B0%E6%8D%AE%E4%BE%9D%E8%B5%96"><span class="toc-number">5.</span> <span class="toc-text">接口数据依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E9%A1%BA%E5%BA%8F"><span class="toc-number">5.1.</span> <span class="toc-text">接口调用顺序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E8%B0%83%E7%94%A8%E9%A1%BA%E5%BA%8F"><span class="toc-number">5.1.1.</span> <span class="toc-text">默认调用顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B0%83%E7%94%A8%E9%A1%BA%E5%BA%8F"><span class="toc-number">5.1.2.</span> <span class="toc-text">自定义调用顺序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92"><span class="toc-number">5.2.</span> <span class="toc-text">数据传递</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-number">6.</span> <span class="toc-text">附录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95%E4%B8%80%E6%97%A7%E7%89%88%E6%9C%AC%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%E7%9B%B4%E6%8E%A5%E5%8F%96%E5%80%BC"><span class="toc-number">6.1.</span> <span class="toc-text">附录一：旧版本测试模板（直接取值）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95%E4%BA%8C%E6%96%B0%E6%97%A7%E7%89%88%E6%9C%AC%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%E9%80%9A%E7%94%A8%E6%96%AD%E8%A8%80%E8%AF%AD%E5%8F%A5"><span class="toc-number">6.2.</span> <span class="toc-text">附录二：新旧版本测试模板（通用断言语句）：</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1288,18 +1164,6 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2408,6 +2272,16 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2438,29 +2312,14 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2478,9 +2337,24 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2491,16 +2365,6 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2518,11 +2382,6 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2531,6 +2390,11 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2568,19 +2432,9 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2591,6 +2445,16 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2614,6 +2478,11 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2624,29 +2493,9 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2654,9 +2503,19 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2664,19 +2523,24 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2709,6 +2573,16 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -2722,16 +2596,6 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2806,5 +2670,20 @@ pm<span class="token punctuation">.</span><span class="token function">test</spa
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

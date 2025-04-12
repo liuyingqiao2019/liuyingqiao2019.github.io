@@ -338,7 +338,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.6k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -499,295 +499,88 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="错误、调试和测试"><a href="#错误、调试和测试" class="headerlink" title="错误、调试和测试"></a>错误、调试和测试</h1><h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>在程序运行过程中，可以实现设定发生错误时返回一个错误代码，这样就可以知道是否出错及其出错原因是什么。</p>
-<h3 id="错误处理机制python的错误处理机制-try-except-finally-。"><a href="#错误处理机制python的错误处理机制-try-except-finally-。" class="headerlink" title="错误处理机制python的错误处理机制:try...except...finally..。"></a>错误处理机制python的错误处理机制:<code>try...except...finally..</code>。</h3><p>当认为某段代码可能会出错时，用<code>try</code>来运行这段代码，如果执行出错，则后续的代码不会继续执行，而是直接跳转到错误处理代码<code>except</code>语句块中，执行完<code>except</code>语句块后，如果还有<code>finally</code>语句块，则执行语句块，错误处理机制执行完毕。例如：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">try:
-    print(&#39;try...&#39;)
-    r&#x3D;10&#x2F;int(&#39;a&#39;)
-    print(&#39;result:&#39;,r)
-except ValueError as e:
-    print(&#39;ValueError:&#39;,e)
-except ZeroDivisionError as e:
-    print(&#39;except:&#39;,e)
-else:
-    print(&#39;no error!&#39;)    
-finally:
-    print(&#39;finally...&#39;)
-print(&#39;END&#39;)
-
-#运行结果如下：
-try...
-ValueError: invalid literal for int() with base 10: &#39;a&#39;
-finally...
-END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        <h1 id="错误调试和测试">错误、调试和测试</h1>
+<h2 id="错误处理">错误处理</h2>
+<p>在程序运行过程中，可以实现设定发生错误时返回一个错误代码，这样就可以知道是否出错及其出错原因是什么。</p>
+<h3 id="错误处理机制python的错误处理机制try...except...finally..">错误处理机制python的错误处理机制:<code>try...except...finally..</code>。</h3>
+<p>当认为某段代码可能会出错时，用<code>try</code>来运行这段代码，如果执行出错，则后续的代码不会继续执行，而是直接跳转到错误处理代码<code>except</code>语句块中，执行完<code>except</code>语句块后，如果还有<code>finally</code>语句块，则执行语句块，错误处理机制执行完毕。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;try...&#x27;</span>)</span><br><span class="line">    r=<span class="number">10</span>/<span class="built_in">int</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;result:&#x27;</span>,r)</span><br><span class="line"><span class="keyword">except</span> ValueError <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;ValueError:&#x27;</span>,e)</span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;except:&#x27;</span>,e)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;no error!&#x27;</span>)    </span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;finally...&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;END&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="keyword">try</span>...</span><br><span class="line">ValueError: invalid literal <span class="keyword">for</span> <span class="built_in">int</span>() <span class="keyword">with</span> base <span class="number">10</span>: <span class="string">&#x27;a&#x27;</span></span><br><span class="line"><span class="keyword">finally</span>...</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
 <p>如果没有错误发生，<code>except</code>语句块不会被执行，但如果有<code>finally</code>语句块，<code>finally</code>语句块一定会被执行。在使用<code>except</code>时要注意<strong>先写子类的异常</strong>，基类的异常在后。</p>
 <p>使用<code>try...except</code>捕获错误可以跨越多层调用。不需要在每个可能出错的地方去捕获错误。</p>
-<h3 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h3><p>若错误没有被捕获，就会一直往上抛，直至最后被python解释器捕获，打印一个错误信息，程序就退出了。出错的时候一定要分析错误的调用栈信息，才能定位错误的位置。</p>
-<h3 id="记录错误"><a href="#记录错误" class="headerlink" title="记录错误"></a>记录错误</h3><p>如果能捕获错误，就可以把错误堆栈打印出来，分析错误原因的同时，让程序继续执行下去。</p>
+<h3 id="调用栈">调用栈</h3>
+<p>若错误没有被捕获，就会一直往上抛，直至最后被python解释器捕获，打印一个错误信息，程序就退出了。出错的时候一定要分析错误的调用栈信息，才能定位错误的位置。</p>
+<h3 id="记录错误">记录错误</h3>
+<p>如果能捕获错误，就可以把错误堆栈打印出来，分析错误原因的同时，让程序继续执行下去。</p>
 <p><code>logging</code>模块可以记录错误信息。导包后的调用形式：<code>logging.exception(e)</code>。</p>
-<h3 id="抛出错误"><a href="#抛出错误" class="headerlink" title="抛出错误"></a>抛出错误</h3><p>因为错误是class，捕获一个错误就是捕获到该class的一个实例。因此自己编写的函数也可以抛出错误。若需要抛出错误，可以先定义一个错误的class，然后用<code>raise</code>语句抛出一个错误。但只有在必要的时候才定义自己的错误类型，若可以选择内置的错误类型，尽量使用内置的错误类型。</p>
+<h3 id="抛出错误">抛出错误</h3>
+<p>因为错误是class，捕获一个错误就是捕获到该class的一个实例。因此自己编写的函数也可以抛出错误。若需要抛出错误，可以先定义一个错误的class，然后用<code>raise</code>语句抛出一个错误。但只有在必要的时候才定义自己的错误类型，若可以选择内置的错误类型，尽量使用内置的错误类型。</p>
 <p>抛出错误例子：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">class FooError(ValueError):
-    pass
-def foo(s):
-    n&#x3D;int(s)
-    if n&#x3D;&#x3D;0:
-        raise FooError(&#39;invalid value: %s&#39; % s)
-    return 10&#x2F;n
-foo(&#39;0&#39;)
-
-#运行结果如下：
-Traceback (most recent call last):
-  File &quot;main.py&quot;, line 8, in &lt;module&gt;
-    foo(&#39;0&#39;)
-  File &quot;main.py&quot;, line 6, in foo
-    raise FooError(&#39;invalid value: %s&#39; % s)
-__main__.FooError: invalid value: 0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">FooError</span>(<span class="title class_ inherited__">ValueError</span>):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">s</span>):</span><br><span class="line">    n=<span class="built_in">int</span>(s)</span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> FooError(<span class="string">&#x27;invalid value: %s&#x27;</span> % s)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span>/n</span><br><span class="line">foo(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;main.py&quot;</span>, line <span class="number">8</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    foo(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">  File <span class="string">&quot;main.py&quot;</span>, line <span class="number">6</span>, <span class="keyword">in</span> foo</span><br><span class="line">    <span class="keyword">raise</span> FooError(<span class="string">&#x27;invalid value: %s&#x27;</span> % s)</span><br><span class="line">__main__.FooError: invalid value: <span class="number">0</span></span><br></pre></td></tr></table></figure>
 <p>另一种错误处理方式为，捕获错误后，又把错误通过<code>raise</code>语句往上抛，让顶层的调用者去处理。</p>
 <p><code>raise</code>语句如果不带参数，就会把当前错误原样抛出。若在<code>except</code>中<code>raise</code>一个Error，可以将一种类型的错误转化为另一种类型，但不能将一个<code>IOError</code>转换成毫不相干的<code>ValueError</code>。</p>
-<h4 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h4><p>运行下面的代码，根据异常信息进行分析，定位出错误源头，并修复：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">from functools import reduce
-
-def str2num(s):
-    return int(s)
-
-def calc(exp):
-    ss &#x3D; exp.split(&#39;+&#39;)
-    ns &#x3D; map(str2num, ss)
-    return reduce(lambda acc, x: acc + x, ns)
-
-def main():
-    r &#x3D; calc(&#39;100 + 200 + 345&#39;)
-    print(&#39;100 + 200 + 345 &#x3D;&#39;, r)
-    r &#x3D; calc(&#39;99 + 88 + 7.6&#39;)
-    print(&#39;99 + 88 + 7.6 &#x3D;&#39;, r)
-
-main()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="练习题">练习题</h4>
+<p>运行下面的代码，根据异常信息进行分析，定位出错误源头，并修复：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">str2num</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(s)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calc</span>(<span class="params">exp</span>):</span><br><span class="line">    ss = exp.split(<span class="string">&#x27;+&#x27;</span>)</span><br><span class="line">    ns = <span class="built_in">map</span>(str2num, ss)</span><br><span class="line">    <span class="keyword">return</span> reduce(<span class="keyword">lambda</span> acc, x: acc + x, ns)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    r = calc(<span class="string">&#x27;100 + 200 + 345&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;100 + 200 + 345 =&#x27;</span>, r)</span><br><span class="line">    r = calc(<span class="string">&#x27;99 + 88 + 7.6&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;99 + 88 + 7.6 =&#x27;</span>, r)</span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
 <p>修复后的代码如下：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">from functools import reduce
-
-def str2num(s):
-    return float(s)
-
-def calc(exp):
-    ss &#x3D; exp.split(&#39;+&#39;)
-    ns &#x3D; map(str2num, ss)
-    return reduce(lambda acc, x: acc + x, ns)
-
-def main():
-    r &#x3D; calc(&#39;100 + 200 + 345&#39;)
-    print(&#39;100 + 200 + 345 &#x3D;&#39;, r)
-    r &#x3D; calc(&#39;99 + 88 + 7.6&#39;)
-    print(&#39;99 + 88 + 7.6 &#x3D;&#39;, r)
-
-main()
-
-#运行结果如下：
-100 + 200 + 345 &#x3D; 645.0
-99 + 88 + 7.6 &#x3D; 194.6<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="方法一：print"><a href="#方法一：print" class="headerlink" title="方法一：print()"></a>方法一：<code>print()</code></h3><p>用<code>print()</code>把可能有问题的变量打印出来看</p>
-<h3 id="方法二：断言-assert"><a href="#方法二：断言-assert" class="headerlink" title="方法二：断言(assert)"></a>方法二：断言(assert)</h3><p>凡是用print()来看的地方，都可以用断言(assert)来替代。如：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">def foo(s):
-    n&#x3D;int(s)
-    assert n!&#x3D;0,&#39;n is zero!&#39;#若n&#x3D;0,则会抛出AssertionError错误
-    return 10&#x2F;n
-foo(&#39;0&#39;)
-#运行结果如下：
-Traceback (most recent call last):
-  File &quot;main.py&quot;, line 5, in &lt;module&gt;
-    foo(&#39;0&#39;)
-  File &quot;main.py&quot;, line 3, in foo
-    assert n!&#x3D;0,&#39;n is zero!&#39;
-AssertionError: n is zero!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">str2num</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">float</span>(s)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calc</span>(<span class="params">exp</span>):</span><br><span class="line">    ss = exp.split(<span class="string">&#x27;+&#x27;</span>)</span><br><span class="line">    ns = <span class="built_in">map</span>(str2num, ss)</span><br><span class="line">    <span class="keyword">return</span> reduce(<span class="keyword">lambda</span> acc, x: acc + x, ns)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    r = calc(<span class="string">&#x27;100 + 200 + 345&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;100 + 200 + 345 =&#x27;</span>, r)</span><br><span class="line">    r = calc(<span class="string">&#x27;99 + 88 + 7.6&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;99 + 88 + 7.6 =&#x27;</span>, r)</span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">100</span> + <span class="number">200</span> + <span class="number">345</span> = <span class="number">645.0</span></span><br><span class="line"><span class="number">99</span> + <span class="number">88</span> + <span class="number">7.6</span> = <span class="number">194.6</span></span><br></pre></td></tr></table></figure>
+<h2 id="调试">调试</h2>
+<h3 id="方法一print">方法一：<code>print()</code></h3>
+<p>用<code>print()</code>把可能有问题的变量打印出来看</p>
+<h3 id="方法二断言assert">方法二：断言(assert)</h3>
+<p>凡是用print()来看的地方，都可以用断言(assert)来替代。如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">s</span>):</span><br><span class="line">    n=<span class="built_in">int</span>(s)</span><br><span class="line">    <span class="keyword">assert</span> n!=<span class="number">0</span>,<span class="string">&#x27;n is zero!&#x27;</span><span class="comment">#若n=0,则会抛出AssertionError错误</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span>/n</span><br><span class="line">foo(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;main.py&quot;</span>, line <span class="number">5</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    foo(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">  File <span class="string">&quot;main.py&quot;</span>, line <span class="number">3</span>, <span class="keyword">in</span> foo</span><br><span class="line">    <span class="keyword">assert</span> n!=<span class="number">0</span>,<span class="string">&#x27;n is zero!&#x27;</span></span><br><span class="line">AssertionError: n <span class="keyword">is</span> zero!</span><br></pre></td></tr></table></figure>
 <p>python解释器中可以用<code>python -O 文件名</code>来关闭assert。关闭后，所有的assert语句都相当于一个pass。</p>
-<h3 id="方法三：logging"><a href="#方法三：logging" class="headerlink" title="方法三：logging"></a>方法三：<code>logging</code></h3><p>把<code>print()</code>替换为<code>logging</code>后，与<code>assert</code>比，<code>logging</code>不会抛出错误，且可以输出到文件。通过配置logging，可以将一条语句同时输出到不同的地方，如文件和控制台。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import logging 
-logging.basicConfig(level&#x3D;logging.INFO)#指定记录信息的级别
-
-s&#x3D;&#39;0&#39;
-n&#x3D;int(s)
-logging.info(&#39;n&#x3D;%d&#39; % n)#输出一段文本
-print(10&#x2F;n)
-#运行结果如下：
-INFO:root:n&#x3D;0
-Traceback (most recent call last):
-  File &quot;main.py&quot;, line 7, in &lt;module&gt;
-    print(10&#x2F;n)
-ZeroDivisionError: division by zero<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="方法三logging">方法三：<code>logging</code></h3>
+<p>把<code>print()</code>替换为<code>logging</code>后，与<code>assert</code>比，<code>logging</code>不会抛出错误，且可以输出到文件。通过配置logging，可以将一条语句同时输出到不同的地方，如文件和控制台。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging </span><br><span class="line">logging.basicConfig(level=logging.INFO)<span class="comment">#指定记录信息的级别</span></span><br><span class="line"></span><br><span class="line">s=<span class="string">&#x27;0&#x27;</span></span><br><span class="line">n=<span class="built_in">int</span>(s)</span><br><span class="line">logging.info(<span class="string">&#x27;n=%d&#x27;</span> % n)<span class="comment">#输出一段文本</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">10</span>/n)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">INFO:root:n=<span class="number">0</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;main.py&quot;</span>, line <span class="number">7</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">10</span>/n)</span><br><span class="line">ZeroDivisionError: division by zero</span><br></pre></td></tr></table></figure>
 <p>logging有debug、info、warning、error等几个级别，当指定<code>level=INFO</code>时，<code>logging.debug</code>就不起作用了。当指定<code>level=WARNING</code>时，<code>logging.debug</code>和<code>logging.INFO</code>就不起作用了。</p>
-<h3 id="方法四：pdb"><a href="#方法四：pdb" class="headerlink" title="方法四：pdb"></a>方法四：<code>pdb</code></h3><p>启动python的调制器pdb，可以让程序以单步方式运行，类似于c++的单点调试，可以随时查看代码的运行状态。pdb需要在控制台里输入语句，其形式为<code>python -m pdb 文件名</code>。</p>
+<h3 id="方法四pdb">方法四：<code>pdb</code></h3>
+<p>启动python的调制器pdb，可以让程序以单步方式运行，类似于c++的单点调试，可以随时查看代码的运行状态。pdb需要在控制台里输入语句，其形式为<code>python -m pdb 文件名</code>。</p>
 <p>示例如下：</p>
-<p><img src="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/1.png" alt></p>
+<p><img src="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/1.png"></p>
 <p>pdb内的命令用法如下：</p>
 <p>单步执行代码：输入 <code>n</code></p>
 <p>查看变量：<code>p 变量名</code></p>
 <p>退出程序：输入 <code>q</code></p>
-<h3 id="方法五：pdb-set-trace"><a href="#方法五：pdb-set-trace" class="headerlink" title="方法五：pdb.set_trace()"></a>方法五：<code>pdb.set_trace()</code></h3><p>该方法也是用pdb，需要在控制台里输入语句，但不需要单步执行。类似于c++的断点调试，只需要import pdb，然后在可能出错的地方一个<code>pdb.set_trace()</code>，就可以设置一个断点。</p>
+<h3 id="方法五pdb.set_trace">方法五：<code>pdb.set_trace()</code></h3>
+<p>该方法也是用pdb，需要在控制台里输入语句，但不需要单步执行。类似于c++的断点调试，只需要import
+pdb，然后在可能出错的地方一个<code>pdb.set_trace()</code>，就可以设置一个断点。</p>
 <p>示例如下：</p>
-<p><img src="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/2.png" alt></p>
+<p><img src="/2022/10/12/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/2.png"></p>
 <p>进入pdb调试环境后，可用<code>p 变量名</code>查看变量，输入<code>c</code>继续运行。</p>
-<h3 id="方法六：IDE"><a href="#方法六：IDE" class="headerlink" title="方法六：IDE"></a>方法六：IDE</h3><p>高效率的设置断点、单步执行，需要一个支持调试功能的IDE。目前常用的Python IDE有：</p>
+<h3 id="方法六ide">方法六：IDE</h3>
+<p>高效率的设置断点、单步执行，需要一个支持调试功能的IDE。目前常用的Python
+IDE有：</p>
 <p>Visual Studio Code、PyCharm、加上pydev插件的Eclipse。</p>
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作。将针对某函数写的测试用例放到一个测试模块里，便是一个完整的单元测试。</p>
+<h2 id="单元测试">单元测试</h2>
+<p>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作。将针对某函数写的测试用例放到一个测试模块里，便是一个完整的单元测试。</p>
 <p>若单元测试通过，则说明所测试的函数能够正常工作；若单元测试不通过，要么函数有bug，要么测试条件输入不正确。</p>
 <p><strong>单元测试需要引用<code>unittest</code>模块</strong>。常调用模块内置的条件判断来断言输出是否是期望值，最常用的<strong>断言语句</strong>是：<code>self.assertEqual(函数名(参数),期待值)</code>。</p>
 <p>另一种重要的断言是期待抛出指定类型的Error，用法是：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">with self.assertRaises(指定类型的Error):
-    value&#x3D;函数.属性或者是函数(参数)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="运行单元测试"><a href="#运行单元测试" class="headerlink" title="运行单元测试"></a>运行单元测试</h3><p><strong>方法一：</strong>在代码最后加上两行代码，直接运行程序</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">if __name__&#x3D;&#x3D;&#39;__main__&#39;:
-    unittest.main()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> self.assertRaises(指定类型的Error):</span><br><span class="line">    value=函数.属性或者是函数(参数)</span><br></pre></td></tr></table></figure>
+<h3 id="运行单元测试">运行单元测试</h3>
+<p><strong>方法一：</strong>在代码最后加上两行代码，直接运行程序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    unittest.main()</span><br></pre></td></tr></table></figure>
 <p><strong>方法二：</strong>在<strong>命令行</strong>通过参数<code>python -m unittest 文件名</code>运行单元测试。</p>
-<h3 id="setUp与tearDown"><a href="#setUp与tearDown" class="headerlink" title="setUp与tearDown"></a><code>setUp</code>与<code>tearDown</code></h3><p>每调用一个测试方法前被执行：<code>setUp()</code></p>
+<h3 id="setup与teardown"><code>setUp</code>与<code>tearDown</code></h3>
+<p>每调用一个测试方法前被执行：<code>setUp()</code></p>
 <p>在测试方法执行完后被执行：<code>tearDown()</code></p>
-<h3 id="练习题-1"><a href="#练习题-1" class="headerlink" title="练习题"></a>练习题</h3><p>对Student类编写单元测试，结果发现测试不通过，请修改Student类，让测试通过：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"># -*- coding: utf-8 -*-
-import unittest
-class Student(object):
-    def __init__(self, name, score):
-        self.name &#x3D; name
-        self.score &#x3D; score
-    def get_grade(self):
-        if self.score &gt;&#x3D; 60:
-            return &#39;B&#39;
-        if self.score &gt;&#x3D; 80:
-            return &#39;A&#39;
-        return &#39;C&#39;
-class TestStudent(unittest.TestCase):
-
-    def test_80_to_100(self):
-        s1 &#x3D; Student(&#39;Bart&#39;, 80)
-        s2 &#x3D; Student(&#39;Lisa&#39;, 100)
-        self.assertEqual(s1.get_grade(), &#39;A&#39;)
-        self.assertEqual(s2.get_grade(), &#39;A&#39;)
-
-    def test_60_to_80(self):
-        s1 &#x3D; Student(&#39;Bart&#39;, 60)
-        s2 &#x3D; Student(&#39;Lisa&#39;, 79)
-        self.assertEqual(s1.get_grade(), &#39;B&#39;)
-        self.assertEqual(s2.get_grade(), &#39;B&#39;)
-
-    def test_0_to_60(self):
-        s1 &#x3D; Student(&#39;Bart&#39;, 0)
-        s2 &#x3D; Student(&#39;Lisa&#39;, 59)
-        self.assertEqual(s1.get_grade(), &#39;C&#39;)
-        self.assertEqual(s2.get_grade(), &#39;C&#39;)
-
-    def test_invalid(self):
-        s1 &#x3D; Student(&#39;Bart&#39;, -1)
-        s2 &#x3D; Student(&#39;Lisa&#39;, 101)
-        with self.assertRaises(ValueError):
-            s1.get_grade()
-        with self.assertRaises(ValueError):
-            s2.get_grade()
-
-if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
-    unittest.main()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="练习题-1">练习题</h3>
+<p>对Student类编写单元测试，结果发现测试不通过，请修改Student类，让测试通过：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, score</span>):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.score = score</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_grade</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> self.score &gt;= <span class="number">60</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;B&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> self.score &gt;= <span class="number">80</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;A&#x27;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;C&#x27;</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestStudent</span>(unittest.TestCase):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_80_to_100</span>(<span class="params">self</span>):</span><br><span class="line">        s1 = Student(<span class="string">&#x27;Bart&#x27;</span>, <span class="number">80</span>)</span><br><span class="line">        s2 = Student(<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">100</span>)</span><br><span class="line">        self.assertEqual(s1.get_grade(), <span class="string">&#x27;A&#x27;</span>)</span><br><span class="line">        self.assertEqual(s2.get_grade(), <span class="string">&#x27;A&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_60_to_80</span>(<span class="params">self</span>):</span><br><span class="line">        s1 = Student(<span class="string">&#x27;Bart&#x27;</span>, <span class="number">60</span>)</span><br><span class="line">        s2 = Student(<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">79</span>)</span><br><span class="line">        self.assertEqual(s1.get_grade(), <span class="string">&#x27;B&#x27;</span>)</span><br><span class="line">        self.assertEqual(s2.get_grade(), <span class="string">&#x27;B&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_0_to_60</span>(<span class="params">self</span>):</span><br><span class="line">        s1 = Student(<span class="string">&#x27;Bart&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">        s2 = Student(<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">59</span>)</span><br><span class="line">        self.assertEqual(s1.get_grade(), <span class="string">&#x27;C&#x27;</span>)</span><br><span class="line">        self.assertEqual(s2.get_grade(), <span class="string">&#x27;C&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_invalid</span>(<span class="params">self</span>):</span><br><span class="line">        s1 = Student(<span class="string">&#x27;Bart&#x27;</span>, -<span class="number">1</span>)</span><br><span class="line">        s2 = Student(<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">101</span>)</span><br><span class="line">        <span class="keyword">with</span> self.assertRaises(ValueError):</span><br><span class="line">            s1.get_grade()</span><br><span class="line">        <span class="keyword">with</span> self.assertRaises(ValueError):</span><br><span class="line">            s2.get_grade()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    unittest.main()</span><br></pre></td></tr></table></figure>
 <p>修改后的代码为：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import unittest
-class Student(object):
-    def __init__(self, name, score):
-        self.name &#x3D; name
-        self.score &#x3D; score
-    def get_grade(self):
-        if self.score &gt;&#x3D; 60 and  self.score &lt; 80:
-            return &#39;B&#39;
-        elif self.score &gt;&#x3D; 80 and  self.score &lt;&#x3D; 100:
-            return &#39;A&#39;
-        elif self.score &gt;&#x3D; 0 and  self.score &lt; 60:
-            return &#39;C&#39;
-        else:
-            raise ValueError()
-
-class TestStudent(unittest.TestCase):
-
-    def test_80_to_100(self):
-        s1 &#x3D; Student(&#39;Bart&#39;, 80)
-        s2 &#x3D; Student(&#39;Lisa&#39;, 100)
-        self.assertEqual(s1.get_grade(), &#39;A&#39;)
-        self.assertEqual(s2.get_grade(), &#39;A&#39;)
-
-    def test_60_to_80(self):
-        s1 &#x3D; Student(&#39;Bart&#39;, 60)
-        s2 &#x3D; Student(&#39;Lisa&#39;, 79)
-        self.assertEqual(s1.get_grade(), &#39;B&#39;)
-        self.assertEqual(s2.get_grade(), &#39;B&#39;)
-
-    def test_0_to_60(self):
-        s1 &#x3D; Student(&#39;Bart&#39;, 0)
-        s2 &#x3D; Student(&#39;Lisa&#39;, 59)
-        self.assertEqual(s1.get_grade(), &#39;C&#39;)
-        self.assertEqual(s2.get_grade(), &#39;C&#39;)
-
-    def test_invalid(self):
-        s1 &#x3D; Student(&#39;Bart&#39;, -1)
-        s2 &#x3D; Student(&#39;Lisa&#39;, 101)
-        with self.assertRaises(ValueError):
-            s1.get_grade()
-        with self.assertRaises(ValueError):
-            s2.get_grade()
-
-if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
-    unittest.main()
-    
-#运行结果如下：
-....
-----------------------------------------------------------------------
-Ran 4 tests in 0.001s
-
-OK<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="文档测试"><a href="#文档测试" class="headerlink" title="文档测试"></a>文档测试</h2><p>文档测试（<code>doctest</code>）模块可以自动提取写在注释中的代码并执行测试。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, score</span>):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.score = score</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_grade</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> self.score &gt;= <span class="number">60</span> <span class="keyword">and</span>  self.score &lt; <span class="number">80</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;B&#x27;</span></span><br><span class="line">        <span class="keyword">elif</span> self.score &gt;= <span class="number">80</span> <span class="keyword">and</span>  self.score &lt;= <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;A&#x27;</span></span><br><span class="line">        <span class="keyword">elif</span> self.score &gt;= <span class="number">0</span> <span class="keyword">and</span>  self.score &lt; <span class="number">60</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;C&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestStudent</span>(unittest.TestCase):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_80_to_100</span>(<span class="params">self</span>):</span><br><span class="line">        s1 = Student(<span class="string">&#x27;Bart&#x27;</span>, <span class="number">80</span>)</span><br><span class="line">        s2 = Student(<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">100</span>)</span><br><span class="line">        self.assertEqual(s1.get_grade(), <span class="string">&#x27;A&#x27;</span>)</span><br><span class="line">        self.assertEqual(s2.get_grade(), <span class="string">&#x27;A&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_60_to_80</span>(<span class="params">self</span>):</span><br><span class="line">        s1 = Student(<span class="string">&#x27;Bart&#x27;</span>, <span class="number">60</span>)</span><br><span class="line">        s2 = Student(<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">79</span>)</span><br><span class="line">        self.assertEqual(s1.get_grade(), <span class="string">&#x27;B&#x27;</span>)</span><br><span class="line">        self.assertEqual(s2.get_grade(), <span class="string">&#x27;B&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_0_to_60</span>(<span class="params">self</span>):</span><br><span class="line">        s1 = Student(<span class="string">&#x27;Bart&#x27;</span>, <span class="number">0</span>)</span><br><span class="line">        s2 = Student(<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">59</span>)</span><br><span class="line">        self.assertEqual(s1.get_grade(), <span class="string">&#x27;C&#x27;</span>)</span><br><span class="line">        self.assertEqual(s2.get_grade(), <span class="string">&#x27;C&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_invalid</span>(<span class="params">self</span>):</span><br><span class="line">        s1 = Student(<span class="string">&#x27;Bart&#x27;</span>, -<span class="number">1</span>)</span><br><span class="line">        s2 = Student(<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">101</span>)</span><br><span class="line">        <span class="keyword">with</span> self.assertRaises(ValueError):</span><br><span class="line">            s1.get_grade()</span><br><span class="line">        <span class="keyword">with</span> self.assertRaises(ValueError):</span><br><span class="line">            s2.get_grade()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    unittest.main()</span><br><span class="line">    </span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">....</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Ran <span class="number">4</span> tests <span class="keyword">in</span> <span class="number">0.001</span>s</span><br><span class="line"></span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+<h2 id="文档测试">文档测试</h2>
+<p>文档测试（<code>doctest</code>）模块可以自动提取写在注释中的代码并执行测试。</p>
 <p><code>dectest</code>严格按照命令行的输入和输出来判断测试结果是否正确。若运行文档测试后没有输出，则说明程序是正确的，在测试异常时，可以用<code>...</code>表示中间的出错的信息。</p>
 <p>运行文档测试，需要<strong>先在代码的最后加上一下三行代码</strong>，然后在命令行中通过<code>python 文件名</code>来执行文档测试：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">if __name__&#x3D;&#x3D;&#39;__main__&#39;:
-    import doctest
-    doctest.testmod()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">import</span> doctest</span><br><span class="line">    doctest.testmod()</span><br></pre></td></tr></table></figure>
 <p>在模块正常导入时不会执行文档测试，只有在命令行直接运行时才执行文档测试。</p>
-<h3 id="练习题-2"><a href="#练习题-2" class="headerlink" title="练习题"></a>练习题</h3><p>对函数<code>fact(n)</code>编写doctest并执行：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">def fact(n):
-    &#39;&#39;&#39;
-    Calculate 1*2*...*n
-    
-    &gt;&gt;&gt; fact(1)
-    1
-    &gt;&gt;&gt; fact(10)
-    ?
-    &gt;&gt;&gt; fact(-1)
-    ?
-    &#39;&#39;&#39;
-    if n &lt; 1:
-        raise ValueError()
-    if n &#x3D;&#x3D; 1:
-        return 1
-    return n * fact(n - 1)
-
-if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
-    import doctest
-    doctest.testmod()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="练习题-2">练习题</h3>
+<p>对函数<code>fact(n)</code>编写doctest并执行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fact</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Calculate 1*2*...*n</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; fact(1)</span></span><br><span class="line"><span class="string">    1</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; fact(10)</span></span><br><span class="line"><span class="string">    ?</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; fact(-1)</span></span><br><span class="line"><span class="string">    ?</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> n &lt; <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError()</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> n * fact(n - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">import</span> doctest</span><br><span class="line">    doctest.testmod()</span><br></pre></td></tr></table></figure>
 <p>代码如下：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">def fact(n):
-    &#39;&#39;&#39;
-    Calculate 1*2*...*n
-    
-    &gt;&gt;&gt; fact(1)
-    1
-    &gt;&gt;&gt; fact(10)
-    3628800
-    &gt;&gt;&gt; fact(-1)
-    Traceback (most recent call last):
-    ...
-    ValueError
-    &#39;&#39;&#39;
-    if n &lt; 1:
-        raise ValueError()
-    if n &#x3D;&#x3D; 1:
-        return 1
-    return n * fact(n - 1)
-
-if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
-    import doctest
-    doctest.testmod()
-#运行结果为空<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fact</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Calculate 1*2*...*n</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; fact(1)</span></span><br><span class="line"><span class="string">    1</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; fact(10)</span></span><br><span class="line"><span class="string">    3628800</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; fact(-1)</span></span><br><span class="line"><span class="string">    Traceback (most recent call last):</span></span><br><span class="line"><span class="string">    ...</span></span><br><span class="line"><span class="string">    ValueError</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> n &lt; <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError()</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> n * fact(n - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">import</span> doctest</span><br><span class="line">    doctest.testmod()</span><br><span class="line"><span class="comment">#运行结果为空</span></span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -986,7 +779,7 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E3%80%81%E8%B0%83%E8%AF%95%E5%92%8C%E6%B5%8B%E8%AF%95"><span class="toc-number">1.</span> <span class="toc-text">错误、调试和测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">错误处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6python%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6-try-except-finally-%E3%80%82"><span class="toc-number">1.1.1.</span> <span class="toc-text">错误处理机制python的错误处理机制:try...except...finally..。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E6%A0%88"><span class="toc-number">1.1.2.</span> <span class="toc-text">调用栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E9%94%99%E8%AF%AF"><span class="toc-number">1.1.3.</span> <span class="toc-text">记录错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%9B%E5%87%BA%E9%94%99%E8%AF%AF"><span class="toc-number">1.1.4.</span> <span class="toc-text">抛出错误</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9Aprint"><span class="toc-number">1.2.1.</span> <span class="toc-text">方法一：print()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E6%96%AD%E8%A8%80-assert"><span class="toc-number">1.2.2.</span> <span class="toc-text">方法二：断言(assert)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9Alogging"><span class="toc-number">1.2.3.</span> <span class="toc-text">方法三：logging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%9B%9B%EF%BC%9Apdb"><span class="toc-number">1.2.4.</span> <span class="toc-text">方法四：pdb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%94%EF%BC%9Apdb-set-trace"><span class="toc-number">1.2.5.</span> <span class="toc-text">方法五：pdb.set_trace()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%85%AD%EF%BC%9AIDE"><span class="toc-number">1.2.6.</span> <span class="toc-text">方法六：IDE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.</span> <span class="toc-text">单元测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">运行单元测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setUp%E4%B8%8EtearDown"><span class="toc-number">1.3.2.</span> <span class="toc-text">setUp与tearDown</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">文档测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-2"><span class="toc-number">1.4.1.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E8%B0%83%E8%AF%95%E5%92%8C%E6%B5%8B%E8%AF%95"><span class="toc-number">1.</span> <span class="toc-text">错误、调试和测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">错误处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6python%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6try...except...finally.."><span class="toc-number">1.1.1.</span> <span class="toc-text">错误处理机制python的错误处理机制:try...except...finally..。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E6%A0%88"><span class="toc-number">1.1.2.</span> <span class="toc-text">调用栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E9%94%99%E8%AF%AF"><span class="toc-number">1.1.3.</span> <span class="toc-text">记录错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%9B%E5%87%BA%E9%94%99%E8%AF%AF"><span class="toc-number">1.1.4.</span> <span class="toc-text">抛出错误</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80print"><span class="toc-number">1.2.1.</span> <span class="toc-text">方法一：print()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E6%96%AD%E8%A8%80assert"><span class="toc-number">1.2.2.</span> <span class="toc-text">方法二：断言(assert)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89logging"><span class="toc-number">1.2.3.</span> <span class="toc-text">方法三：logging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%9B%9Bpdb"><span class="toc-number">1.2.4.</span> <span class="toc-text">方法四：pdb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%94pdb.set_trace"><span class="toc-number">1.2.5.</span> <span class="toc-text">方法五：pdb.set_trace()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%85%ADide"><span class="toc-number">1.2.6.</span> <span class="toc-text">方法六：IDE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.</span> <span class="toc-text">单元测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">运行单元测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setup%E4%B8%8Eteardown"><span class="toc-number">1.3.2.</span> <span class="toc-text">setUp与tearDown</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">文档测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-2"><span class="toc-number">1.4.1.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1336,18 +1129,6 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2456,6 +2237,16 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2486,29 +2277,14 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2526,9 +2302,24 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2539,16 +2330,6 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2566,11 +2347,6 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2579,6 +2355,11 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2616,19 +2397,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2639,6 +2410,16 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2662,6 +2443,11 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2672,29 +2458,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2702,9 +2468,19 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2712,19 +2488,24 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2757,6 +2538,16 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -2770,16 +2561,6 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2854,5 +2635,20 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

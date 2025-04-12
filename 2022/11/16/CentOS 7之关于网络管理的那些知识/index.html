@@ -344,7 +344,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">6.8k</span>阅读时长: <span class="post-count reading-time">28 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">6.5k</span>阅读时长: <span class="post-count reading-time">26 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -505,8 +505,13 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><h2 id="Linux常见目录"><a href="#Linux常见目录" class="headerlink" title="Linux常见目录"></a>Linux常见目录</h2><div class="table-container">
+        <h1 id="前置知识">前置知识</h1>
+<h2 id="linux常见目录">Linux常见目录</h2>
 <table>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 84%">
+</colgroup>
 <thead>
 <tr>
 <th>目录参数</th>
@@ -580,11 +585,16 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="网络管理协议"><a href="#网络管理协议" class="headerlink" title="网络管理协议"></a>网络管理协议</h2><h3 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h3><h4 id="TCP-IP协议体系"><a href="#TCP-IP协议体系" class="headerlink" title="TCP/IP协议体系"></a>TCP/IP协议体系</h4><p>TCP/IP协议主要包含传输控制协议（TCP）和网际协议（IP）。</p>
+<h2 id="网络管理协议">网络管理协议</h2>
+<h3 id="tcpip协议">TCP/IP协议</h3>
+<h4 id="tcpip协议体系">TCP/IP协议体系</h4>
+<p>TCP/IP协议主要包含传输控制协议（TCP）和网际协议（IP）。</p>
 <p>TCP/IP体系是一种分层结构，由基于硬件层次上的4个概念层次构成，从上往下看，即为应用层、传输层、网际互联层和网络接口层。</p>
-<div class="table-container">
 <table>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
 <thead>
 <tr>
 <th>TCP/IP层次</th>
@@ -610,144 +620,82 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h4 id="包（packet）"><a href="#包（packet）" class="headerlink" title="包（packet）"></a>包（packet）</h4><p>包（packet）是网络上传输的数据片段，也称为分组或IP数据报。用户数据按照规定划分为大小适中的若干组，每个组加上包头构成一个包，该过程便称为封装。网络上使用包为单位进行数据传输。</p>
+<h4 id="包packet">包（packet）</h4>
+<p>包（packet）是网络上传输的数据片段，也称为分组或IP数据报。用户数据按照规定划分为大小适中的若干组，每个组加上包头构成一个包，该过程便称为封装。网络上使用包为单位进行数据传输。</p>
 <p>包是一种统称，在不同的层次，包有不同的名字。如TCP/IP中称作帧，而IP层称之为IP数据报，TCP层称之为TCP报文等。</p>
-<h4 id="网络字节顺序"><a href="#网络字节顺序" class="headerlink" title="网络字节顺序"></a>网络字节顺序</h4><p>TCP/IP协议定义了一种所有机器在互联网分组的二进制字段中必须使用的网络标准字节顺序，与之对应的是主机字节顺序，主机字节顺序和各个主机密切相关。</p>
+<h4 id="网络字节顺序">网络字节顺序</h4>
+<p>TCP/IP协议定义了一种所有机器在互联网分组的二进制字段中必须使用的网络标准字节顺序，与之对应的是主机字节顺序，主机字节顺序和各个主机密切相关。</p>
 <p>传输时需遵循以下转换规则：<strong>主机字节顺序→网络字节顺序→主机字节顺序</strong>。</p>
 <p>即发送方将主机字节顺序的整数转换为网络字节顺序后发送出去，接收方收到数据后将网络字节顺序的整数转换为自己的主机字节顺序，然后再进行处理。</p>
-<h4 id="地址解析协议（ARP）"><a href="#地址解析协议（ARP）" class="headerlink" title="地址解析协议（ARP）"></a>地址解析协议（ARP）</h4><p>TCP/IP网络使用IP地址进行寻址，IP包在IP层实现路由选择，但IP包在网络接口层的传输却需要知道设备的物理地址，此时便需要一种IP地址到物理地址的转换协议ARP。</p>
+<h4 id="地址解析协议arp">地址解析协议（ARP）</h4>
+<p>TCP/IP网络使用IP地址进行寻址，IP包在IP层实现路由选择，但IP包在网络接口层的传输却需要知道设备的物理地址，此时便需要一种IP地址到物理地址的转换协议ARP。</p>
 <p>ARP协议是一种在以太网这种有广播能力的网络中解决地址转换问题的方法，该方法允许在不重新编译代码、不需维护一个集中式数据库的情况下，在网络中动态增加新机器。</p>
 <p>其原理为：当主机A想转换某一IP地址时，通过向网络中广播一个专门的报文分组，要求具有该IP地址的机器以其物理地址做出应答。所有主机都将收到这个请求，但只有符合条件的主机才辨认该IP地址，同时发回一个包括其物理地址的应答。主机A收到应答时便知道该IP地址对应的物理地址，并使用这个地址将数据分组发过去。</p>
-<h3 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h3><p>UDP是一种无连接的传输层协议，主要用于不要求分组顺序到达的传输中。其优点为资源消耗小、处理速度快。由于其不提供数据包分组、组装和不能对数据包进行排序的缺点，当报文发送后，无法得知其是否安全完整到达的，因此UDP协议丢包会比较严重。</p>
-<h3 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h3><p>ICMP协议是Internet控制报文协议，属于TCP/IP协议族的一个子协议，用于在IP主机、路由器之间传递控制信息。控制信息是指网络是否通畅、主机是否可达、路由是否可用等网络本身的信息，<strong>其唯一的功能是报告问题</strong>，而不是纠正错误，纠错的任务由发送方完成。</p>
-<h1 id="网络管理命令"><a href="#网络管理命令" class="headerlink" title="网络管理命令"></a>网络管理命令</h1><h2 id="Ping：检查网络连接速度及网络是否通畅"><a href="#Ping：检查网络连接速度及网络是否通畅" class="headerlink" title="Ping：检查网络连接速度及网络是否通畅"></a>Ping：检查网络连接速度及网络是否通畅</h2><p>ping常用于测试与目标主机或域名是否可达。ping的结果通常是可信的（部分服务器设置了禁止ping的除外）</p>
+<h3 id="udp协议">UDP协议</h3>
+<p>UDP是一种无连接的传输层协议，主要用于不要求分组顺序到达的传输中。其优点为资源消耗小、处理速度快。由于其不提供数据包分组、组装和不能对数据包进行排序的缺点，当报文发送后，无法得知其是否安全完整到达的，因此UDP协议丢包会比较严重。</p>
+<h3 id="icmp协议">ICMP协议</h3>
+<p>ICMP协议是Internet控制报文协议，属于TCP/IP协议族的一个子协议，用于在IP主机、路由器之间传递控制信息。控制信息是指网络是否通畅、主机是否可达、路由是否可用等网络本身的信息，<strong>其唯一的功能是报告问题</strong>，而不是纠正错误，纠错的任务由发送方完成。</p>
+<h1 id="网络管理命令">网络管理命令</h1>
+<h2 id="ping检查网络连接速度及网络是否通畅">Ping：检查网络连接速度及网络是否通畅</h2>
+<p>ping常用于测试与目标主机或域名是否可达。ping的结果通常是可信的（部分服务器设置了禁止ping的除外）</p>
 <p>ping命令不会自动终止，需要按”ctrl+c”终止，或是用参数”<code>-c</code>“指定要求完成的回应次数。</p>
 <p>在CenOS 7中，ping的常用命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#ping目的ip地址如192.168.3.100
-ping 192.168.3.100
-
-#ping外网域名如www.baidu.com
-ping www.baidu.com
-
-#ping目的ip地址n次，下面命令中的n为次数
-ping -c n 192.168.3.100
-
-#以0.01s的时间间隔来ping目的ip地址3次，下面命令中的0.01为指定的时间间隔0.01秒
-ping -c 3 -i 0.01 192.168.3.100<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="ifconfig-配置网络或显示当前网络接口状态"><a href="#ifconfig-配置网络或显示当前网络接口状态" class="headerlink" title="ifconfig:配置网络或显示当前网络接口状态"></a>ifconfig:配置网络或显示当前网络接口状态</h2><p>ifonfig命令可以用于查看、配置、启用或禁用指定网络接口，如配置网卡的IP地址、掩码、广播地址、网关等。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ping目的ip地址如192.168.3.100</span></span><br><span class="line">ping 192.168.3.100</span><br><span class="line"></span><br><span class="line"><span class="comment">#ping外网域名如www.baidu.com</span></span><br><span class="line">ping www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment">#ping目的ip地址n次，下面命令中的n为次数</span></span><br><span class="line">ping -c n 192.168.3.100</span><br><span class="line"></span><br><span class="line"><span class="comment">#以0.01s的时间间隔来ping目的ip地址3次，下面命令中的0.01为指定的时间间隔0.01秒</span></span><br><span class="line">ping -c 3 -i 0.01 192.168.3.100</span><br></pre></td></tr></table></figure>
+<h2 id="ifconfig配置网络或显示当前网络接口状态">ifconfig:配置网络或显示当前网络接口状态</h2>
+<p>ifonfig命令可以用于查看、配置、启用或禁用指定网络接口，如配置网卡的IP地址、掩码、广播地址、网关等。</p>
 <p>在CenOS 7中，查看网卡基本信息：</p>
-<p><img src="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/1.png" alt></p>
+<p><img src="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/1.png"></p>
 <p>查看指定网络接口ens33的信息：</p>
-<p><img src="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/2.png" alt></p>
+<p><img src="/2022/11/16/CentOS%207%E4%B9%8B%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E7%9A%84%E9%82%A3%E4%BA%9B%E7%9F%A5%E8%AF%86/2.png"></p>
 <p>其中：</p>
 <ul>
-<li><p>第一行：UP表示该网络接口为启用状态。RUNNING表示网卡设备已连接，MULTICAST表示组播，mtu为数据包最大传输单元</p>
-</li>
-<li><p>第二行：网卡IP、子网掩码、广播地址</p>
-</li>
-<li>第三行：IPv6地址</li>
-<li>第四行：ether为网卡的MAC地址，Ethernet表示连接类型</li>
-<li>第五行：接收数据包个数、大小统计信息</li>
-<li>第六行：异常接收数据包的数量，如丢包量、错误等</li>
-<li>第七行：发送数据包个数、大小统计信息</li>
-<li>第八行：产生错误数据包的数量，如丢包量，错误等</li>
+<li><p>第一行：UP表示该网络接口为启用状态。RUNNING表示网卡设备已连接，MULTICAST表示组播，mtu为数据包最大传输单元</p></li>
+<li><p>第二行：网卡IP、子网掩码、广播地址</p></li>
+<li><p>第三行：IPv6地址</p></li>
+<li><p>第四行：ether为网卡的MAC地址，Ethernet表示连接类型</p></li>
+<li><p>第五行：接收数据包个数、大小统计信息</p></li>
+<li><p>第六行：异常接收数据包的数量，如丢包量、错误等</p></li>
+<li><p>第七行：发送数据包个数、大小统计信息</p></li>
+<li><p>第八行：产生错误数据包的数量，如丢包量，错误等</p></li>
 </ul>
 <p>ifconfig的常用命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#关闭ens33网卡
-ifconfig ens33 down
-
-#开启ens33网卡
-ifconfig ens33 up
-
-#配置ip地址
-ifconfig ens33:1 192.168.100.100
-
-#配置ip地址和子网掩码
-ifconfig ens33:1 192.168.100.100 netmask 255.255.255.0
-
-#配置ip地址、子网掩码和广播地址
-ifconfig ens33:1 192.168.100.100 netmask 255.255.255.0 broadcast 192.168.1.255
-
-#删除ip地址
-ifconfig ens33 del 192.168.1.100
-
-#启用arp协议
-ifconfig ens33 arp
-
-#禁用arp协议
-ifconfig ens33 -arp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="route：显示添加或修改路由表"><a href="#route：显示添加或修改路由表" class="headerlink" title="route：显示添加或修改路由表"></a>route：显示添加或修改路由表</h2><p>route命令用于查看或编辑计算机的IP路由表。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#关闭ens33网卡</span></span><br><span class="line">ifconfig ens33 down</span><br><span class="line"></span><br><span class="line"><span class="comment">#开启ens33网卡</span></span><br><span class="line">ifconfig ens33 up</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置ip地址</span></span><br><span class="line">ifconfig ens33:1 192.168.100.100</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置ip地址和子网掩码</span></span><br><span class="line">ifconfig ens33:1 192.168.100.100 netmask 255.255.255.0</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置ip地址、子网掩码和广播地址</span></span><br><span class="line">ifconfig ens33:1 192.168.100.100 netmask 255.255.255.0 broadcast 192.168.1.255</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除ip地址</span></span><br><span class="line">ifconfig ens33 del 192.168.1.100</span><br><span class="line"></span><br><span class="line"><span class="comment">#启用arp协议</span></span><br><span class="line">ifconfig ens33 arp</span><br><span class="line"></span><br><span class="line"><span class="comment">#禁用arp协议</span></span><br><span class="line">ifconfig ens33 -arp</span><br></pre></td></tr></table></figure>
+<h2 id="route显示添加或修改路由表">route：显示添加或修改路由表</h2>
+<p>route命令用于查看或编辑计算机的IP路由表。</p>
 <p>route的常用命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#显示所有路由表
-route -n
-#添加一条路由：发往192.168.60.0网段的全部要经过网关192.168.19.1
-route add -net 192.168.18.0 netmask 255.255.255.0 gw 192.168.18.2
-#删除一条路由：删除时不需要网关
-route del -net 192.168.18.0 netmask 255.255.255.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="scp：Linux系统之间复制文件和目录"><a href="#scp：Linux系统之间复制文件和目录" class="headerlink" title="scp：Linux系统之间复制文件和目录"></a>scp：Linux系统之间复制文件和目录</h2><p>scp可以将本地文件传送到远程主机或从远程主机拉取文件到本地。注意由于各发行版本不同，scp语法也不同。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示所有路由表</span></span><br><span class="line">route -n</span><br><span class="line"><span class="comment">#添加一条路由：发往192.168.60.0网段的全部要经过网关192.168.19.1</span></span><br><span class="line">route add -net 192.168.18.0 netmask 255.255.255.0 gw 192.168.18.2</span><br><span class="line"><span class="comment">#删除一条路由：删除时不需要网关</span></span><br><span class="line">route del -net 192.168.18.0 netmask 255.255.255.0</span><br></pre></td></tr></table></figure>
+<h2 id="scplinux系统之间复制文件和目录">scp：Linux系统之间复制文件和目录</h2>
+<p>scp可以将本地文件传送到远程主机或从远程主机拉取文件到本地。注意由于各发行版本不同，scp语法也不同。</p>
 <p>scp使用方法如下所示：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#将本地&#x2F;root&#x2F;lk目录下所有文件传输到远程主机192.168.3.100的&#x2F;home&#x2F;lk&#x2F;cpfile目录下：
-scp -r &#x2F;root&#x2F;lk root@192.168.3.100:&#x2F;home&#x2F;lk&#x2F;cpfile
-
-#将远程主机192.168.3.100的&#x2F;home&#x2F;lk&#x2F;目录下所有文件全部复制到本地的&#x2F;root目录下：
-scp -r root@192.168.3.100:&#x2F;home&#x2F;lk &#x2F;root
-
-#使用端口号4588将本地文件test.py传送至远程主机198.168.3.100的&#x2F;usr目录下：
-scp -P 4588 test.py root@192.168.3.100:&#x2F;usr
-
-#使用端口号4588将远程主机198.168.3.100的&#x2F;etc&#x2F;1.txt文件复制到本地的&#x2F;root目录下：
-scp -P 4588 root@192.168.3.100:&#x2F;etc&#x2F;1.txt &#x2F;root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="rsync：数据镜像备份工具"><a href="#rsync：数据镜像备份工具" class="headerlink" title="rsync：数据镜像备份工具"></a>rsync：数据镜像备份工具</h2><p>rsync是Linux系统下常用的数据镜像备份工具，用于在不同的主机之间同步文件。除了单个文件外，rsync还可以保存整个目录树和文件系统，可以增量同步，并保持文件原来的属性，数据传输过程是加密的，保证数据的安全。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将本地/root/lk目录下所有文件传输到远程主机192.168.3.100的/home/lk/cpfile目录下：</span></span><br><span class="line">scp -r /root/lk root@192.168.3.100:/home/lk/cpfile</span><br><span class="line"></span><br><span class="line"><span class="comment">#将远程主机192.168.3.100的/home/lk/目录下所有文件全部复制到本地的/root目录下：</span></span><br><span class="line">scp -r root@192.168.3.100:/home/lk /root</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用端口号4588将本地文件test.py传送至远程主机198.168.3.100的/usr目录下：</span></span><br><span class="line">scp -P 4588 test.py root@192.168.3.100:/usr</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用端口号4588将远程主机198.168.3.100的/etc/1.txt文件复制到本地的/root目录下：</span></span><br><span class="line">scp -P 4588 root@192.168.3.100:/etc/1.txt /root</span><br></pre></td></tr></table></figure>
+<h2 id="rsync数据镜像备份工具">rsync：数据镜像备份工具</h2>
+<p>rsync是Linux系统下常用的数据镜像备份工具，用于在不同的主机之间同步文件。除了单个文件外，rsync还可以保存整个目录树和文件系统，可以增量同步，并保持文件原来的属性，数据传输过程是加密的，保证数据的安全。</p>
 <p><strong>rsync不仅可以远程同步数据，还可以本地同步数据</strong>。与cp或scp不同的是，<strong>使用rsync备份数据时不会直接覆盖已经存在的数据</strong>，而是先判断已经存在的数据和新数据的差异，只有数据不同时才会把不相同的部分覆盖。</p>
 <p>rsync使用方法如下所示：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#将本地&#x2F;etc&#x2F;passwd文件同步到本地的&#x2F;tmp&#x2F;目录下，并改名为1.txt
-rsync -av &#x2F;etc&#x2F;passwd &#x2F;tmp&#x2F;1.txt
-
-#将本地&#x2F;etc&#x2F;passwd文件备份到远程主机192.168.3.100的&#x2F;tmp&#x2F;目录下，并改名为1.txt
-rsync -av &#x2F;etc&#x2F;passwd 192.168.3.100:&#x2F;tmp&#x2F;1.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="netstat：显示网络连接、路由表或接口状态"><a href="#netstat：显示网络连接、路由表或接口状态" class="headerlink" title="netstat：显示网络连接、路由表或接口状态"></a>netstat：显示网络连接、路由表或接口状态</h2><p>netstat命令用于监控系统网络配置和工作状况，可以显示内核路由表、活动的网络状态以及每个网络接口有用的统计数字。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将本地/etc/passwd文件同步到本地的/tmp/目录下，并改名为1.txt</span></span><br><span class="line">rsync -av /etc/passwd /tmp/1.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">#将本地/etc/passwd文件备份到远程主机192.168.3.100的/tmp/目录下，并改名为1.txt</span></span><br><span class="line">rsync -av /etc/passwd 192.168.3.100:/tmp/1.txt</span><br></pre></td></tr></table></figure>
+<h2 id="netstat显示网络连接路由表或接口状态">netstat：显示网络连接、路由表或接口状态</h2>
+<p>netstat命令用于监控系统网络配置和工作状况，可以显示内核路由表、活动的网络状态以及每个网络接口有用的统计数字。</p>
 <p>netstat的常用命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#显示所有端口，包含UDP和TCP端口
-netstat -a|head -4
-#显示所有TCP端口
-netstat -at
-#显示所有UDP端口
-netstat -au
-#显示所有处于监听状态的端口并以数字方式显示而非服务名
-netstat -ln
-#显示所有TCP端口并显示对应的进程名称或进程号
-netstat -plnt
-#显示核心路由信息
-netstat -r
-#显示网络接口列表
-netstat -i
-#统计各个TCP连接的各个状态对应的数量
-netstat -plinta|sed &#39;1,2d&#39;|awk &#39;&#123;print $6&#125;&#39;|sort|uniq -c<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="traceroute：探测至目的地址的路由信息"><a href="#traceroute：探测至目的地址的路由信息" class="headerlink" title="traceroute：探测至目的地址的路由信息"></a>traceroute：探测至目的地址的路由信息</h2><p>traceroute跟踪数据包到达网络主机所经过的路由，其原理是试图以最小的TTL发出探测包来跟踪数据包到达目标主机所经过的网关，然后监听一个来自网关ICMP的应答。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示所有端口，包含UDP和TCP端口</span></span><br><span class="line">netstat -a|<span class="built_in">head</span> -4</span><br><span class="line"><span class="comment">#显示所有TCP端口</span></span><br><span class="line">netstat -at</span><br><span class="line"><span class="comment">#显示所有UDP端口</span></span><br><span class="line">netstat -au</span><br><span class="line"><span class="comment">#显示所有处于监听状态的端口并以数字方式显示而非服务名</span></span><br><span class="line">netstat -<span class="built_in">ln</span></span><br><span class="line"><span class="comment">#显示所有TCP端口并显示对应的进程名称或进程号</span></span><br><span class="line">netstat -plnt</span><br><span class="line"><span class="comment">#显示核心路由信息</span></span><br><span class="line">netstat -r</span><br><span class="line"><span class="comment">#显示网络接口列表</span></span><br><span class="line">netstat -i</span><br><span class="line"><span class="comment">#统计各个TCP连接的各个状态对应的数量</span></span><br><span class="line">netstat -plinta|sed <span class="string">&#x27;1,2d&#x27;</span>|awk <span class="string">&#x27;&#123;print $6&#125;&#x27;</span>|<span class="built_in">sort</span>|<span class="built_in">uniq</span> -c</span><br></pre></td></tr></table></figure>
+<h2 id="traceroute探测至目的地址的路由信息">traceroute：探测至目的地址的路由信息</h2>
+<p>traceroute跟踪数据包到达网络主机所经过的路由，其原理是试图以最小的TTL发出探测包来跟踪数据包到达目标主机所经过的网关，然后监听一个来自网关ICMP的应答。</p>
 <p>traceroute的常用命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#先检查主机与www.baidu.com之间的网络是否通畅
-ping www.baidu.com
-#显示本地主机到www.baidu.com所经过的路由信息
-traceroute -n www.baidu.com
-#运行结果的每行记录对应一跳，每跳表示一个网关，最大30跳。每行有3个时间，单位是ms。星号则表示ICMP信息没有返回<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="telnet：测试、登录或控制远程主机"><a href="#telnet：测试、登录或控制远程主机" class="headerlink" title="telnet：测试、登录或控制远程主机"></a>telnet：测试、登录或控制远程主机</h2><p>telnet通常用来远程登录。在客户端使用telnet在程序中输入命令，可以在本地控制服务器。由于telnet采用明文传送报文，安全性较差。telnet可以确定远程服务端口的状态，以便确认服务是否正常。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先检查主机与www.baidu.com之间的网络是否通畅</span></span><br><span class="line">ping www.baidu.com</span><br><span class="line"><span class="comment">#显示本地主机到www.baidu.com所经过的路由信息</span></span><br><span class="line">traceroute -n www.baidu.com</span><br><span class="line"><span class="comment">#运行结果的每行记录对应一跳，每跳表示一个网关，最大30跳。每行有3个时间，单位是ms。星号则表示ICMP信息没有返回</span></span><br></pre></td></tr></table></figure>
+<h2 id="telnet测试登录或控制远程主机">telnet：测试、登录或控制远程主机</h2>
+<p>telnet通常用来远程登录。在客户端使用telnet在程序中输入命令，可以在本地控制服务器。由于telnet采用明文传送报文，安全性较差。telnet可以确定远程服务端口的状态，以便确认服务是否正常。</p>
 <p>telnet常用命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#检查198.168.3.100对应的56789端口服务是否正常
-telnet 198.168.3.100 56789
-#检查www.pjp.net对应的80端口服务是否正常
-telnet www.php.net 80<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="wget：下载网络文件"><a href="#wget：下载网络文件" class="headerlink" title="wget：下载网络文件"></a>wget：下载网络文件</h2><p>wget可以断点续传，同时支持FTP或HTTP协议下载，并可以设置代理服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查198.168.3.100对应的56789端口服务是否正常</span></span><br><span class="line">telnet 198.168.3.100 56789</span><br><span class="line"><span class="comment">#检查www.pjp.net对应的80端口服务是否正常</span></span><br><span class="line">telnet www.php.net 80</span><br></pre></td></tr></table></figure>
+<h2 id="wget下载网络文件">wget：下载网络文件</h2>
+<p>wget可以断点续传，同时支持FTP或HTTP协议下载，并可以设置代理服务器。</p>
 <p>wgett常用命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#下载文件http:&#x2F;&#x2F;ftp.gnu.org&#x2F;gnu&#x2F;wget&#x2F;wget-1.14.tar.gz
-wget http:&#x2F;&#x2F;ftp.gnu.org&#x2F;gnu&#x2F;wget&#x2F;wget-1.14.tar.gz
-#断点续传
-wget -c http:&#x2F;&#x2F;ftp.gnu.org&#x2F;gnu&#x2F;wget&#x2F;wget-1.14.tar.gz
-#批量下载，其中download.txt文件里是一系列网址
-wget -i download.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="Linux网络配置"><a href="#Linux网络配置" class="headerlink" title="Linux网络配置"></a>Linux网络配置</h1><p>与Linux网络配置相关的文件主要有以下这些：</p>
-<div class="table-container">
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载文件http://ftp.gnu.org/gnu/wget/wget-1.14.tar.gz</span></span><br><span class="line">wget http://ftp.gnu.org/gnu/wget/wget-1.14.tar.gz</span><br><span class="line"><span class="comment">#断点续传</span></span><br><span class="line">wget -c http://ftp.gnu.org/gnu/wget/wget-1.14.tar.gz</span><br><span class="line"><span class="comment">#批量下载，其中download.txt文件里是一系列网址</span></span><br><span class="line">wget -i download.txt</span><br></pre></td></tr></table></figure>
+<h1 id="linux网络配置">Linux网络配置</h1>
+<p>与Linux网络配置相关的文件主要有以下这些：</p>
 <table>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
 <thead>
 <tr>
 <th>目录</th>
@@ -777,312 +725,76 @@ wget -i download.txt<span aria-hidden="true" class="line-numbers-rows"><span></s
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="配置Linux系统的IP地址"><a href="#配置Linux系统的IP地址" class="headerlink" title="配置Linux系统的IP地址"></a>配置Linux系统的IP地址</h2><p>可以通过终端命令直接设置主机的IP地址，如想设置在系统重启后依然生效，可以通过设置对应的网络端口文件。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">oot@localhost admin]# cat &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33
-
-TYPE&#x3D;&quot;Ethernet&quot;  #设备连接类型，此处为以太网
-PROXY_METHOD&#x3D;&quot;none&quot;  
-BROWSER_ONLY&#x3D;&quot;no&quot;
-BOOTPROTO&#x3D;&quot;dhcp&quot;  #使用动态IP
-DEFROUTE&#x3D;&quot;yes&quot;  #是否为默认路由
-IPV4_FAILURE_FATAL&#x3D;&quot;no&quot;
-IPV6INIT&#x3D;&quot;yes&quot;
-IPV6_AUTOCONF&#x3D;&quot;yes&quot;
-IPV6_DEFROUTE&#x3D;&quot;yes&quot;
-IPV6_FAILURE_FATAL&#x3D;&quot;no&quot;
-IPV6_ADDR_GEN_MODE&#x3D;&quot;stable-privacy&quot;
-NAME&#x3D;&quot;ens33&quot;
-UUID&#x3D;&quot;cc581056-9262-44ab-877f-645d0b306352&quot;
-DEVICE&#x3D;&quot;ens33&quot;
-ONBOOT&#x3D;&quot;yes&quot;  #系统启动时是否设置此网络接口
- 
-#可以使用命令
-vim &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33
-#将BOOTPROTO&#x3D;&quot;dhcp&quot; 修改为BOOTPROTO&#x3D;none 后，增加以下字段。按i键即可输入，输入完成后按下Esc键，输入冒号：和wq将更改保存后退出
-
-IPADDR0&#x3D;设定的ip地址
-PREFIX0&#x3D;设定的子网掩码
-GATEWAT0&#x3D;设定的网关
-DNS1&#x3D;DNS服务器地址1
-DNS2&#x3D;DNS服务器地址2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="配置linux系统的ip地址">配置Linux系统的IP地址</h2>
+<p>可以通过终端命令直接设置主机的IP地址，如想设置在系统重启后依然生效，可以通过设置对应的网络端口文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">oot@localhost admin]<span class="comment"># cat /etc/sysconfig/network-scripts/ifcfg-ens33</span></span><br><span class="line"></span><br><span class="line">TYPE=<span class="string">&quot;Ethernet&quot;</span>  <span class="comment">#设备连接类型，此处为以太网</span></span><br><span class="line">PROXY_METHOD=<span class="string">&quot;none&quot;</span>  </span><br><span class="line">BROWSER_ONLY=<span class="string">&quot;no&quot;</span></span><br><span class="line">BOOTPROTO=<span class="string">&quot;dhcp&quot;</span>  <span class="comment">#使用动态IP</span></span><br><span class="line">DEFROUTE=<span class="string">&quot;yes&quot;</span>  <span class="comment">#是否为默认路由</span></span><br><span class="line">IPV4_FAILURE_FATAL=<span class="string">&quot;no&quot;</span></span><br><span class="line">IPV6INIT=<span class="string">&quot;yes&quot;</span></span><br><span class="line">IPV6_AUTOCONF=<span class="string">&quot;yes&quot;</span></span><br><span class="line">IPV6_DEFROUTE=<span class="string">&quot;yes&quot;</span></span><br><span class="line">IPV6_FAILURE_FATAL=<span class="string">&quot;no&quot;</span></span><br><span class="line">IPV6_ADDR_GEN_MODE=<span class="string">&quot;stable-privacy&quot;</span></span><br><span class="line">NAME=<span class="string">&quot;ens33&quot;</span></span><br><span class="line">UUID=<span class="string">&quot;cc581056-9262-44ab-877f-645d0b306352&quot;</span></span><br><span class="line">DEVICE=<span class="string">&quot;ens33&quot;</span></span><br><span class="line">ONBOOT=<span class="string">&quot;yes&quot;</span>  <span class="comment">#系统启动时是否设置此网络接口</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">#可以使用命令</span></span><br><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line"><span class="comment">#将BOOTPROTO=&quot;dhcp&quot; 修改为BOOTPROTO=none 后，增加以下字段。按i键即可输入，输入完成后按下Esc键，输入冒号：和wq将更改保存后退出</span></span><br><span class="line"></span><br><span class="line">IPADDR0=设定的ip地址</span><br><span class="line">PREFIX0=设定的子网掩码</span><br><span class="line">GATEWAT0=设定的网关</span><br><span class="line">DNS1=DNS服务器地址1</span><br><span class="line">DNS2=DNS服务器地址2</span><br></pre></td></tr></table></figure>
 <p>设置完接口文件后，需要重启网络服务才能生效，重启后使用ifconfig查看设置是否生效：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">service network restart<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
 <p>同一个网络接口可以使用子接口的方式设置多个IP地址：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#配置网络接口ens33子接口1的ip地址和子网掩码
-ifconfig ens33:1 192.168.100.100 netmask 255.255.255.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置网络接口ens33子接口1的ip地址和子网掩码</span></span><br><span class="line">ifconfig ens33:1 192.168.100.100 netmask 255.255.255.0</span><br></pre></td></tr></table></figure>
 <p>当服务器重启或网络服务重启后，子接口的配置将消失。若需要重启后仍生效，可以将配置子接口命令加入/etc/rc.local文件中。</p>
-<h2 id="使用hostname设置主机名"><a href="#使用hostname设置主机名" class="headerlink" title="使用hostname设置主机名"></a>使用hostname设置主机名</h2><p>主机名是识别某个计算机在网络中的标识。在单机情况下，主机名可任意设置。执行以下命令修改主机名，重新登录后可以发现主机名已改变。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hostname mycomputername<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="使用hostname设置主机名">使用hostname设置主机名</h2>
+<p>主机名是识别某个计算机在网络中的标识。在单机情况下，主机名可任意设置。执行以下命令修改主机名，重新登录后可以发现主机名已改变。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname mycomputername</span><br></pre></td></tr></table></figure>
 <p>如要修改重启后依然生效，可以将主机名写入文件/etc/hostname中。</p>
-<h2 id="设置默认网关"><a href="#设置默认网关" class="headerlink" title="设置默认网关"></a>设置默认网关</h2><p>设置好IP地址后，若要访问其他的子网或Internet，用户还需要设置路由，这里采用设置默认网关的方法来设置路由。</p>
+<h2 id="设置默认网关">设置默认网关</h2>
+<p>设置好IP地址后，若要访问其他的子网或Internet，用户还需要设置路由，这里采用设置默认网关的方法来设置路由。</p>
 <p>在Linux中，设置默认网关有两种方法：</p>
 <ul>
-<li><p>第一种是直接使用route命令。在设置默认网关之前，先用<code>route -n</code> 命令查看路由表，而后执行下面命令设置网关：</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">route add default gw 192.168.10.254<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>  若不想每次开机都执行route命令，则应把要执行的命令写入/etc/rc.d/re.local文件中。</p>
-</li>
+<li><p>第一种是直接使用route命令。在设置默认网关之前，先用<code>route -n</code>
+命令查看路由表，而后执行下面命令设置网关：</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route add default gw 192.168.10.254</span><br></pre></td></tr></table></figure></p>
+<p>若不想每次开机都执行route命令，则应把要执行的命令写入/etc/rc.d/re.local文件中。</p></li>
 <li><p>第二种是在/ect/sysconfig/network-scripts/ifcfg-接口文件中添加如下字段：</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">GATEWAY&#x3D;192.168.10.254<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>  然后重启网络服务来使设置生效。</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">service network restart<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GATEWAY=192.168.10.254</span><br></pre></td></tr></table></figure></p>
+<p>然后重启网络服务来使设置生效。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure></p></li>
 </ul>
-<h2 id="设置DNS服务器"><a href="#设置DNS服务器" class="headerlink" title="设置DNS服务器"></a>设置DNS服务器</h2><p>设置DNS服务器只需修改/etc/resolv.conf文件即可：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost admin]# cat &#x2F;etc&#x2F;resolv.conf
-
-# Generated by NetworkManager
-search localdomain
-nameserver 192.168.18.2  #第一名字服务器
-
-#如需添加DNS服务器，直接在下面添加nameserver即可，注意nameserver指定的DNS服务器只有前三条生效
-#resolv.conf文件还有其他参数如下：
-option rotate  #在这DNS server之间轮询
-option timeout:1  #表示解析超时时间1s（默认为5s）
-attempts:2  #表示解析域名尝试的次数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="FTP服务器"><a href="#FTP服务器" class="headerlink" title="FTP服务器"></a>FTP服务器</h1><h2 id="FTP服务概述"><a href="#FTP服务概述" class="headerlink" title="FTP服务概述"></a>FTP服务概述</h2><p>FTP文件共享基于TCP/IP协议，是一种通用性比较强的网络文件共享方式。FTP是仅基于TCP的服务，不支持UDP。FTP使用两个端口，一个数据端口和一个命令端口（控制端口）。通常这两个端口是21（命令端口）和20（数据端口）。由于FTP工作方式的不同，数据端口并不总是20，分为主动FTP和被动FTP。</p>
+<h2 id="设置dns服务器">设置DNS服务器</h2>
+<p>设置DNS服务器只需修改/etc/resolv.conf文件即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost admin]<span class="comment"># cat /etc/resolv.conf</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Generated by NetworkManager</span></span><br><span class="line">search localdomain</span><br><span class="line">nameserver 192.168.18.2  <span class="comment">#第一名字服务器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#如需添加DNS服务器，直接在下面添加nameserver即可，注意nameserver指定的DNS服务器只有前三条生效</span></span><br><span class="line"><span class="comment">#resolv.conf文件还有其他参数如下：</span></span><br><span class="line">option rotate  <span class="comment">#在这DNS server之间轮询</span></span><br><span class="line">option <span class="built_in">timeout</span>:1  <span class="comment">#表示解析超时时间1s（默认为5s）</span></span><br><span class="line">attempts:2  <span class="comment">#表示解析域名尝试的次数</span></span><br></pre></td></tr></table></figure>
+<h1 id="ftp服务器">FTP服务器</h1>
+<h2 id="ftp服务概述">FTP服务概述</h2>
+<p>FTP文件共享基于TCP/IP协议，是一种通用性比较强的网络文件共享方式。FTP是仅基于TCP的服务，不支持UDP。FTP使用两个端口，一个数据端口和一个命令端口（控制端口）。通常这两个端口是21（命令端口）和20（数据端口）。由于FTP工作方式的不同，数据端口并不总是20，分为主动FTP和被动FTP。</p>
 <ul>
-<li><p>主动FTP</p>
+<li>主动FTP
 <ul>
 <li>主动模式是从服务器向客户端发起连接。主动模式下，服务端开启的是20和21端口，客户端开启的是1024以上的端口</li>
-</ul>
-</li>
-<li><p>被动FTP</p>
+</ul></li>
+<li>被动FTP
 <ul>
 <li>被动模式是客户端向服务端发起连接。被动模式下，服务端开启的是21命令端口和大于1024的数据连接端口，客户端开启的是大于1024的两个端口</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>两者的共同点是都使用21端口进行用户验证及管理，差别在于传送数据的方式不同。</p>
-<h2 id="vsftp的安装与配置"><a href="#vsftp的安装与配置" class="headerlink" title="vsftp的安装与配置"></a>vsftp的安装与配置</h2><p>在Linux系统下，vsftp是一款应用比较广泛的FTP软件，其特点是小巧轻快、安全易用。</p>
-<h3 id="vsftp安装"><a href="#vsftp安装" class="headerlink" title="vsftp安装"></a>vsftp安装</h3><p>使用yum工具安装vsftp：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#使用yum工具下载vsftp
-yum install -y vsftpd
-#使用rpm安装vsftp
-rpm -qa|grep vsftp
-#安装依赖的库文件
-yum install -y libcap libcap-devel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="匿名FTP设置"><a href="#匿名FTP设置" class="headerlink" title="匿名FTP设置"></a>匿名FTP设置</h3><p>这种运行匿名用户访问并上传文件，配置文件路径一般为<code>/etc/vsftpd.conf</code>，若是使用rpm包安装，则配置文件位于<code>/etc/vsftpd/vsftpd.conf</code>。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#将默认目录赋予用户ftp权限以便可以上传文件
-[root@localhost admin]# chown -R ftp.users &#x2F;var&#x2F;ftp&#x2F;pub&#x2F;
-#取消配置文件中的注释并显示有效行
-[root@localhost admin]# grep -v ^# &#x2F;etc&#x2F;vsftpd&#x2F;vsftpd.conf
-anonymous_enable&#x3D;YES  #允许匿名用户登录和上传
-local_enable&#x3D;YES  
-write_enable&#x3D;YES  #允许写
-local_umask&#x3D;022  
-dirmessage_enable&#x3D;YES
-xferlog_enable&#x3D;YES
-connect_from_port_20&#x3D;YES
-xferlog_std_format&#x3D;YES
-listen&#x3D;NO #是否允许在监听
-listen_ipv6&#x3D;YES #是否允许IPv6上的监听
-
-pam_service_name&#x3D;vsftpd
-userlist_enable&#x3D;YES
-tcp_wrappers&#x3D;YES
-
-#配置文件使用vim &#x2F;etc&#x2F;vsftpd&#x2F;vsftpd.conf修改为如下：
-anonymous_enable&#x3D;YES
-local_enable&#x3D;YES
-write_enable&#x3D;YES
-local_umask&#x3D;022
-anon_upload_enable&#x3D;YES
-dirmessage_enable&#x3D;YES
-xferlog_enable&#x3D;YES
-connect_from_port_20&#x3D;YES
-xferlog_std_format&#x3D;YES
-listen&#x3D;YES
-listen_ipv6&#x3D;NO
-
-pam_service_name&#x3D;vsftpd
-userlist_enable&#x3D;YES
-tcp_wrappers&#x3D;YES<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="启动FTP服务"><a href="#启动FTP服务" class="headerlink" title="启动FTP服务"></a>启动FTP服务</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#启动vsftpd
-[root@localhost admin]# systemctl start vsftpd
-#检查是否启动成功，默认配置文件位于&#x2F;etc&#x2F;vsftpd&#x2F;vsftpd.conf
-[root@localhost admin]# ps -ef|grep vsftp
-root      60170      1  0 00:55 ?        00:00:00 &#x2F;usr&#x2F;sbin&#x2F;vsftpd &#x2F;etc&#x2F;vsftpd&#x2F;vsftpd.conf
-root      60223  54792  0 00:56 pts&#x2F;0    00:00:00 grep --color&#x3D;auto vsftp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="匿名用户登录测试"><a href="#匿名用户登录测试" class="headerlink" title="匿名用户登录测试"></a>匿名用户登录测试</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#登录ftp
-[root@localhost admin]# ftp 192.168.18.128 21
-Connected to 192.168.18.128 (192.168.18.128).
-220 (vsFTPd 3.0.2)
-#输入匿名用户名
-Name (192.168.18.128:root): anonymous
-331 Please specify the password.
-#密码为空
-Password:
-#登录成功
-230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.
-ftp&gt; 
-#切换目录
-ftp&gt; cd pub
-250 Directory successfully changed.
-
-#查看当前目录下的文件
-ftp&gt; !ls -l
-总用量 3048
-drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Desktop
-drwxr-xr-x. 2 admin admin      19 11月 16 01:18 Documents
-drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Downloads
-drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Music
-drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Pictures
-drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Public
-drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Templates
-drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Videos
--rw-r--r--. 1 root  root  3118130 8月   5 2012 wget-1.14.tar.gz
-#上传文件测试
-ftp&gt; put wget-1.14.tar.gz
-local: wget-1.14.tar.gz remote: wget-1.14.tar.gz
-227 Entering Passive Mode (192,168,18,128,72,253).
-553 Could not create file.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上述上传文件时，遇到了553 Could not create file错误。解决方式如下：</p>
+<h2 id="vsftp的安装与配置">vsftp的安装与配置</h2>
+<p>在Linux系统下，vsftp是一款应用比较广泛的FTP软件，其特点是小巧轻快、安全易用。</p>
+<h3 id="vsftp安装">vsftp安装</h3>
+<p>使用yum工具安装vsftp：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用yum工具下载vsftp</span></span><br><span class="line">yum install -y vsftpd</span><br><span class="line"><span class="comment">#使用rpm安装vsftp</span></span><br><span class="line">rpm -qa|grep vsftp</span><br><span class="line"><span class="comment">#安装依赖的库文件</span></span><br><span class="line">yum install -y libcap libcap-devel</span><br></pre></td></tr></table></figure>
+<h3 id="匿名ftp设置">匿名FTP设置</h3>
+<p>这种运行匿名用户访问并上传文件，配置文件路径一般为<code>/etc/vsftpd.conf</code>，若是使用rpm包安装，则配置文件位于<code>/etc/vsftpd/vsftpd.conf</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将默认目录赋予用户ftp权限以便可以上传文件</span></span><br><span class="line">[root@localhost admin]<span class="comment"># chown -R ftp.users /var/ftp/pub/</span></span><br><span class="line"><span class="comment">#取消配置文件中的注释并显示有效行</span></span><br><span class="line">[root@localhost admin]<span class="comment"># grep -v ^# /etc/vsftpd/vsftpd.conf</span></span><br><span class="line">anonymous_enable=YES  <span class="comment">#允许匿名用户登录和上传</span></span><br><span class="line">local_enable=YES  </span><br><span class="line">write_enable=YES  <span class="comment">#允许写</span></span><br><span class="line">local_umask=022  </span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">xferlog_std_format=YES</span><br><span class="line">listen=NO <span class="comment">#是否允许在监听</span></span><br><span class="line">listen_ipv6=YES <span class="comment">#是否允许IPv6上的监听</span></span><br><span class="line"></span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">userlist_enable=YES</span><br><span class="line">tcp_wrappers=YES</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置文件使用vim /etc/vsftpd/vsftpd.conf修改为如下：</span></span><br><span class="line">anonymous_enable=YES</span><br><span class="line">local_enable=YES</span><br><span class="line">write_enable=YES</span><br><span class="line">local_umask=022</span><br><span class="line">anon_upload_enable=YES</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">xferlog_std_format=YES</span><br><span class="line">listen=YES</span><br><span class="line">listen_ipv6=NO</span><br><span class="line"></span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">userlist_enable=YES</span><br><span class="line">tcp_wrappers=YES</span><br></pre></td></tr></table></figure>
+<h3 id="启动ftp服务">启动FTP服务</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动vsftpd</span></span><br><span class="line">[root@localhost admin]<span class="comment"># systemctl start vsftpd</span></span><br><span class="line"><span class="comment">#检查是否启动成功，默认配置文件位于/etc/vsftpd/vsftpd.conf</span></span><br><span class="line">[root@localhost admin]<span class="comment"># ps -ef|grep vsftp</span></span><br><span class="line">root      60170      1  0 00:55 ?        00:00:00 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf</span><br><span class="line">root      60223  54792  0 00:56 pts/0    00:00:00 grep --color=auto vsftp</span><br></pre></td></tr></table></figure>
+<h3 id="匿名用户登录测试">匿名用户登录测试</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#登录ftp</span></span><br><span class="line">[root@localhost admin]<span class="comment"># ftp 192.168.18.128 21</span></span><br><span class="line">Connected to 192.168.18.128 (192.168.18.128).</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br><span class="line"><span class="comment">#输入匿名用户名</span></span><br><span class="line">Name (192.168.18.128:root): anonymous</span><br><span class="line">331 Please specify the password.</span><br><span class="line"><span class="comment">#密码为空</span></span><br><span class="line">Password:</span><br><span class="line"><span class="comment">#登录成功</span></span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system <span class="built_in">type</span> is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line">ftp&gt; </span><br><span class="line"><span class="comment">#切换目录</span></span><br><span class="line">ftp&gt; <span class="built_in">cd</span> pub</span><br><span class="line">250 Directory successfully changed.</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看当前目录下的文件</span></span><br><span class="line">ftp&gt; !<span class="built_in">ls</span> -l</span><br><span class="line">总用量 3048</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Desktop</span><br><span class="line">drwxr-xr-x. 2 admin admin      19 11月 16 01:18 Documents</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Downloads</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Music</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Pictures</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Public</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Templates</span><br><span class="line">drwxr-xr-x. 2 admin admin       6 10月 12 05:13 Videos</span><br><span class="line">-rw-r--r--. 1 root  root  3118130 8月   5 2012 wget-1.14.tar.gz</span><br><span class="line"><span class="comment">#上传文件测试</span></span><br><span class="line">ftp&gt; put wget-1.14.tar.gz</span><br><span class="line"><span class="built_in">local</span>: wget-1.14.tar.gz remote: wget-1.14.tar.gz</span><br><span class="line">227 Entering Passive Mode (192,168,18,128,72,253).</span><br><span class="line">553 Could not create file.</span><br></pre></td></tr></table></figure>
+<p>上述上传文件时，遇到了553 Could not create
+file错误。解决方式如下：</p>
 <ul>
 <li><p>输入quit退出vsftpd，在ftp的目录创建一个目录，然后设置权限为777：</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">[root@localhost admin]# mkdir &#x2F;var&#x2F;ftp&#x2F;write
-[root@localhost admin]# chmod -R 777 &#x2F;var&#x2F;ftp&#x2F;write
-[root@localhost admin]# vim &#x2F;etc&#x2F;vsftpd&#x2F;vsftpd.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost admin]<span class="comment"># mkdir /var/ftp/write</span></span><br><span class="line">[root@localhost admin]<span class="comment"># chmod -R 777 /var/ftp/write</span></span><br><span class="line">[root@localhost admin]<span class="comment"># vim /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure></p></li>
 <li><p>然后修改位于/etc/vsftpd/vsftpd.conf的配置文件，在文件最后加上以下代码：</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">local_root&#x3D;&#x2F;var&#x2F;ftp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">local_root=/var/ftp</span><br></pre></td></tr></table></figure></p></li>
 <li><p>杀死vsftpd进程，然后重启vsftpd服务器程序：</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#杀死vsftpd进程
-[root@localhost admin]# pkill vsftpd
-#查看是否还有vsftpd进程
-[root@localhost admin]# pgrep vsftpd
-#启动vsftpd服务器
-[root@localhost admin]# &#x2F;usr&#x2F;sbin&#x2F;vsftpd &amp;
-[1] 61422
-#查看是否有vsftpd进程
-[root@localhost admin]# pgrep vsftpd
-61418<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#杀死vsftpd进程</span></span><br><span class="line">[root@localhost admin]<span class="comment"># pkill vsftpd</span></span><br><span class="line"><span class="comment">#查看是否还有vsftpd进程</span></span><br><span class="line">[root@localhost admin]<span class="comment"># pgrep vsftpd</span></span><br><span class="line"><span class="comment">#启动vsftpd服务器</span></span><br><span class="line">[root@localhost admin]<span class="comment"># /usr/sbin/vsftpd &amp;</span></span><br><span class="line">[1] 61422</span><br><span class="line"><span class="comment">#查看是否有vsftpd进程</span></span><br><span class="line">[root@localhost admin]<span class="comment"># pgrep vsftpd</span></span><br><span class="line">61418</span><br></pre></td></tr></table></figure></p></li>
 <li><p>然后再试试登录ftp上传文件：</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#上传文件测试
-ftp&gt; put wget-1.14.tar.gz
-local: wget-1.14.tar.gz remote: wget-1.14.tar.gz
-227 Entering Passive Mode (192,168,18,128,122,212).
-150 Ok to send data.
-226 Transfer complete.
-3118130 bytes sent in 0.00845 secs (368834.88 Kbytes&#x2F;sec)
-#上传文件成功退出ftp
-ftp&gt; quit
-221 Goodbye.
-#查看上传后的文件信息，文件属于ftp用户
-[root@localhost admin]# ll &#x2F;var&#x2F;ftp&#x2F;pub&#x2F;
-总用量 3048
--rw-------. 1 ftp ftp 3118130 11月 16 01:29 wget-1.14.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#上传文件测试</span></span><br><span class="line">ftp&gt; put wget-1.14.tar.gz</span><br><span class="line"><span class="built_in">local</span>: wget-1.14.tar.gz remote: wget-1.14.tar.gz</span><br><span class="line">227 Entering Passive Mode (192,168,18,128,122,212).</span><br><span class="line">150 Ok to send data.</span><br><span class="line">226 Transfer complete.</span><br><span class="line">3118130 bytes sent <span class="keyword">in</span> 0.00845 secs (368834.88 Kbytes/sec)</span><br><span class="line"><span class="comment">#上传文件成功退出ftp</span></span><br><span class="line">ftp&gt; quit</span><br><span class="line">221 Goodbye.</span><br><span class="line"><span class="comment">#查看上传后的文件信息，文件属于ftp用户</span></span><br><span class="line">[root@localhost admin]<span class="comment"># ll /var/ftp/pub/</span></span><br><span class="line">总用量 3048</span><br><span class="line">-rw-------. 1 ftp ftp 3118130 11月 16 01:29 wget-1.14.tar.gz</span><br></pre></td></tr></table></figure></p></li>
 </ul>
-<h3 id="实名FTP设置"><a href="#实名FTP设置" class="headerlink" title="实名FTP设置"></a>实名FTP设置</h3><p>除了配置匿名FTP服务外，vsftp还可以配置实名FTP服务器，以便实现更精确的权限控制。</p>
+<h3 id="实名ftp设置">实名FTP设置</h3>
+<p>除了配置匿名FTP服务外，vsftp还可以配置实名FTP服务器，以便实现更精确的权限控制。</p>
 <p>实名需要的用户认证信息位于/etc/vsftpd/目录下，用户启动时可以单独指定其他的配置文件。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#配置文件使用vim &#x2F;etc&#x2F;vsftpd&#x2F;vsftpd.conf修改为如下：
-[root@localhost admin]# grep -v ^# &#x2F;etc&#x2F;vsftpd&#x2F;vsftpd.conf
-anonymous_enable&#x3D;NO  #禁止匿名用户登录
-local_enable&#x3D;YES    #允许本地用户访问，默认为YES
-write_enable&#x3D;YES  #允许写入
-local_umask&#x3D;022  #上传后的文件默认的权限掩码
-anon_upload_enable&#x3D;NO  #匿名用户上传权限 
-anon_mkdir_write_enable&#x3D;NO  #匿名用户创建目录的同时上传文件
-anon_other_write_enable&#x3D;NO  #匿名用户删除权限
-chroot_local_user&#x3D;YES #禁止本地用户离开自己的ftp主目录
-chroot_list_enable&#x3D;NO   #禁止ftp用户离开自己的ftp主目录
-chroot_list_file&#x3D;&#x2F;etc&#x2F;vsftpd.chroot_list  #虚拟用户列表，每行一个用户名
-listen&#x3D;YES
-listen_address&#x3D;192.168.18.128  #绑定本机ip
-
-pam_service_name&#x3D;vsftpd.vu  #验证方式
-local_root&#x3D;&#x2F;var&#x2F;ftp  #
-
-guest_enable&#x3D;YES  #开启虚拟用户功能
-guest_username&#x3D;ftp  #虚拟用户的宿主目录
-virtual_use_local_privs&#x3D;YES  #用户登录后操作主目录和本地用户具有同样的权限
-user_config_dir&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;vconf  #虚拟用户主目录设置文件
-
-#新建&#x2F;etc&#x2F;vsftpd.chroot_list文件
-[root@localhost admin]# touch &#x2F;etc&#x2F;vsftpd.chroot_list
-#编辑&#x2F;etc&#x2F;vsftpd.chroot_list如下，每行一个用户名
-[root@localhost admin]# vim &#x2F;etc&#x2F;vsftpd.chroot_list
-[root@localhost admin]# cat &#x2F;etc&#x2F;vsftpd.chroot_list
-user1
-user2
-
-#增加用户并指定主目录
-[root@localhost admin]# mkdir &#x2F;data
-[root@localhost admin]# mkdir &#x2F;data&#x2F;user1
-[root@localhost admin]# mkdir &#x2F;data&#x2F;user2
-[root@localhost admin]# chmod -R 775 &#x2F;data&#x2F;user1 &#x2F;data&#x2F;user2
-
-#设置用户名密码数据库
-[root@localhost admin]# echo -e &quot;user1\npass1\nuser2\npass2&quot;&gt;&#x2F;etc&#x2F;vsftpd&#x2F;vusers.list
-[root@localhost admin]# cd &#x2F;etc&#x2F;vsftpd
-[root@localhost vsftpd]# db_load -T -t hash -f vusers.list vusers.db
-[root@localhost vsftpd]# chmod 600 vusers.*
-#指定认证方式
-[root@localhost vsftpd]# echo -e &quot;#%PAM-1.0\n\nauth required pam_userdb.so db&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;vusers\naccount required pam_userdb.so db&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;vusers&quot;&gt;&#x2F;etc&#x2F;pam.d&#x2F;vsftpd.vu
-[root@localhost vsftpd]# mkdir -p &#x2F;etc&#x2F;vsftpd&#x2F;vconf
-[root@localhost vsftpd]# cd &#x2F;etc&#x2F;vsftpd&#x2F;vconf
-[root@localhost vconf]# ls
-[root@localhost vconf]# touch user1
-[root@localhost vconf]# touch user2
-[root@localhost vconf]# ls
-user1  user2
-
-#编辑用户的用户名文件，指定主目录
-[root@localhost vconf]# vim user1
-[root@localhost vconf]# cat user1
-local_root&#x3D;&#x2F;data&#x2F;user1
-[root@localhost vconf]# vim user2
-[root@localhost vconf]# cat user2
-local_root&#x3D;&#x2F;data&#x2F;user2
-#创建标识文件
-[root@localhost vconf]# touch &#x2F;data&#x2F;user1&#x2F;user1
-[root@localhost vconf]# touch &#x2F;data&#x2F;user2&#x2F;user2
-
-#若连接ftp显示连接被拒绝，重启vsftpd服务后即可解决
-[root@localhost vconf]# ftp 192.168.18.128 21
-Connected to 192.168.18.128 (192.168.18.128).
-220 (vsFTPd 3.0.2)
-#输入用户名user1
-Name (192.168.18.128:root): user1
-331 Please specify the password.
-#密码为之前设置的pass1
-Password:
-230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.
-#查看文件
-ftp&gt; ls
-227 Entering Passive Mode (192,168,18,128,47,84).
-150 Here comes the directory listing.
--rw-r--r--    1 0        0               0 Nov 17 01:53 user1
-226 Directory send OK.
-#退出vsftpd
-ftp&gt; quit
-221 Goodbye.
-
-#测试用户user2
-[root@localhost vconf]# ftp 192.168.18.128 21
-Connected to 192.168.18.128 (192.168.18.128).
-220 (vsFTPd 3.0.2)
-Name (192.168.18.128:root): user2
-331 Please specify the password.
-Password:
-230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.
-ftp&gt; ls
-227 Entering Passive Mode (192,168,18,128,75,91).
-150 Here comes the directory listing.
--rw-r--r--    1 0        0               0 Nov 17 01:53 user2
-226 Directory send OK.
-#退出vsftpd
-ftp&gt; quit
-221 Goodbye.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置文件使用vim /etc/vsftpd/vsftpd.conf修改为如下：</span></span><br><span class="line">[root@localhost admin]<span class="comment"># grep -v ^# /etc/vsftpd/vsftpd.conf</span></span><br><span class="line">anonymous_enable=NO  <span class="comment">#禁止匿名用户登录</span></span><br><span class="line">local_enable=YES    <span class="comment">#允许本地用户访问，默认为YES</span></span><br><span class="line">write_enable=YES  <span class="comment">#允许写入</span></span><br><span class="line">local_umask=022  <span class="comment">#上传后的文件默认的权限掩码</span></span><br><span class="line">anon_upload_enable=NO  <span class="comment">#匿名用户上传权限 </span></span><br><span class="line">anon_mkdir_write_enable=NO  <span class="comment">#匿名用户创建目录的同时上传文件</span></span><br><span class="line">anon_other_write_enable=NO  <span class="comment">#匿名用户删除权限</span></span><br><span class="line">chroot_local_user=YES <span class="comment">#禁止本地用户离开自己的ftp主目录</span></span><br><span class="line">chroot_list_enable=NO   <span class="comment">#禁止ftp用户离开自己的ftp主目录</span></span><br><span class="line">chroot_list_file=/etc/vsftpd.chroot_list  <span class="comment">#虚拟用户列表，每行一个用户名</span></span><br><span class="line">listen=YES</span><br><span class="line">listen_address=192.168.18.128  <span class="comment">#绑定本机ip</span></span><br><span class="line"></span><br><span class="line">pam_service_name=vsftpd.vu  <span class="comment">#验证方式</span></span><br><span class="line">local_root=/var/ftp  <span class="comment">#</span></span><br><span class="line"></span><br><span class="line">guest_enable=YES  <span class="comment">#开启虚拟用户功能</span></span><br><span class="line">guest_username=ftp  <span class="comment">#虚拟用户的宿主目录</span></span><br><span class="line">virtual_use_local_privs=YES  <span class="comment">#用户登录后操作主目录和本地用户具有同样的权限</span></span><br><span class="line">user_config_dir=/etc/vsftpd/vconf  <span class="comment">#虚拟用户主目录设置文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#新建/etc/vsftpd.chroot_list文件</span></span><br><span class="line">[root@localhost admin]<span class="comment"># touch /etc/vsftpd.chroot_list</span></span><br><span class="line"><span class="comment">#编辑/etc/vsftpd.chroot_list如下，每行一个用户名</span></span><br><span class="line">[root@localhost admin]<span class="comment"># vim /etc/vsftpd.chroot_list</span></span><br><span class="line">[root@localhost admin]<span class="comment"># cat /etc/vsftpd.chroot_list</span></span><br><span class="line">user1</span><br><span class="line">user2</span><br><span class="line"></span><br><span class="line"><span class="comment">#增加用户并指定主目录</span></span><br><span class="line">[root@localhost admin]<span class="comment"># mkdir /data</span></span><br><span class="line">[root@localhost admin]<span class="comment"># mkdir /data/user1</span></span><br><span class="line">[root@localhost admin]<span class="comment"># mkdir /data/user2</span></span><br><span class="line">[root@localhost admin]<span class="comment"># chmod -R 775 /data/user1 /data/user2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置用户名密码数据库</span></span><br><span class="line">[root@localhost admin]<span class="comment"># echo -e &quot;user1\npass1\nuser2\npass2&quot;&gt;/etc/vsftpd/vusers.list</span></span><br><span class="line">[root@localhost admin]<span class="comment"># cd /etc/vsftpd</span></span><br><span class="line">[root@localhost vsftpd]<span class="comment"># db_load -T -t hash -f vusers.list vusers.db</span></span><br><span class="line">[root@localhost vsftpd]<span class="comment"># chmod 600 vusers.*</span></span><br><span class="line"><span class="comment">#指定认证方式</span></span><br><span class="line">[root@localhost vsftpd]<span class="comment"># echo -e &quot;#%PAM-1.0\n\nauth required pam_userdb.so db=/etc/vsftpd/vusers\naccount required pam_userdb.so db=/etc/vsftpd/vusers&quot;&gt;/etc/pam.d/vsftpd.vu</span></span><br><span class="line">[root@localhost vsftpd]<span class="comment"># mkdir -p /etc/vsftpd/vconf</span></span><br><span class="line">[root@localhost vsftpd]<span class="comment"># cd /etc/vsftpd/vconf</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># ls</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># touch user1</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># touch user2</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># ls</span></span><br><span class="line">user1  user2</span><br><span class="line"></span><br><span class="line"><span class="comment">#编辑用户的用户名文件，指定主目录</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># vim user1</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># cat user1</span></span><br><span class="line">local_root=/data/user1</span><br><span class="line">[root@localhost vconf]<span class="comment"># vim user2</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># cat user2</span></span><br><span class="line">local_root=/data/user2</span><br><span class="line"><span class="comment">#创建标识文件</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># touch /data/user1/user1</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># touch /data/user2/user2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#若连接ftp显示连接被拒绝，重启vsftpd服务后即可解决</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># ftp 192.168.18.128 21</span></span><br><span class="line">Connected to 192.168.18.128 (192.168.18.128).</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br><span class="line"><span class="comment">#输入用户名user1</span></span><br><span class="line">Name (192.168.18.128:root): user1</span><br><span class="line">331 Please specify the password.</span><br><span class="line"><span class="comment">#密码为之前设置的pass1</span></span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system <span class="built_in">type</span> is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line"><span class="comment">#查看文件</span></span><br><span class="line">ftp&gt; <span class="built_in">ls</span></span><br><span class="line">227 Entering Passive Mode (192,168,18,128,47,84).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 0        0               0 Nov 17 01:53 user1</span><br><span class="line">226 Directory send OK.</span><br><span class="line"><span class="comment">#退出vsftpd</span></span><br><span class="line">ftp&gt; quit</span><br><span class="line">221 Goodbye.</span><br><span class="line"></span><br><span class="line"><span class="comment">#测试用户user2</span></span><br><span class="line">[root@localhost vconf]<span class="comment"># ftp 192.168.18.128 21</span></span><br><span class="line">Connected to 192.168.18.128 (192.168.18.128).</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br><span class="line">Name (192.168.18.128:root): user2</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system <span class="built_in">type</span> is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line">ftp&gt; <span class="built_in">ls</span></span><br><span class="line">227 Entering Passive Mode (192,168,18,128,75,91).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 0        0               0 Nov 17 01:53 user2</span><br><span class="line">226 Directory send OK.</span><br><span class="line"><span class="comment">#退出vsftpd</span></span><br><span class="line">ftp&gt; quit</span><br><span class="line">221 Goodbye.</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -1281,7 +993,7 @@ ftp&gt; quit
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E5%B8%B8%E8%A7%81%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">Linux常见目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.</span> <span class="toc-text">网络管理协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-IP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.1.</span> <span class="toc-text">TCP&#x2F;IP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-IP%E5%8D%8F%E8%AE%AE%E4%BD%93%E7%B3%BB"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">TCP&#x2F;IP协议体系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%EF%BC%88packet%EF%BC%89"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">包（packet）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">网络字节顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE%EF%BC%88ARP%EF%BC%89"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">地址解析协议（ARP）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.2.</span> <span class="toc-text">UDP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ICMP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text">ICMP协议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">网络管理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ping%EF%BC%9A%E6%A3%80%E6%9F%A5%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E9%80%9F%E5%BA%A6%E5%8F%8A%E7%BD%91%E7%BB%9C%E6%98%AF%E5%90%A6%E9%80%9A%E7%95%85"><span class="toc-number">2.1.</span> <span class="toc-text">Ping：检查网络连接速度及网络是否通畅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ifconfig-%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E6%88%96%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3%E7%8A%B6%E6%80%81"><span class="toc-number">2.2.</span> <span class="toc-text">ifconfig:配置网络或显示当前网络接口状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#route%EF%BC%9A%E6%98%BE%E7%A4%BA%E6%B7%BB%E5%8A%A0%E6%88%96%E4%BF%AE%E6%94%B9%E8%B7%AF%E7%94%B1%E8%A1%A8"><span class="toc-number">2.3.</span> <span class="toc-text">route：显示添加或修改路由表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scp%EF%BC%9ALinux%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="toc-number">2.4.</span> <span class="toc-text">scp：Linux系统之间复制文件和目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rsync%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7"><span class="toc-number">2.5.</span> <span class="toc-text">rsync：数据镜像备份工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#netstat%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E3%80%81%E8%B7%AF%E7%94%B1%E8%A1%A8%E6%88%96%E6%8E%A5%E5%8F%A3%E7%8A%B6%E6%80%81"><span class="toc-number">2.6.</span> <span class="toc-text">netstat：显示网络连接、路由表或接口状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#traceroute%EF%BC%9A%E6%8E%A2%E6%B5%8B%E8%87%B3%E7%9B%AE%E7%9A%84%E5%9C%B0%E5%9D%80%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BF%A1%E6%81%AF"><span class="toc-number">2.7.</span> <span class="toc-text">traceroute：探测至目的地址的路由信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#telnet%EF%BC%9A%E6%B5%8B%E8%AF%95%E3%80%81%E7%99%BB%E5%BD%95%E6%88%96%E6%8E%A7%E5%88%B6%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.8.</span> <span class="toc-text">telnet：测试、登录或控制远程主机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wget%EF%BC%9A%E4%B8%8B%E8%BD%BD%E7%BD%91%E7%BB%9C%E6%96%87%E4%BB%B6"><span class="toc-number">2.9.</span> <span class="toc-text">wget：下载网络文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">Linux网络配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AELinux%E7%B3%BB%E7%BB%9F%E7%9A%84IP%E5%9C%B0%E5%9D%80"><span class="toc-number">3.1.</span> <span class="toc-text">配置Linux系统的IP地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8hostname%E8%AE%BE%E7%BD%AE%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="toc-number">3.2.</span> <span class="toc-text">使用hostname设置主机名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E7%BD%91%E5%85%B3"><span class="toc-number">3.3.</span> <span class="toc-text">设置默认网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEDNS%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">3.4.</span> <span class="toc-text">设置DNS服务器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FTP%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">FTP服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP%E6%9C%8D%E5%8A%A1%E6%A6%82%E8%BF%B0"><span class="toc-number">4.1.</span> <span class="toc-text">FTP服务概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vsftp%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text">vsftp的安装与配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vsftp%E5%AE%89%E8%A3%85"><span class="toc-number">4.2.1.</span> <span class="toc-text">vsftp安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8DFTP%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.2.2.</span> <span class="toc-text">匿名FTP设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8FTP%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.2.3.</span> <span class="toc-text">启动FTP服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%B5%8B%E8%AF%95"><span class="toc-number">4.2.4.</span> <span class="toc-text">匿名用户登录测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E5%90%8DFTP%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.2.5.</span> <span class="toc-text">实名FTP设置</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E5%B8%B8%E8%A7%81%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">Linux常见目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.</span> <span class="toc-text">网络管理协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcpip%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.1.</span> <span class="toc-text">TCP&#x2F;IP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tcpip%E5%8D%8F%E8%AE%AE%E4%BD%93%E7%B3%BB"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">TCP&#x2F;IP协议体系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85packet"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">包（packet）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">网络字节顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AEarp"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">地址解析协议（ARP）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udp%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.2.</span> <span class="toc-text">UDP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#icmp%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text">ICMP协议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">网络管理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ping%E6%A3%80%E6%9F%A5%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E9%80%9F%E5%BA%A6%E5%8F%8A%E7%BD%91%E7%BB%9C%E6%98%AF%E5%90%A6%E9%80%9A%E7%95%85"><span class="toc-number">2.1.</span> <span class="toc-text">Ping：检查网络连接速度及网络是否通畅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ifconfig%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E6%88%96%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3%E7%8A%B6%E6%80%81"><span class="toc-number">2.2.</span> <span class="toc-text">ifconfig:配置网络或显示当前网络接口状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#route%E6%98%BE%E7%A4%BA%E6%B7%BB%E5%8A%A0%E6%88%96%E4%BF%AE%E6%94%B9%E8%B7%AF%E7%94%B1%E8%A1%A8"><span class="toc-number">2.3.</span> <span class="toc-text">route：显示添加或修改路由表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scplinux%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="toc-number">2.4.</span> <span class="toc-text">scp：Linux系统之间复制文件和目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rsync%E6%95%B0%E6%8D%AE%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7"><span class="toc-number">2.5.</span> <span class="toc-text">rsync：数据镜像备份工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#netstat%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E8%B7%AF%E7%94%B1%E8%A1%A8%E6%88%96%E6%8E%A5%E5%8F%A3%E7%8A%B6%E6%80%81"><span class="toc-number">2.6.</span> <span class="toc-text">netstat：显示网络连接、路由表或接口状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#traceroute%E6%8E%A2%E6%B5%8B%E8%87%B3%E7%9B%AE%E7%9A%84%E5%9C%B0%E5%9D%80%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BF%A1%E6%81%AF"><span class="toc-number">2.7.</span> <span class="toc-text">traceroute：探测至目的地址的路由信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#telnet%E6%B5%8B%E8%AF%95%E7%99%BB%E5%BD%95%E6%88%96%E6%8E%A7%E5%88%B6%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.8.</span> <span class="toc-text">telnet：测试、登录或控制远程主机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wget%E4%B8%8B%E8%BD%BD%E7%BD%91%E7%BB%9C%E6%96%87%E4%BB%B6"><span class="toc-number">2.9.</span> <span class="toc-text">wget：下载网络文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">Linux网络配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AElinux%E7%B3%BB%E7%BB%9F%E7%9A%84ip%E5%9C%B0%E5%9D%80"><span class="toc-number">3.1.</span> <span class="toc-text">配置Linux系统的IP地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8hostname%E8%AE%BE%E7%BD%AE%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="toc-number">3.2.</span> <span class="toc-text">使用hostname设置主机名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E7%BD%91%E5%85%B3"><span class="toc-number">3.3.</span> <span class="toc-text">设置默认网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEdns%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">3.4.</span> <span class="toc-text">设置DNS服务器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ftp%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">FTP服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ftp%E6%9C%8D%E5%8A%A1%E6%A6%82%E8%BF%B0"><span class="toc-number">4.1.</span> <span class="toc-text">FTP服务概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vsftp%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text">vsftp的安装与配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vsftp%E5%AE%89%E8%A3%85"><span class="toc-number">4.2.1.</span> <span class="toc-text">vsftp安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8Dftp%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.2.2.</span> <span class="toc-text">匿名FTP设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8ftp%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.2.3.</span> <span class="toc-text">启动FTP服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%B5%8B%E8%AF%95"><span class="toc-number">4.2.4.</span> <span class="toc-text">匿名用户登录测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E5%90%8Dftp%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.2.5.</span> <span class="toc-text">实名FTP设置</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1631,18 +1343,6 @@ ftp&gt; quit
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2751,6 +2451,16 @@ ftp&gt; quit
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2781,29 +2491,14 @@ ftp&gt; quit
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2821,9 +2516,24 @@ ftp&gt; quit
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2834,16 +2544,6 @@ ftp&gt; quit
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2861,11 +2561,6 @@ ftp&gt; quit
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2874,6 +2569,11 @@ ftp&gt; quit
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2911,19 +2611,9 @@ ftp&gt; quit
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2934,6 +2624,16 @@ ftp&gt; quit
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2957,6 +2657,11 @@ ftp&gt; quit
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2967,29 +2672,9 @@ ftp&gt; quit
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2997,9 +2682,19 @@ ftp&gt; quit
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -3007,19 +2702,24 @@ ftp&gt; quit
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -3052,6 +2752,16 @@ ftp&gt; quit
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -3065,16 +2775,6 @@ ftp&gt; quit
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -3149,5 +2849,20 @@ ftp&gt; quit
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

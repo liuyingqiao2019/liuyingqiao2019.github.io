@@ -500,226 +500,104 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="初始化一个新项目"><a href="#初始化一个新项目" class="headerlink" title="初始化一个新项目"></a>初始化一个新项目</h1><ul>
-<li><p>要初始化一个新项目，创建一个文件夹test作为项目目录，打开一个终端将切换路径到test，运行代码：</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS C:\Users\Administrator\Desktop\test&gt; vue create test
-
-运行结果如下：
- Your connection to the default yarn registry seems to be slow.
-   Use https:&#x2F;&#x2F;registry.npmmirror.com for faster installation? (Y&#x2F;n)输入Y回车
-   Vue CLI v5.0.8
-? Please pick a preset: (Use arrow keys)
-&gt; Default ([Vue 3] babel, eslint)
-  Default ([Vue 2] babel, eslint)
-  Manually select features<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>使用方向键选择<code>“ Manually select features”</code>（手动选择）选项后按下键盘上的回车键继续。</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Vue CLI v5.0.8
-? Please pick a preset: Manually select features
-? Check the features needed for your project: (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection, and
-&lt;enter&gt; to proceed)
-&gt;(*) Babel
- ( ) TypeScript
- ( ) Progressive Web App (PWA) Support
- ( ) Router
- ( ) Vuex
- ( ) CSS Pre-processors
- (*) Linter &#x2F; Formatter
- ( ) Unit Testing
- ( ) E2E Testing<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>可以看到第一个菜单允许选择想要包含在项目中的功能，确保<code>“Babel”</code>和<code>“Linter / Formatter”</code>这两项是被选中的。若它们没有被选中，使用方向键切换，按空格键来选中它们，若它们被选中，按下回车键继续。</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Vue CLI v5.0.8
-? Please pick a preset: Manually select features
-? Check the features needed for your project: Babel, Linter
-? Choose a version of Vue.js that you want to start the project with (Use arrow keys)
-&gt; 3.x
-  2.x<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>接下来为选择Vue.js版本，使用方向键选中3.x选项后按下键盘上的回车键继续。</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Vue CLI v5.0.8
-? Please pick a preset: Manually select features
-? Check the features needed for your project: Babel, Linter
-? Choose a version of Vue.js that you want to start the project with 3.x
-? Pick a linter &#x2F; formatter config: (Use arrow keys)
-&gt; ESLint with error prevention only
-  ESLint + Airbnb config
-  ESLint + Standard config
-  ESLint + Prettier<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>接下来为<code>linter / formatter</code>选择一个配置，使用方向键选中<code>&quot;ESLint with error prevention only&quot;</code>选项后按下键盘上的回车键继续。这样可以辅助我们捕获常见的错误。</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Vue CLI v5.0.8
-? Please pick a preset: Manually select features
-? Check the features needed for your project: Babel, Linter
-? Choose a version of Vue.js that you want to start the project with 3.x
-? Pick a linter &#x2F; formatter config: Basic
-? Pick additional lint features: (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection, and &lt;enter&gt; to
-proceed)
-&gt;(*) Lint on save
- ( ) Lint and fix on commit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>接下来选择需要哪种自动化的Lint，使用方向键选中<code>&quot;Lint on save&quot;</code>选项后按下键盘上的回车键继续。</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Vue CLI v5.0.8
-? Please pick a preset: Manually select features
-? Check the features needed for your project: Babel, Linter
-? Choose a version of Vue.js that you want to start the project with 3.x
-? Pick a linter &#x2F; formatter config: Basic
-? Pick additional lint features: (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection, and &lt;enter&gt; to
-proceed)
-&gt;(*) Lint on save
- ( ) Lint and fix on commit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>接下来选择把配置文件放在哪里。<code>&quot;In dedicated config files&quot;</code>这个选项会把配置文件单独放在一个文件里，另一个选项<code>&quot;In package.json&quot;</code>会把配置文件放仅项目文件<code>package.json</code>里。选择<code>&quot;In dedicated config files&quot;</code>选项后按下键盘上的回车键继续。</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Vue CLI v5.0.8
-? Please pick a preset: Manually select features
-? Check the features needed for your project: Babel, Linter
-? Choose a version of Vue.js that you want to start the project with 3.x
-? Pick a linter &#x2F; formatter config: Basic
-? Pick additional lint features: Lint on save
-? Where do you prefer placing config for Babel, ESLint, etc.? (Use arrow keys)
-&gt; In dedicated config files
-  In package.json<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>最后选择是否把这次的选择作为未来的预设配置。输入<code>y</code>后按下键盘上的回车键后输入保存的配置名称。然后脚手架工具就开始构建项目，并且安装所需的依赖。</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Vue CLI v5.0.8
-? Please pick a preset: Manually select features
-? Check the features needed for your project: Babel, Linter
-? Choose a version of Vue.js that you want to start the project with 3.x
-? Pick a linter &#x2F; formatter config: Basic
-? Pick additional lint features: Lint on save
-? Where do you prefer placing config for Babel, ESLint, etc.? In dedicated config files
-? Save this as a preset for future projects? (y&#x2F;N)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>如果前面的步骤都顺利执行的话，脚手架工具已经在项目中创建了一系列的文件和目录，其项目结构如下：</p>
-<p><img src="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/1.png" alt></p>
+        <h1 id="初始化一个新项目">初始化一个新项目</h1>
 <ul>
-<li><p><code>eslintrc.js</code>：是<code>eslint</code>的配置文件，可以通过它来管理校验规则</p>
-</li>
-<li><p><code>babel.config.js</code>：是<code>Babel</code>的配置文件，可以在开发中使用JavaScript的新特性，并且将其转换为在生成环境中可以跨浏览器运行的旧语法代码，也可以在这里配置额外的babel插件</p>
-</li>
-<li><p><code>.browserslistrc</code>：是<code>Browserslist</code>的配置文件，可以通过它来控制需要对哪些浏览器进行支持和优化</p>
-</li>
+<li><p>要初始化一个新项目，创建一个文件夹test作为项目目录，打开一个终端将切换路径到test，运行代码：</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\<span class="built_in">test</span>&gt; vue create <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">运行结果如下：</span><br><span class="line"> Your connection to the default yarn registry seems to be slow.</span><br><span class="line">   Use https://registry.npmmirror.com <span class="keyword">for</span> faster installation? (Y/n)输入Y回车</span><br><span class="line">   Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: (Use arrow keys)</span><br><span class="line">&gt; Default ([Vue 3] babel, eslint)</span><br><span class="line">  Default ([Vue 2] babel, eslint)</span><br><span class="line">  Manually select features</span><br></pre></td></tr></table></figure></p></li>
+<li><p>使用方向键选择<code>“ Manually select features”</code>（手动选择）选项后按下键盘上的回车键继续。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection, and</span><br><span class="line">&lt;enter&gt; to proceed)</span><br><span class="line">&gt;(*) Babel</span><br><span class="line"> ( ) TypeScript</span><br><span class="line"> ( ) Progressive Web App (PWA) Support</span><br><span class="line"> ( ) Router</span><br><span class="line"> ( ) Vuex</span><br><span class="line"> ( ) CSS Pre-processors</span><br><span class="line"> (*) Linter / Formatter</span><br><span class="line"> ( ) Unit Testing</span><br><span class="line"> ( ) E2E Testing</span><br></pre></td></tr></table></figure></p></li>
+<li><p>可以看到第一个菜单允许选择想要包含在项目中的功能，确保<code>“Babel”</code>和<code>“Linter / Formatter”</code>这两项是被选中的。若它们没有被选中，使用方向键切换，按空格键来选中它们，若它们被选中，按下回车键继续。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with (Use arrow keys)</span><br><span class="line">&gt; 3.x</span><br><span class="line">  2.x</span><br></pre></td></tr></table></figure></p></li>
+<li><p>接下来为选择Vue.js版本，使用方向键选中3.x选项后按下键盘上的回车键继续。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with 3.x</span><br><span class="line">? Pick a linter / formatter config: (Use arrow keys)</span><br><span class="line">&gt; ESLint with error prevention only</span><br><span class="line">  ESLint + Airbnb config</span><br><span class="line">  ESLint + Standard config</span><br><span class="line">  ESLint + Prettier</span><br></pre></td></tr></table></figure></p></li>
+<li><p>接下来为<code>linter / formatter</code>选择一个配置，使用方向键选中<code>"ESLint with error prevention only"</code>选项后按下键盘上的回车键继续。这样可以辅助我们捕获常见的错误。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with 3.x</span><br><span class="line">? Pick a linter / formatter config: Basic</span><br><span class="line">? Pick additional lint features: (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection, and &lt;enter&gt; to</span><br><span class="line">proceed)</span><br><span class="line">&gt;(*) Lint on save</span><br><span class="line"> ( ) Lint and fix on commit</span><br></pre></td></tr></table></figure></p></li>
+<li><p>接下来选择需要哪种自动化的Lint，使用方向键选中<code>"Lint on save"</code>选项后按下键盘上的回车键继续。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with 3.x</span><br><span class="line">? Pick a linter / formatter config: Basic</span><br><span class="line">? Pick additional lint features: (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection, and &lt;enter&gt; to</span><br><span class="line">proceed)</span><br><span class="line">&gt;(*) Lint on save</span><br><span class="line"> ( ) Lint and fix on commit</span><br></pre></td></tr></table></figure></p></li>
+<li><p>接下来选择把配置文件放在哪里。<code>"In dedicated config files"</code>这个选项会把配置文件单独放在一个文件里，另一个选项<code>"In package.json"</code>会把配置文件放仅项目文件<code>package.json</code>里。选择<code>"In dedicated config files"</code>选项后按下键盘上的回车键继续。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with 3.x</span><br><span class="line">? Pick a linter / formatter config: Basic</span><br><span class="line">? Pick additional lint features: Lint on save</span><br><span class="line">? Where <span class="keyword">do</span> you prefer placing config <span class="keyword">for</span> Babel, ESLint, etc.? (Use arrow keys)</span><br><span class="line">&gt; In dedicated config files</span><br><span class="line">  In package.json</span><br></pre></td></tr></table></figure></p></li>
+<li><p>最后选择是否把这次的选择作为未来的预设配置。输入<code>y</code>后按下键盘上的回车键后输入保存的配置名称。然后脚手架工具就开始构建项目，并且安装所需的依赖。</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: Manually select features</span><br><span class="line">? Check the features needed <span class="keyword">for</span> your project: Babel, Linter</span><br><span class="line">? Choose a version of Vue.js that you want to start the project with 3.x</span><br><span class="line">? Pick a linter / formatter config: Basic</span><br><span class="line">? Pick additional lint features: Lint on save</span><br><span class="line">? Where <span class="keyword">do</span> you prefer placing config <span class="keyword">for</span> Babel, ESLint, etc.? In dedicated config files</span><br><span class="line">? Save this as a preset <span class="keyword">for</span> future projects? (y/N)</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<h2 id="项目结构">项目结构</h2>
+<p>如果前面的步骤都顺利执行的话，脚手架工具已经在项目中创建了一系列的文件和目录，其项目结构如下：</p>
+<p><img src="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/1.png"></p>
+<ul>
+<li><p><code>eslintrc.js</code>：是<code>eslint</code>的配置文件，可以通过它来管理校验规则</p></li>
+<li><p><code>babel.config.js</code>：是<code>Babel</code>的配置文件，可以在开发中使用JavaScript的新特性，并且将其转换为在生成环境中可以跨浏览器运行的旧语法代码，也可以在这里配置额外的babel插件</p></li>
+<li><p><code>.browserslistrc</code>：是<code>Browserslist</code>的配置文件，可以通过它来控制需要对哪些浏览器进行支持和优化</p></li>
 <li><p><code>public</code>：该目录包含一些在<code>Webpack</code>编译过程中没有架构处理过的文件（<code>index.html</code>除外）</p>
 <ul>
 <li><code>favicon.ico</code>：项目的图标，当前是一个Vue的logo</li>
 <li><code>index.html</code>：应用模板文件，Vue应用会通过这个HTML页面来运行，也可以通过<code>lodash</code>这种模板语法在这个文件里插值</li>
-</ul>
-</li>
+</ul></li>
 <li><p><code>src</code>：Vue应用的核心代码目录</p>
 <ul>
 <li><code>main.js</code>：应用的入口文件。目前它会初始化Vue应用并指定将应用挂载到index.html文件中的哪个HTML元素上。通常还会做一些注册全局组件或者添加额外的Vue库的操作</li>
 <li><code>App.vue</code>：Vue应用的根节点组件</li>
 <li><code>components</code>：用来存放自定义组件的目录，当前里面会有一个示例组件</li>
-<li><code>assets</code>：用来存放如CSS、图片这类的静态资源，可以用<code>webpack</code>来操作和处理<br>根据创建项目时的配置项不同，可能会有一些其他的预设目录，比如选择了路由配置，会看到一个<code>views</code>文件夹。</li>
+<li><code>assets</code>：用来存放如CSS、图片这类的静态资源，可以用<code>webpack</code>来操作和处理
+根据创建项目时的配置项不同，可能会有一些其他的预设目录，比如选择了路由配置，会看到一个<code>views</code>文件夹。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="vue文件（单文件组件）"><a href="#vue文件（单文件组件）" class="headerlink" title=".vue文件（单文件组件）"></a><code>.vue</code>文件（单文件组件）</h2><p>组件是构建Vue应用中非常重要的一部分，其可以把一个很大的应用程序拆分为独立创建和管理的不相干区块，然后彼此按需传递数据。</p>
+<h2 id="vue文件单文件组件"><code>.vue</code>文件（单文件组件）</h2>
+<p>组件是构建Vue应用中非常重要的一部分，其可以把一个很大的应用程序拆分为独立创建和管理的不相干区块，然后彼此按需传递数据。</p>
 <p>在其他框架鼓励把模板、逻辑和样式的代码区分成不同文件时，Vue提倡使用单文件组件，把模板、相关脚本和CSS整合到一起放在<code>.vue</code>结尾的单文件中。这些文件最终会通过JS打包工具（如<code>Webpack</code>）处理。</p>
-<p>使用Vue CLI创建的项目被配置为开箱即用的情况下，可以在CLI创建项目中的<code>src</code>文件夹里看到第一个<code>.vue</code>文件：<code>App.vue</code>。</p>
-<h2 id="App-vue"><a href="#App-vue" class="headerlink" title="App.vue"></a><code>App.vue</code></h2><p>打开<code>App.vue</code>文件，可以看到有<code>&lt;template&gt;</code>、<code>&lt;script&gt;</code>和<code>&lt;style&gt;</code>三部分组成，分别包含了组件的模板、脚本和样式相关的内容。所有单文件组件内的结构都是这种类似的结构。</p>
-<p><strong><code>&lt;tamplate&gt;</code>包含了所有的标记结构和组件的展示逻辑。tamplate可以包含任何合法的HTML以及Vue特点的语法。</strong>如通过设置<code>&lt;tamplate lang=&quot;pug&quot;&gt;</code>可以使用Pug模板来替代标准HTML。</p>
+<p>使用Vue
+CLI创建的项目被配置为开箱即用的情况下，可以在CLI创建项目中的<code>src</code>文件夹里看到第一个<code>.vue</code>文件：<code>App.vue</code>。</p>
+<h2 id="app.vue"><code>App.vue</code></h2>
+<p>打开<code>App.vue</code>文件，可以看到有<code>&lt;template&gt;</code>、<code>&lt;script&gt;</code>和<code>&lt;style&gt;</code>三部分组成，分别包含了组件的模板、脚本和样式相关的内容。所有单文件组件内的结构都是这种类似的结构。</p>
+<p><strong><code>&lt;tamplate&gt;</code>包含了所有的标记结构和组件的展示逻辑。tamplate可以包含任何合法的HTML以及Vue特点的语法。</strong>如通过设置<code>&lt;tamplate lang="pug"&gt;</code>可以使用Pug模板来替代标准HTML。</p>
 <p><strong><code>&lt;script&gt;</code>包含组件中所有的非显示逻辑，<code>&lt;script&gt;</code>标签默认导出一个JS对象。</strong>该对象用于在本地注册组件、定义属性、处理本地状态、定义方法等地方。在构建阶段这个包含<code>&lt;tamplate&gt;</code>的对象会被处理和转换成为一个有<code>render()</code>函数的Vue组件。</p>
 <p>对于<code>App.vue</code>，默认导出将组件的名称设置为<code>app</code>，并通过将<code>HelloWorld</code>组件添加到<code>components</code>属性中来注册它。以这种方式注册组件时，意味着就是在本地注册，本地注册的组件只能在注册它们的组件内部使用，因此需要将其导入并注册到使用它们的每个组件文件中。</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-<span class="token keyword">import</span> HelloWorld form <span class="token string">'./components/Helloworld.vue'</span>
-    
-<span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">&#123;</span>
-    name<span class="token operator">:</span><span class="token string">'app'</span><span class="token punctuation">,</span>
-    components<span class="token operator">:</span><span class="token punctuation">&#123;</span>
-        <span class="token comment">//在这里本地注册组件</span>
-        HelloWorld
-<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>若想要使用<code>TypeScript</code>语法，可以将<code>&lt;script&gt;</code>标签的<code>lang</code>属性设置为<code>&lt;script lang=&#39;ts&#39;&gt;</code>。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="title class_">HelloWorld</span> form <span class="string">&#x27;./components/Helloworld.vue&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">name</span>:<span class="string">&#x27;app&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">components</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//在这里本地注册组件</span></span></span><br><span class="line"><span class="language-javascript">        <span class="title class_">HelloWorld</span></span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>若想要使用<code>TypeScript</code>语法，可以将<code>&lt;script&gt;</code>标签的<code>lang</code>属性设置为<code>&lt;script lang='ts'&gt;</code>。</p>
 <p>组件的CSS应写在<code>&lt;style&gt;</code>标签里，<strong>若添加了<code>&lt;scoped&gt;</code>属性（如<code>&lt;style scoped&gt;</code>)，Vue会把样式的范围显示在单文件组件的内容里。</strong>设置类似于CSS-in-JS的解决方案，只不过是允许书写纯粹的CSS。</p>
-<p><strong>注意：</strong>若通过CLI创建项目是选择了CSS预处理器，则可以将<code>lang</code>属性添加到<code>&lt;style&gt;</code>标签中，以便<code>Webpack</code>可以在构建时处理内容。如<code>&lt;style lang=&quot;scss&quot;&gt;</code>将允许在样式信息中使用SCSS语法。</p>
-<h2 id="本地运行程序"><a href="#本地运行程序" class="headerlink" title="本地运行程序"></a>本地运行程序</h2><p>Vue CLI带有内置的开发服务器，因此可以无需自己配置服务器便可在本地运行并测试应用程序。CLI会以npm脚本的形式将<code>serve</code>命令添加到项目的<code>package.json</code>文件中，因此可以轻松地运行它。</p>
+<p><strong>注意：</strong>若通过CLI创建项目是选择了CSS预处理器，则可以将<code>lang</code>属性添加到<code>&lt;style&gt;</code>标签中，以便<code>Webpack</code>可以在构建时处理内容。如<code>&lt;style lang="scss"&gt;</code>将允许在样式信息中使用SCSS语法。</p>
+<h2 id="本地运行程序">本地运行程序</h2>
+<p>Vue
+CLI带有内置的开发服务器，因此可以无需自己配置服务器便可在本地运行并测试应用程序。CLI会以npm脚本的形式将<code>serve</code>命令添加到项目的<code>package.json</code>文件中，因此可以轻松地运行它。</p>
 <p>在终端中，切换到项目所在的路径，输入<code>npm run serve</code>或者<code>yarn run serve</code>即可运行服务器，此时的终端应输出以下类似的内容：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS C:\Users\Administrator\Desktop\test\test&gt; npm run serve
-
-&gt; test@0.1.0 serve
-&gt; vue-cli-service serve
-
- INFO  Starting development server...
-
-
- DONE  Compiled successfully in 1995ms                                                                          14:28:36
-
-
-  App running at:
-  - Local:   http:&#x2F;&#x2F;localhost:8080&#x2F;
-  - Network: http:&#x2F;&#x2F;10.17.212.3:8080&#x2F;
-
-  Note that the development build is not optimized.
-  To create a production build, run yarn build.
-
-
-
- WAIT  Compiling...                                                                                             14:28:36
-
-Compiling...
-
-
- DONE  Compiled successfully in 70ms                                                                            14:28:36
-
-
-  App running at:
-  - Local:   http:&#x2F;&#x2F;localhost:8080&#x2F;
-  - Network: http:&#x2F;&#x2F;10.17.212.3:8080&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\<span class="built_in">test</span>\<span class="built_in">test</span>&gt; npm run serve</span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">test</span>@0.1.0 serve</span><br><span class="line">&gt; vue-cli-service serve</span><br><span class="line"></span><br><span class="line"> INFO  Starting development server...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> DONE  Compiled successfully <span class="keyword">in</span> 1995ms                                                                          14:28:36</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  App running at:</span><br><span class="line">  - Local:   http://localhost:8080/</span><br><span class="line">  - Network: http://10.17.212.3:8080/</span><br><span class="line"></span><br><span class="line">  Note that the development build is not optimized.</span><br><span class="line">  To create a production build, run yarn build.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> WAIT  Compiling...                                                                                             14:28:36</span><br><span class="line"></span><br><span class="line">Compiling...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> DONE  Compiled successfully <span class="keyword">in</span> 70ms                                                                            14:28:36</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  App running at:</span><br><span class="line">  - Local:   http://localhost:8080/</span><br><span class="line">  - Network: http://10.17.212.3:8080/</span><br></pre></td></tr></table></figure>
 <p>若在浏览器中打开<code>http://localhost:8080/</code>或<code>http://10.17.212.3:8080/</code>，便可以看到应用程序。当前它应该包含欢迎信息、Vue文档的链接、使用CLI初始化应用程序时添加的插件链接，以及指向Vue社区和生态系统的其他有用链接。</p>
-<p><img src="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/2.png" alt></p>
-<h2 id="改动应用"><a href="#改动应用" class="headerlink" title="改动应用"></a>改动应用</h2><p>对应用做出第一步改动，删除Vue logo。打开<code>App.vue</code>文件，在template部分删除<code>&lt;img&gt;</code>元素</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Vue logo<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./assets/logo.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/2.png"></p>
+<h2 id="改动应用">改动应用</h2>
+<p>对应用做出第一步改动，删除Vue
+logo。打开<code>App.vue</code>文件，在template部分删除<code>&lt;img&gt;</code>元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">alt</span>=<span class="string">&quot;Vue logo&quot;</span> <span class="attr">src</span>=<span class="string">&quot;./assets/logo.png&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>服务器仍在正常运行时，可以看到logo是即时从之前渲染的页面中消失。接下来再把<code>HelloWorld</code>组件也删掉。</p>
 <p>首先删除下面这一行：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> HelloWorld <span class="token keyword">from</span> <span class="token string">'./components/HelloWorld.vue'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">HelloWorld</span> <span class="keyword">from</span> <span class="string">&#x27;./components/HelloWorld.vue&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>若这时候保存<code>App.vue</code>文件，渲染好的应用会因为找不到<code>HelloWorld</code>组件而抛出一个错误。</p>
 <p>在<code>&lt;script&gt;</code>中将引入和注册组件的那几行删掉：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">components<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-  HelloWorld
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">components</span>: &#123;</span><br><span class="line">  <span class="title class_">HelloWorld</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此时渲染好的应用不再显示错误了，只有一个空页面。</p>
 <p>接下来来创建一个任务清单的应用。打开<code>App.vue</code>文件，将下列代码删除：</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>HelloWorld</span> <span class="token attr-name">msg</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Welcome to Your Vue.js App<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>编写代码如下，在<code>&lt;div id=&quot;app&quot;&gt;</code>中新增一个<code>&lt;h1&gt;</code>标签，并将标题文案设为”To-Do List”：</p>
-<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-  &lt;div id&#x3D;&quot;app&quot;&gt;
-    &lt;h1&gt;To-Do List&lt;&#x2F;h1&gt;
-  &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">HelloWorld</span> <span class="attr">msg</span>=<span class="string">&quot;Welcome to Your Vue.js App&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>编写代码如下，在<code>&lt;div id="app"&gt;</code>中新增一个<code>&lt;h1&gt;</code>标签，并将标题文案设为”To-Do
+List”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;h1&gt;To-Do List&lt;/h1&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
 <p>此时服务器会展示<code>To-Do List</code>标题。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>学习至此，我们已经为示例应用程序创建了一些脚手架，使其可以运行，检查并进行了一些初步更改。后续将进一步研究并构建示例应用程序。使之允许存储项目列表，完成后将其选中，并按所有、已完成和未完成待办事项来过滤。</p>
-<h1 id="创建第一个Vue组件"><a href="#创建第一个Vue组件" class="headerlink" title="创建第一个Vue组件"></a>创建第一个Vue组件</h1><p>Vue组件是由管理应用程序数据的JavaScript对象和映射到基础DOM结构的基于HTML语法的模板语法组成的。接下来要创建一个组件来表示待办事项列表中的每一个项目。</p>
-<h2 id="创建一个ToDoItem组件"><a href="#创建一个ToDoItem组件" class="headerlink" title="创建一个ToDoItem组件"></a>创建一个<code>ToDoItem</code>组件</h2><p><code>ToDoItem</code>组件将用来显示单一的待办事项，用它来建立待办事项列表。</p>
+<h2 id="小结">小结</h2>
+<p>学习至此，我们已经为示例应用程序创建了一些脚手架，使其可以运行，检查并进行了一些初步更改。后续将进一步研究并构建示例应用程序。使之允许存储项目列表，完成后将其选中，并按所有、已完成和未完成待办事项来过滤。</p>
+<h1 id="创建第一个vue组件">创建第一个Vue组件</h1>
+<p>Vue组件是由管理应用程序数据的JavaScript对象和映射到基础DOM结构的基于HTML语法的模板语法组成的。接下来要创建一个组件来表示待办事项列表中的每一个项目。</p>
+<h2 id="创建一个todoitem组件">创建一个<code>ToDoItem</code>组件</h2>
+<p><code>ToDoItem</code>组件将用来显示单一的待办事项，用它来建立待办事项列表。</p>
 <ul>
-<li><p>在<code>test/srx/components</code>目录下，创建一个<code>ToDoItem.vue</code>的新文件并打开</p>
-</li>
-<li><p>在文件顶部添加<code>&lt;template&gt;&lt;/template&gt;</code>部分来创建组件中的模板部分</p>
-</li>
+<li><p>在<code>test/srx/components</code>目录下，创建一个<code>ToDoItem.vue</code>的新文件并打开</p></li>
+<li><p>在文件顶部添加<code>&lt;template&gt;&lt;/template&gt;</code>部分来创建组件中的模板部分</p></li>
 <li><p>在模板部分下面创建一个<code>&lt;script&gt;&lt;/script&gt;</code>部分。在<code>&lt;script&gt;</code>标签内，添加一个默认导出对象<code>export default&#123;&#125;</code>作为组件对象:</p>
-  <pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt; &lt;&#x2F;template&gt;
-&lt;script&gt;
-    export default&#123;&#125;;
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt; &lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default&#123;&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p></li>
 </ul>
-<p>现在加上为<code>ToDoItem</code>添加实际内容。Vue模板目前只允许一个根元素—一个元素需要包裹模板内的所有内容，因此要为该根元素使用一个<code>&lt;div&gt;</code>。</p>
+<p>现在加上为<code>ToDoItem</code>添加实际内容。Vue模板目前只允许一个根元素–一个元素需要包裹模板内的所有内容，因此要为该根元素使用一个<code>&lt;div&gt;</code>。</p>
 <ul>
-<li><p>在组件模板中添加一个空的<code>&lt;div&gt;</code></p>
-</li>
+<li><p>在组件模板中添加一个空的<code>&lt;div&gt;</code></p></li>
 <li><p>在<code>&lt;div&gt;</code>里添加一个<code>checkbox</code>和一个对应的<code>label</code>。给复选框添加一个<code>id</code>，并添加一个<code>for</code>属性，将复选框映射到标签上。</p>
-  <pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
-    &lt;div&gt;
-        &lt;input type&#x3D;&quot;checkbox&quot; id&#x3D;&quot;todo-item&quot; checked&#x3D;&quot;false&quot; &#x2F;&gt;
-        &lt;label for&#x3D;&quot;todo-item&quot;&gt;My Todo Item&lt;&#x2F;label&gt;
-    &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;input type=&quot;checkbox&quot; id=&quot;todo-item&quot; checked=&quot;false&quot; /&gt;</span><br><span class="line">        &lt;label for=&quot;todo-item&quot;&gt;My Todo Item&lt;/label&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p></li>
 </ul>
-<h2 id="在应用程序中使用TodoItem组件"><a href="#在应用程序中使用TodoItem组件" class="headerlink" title="在应用程序中使用TodoItem组件"></a>在应用程序中使用TodoItem组件</h2><p>​    </p>
+<h2 id="在应用程序中使用todoitem组件">在应用程序中使用TodoItem组件</h2>
+<p>​</p>
 
     </article>
     <!-- license -->
@@ -918,7 +796,7 @@ Compiling...
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%80%E4%B8%AA%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">初始化一个新项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue%E6%96%87%E4%BB%B6%EF%BC%88%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">.vue文件（单文件组件）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App-vue"><span class="toc-number">1.3.</span> <span class="toc-text">App.vue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.4.</span> <span class="toc-text">本地运行程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B9%E5%8A%A8%E5%BA%94%E7%94%A8"><span class="toc-number">1.5.</span> <span class="toc-text">改动应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AAVue%E7%BB%84%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">创建第一个Vue组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAToDoItem%E7%BB%84%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">创建一个ToDoItem组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8TodoItem%E7%BB%84%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">在应用程序中使用TodoItem组件</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%80%E4%B8%AA%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">初始化一个新项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue%E6%96%87%E4%BB%B6%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">.vue文件（单文件组件）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#app.vue"><span class="toc-number">1.3.</span> <span class="toc-text">App.vue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.4.</span> <span class="toc-text">本地运行程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B9%E5%8A%A8%E5%BA%94%E7%94%A8"><span class="toc-number">1.5.</span> <span class="toc-text">改动应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AAvue%E7%BB%84%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">创建第一个Vue组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAtodoitem%E7%BB%84%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">创建一个ToDoItem组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8todoitem%E7%BB%84%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">在应用程序中使用TodoItem组件</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1268,18 +1146,6 @@ Compiling...
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2388,6 +2254,16 @@ Compiling...
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2418,29 +2294,14 @@ Compiling...
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2458,9 +2319,24 @@ Compiling...
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2471,16 +2347,6 @@ Compiling...
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2498,11 +2364,6 @@ Compiling...
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2511,6 +2372,11 @@ Compiling...
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2548,19 +2414,9 @@ Compiling...
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2571,6 +2427,16 @@ Compiling...
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2594,6 +2460,11 @@ Compiling...
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2604,29 +2475,9 @@ Compiling...
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2634,9 +2485,19 @@ Compiling...
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2644,19 +2505,24 @@ Compiling...
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2689,6 +2555,16 @@ Compiling...
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -2702,16 +2578,6 @@ Compiling...
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2786,5 +2652,20 @@ Compiling...
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

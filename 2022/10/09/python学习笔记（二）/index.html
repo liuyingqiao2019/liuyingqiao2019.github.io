@@ -496,30 +496,18 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h1><h2 id="方法一：if…else语句"><a href="#方法一：if…else语句" class="headerlink" title="方法一：if…else语句"></a>方法一：if…else语句</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">if &lt;条件1&gt;:
-	&lt;执行1&gt;
-else 
-	&lt;执行2&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="方法二：if-…elif…else语句"><a href="#方法二：if-…elif…else语句" class="headerlink" title="方法二：if …elif…else语句"></a>方法二：if …elif…else语句</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">if &lt;条件1&gt;:
-	&lt;执行1&gt;
-elif &lt;条件2&gt;:
-	&lt;执行2&gt;
-else:
-	&lt;执行3&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="input条件输出"><a href="#input条件输出" class="headerlink" title="input条件输出"></a>input条件输出</h2><p>input()返回值的数据类型是str，str不能直接与整数比较，若要与整数比较，要先把str转换为整数类型，如下代码所示：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">s &#x3D; input(&#39;birth: &#39;)
-birth &#x3D; int(s)
-if birth &lt; 2000:
-    print(&#39;00前&#39;)
-else:
-    print(&#39;00后&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        <h1 id="条件判断">条件判断</h1>
+<h2 id="方法一ifelse语句">方法一：if…else语句</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> &lt;条件<span class="number">1</span>&gt;:</span><br><span class="line">	&lt;执行<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">	&lt;执行<span class="number">2</span>&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="方法二if-elifelse语句">方法二：if …elif…else语句</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> &lt;条件<span class="number">1</span>&gt;:</span><br><span class="line">	&lt;执行<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">elif</span> &lt;条件<span class="number">2</span>&gt;:</span><br><span class="line">	&lt;执行<span class="number">2</span>&gt;</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	&lt;执行<span class="number">3</span>&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="input条件输出">input条件输出</h2>
+<p>input()返回值的数据类型是str，str不能直接与整数比较，若要与整数比较，要先把str转换为整数类型，如下代码所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="built_in">input</span>(<span class="string">&#x27;birth: &#x27;</span>)</span><br><span class="line">birth = <span class="built_in">int</span>(s)</span><br><span class="line"><span class="keyword">if</span> birth &lt; <span class="number">2000</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;00前&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;00后&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>若输入值不为数字时，如输入abc，则条件语句可写成：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">s&#x3D;input(&#39;birth:&#39;)
-if s!&#x3D;&#39;zero&#39;:
-    print(&#39;00前&#39;)
-else:
-    print(&#39;00后&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h2><p>小明身高1.75，体重80.5kg。请根据BMI公式（体重除以身高的平方）帮小明计算他的BMI指数，并根据BMI指数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="built_in">input</span>(<span class="string">&#x27;birth:&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> s!=<span class="string">&#x27;zero&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;00前&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;00后&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="练习题">练习题</h2>
+<p>小明身高1.75，体重80.5kg。请根据BMI公式（体重除以身高的平方）帮小明计算他的BMI指数，并根据BMI指数：</p>
 <ul>
 <li>低于18.5：过轻</li>
 <li>18.5-25：正常</li>
@@ -529,99 +517,60 @@ else:
 </ul>
 <p>用<code>if-elif</code>判断并打印结果：</p>
 <p>代码如下：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"># -*- coding: utf-8 -*-
-
-height &#x3D; 1.75
-weight &#x3D; 80.5
-bmi &#x3D; weight&#x2F;(height*height)
-if bmi&lt;18.5:
-    print(&#39;过轻&#39;)
-elif 18.5&lt;&#x3D;bmi&lt;25:
-    print(&#39;正常&#39;)
-elif 25&lt;&#x3D;bmi&lt;28:
-    print(&#39;肥胖&#39;)
-else:
-    print(&#39;严重肥胖&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h1><h2 id="方法一：for…in循环"><a href="#方法一：for…in循环" class="headerlink" title="方法一：for…in循环"></a>方法一：for…in循环</h2><p>例如计算1-100的整数之和：<br><pre class="line-numbers language-python" data-language="python"><code class="language-python">t&#x3D;0
-for i in range(101)：
-	t&#x3D;t+i
-print(t)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></p>
-<h2 id="方法二：while-循环"><a href="#方法二：while-循环" class="headerlink" title="方法二：while 循环"></a>方法二：while 循环</h2><p>例如计算100以内所有奇数之和：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">t&#x3D;0
-n&#x3D;99
-while n&gt;0:
-    t&#x3D;t+n
-    n&#x3D;n-2
-print(t)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="练习题-1"><a href="#练习题-1" class="headerlink" title="练习题"></a>练习题</h2><p>请利用循环依次对list中的每个名字打印出<code>Hello, xxx!</code>：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"># -*- coding: utf-8 -*-
-L &#x3D; [&#39;Bart&#39;, &#39;Lisa&#39;, &#39;Adam&#39;]
-for i in L:
-    print(&#39;Hello,&#39;+i+&#39;!&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="break与continue"><a href="#break与continue" class="headerlink" title="break与continue"></a>break与continue</h2><p>break语句可提前退出循环，continue语句可跳过当前这次循环，直接开始下一次循环。</p>
-<h1 id="字典dict"><a href="#字典dict" class="headerlink" title="字典dict"></a>字典dict</h1><p>字典使用键-值存储，具有极快的查找速度。dict内部存放的顺序与key的放入顺序无关。为保证哈希的正确性，dict的key必须是<strong>不可变对象</strong>，如list是可变的，不能作为key，dict的key<strong>不能重复</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">height = <span class="number">1.75</span></span><br><span class="line">weight = <span class="number">80.5</span></span><br><span class="line">bmi = weight/(height*height)</span><br><span class="line"><span class="keyword">if</span> bmi&lt;<span class="number">18.5</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;过轻&#x27;</span>)</span><br><span class="line"><span class="keyword">elif</span> <span class="number">18.5</span>&lt;=bmi&lt;<span class="number">25</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;正常&#x27;</span>)</span><br><span class="line"><span class="keyword">elif</span> <span class="number">25</span>&lt;=bmi&lt;<span class="number">28</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;肥胖&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;严重肥胖&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="循环">循环</h1>
+<h2 id="方法一forin循环">方法一：for…in循环</h2>
+<p>例如计算1-100的整数之和： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">101</span>)：</span><br><span class="line">	t=t+i</span><br><span class="line"><span class="built_in">print</span>(t)</span><br></pre></td></tr></table></figure></p>
+<h2 id="方法二while-循环">方法二：while 循环</h2>
+<p>例如计算100以内所有奇数之和：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">t=<span class="number">0</span></span><br><span class="line">n=<span class="number">99</span></span><br><span class="line"><span class="keyword">while</span> n&gt;<span class="number">0</span>:</span><br><span class="line">    t=t+n</span><br><span class="line">    n=n-<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(t)</span><br></pre></td></tr></table></figure>
+<h2 id="练习题-1">练习题</h2>
+<p>请利用循环依次对list中的每个名字打印出<code>Hello, xxx!</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">L = [<span class="string">&#x27;Bart&#x27;</span>, <span class="string">&#x27;Lisa&#x27;</span>, <span class="string">&#x27;Adam&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> L:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Hello,&#x27;</span>+i+<span class="string">&#x27;!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="break与continue">break与continue</h2>
+<p>break语句可提前退出循环，continue语句可跳过当前这次循环，直接开始下一次循环。</p>
+<h1 id="字典dict">字典dict</h1>
+<p>字典使用键-值存储，具有极快的查找速度。dict内部存放的顺序与key的放入顺序无关。为保证哈希的正确性，dict的key必须是<strong>不可变对象</strong>，如list是可变的，不能作为key，dict的key<strong>不能重复</strong>。</p>
 <p>与list相比，dict的特点为：</p>
 <ul>
 <li>查找和插入的速度极快，不会随key的增加而变慢</li>
 <li>需要占用大量内存</li>
 </ul>
 <p><strong>形式如下</strong>：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">d&#x3D;&#123;&#39;Zhangsan&#39;:92,&#39;Lisi&#39;:80,&#39;Wangwu&#39;:56&#125;
-print(d[&#39;Lisi&#39;])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d=&#123;<span class="string">&#x27;Zhangsan&#x27;</span>:<span class="number">92</span>,<span class="string">&#x27;Lisi&#x27;</span>:<span class="number">80</span>,<span class="string">&#x27;Wangwu&#x27;</span>:<span class="number">56</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(d[<span class="string">&#x27;Lisi&#x27;</span>])</span><br></pre></td></tr></table></figure>
 <p><strong>通过key将数据放入dict</strong></p>
-<p>如把key为Lisi、value为68的数据放入dict：<code>d[&#39;Lisi&#39;]=68</code></p>
+<p>如把key为Lisi、value为68的数据放入dict：<code>d['Lisi']=68</code></p>
 <p><strong>注意：</strong>多次对一个key放入value，后面的值会把前面的值冲掉,如此时Lisi的value值由80变成了68。</p>
 <p><strong>删除一个key</strong></p>
-<p>如要删除Lisi，其对应的value也会从dict中删除：<code>d.pop(&#39;Lisi&#39;)</code></p>
-<h2 id="避免key不存在的错误"><a href="#避免key不存在的错误" class="headerlink" title="避免key不存在的错误"></a>避免key不存在的错误</h2><h3 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h3><p>通过<code>in</code>判断key是否存在：<code>&#39;Jack&#39; in  d</code></p>
-<h3 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h3><p>通过<code>get()</code>方法判断key是否存在，若key不存在，默认返回<code>Nome</code>：<code>d.get(&#39;Jack&#39;)</code></p>
-<p>通过<code>get()</code>方法判断key是否存在，若key不存在，返回指定的value：<code>d.get(&#39;Jack&#39;,-1)</code></p>
-<h1 id="集合set"><a href="#集合set" class="headerlink" title="集合set"></a>集合set</h1><p>set与dict类似，也是一组key的集合，但<strong>不存储value</strong>。与dict相同，key不能重复，故在set中没有重复的key，也同样不能放入可变对象。此外，set也可看成数学意义上无序和无重复元素的集合。</p>
+<p>如要删除Lisi，其对应的value也会从dict中删除：<code>d.pop('Lisi')</code></p>
+<h2 id="避免key不存在的错误">避免key不存在的错误</h2>
+<h3 id="方法一">方法一：</h3>
+<p>通过<code>in</code>判断key是否存在：<code>'Jack' in  d</code></p>
+<h3 id="方法二">方法二：</h3>
+<p>通过<code>get()</code>方法判断key是否存在，若key不存在，默认返回<code>Nome</code>：<code>d.get('Jack')</code></p>
+<p>通过<code>get()</code>方法判断key是否存在，若key不存在，返回指定的value：<code>d.get('Jack',-1)</code></p>
+<h1 id="集合set">集合set</h1>
+<p>set与dict类似，也是一组key的集合，但<strong>不存储value</strong>。与dict相同，key不能重复，故在set中没有重复的key，也同样不能放入可变对象。此外，set也可看成数学意义上无序和无重复元素的集合。</p>
 <p>创建一个set，需要提供一个list作为输入集合，其<strong>形式如下</strong>：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">s&#x3D;set([1,2,3])
-print(s)
-&gt;&gt;&gt;s
-&#123;1,2,3&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="built_in">set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">&gt;&gt;&gt;s</span><br><span class="line">&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>注意：传入的参数是一个list，而显示的<code>&#123;1,2,3&#125;</code>只是说明set内部有1，2，3这3个元素，显示的顺序也<strong>不代表set就是有序的</strong>。</p>
 <p><strong>重复元素在set中自动被过滤</strong></p>
 <p>如下面所示：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">s&#x3D;set([1,1,2,2,3,3])
-print(s)
-#运行结果如下
-s
-&#123;1, 2, 3&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="built_in">set</span>([<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line"><span class="comment">#运行结果如下</span></span><br><span class="line">s</span><br><span class="line">&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>通过<code>add(key)</code>方法将元素添加到set中</strong></p>
 <p>如在set中先后两次添加元素4：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">s&#x3D;set([1,2,3])
-s.add(4)
-print(s)
-s.add(4)
-print(s)
-#运行结果如下
-&#123;1, 2, 3, 4&#125;
-&#123;1, 2, 3, 4&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="built_in">set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">s.add(<span class="number">4</span>)</span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">s.add(<span class="number">4</span>)</span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line"><span class="comment">#运行结果如下</span></span><br><span class="line">&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到，元素可以重复添加，但会被set自动过滤掉重复的元素。</p>
 <p><strong>通过<code>remove(key)</code>方法删除元素</strong></p>
 <p>如删除元素4：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">s&#x3D;set([1,2,3,4])
-s.remove(4)
-print(s)
-&gt;&gt;&gt;&#123;1, 2, 3&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="built_in">set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">s.remove(<span class="number">4</span>)</span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line">&gt;&gt;&gt;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>两个set可以做交集、并集等操作</strong></p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">s&#x3D;set([1,2,3,4])
-d&#x3D;set([3,4,5,6])
-print(s&amp;d)
-print(s|d)
-#运行结果如下
-&#123;3, 4&#125;
-&#123;1, 2, 3, 4, 5, 6&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>list、tuple是<strong>有序可重复</strong>的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="built_in">set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">d=<span class="built_in">set</span>([<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</span><br><span class="line"><span class="built_in">print</span>(s&amp;d)</span><br><span class="line"><span class="built_in">print</span>(s|d)</span><br><span class="line"><span class="comment">#运行结果如下</span></span><br><span class="line">&#123;<span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="小结">小结</h1>
+<p>list、tuple是<strong>有序可重复</strong>的</p>
 <p>dict、set是<strong>无序不可重复</strong>的</p>
 <p>四者形式上的区别：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">list&#x3D;[value,value]
-tuple&#x3D;(value,value)
-dict&#x3D;&#123;key:value,key:value&#125;
-set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>=[value,value]</span><br><span class="line"><span class="built_in">tuple</span>=(value,value)</span><br><span class="line"><span class="built_in">dict</span>=&#123;key:value,key:value&#125;</span><br><span class="line"><span class="built_in">set</span>=([key,key])</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -820,7 +769,7 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="toc-number">1.</span> <span class="toc-text">条件判断</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9Aif%E2%80%A6else%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.1.</span> <span class="toc-text">方法一：if…else语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9Aif-%E2%80%A6elif%E2%80%A6else%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.2.</span> <span class="toc-text">方法二：if …elif…else语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#input%E6%9D%A1%E4%BB%B6%E8%BE%93%E5%87%BA"><span class="toc-number">1.3.</span> <span class="toc-text">input条件输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.</span> <span class="toc-text">循环</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9Afor%E2%80%A6in%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.1.</span> <span class="toc-text">方法一：for…in循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9Awhile-%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.2.</span> <span class="toc-text">方法二：while 循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">2.3.</span> <span class="toc-text">练习题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#break%E4%B8%8Econtinue"><span class="toc-number">2.4.</span> <span class="toc-text">break与continue</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E5%85%B8dict"><span class="toc-number">3.</span> <span class="toc-text">字典dict</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%BF%E5%85%8Dkey%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E9%94%99%E8%AF%AF"><span class="toc-number">3.1.</span> <span class="toc-text">避免key不存在的错误</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A"><span class="toc-number">3.1.1.</span> <span class="toc-text">方法一：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A"><span class="toc-number">3.1.2.</span> <span class="toc-text">方法二：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88set"><span class="toc-number">4.</span> <span class="toc-text">集合set</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="toc-number">1.</span> <span class="toc-text">条件判断</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80ifelse%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.1.</span> <span class="toc-text">方法一：if…else语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8Cif-elifelse%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.2.</span> <span class="toc-text">方法二：if …elif…else语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#input%E6%9D%A1%E4%BB%B6%E8%BE%93%E5%87%BA"><span class="toc-number">1.3.</span> <span class="toc-text">input条件输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.</span> <span class="toc-text">循环</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80forin%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.1.</span> <span class="toc-text">方法一：for…in循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8Cwhile-%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.2.</span> <span class="toc-text">方法二：while 循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">2.3.</span> <span class="toc-text">练习题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#break%E4%B8%8Econtinue"><span class="toc-number">2.4.</span> <span class="toc-text">break与continue</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E5%85%B8dict"><span class="toc-number">3.</span> <span class="toc-text">字典dict</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%BF%E5%85%8Dkey%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E9%94%99%E8%AF%AF"><span class="toc-number">3.1.</span> <span class="toc-text">避免key不存在的错误</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-number">3.1.1.</span> <span class="toc-text">方法一：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-number">3.1.2.</span> <span class="toc-text">方法二：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88set"><span class="toc-number">4.</span> <span class="toc-text">集合set</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1170,18 +1119,6 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2290,6 +2227,16 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2320,29 +2267,14 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2360,9 +2292,24 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2373,16 +2320,6 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2400,11 +2337,6 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2413,6 +2345,11 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2450,19 +2387,9 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2473,6 +2400,16 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2496,6 +2433,11 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2506,29 +2448,9 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2536,9 +2458,19 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2546,19 +2478,24 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2591,6 +2528,16 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -2604,16 +2551,6 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2688,5 +2625,20 @@ set&#x3D;([key,key])<span aria-hidden="true" class="line-numbers-rows"><span></s
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

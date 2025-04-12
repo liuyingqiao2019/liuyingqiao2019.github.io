@@ -341,7 +341,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.8k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -502,239 +502,33 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在使用Elasticsearch进行全文搜索时，会使用到Elasticsearch（搜索引擎）、Logstash（数据同步）、Kibana（数据可视化）这三个中间件。在开发或测试环境中部署项目时，常使用docker-compose一键部署项目所需的环境，因此本文记录使用docker-compose一键部署Elasticsearch、Logstash和Kibana的过程。</p>
-<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><h2 id="端口说明"><a href="#端口说明" class="headerlink" title="端口说明"></a>端口说明</h2><ul>
+        <h1 id="简介">简介</h1>
+<p>在使用Elasticsearch进行全文搜索时，会使用到Elasticsearch（搜索引擎）、Logstash（数据同步）、Kibana（数据可视化）这三个中间件。在开发或测试环境中部署项目时，常使用docker-compose一键部署项目所需的环境，因此本文记录使用docker-compose一键部署Elasticsearch、Logstash和Kibana的过程。</p>
+<h1 id="部署">部署</h1>
+<h2 id="端口说明">端口说明</h2>
+<ul>
 <li>Elasticsearch：9200（HTTP通信）和9300（TCP通信）</li>
 <li>Logstash：5044和9600（TCP通信）</li>
 <li>Kibana：5601</li>
 </ul>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><h3 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a><code>docker-compose.yml</code></h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">version: &#39;3&#39;
-services:
-  elasticsearch:
-    image: docker.elastic.co&#x2F;elasticsearch&#x2F;elasticsearch:7.16.2
-    container_name: elasticsearch_server
-    restart: unless-stopped
-    environment:
-      - discovery.type&#x3D;single-node
-      - discovery.zen.minimum_master_nodes&#x3D;1
-      - ES_JAVA_OPTS&#x3D;-Xms3g -Xmx3g
-    volumes:
-      - &quot;&#x2F;home&#x2F;docker_data&#x2F;myproj&#x2F;elasticsearch&#x2F;data:&#x2F;data&quot;
-    ports:
-      - 9200:9200
-      - 9300:9300 
-    networks:
-      default:     # 指定使用的网络
-      common:
-        aliases:
-          - elasticsearch     # 该容器的别名，在 elk_net 网络中的其他容器可以通过别名 elasticsearch 来访问到该容器
-
-  kibana:
-    image: docker.elastic.co&#x2F;kibana&#x2F;kibana:7.16.2
-    depends_on:
-      - elasticsearch    
-    container_name: kibana_server
-    restart: unless-stopped    
-    environment:
-      - ELASTICSEARCH_URL&#x3D;http:&#x2F;&#x2F;elasticsearch:9200
-      - SERVER_NAME&#x3D;kibana    
-    # 如需具体配置，可以创建.&#x2F;config&#x2F;kibana.yml，并映射
-    volumes:
-      - &quot;&#x2F;home&#x2F;docker_data&#x2F;myproj&#x2F;config&#x2F;kibana.yml:&#x2F;config&#x2F;kibana.yml&quot;      
-    ports:
-      - &quot;5601:5601&quot;
-    networks:
-      default:
-      common:
-        aliases:
-          - kibana
-
-  logstash:
-    image: docker.elastic.co&#x2F;logstash&#x2F;logstash:7.16.2
-    depends_on:
-      - elasticsearch    
-    container_name: logstash_server
-    restart: unless-stopped 
-    environment:
-      - LS_JAVA_OPTS&#x3D;-Xmx256m -Xms256m
-    volumes:
-      - &quot;&#x2F;home&#x2F;docker_data&#x2F;myproj&#x2F;config&#x2F;logstash.conf:&#x2F;config&#x2F;logstash.conf&quot;      
-    networks:
-      default:
-      common:
-        aliases:
-          - logstash
-
-    entrypoint:
-      - logstash
-      - -f
-      - &#x2F;config&#x2F;logstash.conf
-    logging:
-      driver: &quot;json-file&quot;
-      options:
-        max-size: &quot;200m&quot;
-        max-file: &quot;3&quot;
-
-networks:
- common:
-  external:
-   name: nginx-bridge
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="elasticsearch-yml"><a href="#elasticsearch-yml" class="headerlink" title="elasticsearch.yml"></a><code>elasticsearch.yml</code></h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">cluster.name: &quot;es-server&quot;
-network.host: 0.0.0.0
-http.cors.enabled: true
-http.cors.allow-origin: &quot;*&quot;
-http.cors.allow-headers: Authorization
-xpack.security.enabled: true
-xpack.security.transport.ssl.enabled: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="kibana-yml"><a href="#kibana-yml" class="headerlink" title="kibana.yml"></a><code>kibana.yml</code></h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">server.host: &quot;0.0.0.0&quot;
-server.shutdownTimeout: &quot;5s&quot;
-elasticsearch.hosts: [ &quot;http:&#x2F;&#x2F;elasticsearch:9200&quot; ]
-monitoring.ui.container.elasticsearch.enabled: true
-elasticsearch.username: &quot;elastic&quot;
-elasticsearch.password: &quot;123456&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="logstash-yml"><a href="#logstash-yml" class="headerlink" title="logstash.yml"></a><code>logstash.yml</code></h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">http.host: &quot;0.0.0.0&quot;
-xpack.monitoring.elasticsearch.hosts: [ &quot;http:&#x2F;&#x2F;elasticsearch:9200&quot; ]
-xpack.monitoring.enabled: true
-xpack.monitoring.elasticsearch.username: logstash_system
-xpack.monitoring.elasticsearch.password: 123456<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="logstash-conf"><a href="#logstash-conf" class="headerlink" title="logstash.conf"></a><code>logstash.conf</code></h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">input &#123;
-    stdin &#123;
-    &#125;
-    jdbc &#123;
-      # 数据库连接地址
-      jdbc_connection_string &#x3D;&gt; &quot;jdbc:postgresql:&#x2F;&#x2F;127.0.0.1:5432&#x2F;postgres&quot;
-      # 数据库连接账号密码：
-      jdbc_user &#x3D;&gt; &quot;postgres&quot;
-      jdbc_password &#x3D;&gt; &quot;123456&quot;
-      # Pg依赖包路径
-      jdbc_driver_library &#x3D;&gt; &quot;pgsql\postgresql-42.5.1.jar&quot;
-      jdbc_driver_class &#x3D;&gt; &quot;org.postgresql.Driver&quot;
-      # 开启分页查询，默认为false
-      jdbc_paging_enabled &#x3D;&gt; &quot;true&quot;
-      # 单次分页查询条数（默认100000，若字段较多且更新频率较高，则建议调低此值）
-      jdbc_page_size &#x3D;&gt; &quot;300000&quot;
-      use_column_value &#x3D;&gt; &quot;true&quot;
-      tracking_column &#x3D;&gt; &quot;id&quot; #根据id字段更新
-      # statement为查询数据sql，若sql较复杂，建议通过statement_filepath 配置sql文件的存放路径；
-      # statement &#x3D;&gt; &quot;SELECT * FROM public.SystemName&quot;
-      statement_filepath &#x3D;&gt; &quot;pgsql\logstash-pgsql1.sql&quot;  #这是要操作的sql 表，下面会提供
-          # 同步频率（分时天月年），全*默认为每分钟同步一次。现设置每天凌晨4点执行
-          schedule &#x3D;&gt; &quot;* 4 * * *&quot;
-          # 多表同步时，表类型区分，建议命名为“库名_表名”，每个jdbc模块需对应一个type；
-          type &#x3D;&gt; &quot;postgres_SystemName&quot;
-          jdbc_default_timezone &#x3D;&gt;&quot;Asia&#x2F;Shanghai&quot;
-    &#125;
-    jdbc &#123;
-      # 数据库连接地址
-      jdbc_connection_string &#x3D;&gt; &quot;jdbc:postgresql:&#x2F;&#x2F;127.0.0.1:5432&#x2F;postgres&quot;
-      # 数据库连接账号密码：
-      jdbc_user &#x3D;&gt; &quot;postgres&quot;
-      jdbc_password &#x3D;&gt; &quot;123456&quot;
-      # Pg依赖包路径
-      jdbc_driver_library &#x3D;&gt; &quot;pgsql\postgresql-42.5.1.jar&quot;
-      jdbc_driver_class &#x3D;&gt; &quot;org.postgresql.Driver&quot;
-      # 开启分页查询，默认为false
-      jdbc_paging_enabled &#x3D;&gt; &quot;true&quot;
-      # 单次分页查询条数（默认100000，若字段较多且更新频率较高，则建议调低此值）
-      jdbc_page_size &#x3D;&gt; &quot;300000&quot;
-      use_column_value &#x3D;&gt; &quot;true&quot;
-      tracking_column &#x3D;&gt; &quot;id&quot; #根据id字段更新
-      # statement为查询数据sql，若sql较复杂，建议通过statement_filepath 配置sql文件的存放路径；
-      # statement &#x3D;&gt; &quot;SELECT * FROM public.&quot;SystemDetail&quot;&quot;
-      statement_filepath &#x3D;&gt; &quot;pgsql\logstash-pgsql2.sql&quot;  #这是要操作的sql 表，下面会提供
-          # 同步频率（分时天月年），默认为每分钟同步一次
-          schedule &#x3D;&gt; &quot;* 4 * * *&quot;
-          # 多表同步时，表类型区分，建议命名为“库名_表名”，每个jdbc模块需对应一个type；
-          type &#x3D;&gt; &quot;postgres_SystemDetail&quot;
-          jdbc_default_timezone &#x3D;&gt;&quot;Asia&#x2F;Shanghai&quot;
-    &#125;
-    jdbc &#123;
-      # 数据库连接地址
-      jdbc_connection_string &#x3D;&gt; &quot;jdbc:postgresql:&#x2F;&#x2F;127.0.0.1:5432&#x2F;postgres&quot;
-      # 数据库连接账号密码：
-      jdbc_user &#x3D;&gt; &quot;postgres&quot;
-      jdbc_password &#x3D;&gt; &quot;123456&quot;
-      # Pg依赖包路径
-      jdbc_driver_library &#x3D;&gt; &quot;pgsql\postgresql-42.5.1.jar&quot;
-      jdbc_driver_class &#x3D;&gt; &quot;org.postgresql.Driver&quot;
-      # 开启分页查询，默认为false
-      jdbc_paging_enabled &#x3D;&gt; &quot;true&quot;
-      # 单次分页查询条数（默认100000，若字段较多且更新频率较高，则建议调低此值）
-      jdbc_page_size &#x3D;&gt; &quot;300000&quot;
-      use_column_value &#x3D;&gt; &quot;true&quot;
-      tracking_column &#x3D;&gt; &quot;id&quot; #根据id字段更新
-      # statement为查询数据sql，若sql较复杂，建议通过statement_filepath 配置sql文件的存放路径；
-      # statement &#x3D;&gt; &quot;SELECT * FROM public.&quot;ProblemList&quot;&quot;
-      statement_filepath &#x3D;&gt; &quot;pgsql\logstash-pgsql3.sql&quot;  #这是要操作的sql 表，下面会提供
-          # 同步频率（分时天月年），默认为每分钟同步一次
-          schedule &#x3D;&gt; &quot;* 4 * * *&quot;
-          # 多表同步时，表类型区分，建议命名为“库名_表名”，每个jdbc模块需对应一个type；
-          type &#x3D;&gt; &quot;postgres_ProblemList&quot;
-          jdbc_default_timezone &#x3D;&gt;&quot;Asia&#x2F;Shanghai&quot;
-    &#125;
-&#125;
-filter &#123;
-    json &#123;
-        source &#x3D;&gt; &quot;message&quot;
-        remove_field &#x3D;&gt; [&quot;message&quot;]
-    &#125;
-&#125;
-output &#123;
-    # output模块的type需和jdbc模块的type一致
-    if [type] &#x3D;&#x3D; &quot;postgres_SystemName&quot;&#123;
-        elasticsearch &#123;
-            # 配置es集群的地址
-            hosts &#x3D;&gt; [&quot;localhost:9200&quot;]
-            # 索引名称，必须小写
-            index &#x3D;&gt; &quot;test&quot;
-            # 模板地址
-                  template &#x3D;&gt; &quot;pgsql\es-template.json&quot;   #es 索引模板，可不定义
-                  template_name &#x3D;&gt; &quot;t-statistic-out-logstash&quot;
-                  template_overwrite &#x3D;&gt; true
-                  document_type &#x3D;&gt; &quot;text&quot;
-            # 数据唯一索引
-            document_id &#x3D;&gt; &quot;%&#123;id&#125;&quot;
-        &#125;
-    &#125;
-    if [type] &#x3D;&#x3D; &quot;postgres_SystemDetail&quot;&#123;
-        elasticsearch &#123;
-            # 配置es集群的地址
-            hosts &#x3D;&gt; [&quot;localhost:9200&quot;]
-            # 索引名称，必须小写
-            index &#x3D;&gt; &quot;test&quot;
-            # 模板地址
-                  template &#x3D;&gt; &quot;pgsql\es-template.json&quot;   #es 索引模板，可不定义
-                  template_name &#x3D;&gt; &quot;t-statistic-out-logstash&quot;
-                  template_overwrite &#x3D;&gt; true
-                  document_type &#x3D;&gt; &quot;text&quot;
-            # 数据唯一索引
-            document_id &#x3D;&gt; &quot;%&#123;id&#125;&quot;
-        &#125;
-    &#125;
-    if [type] &#x3D;&#x3D; &quot;postgres_ProblemList&quot;&#123;
-        elasticsearch &#123;
-            # 配置es集群的地址
-            hosts &#x3D;&gt; [&quot;localhost:9200&quot;]
-            # 索引名称，必须小写
-            index &#x3D;&gt; &quot;test&quot;
-            # 模板地址
-                  template &#x3D;&gt; &quot;pgsql\es-template.json&quot;   #es 索引模板，可不定义
-                  template_name &#x3D;&gt; &quot;t-statistic-out-logstash&quot;
-                  template_overwrite &#x3D;&gt; true
-                  document_type &#x3D;&gt; &quot;text&quot;
-            # 数据唯一索引
-            document_id &#x3D;&gt; &quot;%&#123;id&#125;&quot;
-        &#125;
-    &#125;
-    stdout &#123;
-        codec &#x3D;&gt; json_lines
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="设置-amp-配置密码"><a href="#设置-amp-配置密码" class="headerlink" title="设置&amp;配置密码"></a>设置&amp;配置密码</h2><h3 id="elasticsearch"><a href="#elasticsearch" class="headerlink" title="elasticsearch"></a>elasticsearch</h3><p>使用上述配置创建容器后，进入容器中执行以下命令，可配置elastic、kibana、logstash_system等账号的密码：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">elasticsearch-setup-passwords interactive<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="配置文件">配置文件</h2>
+<h3 id="docker-compose.yml"><code>docker-compose.yml</code></h3>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">elasticsearch:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.elastic.co/elasticsearch/elasticsearch:7.16.2</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">elasticsearch_server</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">discovery.type=single-node</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">discovery.zen.minimum_master_nodes=1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ES_JAVA_OPTS=-Xms3g</span> <span class="string">-Xmx3g</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;/home/docker_data/myproj/elasticsearch/data:/data&quot;</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">9200</span><span class="string">:9200</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">9300</span><span class="string">:9300</span> </span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="attr">default:</span>     <span class="comment"># 指定使用的网络</span></span><br><span class="line">      <span class="attr">common:</span></span><br><span class="line">        <span class="attr">aliases:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">elasticsearch</span>     <span class="comment"># 该容器的别名，在 elk_net 网络中的其他容器可以通过别名 elasticsearch 来访问到该容器</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">kibana:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.elastic.co/kibana/kibana:7.16.2</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">elasticsearch</span>    </span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">kibana_server</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span>    </span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ELASTICSEARCH_URL=http://elasticsearch:9200</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">SERVER_NAME=kibana</span>    </span><br><span class="line">    <span class="comment"># 如需具体配置，可以创建./config/kibana.yml，并映射</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;/home/docker_data/myproj/config/kibana.yml:/config/kibana.yml&quot;</span>      </span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;5601:5601&quot;</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="attr">default:</span></span><br><span class="line">      <span class="attr">common:</span></span><br><span class="line">        <span class="attr">aliases:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">kibana</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">logstash:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">docker.elastic.co/logstash/logstash:7.16.2</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">elasticsearch</span>    </span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">logstash_server</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span> </span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">LS_JAVA_OPTS=-Xmx256m</span> <span class="string">-Xms256m</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;/home/docker_data/myproj/config/logstash.conf:/config/logstash.conf&quot;</span>      </span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="attr">default:</span></span><br><span class="line">      <span class="attr">common:</span></span><br><span class="line">        <span class="attr">aliases:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">logstash</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">entrypoint:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">logstash</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">-f</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/config/logstash.conf</span></span><br><span class="line">    <span class="attr">logging:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">&quot;json-file&quot;</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="attr">max-size:</span> <span class="string">&quot;200m&quot;</span></span><br><span class="line">        <span class="attr">max-file:</span> <span class="string">&quot;3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"> <span class="attr">common:</span></span><br><span class="line">  <span class="attr">external:</span></span><br><span class="line">   <span class="attr">name:</span> <span class="string">nginx-bridge</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="elasticsearch.yml"><code>elasticsearch.yml</code></h3>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cluster.name:</span> <span class="string">&quot;es-server&quot;</span></span><br><span class="line"><span class="attr">network.host:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line"><span class="attr">http.cors.allow-headers:</span> <span class="string">Authorization</span></span><br><span class="line"><span class="attr">xpack.security.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">xpack.security.transport.ssl.enabled:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="kibana.yml"><code>kibana.yml</code></h3>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server.host:</span> <span class="string">&quot;0.0.0.0&quot;</span></span><br><span class="line"><span class="attr">server.shutdownTimeout:</span> <span class="string">&quot;5s&quot;</span></span><br><span class="line"><span class="attr">elasticsearch.hosts:</span> [ <span class="string">&quot;http://elasticsearch:9200&quot;</span> ]</span><br><span class="line"><span class="attr">monitoring.ui.container.elasticsearch.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">elasticsearch.username:</span> <span class="string">&quot;elastic&quot;</span></span><br><span class="line"><span class="attr">elasticsearch.password:</span> <span class="string">&quot;123456&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="logstash.yml"><code>logstash.yml</code></h3>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">http.host:</span> <span class="string">&quot;0.0.0.0&quot;</span></span><br><span class="line"><span class="attr">xpack.monitoring.elasticsearch.hosts:</span> [ <span class="string">&quot;http://elasticsearch:9200&quot;</span> ]</span><br><span class="line"><span class="attr">xpack.monitoring.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">xpack.monitoring.elasticsearch.username:</span> <span class="string">logstash_system</span></span><br><span class="line"><span class="attr">xpack.monitoring.elasticsearch.password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<h3 id="logstash.conf"><code>logstash.conf</code></h3>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">input</span> &#123;</span><br><span class="line">    <span class="string">stdin</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">jdbc</span> &#123;</span><br><span class="line">      <span class="comment"># 数据库连接地址</span></span><br><span class="line">      <span class="string">jdbc_connection_string</span> <span class="string">=&gt;</span> <span class="string">&quot;jdbc:postgresql://127.0.0.1:5432/postgres&quot;</span></span><br><span class="line">      <span class="comment"># 数据库连接账号密码：</span></span><br><span class="line">      <span class="string">jdbc_user</span> <span class="string">=&gt;</span> <span class="string">&quot;postgres&quot;</span></span><br><span class="line">      <span class="string">jdbc_password</span> <span class="string">=&gt;</span> <span class="string">&quot;123456&quot;</span></span><br><span class="line">      <span class="comment"># Pg依赖包路径</span></span><br><span class="line">      <span class="string">jdbc_driver_library</span> <span class="string">=&gt;</span> <span class="string">&quot;pgsql\postgresql-42.5.1.jar&quot;</span></span><br><span class="line">      <span class="string">jdbc_driver_class</span> <span class="string">=&gt;</span> <span class="string">&quot;org.postgresql.Driver&quot;</span></span><br><span class="line">      <span class="comment"># 开启分页查询，默认为false</span></span><br><span class="line">      <span class="string">jdbc_paging_enabled</span> <span class="string">=&gt;</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">      <span class="comment"># 单次分页查询条数（默认100000，若字段较多且更新频率较高，则建议调低此值）</span></span><br><span class="line">      <span class="string">jdbc_page_size</span> <span class="string">=&gt;</span> <span class="string">&quot;300000&quot;</span></span><br><span class="line">      <span class="string">use_column_value</span> <span class="string">=&gt;</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">      <span class="string">tracking_column</span> <span class="string">=&gt;</span> <span class="string">&quot;id&quot;</span> <span class="comment">#根据id字段更新</span></span><br><span class="line">      <span class="comment"># statement为查询数据sql，若sql较复杂，建议通过statement_filepath 配置sql文件的存放路径；</span></span><br><span class="line">      <span class="comment"># statement =&gt; &quot;SELECT * FROM public.SystemName&quot;</span></span><br><span class="line">      <span class="string">statement_filepath</span> <span class="string">=&gt;</span> <span class="string">&quot;pgsql\logstash-pgsql1.sql&quot;</span>  <span class="comment">#这是要操作的sql 表，下面会提供</span></span><br><span class="line">          <span class="comment"># 同步频率（分时天月年），全*默认为每分钟同步一次。现设置每天凌晨4点执行</span></span><br><span class="line">          <span class="string">schedule</span> <span class="string">=&gt;</span> <span class="string">&quot;* 4 * * *&quot;</span></span><br><span class="line">          <span class="comment"># 多表同步时，表类型区分，建议命名为“库名_表名”，每个jdbc模块需对应一个type；</span></span><br><span class="line">          <span class="string">type</span> <span class="string">=&gt;</span> <span class="string">&quot;postgres_SystemName&quot;</span></span><br><span class="line">          <span class="string">jdbc_default_timezone</span> <span class="string">=&gt;&quot;Asia/Shanghai&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">jdbc</span> &#123;</span><br><span class="line">      <span class="comment"># 数据库连接地址</span></span><br><span class="line">      <span class="string">jdbc_connection_string</span> <span class="string">=&gt;</span> <span class="string">&quot;jdbc:postgresql://127.0.0.1:5432/postgres&quot;</span></span><br><span class="line">      <span class="comment"># 数据库连接账号密码：</span></span><br><span class="line">      <span class="string">jdbc_user</span> <span class="string">=&gt;</span> <span class="string">&quot;postgres&quot;</span></span><br><span class="line">      <span class="string">jdbc_password</span> <span class="string">=&gt;</span> <span class="string">&quot;123456&quot;</span></span><br><span class="line">      <span class="comment"># Pg依赖包路径</span></span><br><span class="line">      <span class="string">jdbc_driver_library</span> <span class="string">=&gt;</span> <span class="string">&quot;pgsql\postgresql-42.5.1.jar&quot;</span></span><br><span class="line">      <span class="string">jdbc_driver_class</span> <span class="string">=&gt;</span> <span class="string">&quot;org.postgresql.Driver&quot;</span></span><br><span class="line">      <span class="comment"># 开启分页查询，默认为false</span></span><br><span class="line">      <span class="string">jdbc_paging_enabled</span> <span class="string">=&gt;</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">      <span class="comment"># 单次分页查询条数（默认100000，若字段较多且更新频率较高，则建议调低此值）</span></span><br><span class="line">      <span class="string">jdbc_page_size</span> <span class="string">=&gt;</span> <span class="string">&quot;300000&quot;</span></span><br><span class="line">      <span class="string">use_column_value</span> <span class="string">=&gt;</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">      <span class="string">tracking_column</span> <span class="string">=&gt;</span> <span class="string">&quot;id&quot;</span> <span class="comment">#根据id字段更新</span></span><br><span class="line">      <span class="comment"># statement为查询数据sql，若sql较复杂，建议通过statement_filepath 配置sql文件的存放路径；</span></span><br><span class="line">      <span class="comment"># statement =&gt; &quot;SELECT * FROM public.&quot;SystemDetail&quot;&quot;</span></span><br><span class="line">      <span class="string">statement_filepath</span> <span class="string">=&gt;</span> <span class="string">&quot;pgsql\logstash-pgsql2.sql&quot;</span>  <span class="comment">#这是要操作的sql 表，下面会提供</span></span><br><span class="line">          <span class="comment"># 同步频率（分时天月年），默认为每分钟同步一次</span></span><br><span class="line">          <span class="string">schedule</span> <span class="string">=&gt;</span> <span class="string">&quot;* 4 * * *&quot;</span></span><br><span class="line">          <span class="comment"># 多表同步时，表类型区分，建议命名为“库名_表名”，每个jdbc模块需对应一个type；</span></span><br><span class="line">          <span class="string">type</span> <span class="string">=&gt;</span> <span class="string">&quot;postgres_SystemDetail&quot;</span></span><br><span class="line">          <span class="string">jdbc_default_timezone</span> <span class="string">=&gt;&quot;Asia/Shanghai&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">jdbc</span> &#123;</span><br><span class="line">      <span class="comment"># 数据库连接地址</span></span><br><span class="line">      <span class="string">jdbc_connection_string</span> <span class="string">=&gt;</span> <span class="string">&quot;jdbc:postgresql://127.0.0.1:5432/postgres&quot;</span></span><br><span class="line">      <span class="comment"># 数据库连接账号密码：</span></span><br><span class="line">      <span class="string">jdbc_user</span> <span class="string">=&gt;</span> <span class="string">&quot;postgres&quot;</span></span><br><span class="line">      <span class="string">jdbc_password</span> <span class="string">=&gt;</span> <span class="string">&quot;123456&quot;</span></span><br><span class="line">      <span class="comment"># Pg依赖包路径</span></span><br><span class="line">      <span class="string">jdbc_driver_library</span> <span class="string">=&gt;</span> <span class="string">&quot;pgsql\postgresql-42.5.1.jar&quot;</span></span><br><span class="line">      <span class="string">jdbc_driver_class</span> <span class="string">=&gt;</span> <span class="string">&quot;org.postgresql.Driver&quot;</span></span><br><span class="line">      <span class="comment"># 开启分页查询，默认为false</span></span><br><span class="line">      <span class="string">jdbc_paging_enabled</span> <span class="string">=&gt;</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">      <span class="comment"># 单次分页查询条数（默认100000，若字段较多且更新频率较高，则建议调低此值）</span></span><br><span class="line">      <span class="string">jdbc_page_size</span> <span class="string">=&gt;</span> <span class="string">&quot;300000&quot;</span></span><br><span class="line">      <span class="string">use_column_value</span> <span class="string">=&gt;</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">      <span class="string">tracking_column</span> <span class="string">=&gt;</span> <span class="string">&quot;id&quot;</span> <span class="comment">#根据id字段更新</span></span><br><span class="line">      <span class="comment"># statement为查询数据sql，若sql较复杂，建议通过statement_filepath 配置sql文件的存放路径；</span></span><br><span class="line">      <span class="comment"># statement =&gt; &quot;SELECT * FROM public.&quot;ProblemList&quot;&quot;</span></span><br><span class="line">      <span class="string">statement_filepath</span> <span class="string">=&gt;</span> <span class="string">&quot;pgsql\logstash-pgsql3.sql&quot;</span>  <span class="comment">#这是要操作的sql 表，下面会提供</span></span><br><span class="line">          <span class="comment"># 同步频率（分时天月年），默认为每分钟同步一次</span></span><br><span class="line">          <span class="string">schedule</span> <span class="string">=&gt;</span> <span class="string">&quot;* 4 * * *&quot;</span></span><br><span class="line">          <span class="comment"># 多表同步时，表类型区分，建议命名为“库名_表名”，每个jdbc模块需对应一个type；</span></span><br><span class="line">          <span class="string">type</span> <span class="string">=&gt;</span> <span class="string">&quot;postgres_ProblemList&quot;</span></span><br><span class="line">          <span class="string">jdbc_default_timezone</span> <span class="string">=&gt;&quot;Asia/Shanghai&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">filter</span> &#123;</span><br><span class="line">    <span class="string">json</span> &#123;</span><br><span class="line">        <span class="string">source</span> <span class="string">=&gt;</span> <span class="string">&quot;message&quot;</span></span><br><span class="line">        <span class="string">remove_field</span> <span class="string">=&gt;</span> [<span class="string">&quot;message&quot;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">output</span> &#123;</span><br><span class="line">    <span class="comment"># output模块的type需和jdbc模块的type一致</span></span><br><span class="line">    <span class="string">if</span> [<span class="string">type</span>] <span class="string">==</span> <span class="string">&quot;postgres_SystemName&quot;</span>&#123;</span><br><span class="line">        <span class="string">elasticsearch</span> &#123;</span><br><span class="line">            <span class="comment"># 配置es集群的地址</span></span><br><span class="line">            <span class="string">hosts</span> <span class="string">=&gt;</span> [<span class="string">&quot;localhost:9200&quot;</span>]</span><br><span class="line">            <span class="comment"># 索引名称，必须小写</span></span><br><span class="line">            <span class="string">index</span> <span class="string">=&gt;</span> <span class="string">&quot;test&quot;</span></span><br><span class="line">            <span class="comment"># 模板地址</span></span><br><span class="line">                  <span class="string">template</span> <span class="string">=&gt;</span> <span class="string">&quot;pgsql\es-template.json&quot;</span>   <span class="comment">#es 索引模板，可不定义</span></span><br><span class="line">                  <span class="string">template_name</span> <span class="string">=&gt;</span> <span class="string">&quot;t-statistic-out-logstash&quot;</span></span><br><span class="line">                  <span class="string">template_overwrite</span> <span class="string">=&gt;</span> <span class="literal">true</span></span><br><span class="line">                  <span class="string">document_type</span> <span class="string">=&gt;</span> <span class="string">&quot;text&quot;</span></span><br><span class="line">            <span class="comment"># 数据唯一索引</span></span><br><span class="line">            <span class="string">document_id</span> <span class="string">=&gt;</span> <span class="string">&quot;<span class="template-variable">%&#123;id&#125;</span>&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">if</span> [<span class="string">type</span>] <span class="string">==</span> <span class="string">&quot;postgres_SystemDetail&quot;</span>&#123;</span><br><span class="line">        <span class="string">elasticsearch</span> &#123;</span><br><span class="line">            <span class="comment"># 配置es集群的地址</span></span><br><span class="line">            <span class="string">hosts</span> <span class="string">=&gt;</span> [<span class="string">&quot;localhost:9200&quot;</span>]</span><br><span class="line">            <span class="comment"># 索引名称，必须小写</span></span><br><span class="line">            <span class="string">index</span> <span class="string">=&gt;</span> <span class="string">&quot;test&quot;</span></span><br><span class="line">            <span class="comment"># 模板地址</span></span><br><span class="line">                  <span class="string">template</span> <span class="string">=&gt;</span> <span class="string">&quot;pgsql\es-template.json&quot;</span>   <span class="comment">#es 索引模板，可不定义</span></span><br><span class="line">                  <span class="string">template_name</span> <span class="string">=&gt;</span> <span class="string">&quot;t-statistic-out-logstash&quot;</span></span><br><span class="line">                  <span class="string">template_overwrite</span> <span class="string">=&gt;</span> <span class="literal">true</span></span><br><span class="line">                  <span class="string">document_type</span> <span class="string">=&gt;</span> <span class="string">&quot;text&quot;</span></span><br><span class="line">            <span class="comment"># 数据唯一索引</span></span><br><span class="line">            <span class="string">document_id</span> <span class="string">=&gt;</span> <span class="string">&quot;<span class="template-variable">%&#123;id&#125;</span>&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">if</span> [<span class="string">type</span>] <span class="string">==</span> <span class="string">&quot;postgres_ProblemList&quot;</span>&#123;</span><br><span class="line">        <span class="string">elasticsearch</span> &#123;</span><br><span class="line">            <span class="comment"># 配置es集群的地址</span></span><br><span class="line">            <span class="string">hosts</span> <span class="string">=&gt;</span> [<span class="string">&quot;localhost:9200&quot;</span>]</span><br><span class="line">            <span class="comment"># 索引名称，必须小写</span></span><br><span class="line">            <span class="string">index</span> <span class="string">=&gt;</span> <span class="string">&quot;test&quot;</span></span><br><span class="line">            <span class="comment"># 模板地址</span></span><br><span class="line">                  <span class="string">template</span> <span class="string">=&gt;</span> <span class="string">&quot;pgsql\es-template.json&quot;</span>   <span class="comment">#es 索引模板，可不定义</span></span><br><span class="line">                  <span class="string">template_name</span> <span class="string">=&gt;</span> <span class="string">&quot;t-statistic-out-logstash&quot;</span></span><br><span class="line">                  <span class="string">template_overwrite</span> <span class="string">=&gt;</span> <span class="literal">true</span></span><br><span class="line">                  <span class="string">document_type</span> <span class="string">=&gt;</span> <span class="string">&quot;text&quot;</span></span><br><span class="line">            <span class="comment"># 数据唯一索引</span></span><br><span class="line">            <span class="string">document_id</span> <span class="string">=&gt;</span> <span class="string">&quot;<span class="template-variable">%&#123;id&#125;</span>&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">stdout</span> &#123;</span><br><span class="line">        <span class="string">codec</span> <span class="string">=&gt;</span> <span class="string">json_lines</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="设置配置密码">设置&amp;配置密码</h2>
+<h3 id="elasticsearch">elasticsearch</h3>
+<p>使用上述配置创建容器后，进入容器中执行以下命令，可配置elastic、kibana、logstash_system等账号的密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elasticsearch-setup-passwords interactive</span><br></pre></td></tr></table></figure>
 <p>设置完成后，登录kibana的账号名是kibana，elasticsearch的账户名为elastic。</p>
-<h1 id="一键部署"><a href="#一键部署" class="headerlink" title="一键部署"></a>一键部署</h1><p>梳理好部署目录并创建好对应文件后，执行以下命令启动容器<code>docker-compose up -d</code>。</p>
+<h1 id="一键部署">一键部署</h1>
+<p>梳理好部署目录并创建好对应文件后，执行以下命令启动容器<code>docker-compose up -d</code>。</p>
 <p>在内网使用Elasticsearch、Logstash时，可以不设置密码，但kibana需要设置。</p>
 
     </article>
@@ -934,7 +728,7 @@ output &#123;
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-number">2.</span> <span class="toc-text">部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E8%AF%B4%E6%98%8E"><span class="toc-number">2.1.</span> <span class="toc-text">端口说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-compose-yml"><span class="toc-number">2.2.1.</span> <span class="toc-text">docker-compose.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elasticsearch-yml"><span class="toc-number">2.2.2.</span> <span class="toc-text">elasticsearch.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kibana-yml"><span class="toc-number">2.2.3.</span> <span class="toc-text">kibana.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logstash-yml"><span class="toc-number">2.2.4.</span> <span class="toc-text">logstash.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logstash-conf"><span class="toc-number">2.2.5.</span> <span class="toc-text">logstash.conf</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-amp-%E9%85%8D%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="toc-number">2.3.</span> <span class="toc-text">设置&amp;配置密码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#elasticsearch"><span class="toc-number">2.3.1.</span> <span class="toc-text">elasticsearch</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2"><span class="toc-number">3.</span> <span class="toc-text">一键部署</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-number">2.</span> <span class="toc-text">部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E8%AF%B4%E6%98%8E"><span class="toc-number">2.1.</span> <span class="toc-text">端口说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-compose.yml"><span class="toc-number">2.2.1.</span> <span class="toc-text">docker-compose.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elasticsearch.yml"><span class="toc-number">2.2.2.</span> <span class="toc-text">elasticsearch.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kibana.yml"><span class="toc-number">2.2.3.</span> <span class="toc-text">kibana.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logstash.yml"><span class="toc-number">2.2.4.</span> <span class="toc-text">logstash.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logstash.conf"><span class="toc-number">2.2.5.</span> <span class="toc-text">logstash.conf</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E9%85%8D%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="toc-number">2.3.</span> <span class="toc-text">设置&amp;配置密码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#elasticsearch"><span class="toc-number">2.3.1.</span> <span class="toc-text">elasticsearch</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2"><span class="toc-number">3.</span> <span class="toc-text">一键部署</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1284,18 +1078,6 @@ output &#123;
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2404,6 +2186,16 @@ output &#123;
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2434,29 +2226,14 @@ output &#123;
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2474,9 +2251,24 @@ output &#123;
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2487,16 +2279,6 @@ output &#123;
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2514,11 +2296,6 @@ output &#123;
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2527,6 +2304,11 @@ output &#123;
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2564,19 +2346,9 @@ output &#123;
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2587,6 +2359,16 @@ output &#123;
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2610,6 +2392,11 @@ output &#123;
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2620,29 +2407,9 @@ output &#123;
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2650,9 +2417,19 @@ output &#123;
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2660,19 +2437,24 @@ output &#123;
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2705,6 +2487,16 @@ output &#123;
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -2718,16 +2510,6 @@ output &#123;
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2802,5 +2584,20 @@ output &#123;
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

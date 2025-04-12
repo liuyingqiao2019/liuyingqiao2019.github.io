@@ -499,414 +499,367 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="写在前头"><a href="#写在前头" class="headerlink" title="写在前头"></a>写在前头</h1><p><strong>本笔记前两篇主要列出PgSQL的常用命令和数据类型。具体的实操命令从第三篇开始讲解。</strong></p>
+        <h1 id="写在前头">写在前头</h1>
+<p><strong>本笔记前两篇主要列出PgSQL的常用命令和数据类型。具体的实操命令从第三篇开始讲解。</strong></p>
 <p><strong>Windows上安装PostgreSQL</strong></p>
-<p>使用EnterpriseDB来下载安装，根据安装指引安装即可。下载地址：<a target="_blank" rel="noopener" href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">Download PostgreSQL (enterprisedb.com)</a></p>
+<p>使用EnterpriseDB来下载安装，根据安装指引安装即可。下载地址：<a target="_blank" rel="noopener" href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">Download
+PostgreSQL (enterprisedb.com)</a></p>
 <p><strong>PostgreSQL语法</strong></p>
-<p>默认情况下PostgreSQL安装完成后，自带了个命令行工具SQL Shell(psql)。</p>
+<p>默认情况下PostgreSQL安装完成后，自带了个命令行工具SQL
+Shell(psql)。</p>
 <p>进入命令行工具，可以使用<code>\help 命令</code>来查看各个命令的语法。</p>
-<p>若要查看具体命令的用法，可到PostgreSQL的API文档中查看。<a target="_blank" rel="noopener" href="https://runebook.dev/zh-CN/docs/postgresql/-index-">PostgreSQL 14.3 中文 (runebook.dev)</a></p>
-<h1 id="PostgreSQL语句"><a href="#PostgreSQL语句" class="headerlink" title="PostgreSQL语句"></a>PostgreSQL语句</h1><h2 id="常用语句"><a href="#常用语句" class="headerlink" title="常用语句"></a>常用语句</h2><h3 id="在表和文件之间拷贝数据：copy"><a href="#在表和文件之间拷贝数据：copy" class="headerlink" title="在表和文件之间拷贝数据：copy"></a><strong>在表和文件之间拷贝数据：</strong>copy</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 使用竖线（|）作为域定界符把一个表复制到客户端
-copy country to stdout (delimiter &#39;|&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="定义访问权限：grant"><a href="#定义访问权限：grant" class="headerlink" title="定义访问权限：grant"></a><strong>定义访问权限：</strong>grant</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 把表films上的插入特权授予给所有用户
-grant insert on films to public;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="从一个查询的结果中定义一个新表：select-into"><a href="#从一个查询的结果中定义一个新表：select-into" class="headerlink" title="从一个查询的结果中定义一个新表：select into"></a><strong>从一个查询的结果中定义一个新表：</strong>select into</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建一个只由来自films的最近项构成的 新表films_recent
-select * into films_recent from films where date_prod &gt;&#x3D; &#39;2002-01-01&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="清空一个或一组表：truncate"><a href="#清空一个或一组表：truncate" class="headerlink" title="清空一个或一组表：truncate"></a><strong>清空一个或一组表：</strong>truncate</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 清除 COMPANY 表
-w3cschooldb&#x3D;# truncate table company;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改运行时参数：set"><a href="#修改运行时参数：set" class="headerlink" title="修改运行时参数：set"></a><strong>修改运行时参数：</strong>set</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">exec sql set descriptor indesc count &#x3D; 1;
-exec sql set descriptor indesc value 1 data &#x3D; 2;
-exec sql set descriptor indesc value 1 data &#x3D; :val1;
-exec sql set descriptor indesc value 2 indicator &#x3D; :val1, data &#x3D; &#39;some string&#39;;
-exec sql set descriptor indesc value 2 indicator &#x3D; :val2null, data &#x3D; :val2;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="把一个运行时参数值恢复为默认值：reset"><a href="#把一个运行时参数值恢复为默认值：reset" class="headerlink" title="把一个运行时参数值恢复为默认值：reset"></a><strong>把一个运行时参数值恢复为默认值：</strong>reset</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 把timezone配置变量设置为默认值
-reset timezone;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="显示运行时的参数值：show"><a href="#显示运行时的参数值：show" class="headerlink" title="显示运行时的参数值：show"></a><strong>显示运行时的参数值：</strong>show</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 显示参数DateStyle的当前设置
-show datestyle;
- datestyle<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="更新一个表中的行：update"><a href="#更新一个表中的行：update" class="headerlink" title="更新一个表中的行：update"></a><strong>更新一个表中的行：</strong>update</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 把表films的列kind 中的单词Drama改成Dramatic
-update films set kind &#x3D; &#39;dramatic&#39; where kind &#x3D; &#39;drama&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="创建一个准备好的查询：prepare"><a href="#创建一个准备好的查询：prepare" class="headerlink" title="创建一个准备好的查询：prepare"></a><strong>创建一个准备好的查询：</strong>prepare</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 提交由事务标识符foobar标识的事务
-commit prepared &#39;foobar&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="执行一个准备好的查询：execute"><a href="#执行一个准备好的查询：execute" class="headerlink" title="执行一个准备好的查询：execute"></a><strong>执行一个准备好的查询：</strong>execute</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">execute query(100, 200);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="显示一个语句的执行规则：explain"><a href="#显示一个语句的执行规则：explain" class="headerlink" title="显示一个语句的执行规则：explain"></a><strong>显示一个语句的执行规则：</strong>explain</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 有一个具有单个integer列和 10000 行的表，要显示在其上的一个简单查询的计划
-explain select * from foo;
-
-                       query plan<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="在表中创建新行：insert"><a href="#在表中创建新行：insert" class="headerlink" title="在表中创建新行：insert"></a><strong>在表中创建新行：</strong>insert</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 向films中插入一行
-insert into films values
-    (&#39;ua502&#39;, &#39;bananas&#39;, 105, &#39;1971-07-13&#39;, &#39;comedy&#39;, &#39;82 minutes&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="重建索引：reindex"><a href="#重建索引：reindex" class="headerlink" title="重建索引：reindex"></a><strong>重建索引：</strong>reindex</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 重建单个索引
-reindex index my_index;
--- 重建表my_table上的所有索引
-reindex table my_table;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="收集与数据库有关的统计：analyze"><a href="#收集与数据库有关的统计：analyze" class="headerlink" title="收集与数据库有关的统计：analyze"></a><strong>收集与数据库有关的统计：</strong>analyze</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">analyze;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="生成一个通知：notify"><a href="#生成一个通知：notify" class="headerlink" title="生成一个通知：notify"></a><strong>生成一个通知：</strong>notify</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 从psql配置和执行一个监听&#x2F;通知序列
-listen virtual;
-notify virtual;
-asynchronous notification &quot;virtual&quot; received from server process with pid 8448.
-notify virtual, &#39;this is the payload&#39;;
-asynchronous notification &quot;virtual&quot; with payload &quot;this is the payload&quot; received from server process with pid 8448.
-
-listen foo;
-select pg_notify(&#39;fo&#39; || &#39;o&#39;, &#39;pay&#39; || &#39;load&#39;);
-asynchronous notification &quot;foo&quot; with payload &quot;payload&quot; received from server process with pid 14728.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="监听一个通知：listen"><a href="#监听一个通知：listen" class="headerlink" title="监听一个通知：listen"></a><strong>监听一个通知：</strong>listen</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 从psql中配置并执行一个监听&#x2F;通知序列
-listen virtual;
-notify virtual;
-asynchronous notification &quot;virtual&quot; received from server process with pid 8448.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="停止监听通知信息：unlisten"><a href="#停止监听通知信息：unlisten" class="headerlink" title="停止监听通知信息：unlisten"></a><strong>停止监听通知信息：</strong>unlisten</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 做一次注册
-listen virtual;
-notify virtual;
-asynchronous notification &quot;virtual&quot; received from server process with pid 8448.
--- 一旦执行了UNLISTEN，进一步的NOTIFY 消息将被忽略
-unlisten virtual;
-notify virtual;
--- no notify event is received<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="锁定一个表：lock"><a href="#锁定一个表：lock" class="headerlink" title="锁定一个表：lock"></a><strong>锁定一个表：</strong>lock</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 将数据库中的 COMPANY 表锁定为 ACCESS EXCLUSIVE 模式
-lock table company1 in access exclusive mode;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="根据一个索引聚簇一个表：cluster"><a href="#根据一个索引聚簇一个表：cluster" class="headerlink" title="根据一个索引聚簇一个表：cluster"></a><strong>根据一个索引聚簇一个表：</strong>cluster</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 基于索引employees_ind聚簇表 employees
-cluster employees using employees_ind;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="定义或者改变一个对象的注释：comment"><a href="#定义或者改变一个对象的注释：comment" class="headerlink" title="定义或者改变一个对象的注释：comment"></a><strong>定义或者改变一个对象的注释：</strong>comment</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 为表mytable附加一段注释
-comment on table mytable is &#39;this is my table.&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="垃圾收集以及可选地分析一个数据库：vacuum"><a href="#垃圾收集以及可选地分析一个数据库：vacuum" class="headerlink" title="垃圾收集以及可选地分析一个数据库：vacuum"></a><strong>垃圾收集以及可选地分析一个数据库：</strong>vacuum</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 清理单一表onek，为优化器分析它并且打印出详细的清理活动报告
-vacuum (verbose, analyze) onek;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="为当前会话设置会话用户标识符和当前用户标识符：set-session-authorization"><a href="#为当前会话设置会话用户标识符和当前用户标识符：set-session-authorization" class="headerlink" title="为当前会话设置会话用户标识符和当前用户标识符：set session authorization"></a><strong>为当前会话设置会话用户标识符和当前用户标识符：</strong>set session authorization</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">set session authorization &#39;paul&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="删除访问权限：revoke"><a href="#删除访问权限：revoke" class="headerlink" title="删除访问权限：revoke"></a><strong>删除访问权限：</strong>revoke</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 从 public 收回表films上的插入特权
-revoke insert on films from public;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="事务相关命令"><a href="#事务相关命令" class="headerlink" title="事务相关命令"></a>事务相关命令</h2><h3 id="开始一个事务：begin"><a href="#开始一个事务：begin" class="headerlink" title="开始一个事务：begin"></a><strong>开始一个事务：</strong>begin</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">begin;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="提交当前事务：commit"><a href="#提交当前事务：commit" class="headerlink" title="提交当前事务：commit"></a><strong>提交当前事务：</strong>commit</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 要提交当前事务并且让所有更改持久化
-commit;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="提交当前事务：end"><a href="#提交当前事务：end" class="headerlink" title="提交当前事务：end"></a><strong>提交当前事务：</strong>end</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 提交当前事务并且让所有更改持久化
-end;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="强制一个事务日志检查点：checkpoint"><a href="#强制一个事务日志检查点：checkpoint" class="headerlink" title="强制一个事务日志检查点：checkpoint"></a><strong>强制一个事务日志检查点：</strong>checkpoint</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">checkpoint;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="中止当前事务：rollback"><a href="#中止当前事务：rollback" class="headerlink" title="中止当前事务：rollback"></a><strong>中止当前事务：</strong>rollback</h3><p>回滚当前事务并且导致该事务所作的所有更新都被抛弃。具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 中止所有更改
-rollback;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="中止当前事务：abort"><a href="#中止当前事务：abort" class="headerlink" title="中止当前事务：abort"></a><strong>中止当前事务：</strong>abort</h3><p>回滚当前事务并且导致由该事务所作的所有更新被丢弃。具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">abort;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="开始一个事务块：set-transaction"><a href="#开始一个事务块：set-transaction" class="headerlink" title="开始一个事务块：set transaction"></a><strong>开始一个事务块：</strong>set transaction</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 要用一个已经存在的事务的同一快照开始一个新事务，首先要从该现有 事务导出快照。这将会返回快照标识符
-begin transaction isolation level repeatable read;
-select pg_export_snapshot();
- pg_export_snapshot<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="开始一个事务块：start-transaction"><a href="#开始一个事务块：start-transaction" class="headerlink" title="开始一个事务块：start transaction"></a><strong>开始一个事务块：</strong>start transaction</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 中止所有更改
-rollback;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="在当前事务里定义一个新的保存点：savepoint"><a href="#在当前事务里定义一个新的保存点：savepoint" class="headerlink" title="在当前事务里定义一个新的保存点：savepoint"></a><strong>在当前事务里定义一个新的保存点：</strong>savepoint</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 建立一个保存点并且后来撤销在它建立之后执行的所有命令的效果
-begin;
-    insert into table1 values (1);
-    savepoint my_savepoint;
-    insert into table1 values (2);
-    rollback to savepoint my_savepoint;
-    insert into table1 values (3);
-commit;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="回滚到一个保存点：rollback-to-savepoint"><a href="#回滚到一个保存点：rollback-to-savepoint" class="headerlink" title="回滚到一个保存点：rollback to savepoint"></a><strong>回滚到一个保存点：</strong>rollback to savepoint</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 撤销在my_savepoint建立后执行的命令的效果
-rollback to savepoint my_savepoint;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个前面定义的保存点：release-savepoint"><a href="#删除一个前面定义的保存点：release-savepoint" class="headerlink" title="删除一个前面定义的保存点：release savepoint"></a><strong>删除一个前面定义的保存点：</strong>release savepoint</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 建立并且销毁一个保存点
-begin;
-    insert into table1 values (3);
-    savepoint my_savepoint;
-    insert into table1 values (4);
-    release savepoint my_savepoint;
-commit;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="游标相关命令"><a href="#游标相关命令" class="headerlink" title="游标相关命令"></a>游标相关命令</h2><h3 id="定义一个游标：declare"><a href="#定义一个游标：declare" class="headerlink" title="定义一个游标：declare"></a><strong>定义一个游标：</strong>declare</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 声明一个游标
-declare liahona cursor for select * from films;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="定位一个游标：move"><a href="#定位一个游标：move" class="headerlink" title="定位一个游标：move"></a><strong>定位一个游标：</strong>move</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">BEGIN WORK;
-DECLARE liahona CURSOR FOR SELECT * FROM films;
-
--- 跳过前 5 行：
-MOVE FORWARD 5 IN liahona;
-MOVE 5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="用游标从查询中抓取行：fetch"><a href="#用游标从查询中抓取行：fetch" class="headerlink" title="用游标从查询中抓取行：fetch"></a><strong>用游标从查询中抓取行：</strong>fetch</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 在游标 liahona 中取出前 5 行：
-FETCH FORWARD 5 FROM liahona;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="关闭游标：close"><a href="#关闭游标：close" class="headerlink" title="关闭游标：close"></a><strong>关闭游标：</strong>close</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 关闭游标liahona
-close liahona;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="alter修改命令"><a href="#alter修改命令" class="headerlink" title="alter修改命令"></a>alter修改命令</h2><h3 id="修改一个聚集函数的定义：alter-aggregate"><a href="#修改一个聚集函数的定义：alter-aggregate" class="headerlink" title="修改一个聚集函数的定义：alter aggregate"></a><strong>修改一个聚集函数的定义：</strong>alter aggregate</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">alter aggregate myavg(integer) rename to my_average;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="修改一个排序规则定义：alter-collation"><a href="#修改一个排序规则定义：alter-collation" class="headerlink" title="修改一个排序规则定义：alter collation"></a><strong>修改一个排序规则定义</strong>：alter collation</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 把排序规则de_DE重命名为german
-alter collation &quot;de_de&quot; rename to german;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改一个编码转换的定义：alter-conversion"><a href="#修改一个编码转换的定义：alter-conversion" class="headerlink" title="修改一个编码转换的定义：alter conversion"></a><strong>修改一个编码转换的定义：</strong>alter conversion</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 把转换iso_8859_1_to_utf8的拥有者改成joe
-alter conversion iso_8859_1_to_utf8 owner to joe;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改一个数据库：alter-database"><a href="#修改一个数据库：alter-database" class="headerlink" title="修改一个数据库：alter database"></a><strong>修改一个数据库：</strong>alter database</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 在数据库test中默认禁用索引扫描
-alter database test set enable_indexscan to off;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="定义默认的访问权限：alter-default-privileges"><a href="#定义默认的访问权限：alter-default-privileges" class="headerlink" title="定义默认的访问权限：alter default privileges"></a><strong>定义默认的访问权限：</strong>alter default privileges</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 在模式myschema中创建的所有表（和视图）授予 SELECT 特权，并且也允许角色webuser向它们之中 INSERT 数据
-alter default privileges in schema myschema grant select on tables to public;
-alter default privileges in schema myschema grant insert on tables to webuser;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="修改一个域的定义：alter-domain"><a href="#修改一个域的定义：alter-domain" class="headerlink" title="修改一个域的定义：alter domain"></a><strong>修改一个域的定义：</strong>alter domain</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 把一个NOT NULL约束加到一个域
-alter domain zipcode set not null;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改一个函数的定义：alter-function"><a href="#修改一个函数的定义：alter-function" class="headerlink" title="修改一个函数的定义：alter function"></a><strong>修改一个函数的定义：</strong>alter function</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 把用于类型integer的函数sqrt 重命名为square_root
-alter function sqrt(integer) rename to square_root;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改角色名称或成员关系：alter-group"><a href="#修改角色名称或成员关系：alter-group" class="headerlink" title="修改角色名称或成员关系：alter group"></a><strong>修改角色名称或成员关系：</strong>alter group</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 向一个组增加用户
-alter group staff add user karl, john;
--- 从一个组移除一个用户
-alter group workers drop user beth;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="修改一个索引的定义：alter-index"><a href="#修改一个索引的定义：alter-index" class="headerlink" title="修改一个索引的定义：alter index"></a><strong>修改一个索引的定义：</strong>alter index</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 把一个索引移动到一个不同的表空间
-alter index distributors set tablespace fasttablespace;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改一个操作符的定义：alter-operator"><a href="#修改一个操作符的定义：alter-operator" class="headerlink" title="修改一个操作符的定义：alter operator"></a><strong>修改一个操作符的定义：</strong>alter operator</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 更改类型text的一个自定义操作符a @@ b 的拥有者
-alter operator @@ (text, text) owner to joe;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改一个模式的定义：alter-schema"><a href="#修改一个模式的定义：alter-schema" class="headerlink" title="修改一个模式的定义：alter schema"></a><strong>修改一个模式的定义：</strong>alter schema</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 把一个索引移动到一个不同的表空间
-alter index distributors set tablespace fasttablespace;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改一个数据库角色：alter-role"><a href="#修改一个数据库角色：alter-role" class="headerlink" title="修改一个数据库角色：alter role"></a><strong>修改一个数据库角色：</strong>alter role</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 更改一个角色
-alter role davide with password &#39;hu8jmn3&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改一个序列生成器的定义：alter-sequence"><a href="#修改一个序列生成器的定义：alter-sequence" class="headerlink" title="修改一个序列生成器的定义：alter sequence"></a><strong>修改一个序列生成器的定义：</strong>alter sequence</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 在 105 重启一个被称为serial的序列
-alter sequence serial restart with 105;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改表的定义：alter-table"><a href="#修改表的定义：alter-table" class="headerlink" title="修改表的定义：alter table"></a><strong>修改表的定义：</strong>alter table</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 向一个表增加一个类型为varchar的列
-alter table distributors add column address varchar(30);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改一个表空间：alter-tablespace"><a href="#修改一个表空间：alter-tablespace" class="headerlink" title="修改一个表空间：alter tablespace"></a><strong>修改一个表空间：</strong>alter tablespace</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 将表空间index_space重命名为fast_raid
-alter tablespace index_space rename to fast_raid;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改一个事件触发器的定义：alter-event-trigger"><a href="#修改一个事件触发器的定义：alter-event-trigger" class="headerlink" title="修改一个事件触发器的定义：alter event trigger"></a><strong>修改一个事件触发器的定义：</strong>alter event trigger</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 重命名一个现有的触发器
-alter event trigger name rename to new_name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改一个类型的定义：alter-type"><a href="#修改一个类型的定义：alter-type" class="headerlink" title="修改一个类型的定义：alter type"></a><strong>修改一个类型的定义：</strong>alter type</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 重命名一个数据类型
-alter type electronic_mail rename to email;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="create定义命令"><a href="#create定义命令" class="headerlink" title="create定义命令"></a>create定义命令</h2><h3 id="定义一个新的约束触发器：constraint-trigger"><a href="#定义一个新的约束触发器：constraint-trigger" class="headerlink" title="定义一个新的约束触发器：constraint trigger"></a><strong>定义一个新的约束触发器：</strong>constraint trigger</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 只要表accounts的一行即将要被更新时会执行函数check_account_update
-create trigger check_update
-    before update on accounts
-    for each row
-    execute function check_account_update();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义一个新的编码转换：create-conversion"><a href="#定义一个新的编码转换：create-conversion" class="headerlink" title="定义一个新的编码转换：create conversion"></a><strong>定义一个新的编码转换：</strong>create conversion</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 使用myfunc创建一个从编码UTF8到 LATIN1的转换
-create conversion myconv for &#39;utf8&#39; to &#39;latin1&#39; from myfunc;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="创建一个新数据库：create-database"><a href="#创建一个新数据库：create-database" class="headerlink" title="创建一个新数据库：create database"></a><strong>创建一个新数据库：</strong>create database</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建一个新数据库
-create database lusiadas;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="定义一个新域：create-domain"><a href="#定义一个新域：create-domain" class="headerlink" title="定义一个新域：create domain"></a><strong>定义一个新域：</strong>create domain</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建us_postal_code数据类型并且把它用在 一个表定义中。一个正则表达式测试被用来验证值是否看起来像一个 合法的 US 邮政编码
-create domain us_postal_code as text
-check(
-   value ~ &#39;^\d&#123;5&#125;$&#39;
-or value ~ &#39;^\d&#123;5&#125;-\d&#123;4&#125;$&#39;
-);
-
-create table us_snail_addy (
-  address_id serial primary key,
-  street1 text not null,
-  street2 text,
-  street3 text,
-  city text not null,
-  postal us_postal_code not null
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义一个新函数：create-function"><a href="#定义一个新函数：create-function" class="headerlink" title="定义一个新函数：create function"></a><strong>定义一个新函数：</strong>create function</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create function add(integer, integer) returns integer
-    as &#39;select $1 + $2;&#39;
-    language sql
-    immutable
-    returns null on null input;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义一个新索引：create-index"><a href="#定义一个新索引：create-index" class="headerlink" title="定义一个新索引：create index"></a><strong>定义一个新索引：</strong>create index</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 在表films中的列title上创建一个 B-树索引
-create unique index title_idx on films (title);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="定义一种新的过程语言：create-language"><a href="#定义一种新的过程语言：create-language" class="headerlink" title="定义一种新的过程语言：create  language"></a><strong>定义一种新的过程语言：</strong>create  language</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建新的过程语言的最小顺序
-create function plsample_call_handler() returns language_handler
-    as &#39;$libdir&#x2F;plsample&#39;
-    language c;
-create language plsample
-    handler plsample_call_handler;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义一个新的操作符：create-operator"><a href="#定义一个新的操作符：create-operator" class="headerlink" title="定义一个新的操作符：create operator"></a><strong>定义一个新的操作符：</strong>create operator</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 为数据类型box定义一种新的操作符--面积相等
-create operator &#x3D;&#x3D;&#x3D; (
-    leftarg &#x3D; box,
-    rightarg &#x3D; box,
-    function &#x3D; area_equal_function,
-    commutator &#x3D; &#x3D;&#x3D;&#x3D;,
-    negator &#x3D; !&#x3D;&#x3D;,
-    restrict &#x3D; area_restriction_function,
-    join &#x3D; area_join_function,
-    hashes, merges
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义一个新的操作符表：create-operator-class"><a href="#定义一个新的操作符表：create-operator-class" class="headerlink" title="定义一个新的操作符表：create operator class"></a><strong>定义一个新的操作符表：</strong>create operator class</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 为数据类型_int4（int4数组） 定义了一个 GiST 索引操作符
-create operator class gist__int_ops
-    default for type _int4 using gist as
-        operator        3       &amp;&amp;,
-        operator        6       &#x3D; (anyarray, anyarray),
-        operator        7       @&gt;,
-        operator        8       &lt;@,
-        operator        20      @@ (_int4, query_int),
-        function        1       g_int_consistent (internal, _int4, smallint, oid, internal),
-        function        2       g_int_union (internal, internal),
-        function        3       g_int_compress (internal),
-        function        4       g_int_decompress (internal),
-        function        5       g_int_penalty (internal, internal, internal),
-        function        6       g_int_picksplit (internal, internal),
-        function        7       g_int_same (_int4, _int4, internal);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义一个新的数据库角色：create-role"><a href="#定义一个新的数据库角色：create-role" class="headerlink" title="定义一个新的数据库角色：create role"></a><strong>定义一个新的数据库角色：</strong>create role</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建一个有口令的角色
-create user davide with password &#39;jw8s0f4&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="定义一个新重写规则：create-rule"><a href="#定义一个新重写规则：create-rule" class="headerlink" title="定义一个新重写规则：create rule"></a><strong>定义一个新重写规则：</strong>create rule</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create rule notify_me as on update to mytable do also notify mytable;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="定义一个新模式：create-schema"><a href="#定义一个新模式：create-schema" class="headerlink" title="定义一个新模式：create schema"></a><strong>定义一个新模式：</strong>create schema</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建一个模式
-create schema myschema;
--- 为用户joe创建一个模式，该模式也将被命名为 joe
-create schema authorization joe;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义一个新的外部服务器：create-server"><a href="#定义一个新的外部服务器：create-server" class="headerlink" title="定义一个新的外部服务器：create server"></a><strong>定义一个新的外部服务器：</strong>create server</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建使用外部数据包装器postgres_fdw 的服务器myserver
-create server myserver foreign data wrapper postgres_fdw options (host &#39;foo&#39;, dbname &#39;foodb&#39;, port &#39;5432&#39;);
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="定义一个新序列发生器：create-sequence"><a href="#定义一个新序列发生器：create-sequence" class="headerlink" title="定义一个新序列发生器：create sequence"></a><strong>定义一个新序列发生器：</strong>create sequence</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建一个称作serial的上升序列，从 101 开始
-create sequence serial start 101;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="定义一个新表：create-table"><a href="#定义一个新表：create-table" class="headerlink" title="定义一个新表：create table"></a><strong>定义一个新表：</strong>create table</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建表distributors
-create table distributors (
-     did    integer primary key generated by default as identity,
-     name   varchar(40) not null check (name  &#39;&#39;)
-);
--- 创建有一个二维数组的表
-create table array_int (
-    vector  int[][]
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="从一条查询的结果中创建一个新表：create-table-as"><a href="#从一条查询的结果中创建一个新表：create-table-as" class="headerlink" title="从一条查询的结果中创建一个新表：create table as"></a><strong>从一条查询的结果中创建一个新表：</strong>create table as</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建一个新表films_recent，它只由表 films中最近的项组成
-create table films_recent as
-  select * from films where date_prod &gt;&#x3D; &#39;2002-01-01&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义一个新的表空间：create-tablespace"><a href="#定义一个新的表空间：create-tablespace" class="headerlink" title="定义一个新的表空间：create tablespace"></a><strong>定义一个新的表空间：</strong>create tablespace</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 要在文件系统位置&#x2F;data&#x2F;dbs创建表空间dbspace，请首先使用操作系统工具创建目录并设置正确的所有权
-mkdir &#x2F;data&#x2F;dbs
-chown postgres:postgres &#x2F;data&#x2F;dbs
-
--- 然后在内部发出表空间创建命令 PostgreSQL
---create tablespace dbspace location &#39;&#x2F;data&#x2F;dbs&#39;;
-
--- 要创建由不同数据库用户拥有的表空间
-create tablespace indexspace owner genevieve location &#39;&#x2F;data&#x2F;indexes&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义一个新的触发器：create-trigger"><a href="#定义一个新的触发器：create-trigger" class="headerlink" title="定义一个新的触发器：create trigger"></a><strong>定义一个新的触发器：</strong>create trigger</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 禁止执行任何DDL命令
-create or replace function abort_any_command()
-  returns event_trigger
- language plpgsql
-  as $$
-begin
-  raise exception &#39;command % is disabled&#39;, tg_tag;
-end;
-$$;
-
-create event trigger abort_ddl on ddl_command_start
-   execute function abort_any_command();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义一个新的数据类型：create-type"><a href="#定义一个新的数据类型：create-type" class="headerlink" title="定义一个新的数据类型：create type"></a><strong>定义一个新的数据类型：</strong>create type</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建一个枚举类型并且将其用在一个表定义中
-create type bug_status as enum (&#39;new&#39;, &#39;open&#39;, &#39;closed&#39;);
-
-create table bug (
-    id serial,
-    description text,
-    status bug_status
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="定义一个视图：create-view"><a href="#定义一个视图：create-view" class="headerlink" title="定义一个视图：create view"></a><strong>定义一个视图：</strong>create view</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 创建一个由所有喜剧电影组成的视图
-create view comedies as
-    select *
-    from films
-    where kind &#x3D; &#39;comedy&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="drop删除命令"><a href="#drop删除命令" class="headerlink" title="drop删除命令"></a>drop删除命令</h2><h3 id="删除一个表中的行：delete"><a href="#删除一个表中的行：delete" class="headerlink" title="删除一个表中的行：delete"></a><strong>删除一个表中的行：</strong>delete</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 删除所有电影，但音乐剧除外
-delete from films where kind  &#39;musical&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个用户定义的聚类函数：drop-aggregate"><a href="#删除一个用户定义的聚类函数：drop-aggregate" class="headerlink" title="删除一个用户定义的聚类函数：drop aggregate"></a><strong>删除一个用户定义的聚类函数：</strong>drop aggregate</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 为类型integer移除聚集函数myavg
-drop aggregate myavg(integer);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个用户定义的类型转换：drop-cast"><a href="#删除一个用户定义的类型转换：drop-cast" class="headerlink" title="删除一个用户定义的类型转换：drop cast"></a><strong>删除一个用户定义的类型转换：</strong>drop cast</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 移除从类型text到类型int的类型
-drop cast (text as int);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个用户定义的编码转换：drop-conversion"><a href="#删除一个用户定义的编码转换：drop-conversion" class="headerlink" title="删除一个用户定义的编码转换：drop conversion"></a><strong>删除一个用户定义的编码转换：</strong>drop conversion</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 删除名为myname的转换
-drop conversion myname;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个数据库：drop-database"><a href="#删除一个数据库：drop-database" class="headerlink" title="删除一个数据库：drop database"></a><strong>删除一个数据库：</strong>drop database</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 删除名为myname的数据库
-drop database myname;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个用户定义的域：drop-domain"><a href="#删除一个用户定义的域：drop-domain" class="headerlink" title="删除一个用户定义的域：drop domain"></a><strong>删除一个用户定义的域：</strong>drop domain</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 移除域box
-drop domain box;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个函数：drop-function"><a href="#删除一个函数：drop-function" class="headerlink" title="删除一个函数：drop function"></a><strong>删除一个函数：</strong>drop function</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 移除域box
-drop domain box;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个索引：drop-index"><a href="#删除一个索引：drop-index" class="headerlink" title="删除一个索引：drop index"></a><strong>删除一个索引：</strong>drop index</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 移除索引title_idx
-drop index title_idx;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个过程语言：drop-language"><a href="#删除一个过程语言：drop-language" class="headerlink" title="删除一个过程语言：drop language"></a><strong>删除一个过程语言：</strong>drop language</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 移除过程语言plsample
-drop language plsample;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个操作符：drop-operator"><a href="#删除一个操作符：drop-operator" class="headerlink" title="删除一个操作符：drop operator"></a><strong>删除一个操作符：</strong>drop operator</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 为类型integer移除幂操作符 a^b
-drop operator ^ (integer, integer);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个操作符表：drop-operator-class"><a href="#删除一个操作符表：drop-operator-class" class="headerlink" title="删除一个操作符表：drop operator class"></a><strong>删除一个操作符表：</strong>drop operator class</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 移除 B-树操作符类widget_ops
-drop operator class widget_ops using btree;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个数据库角色：drop-role"><a href="#删除一个数据库角色：drop-role" class="headerlink" title="删除一个数据库角色：drop role"></a><strong>删除一个数据库角色：</strong>drop role</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 删除一个角色
-drop role jonathan;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个重写规则：drop-rule"><a href="#删除一个重写规则：drop-rule" class="headerlink" title="删除一个重写规则：drop rule"></a><strong>删除一个重写规则：</strong>drop rule</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 删除重写规则newrule
-drop rule newrule on mytable;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个模式：drop-schema"><a href="#删除一个模式：drop-schema" class="headerlink" title="删除一个模式：drop schema"></a><strong>删除一个模式：</strong>drop schema</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 移除序列serial
-drop sequence serial;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个表：drop-table"><a href="#删除一个表：drop-table" class="headerlink" title="删除一个表：drop table"></a><strong>删除一个表：</strong>drop table</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 销毁两个表films和 distributors
-drop table films, distributors;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个表空间：drop-tablespace"><a href="#删除一个表空间：drop-tablespace" class="headerlink" title="删除一个表空间：drop tablespace"></a><strong>删除一个表空间：</strong>drop tablespace</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 从系统移除表空间mystuff
-drop tablespace mystuff;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个触发器定义：drop-trigger"><a href="#删除一个触发器定义：drop-trigger" class="headerlink" title="删除一个触发器定义：drop trigger"></a><strong>删除一个触发器定义：</strong>drop trigger</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 销毁表films上的触发器 if_dist_exists
-drop trigger if_dist_exists on films;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个用户定义数据类型：drop-type"><a href="#删除一个用户定义数据类型：drop-type" class="headerlink" title="删除一个用户定义数据类型：drop type"></a><strong>删除一个用户定义数据类型：</strong>drop type</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 移除数据类型box
-drop type box;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="删除一个视图：drop-view"><a href="#删除一个视图：drop-view" class="headerlink" title="删除一个视图：drop view"></a><strong>删除一个视图：</strong>drop view</h3><p>具体语句用法如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 将移除名为kinds的视图
-drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>若要查看具体命令的用法，可到PostgreSQL的API文档中查看。<a target="_blank" rel="noopener" href="https://runebook.dev/zh-CN/docs/postgresql/-index-">PostgreSQL
+14.3 中文 (runebook.dev)</a></p>
+<h1 id="postgresql语句">PostgreSQL语句</h1>
+<h2 id="常用语句">常用语句</h2>
+<h3 id="在表和文件之间拷贝数据copy"><strong>在表和文件之间拷贝数据：</strong>copy</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用竖线（|）作为域定界符把一个表复制到客户端</span></span><br><span class="line"><span class="keyword">copy</span> country <span class="keyword">to</span> stdout (delimiter <span class="string">&#x27;|&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="定义访问权限grant"><strong>定义访问权限：</strong>grant</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 把表films上的插入特权授予给所有用户</span></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">insert</span> <span class="keyword">on</span> films <span class="keyword">to</span> public;</span><br></pre></td></tr></table></figure>
+<h3 id="从一个查询的结果中定义一个新表select-into"><strong>从一个查询的结果中定义一个新表：</strong>select
+into</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建一个只由来自films的最近项构成的 新表films_recent</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">into</span> films_recent <span class="keyword">from</span> films <span class="keyword">where</span> date_prod <span class="operator">&gt;=</span> <span class="string">&#x27;2002-01-01&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="清空一个或一组表truncate"><strong>清空一个或一组表：</strong>truncate</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 清除 COMPANY 表</span></span><br><span class="line">w3cschooldb<span class="operator">=</span># <span class="keyword">truncate</span> <span class="keyword">table</span> company;</span><br></pre></td></tr></table></figure>
+<h3 id="修改运行时参数set"><strong>修改运行时参数：</strong>set</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exec</span> <span class="keyword">sql</span> <span class="keyword">set</span> descriptor indesc count <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">exec</span> <span class="keyword">sql</span> <span class="keyword">set</span> descriptor indesc <span class="keyword">value</span> <span class="number">1</span> data <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="keyword">exec</span> <span class="keyword">sql</span> <span class="keyword">set</span> descriptor indesc <span class="keyword">value</span> <span class="number">1</span> data <span class="operator">=</span> :val1;</span><br><span class="line"><span class="keyword">exec</span> <span class="keyword">sql</span> <span class="keyword">set</span> descriptor indesc <span class="keyword">value</span> <span class="number">2</span> <span class="keyword">indicator</span> <span class="operator">=</span> :val1, data <span class="operator">=</span> <span class="string">&#x27;some string&#x27;</span>;</span><br><span class="line"><span class="keyword">exec</span> <span class="keyword">sql</span> <span class="keyword">set</span> descriptor indesc <span class="keyword">value</span> <span class="number">2</span> <span class="keyword">indicator</span> <span class="operator">=</span> :val2null, data <span class="operator">=</span> :val2;</span><br></pre></td></tr></table></figure>
+<h3 id="把一个运行时参数值恢复为默认值reset"><strong>把一个运行时参数值恢复为默认值：</strong>reset</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 把timezone配置变量设置为默认值</span></span><br><span class="line">reset timezone;</span><br></pre></td></tr></table></figure>
+<h3 id="显示运行时的参数值show"><strong>显示运行时的参数值：</strong>show</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 显示参数DateStyle的当前设置</span></span><br><span class="line"><span class="keyword">show</span> datestyle;</span><br><span class="line"> datestyle</span><br></pre></td></tr></table></figure>
+<h3 id="更新一个表中的行update"><strong>更新一个表中的行：</strong>update</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 把表films的列kind 中的单词Drama改成Dramatic</span></span><br><span class="line"><span class="keyword">update</span> films <span class="keyword">set</span> kind <span class="operator">=</span> <span class="string">&#x27;dramatic&#x27;</span> <span class="keyword">where</span> kind <span class="operator">=</span> <span class="string">&#x27;drama&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="创建一个准备好的查询prepare"><strong>创建一个准备好的查询：</strong>prepare</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 提交由事务标识符foobar标识的事务</span></span><br><span class="line"><span class="keyword">commit</span> prepared <span class="string">&#x27;foobar&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="执行一个准备好的查询execute"><strong>执行一个准备好的查询：</strong>execute</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">execute</span> query(<span class="number">100</span>, <span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="显示一个语句的执行规则explain"><strong>显示一个语句的执行规则：</strong>explain</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 有一个具有单个integer列和 10000 行的表，要显示在其上的一个简单查询的计划</span></span><br><span class="line">explain <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> foo;</span><br><span class="line"></span><br><span class="line">                       query plan</span><br></pre></td></tr></table></figure>
+<h3 id="在表中创建新行insert"><strong>在表中创建新行：</strong>insert</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 向films中插入一行</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> films <span class="keyword">values</span></span><br><span class="line">    (<span class="string">&#x27;ua502&#x27;</span>, <span class="string">&#x27;bananas&#x27;</span>, <span class="number">105</span>, <span class="string">&#x27;1971-07-13&#x27;</span>, <span class="string">&#x27;comedy&#x27;</span>, <span class="string">&#x27;82 minutes&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="重建索引reindex"><strong>重建索引：</strong>reindex</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 重建单个索引</span></span><br><span class="line">reindex index my_index;</span><br><span class="line"><span class="comment">-- 重建表my_table上的所有索引</span></span><br><span class="line">reindex <span class="keyword">table</span> my_table;</span><br></pre></td></tr></table></figure>
+<h3 id="收集与数据库有关的统计analyze"><strong>收集与数据库有关的统计：</strong>analyze</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">analyze;</span><br></pre></td></tr></table></figure>
+<h3 id="生成一个通知notify"><strong>生成一个通知：</strong>notify</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 从psql配置和执行一个监听/通知序列</span></span><br><span class="line">listen virtual;</span><br><span class="line">notify virtual;</span><br><span class="line">asynchronous notification &quot;virtual&quot; received <span class="keyword">from</span> server process <span class="keyword">with</span> pid <span class="number">8448.</span></span><br><span class="line">notify virtual, <span class="string">&#x27;this is the payload&#x27;</span>;</span><br><span class="line">asynchronous notification &quot;virtual&quot; <span class="keyword">with</span> payload &quot;this is the payload&quot; received <span class="keyword">from</span> server process <span class="keyword">with</span> pid <span class="number">8448.</span></span><br><span class="line"></span><br><span class="line">listen foo;</span><br><span class="line"><span class="keyword">select</span> pg_notify(<span class="string">&#x27;fo&#x27;</span> <span class="operator">||</span> <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;pay&#x27;</span> <span class="operator">||</span> <span class="string">&#x27;load&#x27;</span>);</span><br><span class="line">asynchronous notification &quot;foo&quot; <span class="keyword">with</span> payload &quot;payload&quot; received <span class="keyword">from</span> server process <span class="keyword">with</span> pid <span class="number">14728.</span></span><br></pre></td></tr></table></figure>
+<h3 id="监听一个通知listen"><strong>监听一个通知：</strong>listen</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 从psql中配置并执行一个监听/通知序列</span></span><br><span class="line">listen virtual;</span><br><span class="line">notify virtual;</span><br><span class="line">asynchronous notification &quot;virtual&quot; received <span class="keyword">from</span> server process <span class="keyword">with</span> pid <span class="number">8448.</span></span><br></pre></td></tr></table></figure>
+<h3 id="停止监听通知信息unlisten"><strong>停止监听通知信息：</strong>unlisten</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 做一次注册</span></span><br><span class="line">listen virtual;</span><br><span class="line">notify virtual;</span><br><span class="line">asynchronous notification &quot;virtual&quot; received <span class="keyword">from</span> server process <span class="keyword">with</span> pid <span class="number">8448.</span></span><br><span class="line"><span class="comment">-- 一旦执行了UNLISTEN，进一步的NOTIFY 消息将被忽略</span></span><br><span class="line">unlisten virtual;</span><br><span class="line">notify virtual;</span><br><span class="line"><span class="comment">-- no notify event is received</span></span><br></pre></td></tr></table></figure>
+<h3 id="锁定一个表lock"><strong>锁定一个表：</strong>lock</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 将数据库中的 COMPANY 表锁定为 ACCESS EXCLUSIVE 模式</span></span><br><span class="line">lock <span class="keyword">table</span> company1 <span class="keyword">in</span> access exclusive mode;</span><br></pre></td></tr></table></figure>
+<h3 id="根据一个索引聚簇一个表cluster"><strong>根据一个索引聚簇一个表：</strong>cluster</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 基于索引employees_ind聚簇表 employees</span></span><br><span class="line">cluster employees <span class="keyword">using</span> employees_ind;</span><br></pre></td></tr></table></figure>
+<h3 id="定义或者改变一个对象的注释comment"><strong>定义或者改变一个对象的注释：</strong>comment</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 为表mytable附加一段注释</span></span><br><span class="line">comment <span class="keyword">on</span> <span class="keyword">table</span> mytable <span class="keyword">is</span> <span class="string">&#x27;this is my table.&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="垃圾收集以及可选地分析一个数据库vacuum"><strong>垃圾收集以及可选地分析一个数据库：</strong>vacuum</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 清理单一表onek，为优化器分析它并且打印出详细的清理活动报告</span></span><br><span class="line">vacuum (verbose, analyze) onek;</span><br></pre></td></tr></table></figure>
+<h3 id="为当前会话设置会话用户标识符和当前用户标识符set-session-authorization"><strong>为当前会话设置会话用户标识符和当前用户标识符：</strong>set
+session authorization</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> session <span class="keyword">authorization</span> <span class="string">&#x27;paul&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="删除访问权限revoke"><strong>删除访问权限：</strong>revoke</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 从 public 收回表films上的插入特权</span></span><br><span class="line"><span class="keyword">revoke</span> <span class="keyword">insert</span> <span class="keyword">on</span> films <span class="keyword">from</span> public;</span><br></pre></td></tr></table></figure>
+<h2 id="事务相关命令">事务相关命令</h2>
+<h3 id="开始一个事务begin"><strong>开始一个事务：</strong>begin</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="提交当前事务commit"><strong>提交当前事务：</strong>commit</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 要提交当前事务并且让所有更改持久化</span></span><br><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="提交当前事务end"><strong>提交当前事务：</strong>end</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 提交当前事务并且让所有更改持久化</span></span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="强制一个事务日志检查点checkpoint"><strong>强制一个事务日志检查点：</strong>checkpoint</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">checkpoint;</span><br></pre></td></tr></table></figure>
+<h3 id="中止当前事务rollback"><strong>中止当前事务：</strong>rollback</h3>
+<p>回滚当前事务并且导致该事务所作的所有更新都被抛弃。具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 中止所有更改</span></span><br><span class="line"><span class="keyword">rollback</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="中止当前事务abort"><strong>中止当前事务：</strong>abort</h3>
+<p>回滚当前事务并且导致由该事务所作的所有更新被丢弃。具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abort;</span><br></pre></td></tr></table></figure>
+<h3 id="开始一个事务块set-transaction"><strong>开始一个事务块：</strong>set
+transaction</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 要用一个已经存在的事务的同一快照开始一个新事务，首先要从该现有 事务导出快照。这将会返回快照标识符</span></span><br><span class="line"><span class="keyword">begin</span> transaction isolation level repeatable read;</span><br><span class="line"><span class="keyword">select</span> pg_export_snapshot();</span><br><span class="line"> pg_export_snapshot</span><br></pre></td></tr></table></figure>
+<h3 id="开始一个事务块start-transaction"><strong>开始一个事务块：</strong>start
+transaction</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 中止所有更改</span></span><br><span class="line"><span class="keyword">rollback</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="在当前事务里定义一个新的保存点savepoint"><strong>在当前事务里定义一个新的保存点：</strong>savepoint</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 建立一个保存点并且后来撤销在它建立之后执行的所有命令的效果</span></span><br><span class="line"><span class="keyword">begin</span>;</span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> table1 <span class="keyword">values</span> (<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">savepoint</span> my_savepoint;</span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> table1 <span class="keyword">values</span> (<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">rollback</span> <span class="keyword">to</span> <span class="keyword">savepoint</span> my_savepoint;</span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> table1 <span class="keyword">values</span> (<span class="number">3</span>);</span><br><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="回滚到一个保存点rollback-to-savepoint"><strong>回滚到一个保存点：</strong>rollback
+to savepoint</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 撤销在my_savepoint建立后执行的命令的效果</span></span><br><span class="line"><span class="keyword">rollback</span> <span class="keyword">to</span> <span class="keyword">savepoint</span> my_savepoint;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个前面定义的保存点release-savepoint"><strong>删除一个前面定义的保存点：</strong>release
+savepoint</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 建立并且销毁一个保存点</span></span><br><span class="line"><span class="keyword">begin</span>;</span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> table1 <span class="keyword">values</span> (<span class="number">3</span>);</span><br><span class="line">    <span class="keyword">savepoint</span> my_savepoint;</span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> table1 <span class="keyword">values</span> (<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">release</span> <span class="keyword">savepoint</span> my_savepoint;</span><br><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="游标相关命令">游标相关命令</h2>
+<h3 id="定义一个游标declare"><strong>定义一个游标：</strong>declare</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 声明一个游标</span></span><br><span class="line"><span class="keyword">declare</span> liahona <span class="keyword">cursor</span> <span class="keyword">for</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> films;</span><br></pre></td></tr></table></figure>
+<h3 id="定位一个游标move"><strong>定位一个游标：</strong>move</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span> WORK;</span><br><span class="line"><span class="keyword">DECLARE</span> liahona <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> films;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 跳过前 5 行：</span></span><br><span class="line">MOVE FORWARD <span class="number">5</span> <span class="keyword">IN</span> liahona;</span><br><span class="line">MOVE <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h3 id="用游标从查询中抓取行fetch"><strong>用游标从查询中抓取行：</strong>fetch</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 在游标 liahona 中取出前 5 行：</span></span><br><span class="line"><span class="keyword">FETCH</span> FORWARD <span class="number">5</span> <span class="keyword">FROM</span> liahona;</span><br></pre></td></tr></table></figure>
+<h3 id="关闭游标close"><strong>关闭游标：</strong>close</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 关闭游标liahona</span></span><br><span class="line"><span class="keyword">close</span> liahona;</span><br></pre></td></tr></table></figure>
+<h2 id="alter修改命令">alter修改命令</h2>
+<h3 id="修改一个聚集函数的定义alter-aggregate"><strong>修改一个聚集函数的定义：</strong>alter
+aggregate</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> aggregate myavg(<span class="type">integer</span>) rename <span class="keyword">to</span> my_average;</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个排序规则定义alter-collation"><strong>修改一个排序规则定义</strong>：alter
+collation</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 把排序规则de_DE重命名为german</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">collation</span> &quot;de_de&quot; rename <span class="keyword">to</span> german;</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个编码转换的定义alter-conversion"><strong>修改一个编码转换的定义：</strong>alter
+conversion</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 把转换iso_8859_1_to_utf8的拥有者改成joe</span></span><br><span class="line"><span class="keyword">alter</span> conversion iso_8859_1_to_utf8 owner <span class="keyword">to</span> joe;</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个数据库alter-database"><strong>修改一个数据库：</strong>alter
+database</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 在数据库test中默认禁用索引扫描</span></span><br><span class="line"><span class="keyword">alter</span> database test <span class="keyword">set</span> enable_indexscan <span class="keyword">to</span> off;</span><br></pre></td></tr></table></figure>
+<h3 id="定义默认的访问权限alter-default-privileges"><strong>定义默认的访问权限：</strong>alter
+default privileges</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 在模式myschema中创建的所有表（和视图）授予 SELECT 特权，并且也允许角色webuser向它们之中 INSERT 数据</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">default</span> privileges <span class="keyword">in</span> schema myschema <span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> tables <span class="keyword">to</span> public;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">default</span> privileges <span class="keyword">in</span> schema myschema <span class="keyword">grant</span> <span class="keyword">insert</span> <span class="keyword">on</span> tables <span class="keyword">to</span> webuser;</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个域的定义alter-domain"><strong>修改一个域的定义：</strong>alter
+domain</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 把一个NOT NULL约束加到一个域</span></span><br><span class="line"><span class="keyword">alter</span> domain zipcode <span class="keyword">set</span> <span class="keyword">not</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个函数的定义alter-function"><strong>修改一个函数的定义：</strong>alter
+function</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 把用于类型integer的函数sqrt 重命名为square_root</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">function</span> <span class="built_in">sqrt</span>(<span class="type">integer</span>) rename <span class="keyword">to</span> square_root;</span><br></pre></td></tr></table></figure>
+<h3 id="修改角色名称或成员关系alter-group"><strong>修改角色名称或成员关系：</strong>alter
+group</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 向一个组增加用户</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">group</span> staff <span class="keyword">add</span> <span class="keyword">user</span> karl, john;</span><br><span class="line"><span class="comment">-- 从一个组移除一个用户</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">group</span> workers <span class="keyword">drop</span> <span class="keyword">user</span> beth;</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个索引的定义alter-index"><strong>修改一个索引的定义：</strong>alter
+index</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 把一个索引移动到一个不同的表空间</span></span><br><span class="line"><span class="keyword">alter</span> index distributors <span class="keyword">set</span> tablespace fasttablespace;</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个操作符的定义alter-operator"><strong>修改一个操作符的定义：</strong>alter
+operator</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 更改类型text的一个自定义操作符a @@ b 的拥有者</span></span><br><span class="line"><span class="keyword">alter</span> operator @@ (text, text) owner <span class="keyword">to</span> joe;</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个模式的定义alter-schema"><strong>修改一个模式的定义：</strong>alter
+schema</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 把一个索引移动到一个不同的表空间</span></span><br><span class="line"><span class="keyword">alter</span> index distributors <span class="keyword">set</span> tablespace fasttablespace;</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个数据库角色alter-role"><strong>修改一个数据库角色：</strong>alter
+role</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 更改一个角色</span></span><br><span class="line"><span class="keyword">alter</span> role davide <span class="keyword">with</span> password <span class="string">&#x27;hu8jmn3&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个序列生成器的定义alter-sequence"><strong>修改一个序列生成器的定义：</strong>alter
+sequence</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 在 105 重启一个被称为serial的序列</span></span><br><span class="line"><span class="keyword">alter</span> sequence serial restart <span class="keyword">with</span> <span class="number">105</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="修改表的定义alter-table"><strong>修改表的定义：</strong>alter
+table</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 向一个表增加一个类型为varchar的列</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> distributors <span class="keyword">add</span> <span class="keyword">column</span> address <span class="type">varchar</span>(<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个表空间alter-tablespace"><strong>修改一个表空间：</strong>alter
+tablespace</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 将表空间index_space重命名为fast_raid</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span>space index_space rename <span class="keyword">to</span> fast_raid;</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个事件触发器的定义alter-event-trigger"><strong>修改一个事件触发器的定义：</strong>alter
+event trigger</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 重命名一个现有的触发器</span></span><br><span class="line"><span class="keyword">alter</span> event <span class="keyword">trigger</span> name rename <span class="keyword">to</span> new_name</span><br></pre></td></tr></table></figure>
+<h3 id="修改一个类型的定义alter-type"><strong>修改一个类型的定义：</strong>alter
+type</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 重命名一个数据类型</span></span><br><span class="line"><span class="keyword">alter</span> type electronic_mail rename <span class="keyword">to</span> email;</span><br></pre></td></tr></table></figure>
+<h2 id="create定义命令">create定义命令</h2>
+<h3 id="定义一个新的约束触发器constraint-trigger"><strong>定义一个新的约束触发器：</strong>constraint
+trigger</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 只要表accounts的一行即将要被更新时会执行函数check_account_update</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> check_update</span><br><span class="line">    before <span class="keyword">update</span> <span class="keyword">on</span> accounts</span><br><span class="line">    <span class="keyword">for</span> <span class="keyword">each</span> <span class="type">row</span></span><br><span class="line">    <span class="keyword">execute</span> <span class="keyword">function</span> check_account_update();</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新的编码转换create-conversion"><strong>定义一个新的编码转换：</strong>create
+conversion</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用myfunc创建一个从编码UTF8到 LATIN1的转换</span></span><br><span class="line"><span class="keyword">create</span> conversion myconv <span class="keyword">for</span> <span class="string">&#x27;utf8&#x27;</span> <span class="keyword">to</span> <span class="string">&#x27;latin1&#x27;</span> <span class="keyword">from</span> myfunc;</span><br></pre></td></tr></table></figure>
+<h3 id="创建一个新数据库create-database"><strong>创建一个新数据库：</strong>create
+database</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建一个新数据库</span></span><br><span class="line"><span class="keyword">create</span> database lusiadas;</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新域create-domain"><strong>定义一个新域：</strong>create
+domain</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建us_postal_code数据类型并且把它用在 一个表定义中。一个正则表达式测试被用来验证值是否看起来像一个 合法的 US 邮政编码</span></span><br><span class="line"><span class="keyword">create</span> domain us_postal_code <span class="keyword">as</span> text</span><br><span class="line"><span class="keyword">check</span>(</span><br><span class="line">   <span class="keyword">value</span> <span class="operator">~</span> <span class="string">&#x27;^\d&#123;5&#125;$&#x27;</span></span><br><span class="line"><span class="keyword">or</span> <span class="keyword">value</span> <span class="operator">~</span> <span class="string">&#x27;^\d&#123;5&#125;-\d&#123;4&#125;$&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> us_snail_addy (</span><br><span class="line">  address_id serial <span class="keyword">primary</span> key,</span><br><span class="line">  street1 text <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">  street2 text,</span><br><span class="line">  street3 text,</span><br><span class="line">  city text <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">  postal us_postal_code <span class="keyword">not</span> <span class="keyword">null</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新函数create-function"><strong>定义一个新函数：</strong>create
+function</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">function</span> <span class="keyword">add</span>(<span class="type">integer</span>, <span class="type">integer</span>) <span class="keyword">returns</span> <span class="type">integer</span></span><br><span class="line">    <span class="keyword">as</span> <span class="string">&#x27;select $1 + $2;&#x27;</span></span><br><span class="line">    <span class="keyword">language</span> <span class="keyword">sql</span></span><br><span class="line">    immutable</span><br><span class="line">    <span class="keyword">returns</span> <span class="keyword">null</span> <span class="keyword">on</span> <span class="keyword">null</span> input;</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新索引create-index"><strong>定义一个新索引：</strong>create
+index</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 在表films中的列title上创建一个 B-树索引</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">unique</span> index title_idx <span class="keyword">on</span> films (title);</span><br></pre></td></tr></table></figure>
+<h3 id="定义一种新的过程语言create-language"><strong>定义一种新的过程语言：</strong>create
+language</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建新的过程语言的最小顺序</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">function</span> plsample_call_handler() <span class="keyword">returns</span> language_handler</span><br><span class="line">    <span class="keyword">as</span> <span class="string">&#x27;$libdir/plsample&#x27;</span></span><br><span class="line">    <span class="keyword">language</span> c;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">language</span> plsample</span><br><span class="line">    handler plsample_call_handler;</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新的操作符create-operator"><strong>定义一个新的操作符：</strong>create
+operator</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 为数据类型box定义一种新的操作符--面积相等</span></span><br><span class="line"><span class="keyword">create</span> operator <span class="operator">=</span><span class="operator">=</span><span class="operator">=</span> (</span><br><span class="line">    leftarg <span class="operator">=</span> box,</span><br><span class="line">    rightarg <span class="operator">=</span> box,</span><br><span class="line">    <span class="keyword">function</span> <span class="operator">=</span> area_equal_function,</span><br><span class="line">    commutator <span class="operator">=</span> <span class="operator">=</span><span class="operator">=</span><span class="operator">=</span>,</span><br><span class="line">    negator <span class="operator">=</span> <span class="operator">!=</span><span class="operator">=</span>,</span><br><span class="line">    restrict <span class="operator">=</span> area_restriction_function,</span><br><span class="line">    <span class="keyword">join</span> <span class="operator">=</span> area_join_function,</span><br><span class="line">    hashes, merges</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新的操作符表create-operator-class"><strong>定义一个新的操作符表：</strong>create
+operator class</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 为数据类型_int4（int4数组） 定义了一个 GiST 索引操作符</span></span><br><span class="line"><span class="keyword">create</span> operator class gist__int_ops</span><br><span class="line">    <span class="keyword">default</span> <span class="keyword">for</span> type _int4 <span class="keyword">using</span> gist <span class="keyword">as</span></span><br><span class="line">        operator        <span class="number">3</span>       <span class="operator">&amp;&amp;</span>,</span><br><span class="line">        operator        <span class="number">6</span>       <span class="operator">=</span> (anyarray, anyarray),</span><br><span class="line">        operator        <span class="number">7</span>       @<span class="operator">&gt;</span>,</span><br><span class="line">        operator        <span class="number">8</span>       <span class="operator">&lt;</span>@,</span><br><span class="line">        operator        <span class="number">20</span>      @@ (_int4, query_int),</span><br><span class="line">        <span class="keyword">function</span>        <span class="number">1</span>       g_int_consistent (internal, _int4, <span class="type">smallint</span>, oid, internal),</span><br><span class="line">        <span class="keyword">function</span>        <span class="number">2</span>       g_int_union (internal, internal),</span><br><span class="line">        <span class="keyword">function</span>        <span class="number">3</span>       g_int_compress (internal),</span><br><span class="line">        <span class="keyword">function</span>        <span class="number">4</span>       g_int_decompress (internal),</span><br><span class="line">        <span class="keyword">function</span>        <span class="number">5</span>       g_int_penalty (internal, internal, internal),</span><br><span class="line">        <span class="keyword">function</span>        <span class="number">6</span>       g_int_picksplit (internal, internal),</span><br><span class="line">        <span class="keyword">function</span>        <span class="number">7</span>       g_int_same (_int4, _int4, internal);</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新的数据库角色create-role"><strong>定义一个新的数据库角色：</strong>create
+role</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建一个有口令的角色</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> davide <span class="keyword">with</span> password <span class="string">&#x27;jw8s0f4&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新重写规则create-rule"><strong>定义一个新重写规则：</strong>create
+rule</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> rule notify_me <span class="keyword">as</span> <span class="keyword">on</span> <span class="keyword">update</span> <span class="keyword">to</span> mytable do also notify mytable;</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新模式create-schema"><strong>定义一个新模式：</strong>create
+schema</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建一个模式</span></span><br><span class="line"><span class="keyword">create</span> schema myschema;</span><br><span class="line"><span class="comment">-- 为用户joe创建一个模式，该模式也将被命名为 joe</span></span><br><span class="line"><span class="keyword">create</span> schema <span class="keyword">authorization</span> joe;</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新的外部服务器create-server"><strong>定义一个新的外部服务器：</strong>create
+server</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建使用外部数据包装器postgres_fdw 的服务器myserver</span></span><br><span class="line"><span class="keyword">create</span> server myserver <span class="keyword">foreign</span> data wrapper postgres_fdw options (host <span class="string">&#x27;foo&#x27;</span>, dbname <span class="string">&#x27;foodb&#x27;</span>, port <span class="string">&#x27;5432&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新序列发生器create-sequence"><strong>定义一个新序列发生器：</strong>create
+sequence</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建一个称作serial的上升序列，从 101 开始</span></span><br><span class="line"><span class="keyword">create</span> sequence serial <span class="keyword">start</span> <span class="number">101</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新表create-table"><strong>定义一个新表：</strong>create
+table</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建表distributors</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> distributors (</span><br><span class="line">     did    <span class="type">integer</span> <span class="keyword">primary</span> key generated <span class="keyword">by</span> <span class="keyword">default</span> <span class="keyword">as</span> <span class="keyword">identity</span>,</span><br><span class="line">     name   <span class="type">varchar</span>(<span class="number">40</span>) <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">check</span> (name  <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 创建有一个二维数组的表</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> array_int (</span><br><span class="line">    vector  <span class="type">int</span>[][]</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="从一条查询的结果中创建一个新表create-table-as"><strong>从一条查询的结果中创建一个新表：</strong>create
+table as</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建一个新表films_recent，它只由表 films中最近的项组成</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> films_recent <span class="keyword">as</span></span><br><span class="line">  <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> films <span class="keyword">where</span> date_prod <span class="operator">&gt;=</span> <span class="string">&#x27;2002-01-01&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新的表空间create-tablespace"><strong>定义一个新的表空间：</strong>create
+tablespace</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 要在文件系统位置/data/dbs创建表空间dbspace，请首先使用操作系统工具创建目录并设置正确的所有权</span></span><br><span class="line">mkdir <span class="operator">/</span>data<span class="operator">/</span>dbs</span><br><span class="line">chown postgres:postgres <span class="operator">/</span>data<span class="operator">/</span>dbs</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 然后在内部发出表空间创建命令 PostgreSQL</span></span><br><span class="line"><span class="comment">--create tablespace dbspace location &#x27;/data/dbs&#x27;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 要创建由不同数据库用户拥有的表空间</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span>space indexspace owner genevieve location <span class="string">&#x27;/data/indexes&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新的触发器create-trigger"><strong>定义一个新的触发器：</strong>create
+trigger</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 禁止执行任何DDL命令</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> replace <span class="keyword">function</span> abort_any_command()</span><br><span class="line">  <span class="keyword">returns</span> event_trigger</span><br><span class="line"> <span class="keyword">language</span> plpgsql</span><br><span class="line">  <span class="keyword">as</span> $$</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  raise exception <span class="string">&#x27;command % is disabled&#x27;</span>, tg_tag;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line">$$;</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> event <span class="keyword">trigger</span> abort_ddl <span class="keyword">on</span> ddl_command_start</span><br><span class="line">   <span class="keyword">execute</span> <span class="keyword">function</span> abort_any_command();</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个新的数据类型create-type"><strong>定义一个新的数据类型：</strong>create
+type</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建一个枚举类型并且将其用在一个表定义中</span></span><br><span class="line"><span class="keyword">create</span> type bug_status <span class="keyword">as</span> enum (<span class="string">&#x27;new&#x27;</span>, <span class="string">&#x27;open&#x27;</span>, <span class="string">&#x27;closed&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> bug (</span><br><span class="line">    id serial,</span><br><span class="line">    description text,</span><br><span class="line">    status bug_status</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="定义一个视图create-view"><strong>定义一个视图：</strong>create
+view</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建一个由所有喜剧电影组成的视图</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> comedies <span class="keyword">as</span></span><br><span class="line">    <span class="keyword">select</span> <span class="operator">*</span></span><br><span class="line">    <span class="keyword">from</span> films</span><br><span class="line">    <span class="keyword">where</span> kind <span class="operator">=</span> <span class="string">&#x27;comedy&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="drop删除命令">drop删除命令</h2>
+<h3 id="删除一个表中的行delete"><strong>删除一个表中的行：</strong>delete</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除所有电影，但音乐剧除外</span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> films <span class="keyword">where</span> kind  <span class="string">&#x27;musical&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个用户定义的聚类函数drop-aggregate"><strong>删除一个用户定义的聚类函数：</strong>drop
+aggregate</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 为类型integer移除聚集函数myavg</span></span><br><span class="line"><span class="keyword">drop</span> aggregate myavg(<span class="type">integer</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个用户定义的类型转换drop-cast"><strong>删除一个用户定义的类型转换：</strong>drop
+cast</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 移除从类型text到类型int的类型</span></span><br><span class="line"><span class="keyword">drop</span> <span class="built_in">cast</span> (text <span class="keyword">as</span> <span class="type">int</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个用户定义的编码转换drop-conversion"><strong>删除一个用户定义的编码转换：</strong>drop
+conversion</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除名为myname的转换</span></span><br><span class="line"><span class="keyword">drop</span> conversion myname;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个数据库drop-database"><strong>删除一个数据库：</strong>drop
+database</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除名为myname的数据库</span></span><br><span class="line"><span class="keyword">drop</span> database myname;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个用户定义的域drop-domain"><strong>删除一个用户定义的域：</strong>drop
+domain</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 移除域box</span></span><br><span class="line"><span class="keyword">drop</span> domain box;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个函数drop-function"><strong>删除一个函数：</strong>drop
+function</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 移除域box</span></span><br><span class="line"><span class="keyword">drop</span> domain box;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个索引drop-index"><strong>删除一个索引：</strong>drop
+index</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 移除索引title_idx</span></span><br><span class="line"><span class="keyword">drop</span> index title_idx;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个过程语言drop-language"><strong>删除一个过程语言：</strong>drop
+language</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 移除过程语言plsample</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">language</span> plsample;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个操作符drop-operator"><strong>删除一个操作符：</strong>drop
+operator</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 为类型integer移除幂操作符 a^b</span></span><br><span class="line"><span class="keyword">drop</span> operator <span class="operator">^</span> (<span class="type">integer</span>, <span class="type">integer</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个操作符表drop-operator-class"><strong>删除一个操作符表：</strong>drop
+operator class</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 移除 B-树操作符类widget_ops</span></span><br><span class="line"><span class="keyword">drop</span> operator class widget_ops <span class="keyword">using</span> btree;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个数据库角色drop-role"><strong>删除一个数据库角色：</strong>drop
+role</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除一个角色</span></span><br><span class="line"><span class="keyword">drop</span> role jonathan;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个重写规则drop-rule"><strong>删除一个重写规则：</strong>drop
+rule</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除重写规则newrule</span></span><br><span class="line"><span class="keyword">drop</span> rule newrule <span class="keyword">on</span> mytable;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个模式drop-schema"><strong>删除一个模式：</strong>drop
+schema</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 移除序列serial</span></span><br><span class="line"><span class="keyword">drop</span> sequence serial;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个表drop-table"><strong>删除一个表：</strong>drop
+table</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 销毁两个表films和 distributors</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> films, distributors;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个表空间drop-tablespace"><strong>删除一个表空间：</strong>drop
+tablespace</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 从系统移除表空间mystuff</span></span><br><span class="line"><span class="keyword">drop</span> tablespace mystuff;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个触发器定义drop-trigger"><strong>删除一个触发器定义：</strong>drop
+trigger</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 销毁表films上的触发器 if_dist_exists</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">trigger</span> if_dist_exists <span class="keyword">on</span> films;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个用户定义数据类型drop-type"><strong>删除一个用户定义数据类型：</strong>drop
+type</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 移除数据类型box</span></span><br><span class="line"><span class="keyword">drop</span> type box;</span><br></pre></td></tr></table></figure>
+<h3 id="删除一个视图drop-view"><strong>删除一个视图：</strong>drop
+view</h3>
+<p>具体语句用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 将移除名为kinds的视图</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> kinds;</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -1105,7 +1058,68 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E5%A4%B4"><span class="toc-number">1.</span> <span class="toc-text">写在前头</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PostgreSQL%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.</span> <span class="toc-text">PostgreSQL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.1.</span> <span class="toc-text">常用语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E8%A1%A8%E5%92%8C%E6%96%87%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%8B%B7%E8%B4%9D%E6%95%B0%E6%8D%AE%EF%BC%9Acopy"><span class="toc-number">2.1.1.</span> <span class="toc-text">在表和文件之间拷贝数据：copy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%EF%BC%9Agrant"><span class="toc-number">2.1.2.</span> <span class="toc-text">定义访问权限：grant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E4%B8%80%E4%B8%AA%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%BB%93%E6%9E%9C%E4%B8%AD%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E8%A1%A8%EF%BC%9Aselect-into"><span class="toc-number">2.1.3.</span> <span class="toc-text">从一个查询的结果中定义一个新表：select into</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E6%88%96%E4%B8%80%E7%BB%84%E8%A1%A8%EF%BC%9Atruncate"><span class="toc-number">2.1.4.</span> <span class="toc-text">清空一个或一组表：truncate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%82%E6%95%B0%EF%BC%9Aset"><span class="toc-number">2.1.5.</span> <span class="toc-text">修改运行时参数：set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E4%B8%80%E4%B8%AA%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%82%E6%95%B0%E5%80%BC%E6%81%A2%E5%A4%8D%E4%B8%BA%E9%BB%98%E8%AE%A4%E5%80%BC%EF%BC%9Areset"><span class="toc-number">2.1.6.</span> <span class="toc-text">把一个运行时参数值恢复为默认值：reset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E5%8F%82%E6%95%B0%E5%80%BC%EF%BC%9Ashow"><span class="toc-number">2.1.7.</span> <span class="toc-text">显示运行时的参数值：show</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E4%B8%80%E4%B8%AA%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%A1%8C%EF%BC%9Aupdate"><span class="toc-number">2.1.8.</span> <span class="toc-text">更新一个表中的行：update</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%87%86%E5%A4%87%E5%A5%BD%E7%9A%84%E6%9F%A5%E8%AF%A2%EF%BC%9Aprepare"><span class="toc-number">2.1.9.</span> <span class="toc-text">创建一个准备好的查询：prepare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%80%E4%B8%AA%E5%87%86%E5%A4%87%E5%A5%BD%E7%9A%84%E6%9F%A5%E8%AF%A2%EF%BC%9Aexecute"><span class="toc-number">2.1.10.</span> <span class="toc-text">执行一个准备好的查询：execute</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E4%B8%80%E4%B8%AA%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%89%A7%E8%A1%8C%E8%A7%84%E5%88%99%EF%BC%9Aexplain"><span class="toc-number">2.1.11.</span> <span class="toc-text">显示一个语句的执行规则：explain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E8%A1%A8%E4%B8%AD%E5%88%9B%E5%BB%BA%E6%96%B0%E8%A1%8C%EF%BC%9Ainsert"><span class="toc-number">2.1.12.</span> <span class="toc-text">在表中创建新行：insert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%9Areindex"><span class="toc-number">2.1.13.</span> <span class="toc-text">重建索引：reindex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E5%85%B3%E7%9A%84%E7%BB%9F%E8%AE%A1%EF%BC%9Aanalyze"><span class="toc-number">2.1.14.</span> <span class="toc-text">收集与数据库有关的统计：analyze</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E9%80%9A%E7%9F%A5%EF%BC%9Anotify"><span class="toc-number">2.1.15.</span> <span class="toc-text">生成一个通知：notify</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%91%E5%90%AC%E4%B8%80%E4%B8%AA%E9%80%9A%E7%9F%A5%EF%BC%9Alisten"><span class="toc-number">2.1.16.</span> <span class="toc-text">监听一个通知：listen</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2%E7%9B%91%E5%90%AC%E9%80%9A%E7%9F%A5%E4%BF%A1%E6%81%AF%EF%BC%9Aunlisten"><span class="toc-number">2.1.17.</span> <span class="toc-text">停止监听通知信息：unlisten</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%81%E5%AE%9A%E4%B8%80%E4%B8%AA%E8%A1%A8%EF%BC%9Alock"><span class="toc-number">2.1.18.</span> <span class="toc-text">锁定一个表：lock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%80%E4%B8%AA%E7%B4%A2%E5%BC%95%E8%81%9A%E7%B0%87%E4%B8%80%E4%B8%AA%E8%A1%A8%EF%BC%9Acluster"><span class="toc-number">2.1.19.</span> <span class="toc-text">根据一个索引聚簇一个表：cluster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%88%96%E8%80%85%E6%94%B9%E5%8F%98%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%B3%A8%E9%87%8A%EF%BC%9Acomment"><span class="toc-number">2.1.20.</span> <span class="toc-text">定义或者改变一个对象的注释：comment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E4%BB%A5%E5%8F%8A%E5%8F%AF%E9%80%89%E5%9C%B0%E5%88%86%E6%9E%90%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9Avacuum"><span class="toc-number">2.1.21.</span> <span class="toc-text">垃圾收集以及可选地分析一个数据库：vacuum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E5%BD%93%E5%89%8D%E4%BC%9A%E8%AF%9D%E8%AE%BE%E7%BD%AE%E4%BC%9A%E8%AF%9D%E7%94%A8%E6%88%B7%E6%A0%87%E8%AF%86%E7%AC%A6%E5%92%8C%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E6%A0%87%E8%AF%86%E7%AC%A6%EF%BC%9Aset-session-authorization"><span class="toc-number">2.1.22.</span> <span class="toc-text">为当前会话设置会话用户标识符和当前用户标识符：set session authorization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%EF%BC%9Arevoke"><span class="toc-number">2.1.23.</span> <span class="toc-text">删除访问权限：revoke</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">事务相关命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%EF%BC%9Abegin"><span class="toc-number">2.2.1.</span> <span class="toc-text">开始一个事务：begin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E5%BD%93%E5%89%8D%E4%BA%8B%E5%8A%A1%EF%BC%9Acommit"><span class="toc-number">2.2.2.</span> <span class="toc-text">提交当前事务：commit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E5%BD%93%E5%89%8D%E4%BA%8B%E5%8A%A1%EF%BC%9Aend"><span class="toc-number">2.2.3.</span> <span class="toc-text">提交当前事务：end</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E6%97%A5%E5%BF%97%E6%A3%80%E6%9F%A5%E7%82%B9%EF%BC%9Acheckpoint"><span class="toc-number">2.2.4.</span> <span class="toc-text">强制一个事务日志检查点：checkpoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%AD%A2%E5%BD%93%E5%89%8D%E4%BA%8B%E5%8A%A1%EF%BC%9Arollback"><span class="toc-number">2.2.5.</span> <span class="toc-text">中止当前事务：rollback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%AD%A2%E5%BD%93%E5%89%8D%E4%BA%8B%E5%8A%A1%EF%BC%9Aabort"><span class="toc-number">2.2.6.</span> <span class="toc-text">中止当前事务：abort</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E5%9D%97%EF%BC%9Aset-transaction"><span class="toc-number">2.2.7.</span> <span class="toc-text">开始一个事务块：set transaction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E5%9D%97%EF%BC%9Astart-transaction"><span class="toc-number">2.2.8.</span> <span class="toc-text">开始一个事务块：start transaction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E5%BD%93%E5%89%8D%E4%BA%8B%E5%8A%A1%E9%87%8C%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E4%BF%9D%E5%AD%98%E7%82%B9%EF%BC%9Asavepoint"><span class="toc-number">2.2.9.</span> <span class="toc-text">在当前事务里定义一个新的保存点：savepoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%BB%9A%E5%88%B0%E4%B8%80%E4%B8%AA%E4%BF%9D%E5%AD%98%E7%82%B9%EF%BC%9Arollback-to-savepoint"><span class="toc-number">2.2.10.</span> <span class="toc-text">回滚到一个保存点：rollback to savepoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E5%89%8D%E9%9D%A2%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BF%9D%E5%AD%98%E7%82%B9%EF%BC%9Arelease-savepoint"><span class="toc-number">2.2.11.</span> <span class="toc-text">删除一个前面定义的保存点：release savepoint</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%A0%87%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">游标相关命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%B8%B8%E6%A0%87%EF%BC%9Adeclare"><span class="toc-number">2.3.1.</span> <span class="toc-text">定义一个游标：declare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E4%B8%80%E4%B8%AA%E6%B8%B8%E6%A0%87%EF%BC%9Amove"><span class="toc-number">2.3.2.</span> <span class="toc-text">定位一个游标：move</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%B8%B8%E6%A0%87%E4%BB%8E%E6%9F%A5%E8%AF%A2%E4%B8%AD%E6%8A%93%E5%8F%96%E8%A1%8C%EF%BC%9Afetch"><span class="toc-number">2.3.3.</span> <span class="toc-text">用游标从查询中抓取行：fetch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E6%B8%B8%E6%A0%87%EF%BC%9Aclose"><span class="toc-number">2.3.4.</span> <span class="toc-text">关闭游标：close</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#alter%E4%BF%AE%E6%94%B9%E5%91%BD%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">alter修改命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E8%81%9A%E9%9B%86%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-aggregate"><span class="toc-number">2.4.1.</span> <span class="toc-text">修改一个聚集函数的定义：alter aggregate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-collation"><span class="toc-number">2.4.2.</span> <span class="toc-text">修改一个排序规则定义：alter collation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-conversion"><span class="toc-number">2.4.3.</span> <span class="toc-text">修改一个编码转换的定义：alter conversion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9Aalter-database"><span class="toc-number">2.4.4.</span> <span class="toc-text">修改一个数据库：alter database</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E9%BB%98%E8%AE%A4%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%EF%BC%9Aalter-default-privileges"><span class="toc-number">2.4.5.</span> <span class="toc-text">定义默认的访问权限：alter default privileges</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E5%9F%9F%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-domain"><span class="toc-number">2.4.6.</span> <span class="toc-text">修改一个域的定义：alter domain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-function"><span class="toc-number">2.4.7.</span> <span class="toc-text">修改一个函数的定义：alter function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%A7%92%E8%89%B2%E5%90%8D%E7%A7%B0%E6%88%96%E6%88%90%E5%91%98%E5%85%B3%E7%B3%BB%EF%BC%9Aalter-group"><span class="toc-number">2.4.8.</span> <span class="toc-text">修改角色名称或成员关系：alter group</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E7%B4%A2%E5%BC%95%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-index"><span class="toc-number">2.4.9.</span> <span class="toc-text">修改一个索引的定义：alter index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-operator"><span class="toc-number">2.4.10.</span> <span class="toc-text">修改一个操作符的定义：alter operator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-schema"><span class="toc-number">2.4.11.</span> <span class="toc-text">修改一个模式的定义：alter schema</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%92%E8%89%B2%EF%BC%9Aalter-role"><span class="toc-number">2.4.12.</span> <span class="toc-text">修改一个数据库角色：alter role</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E5%BA%8F%E5%88%97%E7%94%9F%E6%88%90%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-sequence"><span class="toc-number">2.4.13.</span> <span class="toc-text">修改一个序列生成器的定义：alter sequence</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-table"><span class="toc-number">2.4.14.</span> <span class="toc-text">修改表的定义：alter table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%A9%BA%E9%97%B4%EF%BC%9Aalter-tablespace"><span class="toc-number">2.4.15.</span> <span class="toc-text">修改一个表空间：alter tablespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-event-trigger"><span class="toc-number">2.4.16.</span> <span class="toc-text">修改一个事件触发器的定义：alter event trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%9Aalter-type"><span class="toc-number">2.4.17.</span> <span class="toc-text">修改一个类型的定义：alter type</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-number">2.5.</span> <span class="toc-text">create定义命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E7%BA%A6%E6%9D%9F%E8%A7%A6%E5%8F%91%E5%99%A8%EF%BC%9Aconstraint-trigger"><span class="toc-number">2.5.1.</span> <span class="toc-text">定义一个新的约束触发器：constraint trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2%EF%BC%9Acreate-conversion"><span class="toc-number">2.5.2.</span> <span class="toc-text">定义一个新的编码转换：create conversion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9Acreate-database"><span class="toc-number">2.5.3.</span> <span class="toc-text">创建一个新数据库：create database</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E5%9F%9F%EF%BC%9Acreate-domain"><span class="toc-number">2.5.4.</span> <span class="toc-text">定义一个新域：create domain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E5%87%BD%E6%95%B0%EF%BC%9Acreate-function"><span class="toc-number">2.5.5.</span> <span class="toc-text">定义一个新函数：create function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%B4%A2%E5%BC%95%EF%BC%9Acreate-index"><span class="toc-number">2.5.6.</span> <span class="toc-text">定义一个新索引：create index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E7%A7%8D%E6%96%B0%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%9Acreate-language"><span class="toc-number">2.5.7.</span> <span class="toc-text">定义一种新的过程语言：create  language</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E6%93%8D%E4%BD%9C%E7%AC%A6%EF%BC%9Acreate-operator"><span class="toc-number">2.5.8.</span> <span class="toc-text">定义一个新的操作符：create operator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E6%93%8D%E4%BD%9C%E7%AC%A6%E8%A1%A8%EF%BC%9Acreate-operator-class"><span class="toc-number">2.5.9.</span> <span class="toc-text">定义一个新的操作符表：create operator class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%92%E8%89%B2%EF%BC%9Acreate-role"><span class="toc-number">2.5.10.</span> <span class="toc-text">定义一个新的数据库角色：create role</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E9%87%8D%E5%86%99%E8%A7%84%E5%88%99%EF%BC%9Acreate-rule"><span class="toc-number">2.5.11.</span> <span class="toc-text">定义一个新重写规则：create rule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E6%A8%A1%E5%BC%8F%EF%BC%9Acreate-schema"><span class="toc-number">2.5.12.</span> <span class="toc-text">定义一个新模式：create schema</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E5%A4%96%E9%83%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9Acreate-server"><span class="toc-number">2.5.13.</span> <span class="toc-text">定义一个新的外部服务器：create server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E5%BA%8F%E5%88%97%E5%8F%91%E7%94%9F%E5%99%A8%EF%BC%9Acreate-sequence"><span class="toc-number">2.5.14.</span> <span class="toc-text">定义一个新序列发生器：create sequence</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E8%A1%A8%EF%BC%9Acreate-table"><span class="toc-number">2.5.15.</span> <span class="toc-text">定义一个新表：create table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E4%B8%80%E6%9D%A1%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%BB%93%E6%9E%9C%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E8%A1%A8%EF%BC%9Acreate-table-as"><span class="toc-number">2.5.16.</span> <span class="toc-text">从一条查询的结果中创建一个新表：create table as</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E8%A1%A8%E7%A9%BA%E9%97%B4%EF%BC%9Acreate-tablespace"><span class="toc-number">2.5.17.</span> <span class="toc-text">定义一个新的表空间：create tablespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E8%A7%A6%E5%8F%91%E5%99%A8%EF%BC%9Acreate-trigger"><span class="toc-number">2.5.18.</span> <span class="toc-text">定义一个新的触发器：create trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9Acreate-type"><span class="toc-number">2.5.19.</span> <span class="toc-text">定义一个新的数据类型：create type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E8%A7%86%E5%9B%BE%EF%BC%9Acreate-view"><span class="toc-number">2.5.20.</span> <span class="toc-text">定义一个视图：create view</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#drop%E5%88%A0%E9%99%A4%E5%91%BD%E4%BB%A4"><span class="toc-number">2.6.</span> <span class="toc-text">drop删除命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%A1%8C%EF%BC%9Adelete"><span class="toc-number">2.6.1.</span> <span class="toc-text">删除一个表中的行：delete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E8%81%9A%E7%B1%BB%E5%87%BD%E6%95%B0%EF%BC%9Adrop-aggregate"><span class="toc-number">2.6.2.</span> <span class="toc-text">删除一个用户定义的聚类函数：drop aggregate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%EF%BC%9Adrop-cast"><span class="toc-number">2.6.3.</span> <span class="toc-text">删除一个用户定义的类型转换：drop cast</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2%EF%BC%9Adrop-conversion"><span class="toc-number">2.6.4.</span> <span class="toc-text">删除一个用户定义的编码转换：drop conversion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9Adrop-database"><span class="toc-number">2.6.5.</span> <span class="toc-text">删除一个数据库：drop database</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E5%9F%9F%EF%BC%9Adrop-domain"><span class="toc-number">2.6.6.</span> <span class="toc-text">删除一个用户定义的域：drop domain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%EF%BC%9Adrop-function"><span class="toc-number">2.6.7.</span> <span class="toc-text">删除一个函数：drop function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%B4%A2%E5%BC%95%EF%BC%9Adrop-index"><span class="toc-number">2.6.8.</span> <span class="toc-text">删除一个索引：drop index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%BF%87%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%9Adrop-language"><span class="toc-number">2.6.9.</span> <span class="toc-text">删除一个过程语言：drop language</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%AC%A6%EF%BC%9Adrop-operator"><span class="toc-number">2.6.10.</span> <span class="toc-text">删除一个操作符：drop operator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%AC%A6%E8%A1%A8%EF%BC%9Adrop-operator-class"><span class="toc-number">2.6.11.</span> <span class="toc-text">删除一个操作符表：drop operator class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%92%E8%89%B2%EF%BC%9Adrop-role"><span class="toc-number">2.6.12.</span> <span class="toc-text">删除一个数据库角色：drop role</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E9%87%8D%E5%86%99%E8%A7%84%E5%88%99%EF%BC%9Adrop-rule"><span class="toc-number">2.6.13.</span> <span class="toc-text">删除一个重写规则：drop rule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%BC%8F%EF%BC%9Adrop-schema"><span class="toc-number">2.6.14.</span> <span class="toc-text">删除一个模式：drop schema</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%A1%A8%EF%BC%9Adrop-table"><span class="toc-number">2.6.15.</span> <span class="toc-text">删除一个表：drop table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%A9%BA%E9%97%B4%EF%BC%9Adrop-tablespace"><span class="toc-number">2.6.16.</span> <span class="toc-text">删除一个表空间：drop tablespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AE%9A%E4%B9%89%EF%BC%9Adrop-trigger"><span class="toc-number">2.6.17.</span> <span class="toc-text">删除一个触发器定义：drop trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9Adrop-type"><span class="toc-number">2.6.18.</span> <span class="toc-text">删除一个用户定义数据类型：drop type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%A7%86%E5%9B%BE%EF%BC%9Adrop-view"><span class="toc-number">2.6.19.</span> <span class="toc-text">删除一个视图：drop view</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E5%A4%B4"><span class="toc-number">1.</span> <span class="toc-text">写在前头</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#postgresql%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.</span> <span class="toc-text">PostgreSQL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.1.</span> <span class="toc-text">常用语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E8%A1%A8%E5%92%8C%E6%96%87%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%8B%B7%E8%B4%9D%E6%95%B0%E6%8D%AEcopy"><span class="toc-number">2.1.1.</span> <span class="toc-text">在表和文件之间拷贝数据：copy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90grant"><span class="toc-number">2.1.2.</span> <span class="toc-text">定义访问权限：grant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E4%B8%80%E4%B8%AA%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%BB%93%E6%9E%9C%E4%B8%AD%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E8%A1%A8select-into"><span class="toc-number">2.1.3.</span> <span class="toc-text">从一个查询的结果中定义一个新表：select
+into</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E7%A9%BA%E4%B8%80%E4%B8%AA%E6%88%96%E4%B8%80%E7%BB%84%E8%A1%A8truncate"><span class="toc-number">2.1.4.</span> <span class="toc-text">清空一个或一组表：truncate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%82%E6%95%B0set"><span class="toc-number">2.1.5.</span> <span class="toc-text">修改运行时参数：set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E4%B8%80%E4%B8%AA%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%82%E6%95%B0%E5%80%BC%E6%81%A2%E5%A4%8D%E4%B8%BA%E9%BB%98%E8%AE%A4%E5%80%BCreset"><span class="toc-number">2.1.6.</span> <span class="toc-text">把一个运行时参数值恢复为默认值：reset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E5%8F%82%E6%95%B0%E5%80%BCshow"><span class="toc-number">2.1.7.</span> <span class="toc-text">显示运行时的参数值：show</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E4%B8%80%E4%B8%AA%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%A1%8Cupdate"><span class="toc-number">2.1.8.</span> <span class="toc-text">更新一个表中的行：update</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%87%86%E5%A4%87%E5%A5%BD%E7%9A%84%E6%9F%A5%E8%AF%A2prepare"><span class="toc-number">2.1.9.</span> <span class="toc-text">创建一个准备好的查询：prepare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%80%E4%B8%AA%E5%87%86%E5%A4%87%E5%A5%BD%E7%9A%84%E6%9F%A5%E8%AF%A2execute"><span class="toc-number">2.1.10.</span> <span class="toc-text">执行一个准备好的查询：execute</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E4%B8%80%E4%B8%AA%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%89%A7%E8%A1%8C%E8%A7%84%E5%88%99explain"><span class="toc-number">2.1.11.</span> <span class="toc-text">显示一个语句的执行规则：explain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E8%A1%A8%E4%B8%AD%E5%88%9B%E5%BB%BA%E6%96%B0%E8%A1%8Cinsert"><span class="toc-number">2.1.12.</span> <span class="toc-text">在表中创建新行：insert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95reindex"><span class="toc-number">2.1.13.</span> <span class="toc-text">重建索引：reindex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E5%85%B3%E7%9A%84%E7%BB%9F%E8%AE%A1analyze"><span class="toc-number">2.1.14.</span> <span class="toc-text">收集与数据库有关的统计：analyze</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E9%80%9A%E7%9F%A5notify"><span class="toc-number">2.1.15.</span> <span class="toc-text">生成一个通知：notify</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%91%E5%90%AC%E4%B8%80%E4%B8%AA%E9%80%9A%E7%9F%A5listen"><span class="toc-number">2.1.16.</span> <span class="toc-text">监听一个通知：listen</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2%E7%9B%91%E5%90%AC%E9%80%9A%E7%9F%A5%E4%BF%A1%E6%81%AFunlisten"><span class="toc-number">2.1.17.</span> <span class="toc-text">停止监听通知信息：unlisten</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%81%E5%AE%9A%E4%B8%80%E4%B8%AA%E8%A1%A8lock"><span class="toc-number">2.1.18.</span> <span class="toc-text">锁定一个表：lock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%80%E4%B8%AA%E7%B4%A2%E5%BC%95%E8%81%9A%E7%B0%87%E4%B8%80%E4%B8%AA%E8%A1%A8cluster"><span class="toc-number">2.1.19.</span> <span class="toc-text">根据一个索引聚簇一个表：cluster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%88%96%E8%80%85%E6%94%B9%E5%8F%98%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%B3%A8%E9%87%8Acomment"><span class="toc-number">2.1.20.</span> <span class="toc-text">定义或者改变一个对象的注释：comment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E4%BB%A5%E5%8F%8A%E5%8F%AF%E9%80%89%E5%9C%B0%E5%88%86%E6%9E%90%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93vacuum"><span class="toc-number">2.1.21.</span> <span class="toc-text">垃圾收集以及可选地分析一个数据库：vacuum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E5%BD%93%E5%89%8D%E4%BC%9A%E8%AF%9D%E8%AE%BE%E7%BD%AE%E4%BC%9A%E8%AF%9D%E7%94%A8%E6%88%B7%E6%A0%87%E8%AF%86%E7%AC%A6%E5%92%8C%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E6%A0%87%E8%AF%86%E7%AC%A6set-session-authorization"><span class="toc-number">2.1.22.</span> <span class="toc-text">为当前会话设置会话用户标识符和当前用户标识符：set
+session authorization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90revoke"><span class="toc-number">2.1.23.</span> <span class="toc-text">删除访问权限：revoke</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">事务相关命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1begin"><span class="toc-number">2.2.1.</span> <span class="toc-text">开始一个事务：begin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E5%BD%93%E5%89%8D%E4%BA%8B%E5%8A%A1commit"><span class="toc-number">2.2.2.</span> <span class="toc-text">提交当前事务：commit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E5%BD%93%E5%89%8D%E4%BA%8B%E5%8A%A1end"><span class="toc-number">2.2.3.</span> <span class="toc-text">提交当前事务：end</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E6%97%A5%E5%BF%97%E6%A3%80%E6%9F%A5%E7%82%B9checkpoint"><span class="toc-number">2.2.4.</span> <span class="toc-text">强制一个事务日志检查点：checkpoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%AD%A2%E5%BD%93%E5%89%8D%E4%BA%8B%E5%8A%A1rollback"><span class="toc-number">2.2.5.</span> <span class="toc-text">中止当前事务：rollback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%AD%A2%E5%BD%93%E5%89%8D%E4%BA%8B%E5%8A%A1abort"><span class="toc-number">2.2.6.</span> <span class="toc-text">中止当前事务：abort</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E5%9D%97set-transaction"><span class="toc-number">2.2.7.</span> <span class="toc-text">开始一个事务块：set
+transaction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E5%9D%97start-transaction"><span class="toc-number">2.2.8.</span> <span class="toc-text">开始一个事务块：start
+transaction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E5%BD%93%E5%89%8D%E4%BA%8B%E5%8A%A1%E9%87%8C%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E4%BF%9D%E5%AD%98%E7%82%B9savepoint"><span class="toc-number">2.2.9.</span> <span class="toc-text">在当前事务里定义一个新的保存点：savepoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%BB%9A%E5%88%B0%E4%B8%80%E4%B8%AA%E4%BF%9D%E5%AD%98%E7%82%B9rollback-to-savepoint"><span class="toc-number">2.2.10.</span> <span class="toc-text">回滚到一个保存点：rollback
+to savepoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E5%89%8D%E9%9D%A2%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BF%9D%E5%AD%98%E7%82%B9release-savepoint"><span class="toc-number">2.2.11.</span> <span class="toc-text">删除一个前面定义的保存点：release
+savepoint</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%A0%87%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">游标相关命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%B8%B8%E6%A0%87declare"><span class="toc-number">2.3.1.</span> <span class="toc-text">定义一个游标：declare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E4%B8%80%E4%B8%AA%E6%B8%B8%E6%A0%87move"><span class="toc-number">2.3.2.</span> <span class="toc-text">定位一个游标：move</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%B8%B8%E6%A0%87%E4%BB%8E%E6%9F%A5%E8%AF%A2%E4%B8%AD%E6%8A%93%E5%8F%96%E8%A1%8Cfetch"><span class="toc-number">2.3.3.</span> <span class="toc-text">用游标从查询中抓取行：fetch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E6%B8%B8%E6%A0%87close"><span class="toc-number">2.3.4.</span> <span class="toc-text">关闭游标：close</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#alter%E4%BF%AE%E6%94%B9%E5%91%BD%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">alter修改命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E8%81%9A%E9%9B%86%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89alter-aggregate"><span class="toc-number">2.4.1.</span> <span class="toc-text">修改一个聚集函数的定义：alter
+aggregate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99%E5%AE%9A%E4%B9%89alter-collation"><span class="toc-number">2.4.2.</span> <span class="toc-text">修改一个排序规则定义：alter
+collation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2%E7%9A%84%E5%AE%9A%E4%B9%89alter-conversion"><span class="toc-number">2.4.3.</span> <span class="toc-text">修改一个编码转换的定义：alter
+conversion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93alter-database"><span class="toc-number">2.4.4.</span> <span class="toc-text">修改一个数据库：alter
+database</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E9%BB%98%E8%AE%A4%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90alter-default-privileges"><span class="toc-number">2.4.5.</span> <span class="toc-text">定义默认的访问权限：alter
+default privileges</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E5%9F%9F%E7%9A%84%E5%AE%9A%E4%B9%89alter-domain"><span class="toc-number">2.4.6.</span> <span class="toc-text">修改一个域的定义：alter
+domain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89alter-function"><span class="toc-number">2.4.7.</span> <span class="toc-text">修改一个函数的定义：alter
+function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%A7%92%E8%89%B2%E5%90%8D%E7%A7%B0%E6%88%96%E6%88%90%E5%91%98%E5%85%B3%E7%B3%BBalter-group"><span class="toc-number">2.4.8.</span> <span class="toc-text">修改角色名称或成员关系：alter
+group</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E7%B4%A2%E5%BC%95%E7%9A%84%E5%AE%9A%E4%B9%89alter-index"><span class="toc-number">2.4.9.</span> <span class="toc-text">修改一个索引的定义：alter
+index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%9A%84%E5%AE%9A%E4%B9%89alter-operator"><span class="toc-number">2.4.10.</span> <span class="toc-text">修改一个操作符的定义：alter
+operator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89alter-schema"><span class="toc-number">2.4.11.</span> <span class="toc-text">修改一个模式的定义：alter
+schema</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%92%E8%89%B2alter-role"><span class="toc-number">2.4.12.</span> <span class="toc-text">修改一个数据库角色：alter
+role</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E5%BA%8F%E5%88%97%E7%94%9F%E6%88%90%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89alter-sequence"><span class="toc-number">2.4.13.</span> <span class="toc-text">修改一个序列生成器的定义：alter
+sequence</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89alter-table"><span class="toc-number">2.4.14.</span> <span class="toc-text">修改表的定义：alter
+table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%A9%BA%E9%97%B4alter-tablespace"><span class="toc-number">2.4.15.</span> <span class="toc-text">修改一个表空间：alter
+tablespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89alter-event-trigger"><span class="toc-number">2.4.16.</span> <span class="toc-text">修改一个事件触发器的定义：alter
+event trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AE%9A%E4%B9%89alter-type"><span class="toc-number">2.4.17.</span> <span class="toc-text">修改一个类型的定义：alter
+type</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-number">2.5.</span> <span class="toc-text">create定义命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E7%BA%A6%E6%9D%9F%E8%A7%A6%E5%8F%91%E5%99%A8constraint-trigger"><span class="toc-number">2.5.1.</span> <span class="toc-text">定义一个新的约束触发器：constraint
+trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2create-conversion"><span class="toc-number">2.5.2.</span> <span class="toc-text">定义一个新的编码转换：create
+conversion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E6%95%B0%E6%8D%AE%E5%BA%93create-database"><span class="toc-number">2.5.3.</span> <span class="toc-text">创建一个新数据库：create
+database</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E5%9F%9Fcreate-domain"><span class="toc-number">2.5.4.</span> <span class="toc-text">定义一个新域：create
+domain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E5%87%BD%E6%95%B0create-function"><span class="toc-number">2.5.5.</span> <span class="toc-text">定义一个新函数：create
+function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%B4%A2%E5%BC%95create-index"><span class="toc-number">2.5.6.</span> <span class="toc-text">定义一个新索引：create
+index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E7%A7%8D%E6%96%B0%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AF%AD%E8%A8%80create-language"><span class="toc-number">2.5.7.</span> <span class="toc-text">定义一种新的过程语言：create
+language</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E6%93%8D%E4%BD%9C%E7%AC%A6create-operator"><span class="toc-number">2.5.8.</span> <span class="toc-text">定义一个新的操作符：create
+operator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E6%93%8D%E4%BD%9C%E7%AC%A6%E8%A1%A8create-operator-class"><span class="toc-number">2.5.9.</span> <span class="toc-text">定义一个新的操作符表：create
+operator class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%92%E8%89%B2create-role"><span class="toc-number">2.5.10.</span> <span class="toc-text">定义一个新的数据库角色：create
+role</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E9%87%8D%E5%86%99%E8%A7%84%E5%88%99create-rule"><span class="toc-number">2.5.11.</span> <span class="toc-text">定义一个新重写规则：create
+rule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E6%A8%A1%E5%BC%8Fcreate-schema"><span class="toc-number">2.5.12.</span> <span class="toc-text">定义一个新模式：create
+schema</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E5%A4%96%E9%83%A8%E6%9C%8D%E5%8A%A1%E5%99%A8create-server"><span class="toc-number">2.5.13.</span> <span class="toc-text">定义一个新的外部服务器：create
+server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E5%BA%8F%E5%88%97%E5%8F%91%E7%94%9F%E5%99%A8create-sequence"><span class="toc-number">2.5.14.</span> <span class="toc-text">定义一个新序列发生器：create
+sequence</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E8%A1%A8create-table"><span class="toc-number">2.5.15.</span> <span class="toc-text">定义一个新表：create
+table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E4%B8%80%E6%9D%A1%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%BB%93%E6%9E%9C%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E8%A1%A8create-table-as"><span class="toc-number">2.5.16.</span> <span class="toc-text">从一条查询的结果中创建一个新表：create
+table as</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E8%A1%A8%E7%A9%BA%E9%97%B4create-tablespace"><span class="toc-number">2.5.17.</span> <span class="toc-text">定义一个新的表空间：create
+tablespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E8%A7%A6%E5%8F%91%E5%99%A8create-trigger"><span class="toc-number">2.5.18.</span> <span class="toc-text">定义一个新的触发器：create
+trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Bcreate-type"><span class="toc-number">2.5.19.</span> <span class="toc-text">定义一个新的数据类型：create
+type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E8%A7%86%E5%9B%BEcreate-view"><span class="toc-number">2.5.20.</span> <span class="toc-text">定义一个视图：create
+view</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#drop%E5%88%A0%E9%99%A4%E5%91%BD%E4%BB%A4"><span class="toc-number">2.6.</span> <span class="toc-text">drop删除命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%A1%8Cdelete"><span class="toc-number">2.6.1.</span> <span class="toc-text">删除一个表中的行：delete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E8%81%9A%E7%B1%BB%E5%87%BD%E6%95%B0drop-aggregate"><span class="toc-number">2.6.2.</span> <span class="toc-text">删除一个用户定义的聚类函数：drop
+aggregate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2drop-cast"><span class="toc-number">2.6.3.</span> <span class="toc-text">删除一个用户定义的类型转换：drop
+cast</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2drop-conversion"><span class="toc-number">2.6.4.</span> <span class="toc-text">删除一个用户定义的编码转换：drop
+conversion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93drop-database"><span class="toc-number">2.6.5.</span> <span class="toc-text">删除一个数据库：drop
+database</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E5%9F%9Fdrop-domain"><span class="toc-number">2.6.6.</span> <span class="toc-text">删除一个用户定义的域：drop
+domain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0drop-function"><span class="toc-number">2.6.7.</span> <span class="toc-text">删除一个函数：drop
+function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%B4%A2%E5%BC%95drop-index"><span class="toc-number">2.6.8.</span> <span class="toc-text">删除一个索引：drop
+index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%BF%87%E7%A8%8B%E8%AF%AD%E8%A8%80drop-language"><span class="toc-number">2.6.9.</span> <span class="toc-text">删除一个过程语言：drop
+language</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%AC%A6drop-operator"><span class="toc-number">2.6.10.</span> <span class="toc-text">删除一个操作符：drop
+operator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%AC%A6%E8%A1%A8drop-operator-class"><span class="toc-number">2.6.11.</span> <span class="toc-text">删除一个操作符表：drop
+operator class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%92%E8%89%B2drop-role"><span class="toc-number">2.6.12.</span> <span class="toc-text">删除一个数据库角色：drop
+role</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E9%87%8D%E5%86%99%E8%A7%84%E5%88%99drop-rule"><span class="toc-number">2.6.13.</span> <span class="toc-text">删除一个重写规则：drop
+rule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%BC%8Fdrop-schema"><span class="toc-number">2.6.14.</span> <span class="toc-text">删除一个模式：drop
+schema</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%A1%A8drop-table"><span class="toc-number">2.6.15.</span> <span class="toc-text">删除一个表：drop
+table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%A1%A8%E7%A9%BA%E9%97%B4drop-tablespace"><span class="toc-number">2.6.16.</span> <span class="toc-text">删除一个表空间：drop
+tablespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AE%9A%E4%B9%89drop-trigger"><span class="toc-number">2.6.17.</span> <span class="toc-text">删除一个触发器定义：drop
+trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Bdrop-type"><span class="toc-number">2.6.18.</span> <span class="toc-text">删除一个用户定义数据类型：drop
+type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E8%A7%86%E5%9B%BEdrop-view"><span class="toc-number">2.6.19.</span> <span class="toc-text">删除一个视图：drop
+view</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1455,18 +1469,6 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
         
         
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -2575,6 +2577,16 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
                 CSS3
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2605,29 +2617,14 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Hexo">
-                <span class="iconfont-archer">&#xe606;</span>
-                Hexo
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
                 Kubernetes
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2645,9 +2642,24 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="PgSQL">
+                <span class="iconfont-archer">&#xe606;</span>
+                PgSQL
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="MinIO">
                 <span class="iconfont-archer">&#xe606;</span>
                 MinIO
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2658,16 +2670,6 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
             <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
                 人工智能
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="PgSQL">
-                <span class="iconfont-archer">&#xe606;</span>
-                PgSQL
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Vue">
-                <span class="iconfont-archer">&#xe606;</span>
-                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2685,11 +2687,6 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
                 闪退
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2698,6 +2695,11 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2735,19 +2737,9 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
                 HTML
             </span>
         
-            <span class="sidebar-tag-name" data-tags="结构性思维">
-                <span class="iconfont-archer">&#xe606;</span>
-                结构性思维
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="自动化测试">
                 <span class="iconfont-archer">&#xe606;</span>
                 自动化测试
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
             <span class="sidebar-tag-name" data-tags="XAMPP">
@@ -2758,6 +2750,16 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="结构性思维">
+                <span class="iconfont-archer">&#xe606;</span>
+                结构性思维
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
             </span>
         
     </div>
@@ -2781,6 +2783,11 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
             CSS3
         </span>
     
+        <span class="sidebar-category-name" data-categories="Docker">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Docker
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
@@ -2791,29 +2798,9 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
             Web框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="Docker">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Docker
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="操作系统">
-            <span class="iconfont-archer">&#xe60a;</span>
-            操作系统
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Hexo">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Hexo
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Kubernetes">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2821,9 +2808,19 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            Kubernetes
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="操作系统">
+            <span class="iconfont-archer">&#xe60a;</span>
+            操作系统
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2831,19 +2828,24 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
             可视化
         </span>
     
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
-            <span class="iconfont-archer">&#xe60a;</span>
-            LLM
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Vue">
             <span class="iconfont-archer">&#xe60a;</span>
             Vue
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="LLM">
+            <span class="iconfont-archer">&#xe60a;</span>
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2876,6 +2878,16 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
             Lottie
         </span>
     
+        <span class="sidebar-category-name" data-categories="python">
+            <span class="iconfont-archer">&#xe60a;</span>
+            python
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="企业微信">
+            <span class="iconfont-archer">&#xe60a;</span>
+            企业微信
+        </span>
+    
         <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
             人工智能
@@ -2889,16 +2901,6 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="python">
-            <span class="iconfont-archer">&#xe60a;</span>
-            python
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="企业微信">
-            <span class="iconfont-archer">&#xe60a;</span>
-            企业微信
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2973,5 +2975,20 @@ drop view kinds;<span aria-hidden="true" class="line-numbers-rows"><span></span>
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

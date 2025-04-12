@@ -437,30 +437,16 @@
             <div class="abstract-content">
                 前言
 MinIO是一个对象存储系统，它适合用于存储大容量非结构化的数据。
-例如：应用开发过程中，若涉及到附件存储或者大文件存储时，应当考虑文件存到MinIO中；当文件越来越多，即将逼近nfs内存临界点时，也应当将这些图片、视频、日志文件、备份数据和容器/虚拟机文件等存到MinIO中。
-配置MinIO
+对象存储对比传统文件存储方式的优点：
 
+可扩展性和灵活性高:基于分布式架构设计，可以轻松地水平扩展存储容量，无需担心容量限制问题，适合数据量快速增长的场景
+高耐用性与容错性:通过数据复制或分布式冗余存储策略，提供高数据持久性和故障恢复能力
+简易管理:对象存储通过API接口访问，简化了数据的管理和访问过程，无需关心文件系统的层级结构
+支持元数据:每个对象都可以携带丰富的元数据信息，便于进行标签化管理和搜索
 
+对象存储对比传统文件存储方式的缺点：
 
-访问环境
-地址
-端口
-
-
-
-
-k8s（s3）
-minio.minio-cluster.svc.cluster.local
-9000
-
-
-本机（s3）
-132.126.185.103
-9000
-
-
-本机（console）
-132.126....
+访问延迟较高:主要通过http协议读写，相比直接...
             </div>
             <!-- read more -->
             
@@ -1554,6 +1540,12 @@ minio.minio-cluster.svc.cluster.local
         
         
         
+        
+        
+        
+        
+        
+        
     
     
     
@@ -2017,11 +2009,6 @@ minio.minio-cluster.svc.cluster.local
                 CSS3
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库工具">
-                <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2035,6 +2022,11 @@ minio.minio-cluster.svc.cluster.local
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库工具">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="Docker">
@@ -2122,6 +2114,11 @@ minio.minio-cluster.svc.cluster.local
                 前端
             </span>
         
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2135,11 +2132,6 @@ minio.minio-cluster.svc.cluster.local
             <span class="sidebar-tag-name" data-tags="Elasticsearch">
                 <span class="iconfont-archer">&#xe606;</span>
                 Elasticsearch
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2218,14 +2210,14 @@ minio.minio-cluster.svc.cluster.local
             CSS3
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库工具">
-            <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库工具">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2233,14 +2225,14 @@ minio.minio-cluster.svc.cluster.local
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2288,14 +2280,14 @@ minio.minio-cluster.svc.cluster.local
             前端
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
-            <span class="iconfont-archer">&#xe60a;</span>
-            YAML
-        </span>
-    
         <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
             edge
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2338,11 +2330,6 @@ minio.minio-cluster.svc.cluster.local
             自动化测试
         </span>
     
-        <span class="sidebar-category-name" data-categories="XAMPP">
-            <span class="iconfont-archer">&#xe60a;</span>
-            XAMPP
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2356,6 +2343,11 @@ minio.minio-cluster.svc.cluster.local
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
         </span>
     
     </div>

@@ -435,13 +435,13 @@
                 <span class="abstract-title-text">Prompt设计技巧</span>
             </a>
             <div class="abstract-content">
-                什么是Prompt？
-提示词（Prompt）一种是给大模型（LLM）的文本指令，引导大模型解决指定的问题或完成指定的任务。也就是说，大语言模型通过提示词+用户输入的方式来理解用户需求并生成准确答案。因此 prompt 的好坏，直接决定了大模型生成结果是否符合预期。
-举个例子，这是一个简单的Prompt:
-1请介绍大语言模型，字数控制在100个字符以内
-AI就会基于这个提示词，通过特定的算法模型生成下面的内容：
-1大语言模型是基于海量文本训练的人工智能系统，能理解并生成自然语言文本，广泛应用于写作、翻译、问答等领域，为人们提供高效便捷的语言处理服务，推动人工智能发展。
-Prom...
+                前言
+通常我们在使用大语言模型（LLM）时，都是通过输入指令的形式，让LLM完成指定的任务。
+在用户指令输入后，LLM首先会将文本指令做分词处理（以BPE分词为例）：
+
+LLM训练阶段：会将数据集中的文本拆分成一个个小的子词单元（即Token），然后通过统计每个词出现频率来构建词汇表。然后合并频率最高的词汇形成新的词汇，反复迭代后就形成词汇表。
+用户输入阶段：LLM用训练阶段生成的词汇表对输入的指令进行分词，将文本转换为模型可识别的子词单元（即Token），然后把这些Token作为模型的输入
+模型输出阶段：模型将每个Token转化为一个固定长度的向量，然后通过Transfor...
             </div>
             <!-- read more -->
             
@@ -480,30 +480,16 @@ Prom...
             <div class="abstract-content">
                 前言
 MinIO是一个对象存储系统，它适合用于存储大容量非结构化的数据。
-例如：应用开发过程中，若涉及到附件存储或者大文件存储时，应当考虑文件存到MinIO中；当文件越来越多，即将逼近nfs内存临界点时，也应当将这些图片、视频、日志文件、备份数据和容器/虚拟机文件等存到MinIO中。
-配置MinIO
+对象存储对比传统文件存储方式的优点：
 
+可扩展性和灵活性高:基于分布式架构设计，可以轻松地水平扩展存储容量，无需担心容量限制问题，适合数据量快速增长的场景
+高耐用性与容错性:通过数据复制或分布式冗余存储策略，提供高数据持久性和故障恢复能力
+简易管理:对象存储通过API接口访问，简化了数据的管理和访问过程，无需关心文件系统的层级结构
+支持元数据:每个对象都可以携带丰富的元数据信息，便于进行标签化管理和搜索
 
+对象存储对比传统文件存储方式的缺点：
 
-访问环境
-地址
-端口
-
-
-
-
-k8s（s3）
-minio.minio-cluster.svc.cluster.local
-9000
-
-
-本机（s3）
-132.126.185.103
-9000
-
-
-本机（console）
-132.126....
+访问延迟较高:主要通过http协议读写，相比直接...
             </div>
             <!-- read more -->
             
@@ -1954,6 +1940,12 @@ Lottie虽然能够满足多种场景的需要，但并非支持所有的AE效果
         
         
         
+        
+        
+        
+        
+        
+        
     
     
     
@@ -2417,11 +2409,6 @@ Lottie虽然能够满足多种场景的需要，但并非支持所有的AE效果
                 CSS3
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库工具">
-                <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2435,6 +2422,11 @@ Lottie虽然能够满足多种场景的需要，但并非支持所有的AE效果
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库工具">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="Docker">
@@ -2522,6 +2514,11 @@ Lottie虽然能够满足多种场景的需要，但并非支持所有的AE效果
                 前端
             </span>
         
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2535,11 +2532,6 @@ Lottie虽然能够满足多种场景的需要，但并非支持所有的AE效果
             <span class="sidebar-tag-name" data-tags="Elasticsearch">
                 <span class="iconfont-archer">&#xe606;</span>
                 Elasticsearch
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2618,14 +2610,14 @@ Lottie虽然能够满足多种场景的需要，但并非支持所有的AE效果
             CSS3
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库工具">
-            <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库工具">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2633,14 +2625,14 @@ Lottie虽然能够满足多种场景的需要，但并非支持所有的AE效果
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2688,14 +2680,14 @@ Lottie虽然能够满足多种场景的需要，但并非支持所有的AE效果
             前端
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
-            <span class="iconfont-archer">&#xe60a;</span>
-            YAML
-        </span>
-    
         <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
             edge
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2738,11 +2730,6 @@ Lottie虽然能够满足多种场景的需要，但并非支持所有的AE效果
             自动化测试
         </span>
     
-        <span class="sidebar-category-name" data-categories="XAMPP">
-            <span class="iconfont-archer">&#xe60a;</span>
-            XAMPP
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2756,6 +2743,11 @@ Lottie虽然能够满足多种场景的需要，但并非支持所有的AE效果
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
         </span>
     
     </div>

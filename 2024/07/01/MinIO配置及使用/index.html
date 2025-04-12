@@ -343,7 +343,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">937</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">9 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -506,43 +506,37 @@
     <article class="article-entry">
         <h1 id="前言">前言</h1>
 <p>MinIO是一个对象存储系统，它适合用于存储大容量非结构化的数据。</p>
-<p>例如：应用开发过程中，若涉及到附件存储或者大文件存储时，应当考虑文件存到MinIO中；当文件越来越多，即将逼近nfs内存临界点时，也应当将这些图片、视频、日志文件、备份数据和容器/虚拟机文件等存到MinIO中。</p>
-<h1 id="配置minio">配置MinIO</h1>
-<table>
-<thead>
-<tr class="header">
-<th>访问环境</th>
-<th>地址</th>
-<th>端口</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>k8s（s3）</td>
-<td>minio.minio-cluster.svc.cluster.local</td>
-<td>9000</td>
-</tr>
-<tr class="even">
-<td>本机（s3）</td>
-<td>132.126.185.103</td>
-<td>9000</td>
-</tr>
-<tr class="odd">
-<td>本机（console）</td>
-<td>132.126.185.103</td>
-<td>9090</td>
-</tr>
-</tbody>
-</table>
-<p>本机可以通过地址+端口直接访问<a target="_blank" rel="noopener" href="http://132.126.185.103:9090/login">MinIO console管理页面</a>，账号密码请找高工获取。</p>
+<p>对象存储对比传统文件存储方式的<strong>优点</strong>：</p>
 <ul>
-<li><p>拥有了管理页面登录的账号密码后，登录管理页面，创建存储桶（create Bucket）<img src="/2024/07/01/MinIO%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/1.png"></p></li>
+<li><strong>可扩展性和灵活性高</strong>:基于分布式架构设计，可以轻松地水平扩展存储容量，无需担心容量限制问题，适合数据量快速增长的场景</li>
+<li><strong>高耐用性与容错性</strong>:通过数据复制或分布式冗余存储策略，提供高数据持久性和故障恢复能力</li>
+<li>简易管理:对象存储<strong>通过API接口</strong>访问，简化了数据的管理和访问过程，无需关心文件系统的层级结构</li>
+<li>支持元数据:每个对象都可以携带丰富的元数据信息，便于进行标签化管理和搜索</li>
+</ul>
+<p>对象存储对比传统文件存储方式的<strong>缺点</strong>：</p>
+<ul>
+<li><strong>访问延迟较高</strong>:主要通过http协议读写，相比直接挂载的文件系统，对象存储的读写操作会有更高的延迟</li>
+<li>不支持文件系统语义:如文件锁定、目录级权限控制等传统文件系统特性，在对象存储中不直接提供</li>
+<li><strong>不适合低延迟、高I/o操作</strong>:对于需要频繁修改和随机访问的应用场景，对象存储不是最佳选择，比如系统日志之类</li>
+</ul>
+<p><strong>适用场景</strong>:</p>
+<ul>
+<li>大数据存储与分析:面对PB级乃至EB级的数据存储需求，如<strong>历史日志存储</strong>、数据分析、机器学习训练数据等</li>
+<li>内容分发网络(CDN)与媒体存储:<strong>视频、图片等多媒体文件的存储与快速分发</strong></li>
+<li><strong>备份与归档</strong>:数据备份、灾难恢复和长期数据归档</li>
+<li>Web应用与移动应用:特别是那些需要在全球范围内<strong>快速访问静态资源</strong>的应用</li>
+<li>云原生应用:微服务架构、容器化应用中，<strong>作为无状态服务的数据存储层</strong></li>
+</ul>
+<h1 id="配置minio">配置MinIO</h1>
+<p>本机可以通过地址+端口直接访问MinIO console管理页面</p>
+<ul>
+<li><p>登录管理页面，创建存储桶（create Bucket）<img src="/2024/07/01/MinIO%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/1.png"></p></li>
 <li><p>进入桶内，点击<code>Access Policy</code>，将存储桶的设置为私有（Private）<img src="/2024/07/01/MinIO%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/2.png"><img src="/2024/07/01/MinIO%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/3.png"></p></li>
 <li><p>点击侧栏的Policies，点击<code>Create Policy</code>新建一个策略<img src="/2024/07/01/MinIO%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/4.png"><img src="/2024/07/01/MinIO%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/5.png">，例如这里的策略名叫<code>testPolicy</code>，具体的策略配置如下，只需要将<code>testPolicy</code>更换成对应的策略名即可：</p>
 <p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;Version&quot;: &quot;2012-10-17&quot;,</span><br><span class="line">    &quot;Statement&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;Effect&quot;: &quot;Allow&quot;,</span><br><span class="line">            &quot;Action&quot;: [</span><br><span class="line">                &quot;s3:*&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;Resource&quot;: [</span><br><span class="line">                &quot;arn:aws:s3:::test&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;Effect&quot;: &quot;Allow&quot;,</span><br><span class="line">            &quot;Action&quot;: [</span><br><span class="line">                &quot;s3:*&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;Resource&quot;: [</span><br><span class="line">                &quot;arn:aws:s3:::test/*&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
 <li><p>设置好管理策略后，设置ak（access_key）和sk（secret_key）。<img src="/2024/07/01/MinIO%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/6.png">请记下这里的buckey_name，ak和sk，后续在<code>config.yml</code>里会用到这一部分信息：<img src="/2024/07/01/MinIO%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/7.png"></p></li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">minio:</span></span><br><span class="line">  <span class="attr">buckey_name:</span> <span class="string">自定义的桶名称</span></span><br><span class="line">  <span class="attr">endpoint:</span> <span class="number">132.126</span><span class="number">.185</span><span class="number">.103</span><span class="string">:9000</span></span><br><span class="line">  <span class="attr">access_key:</span> <span class="string">创建的ak</span></span><br><span class="line">  <span class="attr">secret_key:</span> <span class="string">根据ak自动生成的sk</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">minio:</span></span><br><span class="line">  <span class="attr">buckey_name:</span> <span class="string">自定义的桶名称</span></span><br><span class="line">  <span class="attr">endpoint:</span> <span class="string">minio地址</span></span><br><span class="line">  <span class="attr">access_key:</span> <span class="string">创建的ak</span></span><br><span class="line">  <span class="attr">secret_key:</span> <span class="string">根据ak自动生成的sk</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>在后端项目终端中输入<code>pip install minio</code>下载所需依赖</p></li>
 <li><p>在后端框架的<code>services</code>目录下创建<code>fileUploader.py</code>文件，完成Minio的基础配置：</p>
@@ -551,15 +545,32 @@
 <p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> services.fileUploader <span class="keyword">import</span> minioClient</span><br></pre></td></tr></table></figure></p></li>
 </ul>
 <h1 id="minio用法">MinIO用法</h1>
-<p>下面以几个常用语法为例，讲解MinIO语法的使用，除了下文列出来的函数，更多的MinIO语法请参=招MinIO SDK文档：<a target="_blank" rel="noopener" href="https://www.bookstack.cn/read/miniocookbookzh/24.md#Python%20Client%20API文档">Minio SDKs - Python Client API文档 - 《Minio Cookbook 中文版》 - 书栈网 · BookStack</a></p>
-<h2 id="fput_object将文件上传到指定存储桶中">fput_object:将文件上传到指定存储桶中</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  minioClient.fput_object(bucket_name=config.config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>], object_name=object_name, file_path=file_path)</span><br><span class="line"><span class="comment"># 参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># object_name：上传文件的名称，string类型</span></span><br><span class="line"><span class="comment"># file_path：上传文件的路径，string类型</span></span><br><span class="line"><span class="comment"># content_type：对象的content_type（选填，默认为&quot;application/octet-stream&quot;），string类型</span></span><br><span class="line"><span class="comment"># metadata：其他元数据（选填，默认为None），dict类型</span></span><br></pre></td></tr></table></figure>
-<h2 id="fget_object从指定存储桶中下载文件">fget_object：从指定存储桶中下载文件</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">minioClient.fget_object(bucket_name=config.config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>], object_name=object_name, file_path=file_path)</span><br><span class="line"><span class="comment"># 参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># object_name：下载文件的名称，string类型</span></span><br><span class="line"><span class="comment"># file_path：下载文件保存到本地的路径，string类型</span></span><br><span class="line"><span class="comment"># request_headers: 额外的请求头信息（选填，默认为None），dict类型</span></span><br></pre></td></tr></table></figure>
+<p>下面以几个常用语法为例，讲解MinIO语法的使用，除了下文列出来的函数，更多的MinIO语法请参照MinIO SDK文档：<a target="_blank" rel="noopener" href="https://www.bookstack.cn/read/miniocookbookzh/24.md#Python%20Client%20API文档">Minio SDKs - Python Client API文档 - 《Minio Cookbook 中文版》 - 书栈网 · BookStack</a></p>
+<p><strong>注意：MinIO使用文件名作为文件的唯一标识，上传同名文件时是直接覆盖文件而不是加后缀区分，因此在上传文件时，尽量使用uuid生成唯一的文件名。</strong></p>
+<h2 id="put_object将文件以二进制的形式上传到指定存储桶中-适用于请求次数较少的情况">put_object:将文件以二进制的形式上传到指定存储桶中-适用于请求次数较少的情况</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  minioClient.put_object(bucket_name=config.config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>], object_name=object_name, data=data,length=length)</span><br><span class="line"><span class="comment"># 参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># object_name：上传文件的名称，string类型（注：如果需要将文件上传到文件夹里，这里的文件名称可以填写 “文件夹名/文件名称”）</span></span><br><span class="line"><span class="comment"># data：文件的二进制数据，string类型。python中可以取request.files[&#x27;file&#x27;].stream的值</span></span><br><span class="line"><span class="comment"># length：对象的总长度，int类型，如len(file.read())</span></span><br><span class="line"><span class="comment"># content_type：对象的content_type（选填，默认为&quot;application/octet-stream&quot;），string类型</span></span><br><span class="line"><span class="comment"># metadata：其他元数据（选填，默认为None），dict类型</span></span><br></pre></td></tr></table></figure>
+<h2 id="fput_object将本地文件上传到指定存储桶中-适用于请求次数较多多并发的情况">fput_object:将本地文件上传到指定存储桶中-适用于请求次数较多、多并发的情况</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  minioClient.fput_object(bucket_name=config.config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>], object_name=object_name, file_path=file_path)</span><br><span class="line"><span class="comment"># 参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># object_name：上传文件的名称，string类型（注：如果需要将文件上传到文件夹里，这里的文件名称可以填写 “文件夹名/文件名称”）</span></span><br><span class="line"><span class="comment"># file_path：上传文件所在的路径，string类型</span></span><br><span class="line"><span class="comment"># content_type：对象的content_type（选填，默认为&quot;application/octet-stream&quot;），string类型</span></span><br><span class="line"><span class="comment"># metadata：其他元数据（选填，默认为None），dict类型</span></span><br></pre></td></tr></table></figure>
+<h2 id="get_object从指定存储桶中下载文件-适用于请求次数较少的情况">get_object：从指定存储桶中下载文件-适用于请求次数较少的情况</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">minioClient.get_object(bucket_name=config.config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>], object_name=object_name)</span><br><span class="line"><span class="comment"># 参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># object_name：下载文件的名称，string类型。（注：如果需要从文件夹里下载文件，这里的文件名称可以填写 “文件夹名/文件名称”）</span></span><br><span class="line"><span class="comment"># request_headers: 额外的请求头信息（选填，默认为None），dict类型</span></span><br></pre></td></tr></table></figure>
+<h2 id="fget_object从指定存储桶中下载文件并保存到本地-适用于请求次数较多多并发的情况">fget_object：从指定存储桶中下载文件并保存到本地-适用于请求次数较多、多并发的情况</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">minioClient.fget_object(bucket_name=config.config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>], object_name=object_name, file_path=file_path)</span><br><span class="line"><span class="comment"># 参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># object_name：下载文件的名称，string类型（注：如果需要从文件夹里下载文件，这里的文件名称可以填写 “文件夹名/文件名称”）</span></span><br><span class="line"><span class="comment"># file_path：下载文件保存到本地的路径，string类型</span></span><br><span class="line"><span class="comment"># request_headers: 额外的请求头信息（选填，默认为None），dict类型</span></span><br></pre></td></tr></table></figure>
 <h2 id="list_objects列出指定存储桶中所有文件">list_objects：列出指定存储桶中所有文件</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">minioClient.list_objects(bucket_name=config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>])</span><br><span class="line"><span class="comment"># 参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># prefix: 用来过滤的文件名前缀，默认为None，string类型</span></span><br><span class="line"><span class="comment"># recursive：是否递归查找，（选填，默认值为False），bool类型（True代表递归查找，False代表类似文件夹查找，以&#x27;/&#x27;分隔，不查子文件夹。）</span></span><br></pre></td></tr></table></figure>
 <h2 id="remove_object删除指定文件">remove_object：删除指定文件</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">minioClient.remove_object(config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>],item.object_name)</span><br><span class="line"><span class="comment"># 参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># object_name：需要删除文件的名称，string类型</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">minioClient.remove_object(bucket_name=config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>],object_name=object_name)</span><br><span class="line"><span class="comment"># 参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># object_name：需要删除文件的名称，string类型（注：如果需要从文件夹里删除文件，这里的文件名称可以填写 “文件夹名/文件名称”）</span></span><br></pre></td></tr></table></figure>
+<h2 id="remove_objects删除存储桶中的多个文件">remove_objects：删除存储桶中的多个文件</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">minioClient.remove_objects(bucket_name=config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>],objects_iter)</span><br><span class="line"><span class="comment"># 参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># objects_iter：多个对象名称的列表数据，list, tuple or iterator类型</span></span><br></pre></td></tr></table></figure>
+<h2 id="list_objects-remove_objects-组合删除指定目录">list_objects &amp; remove_objects 组合：删除指定目录</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入DeleteObject类，用来表示在执行批量删除对象操作时单个对象删除的请求，包含了对象的key和版本id信息</span></span><br><span class="line"><span class="keyword">from</span> minio.deleteobjects <span class="keyword">import</span> DeleteObject</span><br><span class="line">delete_object_list = [DeleteObject(x.object_name) <span class="keyword">for</span> x <span class="keyword">in</span> minioClient.list_objects(bucket_name=config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>], prefix=prefix, recursive=<span class="literal">True</span>)]</span><br><span class="line">minioClientt.remove_objects(bucket_name=config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>], delete_object_list)</span><br><span class="line"><span class="comment"># 参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># prefix: 用来过滤的文件名前缀，默认为None，string类型</span></span><br><span class="line"><span class="comment"># recursive：是否递归查找，（选填，默认值为False），bool类型（True代表递归查找，False代表类似文件夹查找，以&#x27;/&#x27;分隔，不查子文件夹。）</span></span><br></pre></td></tr></table></figure>
+<h2 id="copy_object-remove_object-组合移动文件">copy_object &amp; remove_object 组合：移动文件</h2>
+<p>copy_object的作用是从存储桶A中复制指定文件到存储桶B里，通过先将文件复制到存储桶B，再把存储桶A中的文件删除，以达到在不同存储桶内迁移文件的目的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">minioClient.copy_object(bucket_name=config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_nameB&#x27;</span>],object_name=object_name,object_source=object_source,copy_conditions=copy_conditions)</span><br><span class="line">minioClient.remove_object(bucket_name=config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_nameA&#x27;</span>],object_name=object_name)</span><br><span class="line"><span class="comment"># copy_object中的参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称B-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># object_name：文件粘贴到存储桶B后的名字，string类型（注：如果需要将文件粘贴到文件夹里，这里的文件名称可以填写 “文件夹名/文件名称”）</span></span><br><span class="line"><span class="comment"># object_source：需要复制的文件所在存储桶名称A+需要复制的文件名，string类型</span></span><br><span class="line"><span class="comment"># copy_conditions：复制文件操作时所应当满足的条件（选填，默认为None）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># remove_object中的参数详情如下：</span></span><br><span class="line"><span class="comment"># bucket_name：存储桶名称A-（一般固定不变），string类型</span></span><br><span class="line"><span class="comment"># object_name：需要删除的文件名，string类型（注：如果需要从文件夹里删除文件，这里的文件名称可以填写 “文件夹名/文件名称”）</span></span><br></pre></td></tr></table></figure>
+<h1 id="文件上传示例">文件上传示例</h1>
+<p><strong>put_object：文件以二进制的形式上传</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO</span><br><span class="line"></span><br><span class="line">file = request.files.get(<span class="string">&#x27;file&#x27;</span>)</span><br><span class="line">file_id=uuid.uuid1().<span class="built_in">hex</span></span><br><span class="line">suffix=os.path.splitext(file.filename)[<span class="number">1</span>].lower()</span><br><span class="line">file_content=file.read()</span><br><span class="line">file_size = <span class="built_in">len</span>(file_content)</span><br><span class="line">file_stream=BytesIO(file_content)</span><br><span class="line"><span class="keyword">with</span> file_stream <span class="keyword">as</span> stream:</span><br><span class="line">  minioClient.put_object(bucket_name=config.config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>], object_name=file_id+suffix, data=stream,length=file_size)</span><br></pre></td></tr></table></figure>
+<p><strong>fput_object：上传本地文件</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件保存在/files的路径下</span></span><br><span class="line">path = os.path.join(os.path.dirname(os.getcwd()),<span class="string">&#x27;files&#x27;</span>)</span><br><span class="line">file = request.files.get(<span class="string">&#x27;file&#x27;</span>)</span><br><span class="line">origin_name = file.filename</span><br><span class="line">file_abolutepath = os.path.join(path, filename)</span><br><span class="line">minipath = <span class="string">&#x27;images/public/&#x27;</span>+filename</span><br><span class="line">minioClient.fput_object(bucket_name=config.config[<span class="string">&#x27;minio&#x27;</span>][<span class="string">&#x27;buckey_name&#x27;</span>], object_name=minipath, file_path=file_abolutepath)</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -758,7 +769,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEminio"><span class="toc-number">2.</span> <span class="toc-text">配置MinIO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#minio%E7%94%A8%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">MinIO用法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#fput_object%E5%B0%86%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AD%98%E5%82%A8%E6%A1%B6%E4%B8%AD"><span class="toc-number">3.1.</span> <span class="toc-text">fput_object:将文件上传到指定存储桶中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fget_object%E4%BB%8E%E6%8C%87%E5%AE%9A%E5%AD%98%E5%82%A8%E6%A1%B6%E4%B8%AD%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">fget_object：从指定存储桶中下载文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#list_objects%E5%88%97%E5%87%BA%E6%8C%87%E5%AE%9A%E5%AD%98%E5%82%A8%E6%A1%B6%E4%B8%AD%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6"><span class="toc-number">3.3.</span> <span class="toc-text">list_objects：列出指定存储桶中所有文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#remove_object%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6"><span class="toc-number">3.4.</span> <span class="toc-text">remove_object：删除指定文件</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEminio"><span class="toc-number">2.</span> <span class="toc-text">配置MinIO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#minio%E7%94%A8%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">MinIO用法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#put_object%E5%B0%86%E6%96%87%E4%BB%B6%E4%BB%A5%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E5%BD%A2%E5%BC%8F%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AD%98%E5%82%A8%E6%A1%B6%E4%B8%AD-%E9%80%82%E7%94%A8%E4%BA%8E%E8%AF%B7%E6%B1%82%E6%AC%A1%E6%95%B0%E8%BE%83%E5%B0%91%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">3.1.</span> <span class="toc-text">put_object:将文件以二进制的形式上传到指定存储桶中-适用于请求次数较少的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fput_object%E5%B0%86%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AD%98%E5%82%A8%E6%A1%B6%E4%B8%AD-%E9%80%82%E7%94%A8%E4%BA%8E%E8%AF%B7%E6%B1%82%E6%AC%A1%E6%95%B0%E8%BE%83%E5%A4%9A%E5%A4%9A%E5%B9%B6%E5%8F%91%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">3.2.</span> <span class="toc-text">fput_object:将本地文件上传到指定存储桶中-适用于请求次数较多、多并发的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#get_object%E4%BB%8E%E6%8C%87%E5%AE%9A%E5%AD%98%E5%82%A8%E6%A1%B6%E4%B8%AD%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6-%E9%80%82%E7%94%A8%E4%BA%8E%E8%AF%B7%E6%B1%82%E6%AC%A1%E6%95%B0%E8%BE%83%E5%B0%91%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">3.3.</span> <span class="toc-text">get_object：从指定存储桶中下载文件-适用于请求次数较少的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fget_object%E4%BB%8E%E6%8C%87%E5%AE%9A%E5%AD%98%E5%82%A8%E6%A1%B6%E4%B8%AD%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%B9%B6%E4%BF%9D%E5%AD%98%E5%88%B0%E6%9C%AC%E5%9C%B0-%E9%80%82%E7%94%A8%E4%BA%8E%E8%AF%B7%E6%B1%82%E6%AC%A1%E6%95%B0%E8%BE%83%E5%A4%9A%E5%A4%9A%E5%B9%B6%E5%8F%91%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">3.4.</span> <span class="toc-text">fget_object：从指定存储桶中下载文件并保存到本地-适用于请求次数较多、多并发的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#list_objects%E5%88%97%E5%87%BA%E6%8C%87%E5%AE%9A%E5%AD%98%E5%82%A8%E6%A1%B6%E4%B8%AD%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6"><span class="toc-number">3.5.</span> <span class="toc-text">list_objects：列出指定存储桶中所有文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#remove_object%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6"><span class="toc-number">3.6.</span> <span class="toc-text">remove_object：删除指定文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#remove_objects%E5%88%A0%E9%99%A4%E5%AD%98%E5%82%A8%E6%A1%B6%E4%B8%AD%E7%9A%84%E5%A4%9A%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="toc-number">3.7.</span> <span class="toc-text">remove_objects：删除存储桶中的多个文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#list_objects-remove_objects-%E7%BB%84%E5%90%88%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95"><span class="toc-number">3.8.</span> <span class="toc-text">list_objects &amp; remove_objects 组合：删除指定目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#copy_object-remove_object-%E7%BB%84%E5%90%88%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="toc-number">3.9.</span> <span class="toc-text">copy_object &amp; remove_object 组合：移动文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text">文件上传示例</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1103,6 +1114,12 @@
         
         
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2196,11 +2213,6 @@
                 CSS3
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库工具">
-                <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2214,6 +2226,11 @@
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库工具">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="Docker">
@@ -2301,6 +2318,11 @@
                 前端
             </span>
         
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2314,11 +2336,6 @@
             <span class="sidebar-tag-name" data-tags="Elasticsearch">
                 <span class="iconfont-archer">&#xe606;</span>
                 Elasticsearch
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="JavaScript">
@@ -2397,14 +2414,14 @@
             CSS3
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库工具">
-            <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库工具">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2412,14 +2429,14 @@
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
             大屏设计
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2467,14 +2484,14 @@
             前端
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
-            <span class="iconfont-archer">&#xe60a;</span>
-            YAML
-        </span>
-    
         <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
             edge
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2517,11 +2534,6 @@
             自动化测试
         </span>
     
-        <span class="sidebar-category-name" data-categories="XAMPP">
-            <span class="iconfont-archer">&#xe60a;</span>
-            XAMPP
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2535,6 +2547,11 @@
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="XAMPP">
+            <span class="iconfont-archer">&#xe60a;</span>
+            XAMPP
         </span>
     
     </div>

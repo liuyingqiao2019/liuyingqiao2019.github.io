@@ -26,18 +26,18 @@
 <meta property="og:site_name" content="唐抉的个人博客">
 <meta property="og:description" content="使用Oracle Sql语句查库">
 <meta property="og:locale">
-<meta property="og:image" content="http://tangmenjue.top/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/1.png">
-<meta property="og:image" content="http://tangmenjue.top/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/2.png">
-<meta property="og:image" content="http://tangmenjue.top/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/3.png">
-<meta property="og:image" content="http://tangmenjue.top/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/4.png">
-<meta property="og:image" content="http://tangmenjue.top/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/5.png">
-<meta property="og:image" content="http://tangmenjue.top/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/6.png">
+<meta property="og:image" content="http://tangmenjue.top/.top//1.png">
+<meta property="og:image" content="http://tangmenjue.top/.top//2.png">
+<meta property="og:image" content="http://tangmenjue.top/.top//3.png">
+<meta property="og:image" content="http://tangmenjue.top/.top//4.png">
+<meta property="og:image" content="http://tangmenjue.top/.top//5.png">
+<meta property="og:image" content="http://tangmenjue.top/.top//6.png">
 <meta property="article:published_time" content="2023-02-21T04:00:45.000Z">
 <meta property="article:modified_time" content="2023-02-21T04:00:45.000Z">
 <meta property="article:author" content="唐抉">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://tangmenjue.top/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/1.png">
+<meta name="twitter:image" content="http://tangmenjue.top/.top//1.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
@@ -342,7 +342,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">929</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">928</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -503,17 +503,14 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="数据库连接工具dbeaver">数据库连接工具：DBeaver</h1>
-<p>本文中使用的数据库连接工具是DBeaver，其是一款免费且跨平台的数据库连接工具。其优势是会在首次链接数据库时，下载所需驱动，解决了数据库版本不兼容的问题。</p>
+        <h1 id="数据库连接工具：DBeaver"><a href="#数据库连接工具：DBeaver" class="headerlink" title="数据库连接工具：DBeaver"></a>数据库连接工具：DBeaver</h1><p>本文中使用的数据库连接工具是DBeaver，其是一款免费且跨平台的数据库连接工具。其优势是会在首次链接数据库时，下载所需驱动，解决了数据库版本不兼容的问题。</p>
 <p>该工具的下载地址为：<a target="_blank" rel="noopener" href="https://dbeaver.io/download/">Download | DBeaver Community</a>，直接根据安装指示点击下一步即可完成安装。</p>
-<p>安装好后打开软件，点击左上角的图标新建连接：<img src="/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/1.png"></p>
-<p>在弹出的窗口里选择Oracle，填好相应的信息后，点击完成。然后会弹出下载驱动文件的页面，点击下载驱动：<img src="/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/2.png"></p>
+<p>安装好后打开软件，点击左上角的图标新建连接：<img src="/.top//1.png" alt></p>
+<p>在弹出的窗口里选择Oracle，填好相应的信息后，点击完成。然后会弹出下载驱动文件的页面，点击下载驱动：<img src="/.top//2.png" alt></p>
 <p>在左方便可看到已连接的数据库，右键数据库名字-SQL编辑器-SQL编辑器便可打开一个可以编写sql语句的脚本编辑器，其他模块的使用方法与pgAdmin 、Navicat等工具的相同。</p>
-<h1 id="模糊查询">模糊查询</h1>
-<p>查询test_table表中名字含有“张三”的数据：</p>
+<h1 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h1><p>查询test_table表中名字含有“张三”的数据：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> test_table</span><br><span class="line"><span class="keyword">WHERE</span> name <span class="keyword">like</span> <span class="string">&#x27;%张三%&#x27;</span></span><br><span class="line"><span class="comment">-- %张三，表示匹配结尾为张三的数据</span></span><br><span class="line"><span class="comment">-- 张三%，表示匹配开头为张三的数据</span></span><br><span class="line"><span class="comment">-- %张三%，表示匹配任意位置含有张三的数据</span></span><br></pre></td></tr></table></figure>
-<h1 id="查询语句中含有变量">查询语句中含有变量</h1>
-<p>查询test_table表中年龄等于参数year值的数据，其中year参数的值在运行sql语句时输入：</p>
+<h1 id="查询语句中含有变量"><a href="#查询语句中含有变量" class="headerlink" title="查询语句中含有变量"></a>查询语句中含有变量</h1><p>查询test_table表中年龄等于参数year值的数据，其中year参数的值在运行sql语句时输入：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> test_table a</span><br><span class="line"><span class="keyword">WHERE</span> a.old<span class="operator">=</span>:<span class="keyword">year</span></span><br><span class="line"><span class="comment">-- test_table a，即设置表格test_table的别名为a，后续可用a来代替表格test_table</span></span><br><span class="line"><span class="comment">-- :year，表示变量year</span></span><br></pre></td></tr></table></figure>
 <p>查询test_table表中名字含有参数search值的数据，其中search参数的值在运行sql语句时输入：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> test_table</span><br><span class="line"><span class="keyword">WHERE</span> name <span class="keyword">like</span> <span class="string">&#x27;%&#x27;</span><span class="operator">||</span>:<span class="keyword">search</span><span class="operator">||</span><span class="string">&#x27;%&#x27;</span></span><br><span class="line"><span class="comment">-- :search，表示变量search</span></span><br><span class="line"><span class="comment">-- ||:search||中，||为连接符，类似于Python中print里的+号，即&#x27;%&#x27;||:search||&#x27;%&#x27;等价于Python中的print里的(&#x27;%&#x27;+search+&#x27;%&#x27;)</span></span><br></pre></td></tr></table></figure>
@@ -521,18 +518,17 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> name <span class="keyword">from</span> test_table a</span><br><span class="line"><span class="keyword">WHERE</span> a.snum<span class="operator">=</span>to_char(:num)</span><br><span class="line"><span class="comment">-- to_char函数用来将数组转为字符串</span></span><br><span class="line"><span class="comment">-- distinct参数用来去除重复数据</span></span><br></pre></td></tr></table></figure>
 <p>查询test_table表中名字为参数search值的数据，所查询的结果中含有参数值的数据排在前面：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span>  <span class="operator">*</span> <span class="keyword">from</span> test_table</span><br><span class="line"><span class="keyword">WHERE</span> name <span class="keyword">like</span> <span class="string">&#x27;%&#x27;</span><span class="operator">||</span>:<span class="keyword">search</span><span class="operator">||</span><span class="string">&#x27;%&#x27;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> (<span class="keyword">case</span> <span class="keyword">when</span> name <span class="keyword">like</span> <span class="string">&#x27;%&#x27;</span><span class="operator">||</span>:<span class="keyword">search</span><span class="operator">||</span><span class="string">&#x27;%&#x27;</span> <span class="keyword">then</span> <span class="number">0</span> <span class="keyword">end</span>)</span><br><span class="line"><span class="comment">-- case 条件 then 0 end，表示满足条件的数据排在第0位，即满足条件的数据优先显示</span></span><br></pre></td></tr></table></figure>
-<h1 id="左连接查询">左连接查询</h1>
-<p>进行左连接(Left join)时，查询将左边表格T1中的每一行都与右边表格T2中的行进行比较，返回的结果会有以下三种情况：</p>
+<h1 id="左连接查询"><a href="#左连接查询" class="headerlink" title="左连接查询"></a>左连接查询</h1><p>进行左连接(Left join)时，查询将左边表格T1中的每一行都与右边表格T2中的行进行比较，返回的结果会有以下三种情况：</p>
 <ul>
 <li>若T1中的某条记录在T2中刚好只有一条记录可以匹配，则返回的结果中会生成一个新的行</li>
 <li>若T1中的某条记录在T2中有N条记录可以匹配，则返回的结果中也会生成N个新的行，这些行所包含的T1的字段值是重复的</li>
 <li>若T1中的某条记录在T2中没有可以匹配的记录，则返回的结果中会生成一个新的行，该行所包含的T2的字段值是NULL</li>
 </ul>
-<p>例如，左表为T1，其有如下数据：<img src="/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/3.png">右表为T2，其有如下数据：<img src="/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/4.png"></p>
+<p>例如，左表为T1，其有如下数据：<img src="/.top//3.png" alt>右表为T2，其有如下数据：<img src="/.top//4.png" alt></p>
 <p>将两者进行左连接查询，即需要返回左表中所有行的数据以及右表中包含number行的数据：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> T1 </span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> T2 </span><br><span class="line"><span class="keyword">on</span> T1.num<span class="operator">=</span>T2.number</span><br><span class="line"><span class="comment">-- T1的num列引用T2表中的number列。其中num列的部分值是无效的</span></span><br><span class="line"><span class="comment">-- 若要过滤掉所有name为NULL的记录，可以增加以下where子句</span></span><br><span class="line"><span class="keyword">where</span> number <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span></span><br></pre></td></tr></table></figure>
-<p>查询结果如下：<img src="/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/5.png"></p>
-<p>去除NULL记录后的查询结果如下：<img src="/2023/02/21/Oracle%20Sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E5%BA%93/6.png"></p>
+<p>查询结果如下：<img src="/.top//5.png" alt></p>
+<p>去除NULL记录后的查询结果如下：<img src="/.top//6.png" alt></p>
 
     </article>
     <!-- license -->
@@ -731,7 +727,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E5%B7%A5%E5%85%B7dbeaver"><span class="toc-number">1.</span> <span class="toc-text">数据库连接工具：DBeaver</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.</span> <span class="toc-text">模糊查询</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E4%B8%AD%E5%90%AB%E6%9C%89%E5%8F%98%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">查询语句中含有变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A6%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.</span> <span class="toc-text">左连接查询</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E5%B7%A5%E5%85%B7%EF%BC%9ADBeaver"><span class="toc-number">1.</span> <span class="toc-text">数据库连接工具：DBeaver</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.</span> <span class="toc-text">模糊查询</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E4%B8%AD%E5%90%AB%E6%9C%89%E5%8F%98%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">查询语句中含有变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A6%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.</span> <span class="toc-text">左连接查询</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1075,7 +1071,14 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -1718,7 +1721,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -1732,6 +1735,12 @@
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span>
+            <a class="archive-post-title" href="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">Hexo博客迁移</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/06</span>
@@ -2195,16 +2204,6 @@
                 数据库工具
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -2218,6 +2217,21 @@
             <span class="sidebar-tag-name" data-tags="Web框架">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="Kubernetes">
@@ -2240,19 +2254,24 @@
                 Lottie
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
-                <span class="iconfont-archer">&#xe606;</span>
-                MinIO
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2265,9 +2284,9 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2280,11 +2299,6 @@
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2295,11 +2309,6 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
@@ -2308,6 +2317,11 @@
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2345,6 +2359,11 @@
                 自动化测试
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2353,11 +2372,6 @@
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2386,6 +2400,11 @@
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2396,14 +2415,14 @@
             大屏设计
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
             操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
         </span>
     
         <span class="sidebar-category-name" data-categories="Kubernetes">
@@ -2411,19 +2430,14 @@
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2431,9 +2445,9 @@
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            LLM
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2441,9 +2455,9 @@
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2451,19 +2465,24 @@
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
-        </span>
-    
         <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
             JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2491,11 +2510,6 @@
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="自动化测试">
-            <span class="iconfont-archer">&#xe60a;</span>
-            自动化测试
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2509,6 +2523,11 @@
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
         </span>
     
         <span class="sidebar-category-name" data-categories="XAMPP">

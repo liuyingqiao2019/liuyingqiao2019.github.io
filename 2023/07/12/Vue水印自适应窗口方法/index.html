@@ -497,14 +497,17 @@
                 <main class="main post-page">
     <article class="article-entry">
         <p>通过使用Vue的生命周期钩子函数和window对象的resize事件来实现水印根据窗口大小适配的功能：</p>
-<ol type="1">
+<ol>
 <li><p>在Vue文件的<code>script</code>模块中 引入水印组件：</p>
-<p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import watermark from &#x27;@zsit/watermark&#x27;;  </span><br></pre></td></tr></table></figure></p></li>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import watermark from &#x27;@zsit/watermark&#x27;;  </span><br></pre></td></tr></table></figure>
+</li>
 <li><p>在<code>script</code>模块的<code>export default</code>里，通过钩子函数<code>mounted</code>监听窗口大小的变化，并在销毁组件前移除事件监听器：</p>
-<p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mounted()<span class="punctuation">&#123;</span></span><br><span class="line">  window.addEventListener(&#x27;resize&#x27;<span class="punctuation">,</span>this.handleResize)</span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">beforeDestroy()<span class="punctuation">&#123;</span></span><br><span class="line">  window.removeEventListener(&#x27;resize&#x27;<span class="punctuation">,</span>this.handleResize)</span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure></p></li>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mounted()<span class="punctuation">&#123;</span></span><br><span class="line">  window.addEventListener(&#x27;resize&#x27;<span class="punctuation">,</span>this.handleResize)</span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">beforeDestroy()<span class="punctuation">&#123;</span></span><br><span class="line">  window.removeEventListener(&#x27;resize&#x27;<span class="punctuation">,</span>this.handleResize)</span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>在<code>script</code>模块的里，定义<code>handleResize</code>方法来调用水印：</p>
-<p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">methods<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    handleResize()<span class="punctuation">&#123;</span></span><br><span class="line">          watermark(<span class="punctuation">&#123;</span></span><br><span class="line">                    watermark_txt<span class="punctuation">:</span> this.watermark_txt<span class="punctuation">,</span><span class="comment">//水印内容</span></span><br><span class="line">                    watermark_y<span class="punctuation">:</span><span class="number">80</span><span class="punctuation">,</span><span class="comment">//水印y轴初始位置</span></span><br><span class="line">                    watermark_y_space<span class="punctuation">:</span> <span class="number">60</span><span class="punctuation">,</span></span><br><span class="line">                    watermark_fontsize<span class="punctuation">:</span> <span class="string">&quot;12px&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    watermark_width<span class="punctuation">:</span> <span class="number">60</span><span class="punctuation">,</span></span><br><span class="line">                    watermark_height<span class="punctuation">:</span> <span class="number">60</span><span class="punctuation">,</span></span><br><span class="line">                  <span class="punctuation">&#125;</span>);</span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>至此，所生成的水印可根据窗口的变化而覆盖整个窗口。</p></li>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">methods<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    handleResize()<span class="punctuation">&#123;</span></span><br><span class="line">          watermark(<span class="punctuation">&#123;</span></span><br><span class="line">                    watermark_txt<span class="punctuation">:</span> this.watermark_txt<span class="punctuation">,</span><span class="comment">//水印内容</span></span><br><span class="line">                    watermark_y<span class="punctuation">:</span><span class="number">80</span><span class="punctuation">,</span><span class="comment">//水印y轴初始位置</span></span><br><span class="line">                    watermark_y_space<span class="punctuation">:</span> <span class="number">60</span><span class="punctuation">,</span></span><br><span class="line">                    watermark_fontsize<span class="punctuation">:</span> <span class="string">&quot;12px&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    watermark_width<span class="punctuation">:</span> <span class="number">60</span><span class="punctuation">,</span></span><br><span class="line">                    watermark_height<span class="punctuation">:</span> <span class="number">60</span><span class="punctuation">,</span></span><br><span class="line">                  <span class="punctuation">&#125;</span>);</span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p> 至此，所生成的水印可根据窗口的变化而覆盖整个窗口。</p>
+</li>
 </ol>
 
     </article>
@@ -1048,7 +1051,14 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -1691,7 +1701,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -1705,6 +1715,12 @@
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span>
+            <a class="archive-post-title" href="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">Hexo博客迁移</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/06</span>
@@ -2168,16 +2184,6 @@
                 数据库工具
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -2191,6 +2197,21 @@
             <span class="sidebar-tag-name" data-tags="Web框架">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="Kubernetes">
@@ -2213,19 +2234,24 @@
                 Lottie
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
-                <span class="iconfont-archer">&#xe606;</span>
-                MinIO
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2238,9 +2264,9 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2253,11 +2279,6 @@
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2268,11 +2289,6 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
@@ -2281,6 +2297,11 @@
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2318,6 +2339,11 @@
                 自动化测试
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2326,11 +2352,6 @@
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2359,6 +2380,11 @@
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2369,14 +2395,14 @@
             大屏设计
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
             操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
         </span>
     
         <span class="sidebar-category-name" data-categories="Kubernetes">
@@ -2384,19 +2410,14 @@
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2404,9 +2425,9 @@
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            LLM
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2414,9 +2435,9 @@
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2424,19 +2445,24 @@
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
-        </span>
-    
         <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
             JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2464,11 +2490,6 @@
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="自动化测试">
-            <span class="iconfont-archer">&#xe60a;</span>
-            自动化测试
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2482,6 +2503,11 @@
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
         </span>
     
         <span class="sidebar-category-name" data-categories="XAMPP">

@@ -207,7 +207,119 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="唐抉的个人博客" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.0.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="唐抉的个人博客" type="application/atom+xml">
 </head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -443,15 +555,60 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2022/11/09/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E5%9B%9B%EF%BC%89/">
+                
+                <span class="abstract-title-text">前端框架之Vue.js（四）</span>
+            </a>
+            <div class="abstract-content">
+                深入了解组件组件注册组件名注册一个组件时，要给组件起名，如在全局注册中，组件名就是Vue.component的第一个参数：
+1Vue component(&#x27;my-component-name&#x27;,&#123;&#125;)
+组件名应当遵守W3C规范中的自定义组件名（字母全小写且必须包含一个连字符）
+组件名大小写定义组件名的方式由两种：
+
+使用短横线分隔命名:my-component-name
+使用首字母大写命名：MyComponentName
+
+两种命名法都可以使用，但需注意的是，直接在DOM（即非字符串的模板）中使用时，只有短横线分隔命名是有效的。
+全局注册使用全局注...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2022/11/09">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/11/09</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue.js">Vue.js</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2022/11/05/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9Atodolist%E5%BE%85%E5%8A%9E%E9%A1%B9%E7%9B%AE/">
                 
                 <span class="abstract-title-text">Vue.js实战：todolist待办项目</span>
             </a>
             <div class="abstract-content">
                 初始化一个新项目
-
 要初始化一个新项目，创建一个文件夹test作为项目目录，打开一个终端将切换路径到test，运行代码：
-12345678910PS C:\Users\Administrator\Desktop\test&gt; vue create test运行结果如下： Your connection to the default yarn registry seems to be slow.   Use https://registry.npmmirror.com for faster installation? (Y/n)输入Y回车   Vue CLI v5.0.8? Pl...
+  12345678910PS C:\Users\Administrator\Desktop\test&gt; vue create test运行结果如下： Your connection to the default yarn registry seems to be slow.   Use https://registry.npmmirror.com for faster installation? (Y/n)输入Y回车   Vue CLI v5.0.8? Plea...
             </div>
             <!-- read more -->
             
@@ -488,11 +645,8 @@
                 <span class="abstract-title-text">前端框架之Vue.js（三）</span>
             </a>
             <div class="abstract-content">
-                Vue.js基础
-列表渲染
-用v-for把一个数组对应为一组元素
-基于一个数组来渲染列表可以使用v-for指令。v-for指令需要通过item in items形式的特殊语法，其中items是源数据数组，而item是被迭代的数组元素的别名。
-123456789101112131415161718&lt;body&gt;&lt;ul id=&quot;example-1&quot;&gt;    &lt;li v-for=&quot;item in items&quot; :key=&quot;item.message&quot;&gt;        &#123;&#123;it...
+                Vue.js基础列表渲染用v-for把一个数组对应为一组元素基于一个数组来渲染列表可以使用v-for指令。v-for指令需要通过item in items形式的特殊语法，其中items是源数据数组，而item是被迭代的数组元素的别名。
+123456789101112131415161718&lt;body&gt;&lt;ul id=&quot;example-1&quot;&gt;    &lt;li v-for=&quot;item in items&quot; :key=&quot;item.message&quot;&gt;        &#123;&#123;item.mess...
             </div>
             <!-- read more -->
             
@@ -529,14 +683,10 @@
                 <span class="abstract-title-text">前端框架之Vue.js（二）</span>
             </a>
             <div class="abstract-content">
-                Vue.js基础
-模板语法
-Vue.js使用了基于HTML的模板语法，允许开发者声明式地将DOM绑定至底层Vue实例的数据。所有的Vue.js模板都是合法的HTML。
-插值
-文本
-数据绑定最常见的形式就是使用"Mustache"语法（双大括号）的文本插值：
+                Vue.js基础模板语法Vue.js使用了基于HTML的模板语法，允许开发者声明式地将DOM绑定至底层Vue实例的数据。所有的Vue.js模板都是合法的HTML。
+插值文本数据绑定最常见的形式就是使用”Mustache”语法（双大括号）的文本插值：
 123&lt;div id=&quot;app&quot;&gt;        &lt;span&gt;message:&#123;&#123;message&#125;&#125;&lt;/span&gt;&lt;/div&gt;
-123456var app=new Vue(&#123;    el:&#x27;#a...
+123456var app=new Vue(&#123;    el:&#x27;#app&#x27;,  ...
             </div>
             <!-- read more -->
             
@@ -573,15 +723,12 @@ Vue.js使用了基于HTML的模板语法，允许开发者声明式地将DOM绑�
                 <span class="abstract-title-text">前端框架之Vue.js（一）</span>
             </a>
             <div class="abstract-content">
-                Vue.js基础
-Vue是一套用于构建用户界面的渐进式框架。与其他大型框架不同的是，Vue被设计为可以自底向上逐层应用。Vue的核心库只关注视图层，易于上手且便于与第三方库或既有项目结合。
+                Vue.js基础Vue是一套用于构建用户界面的渐进式框架。与其他大型框架不同的是，Vue被设计为可以自底向上逐层应用。Vue的核心库只关注视图层，易于上手且便于与第三方库或既有项目结合。
 Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览器。
-安装
-直接用&lt;script&gt;引入
-若要在现有站点中使用Vue，可以通过&lt;script&gt;元素在页面中使用。
+安装直接用&lt;script&gt;引入若要在现有站点中使用Vue，可以通过&lt;script&gt;元素在页面中使用。
 
 开发环境版本，包含了有帮助的命令行警告：
-1&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.j...
+  1&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&quot;&g...
             </div>
             <!-- read more -->
             
@@ -618,9 +765,8 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
                 <span class="abstract-title-text">前端三件套之JavaScript（三）</span>
             </a>
             <div class="abstract-content">
-                标准对象
-在JavaScript的世界里，一切皆是对象。但某些对象与其他对象不太一样。为了区分对象的类型，通常用typeof操作符获取对象的类型：
-123456789101112131415161718192021console.log(typeof 123);console.log(typeof NaN);console.log(typeof &#x27;str&#x27;);console.log(typeof true);console.log(typeof undefined);console.log(typeof Math.abs);console.log(typeof n...
+                标准对象在JavaScript的世界里，一切皆是对象。但某些对象与其他对象不太一样。为了区分对象的类型，通常用typeof操作符获取对象的类型：
+123456789101112131415161718192021console.log(typeof 123);console.log(typeof NaN);console.log(typeof &#x27;str&#x27;);console.log(typeof true);console.log(typeof undefined);console.log(typeof Math.abs);console.log(typeof null...
             </div>
             <!-- read more -->
             
@@ -657,14 +803,11 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
                 <span class="abstract-title-text">前端三件套之JavaScript（二）</span>
             </a>
             <div class="abstract-content">
-                函数
-函数定义和调用
-定义函数
-在JavaScript中，定义函数的方式如下：
-1234567function abs(x)&#123;    if(x&gt;=0)&#123;        return x;    &#125;else&#123;     return -x;       &#125;&#125;
+                函数函数定义和调用定义函数在JavaScript中，定义函数的方式如下：
+1234567function abs(x){    if(x&gt;=0){        return x;    }else{     return -x;       }}
 函数内的语句执行到return语句时，函数便执行完毕了。若没有return语句，函数执行完毕后会返回undefined。
 由于函数也是一个对象，因此上述定义的abs()函数实际上是一个函数对象，因此，第二种定义函数的方式如下：
-1234567var abs=...
+1234567var abs=function(x){    if(x&gt;=0){        retu...
             </div>
             <!-- read more -->
             
@@ -701,11 +844,10 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
                 <span class="abstract-title-text">前端三件套之JavaScript（一）</span>
             </a>
             <div class="abstract-content">
-                快速入门
-JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript代码放在HTML的&lt;head&gt;中。由&lt;script&gt;...&lt;/script&gt;包含的代码就是JavaScript代码，它将直接被浏览器执行。
-另一种方法就是把JavaScript代码放到一个单独的.js文件中，然后在HTML中通过&lt;script src="/js文件地址"&gt;...&lt;/script&gt;的方式引入这个文件。
-**JavaScript中的注释符号是//或/**/，*JavaScript中严格区分大小写。**
-若需要调试Java...
+                快速入门JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript代码放在HTML的&lt;head&gt;中。由&lt;script&gt;...&lt;/script&gt;包含的代码就是JavaScript代码，它将直接被浏览器执行。
+另一种方法就是把JavaScript代码放到一个单独的.js文件中，然后在HTML中通过&lt;script src=&quot;/js文件地址&quot;&gt;...&lt;/script&gt;的方式引入这个文件。
+JavaScript中的注释符号是//或`//`，JavaScript中严格区分大小写。*
+若需要调试Jav...
             </div>
             <!-- read more -->
             
@@ -742,16 +884,12 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
                 <span class="abstract-title-text">前端三件套之CSS（二）</span>
             </a>
             <div class="abstract-content">
-                CSS表格
-表格边框
-使用border属性可以指定CSS表格边框：
+                CSS表格表格边框使用border属性可以指定CSS表格边框：
 123table,th,td&#123;    border:1px solid black;&#125;
 由于表格和th/td元素有独立的边界，故会显示有双边框。
-折叠边框
-使用border-collapse属性可以设置表格的边框是否被折叠成一个单一的边框或隔开：
+折叠边框使用border-collapse属性可以设置表格的边框是否被折叠成一个单一的边框或隔开：
 123456table&#123;    border-collapse:collapse;&#125;table,th,td&#123;    border:1px solid black;&#125;
-表格宽度和高度
-使用width和h...
+表格宽度和高度使用width和height属性定义表格的宽...
             </div>
             <!-- read more -->
             
@@ -788,8 +926,7 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
                 <span class="abstract-title-text">前端三件套之CSS（一）</span>
             </a>
             <div class="abstract-content">
-                CSS简介
-CSS指层叠样式表，样式定义如何显示HTML元素。
+                CSS简介CSS指层叠样式表，样式定义如何显示HTML元素。
 样式对网页中元素位置的排版进行像素级精确控制。
 样式通常存储在样式表中，外部样式表通常存储在CSS文件中。
 多个样式定义可以层叠为一个，即对一个元素多次设置同一个样式，将使用最后一次设置的属性值。
@@ -800,8 +937,8 @@ CSS指层叠样式表，样式定义如何显示HTML元素。
 内部样式表（位于&lt;head&gt;标签内部）
 内联样式（在HTML元素内部）
 
-CSS语法
-CSS规则由两个主要的部分构成：选择器，以及一条或多条声明，语法如...
+CSS语法CSS规则由两个主要的部分构成：选择器，以及一条或多条声明，语法如下：
+123selector&...
             </div>
             <!-- read more -->
             
@@ -818,46 +955,6 @@ CSS规则由两个主要的部分构成：选择器，以及一条或多条声�
         <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="CSS">CSS</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/10/27/%E5%89%8D%E7%AB%AF%E4%B8%89%E4%BB%B6%E5%A5%97%E4%B9%8BHTML%EF%BC%88%E4%BA%8C%EF%BC%89/">
-                
-                <span class="abstract-title-text">前端三件套之HTML（二）</span>
-            </a>
-            <div class="abstract-content">
-                HTML符号
-HTML符号实体
-若想将数学符号、希腊符号等符号添加到HTML页面，可以使用HTML实体名称。若不存在实体名称，可使用实体编号、十进制或十六进制进行引用。
-12345678910&lt;&lt;!DOCTYPE html&gt;&lt;html&gt;  &lt;body&gt;    &lt;p&gt;我将显示 &amp;&lt;/p&gt;    &lt;hr /&gt;    &lt;p&gt;我将显示 &amp;#8364;&lt;/p&gt;    &lt;hr /&gt;    &lt;p&gt;我将显示 &amp;#x20AC;&lt;/p&gt;&lt...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/10/27">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/10/27</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="HTML">HTML</a>
     
 </div>
 
@@ -969,7 +1066,7 @@ HTML符号实体
     <!--添加网站总字数-->
         <p style="font-size:1.2rem;font-weight:bold;color:#777;margin:0.5rem 0;">站点信息</p>
         <div style="margin:0.5rem 0;">
-            <span class="post-count word-count">本站总字数: 209.9k</span>
+            <span class="post-count word-count">本站总字数: 209.6k</span>
             <br/>
         <!--添加网站运行时间-->
             <span id="timeDate">载入天数...</span>
@@ -1449,7 +1546,14 @@ HTML符号实体
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -2092,7 +2196,7 @@ HTML符号实体
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -2106,6 +2210,12 @@ HTML符号实体
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span>
+            <a class="archive-post-title" href="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">Hexo博客迁移</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/06</span>
@@ -2569,16 +2679,6 @@ HTML符号实体
                 数据库工具
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -2592,6 +2692,21 @@ HTML符号实体
             <span class="sidebar-tag-name" data-tags="Web框架">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="Kubernetes">
@@ -2614,19 +2729,24 @@ HTML符号实体
                 Lottie
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
-                <span class="iconfont-archer">&#xe606;</span>
-                MinIO
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2639,9 +2759,9 @@ HTML符号实体
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2654,11 +2774,6 @@ HTML符号实体
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2669,11 +2784,6 @@ HTML符号实体
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
@@ -2682,6 +2792,11 @@ HTML符号实体
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2719,6 +2834,11 @@ HTML符号实体
                 自动化测试
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2727,11 +2847,6 @@ HTML符号实体
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2760,6 +2875,11 @@ HTML符号实体
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2770,14 +2890,14 @@ HTML符号实体
             大屏设计
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
             操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
         </span>
     
         <span class="sidebar-category-name" data-categories="Kubernetes">
@@ -2785,19 +2905,14 @@ HTML符号实体
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2805,9 +2920,9 @@ HTML符号实体
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            LLM
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2815,9 +2930,9 @@ HTML符号实体
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2825,19 +2940,24 @@ HTML符号实体
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
-        </span>
-    
         <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
             JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2865,11 +2985,6 @@ HTML符号实体
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="自动化测试">
-            <span class="iconfont-archer">&#xe60a;</span>
-            自动化测试
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2883,6 +2998,11 @@ HTML符号实体
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
         </span>
     
         <span class="sidebar-category-name" data-categories="XAMPP">

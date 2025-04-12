@@ -438,7 +438,7 @@
                 在js文件中编写功能函数时，常常要调用vue文件内的方法并传值，下面记录js传值的方法：
 
 首先在vue页面的mounted模块将要调用的方法注册到window对象上，并引入对应的js文件后：
-123456789mounted()&#123;  window.exampleFunction=this.exampleFunction&#125;,method:&#123;    exampleFunction(data)&#123;        console.log(&#x27;收到方法调用&#x27;)        console.log(data,&#x27;data&#x...
+  123456789mounted()&#123;  window.exampleFunction=this.exampleFunction&#125;,method:&#123;    exampleFunction(data)&#123;        console.log(&#x27;收到方法调用&#x27;)        console.log(data,&#x27;data&#x2...
             </div>
             <!-- read more -->
             
@@ -475,9 +475,8 @@
                 <span class="abstract-title-text">前端三件套之JavaScript（三）</span>
             </a>
             <div class="abstract-content">
-                标准对象
-在JavaScript的世界里，一切皆是对象。但某些对象与其他对象不太一样。为了区分对象的类型，通常用typeof操作符获取对象的类型：
-123456789101112131415161718192021console.log(typeof 123);console.log(typeof NaN);console.log(typeof &#x27;str&#x27;);console.log(typeof true);console.log(typeof undefined);console.log(typeof Math.abs);console.log(typeof n...
+                标准对象在JavaScript的世界里，一切皆是对象。但某些对象与其他对象不太一样。为了区分对象的类型，通常用typeof操作符获取对象的类型：
+123456789101112131415161718192021console.log(typeof 123);console.log(typeof NaN);console.log(typeof &#x27;str&#x27;);console.log(typeof true);console.log(typeof undefined);console.log(typeof Math.abs);console.log(typeof null...
             </div>
             <!-- read more -->
             
@@ -514,14 +513,11 @@
                 <span class="abstract-title-text">前端三件套之JavaScript（二）</span>
             </a>
             <div class="abstract-content">
-                函数
-函数定义和调用
-定义函数
-在JavaScript中，定义函数的方式如下：
-1234567function abs(x)&#123;    if(x&gt;=0)&#123;        return x;    &#125;else&#123;     return -x;       &#125;&#125;
+                函数函数定义和调用定义函数在JavaScript中，定义函数的方式如下：
+1234567function abs(x){    if(x&gt;=0){        return x;    }else{     return -x;       }}
 函数内的语句执行到return语句时，函数便执行完毕了。若没有return语句，函数执行完毕后会返回undefined。
 由于函数也是一个对象，因此上述定义的abs()函数实际上是一个函数对象，因此，第二种定义函数的方式如下：
-1234567var abs=...
+1234567var abs=function(x){    if(x&gt;=0){        retu...
             </div>
             <!-- read more -->
             
@@ -558,11 +554,10 @@
                 <span class="abstract-title-text">前端三件套之JavaScript（一）</span>
             </a>
             <div class="abstract-content">
-                快速入门
-JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript代码放在HTML的&lt;head&gt;中。由&lt;script&gt;...&lt;/script&gt;包含的代码就是JavaScript代码，它将直接被浏览器执行。
-另一种方法就是把JavaScript代码放到一个单独的.js文件中，然后在HTML中通过&lt;script src="/js文件地址"&gt;...&lt;/script&gt;的方式引入这个文件。
-**JavaScript中的注释符号是//或/**/，*JavaScript中严格区分大小写。**
-若需要调试Java...
+                快速入门JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript代码放在HTML的&lt;head&gt;中。由&lt;script&gt;...&lt;/script&gt;包含的代码就是JavaScript代码，它将直接被浏览器执行。
+另一种方法就是把JavaScript代码放到一个单独的.js文件中，然后在HTML中通过&lt;script src=&quot;/js文件地址&quot;&gt;...&lt;/script&gt;的方式引入这个文件。
+JavaScript中的注释符号是//或`//`，JavaScript中严格区分大小写。*
+若需要调试Jav...
             </div>
             <!-- read more -->
             
@@ -1027,7 +1022,14 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -1670,7 +1672,7 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -1684,6 +1686,12 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span>
+            <a class="archive-post-title" href="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">Hexo博客迁移</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/06</span>
@@ -2147,16 +2155,6 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
                 数据库工具
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -2170,6 +2168,21 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
             <span class="sidebar-tag-name" data-tags="Web框架">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="Kubernetes">
@@ -2192,19 +2205,24 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
                 Lottie
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
-                <span class="iconfont-archer">&#xe606;</span>
-                MinIO
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2217,9 +2235,9 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2232,11 +2250,6 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2247,11 +2260,6 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
@@ -2260,6 +2268,11 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2297,6 +2310,11 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
                 自动化测试
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2305,11 +2323,6 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2338,6 +2351,11 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2348,14 +2366,14 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
             大屏设计
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
             操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
         </span>
     
         <span class="sidebar-category-name" data-categories="Kubernetes">
@@ -2363,19 +2381,14 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2383,9 +2396,9 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            LLM
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2393,9 +2406,9 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2403,19 +2416,24 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
-        </span>
-    
         <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
             JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2443,11 +2461,6 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="自动化测试">
-            <span class="iconfont-archer">&#xe60a;</span>
-            自动化测试
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2461,6 +2474,11 @@ JavaScript代码可以直接嵌在网页的任何地方，通常会把JavaScript
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
         </span>
     
         <span class="sidebar-category-name" data-categories="XAMPP">

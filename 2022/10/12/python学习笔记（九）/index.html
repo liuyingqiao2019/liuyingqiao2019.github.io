@@ -496,15 +496,12 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="io编程">IO编程</h1>
-<p>往外发数据的操作叫做Output，往外接收数据的操作叫做Intput。因此程序完成IO操作会有两个Intput和Output数据流。</p>
+        <h1 id="IO编程"><a href="#IO编程" class="headerlink" title="IO编程"></a>IO编程</h1><p>往外发数据的操作叫做Output，往外接收数据的操作叫做Intput。因此程序完成IO操作会有两个Intput和Output数据流。</p>
 <p>在IO编程中存在速度不匹配的问题，其解决方法有两种：</p>
 <p>第一种是<strong>同步IO</strong>，即让cpu等着，程序暂停执行后续的代码，等当前读写操作完成后再往下执行。</p>
 <p>第二种是<strong>异步IO</strong>，即cpu不等待，让其慢慢读写，后续代码可以立刻执行，其复杂度远高于同步IO。</p>
-<h2 id="文件读写">文件读写</h2>
-<p>读写文件就是请求操作系统打开一个文件对象，然后通过操作系统提供的接口从该文件对象中读取数据或把数据写入这个文件对象。</p>
-<h3 id="读文件">读文件</h3>
-<p>使用<code>open()</code>函数读文件：<code>f=open('路径','r')</code>,其中<code>'r'</code>表示读取。</p>
+<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><p>读写文件就是请求操作系统打开一个文件对象，然后通过操作系统提供的接口从该文件对象中读取数据或把数据写入这个文件对象。</p>
+<h3 id="读文件"><a href="#读文件" class="headerlink" title="读文件"></a>读文件</h3><p>使用<code>open()</code>函数读文件：<code>f=open(&#39;路径&#39;,&#39;r&#39;)</code>,其中<code>&#39;r&#39;</code>表示读取。</p>
 <p>文件打开后，一次读取文件全部内容：<code>f.read()</code></p>
 <p>关闭文件：<code>f.close()</code></p>
 <p>为保证无论是否出错都能正确关闭文件，可引入<code>with</code>语句：</p>
@@ -513,145 +510,125 @@
 <p>每次读取一行内容：<code>f.readline()</code></p>
 <p>一次读取所有内容并按行返回list：<code>f.readlines()</code></p>
 <p>若文件很小，使用<code>read()</code>一次性读取最方便，若不能确定文件大小，反复调用<code>read(size)</code>比较好，若是配置文件，调用<code>readlines()</code>最方便。</p>
-<h3 id="file-like-object">file-like Object</h3>
-<p>像<code>open()</code>函数返回的有个<code>read()</code>方法的对象，统称为file-like Object。file-like Object不要求从特定类中继承，只要写<code>read()</code>方法就行。除了file外，还可以是内存的字节流、网络流、自定义流等。</p>
-<h3 id="二级制文件">二级制文件</h3>
-<p><code>open()</code>函数默认读取的是UTF-8编码的文本文件，若要读取二进制编码的文件，<code>open()</code>函数得写成：<code>f=open('路径','rb')</code>。</p>
-<h3 id="字符编码">字符编码</h3>
-<p>若要读取非UTF-8编码的文件，需要给<code>open()</code>函数传入<code>encoding</code>参数。</p>
-<p>如读取GDK编码的文件：<code>f=open('路径',encoding='gdk')</code>。</p>
-<h3 id="写文件">写文件</h3>
-<p>写文件时也是用<code>open()</code>函数来打开文件，此时的<code>open()</code>函数得写成：<code>f=open('路径','w')</code>，其中<code>'w'</code>表示写文本文件或写二进制文件。</p>
+<h3 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h3><p>像<code>open()</code>函数返回的有个<code>read()</code>方法的对象，统称为file-like Object。file-like Object不要求从特定类中继承，只要写<code>read()</code>方法就行。除了file外，还可以是内存的字节流、网络流、自定义流等。</p>
+<h3 id="二级制文件"><a href="#二级制文件" class="headerlink" title="二级制文件"></a>二级制文件</h3><p><code>open()</code>函数默认读取的是UTF-8编码的文本文件，若要读取二进制编码的文件，<code>open()</code>函数得写成：<code>f=open(&#39;路径&#39;,&#39;rb&#39;)</code>。</p>
+<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>若要读取非UTF-8编码的文件，需要给<code>open()</code>函数传入<code>encoding</code>参数。</p>
+<p>如读取GDK编码的文件：<code>f=open(&#39;路径&#39;,encoding=&#39;gdk&#39;)</code>。</p>
+<h3 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h3><p>写文件时也是用<code>open()</code>函数来打开文件，此时的<code>open()</code>函数得写成：<code>f=open(&#39;路径&#39;,&#39;w&#39;)</code>，其中<code>&#39;w&#39;</code>表示写文本文件或写二进制文件。</p>
 <p>往文件中写入内容：<code>f.write(内容)</code></p>
 <p>写完内容后要用<code>f.close()</code>语句来关闭文件。为保证无论是否出错都能正确关闭文件，可引入<code>with</code>语句：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;路径&#x27;</span>,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">	f.write(<span class="string">&#x27;123&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>若要写入特定文本文件，需要给<code>open()</code>函数传入<code>encoding</code>参数，如<code>f=open('路径','w'，encoding='gdk')</code></p>
-<p>若写入文件时文件 已存在，会直接<strong>覆盖原文件</strong>，若需要将内容<strong>追加到文件末尾</strong>，在open()语句中传入<code>'a'</code>来写入。其形式为：<code>open('路径','a')</code></p>
-<h3 id="练习题">练习题</h3>
-<p>请将本地一个文本文件读为一个str并打印出来：</p>
+<p>若要写入特定文本文件，需要给<code>open()</code>函数传入<code>encoding</code>参数，如<code>f=open(&#39;路径&#39;,&#39;w&#39;，encoding=&#39;gdk&#39;)</code></p>
+<p>若写入文件时文件 已存在，会直接<strong>覆盖原文件</strong>，若需要将内容<strong>追加到文件末尾</strong>，在open()语句中传入<code>&#39;a&#39;</code>来写入。其形式为：<code>open(&#39;路径&#39;,&#39;a&#39;)</code></p>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><p>请将本地一个文本文件读为一个str并打印出来：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fpath = <span class="string">&#x27;/etc/timezone&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(fpath, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    s = f.read()</span><br><span class="line">    <span class="built_in">print</span>(s)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>代码修改如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fpath = <span class="string">&#x27;./1.txt&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(fpath, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    s = f.read()</span><br><span class="line">    <span class="built_in">print</span>(s)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">helloworld!</span><br></pre></td></tr></table></figure>
-<h2 id="stringio和bytesio">StringIO和BytesIO()</h2>
-<h3 id="stringio">StringIO</h3>
-<p>StringIO就是在内存中读写str，其只能操作str数据。</p>
+<h2 id="StringIO和BytesIO"><a href="#StringIO和BytesIO" class="headerlink" title="StringIO和BytesIO()"></a>StringIO和BytesIO()</h2><h3 id="StringIO"><a href="#StringIO" class="headerlink" title="StringIO"></a>StringIO</h3><p>StringIO就是在内存中读写str，其只能操作str数据。</p>
 <p>要把str<strong>写入</strong>StringIO，需要先创建一个StringIO，然后在像写文件一样写入：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> StringIO</span><br><span class="line">f=StringIO()</span><br><span class="line">f.write(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(f.getvalue())</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">hello world!</span><br></pre></td></tr></table></figure>
 <p><strong>获得写入后的str:</strong><code>getvalue()</code></p>
 <p>要<strong>读取</strong>StringIO，需要先用一个str初始化StringIO，然后在像读文件一样读取：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> StringIO</span><br><span class="line">f=StringIO(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    s=f.readline()</span><br><span class="line">    <span class="keyword">if</span> s==<span class="string">&#x27;&#x27;</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(s.strip())</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">hello world!    </span><br></pre></td></tr></table></figure>
-<h3 id="bytesio">BytesIO</h3>
-<p>StringIO就是在内存中读写bytes，其只能操作二进制数据。</p>
+<h3 id="BytesIO"><a href="#BytesIO" class="headerlink" title="BytesIO"></a>BytesIO</h3><p>StringIO就是在内存中读写bytes，其只能操作二进制数据。</p>
 <p>使用BytesIO写入二进制数据如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO</span><br><span class="line">f=BytesIO()</span><br><span class="line">f.write(<span class="string">&#x27;中文&#x27;</span>.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(f.getvalue())</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="string">b&#x27;\xe4\xb8\xad\xe6\x96\x87&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>使用BytesIO读取二进制数据如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO</span><br><span class="line">f=BytesIO(<span class="string">b&#x27;\xe4\xb8\xad\xe6\x96\x87&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(f.read())</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="string">b&#x27;\xe4\xb8\xad\xe6\x96\x87&#x27;</span></span><br></pre></td></tr></table></figure>
-<h2 id="操作文件和目录">操作文件和目录</h2>
-<p>使用<code>os</code>模块可以直接调用操作系统提供的接口函数。</p>
+<h2 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h2><p>使用<code>os</code>模块可以直接调用操作系统提供的接口函数。</p>
 <p>os模块的基本功能如下所示：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="built_in">print</span>(os.name)<span class="comment">#获取操作系统类型</span></span><br><span class="line"><span class="comment">#若输出nt，说明系统是Windows系统，若输出posix,说明是Linux、Unix或Moc OS X系统</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(os.uname)<span class="comment">#获取详细的操作系统信息</span></span><br><span class="line"><span class="comment">#uname函数在Windows上不提供</span></span><br></pre></td></tr></table></figure>
-<h3 id="环境变量">环境变量</h3>
-<p>系统定义的环境变量保存在<code>os.environ</code>中。</p>
-<p>获取某个环境变量key的值：<code>os.environ.get('key')</code></p>
-<h3 id="操作文件和目录-1">操作文件和目录</h3>
-<p>查看、创建和删除目录语句如下：</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>系统定义的环境变量保存在<code>os.environ</code>中。</p>
+<p>获取某个环境变量key的值：<code>os.environ.get(&#39;key&#39;)</code></p>
+<h3 id="操作文件和目录-1"><a href="#操作文件和目录-1" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h3><p>查看、创建和删除目录语句如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="built_in">print</span>(os.path.abspath(<span class="string">&#x27;.&#x27;</span>))<span class="comment">#查看当前目录的绝对路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在某个目录下创建新目录（新建文件并将路径加到某个目录中）</span></span><br><span class="line">os.path.join(<span class="string">&#x27;/某个目录路径&#x27;</span>,<span class="string">&#x27;新文件名称&#x27;</span>)<span class="comment">#将某目录和新文件目录的路径合成一个</span></span><br><span class="line">os.mkdir(<span class="string">&#x27;/新文件完整路径&#x27;</span>)<span class="comment">#创建一个目录</span></span><br><span class="line"></span><br><span class="line">os.rmkdir(<span class="string">&#x27;/新文件完整路径&#x27;</span>)<span class="comment">#删除一个目录</span></span><br><span class="line"></span><br><span class="line">os.path.split(<span class="string">&#x27;/新文件完整路径&#x27;</span>)<span class="comment">#将目录拆分为某目录和文件名两个部分</span></span><br><span class="line">os.path.splitext(<span class="string">&#x27;/新文件完整路径&#x27;</span>)<span class="comment">#将目录拆分为某目录和文件名拓展名两个部分</span></span><br><span class="line"></span><br><span class="line">os.rename(<span class="string">&#x27;文件原名&#x27;</span>,<span class="string">&#x27;文件新名&#x27;</span>)<span class="comment">#重命名文件</span></span><br><span class="line">os.remove(<span class="string">&#x27;文件名&#x27;</span>)<span class="comment">#删除文件</span></span><br></pre></td></tr></table></figure>
 <p><code>os</code>模块中不存在复制文件的函数。</p>
-<p><strong>导入<code>os</code>模块后，列出当前目录下所有目录：</strong><code>print([x for x in os.listdir('.') if os.path.isdir(x)])</code></p>
-<p><strong>导入<code>os</code>模块后，列出当前目录下所有<code>.py</code>文件：</strong><code>print([x for x in os.listdir('.') if os.path.isfile(x) and os.path.splitext(x)[1]=='.py'])</code></p>
-<h3 id="练习题-1">练习题</h3>
-<p>1.利用<code>os</code>模块编写一个能实现<code>dir -l</code>输出的程序。</p>
+<p><strong>导入<code>os</code>模块后，列出当前目录下所有目录：</strong><code>print([x for x in os.listdir(&#39;.&#39;) if os.path.isdir(x)])</code></p>
+<p><strong>导入<code>os</code>模块后，列出当前目录下所有<code>.py</code>文件：</strong><code>print([x for x in os.listdir(&#39;.&#39;) if os.path.isfile(x) and os.path.splitext(x)[1]==&#39;.py&#39;])</code></p>
+<h3 id="练习题-1"><a href="#练习题-1" class="headerlink" title="练习题"></a>练习题</h3><p>1.利用<code>os</code>模块编写一个能实现<code>dir -l</code>输出的程序。</p>
 <p>这里的<code>dir-l</code>命令指的是在linux系统下运行的命令，其与<code>ls -l</code>命令类似，作用皆为查看当前目录所有的文件和目录的详细信息。代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time </span><br><span class="line"></span><br><span class="line">current=os.getcwd()</span><br><span class="line">filenum,filesize,dirnum=<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> os.listdir(current):</span><br><span class="line">    <span class="keyword">if</span> os.path.isfile(name):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;%s\t\t%s\t%s&#x27;</span> % (time.strftime(<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>,time.localtime(os.path.getmtime(name))),os.path.getsize(name),name))</span><br><span class="line">        filenum+=<span class="number">1</span></span><br><span class="line">        filesize+=os.path.getsize(name)</span><br><span class="line">    <span class="keyword">if</span> os.path.isdir(name):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;%s\t\t%s\t%s&#x27;</span> % (time.strftime(<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>,time .localtime(os.path.getmtime(name))),os.path.getsize(name),name))</span><br><span class="line">        dirnum+=<span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\t\t\t\t%d个文件，\t\t%d 字节&#x27;</span> % (filenum,filesize))        </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\t\t\t\t%d个目录&#x27;</span> % (dirnum))</span><br></pre></td></tr></table></figure>
 <p>2.编写一个程序，能在当前目录以及当前目录的所有子目录下查找文件名包含指定字符串的文件，并打印出相对路径。</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> genericpath <span class="keyword">import</span> isfile</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> os.path</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_str</span>(<span class="params">current,<span class="built_in">str</span></span>):</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> os.listdir(current):</span><br><span class="line">        new_path=os.path.join(current,name)</span><br><span class="line">        <span class="keyword">if</span> os.path.isfile(new_path):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">str</span> <span class="keyword">in</span> name:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;name=%s , dir=%s&#x27;</span> % (name,(<span class="string">&#x27;../&#x27;</span>+name)))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            find_str(new_path,<span class="built_in">str</span>)  </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    find_str(os.path.abspath(<span class="string">&quot;.&quot;</span>),<span class="string">&#x27;.py&#x27;</span>)                </span><br></pre></td></tr></table></figure>
-<h2 id="序列化">序列化</h2>
-<p>把变量从内存中变成可存储或传输的过程，称之为<strong>序列化</strong>(picking)。序列化后可以把序列化后的内容写入磁盘，或通过网络传输到别的机器上。把变量从序列化的对象重新读到内存里的过程，称之为<strong>反序列化</strong>(unpicking)。可以通过<code>pickle</code>模块来实现序列化。</p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>把变量从内存中变成可存储或传输的过程，称之为<strong>序列化</strong>(picking)。序列化后可以把序列化后的内容写入磁盘，或通过网络传输到别的机器上。把变量从序列化的对象重新读到内存里的过程，称之为<strong>反序列化</strong>(unpicking)。可以通过<code>pickle</code>模块来实现序列化。</p>
 <p>将对象序列化并写入文件中：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">d=<span class="built_in">dict</span>(name=<span class="string">&#x27;Bob&#x27;</span>,age=<span class="number">20</span>,score=<span class="number">99</span>)</span><br><span class="line"><span class="built_in">print</span>(pickle.dumps(d))<span class="comment">#把任意对象序列化成一个bytes</span></span><br><span class="line">f=<span class="built_in">open</span>(<span class="string">&#x27;1.txt&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">pickle.dump(d,f)<span class="comment">#直接把对象序列化后写入一个file-like Object</span></span><br><span class="line">f.close()</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="comment">#文件1.txt中的结果</span></span><br><span class="line">€?       &#125;??name攲Bob攲age擪?score擪cu.</span><br></pre></td></tr></table></figure>
 <p>写入的<code>1.txt</code>文件中的内容便是python保存的对象内容。</p>
 <p>反序列化刚才保存的对象：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">f=<span class="built_in">open</span>(<span class="string">&#x27;1.txt&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">d=pickle.load(f)</span><br><span class="line">f.close()</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">&#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="number">20</span>, <span class="string">&#x27;score&#x27;</span>: <span class="number">99</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>Pickle只能用于python，且可能不同版本的python彼此不兼容，因此只能用Pickle保存那些不重要的数据，</p>
-<h3 id="json">JSON</h3>
-<p>若要在不同的编程语言之间传递对象，就必须把对象序列化为标准格式，比如XML、JSON。最好是序列化为JSON，因为其表示出来的就一个字符串，可以被所有语言读取，也更方便存储到磁盘或通过网络传输。</p>
+<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><p>若要在不同的编程语言之间传递对象，就必须把对象序列化为标准格式，比如XML、JSON。最好是序列化为JSON，因为其表示出来的就一个字符串，可以被所有语言读取，也更方便存储到磁盘或通过网络传输。</p>
 <p>JSON表示的对象是标准的JavaScript语言的对象，JSON和Python内置的数据类型对象如下：</p>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: left;">JSON类型</th>
-<th style="text-align: left;">Python类型</th>
+<tr>
+<th style="text-align:left">JSON类型</th>
+<th style="text-align:left">Python类型</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">{}</td>
-<td style="text-align: left;">dict</td>
+<tr>
+<td style="text-align:left">{}</td>
+<td style="text-align:left">dict</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">[]</td>
-<td style="text-align: left;">list</td>
+<tr>
+<td style="text-align:left">[]</td>
+<td style="text-align:left">list</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">"string"</td>
-<td style="text-align: left;">str</td>
+<tr>
+<td style="text-align:left">“string”</td>
+<td style="text-align:left">str</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">1234.56</td>
-<td style="text-align: left;">int或float</td>
+<tr>
+<td style="text-align:left">1234.56</td>
+<td style="text-align:left">int或float</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">true/false</td>
-<td style="text-align: left;">True/False</td>
+<tr>
+<td style="text-align:left">true/false</td>
+<td style="text-align:left">True/False</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">null</td>
-<td style="text-align: left;">None</td>
+<tr>
+<td style="text-align:left">null</td>
+<td style="text-align:left">None</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>通过json模块可以把python对象变成一个JSON：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">d=<span class="built_in">dict</span>(name=<span class="string">&#x27;Bob&#x27;</span>,age=<span class="number">20</span>,score=<span class="number">99</span>)</span><br><span class="line"><span class="built_in">print</span>(json.dumps(d))<span class="comment">#返回一个str，内容是标准的JSON</span></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">20</span>, <span class="string">&quot;score&quot;</span>: <span class="number">99</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>把JSON反序列化为Python对象：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">json_str=<span class="string">&#x27;&#123;&quot;age&quot;:22,&quot;score&quot;:93,&quot;name&quot;:&quot;Lisi&quot;&#125;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(json.loads(json_str))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">&#123;<span class="string">&#x27;age&#x27;</span>: <span class="number">22</span>, <span class="string">&#x27;score&#x27;</span>: <span class="number">93</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Lisi&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="json进阶">JSON进阶</h3>
-<p>默认情况下，class实例不是一个可序列化为JSON的对象。若要序列化该class实例，需要先写一个转换函数把实例转换成dict，再序列化：</p>
+<h3 id="JSON进阶"><a href="#JSON进阶" class="headerlink" title="JSON进阶"></a>JSON进阶</h3><p>默认情况下，class实例不是一个可序列化为JSON的对象。若要序列化该class实例，需要先写一个转换函数把实例转换成dict，再序列化：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,name,age,score</span>):</span><br><span class="line">        self.name=name</span><br><span class="line">        self.age=age</span><br><span class="line">        self.score=score</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">student2dict</span>(<span class="params">std</span>):</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="string">&#x27;name&#x27;</span>:std.name,</span><br><span class="line">            <span class="string">&#x27;age&#x27;</span>:std.age,</span><br><span class="line">            <span class="string">&#x27;score&#x27;</span>:std.score</span><br><span class="line">        &#125;    </span><br><span class="line">s=Student(<span class="string">&#x27;Bob&#x27;</span>,<span class="number">22</span>,<span class="number">99</span>)        </span><br><span class="line"><span class="built_in">print</span>(json.dumps(s,default=student2dict))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">22</span>, <span class="string">&quot;score&quot;</span>: <span class="number">99</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>不过以上代码只能应用于Student类，若要将<strong>任一class实例变为<code>dict</code></strong>可将<code>student2dict()</code>函数以及<code>print()</code>语句精简为以下语句：</p>
 <p><code>print(json.dumps(s,default=lambda obj:obj.__dict__))</code></p>
 <p>若要把JSON反序列化为一个class对象实例，可以先用<code>loads()</code>方法转化出一个<code>dict</code>对象，然后传入<code>object_hook</code>函数把<code>dict</code>转换为<code>Student</code>实例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,name,age,score</span>):</span><br><span class="line">        self.name=name</span><br><span class="line">        self.age=age</span><br><span class="line">        self.score=score</span><br><span class="line">     </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dict2student</span>(<span class="params">d</span>):</span><br><span class="line">    <span class="keyword">return</span> Student(d[<span class="string">&#x27;name&#x27;</span>],d[<span class="string">&#x27;age&#x27;</span>],d[<span class="string">&#x27;score&#x27;</span>])</span><br><span class="line">    </span><br><span class="line">s=Student(<span class="string">&#x27;Bob&#x27;</span>,<span class="number">22</span>,<span class="number">99</span>)   </span><br><span class="line">json_str=<span class="string">&#x27;&#123;&quot;age&quot;:22,&quot;score&quot;:99,&quot;name&quot;:&quot;Bob&quot;&#125;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(json.loads(json_str,object_hook=dict2student))    </span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">&lt;__main__.Student <span class="built_in">object</span> at <span class="number">0x0000019E34217B80</span>&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="练习题-2">练习题</h3>
-<p>对中文进行JSON序列化时，<code>json.dumps()</code>提供了一个<code>ensure_ascii</code>参数，观察该参数对结果的影响：</p>
+<h3 id="练习题-2"><a href="#练习题-2" class="headerlink" title="练习题"></a>练习题</h3><p>对中文进行JSON序列化时，<code>json.dumps()</code>提供了一个<code>ensure_ascii</code>参数，观察该参数对结果的影响：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">obj = <span class="built_in">dict</span>(name=<span class="string">&#x27;小明&#x27;</span>, age=<span class="number">20</span>)</span><br><span class="line">s = json.dumps(obj, ensure_ascii=<span class="literal">True</span>)</span><br><span class="line"><span class="comment">#当ensure_ascii的值为True时，name以ascii字符码输出</span></span><br><span class="line"><span class="comment">#当ensure_ascii的值为False时，name以中文输出</span></span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;\u5c0f\u660e&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">20</span>&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="进程和线程">进程和线程</h1>
-<p>对于操作系统来说，一个任务就是一个进程。<strong>线程是最小的执行单元</strong>，由于每个进程至少要干一件事，因此<strong>一个进程至少有一个线程</strong>，多个线程可以同时执行。python既支持多进程又支持多线程。</p>
+<h1 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h1><p>对于操作系统来说，一个任务就是一个进程。<strong>线程是最小的执行单元</strong>，由于每个进程至少要干一件事，因此<strong>一个进程至少有一个线程</strong>，多个线程可以同时执行。python既支持多进程又支持多线程。</p>
 <p><strong>多任务的实现</strong>有3种方式：</p>
 <p><strong>多进程模式：</strong>启动多个进程，每个进程只有1个线程，但多个进程可以一起执行多个任务。</p>
 <p><strong>多线程模式：</strong>启动一个进程，在进程内启动多个线程，让多个线程一起执行多个任务。</p>
 <p><strong>多进程+多线程模式：</strong>启动多个进程，每个进程再启动多个线程，同时执行多个任务。</p>
-<h2 id="多进程">多进程</h2>
-<p>fork()是一个系统调用函数，调用一次，返回两次。其中，当前进程（父进程）复制出来了一份子进程，父进程返回子进程的ID，子进程永远返回0。子进程可以通过<code>getppid()</code>获取父进程的ID。</p>
+<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>fork()是一个系统调用函数，调用一次，返回两次。其中，当前进程（父进程）复制出来了一份子进程，父进程返回子进程的ID，子进程永远返回0。子进程可以通过<code>getppid()</code>获取父进程的ID。</p>
 <p>在<strong>Mac系统</strong>中，python的os模块中封装了常见的系统调用函数，使其可以在程序中创建子进程：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Process (%s) start...&#x27;</span>% os.getpid())</span><br><span class="line">pid=os.fork()</span><br><span class="line"><span class="keyword">if</span> pid==<span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;I am child process (%s) and my parent is %s.&#x27;</span>% (os.getpid(),os.getppid()))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;I (%s) just created a child process(%s).&#x27;</span>%(os.getpid(),pid))   </span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Process (<span class="number">42</span>) start...</span><br><span class="line">I (<span class="number">42</span>) just created a child process(<span class="number">46</span>).</span><br><span class="line">I am child process (<span class="number">46</span>) <span class="keyword">and</span> my parent <span class="keyword">is</span> <span class="number">42.</span></span><br></pre></td></tr></table></figure>
 <p><strong>在Windows系统中</strong>没有<code>fork</code>调用，若要运行上面的代码，可以在<a href="onlinegdb.com">onlinegdb在线编译器</a>里选择<code>python3</code>语言后，编译运行。</p>
 <p>有了fork调用，一个进程在接到新任务时就可以复制出一个子进程出来，父进程复制监听端口，子进程负责处理任务。</p>
-<h3 id="multiprocessing"><code>multiprocessing</code></h3>
-<p>若要在Windows上用python编写多进程程序，可以使用<code>multiprocessing</code>模块，其是一个跨平台版本的多进程模块，提供了一个process类来代表一个进程对象。</p>
+<h3 id="multiprocessing"><a href="#multiprocessing" class="headerlink" title="multiprocessing"></a><code>multiprocessing</code></h3><p>若要在Windows上用python编写多进程程序，可以使用<code>multiprocessing</code>模块，其是一个跨平台版本的多进程模块，提供了一个process类来代表一个进程对象。</p>
 <p>运用<code>multiprocessing</code>模块启动一个子进程并等待其结束：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_proc</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Run child process %s (%s)...&#x27;</span>%(name,os.getpid()))</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Parent process %s.&#x27;</span>% os.getpid())    </span><br><span class="line">    p=Process(target=run_proc,args=(<span class="string">&#x27;test&#x27;</span>,))<span class="comment">#创建进程</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Child process will start.&#x27;</span>)</span><br><span class="line">    p.start()<span class="comment">#启动进程</span></span><br><span class="line">    p.join()<span class="comment">#等待子进程结束后再继续往下运行，用于进程间的同步</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Child process end.&#x27;</span>)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Parent process <span class="number">12664.</span></span><br><span class="line">Child process will start.</span><br><span class="line">Run child process test (<span class="number">9516</span>)...</span><br><span class="line">Child process end.</span><br></pre></td></tr></table></figure>
-<h3 id="pool"><code>Pool</code></h3>
-<p>若要启动大量的子进程，可以用进程池(pool)的方式<strong>批量创建子进程</strong>：</p>
+<h3 id="Pool"><a href="#Pool" class="headerlink" title="Pool"></a><code>Pool</code></h3><p>若要启动大量的子进程，可以用进程池(pool)的方式<strong>批量创建子进程</strong>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">import</span> os,time,random</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">long_time_task</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Run task %s (%s)...&#x27;</span>% (name,os.getpid()))</span><br><span class="line">    start=time.time()</span><br><span class="line">    time.sleep(random.random()*<span class="number">3</span>)</span><br><span class="line">    end=time.time()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Task %s runs %0.2f seconds.&#x27;</span>% (name,(end-start)))</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Parent process %s.&#x27;</span>% os.getpid())</span><br><span class="line">    p=Pool(<span class="number">4</span>)<span class="comment">#设置最多同时执行4个进程，pool默认大小是cpu的核数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        p.apply_async(long_time_task,args=(i,))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Waiting for all subprocesses done...&#x27;</span>)    </span><br><span class="line">    p.close()<span class="comment">#停止继续添加新进程</span></span><br><span class="line">    p.join()<span class="comment">#等待所有子进程执行完毕，调用前必须先调用close()</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;All subprocesses done&#x27;</span>)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Parent process <span class="number">1228.</span></span><br><span class="line">Waiting <span class="keyword">for</span> <span class="built_in">all</span> subprocesses done...</span><br><span class="line">Run task <span class="number">1</span> (<span class="number">1233</span>)...</span><br><span class="line">Run task <span class="number">2</span> (<span class="number">1234</span>)...</span><br><span class="line">Run task <span class="number">3</span> (<span class="number">1235</span>)...</span><br><span class="line">Run task <span class="number">0</span> (<span class="number">1232</span>)...</span><br><span class="line">Task <span class="number">2</span> runs <span class="number">0.86</span> seconds.</span><br><span class="line">Run task <span class="number">4</span> (<span class="number">1234</span>)...</span><br><span class="line">Task <span class="number">1</span> runs <span class="number">1.77</span> seconds.</span><br><span class="line">Task <span class="number">3</span> runs <span class="number">1.83</span> seconds.</span><br><span class="line">Task <span class="number">4</span> runs <span class="number">1.04</span> seconds.</span><br><span class="line">Task <span class="number">0</span> runs <span class="number">2.62</span> seconds.</span><br><span class="line">All subprocesses done</span><br></pre></td></tr></table></figure>
-<h3 id="子进程">子进程</h3>
-<p><code>subprocess</code>模块可以启动一个子进程，然后控制其输入和输出。</p>
+<h3 id="子进程"><a href="#子进程" class="headerlink" title="子进程"></a>子进程</h3><p><code>subprocess</code>模块可以启动一个子进程，然后控制其输入和输出。</p>
 <p>如用<code>subprocess</code>模块在python代码中运行命令<code>nslookup www.python.org</code>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;$ nslookup www.python.org&#x27;</span>)</span><br><span class="line">r=subprocess.call([<span class="string">&#x27;nslookup&#x27;</span>,<span class="string">&#x27;www.python.org&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Exit code:&#x27;</span>,r)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">$ nslookup www.python.org</span><br><span class="line">服务器:  gdad07.gd.ctc.com</span><br><span class="line">Address:  <span class="number">10.157</span><span class="number">.160</span><span class="number">.89</span></span><br><span class="line"></span><br><span class="line">非权威应答:</span><br><span class="line">名称:    dualstack.python.<span class="built_in">map</span>.fastly.net</span><br><span class="line">Addresses:  2a04:<span class="number">4e42</span>:8c::<span class="number">223</span></span><br><span class="line">          <span class="number">151.101</span><span class="number">.108</span><span class="number">.223</span></span><br><span class="line">Aliases:  www.python.org</span><br><span class="line"></span><br><span class="line">Exit code: <span class="number">0</span></span><br></pre></td></tr></table></figure>
 <p>若子进程需要输入，可以调用<code>communicate()</code>方法来实现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;$ nslookup&#x27;</span>)</span><br><span class="line">p = subprocess.Popen([<span class="string">&#x27;nslookup&#x27;</span>], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)</span><br><span class="line">output, err = p.communicate(<span class="string">b&#x27;set q=mx\npython.org\nexit\n&#x27;</span>)<span class="comment">#输入语句</span></span><br><span class="line">a=output.decode(<span class="string">&#x27;unicode_escape&#x27;</span>)<span class="comment">#对unicode编码的output进行反编码</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Exit code:&#x27;</span>, p.returncode)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">$ nslookup</span><br><span class="line">Ä¬ÈÏ·þÎñÆ÷:  gdad07.gd.ctc.com</span><br><span class="line">Address:  <span class="number">10.157</span><span class="number">.160</span><span class="number">.89</span></span><br><span class="line"></span><br><span class="line">&gt; &gt; ·þÎñÆ÷:  gdad07.gd.ctc.com</span><br><span class="line">Address:  <span class="number">10.157</span><span class="number">.160</span><span class="number">.89</span></span><br><span class="line"></span><br><span class="line">python.org      MX preference = <span class="number">50</span>, mail exchanger = mail.python.org</span><br><span class="line"></span><br><span class="line">mail.python.org internet address = <span class="number">188.166</span><span class="number">.95</span><span class="number">.178</span></span><br><span class="line">mail.python.org AAAA IPv6 address = 2a03:b0c0:<span class="number">2</span>:d0::<span class="number">71</span>:<span class="number">1</span></span><br><span class="line">&gt;</span><br><span class="line">Exit code: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h3 id="进程间通信">进程间通信</h3>
-<p><code>multiiprocessing</code>模块包装了底层的机制，提供了<code>Queue</code>、<code>Pips</code>等多种方式来交换数据，以实现进程间的通信。</p>
+<h3 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h3><p><code>multiiprocessing</code>模块包装了底层的机制，提供了<code>Queue</code>、<code>Pips</code>等多种方式来交换数据，以实现进程间的通信。</p>
 <p>以<code>Queue</code>为例，在父进程中创建两个子进程，一个往<code>Queue</code>里写数据，另一个从<code>Queue</code>里读数据：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process,Queue</span><br><span class="line"><span class="keyword">import</span> os,time,random</span><br><span class="line"><span class="comment">#写数据进程所执行的代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write</span>(<span class="params">q</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Process to write: %s&#x27;</span>%os.getpid())</span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>]:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Put %s to queue...&#x27;</span>% value)</span><br><span class="line">        q.put(value)</span><br><span class="line">        time.sleep(random.random())</span><br><span class="line"></span><br><span class="line"><span class="comment">#读数据进程所执行的代码        </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read</span>(<span class="params">q</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Process to read: %s&#x27;</span> %os.getpid())        </span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        value=q.get(<span class="literal">True</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Get %s from queue.&#x27;</span> %value)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    q=Queue()<span class="comment">#父进程创建Queue，并传给各个子进程</span></span><br><span class="line">    pw=Process(target=write,args=(q,))</span><br><span class="line">    pr=Process(target=read,args=(q,))</span><br><span class="line">    pw.start()<span class="comment">#启动子进程pw，写入</span></span><br><span class="line">    pr.start()<span class="comment">#启动子进程pw，读取</span></span><br><span class="line">    pw.join()<span class="comment">#等待pw结束</span></span><br><span class="line">    pr.join()<span class="comment">#pr进程里是 死循环，无法等待其结束，只能强行终止</span></span><br><span class="line">    pr.terminate()</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Process to write: 4684Process to read: <span class="number">3796</span></span><br><span class="line"></span><br><span class="line">Put A to queue...</span><br><span class="line">Get A <span class="keyword">from</span> queue.</span><br><span class="line">Put B to queue...</span><br><span class="line">Get B <span class="keyword">from</span> queue.</span><br><span class="line">Put C to queue...</span><br><span class="line">Get C <span class="keyword">from</span> queue.</span><br></pre></td></tr></table></figure>
 <p>在Unix/Linix下，<code>multiprocessing</code>模块封装了<code>fork()</code>调用，由于Windows没有<code>fork</code>调用，所以父进程所有python对象都必须通过<code>pickle</code>序列化再传到子进程去。</p>
@@ -853,7 +830,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#io%E7%BC%96%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">IO编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99"><span class="toc-number">1.1.</span> <span class="toc-text">文件读写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.1.</span> <span class="toc-text">读文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#file-like-object"><span class="toc-number">1.1.2.</span> <span class="toc-text">file-like Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E5%88%B6%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.3.</span> <span class="toc-text">二级制文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81"><span class="toc-number">1.1.4.</span> <span class="toc-text">字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.5.</span> <span class="toc-text">写文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.1.6.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stringio%E5%92%8Cbytesio"><span class="toc-number">1.2.</span> <span class="toc-text">StringIO和BytesIO()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stringio"><span class="toc-number">1.2.1.</span> <span class="toc-text">StringIO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bytesio"><span class="toc-number">1.2.2.</span> <span class="toc-text">BytesIO</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="toc-number">1.3.</span> <span class="toc-text">操作文件和目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95-1"><span class="toc-number">1.3.2.</span> <span class="toc-text">操作文件和目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.4.</span> <span class="toc-text">序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#json"><span class="toc-number">1.4.1.</span> <span class="toc-text">JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#json%E8%BF%9B%E9%98%B6"><span class="toc-number">1.4.2.</span> <span class="toc-text">JSON进阶</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-2"><span class="toc-number">1.4.3.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">进程和线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">多进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#multiprocessing"><span class="toc-number">2.1.1.</span> <span class="toc-text">multiprocessing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pool"><span class="toc-number">2.1.2.</span> <span class="toc-text">Pool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.1.3.</span> <span class="toc-text">子进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-number">2.1.4.</span> <span class="toc-text">进程间通信</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IO%E7%BC%96%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">IO编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99"><span class="toc-number">1.1.</span> <span class="toc-text">文件读写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.1.</span> <span class="toc-text">读文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#file-like-Object"><span class="toc-number">1.1.2.</span> <span class="toc-text">file-like Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E5%88%B6%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.3.</span> <span class="toc-text">二级制文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81"><span class="toc-number">1.1.4.</span> <span class="toc-text">字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.5.</span> <span class="toc-text">写文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.1.6.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StringIO%E5%92%8CBytesIO"><span class="toc-number">1.2.</span> <span class="toc-text">StringIO和BytesIO()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StringIO"><span class="toc-number">1.2.1.</span> <span class="toc-text">StringIO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BytesIO"><span class="toc-number">1.2.2.</span> <span class="toc-text">BytesIO</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="toc-number">1.3.</span> <span class="toc-text">操作文件和目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95-1"><span class="toc-number">1.3.2.</span> <span class="toc-text">操作文件和目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.4.</span> <span class="toc-text">序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON"><span class="toc-number">1.4.1.</span> <span class="toc-text">JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON%E8%BF%9B%E9%98%B6"><span class="toc-number">1.4.2.</span> <span class="toc-text">JSON进阶</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-2"><span class="toc-number">1.4.3.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">进程和线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">多进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#multiprocessing"><span class="toc-number">2.1.1.</span> <span class="toc-text">multiprocessing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pool"><span class="toc-number">2.1.2.</span> <span class="toc-text">Pool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.1.3.</span> <span class="toc-text">子进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-number">2.1.4.</span> <span class="toc-text">进程间通信</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1197,7 +1174,14 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -1840,7 +1824,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -1854,6 +1838,12 @@
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span>
+            <a class="archive-post-title" href="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">Hexo博客迁移</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/06</span>
@@ -2317,16 +2307,6 @@
                 数据库工具
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -2340,6 +2320,21 @@
             <span class="sidebar-tag-name" data-tags="Web框架">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="Kubernetes">
@@ -2362,19 +2357,24 @@
                 Lottie
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
-                <span class="iconfont-archer">&#xe606;</span>
-                MinIO
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2387,9 +2387,9 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2402,11 +2402,6 @@
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2417,11 +2412,6 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
@@ -2430,6 +2420,11 @@
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2467,6 +2462,11 @@
                 自动化测试
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2475,11 +2475,6 @@
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2508,6 +2503,11 @@
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2518,14 +2518,14 @@
             大屏设计
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
             操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
         </span>
     
         <span class="sidebar-category-name" data-categories="Kubernetes">
@@ -2533,19 +2533,14 @@
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2553,9 +2548,9 @@
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            LLM
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2563,9 +2558,9 @@
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2573,19 +2568,24 @@
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
-        </span>
-    
         <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
             JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2613,11 +2613,6 @@
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="自动化测试">
-            <span class="iconfont-archer">&#xe60a;</span>
-            自动化测试
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2631,6 +2626,11 @@
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
         </span>
     
         <span class="sidebar-category-name" data-categories="XAMPP">

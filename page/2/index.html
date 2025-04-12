@@ -443,6 +443,46 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/11/02/js%E6%96%87%E4%BB%B6%E8%B0%83%E7%94%A8vue%E5%86%85%E7%9A%84%E6%96%B9%E6%B3%95%E5%B9%B6%E4%BC%A0%E5%80%BC/">
+                
+                <span class="abstract-title-text">js文件调用vue内的方法并传值</span>
+            </a>
+            <div class="abstract-content">
+                在js文件中编写功能函数时，常常要调用vue文件内的方法并传值，下面记录js传值的方法：
+
+首先在vue页面的mounted模块将要调用的方法注册到window对象上，并引入对应的js文件后：
+  123456789mounted()&#123;  window.exampleFunction=this.exampleFunction&#125;,method:&#123;    exampleFunction(data)&#123;        console.log(&#x27;收到方法调用&#x27;)        console.log(data,&#x27;data&#x2...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/11/02">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/11/02</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Vue">Vue</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2023/11/01/python%E5%BC%82%E6%AD%A5%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/">
                 
                 <span class="abstract-title-text">python异步多线程下载文件</span>
@@ -451,8 +491,9 @@
                 在实际项目中，难免会有短时间下载文件的需要。正常的批量下载文件要等前一个文件下载完成后才进行下一个文件的下载工作，下载速度较慢。而通过异步来下载可以实现多个文件同时下载的多线程操作。下面为异步下载文件的实现方法：
 
 首先需要通过pip install aiohttp下载aiohttp模块。
+
 引入相关模块如下：
-123456789import requestsimport aiohttpimport asyncioimport osimport uuidimport configfrom services import dbcfrom utils.response_helper i...
+  123456789import requestsimport aiohttpimport asyncioimport osimport uuidimport configfrom services import dbcfrom utils.response_helper im...
             </div>
             <!-- read more -->
             
@@ -494,7 +535,9 @@ axios可以通过async/await来实现同步请求。
 其中async用来修饰方法，其声明的方法为异步请求的方法，await只能在异步方法中使用，用于等待指定方法执行完成；await修饰的方法执行完成后，才会执行后续的代码。
 axios的.then模块前把this赋值给一个变量并在.then中代替this来使用，可以防止this指针发生变化导致引用全局变量无效的问题，如：
 
-``json     getData() &#123;               var _this=this         axios.get(h...
+```json  getData() {      
+  var _this=this
+  axios.get(`https://tangmenjue.top`)...
             </div>
             <!-- read more -->
             
@@ -533,8 +576,9 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
 
 在Vue项目的main.js中 添加下面语句：
 1Vue.prototype.$eventBus = new Vue()
-在兄弟组件A中所要监听的事件中添加如下自定义事件的代码this.$eventBus.$emit('SyncData')。如需要监听addDataA事件的变化，则组件A中script模块的代码如下所示：
-123456789101112 methods: &#123;  addDataA() &#123...
+
+在兄弟组件A中所要监听的事件中添加如下自定义事件的代码this.$eventBus.$emit(&#39;SyncData&#39;)。如需要监听addDataA事件的变化，则组件A中script模块的代码如下所示：
+123456789101112 methods: &#123;  addDataA() &...
             </div>
             <!-- read more -->
             
@@ -572,9 +616,10 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
                 通过使用Vue的生命周期钩子函数和window对象的resize事件来实现水印根据窗口大小适配的功能：
 
 在Vue文件的script模块中 引入水印组件：
-1import watermark from &#x27;@zsit/watermark&#x27;;  
+ 1import watermark from &#x27;@zsit/watermark&#x27;;  
+
 在script模块的export default里，通过钩子函数mounted监听窗口大小的变化，并在销毁组件前移除事件监听器：
-123456mounted()&#123;  window.addEventListener(&#x27;resize&#x27;,this.handleResize)&#125;,befo...
+ 123456mounted()&#123;  window.addEventListener(&#x27;resize&#x27;,this.handleResize)&#125;,before...
             </div>
             <!-- read more -->
             
@@ -645,11 +690,9 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
                 <span class="abstract-title-text">Kubernetes实践：从yaml创建工作负载</span>
             </a>
             <div class="abstract-content">
-                Pod
-Pod是Kubernetes中的基本单位。容器本身不会直接分配到主机上，而会封装到名为Pod的对象中。Kubernetes以Pod为最小单位进行调度、伸缩并共享资源、管理生命周期。
+                PodPod是Kubernetes中的基本单位。容器本身不会直接分配到主机上，而会封装到名为Pod的对象中。Kubernetes以Pod为最小单位进行调度、伸缩并共享资源、管理生命周期。
 Pod通常表示单个应用程序，由一个或多个关系紧密的容器构成，这些容器拥有同样的生命周期，作为一个整体一起编排到Node上。这些容器共享环境、存储卷（volume）和IP空间。尽管Pod基于一个或多个容器，但应将Pod视作一个单一的整体、单独的应用程序。
-Pod模板
-在创建Pod时，需要定义一个模板文件（.yml文件），并将其称为Pod模板。可以用Pod模板来定义资源，以下是Pod模板的主要内容...
+Pod模板在创建Pod时，需要定义一个模板文件（.yml文件），并将其称为Pod模板。可以用Pod模板来定义资源，以下是Pod模板的主要内容及对应说明：...
             </div>
             <!-- read more -->
             
@@ -684,17 +727,13 @@ Pod模板
                 <span class="abstract-title-text">docker-compose一键部署Elasticsearch Logstash Kibana</span>
             </a>
             <div class="abstract-content">
-                简介
-在使用Elasticsearch进行全文搜索时，会使用到Elasticsearch（搜索引擎）、Logstash（数据同步）、Kibana（数据可视化）这三个中间件。在开发或测试环境中部署项目时，常使用docker-compose一键部署项目所需的环境，因此本文记录使用docker-compose一键部署Elasticsearch、Logstash和Kibana的过程。
-部署
-端口说明
-
+                简介在使用Elasticsearch进行全文搜索时，会使用到Elasticsearch（搜索引擎）、Logstash（数据同步）、Kibana（数据可视化）这三个中间件。在开发或测试环境中部署项目时，常使用docker-compose一键部署项目所需的环境，因此本文记录使用docker-compose一键部署Elasticsearch、Logstash和Kibana的过程。
+部署端口说明
 Elasticsearch：9200（HTTP通信）和9300（TCP通信）
 Logstash：5044和9600（TCP通信）
 Kibana：5601
 
-配置文件
-docke...
+配置文件docker-compose.yml1...
             </div>
             <!-- read more -->
             
@@ -733,16 +772,15 @@ docke...
                 <span class="abstract-title-text">初探vue-quill-editor</span>
             </a>
             <div class="abstract-content">
-                富文本编辑器：vue-quill-editor
-vue-quill-editor是一款可适配PC端和移动端富文本编辑器，具有可设置自定义配置项、外观简洁且轻量的优点。
+                富文本编辑器：vue-quill-editorvue-quill-editor是一款可适配PC端和移动端富文本编辑器，具有可设置自定义配置项、外观简洁且轻量的优点。
 PC端效果图如下：
 移动端的效果图如下：
 vue-quill-editor配置
-
 在项目目录下载vue-quill-editor：
-1npm i vue-quill-editor -S
+  1npm i vue-quill-editor -S
+
 在Vue页面的script模块中引入vue-quill-editor：
-123456789import Vue from &#x27;vue&#x27;import Quill from &quot;quill&quot;...
+  123456789import Vue from &#x27;vue&#x27;import Quill from &quot;quill&quot;;impor...
             </div>
             <!-- read more -->
             
@@ -779,12 +817,11 @@ vue-quill-editor配置
                 <span class="abstract-title-text">Oracle Sql语句查库</span>
             </a>
             <div class="abstract-content">
-                数据库连接工具：DBeaver
-本文中使用的数据库连接工具是DBeaver，其是一款免费且跨平台的数据库连接工具。其优势是会在首次链接数据库时，下载所需驱动，解决了数据库版本不兼容的问题。
+                数据库连接工具：DBeaver本文中使用的数据库连接工具是DBeaver，其是一款免费且跨平台的数据库连接工具。其优势是会在首次链接数据库时，下载所需驱动，解决了数据库版本不兼容的问题。
 该工具的下载地址为：Download | DBeaver Community，直接根据安装指示点击下一步即可完成安装。
 安装好后打开软件，点击左上角的图标新建连接：
 在弹出的窗口里选择Oracle，填好相应的信息后，点击完成。然后会弹出下载驱动文件的页面，点击下载驱动：
-在左方便可看到已连接的数据库，右键数据库名字-SQL编辑器-SQL编辑器便可打开一个可以编写sql语句的脚本编辑器，其他模...
+在左方便可看到已连接的数据库，右键数据库名字-SQL编辑器-SQL编辑器便可打开一个可以编写sql语句的脚本编辑器，其他模块的使用方法...
             </div>
             <!-- read more -->
             
@@ -799,46 +836,6 @@ vue-quill-editor配置
     
     
         <a class="post-tag" href="javascript:void(0);" data-tags="数据库">数据库</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/01/17/%E5%AE%9E%E7%8E%B0Postgresql%E4%B8%8EElasticsearch%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/">
-                
-                <span class="abstract-title-text">实现Postgresql与Elasticsearch的数据同步</span>
-            </a>
-            <div class="abstract-content">
-                遇到一个针对业务数据实现全文搜素的需求，而数据存在于pgsql数据库中，因此要将数据库中的数据同步到ES里。有两种方式可以实现：一是通过ES的API进行增删改查，二是通过中间件来进行数据全量、增量的同步。由于调用API的方式比较麻烦，本文便为第二种实现方式。
-刚开始时是准备使用multicorn插件的，奈何在windows 10的环境下一直都无法进行make&amp;&amp;make install安装，而由于环境问题也无法使用ABC工具（不支持postgresql14），随即作罢，改换成实时数据采集引擎logstash来同步数据。
-logstash概要
-Logstash作为El...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/01/17">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/01/17</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Elasticsearch">Elasticsearch</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
     
 </div>
 
@@ -950,7 +947,7 @@ Logstash作为El...
     <!--添加网站总字数-->
         <p style="font-size:1.2rem;font-weight:bold;color:#777;margin:0.5rem 0;">站点信息</p>
         <div style="margin:0.5rem 0;">
-            <span class="post-count word-count">本站总字数: 209.9k</span>
+            <span class="post-count word-count">本站总字数: 209.6k</span>
             <br/>
         <!--添加网站运行时间-->
             <span id="timeDate">载入天数...</span>
@@ -1430,7 +1427,14 @@ Logstash作为El...
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -2073,7 +2077,7 @@ Logstash作为El...
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -2087,6 +2091,12 @@ Logstash作为El...
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span>
+            <a class="archive-post-title" href="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">Hexo博客迁移</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/06</span>
@@ -2550,16 +2560,6 @@ Logstash作为El...
                 数据库工具
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -2573,6 +2573,21 @@ Logstash作为El...
             <span class="sidebar-tag-name" data-tags="Web框架">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="Kubernetes">
@@ -2595,19 +2610,24 @@ Logstash作为El...
                 Lottie
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
-                <span class="iconfont-archer">&#xe606;</span>
-                MinIO
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2620,9 +2640,9 @@ Logstash作为El...
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2635,11 +2655,6 @@ Logstash作为El...
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2650,11 +2665,6 @@ Logstash作为El...
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
@@ -2663,6 +2673,11 @@ Logstash作为El...
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2700,6 +2715,11 @@ Logstash作为El...
                 自动化测试
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2708,11 +2728,6 @@ Logstash作为El...
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2741,6 +2756,11 @@ Logstash作为El...
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2751,14 +2771,14 @@ Logstash作为El...
             大屏设计
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
             操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
         </span>
     
         <span class="sidebar-category-name" data-categories="Kubernetes">
@@ -2766,19 +2786,14 @@ Logstash作为El...
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2786,9 +2801,9 @@ Logstash作为El...
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            LLM
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2796,9 +2811,9 @@ Logstash作为El...
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2806,19 +2821,24 @@ Logstash作为El...
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
-        </span>
-    
         <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
             JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2846,11 +2866,6 @@ Logstash作为El...
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="自动化测试">
-            <span class="iconfont-archer">&#xe60a;</span>
-            自动化测试
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2864,6 +2879,11 @@ Logstash作为El...
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
         </span>
     
         <span class="sidebar-category-name" data-categories="XAMPP">

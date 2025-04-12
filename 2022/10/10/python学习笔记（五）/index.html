@@ -335,7 +335,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.6k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.6k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -496,82 +496,66 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="高阶函数">高阶函数</h1>
-<p>变量可以指向函数，函数的参数也能接受变量。当一个<strong>函数可以接收另一个函数</strong>作为参数时，这个函数被称作高阶函数。</p>
+        <h1 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h1><p>变量可以指向函数，函数的参数也能接受变量。当一个<strong>函数可以接收另一个函数</strong>作为参数时，这个函数被称作高阶函数。</p>
 <p>最简单的高阶函数如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">x,y,f</span>):</span><br><span class="line">    <span class="keyword">return</span> f(x)+f(y)</span><br><span class="line"><span class="built_in">print</span>(add(-<span class="number">5</span>,<span class="number">6</span>,<span class="built_in">abs</span>))    </span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">11</span></span><br></pre></td></tr></table></figure>
-<h2 id="mapreduce函数">map/reduce函数</h2>
-<h3 id="map函数"><code>map()</code>函数</h3>
-<p><code>map()</code>函数接收两个参数，一个是函数，另一个是<code>Iterable</code>，<code>map</code>将传入的函数依次作用到序列的每个元素，并将结果作为新的<code>Iterable</code>返回。</p>
+<h2 id="map-reduce函数"><a href="#map-reduce函数" class="headerlink" title="map/reduce函数"></a>map/reduce函数</h2><h3 id="map-函数"><a href="#map-函数" class="headerlink" title="map()函数"></a><code>map()</code>函数</h3><p><code>map()</code>函数接收两个参数，一个是函数，另一个是<code>Iterable</code>，<code>map</code>将传入的函数依次作用到序列的每个元素，并将结果作为新的<code>Iterable</code>返回。</p>
 <p>例如要将函数<code>f(x)=x^2</code>作用到一个list<code>[1,2,3,4,5,6,7,8,9]</code>上：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x*x</span><br><span class="line">r=<span class="built_in">map</span>(f,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(r))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>, <span class="number">64</span>, <span class="number">81</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="reduce函数"><code>reduce()</code>函数</h3>
-<p><code>reduce()</code>把函数作用到一个序列[x1,x2,x3,...]上，<code>reduce</code>接收两个函数后，把结果继续和序列的下一个元素做累计计算。</p>
+<h3 id="reduce-函数"><a href="#reduce-函数" class="headerlink" title="reduce()函数"></a><code>reduce()</code>函数</h3><p><code>reduce()</code>把函数作用到一个序列[x1,x2,x3,…]上，<code>reduce</code>接收两个函数后，把结果继续和序列的下一个元素做累计计算。</p>
 <p>例如要对一个序列求和：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x+y</span><br><span class="line"><span class="built_in">print</span>(reduce(add,[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>]))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">25</span></span><br></pre></td></tr></table></figure>
 <p>将<code>map()</code>与<code>reduce()</code>函数结合，可以写出把str转换为int的函数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fn</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x*<span class="number">10</span>+y</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">char2num</span>(<span class="params">s</span>):</span><br><span class="line">    d=&#123;<span class="string">&#x27;0&#x27;</span>:<span class="number">0</span>,<span class="string">&#x27;1&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;2&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;3&#x27;</span>:<span class="number">3</span>,<span class="string">&#x27;4&#x27;</span>:<span class="number">4</span>,<span class="string">&#x27;5&#x27;</span>:<span class="number">5</span>,<span class="string">&#x27;6&#x27;</span>:<span class="number">6</span>,<span class="string">&#x27;7&#x27;</span>:<span class="number">7</span>,<span class="string">&#x27;8&#x27;</span>:<span class="number">8</span>,<span class="string">&#x27;9&#x27;</span>:<span class="number">9</span>&#125;</span><br><span class="line">    <span class="keyword">return</span> d[s]    </span><br><span class="line"><span class="built_in">print</span>(reduce(fn,<span class="built_in">map</span>(char2num,<span class="string">&#x27;14512&#x27;</span>)))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">14512</span></span><br></pre></td></tr></table></figure>
-<h3 id="练习题">练习题</h3>
-<p>利用<code>map()</code>函数，把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：<code>['adam', 'LISA', 'barT']</code>，输出：<code>['Adam', 'Lisa', 'Bart']</code>：</p>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><p>利用<code>map()</code>函数，把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：<code>[&#39;adam&#39;, &#39;LISA&#39;, &#39;barT&#39;]</code>，输出：<code>[&#39;Adam&#39;, &#39;Lisa&#39;, &#39;Bart&#39;]</code>：</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">normalize</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> name:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>.title(name)</span><br><span class="line"><span class="comment"># 测试:</span></span><br><span class="line">L1 = [<span class="string">&#x27;adam&#x27;</span>, <span class="string">&#x27;LISA&#x27;</span>, <span class="string">&#x27;barT&#x27;</span>]</span><br><span class="line">L2 = <span class="built_in">list</span>(<span class="built_in">map</span>(normalize, L1))</span><br><span class="line"><span class="built_in">print</span>(L2)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[<span class="string">&#x27;Adam&#x27;</span>, <span class="string">&#x27;Lisa&#x27;</span>, <span class="string">&#x27;Bart&#x27;</span>]</span><br></pre></td></tr></table></figure>
 <p>Python提供的<code>sum()</code>函数可以接受一个list并求和，请编写一个<code>prod()</code>函数，可以接受一个list并利用<code>reduce()</code>求积：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">prod</span>(<span class="params">L</span>):</span><br><span class="line">    <span class="keyword">return</span> reduce(fn,L)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fn</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x*y</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;3 * 5 * 7 * 9 =&#x27;</span>, prod([<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>]))</span><br><span class="line"><span class="keyword">if</span> prod([<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>]) == <span class="number">945</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试成功!&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">3</span> * <span class="number">5</span> * <span class="number">7</span> * <span class="number">9</span> = <span class="number">945</span></span><br><span class="line">测试成功!</span><br></pre></td></tr></table></figure>
-<p>利用<code>map</code>和<code>reduce</code>编写一个<code>str2float</code>函数，把字符串<code>'123.456'</code>转换成浮点数<code>123.456</code>：</p>
+<p>利用<code>map</code>和<code>reduce</code>编写一个<code>str2float</code>函数，把字符串<code>&#39;123.456&#39;</code>转换成浮点数<code>123.456</code>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#方法一：</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">str2float</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fn</span>(<span class="params">x,y</span>):</span><br><span class="line">        <span class="keyword">return</span> x*<span class="number">10</span>+y</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">gn</span>(<span class="params">x,y</span>):</span><br><span class="line">        <span class="keyword">return</span> x*<span class="number">0.1</span>+y</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">char2num</span>(<span class="params">t</span>):</span><br><span class="line">        d=&#123;<span class="built_in">str</span>(x):x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)&#125;</span><br><span class="line">        <span class="keyword">return</span> d[t]</span><br><span class="line">    a=s.index(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">    t1=s[:a]</span><br><span class="line">    t2=s[a+<span class="number">1</span>:]</span><br><span class="line">    t2=t2[::-<span class="number">1</span>]</span><br><span class="line">    p=reduce(fn,<span class="built_in">map</span>(char2num,t1))</span><br><span class="line">    q=reduce(gn,<span class="built_in">map</span>(char2num,t2))*<span class="number">0.1</span></span><br><span class="line">    <span class="keyword">return</span> p+q</span><br><span class="line">    </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;str2float(\&#x27;123.456\&#x27;) =&#x27;</span>, str2float(<span class="string">&#x27;123.456&#x27;</span>))</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">abs</span>(str2float(<span class="string">&#x27;123.456&#x27;</span>) - <span class="number">123.456</span>) &lt; <span class="number">0.00001</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试成功!&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#方法二：</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">str2float</span>(<span class="params">s</span>):</span><br><span class="line">    d=&#123;<span class="built_in">str</span>(x):x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)&#125;</span><br><span class="line">    p=reduce(<span class="keyword">lambda</span> x,y:x*<span class="number">10</span>+y,<span class="built_in">map</span>(<span class="keyword">lambda</span> s:d[s],s[:s.find(<span class="string">&#x27;.&#x27;</span>)]))</span><br><span class="line">    q=reduce(<span class="keyword">lambda</span> x,y:x*<span class="number">10</span>+y,<span class="built_in">map</span>(<span class="keyword">lambda</span> s:d[s],s[s.find(<span class="string">&#x27;.&#x27;</span>)+<span class="number">1</span>:]))*<span class="number">0.001</span></span><br><span class="line">    <span class="keyword">return</span> p+q</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;str2float(\&#x27;123.456\&#x27;) =&#x27;</span>, str2float(<span class="string">&#x27;123.456&#x27;</span>))</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">abs</span>(str2float(<span class="string">&#x27;123.456&#x27;</span>) - <span class="number">123.456</span>) &lt; <span class="number">0.00001</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试成功!&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">str2float(<span class="string">&#x27;123.456&#x27;</span>) = <span class="number">123.456</span></span><br><span class="line">测试成功!</span><br></pre></td></tr></table></figure>
-<h2 id="filter函数">filter函数</h2>
-<p><code>filter()</code>函数用于过滤序列，该函数接收一个函数和一个序列。与<code>map()</code>不同的是，<code>filter()</code>把传入的函数依次作用于每个元素后，根据<strong>返回值是True还是False</strong>来决定是<strong>保留还是丢弃</strong>该元素。</p>
+<h2 id="filter函数"><a href="#filter函数" class="headerlink" title="filter函数"></a>filter函数</h2><p><code>filter()</code>函数用于过滤序列，该函数接收一个函数和一个序列。与<code>map()</code>不同的是，<code>filter()</code>把传入的函数依次作用于每个元素后，根据<strong>返回值是True还是False</strong>来决定是<strong>保留还是丢弃</strong>该元素。</p>
 <p>例如在一个list中删掉偶数，只保留奇数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">odd</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> n%<span class="number">2</span>==<span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">filter</span>(odd,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">15</span>])))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">15</span>]</span><br></pre></td></tr></table></figure>
 <p><code>filter()</code>函数返回 的是一个<code>Iterator</code>，因此要强迫<code>filter()</code>完成计算结果就需要用<code>list()</code>函数来获得所以结果并返回list。</p>
 <p>用filter求1000以内素数例子：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_odd_iter</span>(): <span class="comment">#先构造从3开始的奇数列</span></span><br><span class="line">    n = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        n = n + <span class="number">2</span></span><br><span class="line">        <span class="keyword">yield</span> n</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_not_divisible</span>(<span class="params">n</span>): <span class="comment">#筛选函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> x: x % n &gt; <span class="number">0</span>        </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">primes</span>():</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span></span><br><span class="line">    it = _odd_iter() <span class="comment"># 初始序列</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        n = <span class="built_in">next</span>(it) <span class="comment"># 返回序列的第一个数</span></span><br><span class="line">        <span class="keyword">yield</span> n</span><br><span class="line">        it = <span class="built_in">filter</span>(_not_divisible(n), it) <span class="comment"># 构造新序列    </span></span><br><span class="line">        <span class="comment"># 打印1000以内的素数:</span></span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> primes():</span><br><span class="line">    <span class="keyword">if</span> n &lt; <span class="number">1000</span>:</span><br><span class="line">        <span class="built_in">print</span>(n)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<h3 id="练习题-1">练习题</h3>
-<p>回数是指从左向右读和从右向左读都是一样的数，例如<code>12321</code>，<code>909</code>。请利用<code>filter()</code>筛选出回数：</p>
+<h3 id="练习题-1"><a href="#练习题-1" class="headerlink" title="练习题"></a>练习题</h3><p>回数是指从左向右读和从右向左读都是一样的数，例如<code>12321</code>，<code>909</code>。请利用<code>filter()</code>筛选出回数：</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">is_palindrome</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">str</span>(n)==<span class="built_in">str</span>(n)[::-<span class="number">1</span>]</span><br><span class="line"><span class="comment"># 测试:</span></span><br><span class="line">output = <span class="built_in">filter</span>(is_palindrome, <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">1000</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;1~1000:&#x27;</span>, <span class="built_in">list</span>(output))</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">list</span>(<span class="built_in">filter</span>(is_palindrome, <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">200</span>))) == [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>, <span class="number">44</span>, <span class="number">55</span>, <span class="number">66</span>, <span class="number">77</span>, <span class="number">88</span>, <span class="number">99</span>, <span class="number">101</span>, <span class="number">111</span>, <span class="number">121</span>, <span class="number">131</span>, <span class="number">141</span>, <span class="number">151</span>, <span class="number">161</span>, <span class="number">171</span>, <span class="number">181</span>, <span class="number">191</span>]:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试成功!&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="comment">#运行结果如下：  </span></span><br><span class="line"><span class="number">1</span>~<span class="number">1000</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">22</span>, <span class="number">33</span>, <span class="number">44</span>, <span class="number">55</span>, <span class="number">66</span>, <span class="number">77</span>, <span class="number">88</span>, <span class="number">99</span>, <span class="number">101</span>, <span class="number">111</span>, <span class="number">121</span>, <span class="number">131</span>, <span class="number">141</span>, <span class="number">151</span>, <span class="number">161</span>, <span class="number">171</span>, <span class="number">181</span>, <span class="number">191</span>, <span class="number">202</span>, <span class="number">212</span>, <span class="number">222</span>, <span class="number">232</span>, <span class="number">242</span>, <span class="number">252</span>, <span class="number">262</span>, <span class="number">272</span>, <span class="number">282</span>, <span class="number">292</span>, <span class="number">303</span>, <span class="number">313</span>, <span class="number">323</span>, <span class="number">333</span>, <span class="number">343</span>, <span class="number">353</span>, <span class="number">363</span>, <span class="number">373</span>, <span class="number">383</span>, <span class="number">393</span>, <span class="number">404</span>, <span class="number">414</span>, <span class="number">424</span>, <span class="number">434</span>, <span class="number">444</span>, <span class="number">454</span>, <span class="number">464</span>, <span class="number">474</span>, <span class="number">484</span>, <span class="number">494</span>, <span class="number">505</span>, <span class="number">515</span>, <span class="number">525</span>, <span class="number">535</span>, <span class="number">545</span>, <span class="number">555</span>, <span class="number">565</span>, <span class="number">575</span>, <span class="number">585</span>, <span class="number">595</span>, <span class="number">606</span>, <span class="number">616</span>, <span class="number">626</span>, <span class="number">636</span>, <span class="number">646</span>, <span class="number">656</span>, <span class="number">666</span>, <span class="number">676</span>, <span class="number">686</span>, <span class="number">696</span>, <span class="number">707</span>, <span class="number">717</span>, <span class="number">727</span>, <span class="number">737</span>, <span class="number">747</span>, <span class="number">757</span>, <span class="number">767</span>, <span class="number">777</span>, <span class="number">787</span>, <span class="number">797</span>, <span class="number">808</span>, <span class="number">818</span>, <span class="number">828</span>, <span class="number">838</span>, <span class="number">848</span>, <span class="number">858</span>, <span class="number">868</span>, <span class="number">878</span>, <span class="number">888</span>, <span class="number">898</span>, <span class="number">909</span>, <span class="number">919</span>, <span class="number">929</span>, <span class="number">939</span>, <span class="number">949</span>, <span class="number">959</span>, <span class="number">969</span>, <span class="number">979</span>, <span class="number">989</span>, <span class="number">999</span>]</span><br><span class="line">测试成功!</span><br></pre></td></tr></table></figure>
-<h2 id="sorted函数">sorted函数</h2>
-<p><code>sorted()</code>可以对list进行排序，还可以接收一个key函数来实现自定义排序。</p>
+<h2 id="sorted函数"><a href="#sorted函数" class="headerlink" title="sorted函数"></a>sorted函数</h2><p><code>sorted()</code>可以对list进行排序，还可以接收一个key函数来实现自定义排序。</p>
 <p>比如按绝对值大小排序：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">sorted</span>([<span class="number">36</span>,<span class="number">5</span>,-<span class="number">12</span>,<span class="number">9</span>,-<span class="number">21</span>],key=<span class="built_in">abs</span>))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[<span class="number">5</span>, <span class="number">9</span>, -<span class="number">12</span>, -<span class="number">21</span>, <span class="number">36</span>]</span><br></pre></td></tr></table></figure>
 <p>默认情况下，用sorted()对字符串排序是<strong>按照ASCII的大小</strong>比较的，若要忽略大小写按照字母表排序，则可以写成：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#正序排序</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sorted</span>([<span class="string">&#x27;Bob&#x27;</span>,<span class="string">&#x27;ant&#x27;</span>,<span class="string">&#x27;Zoo&#x27;</span>,<span class="string">&#x27;panda&#x27;</span>],key=<span class="built_in">str</span>.lower))</span><br><span class="line"><span class="comment">#反序排序</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sorted</span>([<span class="string">&#x27;Bob&#x27;</span>,<span class="string">&#x27;ant&#x27;</span>,<span class="string">&#x27;Zoo&#x27;</span>,<span class="string">&#x27;panda&#x27;</span>],key=<span class="built_in">str</span>.lower,reverse=<span class="literal">True</span>))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[<span class="string">&#x27;ant&#x27;</span>, <span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;panda&#x27;</span>, <span class="string">&#x27;Zoo&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;Zoo&#x27;</span>, <span class="string">&#x27;panda&#x27;</span>, <span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;ant&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="练习题-2">练习题</h3>
-<p>假设我们用一组tuple表示学生名字和成绩：</p>
+<h3 id="练习题-2"><a href="#练习题-2" class="headerlink" title="练习题"></a>练习题</h3><p>假设我们用一组tuple表示学生名字和成绩：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">L = [(&#x27;Bob&#x27;, 75), (&#x27;Adam&#x27;, 92), (&#x27;Bart&#x27;, 66), (&#x27;Lisa&#x27;, 88)]</span><br></pre></td></tr></table></figure>
 <p>请用<code>sorted()</code>对上述列表分别按名字排序：</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">L = [(<span class="string">&#x27;Bob&#x27;</span>, <span class="number">75</span>), (<span class="string">&#x27;Adam&#x27;</span>, <span class="number">92</span>), (<span class="string">&#x27;Bart&#x27;</span>, <span class="number">66</span>), (<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">88</span>)]</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">by_name</span>(<span class="params">t</span>):</span><br><span class="line">    <span class="keyword">return</span> t[<span class="number">0</span>].lower()</span><br><span class="line">L2 = <span class="built_in">sorted</span>(L, key=by_name)</span><br><span class="line"><span class="built_in">print</span>(L2)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[(<span class="string">&#x27;Adam&#x27;</span>, <span class="number">92</span>), (<span class="string">&#x27;Bart&#x27;</span>, <span class="number">66</span>), (<span class="string">&#x27;Bob&#x27;</span>, <span class="number">75</span>), (<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">88</span>)]</span><br></pre></td></tr></table></figure>
 <p>再按成绩从高到低排序：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">L = [(<span class="string">&#x27;Bob&#x27;</span>, <span class="number">75</span>), (<span class="string">&#x27;Adam&#x27;</span>, <span class="number">92</span>), (<span class="string">&#x27;Bart&#x27;</span>, <span class="number">66</span>), (<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">88</span>)]</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">by_score</span>(<span class="params">t</span>):</span><br><span class="line">    reverse=<span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> -t[<span class="number">1</span>] </span><br><span class="line">L2 = <span class="built_in">sorted</span>(L, key=by_score)</span><br><span class="line"><span class="built_in">print</span>(L2)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[(<span class="string">&#x27;Adam&#x27;</span>, <span class="number">92</span>), (<span class="string">&#x27;Lisa&#x27;</span>, <span class="number">88</span>), (<span class="string">&#x27;Bob&#x27;</span>, <span class="number">75</span>), (<span class="string">&#x27;Bart&#x27;</span>, <span class="number">66</span>)]</span><br></pre></td></tr></table></figure>
-<h1 id="返回函数">返回函数</h1>
-<p>高阶函数除了可以接收函数作为参数外，还可以把函数作为结果值返回。</p>
+<h1 id="返回函数"><a href="#返回函数" class="headerlink" title="返回函数"></a>返回函数</h1><p>高阶函数除了可以接收函数作为参数外，还可以把函数作为结果值返回。</p>
 <p>例如，实现一个可变参数的求和，根据需要计算结果：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">lazy_sum</span>(<span class="params">*args</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sum</span>():</span><br><span class="line">        a=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> args:</span><br><span class="line">            a=a+n</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span></span><br><span class="line">f=lazy_sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(f)</span><br><span class="line"><span class="built_in">print</span>(f())</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">&lt;function lazy_sum.&lt;<span class="built_in">locals</span>&gt;.<span class="built_in">sum</span> at <span class="number">0x7f3aaacb9ca0</span>&gt;</span><br><span class="line"><span class="number">15</span></span><br></pre></td></tr></table></figure>
 <p>在调用<code>lazy_sum()</code>函数时，返回的是求和函数而不是求和结果。调用函数<code>f</code>时才真正计算求和的结果。当调用<code>lazy_sum()</code>函数时，每次调用都会返回一个新的函数，即使传入相同参数，返回的函数也不会相同。</p>
-<h2 id="闭包">闭包</h2>
-<p>上面的例子中，内部函数<code>sum</code>可以引用外部函数<code>lazy_sum()</code>的参数和局部变量。当<code>lazy_sum()</code>返回函数<code>sum</code>时，相关参数和变量<strong>仍保存在返回的函数</strong>中。这种程序结构便称为闭包。</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>上面的例子中，内部函数<code>sum</code>可以引用外部函数<code>lazy_sum()</code>的参数和局部变量。当<code>lazy_sum()</code>返回函数<code>sum</code>时，相关参数和变量<strong>仍保存在返回的函数</strong>中。这种程序结构便称为闭包。</p>
 <p>例如，在下面例子中<code>f1()</code>,<code>f2()</code>和<code>f3()</code>调用的结果应该是<code>1</code>,<code>4</code>,<code>9</code>，但实际结果是<code>9 9 9</code>。这便是由于返回函数引用了变量<code>i</code>，但它并非立刻执行，等到3个函数都返回时，所引用的变量已经变成了<code>3</code>，故最终结果为<code>9</code>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">count</span>():</span><br><span class="line">    fn=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">4</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">f</span>():</span><br><span class="line">            <span class="keyword">return</span> i*i</span><br><span class="line">        fn.append(f)</span><br><span class="line">    <span class="keyword">return</span> fn</span><br><span class="line">f1,f2,f3=count()</span><br><span class="line"><span class="built_in">print</span>(f1(),f2(),f3())</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">9</span> <span class="number">9</span> <span class="number">9</span></span><br></pre></td></tr></table></figure>
 <p><strong>注意</strong>：返回函数不要引用任何<strong>循坏变量或后续会发生变化的变量</strong>。若一定要引用循环变量，便再创建一个函数，用该函数的参数<strong>绑定循环变量当前的值</strong>，具体操作如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">count</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">g</span>(<span class="params">i</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">f</span>():</span><br><span class="line">            <span class="keyword">return</span> i*i</span><br><span class="line">        <span class="keyword">return</span> f</span><br><span class="line">    fn=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">4</span>):    </span><br><span class="line">        fn.append(g(i))</span><br><span class="line">    <span class="keyword">return</span> fn</span><br><span class="line">f1,f2,f3=count()</span><br><span class="line"><span class="built_in">print</span>(f1(),f2(),f3())</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">1</span> <span class="number">4</span> <span class="number">9</span></span><br></pre></td></tr></table></figure>
-<h2 id="nonlocal">nonlocal</h2>
-<p>使用闭包，就是内层函数引用了外层函数的局部变量。如果只读外层变量的值，返回的闭包函数调用一切正常，但对外层函数的局部变量进行运算就会报错。</p>
+<h2 id="nonlocal"><a href="#nonlocal" class="headerlink" title="nonlocal"></a>nonlocal</h2><p>使用闭包，就是内层函数引用了外层函数的局部变量。如果只读外层变量的值，返回的闭包函数调用一切正常，但对外层函数的局部变量进行运算就会报错。</p>
 <p>若内层函数想要计算外层函数的局部变量，需要在内部函数内部加一个<code>nonlocal 局部变量名</code>的声明。因此在使用闭包时，对外层变量赋值前，需要使用<code>nonlocal</code>声明改变了不是当前函数的局部变量。</p>
-<h2 id="练习题-3">练习题</h2>
-<p>利用闭包返回一个计数器函数，每次调用它返回递增整数：</p>
+<h2 id="练习题-3"><a href="#练习题-3" class="headerlink" title="练习题"></a>练习题</h2><p>利用闭包返回一个计数器函数，每次调用它返回递增整数：</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">createCounter</span>():</span><br><span class="line">    x=<span class="number">0</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">counter</span>():</span><br><span class="line">        <span class="keyword">nonlocal</span> x</span><br><span class="line">        x=x+<span class="number">1</span>    </span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line">    <span class="keyword">return</span> counter</span><br><span class="line"><span class="comment"># 测试:</span></span><br><span class="line">counterA = createCounter()</span><br><span class="line"><span class="built_in">print</span>(counterA(), counterA(), counterA(), counterA(), counterA()) <span class="comment"># 1 2 3 4 5</span></span><br><span class="line">counterB = createCounter()</span><br><span class="line"><span class="keyword">if</span> [counterB(), counterB(), counterB(), counterB()] == [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试通过!&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line">测试通过!</span><br></pre></td></tr></table></figure>
-<h1 id="匿名函数">匿名函数</h1>
-<p>传入函数时，有时不需要显示定义函数，直接传入匿名函数更方便。如匿名函数<code>lambda x:x*x</code>实际上就是：</p>
+<h1 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h1><p>传入函数时，有时不需要显示定义函数，直接传入匿名函数更方便。如匿名函数<code>lambda x:x*x</code>实际上就是：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x</span>):</span><br><span class="line">	<span class="keyword">return</span> x*x</span><br></pre></td></tr></table></figure>
 <p>匿名函数有个限制，就是只能有一个表达式，不用写<code>return</code>，返回值就是该表达式的结果。由于匿名函数没有名字，不必担心函数名冲突。匿名函数是一个函数对象，可以把匿名函数赋值给一个变量，再利用变量来调用该函数，也可以把匿名函数作为返回值返回。</p>
-<h2 id="练习题-4">练习题</h2>
-<p>请用匿名函数改造下面的代码：</p>
+<h2 id="练习题-4"><a href="#练习题-4" class="headerlink" title="练习题"></a>练习题</h2><p>请用匿名函数改造下面的代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">is_odd</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> n % <span class="number">2</span> == <span class="number">1</span></span><br><span class="line"></span><br><span class="line">L = <span class="built_in">list</span>(<span class="built_in">filter</span>(is_odd, <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">20</span>)))</span><br><span class="line"><span class="built_in">print</span>(L)</span><br></pre></td></tr></table></figure>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">filter</span>(<span class="keyword">lambda</span> n:n % <span class="number">2</span> == <span class="number">1</span>, <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">20</span>))))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">15</span>, <span class="number">17</span>, <span class="number">19</span>]</span><br></pre></td></tr></table></figure>
-
     </article>
     <!-- license -->
     
@@ -769,7 +753,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">高阶函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mapreduce%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">map&#x2F;reduce函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#map%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">map()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reduce%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">reduce()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.1.3.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#filter%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">filter函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sorted%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">sorted函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">返回函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">2.1.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nonlocal"><span class="toc-number">2.2.</span> <span class="toc-text">nonlocal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-3"><span class="toc-number">2.3.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">匿名函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-4"><span class="toc-number">3.1.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">高阶函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#map-reduce%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">map&#x2F;reduce函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#map-%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">map()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reduce-%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">reduce()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.1.3.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#filter%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">filter函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sorted%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">sorted函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">返回函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">2.1.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nonlocal"><span class="toc-number">2.2.</span> <span class="toc-text">nonlocal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-3"><span class="toc-number">2.3.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">匿名函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-4"><span class="toc-number">3.1.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1113,7 +1097,14 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -1756,7 +1747,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -1770,6 +1761,12 @@
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span>
+            <a class="archive-post-title" href="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">Hexo博客迁移</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/06</span>
@@ -2233,16 +2230,6 @@
                 数据库工具
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -2256,6 +2243,21 @@
             <span class="sidebar-tag-name" data-tags="Web框架">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="Kubernetes">
@@ -2278,19 +2280,24 @@
                 Lottie
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
-                <span class="iconfont-archer">&#xe606;</span>
-                MinIO
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2303,9 +2310,9 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2318,11 +2325,6 @@
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2333,11 +2335,6 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
@@ -2346,6 +2343,11 @@
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2383,6 +2385,11 @@
                 自动化测试
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2391,11 +2398,6 @@
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2424,6 +2426,11 @@
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2434,14 +2441,14 @@
             大屏设计
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
             操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
         </span>
     
         <span class="sidebar-category-name" data-categories="Kubernetes">
@@ -2449,19 +2456,14 @@
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2469,9 +2471,9 @@
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            LLM
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2479,9 +2481,9 @@
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2489,19 +2491,24 @@
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
-        </span>
-    
         <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
             JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2529,11 +2536,6 @@
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="自动化测试">
-            <span class="iconfont-archer">&#xe60a;</span>
-            自动化测试
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2547,6 +2549,11 @@
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
         </span>
     
         <span class="sidebar-category-name" data-categories="XAMPP">

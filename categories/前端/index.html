@@ -435,16 +435,15 @@
                 <span class="abstract-title-text">初探vue-quill-editor</span>
             </a>
             <div class="abstract-content">
-                富文本编辑器：vue-quill-editor
-vue-quill-editor是一款可适配PC端和移动端富文本编辑器，具有可设置自定义配置项、外观简洁且轻量的优点。
+                富文本编辑器：vue-quill-editorvue-quill-editor是一款可适配PC端和移动端富文本编辑器，具有可设置自定义配置项、外观简洁且轻量的优点。
 PC端效果图如下：
 移动端的效果图如下：
 vue-quill-editor配置
-
 在项目目录下载vue-quill-editor：
-1npm i vue-quill-editor -S
+  1npm i vue-quill-editor -S
+
 在Vue页面的script模块中引入vue-quill-editor：
-123456789import Vue from &#x27;vue&#x27;import Quill from &quot;quill&quot;...
+  123456789import Vue from &#x27;vue&#x27;import Quill from &quot;quill&quot;;impor...
             </div>
             <!-- read more -->
             
@@ -481,12 +480,10 @@ vue-quill-editor配置
                 <span class="abstract-title-text">Vue.js实战：博客页面前端</span>
             </a>
             <div class="abstract-content">
-                基于Vue-cli的前端项目初始化
-初始化
-Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“使用npm安装”内容。
+                基于Vue-cli的前端项目初始化初始化Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“使用npm安装”内容。
 
 初始化一个新项目，创建文件夹tutorproject作为项目目录，打开一个终端将切换路径到tutorproject，运行代码以创建front-end文件夹：
-12345678910PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject&gt; vue create front-end运行结果如下：Vue CLI v5.0.8? Please pick ...
+  12345678910PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject&gt; vue create front-end运行结果如下：Vue CLI v5.0.8? Please pick a pre...
             </div>
             <!-- read more -->
             
@@ -523,11 +520,8 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
                 <span class="abstract-title-text">前端框架之Vue.js（六）</span>
             </a>
             <div class="abstract-content">
-                可复用性&amp;组合
-混入
-基础
-混入用于分发Vue组件中是可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。
-1234567891011121314151617//定义一个混入对象var myMixin=&#123;  created:function()&#123;    this.hello()  &#125;,  methods:&#123;    hello:function()&#123;      console.log(&#x27;hello from mixin!&#x27;)    &#1...
+                可复用性&amp;组合混入基础混入用于分发Vue组件中是可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。
+1234567891011121314151617//定义一个混入对象var myMixin=&#123;  created:function()&#123;    this.hello()  &#125;,  methods:&#123;    hello:function()&#123;      console.log(&#x27;hello from mixin!&#x27;)    &#125;  &#...
             </div>
             <!-- read more -->
             
@@ -564,13 +558,11 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
                 <span class="abstract-title-text">前端框架之Vue.js（五）</span>
             </a>
             <div class="abstract-content">
-                深入了解组件
-动态组件&amp;异步组件
-在动态组件上使用keep-alive
-之前曾在一个多标签的页面使用is attribute来切换不同的组件：
+                深入了解组件动态组件&amp;异步组件在动态组件上使用keep-alive之前曾在一个多标签的页面使用is attribute来切换不同的组件：
 1&lt;component v-bind:is=&quot;currentTabComponent&quot;&gt;&lt;/component&gt;
 当这些组件之间来回切换时，会发现原来点击的内容被销毁了，由于 每次切换新标签时，Vue都创建了一个新实例，因此切回去时是不会保留之前选择的选项的。
-若想把那些标签的组件实例能够被在它们第一次被创建时缓存下来，可以使用&lt;keep-alive&gt;元素把动态组件包裹起...
+若想把那些标签的组件实例能够被在它们第一次被创建时缓存下来，可以使用&lt;keep-alive&gt;元素把动态组件包裹起来，如：
+1234...
             </div>
             <!-- read more -->
             
@@ -607,19 +599,16 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
                 <span class="abstract-title-text">前端框架之Vue.js（四）</span>
             </a>
             <div class="abstract-content">
-                深入了解组件
-组件注册
-组件名
-注册一个组件时，要给组件起名，如在全局注册中，组件名就是Vue.component的第一个参数：
+                深入了解组件组件注册组件名注册一个组件时，要给组件起名，如在全局注册中，组件名就是Vue.component的第一个参数：
 1Vue component(&#x27;my-component-name&#x27;,&#123;&#125;)
 组件名应当遵守W3C规范中的自定义组件名（字母全小写且必须包含一个连字符）
-组件名大小写
-定义组件名的方式由两种：
+组件名大小写定义组件名的方式由两种：
 
 使用短横线分隔命名:my-component-name
 使用首字母大写命名：MyComponentName
 
-两种命名法都可以使用，但需注意的是，直接在DOM（即非字符串的模板）中使用时，只有短横线分隔命...
+两种命名法都可以使用，但需注意的是，直接在DOM（即非字符串的模板）中使用时，只有短横线分隔命名是有效的。
+全局注册使用全局注...
             </div>
             <!-- read more -->
             
@@ -657,9 +646,8 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
             </a>
             <div class="abstract-content">
                 初始化一个新项目
-
 要初始化一个新项目，创建一个文件夹test作为项目目录，打开一个终端将切换路径到test，运行代码：
-12345678910PS C:\Users\Administrator\Desktop\test&gt; vue create test运行结果如下： Your connection to the default yarn registry seems to be slow.   Use https://registry.npmmirror.com for faster installation? (Y/n)输入Y回车   Vue CLI v5.0.8? Pl...
+  12345678910PS C:\Users\Administrator\Desktop\test&gt; vue create test运行结果如下： Your connection to the default yarn registry seems to be slow.   Use https://registry.npmmirror.com for faster installation? (Y/n)输入Y回车   Vue CLI v5.0.8? Plea...
             </div>
             <!-- read more -->
             
@@ -696,11 +684,8 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
                 <span class="abstract-title-text">前端框架之Vue.js（三）</span>
             </a>
             <div class="abstract-content">
-                Vue.js基础
-列表渲染
-用v-for把一个数组对应为一组元素
-基于一个数组来渲染列表可以使用v-for指令。v-for指令需要通过item in items形式的特殊语法，其中items是源数据数组，而item是被迭代的数组元素的别名。
-123456789101112131415161718&lt;body&gt;&lt;ul id=&quot;example-1&quot;&gt;    &lt;li v-for=&quot;item in items&quot; :key=&quot;item.message&quot;&gt;        &#123;&#123;it...
+                Vue.js基础列表渲染用v-for把一个数组对应为一组元素基于一个数组来渲染列表可以使用v-for指令。v-for指令需要通过item in items形式的特殊语法，其中items是源数据数组，而item是被迭代的数组元素的别名。
+123456789101112131415161718&lt;body&gt;&lt;ul id=&quot;example-1&quot;&gt;    &lt;li v-for=&quot;item in items&quot; :key=&quot;item.message&quot;&gt;        &#123;&#123;item.mess...
             </div>
             <!-- read more -->
             
@@ -737,14 +722,10 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
                 <span class="abstract-title-text">前端框架之Vue.js（二）</span>
             </a>
             <div class="abstract-content">
-                Vue.js基础
-模板语法
-Vue.js使用了基于HTML的模板语法，允许开发者声明式地将DOM绑定至底层Vue实例的数据。所有的Vue.js模板都是合法的HTML。
-插值
-文本
-数据绑定最常见的形式就是使用"Mustache"语法（双大括号）的文本插值：
+                Vue.js基础模板语法Vue.js使用了基于HTML的模板语法，允许开发者声明式地将DOM绑定至底层Vue实例的数据。所有的Vue.js模板都是合法的HTML。
+插值文本数据绑定最常见的形式就是使用”Mustache”语法（双大括号）的文本插值：
 123&lt;div id=&quot;app&quot;&gt;        &lt;span&gt;message:&#123;&#123;message&#125;&#125;&lt;/span&gt;&lt;/div&gt;
-123456var app=new Vue(&#123;    el:&#x27;#a...
+123456var app=new Vue(&#123;    el:&#x27;#app&#x27;,  ...
             </div>
             <!-- read more -->
             
@@ -781,15 +762,12 @@ Vue.js使用了基于HTML的模板语法，允许开发者声明式地将DOM绑�
                 <span class="abstract-title-text">前端框架之Vue.js（一）</span>
             </a>
             <div class="abstract-content">
-                Vue.js基础
-Vue是一套用于构建用户界面的渐进式框架。与其他大型框架不同的是，Vue被设计为可以自底向上逐层应用。Vue的核心库只关注视图层，易于上手且便于与第三方库或既有项目结合。
+                Vue.js基础Vue是一套用于构建用户界面的渐进式框架。与其他大型框架不同的是，Vue被设计为可以自底向上逐层应用。Vue的核心库只关注视图层，易于上手且便于与第三方库或既有项目结合。
 Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览器。
-安装
-直接用&lt;script&gt;引入
-若要在现有站点中使用Vue，可以通过&lt;script&gt;元素在页面中使用。
+安装直接用&lt;script&gt;引入若要在现有站点中使用Vue，可以通过&lt;script&gt;元素在页面中使用。
 
 开发环境版本，包含了有帮助的命令行警告：
-1&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.j...
+  1&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&quot;&g...
             </div>
             <!-- read more -->
             
@@ -826,9 +804,8 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
                 <span class="abstract-title-text">前端三件套之JavaScript（三）</span>
             </a>
             <div class="abstract-content">
-                标准对象
-在JavaScript的世界里，一切皆是对象。但某些对象与其他对象不太一样。为了区分对象的类型，通常用typeof操作符获取对象的类型：
-123456789101112131415161718192021console.log(typeof 123);console.log(typeof NaN);console.log(typeof &#x27;str&#x27;);console.log(typeof true);console.log(typeof undefined);console.log(typeof Math.abs);console.log(typeof n...
+                标准对象在JavaScript的世界里，一切皆是对象。但某些对象与其他对象不太一样。为了区分对象的类型，通常用typeof操作符获取对象的类型：
+123456789101112131415161718192021console.log(typeof 123);console.log(typeof NaN);console.log(typeof &#x27;str&#x27;);console.log(typeof true);console.log(typeof undefined);console.log(typeof Math.abs);console.log(typeof null...
             </div>
             <!-- read more -->
             
@@ -1297,7 +1274,14 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -1940,7 +1924,7 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -1954,6 +1938,12 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span>
+            <a class="archive-post-title" href="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">Hexo博客迁移</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/06</span>
@@ -2417,16 +2407,6 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
                 数据库工具
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -2440,6 +2420,21 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
             <span class="sidebar-tag-name" data-tags="Web框架">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="Kubernetes">
@@ -2462,19 +2457,24 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
                 Lottie
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
-                <span class="iconfont-archer">&#xe606;</span>
-                MinIO
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2487,9 +2487,9 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2502,11 +2502,6 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2517,11 +2512,6 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
@@ -2530,6 +2520,11 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2567,6 +2562,11 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
                 自动化测试
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2575,11 +2575,6 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2608,6 +2603,11 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2618,14 +2618,14 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
             大屏设计
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
             操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
         </span>
     
         <span class="sidebar-category-name" data-categories="Kubernetes">
@@ -2633,19 +2633,14 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2653,9 +2648,9 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            LLM
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2663,9 +2658,9 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2673,19 +2668,24 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
-        </span>
-    
         <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
             JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2713,11 +2713,6 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="自动化测试">
-            <span class="iconfont-archer">&#xe60a;</span>
-            自动化测试
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2731,6 +2726,11 @@ Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览�
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
         </span>
     
         <span class="sidebar-category-name" data-categories="XAMPP">

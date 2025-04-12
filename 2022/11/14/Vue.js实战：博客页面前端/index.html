@@ -24,18 +24,18 @@
 <meta property="og:url" content="http://tangmenjue.top/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/index.html">
 <meta property="og:site_name" content="唐抉的个人博客">
 <meta property="og:locale">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/1.png">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/2.png">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/3.png">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/4.png">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/5.png">
+<meta property="og:image" content="http://tangmenjue.top/2022/11/14/Vue/1.png">
+<meta property="og:image" content="http://tangmenjue.top/2022/11/14/Vue/2.png">
+<meta property="og:image" content="http://tangmenjue.top/2022/11/14/Vue/3.png">
+<meta property="og:image" content="http://tangmenjue.top/2022/11/14/Vue/4.png">
+<meta property="og:image" content="http://tangmenjue.top/2022/11/14/Vue/5.png">
 <meta property="article:published_time" content="2022-11-14T09:33:51.000Z">
 <meta property="article:modified_time" content="2022-11-14T09:33:51.000Z">
 <meta property="article:author" content="唐抉">
 <meta property="article:tag" content="Vue.js">
 <meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://tangmenjue.top/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/1.png">
+<meta name="twitter:image" content="http://tangmenjue.top/2022/11/14/Vue/1.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
@@ -503,20 +503,21 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="基于vue-cli的前端项目初始化">基于Vue-cli的前端项目初始化</h1>
-<h2 id="初始化">初始化</h2>
-<p>Vue-cli环境配置详情见<a href="http://tangmenjue.top/2022/11/03/前端框架之Vue.js（一）/#/使用npm安装">前端框架之Vue.js（一）</a>安装小节里的“<strong>使用npm安装</strong>”内容。</p>
+        <h1 id="基于Vue-cli的前端项目初始化"><a href="#基于Vue-cli的前端项目初始化" class="headerlink" title="基于Vue-cli的前端项目初始化"></a>基于Vue-cli的前端项目初始化</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>Vue-cli环境配置详情见<a href="http://tangmenjue.top/2022/11/03/前端框架之Vue.js（一）/#/使用npm安装">前端框架之Vue.js（一）</a>安装小节里的“<strong>使用npm安装</strong>”内容。</p>
 <ul>
 <li><p>初始化一个新项目，创建文件夹tutorproject作为项目目录，打开一个终端将切换路径到tutorproject，运行代码以创建front-end文件夹：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject&gt; vue create front-end</span><br><span class="line"></span><br><span class="line">运行结果如下：</span><br><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: (Use arrow keys)</span><br><span class="line">&gt; first ([Vue 3] babel, eslint)</span><br><span class="line">  ssecond ([Vue 3] babel, eslint)</span><br><span class="line">  Default ([Vue 3] babel, eslint)</span><br><span class="line">  Default ([Vue 2] babel, eslint)</span><br><span class="line">  Manually select features</span><br></pre></td></tr></table></figure></p></li>
-<li><p>使用方向键选中<code>Default ([Vue 2] babel, eslint)</code>选项后按下键盘上的回车键，然后脚手架工具就开始构建项目，并且安装所需的依赖。</p></li>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject&gt; vue create front-end</span><br><span class="line"></span><br><span class="line">运行结果如下：</span><br><span class="line">Vue CLI v5.0.8</span><br><span class="line">? Please pick a preset: (Use arrow keys)</span><br><span class="line">&gt; first ([Vue 3] babel, eslint)</span><br><span class="line">  ssecond ([Vue 3] babel, eslint)</span><br><span class="line">  Default ([Vue 3] babel, eslint)</span><br><span class="line">  Default ([Vue 2] babel, eslint)</span><br><span class="line">  Manually select features</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用方向键选中<code>Default ([Vue 2] babel, eslint)</code>选项后按下键盘上的回车键，然后脚手架工具就开始构建项目，并且安装所需的依赖。</p>
+</li>
 <li><p>将切换路径到front-end，运行代码以启动Vue应用程序：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject&gt; <span class="built_in">cd</span> front-end</span><br><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\front-end&gt; npm run serve</span><br></pre></td></tr></table></figure></p></li>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject&gt; <span class="built_in">cd</span> front-end</span><br><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\front-end&gt; npm run serve</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>打开浏览器输入网址<code>http://localhost:8080/</code>，即可看到应用程序：</p>
-<p><img src="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/1.png"></p></li>
+<p>  <img src="/2022/11/14/Vue/1.png" alt></p>
+</li>
 </ul>
-<h2 id="组件ping.vue">组件Ping.vue</h2>
-<p>将<code>\tutorproject\front-end\src\components</code>目录下的<code>HelloWorld.vue</code>文件删除，并在当前目录下新建文件<code>Ping.vue</code>：</p>
+<h2 id="组件Ping-vue"><a href="#组件Ping-vue" class="headerlink" title="组件Ping.vue"></a>组件Ping.vue</h2><p>将<code>\tutorproject\front-end\src\components</code>目录下的<code>HelloWorld.vue</code>文件删除，并在当前目录下新建文件<code>Ping.vue</code>：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">name</span>: <span class="string">&#x27;Ping&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">data</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">msg</span>:<span class="string">&#x27;Hello,This is Ping.vue component&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在<code>tutorproject\front-end\src</code>目录下新建路由文件夹<code>router</code>，并在<code>router</code>文件夹中新建文件<code>index.js</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Router</span> <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Ping</span> <span class="keyword">from</span> <span class="string">&#x27;@/components/Ping&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Router</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">    <span class="attr">routes</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">path</span>:<span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">            <span class="attr">name</span>:<span class="string">&#x27;Ping&#x27;</span>,</span><br><span class="line">            <span class="attr">component</span>:<span class="title class_">Ping</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -525,11 +526,10 @@
 <p>修改<code>front-end\vue.config.js</code>文件的代码以关闭语法检查：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; defineConfig &#125; = <span class="built_in">require</span>(<span class="string">&#x27;@vue/cli-service&#x27;</span>)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">transpileDependencies</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">lintOnSave</span>:<span class="literal">false</span> <span class="comment">//关闭语法检查</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>此时的代码结构如下：</p>
-<p><img src="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/2.png"></p>
+<p><img src="/2022/11/14/Vue/2.png" alt></p>
 <p>再次在浏览器中访问<code>http://localhost:8080/</code>，可以看到页面发生了变化：</p>
-<p><img src="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/3.png"></p>
-<h2 id="使用axios与api交互">使用axios与API交互</h2>
-<p>在<code>cmd</code>中按下<code>ctrl+c</code>停止应用程序，使用以下命令安装axios:</p>
+<p><img src="/2022/11/14/Vue/3.png" alt></p>
+<h2 id="使用axios与API交互"><a href="#使用axios与API交互" class="headerlink" title="使用axios与API交互"></a>使用axios与API交互</h2><p>在<code>cmd</code>中按下<code>ctrl+c</code>停止应用程序，使用以下命令安装axios:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\front-end&gt; cnpm install axios --save</span><br></pre></td></tr></table></figure>
 <p>依赖关系自动写进了<code>front-end\package.json</code>中，在package.json文件的<code>dependencies</code>里可以看到刚安装的axios。</p>
 <p>输入<code>npm run serve</code>重新启动<code>Vue</code>。</p>
@@ -538,26 +538,28 @@
 <p>另外打开一个终端将切换路径到<code>tutorproject\back-end</code>（博客后端的项目文件），运行代码以运行flask服务端：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; venv\Scripts\activate</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; flask run</span><br></pre></td></tr></table></figure>
 <p>此时在浏览器中访问<code>http://localhost:8080/</code>，可以看到页面再次发生了变化：</p>
-<p><img src="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/4.png"></p>
+<p><img src="/2022/11/14/Vue/4.png" alt></p>
 <p>若没有获取到后端API端口的数据<code>pong!</code>，解决方案如下：</p>
 <ul>
 <li><p>停止flask的运行，使用pip安装<code>Flask-Cors</code>包</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; pip install flask-Cors</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure></p></li>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; pip install flask-Cors</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>然后修改<code>tutorproject\back-end\tutorweb\__init__.py</code>：</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"><span class="keyword">from</span> flask_migrate <span class="keyword">import</span> Migrate</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> Config</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义Flack_SQLAlchemy</span></span><br><span class="line">db=SQLAlchemy()</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义Flack_Migrate </span></span><br><span class="line">migrate=Migrate()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_app</span>(<span class="params">config_class=Config</span>):</span><br><span class="line">    app=Flask(__name__)</span><br><span class="line">    app.config.from_object(config_class)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#启用CORS</span></span><br><span class="line">    CORS(app)</span><br><span class="line">    <span class="comment">#初始化Flack_SQLAlchemy</span></span><br><span class="line">    db.init_app(app)</span><br><span class="line">    <span class="comment">#初始化Flack_Migrate </span></span><br><span class="line">    migrate.init_app(app,db)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#注册blueprint</span></span><br><span class="line">    <span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp <span class="keyword">as</span> api_bp</span><br><span class="line">    app.register_blueprint(api_bp,url_prefix=<span class="string">&#x27;/api&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> app </span><br><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> models</span><br></pre></td></tr></table></figure></p></li>
-<li><p>然后再启动flask，访问<code>http://localhost:8080/</code>页面即可。</p></li>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"><span class="keyword">from</span> flask_migrate <span class="keyword">import</span> Migrate</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> Config</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义Flack_SQLAlchemy</span></span><br><span class="line">db=SQLAlchemy()</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义Flack_Migrate </span></span><br><span class="line">migrate=Migrate()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_app</span>(<span class="params">config_class=Config</span>):</span><br><span class="line">    app=Flask(__name__)</span><br><span class="line">    app.config.from_object(config_class)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#启用CORS</span></span><br><span class="line">    CORS(app)</span><br><span class="line">    <span class="comment">#初始化Flack_SQLAlchemy</span></span><br><span class="line">    db.init_app(app)</span><br><span class="line">    <span class="comment">#初始化Flack_Migrate </span></span><br><span class="line">    migrate.init_app(app,db)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#注册blueprint</span></span><br><span class="line">    <span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp <span class="keyword">as</span> api_bp</span><br><span class="line">    app.register_blueprint(api_bp,url_prefix=<span class="string">&#x27;/api&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> app </span><br><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> models</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后再启动flask，访问<code>http://localhost:8080/</code>页面即可。</p>
+</li>
 </ul>
-<h2 id="引入element-ui">引入element-UI</h2>
-<p>使用<code>cnpm</code>命令安装：</p>
+<h2 id="引入element-UI"><a href="#引入element-UI" class="headerlink" title="引入element-UI"></a>引入element-UI</h2><p>使用<code>cnpm</code>命令安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\front-end&gt; cnpm install element-ui -S</span><br></pre></td></tr></table></figure>
 <p>修改<code>\front-end\src\main.js</code>，引入element-UI样式：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ElementUI</span> <span class="keyword">from</span> <span class="string">&#x27;element-ui&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">ElementUI</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  <span class="attr">render</span>: <span class="function"><span class="params">h</span> =&gt;</span> <span class="title function_">h</span>(<span class="title class_">App</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>).<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>修改<code>\front-end\src\components\Ping.vue</code>中<code>&lt;template&gt;...&lt;/template&gt;</code>部分的代码，创建element-UI风格的按钮：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> <span class="attr">round</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在浏览器中访问<code>http://localhost:8080/</code>，可以看到element-UI风格的按钮<code>pong!</code>：</p>
-<p><img src="/2022/11/14/Vue.js%E5%AE%9E%E6%88%98%EF%BC%9A%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%89%8D%E7%AB%AF/5.png"></p>
+<p><img src="/2022/11/14/Vue/5.png" alt></p>
 <p>至此，博客前端的欢迎页面完成，页面的具体样式可以根据自己的喜好自行更改。</p>
-<p>博客后续的登录注册等页面，由于代码过多且繁杂，暂且不表，该部分的后续看心情更新。（除非...评论区呼声高，嗯！）</p>
+<p>博客后续的登录注册等页面，由于代码过多且繁杂，暂且不表，该部分的后续看心情更新。（除非…评论区呼声高，嗯！）</p>
 
     </article>
     <!-- license -->
@@ -756,7 +758,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Evue-cli%E7%9A%84%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">基于Vue-cli的前端项目初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6ping.vue"><span class="toc-number">1.2.</span> <span class="toc-text">组件Ping.vue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8axios%E4%B8%8Eapi%E4%BA%A4%E4%BA%92"><span class="toc-number">1.3.</span> <span class="toc-text">使用axios与API交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5element-ui"><span class="toc-number">1.4.</span> <span class="toc-text">引入element-UI</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EVue-cli%E7%9A%84%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">基于Vue-cli的前端项目初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6Ping-vue"><span class="toc-number">1.2.</span> <span class="toc-text">组件Ping.vue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8axios%E4%B8%8EAPI%E4%BA%A4%E4%BA%92"><span class="toc-number">1.3.</span> <span class="toc-text">使用axios与API交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5element-UI"><span class="toc-number">1.4.</span> <span class="toc-text">引入element-UI</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1100,7 +1102,14 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -1743,7 +1752,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -1757,6 +1766,12 @@
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span>
+            <a class="archive-post-title" href="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">Hexo博客迁移</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/06</span>
@@ -2220,16 +2235,6 @@
                 数据库工具
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -2243,6 +2248,21 @@
             <span class="sidebar-tag-name" data-tags="Web框架">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="Kubernetes">
@@ -2265,19 +2285,24 @@
                 Lottie
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
-                <span class="iconfont-archer">&#xe606;</span>
-                MinIO
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2290,9 +2315,9 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2305,11 +2330,6 @@
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2320,11 +2340,6 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
@@ -2333,6 +2348,11 @@
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2370,6 +2390,11 @@
                 自动化测试
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2378,11 +2403,6 @@
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2411,6 +2431,11 @@
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2421,14 +2446,14 @@
             大屏设计
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
             操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
         </span>
     
         <span class="sidebar-category-name" data-categories="Kubernetes">
@@ -2436,19 +2461,14 @@
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2456,9 +2476,9 @@
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            LLM
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2466,9 +2486,9 @@
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2476,19 +2496,24 @@
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
-        </span>
-    
         <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
             JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2516,11 +2541,6 @@
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="自动化测试">
-            <span class="iconfont-archer">&#xe60a;</span>
-            自动化测试
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2534,6 +2554,11 @@
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
         </span>
     
         <span class="sidebar-category-name" data-categories="XAMPP">

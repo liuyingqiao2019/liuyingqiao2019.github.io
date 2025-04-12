@@ -24,15 +24,15 @@
 <meta property="og:url" content="http://tangmenjue.top/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="唐抉的个人博客">
 <meta property="og:locale">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%80%EF%BC%89/1.png">
-<meta property="og:image" content="http://tangmenjue.top/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%80%EF%BC%89/2.png">
+<meta property="og:image" content="http://tangmenjue.top/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue/1.png">
+<meta property="og:image" content="http://tangmenjue.top/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue/2.png">
 <meta property="article:published_time" content="2022-11-03T03:30:59.000Z">
 <meta property="article:modified_time" content="2022-11-03T03:30:59.000Z">
 <meta property="article:author" content="唐抉">
 <meta property="article:tag" content="Vue.js">
 <meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://tangmenjue.top/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%80%EF%BC%89/1.png">
+<meta name="twitter:image" content="http://tangmenjue.top/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue/1.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
@@ -500,41 +500,36 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="vue.js基础">Vue.js基础</h1>
-<p>Vue是一套用于构建用户界面的渐进式框架。与其他大型框架不同的是，Vue被设计为可以自底向上逐层应用。Vue的核心库只关注视图层，易于上手且便于与第三方库或既有项目结合。</p>
+        <h1 id="Vue-js基础"><a href="#Vue-js基础" class="headerlink" title="Vue.js基础"></a>Vue.js基础</h1><p>Vue是一套用于构建用户界面的渐进式框架。与其他大型框架不同的是，Vue被设计为可以自底向上逐层应用。Vue的核心库只关注视图层，易于上手且便于与第三方库或既有项目结合。</p>
 <p>Vue不支持IE8及以下的版本，它支持所有兼容ECMA Script 5的浏览器。</p>
-<h2 id="安装">安装</h2>
-<h3 id="直接用script引入">直接用<code>&lt;script&gt;</code>引入</h3>
-<p>若要在现有站点中使用Vue，可以通过<code>&lt;script&gt;</code>元素在页面中使用。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="直接用-lt-script-gt-引入"><a href="#直接用-lt-script-gt-引入" class="headerlink" title="直接用&lt;script&gt;引入"></a>直接用<code>&lt;script&gt;</code>引入</h3><p>若要在现有站点中使用Vue，可以通过<code>&lt;script&gt;</code>元素在页面中使用。</p>
 <ul>
 <li><p>开发环境版本，包含了有帮助的命令行警告：</p>
-<p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p></li>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>生产环境版本，优化了尺寸和速度。在站点上包含Vue时要指定版本号：</p>
-<p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p></li>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h3 id="使用npm安装">使用npm安装</h3>
-<p>直接用<code>&lt;script&gt;</code>引入vue的方法有一些局限性，若要构建更复杂的应用程序，需要使用npm软件包和脚手架CLI。在此之前，需要安装node.js 8.11及以上的版本，安装有包管理器npm。</p>
+<h3 id="使用npm安装"><a href="#使用npm安装" class="headerlink" title="使用npm安装"></a>使用npm安装</h3><p>直接用<code>&lt;script&gt;</code>引入vue的方法有一些局限性，若要构建更复杂的应用程序，需要使用npm软件包和脚手架CLI。在此之前，需要安装node.js 8.11及以上的版本，安装有包管理器npm。</p>
 <p>在cmd里使用node.js的<code>npm</code>命令安装Vue：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue</span><br></pre></td></tr></table></figure>
 <p>在cmd里使用node.js的<code>npm</code>命令安装脚手架CLI：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --global @vue/cli</span><br><span class="line">若安装不上使用下面命令进行安装</span><br><span class="line">cnpm install -g @vue/cli</span><br></pre></td></tr></table></figure>
 <p><strong>注意：</strong>不推荐新手直接使用<code>vue-cli</code>，尤其是还不熟悉基于Node.js的构建工具时。</p>
-<h3 id="vue-devtools">Vue Devtools</h3>
-<p>在使用vue时，推荐在浏览器上安装 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-devtools#vue-devtools">Vue Devtools</a>。它允许在一个更友好的界面中审查和调试 Vue 应用。</p>
-<h2 id="声明式渲染">声明式渲染</h2>
-<p>Vue.js的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进DOM系统。</p>
+<h3 id="Vue-Devtools"><a href="#Vue-Devtools" class="headerlink" title="Vue Devtools"></a>Vue Devtools</h3><p>在使用vue时，推荐在浏览器上安装 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-devtools#vue-devtools">Vue Devtools</a>。它允许在一个更友好的界面中审查和调试 Vue 应用。</p>
+<h2 id="声明式渲染"><a href="#声明式渲染" class="headerlink" title="声明式渲染"></a>声明式渲染</h2><p>Vue.js的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进DOM系统。</p>
 <p>新建一个html文件，编写以下代码后运行，即可创建第一个Vue应用：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">        &#123;&#123;message&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> app=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">el</span>:<span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">message</span>:<span class="string">&#x27;Hello Vue!&#x27;</span></span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--运行结果如下：--&gt;</span></span><br><span class="line">Hello Vue!</span><br></pre></td></tr></table></figure>
 <p>创建应用的过程看起来与渲染一个字符串模板类似。现在数据和DOM已经被建立了管理，所有东西都是响应式的。</p>
 <p>在运行代码的浏览器上按F12打开开发人员工具，选择控制台（后续简称为JavaScript控制台），修改<code>app.message</code>的值，即可看到浏览器中也会及时更新显示的值：</p>
-<p><img src="/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%80%EF%BC%89/1.png"></p>
+<p><img src="/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue/1.png" alt></p>
 <p>一个Vue应用会将其挂载到一个DOM元素上（上述代码中是<code>#app</code>），然后对其进行完全控制。</p>
 <p>除了文本插值，还可以绑定元素attribute如下所示：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">        &#123;&#123;message&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-2&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind:title</span>=<span class="string">&quot;message&quot;</span>&gt;</span></span><br><span class="line">            鼠标悬停几秒查看此处动态绑定的提示信息！</span><br><span class="line">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> app=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">el</span>:<span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">message</span>:<span class="string">&#x27;Hello Vue!&#x27;</span></span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> app2=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">el</span>:<span class="string">&#x27;#app-2&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">message</span>:<span class="string">&#x27;页面加载于 &#x27;</span>+<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">toLocaleString</span>()</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这里的<code>v-bind</code> attribute被称为指令。指令带有前缀<code>v-</code>以表示它们是Vue提供的特殊attribute。它们会在渲染的DOM上应用特殊的响应式行为。在上述代码中，该实例的意思是：将这个元素节点的<code>title</code> atrribute和Vue实例的message property保持一致。</p>
-<p>若再次打开JavaScript控制台，输入<code>app2.message='新消息'</code>，就会再次看到这个绑定了<code>title</code> attribute的HTML已经进行了更新。</p>
-<h2 id="条件与循环">条件与循环</h2>
-<p>可以利用条件判断来控制切换一个元素是否显示：</p>
+<p>若再次打开JavaScript控制台，输入<code>app2.message=&#39;新消息&#39;</code>，就会再次看到这个绑定了<code>title</code> attribute的HTML已经进行了更新。</p>
+<h2 id="条件与循环"><a href="#条件与循环" class="headerlink" title="条件与循环"></a>条件与循环</h2><p>可以利用条件判断来控制切换一个元素是否显示：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-3&quot;</span>&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">&quot;seen&quot;</span>&gt;</span>现在你看到我了<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app3=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    <span class="attr">el</span>:<span class="string">&#x27;#app-3&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>:&#123;</span><br><span class="line">        <span class="attr">seen</span>:<span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>若打开JavaScript控制台，输入<code>app3.seen=false</code>，就会再次看到之前显示的消息消失了。</p>
@@ -542,36 +537,30 @@
 <p>还有很多其他指令，每个都有特殊的功能，如<code>v-for</code>指令可以绑定数组的数据来渲染一个项目列表：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-4&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;todo in todos&quot;</span>&gt;</span></span><br><span class="line">            &#123;&#123;todo.text&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app4=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    <span class="attr">el</span>:<span class="string">&#x27;#app-4&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>:&#123;</span><br><span class="line">        <span class="attr">todos</span>:[</span><br><span class="line">            &#123; <span class="attr">text</span>:<span class="string">&#x27;学习 JavaScript&#x27;</span>&#125;,</span><br><span class="line">            &#123; <span class="attr">text</span>:<span class="string">&#x27;学习 Vue&#x27;</span>&#125;,</span><br><span class="line">            &#123; <span class="attr">text</span>:<span class="string">&#x27;搞个项目&#x27;</span>&#125;</span><br><span class="line">            ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>在控制台里，输入<code>app4.todos.push(&#123; text: '新项目'&#125;)</code>，会发现列表最后添加了一个新项目。</p>
-<h2 id="处理用户输入">处理用户输入</h2>
-<p>为了让用户和应用进行交互，可以用<code>v-on</code>指令添加一个事件监听器，通过它调用在Vue实例中定义的方法：</p>
+<p>在控制台里，输入<code>app4.todos.push(&#123; text: &#39;新项目&#39;&#125;)</code>，会发现列表最后添加了一个新项目。</p>
+<h2 id="处理用户输入"><a href="#处理用户输入" class="headerlink" title="处理用户输入"></a>处理用户输入</h2><p>为了让用户和应用进行交互，可以用<code>v-on</code>指令添加一个事件监听器，通过它调用在Vue实例中定义的方法：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-5&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;reverseMessage&quot;</span>&gt;</span>反转信息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app5=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    <span class="attr">el</span>:<span class="string">&#x27;#app-5&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>:&#123;</span><br><span class="line">        <span class="attr">message</span>:<span class="string">&#x27;Hello Vue.js!&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">methods</span>:&#123;</span><br><span class="line">        <span class="attr">reverseMessage</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">message</span>=<span class="variable language_">this</span>.<span class="property">message</span>.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p><strong>注意：</strong>在reverseMessage方法中，虽然更新了应用状态，但没有触碰DOM，所有的DOM操作都有Vue来处理。</p>
 <p>Vue还提供了<code>v-model</code>指令，可以实现表单输入和应用状态之间的双向绑定：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-6&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; message&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">&quot;message&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app6=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    <span class="attr">el</span>:<span class="string">&#x27;#app-6&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>:&#123;</span><br><span class="line">        <span class="attr">message</span>:<span class="string">&#x27;Hello Vue!&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="组件化应用创建">组件化应用创建</h2>
-<p>组件系统是Vue的另一个重要概念。它是一种抽象，允许使用小型、独立和通常可复用的组件构建大型应用。因此任意类型的应用界面都可以抽象为一个组件树。</p>
+<h2 id="组件化应用创建"><a href="#组件化应用创建" class="headerlink" title="组件化应用创建"></a>组件化应用创建</h2><p>组件系统是Vue的另一个重要概念。它是一种抽象，允许使用小型、独立和通常可复用的组件构建大型应用。因此任意类型的应用界面都可以抽象为一个组件树。</p>
 <p>在Vue里，一个组件本质上是一个拥有预定义选项的一个Vue实例。其中使用 <code>v-bind</code> 指令将待办项传到循环输出的每个组件中：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-7&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--使用v-bind指令将待办项传到循环输出的每个组件中--&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--为每个todo-item提供todo对象--&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--todo对象是变量，其内容是动态的。同时也需要为每个组件提供一个&quot;key&quot;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">todo-item</span> <span class="attr">v-for</span>=<span class="string">&quot;item in groceryList&quot;</span> <span class="attr">v-bind:todo</span>=<span class="string">&quot;item&quot;</span> <span class="attr">v-bind:key</span>=<span class="string">&quot;item.id&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">todo-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="title class_">Vue</span>.<span class="title function_">component</span>(<span class="string">&#x27;todo-item&#x27;</span>,&#123;</span><br><span class="line">        <span class="comment">//todo-item组件接收一个名为todo的prop，类似于一个自定义attribute</span></span><br><span class="line">        <span class="attr">props</span>:[<span class="string">&#x27;todo&#x27;</span>],</span><br><span class="line">        <span class="attr">template</span>:<span class="string">&#x27;&lt;li&gt;&#123;&#123;todo.text&#125;&#125;&lt;/li&gt;&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">var</span> app7=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">        <span class="attr">el</span>:<span class="string">&#x27;#app-7&#x27;</span>,</span><br><span class="line">        <span class="attr">data</span>:&#123;</span><br><span class="line">            <span class="attr">groceryList</span>:[</span><br><span class="line">                &#123; <span class="attr">id</span>:<span class="number">0</span>,<span class="attr">text</span>:<span class="string">&#x27;蔬菜&#x27;</span>&#125;,</span><br><span class="line">                &#123; <span class="attr">id</span>:<span class="number">1</span>,<span class="attr">text</span>:<span class="string">&#x27;奶酪&#x27;</span>&#125;,</span><br><span class="line">                &#123; <span class="attr">id</span>:<span class="number">2</span>,<span class="attr">text</span>:<span class="string">&#x27;薯条&#x27;</span>&#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>上述代码中，将应用分割成了两个更小的单元。子单元通过prop接口与负担也进行了良好的解耦，后续可以进一步改进<code>&lt;todo-item&gt;</code>组件，提供更为复杂的模板和逻辑，而不会影响到父单元。在一个大型应用中，将整个应用程序划分为组件是有必要的。</p>
-<h3 id="组件与自定义元素的关系">组件与自定义元素的关系</h3>
-<p>Vue组件是Web组件规范的一部分，其与自定义元素十分类似，但还是有关键的差别：</p>
+<h3 id="组件与自定义元素的关系"><a href="#组件与自定义元素的关系" class="headerlink" title="组件与自定义元素的关系"></a>组件与自定义元素的关系</h3><p>Vue组件是Web组件规范的一部分，其与自定义元素十分类似，但还是有关键的差别：</p>
 <ul>
 <li>Web Components规范已完成并通过，但未被所有浏览器原生实现。相比之下，Vue组件不需要任何polyfill，且在所有支持的浏览器中表现一致。必要时，Vue组件也可以包装与原生自定义元素之内</li>
 <li>Vue组件提供了纯自定义元素所不具备的一些重要功能，最突出的是跨组件数据流、自定义事件通信以及构建工具集成。</li>
 </ul>
 <p>因此，虽然Vue内部没有使用自定义元素，但在应用使用自定义元素或以自定义元素发布时，仍然有着很好的操作性。Vue CLI脚手架 也支持将Vue组件构建成为原生的自定义元素。</p>
-<h2 id="vue实例">Vue实例</h2>
-<h3 id="创建一个vue实例">创建一个Vue实例</h3>
-<p>每个Vue应用都是通过用Vue函数创建一个新的Vue实例开始的：</p>
+<h2 id="Vue实例"><a href="#Vue实例" class="headerlink" title="Vue实例"></a>Vue实例</h2><h3 id="创建一个Vue实例"><a href="#创建一个Vue实例" class="headerlink" title="创建一个Vue实例"></a>创建一个Vue实例</h3><p>每个Vue应用都是通过用Vue函数创建一个新的Vue实例开始的：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var vm=new Vue(&#123;</span><br><span class="line">	//选项</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>在文档中经常会使用<code>vm</code>这个变量名表示Vue实例。当创建一个实例时，可以传入一个选项对象。</p>
 <p>一个Vue应用由一个通过new Vue创建的根Vue实例，以及可选的嵌套的、可复用的组件树组成。所有的Vue组件都是Vue实例，并且接受相同的选项对象。</p>
-<h4 id="数据与方法">数据与方法</h4>
-<p>当一个Vue实例被创建时，它将data对象中的所有property加入到Vue的响应式系统中。当这些property的值发生改变时，视图将会产生响应， 即匹配更新为新的值。</p>
+<h4 id="数据与方法"><a href="#数据与方法" class="headerlink" title="数据与方法"></a>数据与方法</h4><p>当一个Vue实例被创建时，它将data对象中的所有property加入到Vue的响应式系统中。当这些property的值发生改变时，视图将会产生响应， 即匹配更新为新的值。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">var</span> data=&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;<span class="comment">//数据对象</span></span><br><span class="line">   <span class="keyword">var</span> vm=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;<span class="comment">//该对象被加入到一个Vue实例中</span></span><br><span class="line">       <span class="attr">data</span>:data </span><br><span class="line">   &#125;)</span><br><span class="line">   <span class="comment">//获得这个实例上的property,返回源数据中对应的字段</span></span><br><span class="line">   vm.<span class="property">a</span>==data.<span class="property">a</span></span><br><span class="line"><span class="comment">//设置property会影响到原始数据</span></span><br><span class="line">   vm.<span class="property">a</span>=<span class="number">2</span></span><br><span class="line">   data.<span class="property">a</span><span class="comment">//返回2</span></span><br><span class="line"><span class="comment">//反过来也一样</span></span><br><span class="line">   data.<span class="property">a</span>=<span class="number">3</span></span><br><span class="line">   vm.<span class="property">a</span><span class="comment">//返回3</span></span><br></pre></td></tr></table></figure>
 <p>当这些数据改变时，视图会进行重渲染。<strong>只有当实例被创建时就已经存在与property才是响应式的。</strong>若后面才添加一个新的property</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.<span class="property">b</span>=<span class="string">&#x27;h1&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -582,14 +571,12 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> obj=&#123;</span><br><span class="line">     <span class="attr">foo</span>:<span class="string">&#x27;bar&#x27;</span></span><br><span class="line"> &#125;</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">freeze</span>(obj)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> app8=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">     <span class="attr">el</span>:<span class="string">&#x27;#app-8&#x27;</span>,</span><br><span class="line">     <span class="attr">data</span>:obj</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
 <p>除了数据property，Vue实例还暴露了一些有用的实例property与方法。它们都有前缀<code>$</code>，以便与用户定义的property区分开来：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vm.<span class="property">$data</span>===data<span class="comment">//返回true</span></span><br><span class="line">vm.<span class="property">$el</span>===<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;example&#x27;</span>)<span class="comment">//返回true</span></span><br><span class="line">$watch是一个实例方法</span><br><span class="line">vm.$watch(<span class="string">&#x27;a&#x27;</span>,<span class="keyword">function</span>(<span class="params">newValue,oldValue</span>)&#123;</span><br><span class="line">    <span class="comment">//这个回调将在&#x27;vm.a&#x27;改变后调用</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="实例生命周期钩子">实例生命周期钩子</h3>
-<p>每个Vue实例在被创建时都要经过一系列的初始化过程，如设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些名为<strong>生命周期钩子</strong>的函数。</p>
+<h3 id="实例生命周期钩子"><a href="#实例生命周期钩子" class="headerlink" title="实例生命周期钩子"></a>实例生命周期钩子</h3><p>每个Vue实例在被创建时都要经过一系列的初始化过程，如设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些名为<strong>生命周期钩子</strong>的函数。</p>
 <p>如<code>created</code>钩子可以用来在一个实例被创建之后执行代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">        <span class="attr">data</span>:&#123;</span><br><span class="line">            <span class="attr">a</span>:<span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">created</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;a is: &#x27;</span>+<span class="variable language_">this</span>.<span class="property">a</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="comment">//返回a is: 1</span></span><br></pre></td></tr></table></figure>
 <p>也有一些其他的钩子，在实例生命周期的不同阶段被调用，如<code>mounted</code>、<code>updated</code>和<code>destroyed</code>。生命周期钩子的<code>this</code>上下文指向调用它的Vue实例。</p>
-<p><strong>注意：不要在选项property或回调上使用箭头函数</strong>，如<code>created:()=&gt;console.log(this.a)</code>或是<code>vm.$watch('a',newValue=&gt;this.myMethod())</code><strong>。因为箭头函数并没有<code>this</code></strong>，<code>this</code>作为变量一直向上级词法作用域查找，直至找到为止，<strong>经常会报错。</strong></p>
-<h3 id="生命周期图示">生命周期图示</h3>
-<p><img src="/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue.js%EF%BC%88%E4%B8%80%EF%BC%89/2.png"></p>
+<p><strong>注意：**</strong>不要在选项property或回调上使用箭头函数<strong>，如<code>created:()=&gt;console.log(this.a)</code>或是<code>vm.$watch(&#39;a&#39;,newValue=&gt;this.myMethod())</code></strong>。因为箭头函数并没有<code>this</code><strong>，<code>this</code>作为变量一直向上级词法作用域查找，直至找到为止，</strong>经常会报错。**</p>
+<h3 id="生命周期图示"><a href="#生命周期图示" class="headerlink" title="生命周期图示"></a>生命周期图示</h3><p><img src="/2022/11/03/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B9%8BVue/2.png" alt></p>
 
     </article>
     <!-- license -->
@@ -788,7 +775,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vue.js%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">Vue.js基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E7%94%A8script%E5%BC%95%E5%85%A5"><span class="toc-number">1.1.1.</span> <span class="toc-text">直接用&lt;script&gt;引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8npm%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.2.</span> <span class="toc-text">使用npm安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue-devtools"><span class="toc-number">1.1.3.</span> <span class="toc-text">Vue Devtools</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8F%E6%B8%B2%E6%9F%93"><span class="toc-number">1.2.</span> <span class="toc-text">声明式渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E4%B8%8E%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.3.</span> <span class="toc-text">条件与循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5"><span class="toc-number">1.4.</span> <span class="toc-text">处理用户输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BA%94%E7%94%A8%E5%88%9B%E5%BB%BA"><span class="toc-number">1.5.</span> <span class="toc-text">组件化应用创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E4%B8%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%83%E7%B4%A0%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.5.1.</span> <span class="toc-text">组件与自定义元素的关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.6.</span> <span class="toc-text">Vue实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAvue%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">创建一个Vue实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%8E%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">数据与方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90"><span class="toc-number">1.6.2.</span> <span class="toc-text">实例生命周期钩子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA"><span class="toc-number">1.6.3.</span> <span class="toc-text">生命周期图示</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue-js%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">Vue.js基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E7%94%A8-lt-script-gt-%E5%BC%95%E5%85%A5"><span class="toc-number">1.1.1.</span> <span class="toc-text">直接用&lt;script&gt;引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8npm%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.2.</span> <span class="toc-text">使用npm安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue-Devtools"><span class="toc-number">1.1.3.</span> <span class="toc-text">Vue Devtools</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8F%E6%B8%B2%E6%9F%93"><span class="toc-number">1.2.</span> <span class="toc-text">声明式渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E4%B8%8E%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.3.</span> <span class="toc-text">条件与循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5"><span class="toc-number">1.4.</span> <span class="toc-text">处理用户输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BA%94%E7%94%A8%E5%88%9B%E5%BB%BA"><span class="toc-number">1.5.</span> <span class="toc-text">组件化应用创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E4%B8%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%83%E7%B4%A0%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.5.1.</span> <span class="toc-text">组件与自定义元素的关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.6.</span> <span class="toc-text">Vue实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAVue%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">创建一个Vue实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%8E%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">数据与方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90"><span class="toc-number">1.6.2.</span> <span class="toc-text">实例生命周期钩子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA"><span class="toc-number">1.6.3.</span> <span class="toc-text">生命周期图示</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1132,7 +1119,14 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -1775,7 +1769,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -1789,6 +1783,12 @@
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span>
+            <a class="archive-post-title" href="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">Hexo博客迁移</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/06</span>
@@ -2252,16 +2252,6 @@
                 数据库工具
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -2275,6 +2265,21 @@
             <span class="sidebar-tag-name" data-tags="Web框架">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="Kubernetes">
@@ -2297,19 +2302,24 @@
                 Lottie
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
-                <span class="iconfont-archer">&#xe606;</span>
-                MinIO
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2322,9 +2332,9 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2337,11 +2347,6 @@
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2352,11 +2357,6 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
@@ -2365,6 +2365,11 @@
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2402,6 +2407,11 @@
                 自动化测试
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2410,11 +2420,6 @@
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2443,6 +2448,11 @@
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2453,14 +2463,14 @@
             大屏设计
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
             操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
         </span>
     
         <span class="sidebar-category-name" data-categories="Kubernetes">
@@ -2468,19 +2478,14 @@
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2488,9 +2493,9 @@
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            LLM
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2498,9 +2503,9 @@
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2508,19 +2513,24 @@
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
-        </span>
-    
         <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
             JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2548,11 +2558,6 @@
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="自动化测试">
-            <span class="iconfont-archer">&#xe60a;</span>
-            自动化测试
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2566,6 +2571,11 @@
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
         </span>
     
         <span class="sidebar-category-name" data-categories="XAMPP">

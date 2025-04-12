@@ -502,66 +502,54 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="安装部署">安装部署</h1>
-<h2 id="创建环境">创建环境</h2>
-<p>使用pip分别安装virtualenv、simplejson、flask、sqlalchemy模块，其命令用法为：<code>pip install 安装的模块名</code>。</p>
+        <h1 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h1><h2 id="创建环境"><a href="#创建环境" class="headerlink" title="创建环境"></a>创建环境</h2><p>使用pip分别安装virtualenv、simplejson、flask、sqlalchemy模块，其命令用法为：<code>pip install 安装的模块名</code>。</p>
 <p>virtualenv安装完毕后，新建一个项目文件夹myproject，打开cmd，使用cd切换到myproject目录，通过下列命令来创建虚拟环境venv，命令完成后会在myproject文件夹里生成一个venv文件夹。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> myproject</span><br><span class="line">virtualenv venv </span><br></pre></td></tr></table></figure>
-<h2 id="激活venv环境">激活venv环境</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">venv\scripts\activate</span><br></pre></td></tr></table></figure>
-<h2 id="激活virtualenv中的flask">激活virtualenv中的Flask</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install Flask</span><br></pre></td></tr></table></figure>
-<h1 id="快速入门">快速入门</h1>
-<h2 id="一个最小的应用">一个最小的应用</h2>
-<p>在一个.py文件中输入以下代码，并运行，可以得到一个最小的Flask应用。</p>
+<h2 id="激活venv环境"><a href="#激活venv环境" class="headerlink" title="激活venv环境"></a>激活venv环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">venv\scripts\activate</span><br></pre></td></tr></table></figure>
+<h2 id="激活virtualenv中的Flask"><a href="#激活virtualenv中的Flask" class="headerlink" title="激活virtualenv中的Flask"></a>激活virtualenv中的Flask</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install Flask</span><br></pre></td></tr></table></figure>
+<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="一个最小的应用"><a href="#一个最小的应用" class="headerlink" title="一个最小的应用"></a>一个最小的应用</h2><p>在一个.py文件中输入以下代码，并运行，可以得到一个最小的Flask应用。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask <span class="comment">#导出Flask类</span></span><br><span class="line"><span class="comment"># 创建了该类的实例，第一个参数为应用模块名，单一模块使用__name__</span></span><br><span class="line">app=Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span><span class="comment"># 使用装饰器告诉Flask什么样的URL能触发函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello_world</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Hello World!&#x27;</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()<span class="comment"># run函数让应用运行在本地服务器上</span></span><br></pre></td></tr></table></figure>
-<p>运行代码后访问http://127.0.0.1:5000，可以在页面中看到Hello World!的问候。</p>
-<h2 id="外部可访问的服务器">外部可访问的服务器：</h2>
-<p>若运行这个服务器时，会发现它只能从本地的计算机上访问，网络中其他的用户都不能访问。在调试模式下，用户可以在本地计算机上执行任意Python代码。因此这个行为是默认的。</p>
+<p>运行代码后访问<a href="http://127.0.0.1:5000，可以在页面中看到Hello">http://127.0.0.1:5000，可以在页面中看到Hello</a> World!的问候。</p>
+<h2 id="外部可访问的服务器："><a href="#外部可访问的服务器：" class="headerlink" title="外部可访问的服务器："></a>外部可访问的服务器：</h2><p>若运行这个服务器时，会发现它只能从本地的计算机上访问，网络中其他的用户都不能访问。在调试模式下，用户可以在本地计算机上执行任意Python代码。因此这个行为是默认的。</p>
 <p>若禁用了debug或信任所在网络的用户，可以修改调用run()方法来使服务器是公开可用的：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>)<span class="comment"># 让操作系统监听所有公网IP</span></span><br></pre></td></tr></table></figure>
-<h2 id="调试模式">调试模式</h2>
-<p>若启动了调试支持，服务器会在代码修改后自动重新载入，并在发送错误时提供一个相对有用的调试器。</p>
-<h3 id="方法一启动调试模式">方法一启动调试模式：</h3>
-<p>直接在应用对象上设置：</p>
+<h2 id="调试模式"><a href="#调试模式" class="headerlink" title="调试模式"></a>调试模式</h2><p>若启动了调试支持，服务器会在代码修改后自动重新载入，并在发送错误时提供一个相对有用的调试器。</p>
+<h3 id="方法一启动调试模式："><a href="#方法一启动调试模式：" class="headerlink" title="方法一启动调试模式："></a>方法一启动调试模式：</h3><p>直接在应用对象上设置：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.debug=<span class="literal">True</span></span><br><span class="line">app.run()</span><br></pre></td></tr></table></figure>
-<h3 id="方法二启动调试模式">方法二启动调试模式：</h3>
-<p>作为run方法的一个参数传入：</p>
+<h3 id="方法二启动调试模式："><a href="#方法二启动调试模式：" class="headerlink" title="方法二启动调试模式："></a>方法二启动调试模式：</h3><p>作为run方法的一个参数传入：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 <p><strong>注意：交互式调试器绝对不能用于生产环境。</strong></p>
-<h2 id="路由">路由</h2>
-<p>Web应用的URL易于人们辨识记忆，对于面向使用低速网络连接移动设备访问的应用特别有用。用route()装饰器把一个函数绑定到对于的URL上，可以实现不访问索引页，直接访问想要的页面。例如：</p>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p>Web应用的URL易于人们辨识记忆，对于面向使用低速网络连接移动设备访问的应用特别有用。用route()装饰器把一个函数绑定到对于的URL上，可以实现不访问索引页，直接访问想要的页面。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask </span><br><span class="line">app=Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Index Page&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/hello&#x27;</span></span>)    </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello_world</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Hello World!&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">默认页面 Index Page</span><br><span class="line">输入<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/hello路由时，跳转到Hello World!的页面</span><br></pre></td></tr></table></figure>
 <p>不仅如此，还可以构造含有动态部分的URL，也可以在一个函数上附着多个规则。</p>
-<h2 id="变量规则">变量规则</h2>
-<p>给URL添加变量部分，可以把这些特殊的字段标记为<code>&lt;variable_name&gt;</code>，这个部分将会作为命名参数传递到函数中。规则可以用<code>&lt;converter:variable_name&gt;</code>指定一个可选的转换器。例如：</p>
+<h2 id="变量规则"><a href="#变量规则" class="headerlink" title="变量规则"></a>变量规则</h2><p>给URL添加变量部分，可以把这些特殊的字段标记为<code>&lt;variable_name&gt;</code>，这个部分将会作为命名参数传递到函数中。规则可以用<code>&lt;converter:variable_name&gt;</code>指定一个可选的转换器。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask </span><br><span class="line">app=Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Index Page&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/user/&lt;username&gt;&#x27;</span></span>)    </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">show_user_profile</span>(<span class="params">username</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;User %s&#x27;</span> % username</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/post/&lt;int:post_id&gt;&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">show_post</span>(<span class="params">post_id</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Post %d&#x27;</span> % post_id</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">默认页面 Index Page</span><br><span class="line">输入<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/user/ok路由时，跳转到User ok的页面</span><br><span class="line">输入<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/post/<span class="number">8080</span>路由时，跳转到Post <span class="number">8080</span>的页面    </span><br></pre></td></tr></table></figure>
 <p>转换器有下面几种：</p>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;"><strong>int</strong></th>
-<th style="text-align: center;"><strong>接受整数</strong></th>
+<tr>
+<th style="text-align:center"><strong>int</strong></th>
+<th style="text-align:center"><strong>接受整数</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;"><strong>float</strong></td>
-<td style="text-align: center;"><strong>同 int ，但是接受浮点数</strong></td>
+<tr>
+<td style="text-align:center"><strong>float</strong></td>
+<td style="text-align:center"><strong>同 int ，但是接受浮点数</strong></td>
 </tr>
-<tr class="even">
-<td style="text-align: center;"><strong>path</strong></td>
-<td style="text-align: center;"><strong>和默认的相似，但也接受斜线</strong></td>
+<tr>
+<td style="text-align:center"><strong>path</strong></td>
+<td style="text-align:center"><strong>和默认的相似，但也接受斜线</strong></td>
 </tr>
 </tbody>
 </table>
-<h2 id="唯一url重定向行为">唯一URL/重定向行为：</h2>
-<p>Flack的URL规则基于Werkzeug的路由模块，该模块基于Apache以及更早的HTTP服务器主张的先例，保证优雅且唯一的URL。例如：</p>
+</div>
+<h2 id="唯一URL-重定向行为："><a href="#唯一URL-重定向行为：" class="headerlink" title="唯一URL/重定向行为："></a>唯一URL/重定向行为：</h2><p>Flack的URL规则基于Werkzeug的路由模块，该模块基于Apache以及更早的HTTP服务器主张的先例，保证优雅且唯一的URL。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask </span><br><span class="line">app=Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Index Page&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/projects/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">projects</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;The project page&#x27;</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/about&#x27;</span></span>)    </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">about</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;The about page&#x27;</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">默认页面 Index Page  </span><br><span class="line">输入<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/projects/路由时，跳转到The project page的页面</span><br><span class="line">输入<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/projects路由时，跳转到The project page的页面</span><br><span class="line">输入<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/about路由时，跳转到The about page的页面    </span><br><span class="line">输入<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/about/路由时，跳转到<span class="number">404</span> Not Found的页面      </span><br></pre></td></tr></table></figure>
-<p>如此可见，指向projects的规范带结尾斜线，访问结尾不带斜线的URL会被Flask重定向到带斜线的规范URL中。而指向about的规范不带结尾斜线，访问结尾带斜线的URL会产生一个404"Not Found"错误。</p>
+<p>如此可见，指向projects的规范带结尾斜线，访问结尾不带斜线的URL会被Flask重定向到带斜线的规范URL中。而指向about的规范不带结尾斜线，访问结尾带斜线的URL会产生一个404”Not Found”错误。</p>
 <p>这一行为使得在遗忘结尾斜线时，允许关联的URL接任工作，同时也保证了URL的唯一，有助于避免搜索引擎索引同一个页面两次。</p>
-<h2 id="构造url">构造URL</h2>
-<p>FLask不仅可以匹配URL，还可以用<code>url_for()</code>来给指定的函数构造URL。它接收函数名作为第一个参数，也接受对于URL规则的变量部分的命名函数。位置变量部分会添加到URL末尾作为查询函数。例如：</p>
+<h2 id="构造URL"><a href="#构造URL" class="headerlink" title="构造URL"></a>构造URL</h2><p>FLask不仅可以匹配URL，还可以用<code>url_for()</code>来给指定的函数构造URL。它接收函数名作为第一个参数，也接受对于URL规则的变量部分的命名函数。位置变量部分会添加到URL末尾作为查询函数。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,url_for</span><br><span class="line">app=Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;The index page&#x27;</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/login&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;The login page&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/user/&lt;username&gt;&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">profile</span>(<span class="params">username</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;The profile page&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> app.test_request_context():</span><br><span class="line">    <span class="built_in">print</span>(url_for(<span class="string">&#x27;index&#x27;</span>))</span><br><span class="line">    <span class="built_in">print</span>(url_for(<span class="string">&#x27;login&#x27;</span>))</span><br><span class="line">    <span class="built_in">print</span>(url_for(<span class="string">&#x27;login&#x27;</span>,<span class="built_in">next</span>=<span class="string">&#x27;/&#x27;</span>))</span><br><span class="line">    <span class="built_in">print</span>(url_for(<span class="string">&#x27;profile&#x27;</span>,username=<span class="string">&#x27;Bob&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">默认页面 Index Page  </span><br><span class="line">输入<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/login路由时，跳转到The login page的页面</span><br><span class="line">输入<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/login?<span class="built_in">next</span>=路由时，跳转到The login page的页面</span><br><span class="line">输入<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/user/Bob路由时，跳转到The profile page的页面    </span><br></pre></td></tr></table></figure>
 <p><strong>构建URL而非在模板中硬编码的理由：</strong></p>
 <ul>
@@ -569,65 +557,49 @@
 <li>URL构建会转义特殊字符和Unicode数据</li>
 <li>若应用不位于URL的根路径，url_for()会妥善处理这个问题</li>
 </ul>
-<h2 id="http方法">HTTP方法</h2>
-<p>HTTP方法告知服务器，客户端想对请求的页面做些什么，下面是<strong>常见的HTTP方法</strong>：</p>
-<h3 id="get">GET</h3>
-<p>浏览器告知服务器：只获取页面上的信息并发给我。</p>
-<h3 id="head">HEAD</h3>
-<p>浏览器告诉服务器：欲获取信息，但是只关心消息头。应用应像处理GET请求一样来处理它，但不分发实际内容。在Flask中完全无需人工干预。</p>
-<h3 id="post">POST</h3>
-<p>浏览器告诉服务器：想在URL上发布新消息。并且服务器必须确保数据已存储且只存储一次。这是HTML表通常发送数据到服务器的方法。</p>
-<h3 id="put">PUT</h3>
-<p>类似于POST但服务器可能触发了存储过程多次，多次覆盖掉旧值。考虑到传输中连接可能会丢失，在这种情况下浏览器和服务器之间的系统可能安全地第二次接收请求，而不破坏其他东西。</p>
-<h3 id="delete">DELETE</h3>
-<p>删除给定位置的信息。</p>
-<h3 id="options">OPTIONS</h3>
-<p>给客户端提供一个途径来弄清这个URL支持哪些HTTP方法。</p>
+<h2 id="HTTP方法"><a href="#HTTP方法" class="headerlink" title="HTTP方法"></a>HTTP方法</h2><p>HTTP方法告知服务器，客户端想对请求的页面做些什么，下面是<strong>常见的HTTP方法</strong>：</p>
+<h3 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h3><p>浏览器告知服务器：只获取页面上的信息并发给我。</p>
+<h3 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h3><p>浏览器告诉服务器：欲获取信息，但是只关心消息头。应用应像处理GET请求一样来处理它，但不分发实际内容。在Flask中完全无需人工干预。</p>
+<h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><p>浏览器告诉服务器：想在URL上发布新消息。并且服务器必须确保数据已存储且只存储一次。这是HTML表通常发送数据到服务器的方法。</p>
+<h3 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h3><p>类似于POST但服务器可能触发了存储过程多次，多次覆盖掉旧值。考虑到传输中连接可能会丢失，在这种情况下浏览器和服务器之间的系统可能安全地第二次接收请求，而不破坏其他东西。</p>
+<h3 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h3><p>删除给定位置的信息。</p>
+<h3 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a>OPTIONS</h3><p>给客户端提供一个途径来弄清这个URL支持哪些HTTP方法。</p>
 <p>HTTP有许多不同的访问URL方法。默认情况下，路由只回应GET请求，但是通过route()装饰器传递methods参数可以改变这个行为。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;login&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>():</span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        de_the_login()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        show_the_login_form()</span><br></pre></td></tr></table></figure>
 <p>若存在GET，会自动添加HEAD，无需干预，确保遵照HTTP协议处理HEAD请求。</p>
-<h2 id="静态文件">静态文件</h2>
-<p>动态web应用也会需要静态文件，通常是CSS和JavaScript文件。理想状况下，已经配置好Web服务器来提供静态文件，但在开发中，Flask也可以做到。只要在包中或是，模块所在的目录中创建一个名为static的文件夹，在应用中使用<code>/static</code>即可访问。</p>
+<h2 id="静态文件"><a href="#静态文件" class="headerlink" title="静态文件"></a>静态文件</h2><p>动态web应用也会需要静态文件，通常是CSS和JavaScript文件。理想状况下，已经配置好Web服务器来提供静态文件，但在开发中，Flask也可以做到。只要在包中或是，模块所在的目录中创建一个名为static的文件夹，在应用中使用<code>/static</code>即可访问。</p>
 <p>给静态文件生成URL，使用特殊的<code>static</code>端，所生成的文件应该存储在<code>static/style.css</code>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url_for(<span class="string">&#x27;static&#x27;</span>,filename=<span class="string">&#x27;style.css&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="模板渲染">模板渲染</h2>
-<p>Flask配备了Jinja2模板引擎来生成HTML，可以使用render_template()方法来渲染模板，将模板名和关键字参数传入模板的变量。例如：</p>
+<h2 id="模板渲染"><a href="#模板渲染" class="headerlink" title="模板渲染"></a>模板渲染</h2><p>Flask配备了Jinja2模板引擎来生成HTML，可以使用render_template()方法来渲染模板，将模板名和关键字参数传入模板的变量。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> render_template</span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/hello/&#x27;</span></span>)</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;hello/&lt;name&gt;&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>(<span class="params">name=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;hello.html&#x27;</span>,name=name)</span><br></pre></td></tr></table></figure>
 <p>Flask会在templates文件夹里寻找模板，若应用是个模块，则该文件夹与模块通缉，它是个包，则该文件夹作为包的子目录：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#应用是个模块</span></span><br><span class="line">/application.py</span><br><span class="line">/templates</span><br><span class="line">    /hello.html</span><br><span class="line"><span class="comment">#应用是个包    </span></span><br><span class="line">/application.py</span><br><span class="line">    /__init__.py</span><br><span class="line">    /templates</span><br><span class="line">        /hello.html</span><br></pre></td></tr></table></figure>
 <p>自动转义功能在<code>.html</code>、<code>.htm</code>、<code>.xml</code>、<code>xhtml</code>扩展名的模板中是默认是开启的，若name包含HTML，它将会被自动转义。从字符串加载的模板禁用自动转义。若信任一个变量，并且知道它是安全的，可以用Markup类或<code>|safe</code>过滤器在模板中把它标记为安全的。</p>
-<h2 id="访问请求数据">访问请求数据</h2>
-<p>对于Web应用，与客户端发送给服务端的数据交互至关重要。在Flask中由全局的request对象来提供这些信息。环境作用域保证了对象是全局的情况下，线程也是安全的。</p>
-<h3 id="环境局部变量">环境局部变量</h3>
-<p>依赖于一段请求对象的代码，因没有请求对象无法正常运行，需要自行创建一个请求对象并把它绑定到环境中。做单元测试最简单的解决方案是：用test_request_context()环境管理器，结合with声明，绑定一个测试请求使之能进行交互。例如：</p>
+<h2 id="访问请求数据"><a href="#访问请求数据" class="headerlink" title="访问请求数据"></a>访问请求数据</h2><p>对于Web应用，与客户端发送给服务端的数据交互至关重要。在Flask中由全局的request对象来提供这些信息。环境作用域保证了对象是全局的情况下，线程也是安全的。</p>
+<h3 id="环境局部变量"><a href="#环境局部变量" class="headerlink" title="环境局部变量"></a>环境局部变量</h3><p>依赖于一段请求对象的代码，因没有请求对象无法正常运行，需要自行创建一个请求对象并把它绑定到环境中。做单元测试最简单的解决方案是：用test_request_context()环境管理器，结合with声明，绑定一个测试请求使之能进行交互。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request </span><br><span class="line"><span class="keyword">with</span> app.test_request_context(<span class="string">&#x27;/hello&#x27;</span>,method=<span class="string">&#x27;POST&#x27;</span>):</span><br><span class="line">    <span class="keyword">assert</span> request.path==<span class="string">&#x27;/hello&#x27;</span></span><br><span class="line">    <span class="keyword">assert</span> request.method==<span class="string">&#x27;POST&#x27;</span></span><br><span class="line"><span class="comment">#或者传递整个WSGI环境给request_context()方法</span></span><br><span class="line"><span class="keyword">with</span> app.request_context(environ):</span><br><span class="line">    <span class="keyword">assert</span> request.method==<span class="string">&#x27;POST&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="请求对象">请求对象</h3>
-<p>当前请求的HTTP方法可通过method属性来访问，通过request.form属性来访问表单数据。例如：</p>
+<h3 id="请求对象"><a href="#请求对象" class="headerlink" title="请求对象"></a>请求对象</h3><p>当前请求的HTTP方法可通过method属性来访问，通过request.form属性来访问表单数据。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;login&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>():</span><br><span class="line">    error=<span class="literal">None</span></span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> valid_login(request.form[<span class="string">&#x27;username&#x27;</span>],request.form[<span class="string">&#x27;password&#x27;</span>]):</span><br><span class="line">            <span class="keyword">return</span> log_the_user_in(request.form[<span class="string">&#x27;username&#x27;</span>])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        error=<span class="string">&#x27;Invalid username/password&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;login.html&#x27;</span>,error=error)  </span><br></pre></td></tr></table></figure>
 <p>当访问form属性中不存在的键时会抛出一个特殊的KeyError异常，可以想捕获标准的KeyError一样来捕获它，若对其不做处理，他会显示一个HTTP 400 Bad Request页面。</p>
 <p>可以通过args属性来访问URL中 提交的参数，可以用get参数或捕获KeyError。：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">searchword=request.args.get(<span class="string">&#x27;q&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="文件上传">文件上传</h2>
-<p>上传文件需要先在HTML表单中设置`enctype="multipart/form-data"属性。已上传的文件存储在内存或者是临时文件夹里，可以通过请求对象的files属性访问它们。每个上传的文件都会存储在这个字典里，可以通过save()方法把文件保存到服务器的文件系统上。例如：</p>
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>上传文件需要先在HTML表单中设置`enctype=”multipart/form-data”属性。已上传的文件存储在内存或者是临时文件夹里，可以通过请求对象的files属性访问它们。每个上传的文件都会存储在这个字典里，可以通过save()方法把文件保存到服务器的文件系统上。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/upload&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">upload_file</span>():</span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        f=request.files[<span class="string">&#x27;the file&#x27;</span>]</span><br><span class="line">        f.save(/var/www/uploads/uploaded_file.txt)</span><br></pre></td></tr></table></figure>
 <p>若想知道上传前文件在客户端的文件名是什么，可以访问filename属性，但由于这个值是可以伪造的，故不要信任这个值。若要把文件按客户端提供的文件名存储在服务器上，可以把它传递给Werkzrug提供的secure_filename()函数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line"><span class="keyword">from</span> werkzeug <span class="keyword">import</span> secure_filename</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/upload&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">upload_file</span>():</span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        f=request.files[<span class="string">&#x27;the file&#x27;</span>]</span><br><span class="line">        f.save(<span class="string">&#x27;/var/www/uploads/&#x27;</span>+secure_filename(f.filename))</span><br></pre></td></tr></table></figure>
-<h2 id="cookies">Cookies</h2>
-<p>可以通过<code>cookies</code>属性来访问Cookies，用响应对象的<code>set_cookie</code>方法来设置Cookies。请求对象的<code>cookies</code>属性是一个内容为客户端提交的所有Cookies的字典。</p>
+<h2 id="Cookies"><a href="#Cookies" class="headerlink" title="Cookies"></a>Cookies</h2><p>可以通过<code>cookies</code>属性来访问Cookies，用响应对象的<code>set_cookie</code>方法来设置Cookies。请求对象的<code>cookies</code>属性是一个内容为客户端提交的所有Cookies的字典。</p>
 <p><strong>读取Cookies:</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    username=request.cookies.get(<span class="string">&#x27;username&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p><strong>存储Cookies：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    resp=make_response(render_template(...))</span><br><span class="line">    resp.set_cookie(<span class="string">&#x27;username&#x27;</span>,<span class="string">&#x27;the username&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> resp</span><br></pre></td></tr></table></figure>
 <p>Cookie是设置在响应对象上的。由于通常视图函数只是返回字符串，之后Flask将字符串转换为响应对象。若要显式地转换，可以使用<code>make_response()</code>函数然后再进行修改。</p>
-<h2 id="重定向和错误">重定向和错误</h2>
-<p>用redirect()函数把用户重定向到其他地方。用abort()函数放弃请求并返回错误代码。例如：</p>
+<h2 id="重定向和错误"><a href="#重定向和错误" class="headerlink" title="重定向和错误"></a>重定向和错误</h2><p>用redirect()函数把用户重定向到其他地方。用abort()函数放弃请求并返回错误代码。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,request</span><br><span class="line">app=Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;login&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/login&#x27;</span></span>)    </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>():</span><br><span class="line">    abort(<span class="number">401</span>)</span><br><span class="line">    this_is_never_executed()</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()    </span><br></pre></td></tr></table></figure>
 <p>默认情况下，错误代码会显示一个黑白的错误页面。可以用errorhandler()装饰器来定制错误页面：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> render_template</span><br><span class="line"><span class="meta">@app.errorhandler(<span class="params"><span class="number">404</span></span>)    </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">page_not_found</span>(<span class="params">error</span>):</span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;page_not_found.html&#x27;</span>),<span class="number">404</span></span><br><span class="line"><span class="comment">#404即告诉Flask该页的错误代码是404，即没有找到，默认为200，即一切正常</span></span><br></pre></td></tr></table></figure>
-<h2 id="关于响应">关于响应</h2>
-<p>视图函数的返回值会被自动转换为一个响应对象。若返回值是一个字符串，它 被转换为该字符串为主体的、状态码为<code>200 OK</code>，MIME类型是<code>text/html</code>的响应对象。</p>
+<h2 id="关于响应"><a href="#关于响应" class="headerlink" title="关于响应"></a>关于响应</h2><p>视图函数的返回值会被自动转换为一个响应对象。若返回值是一个字符串，它 被转换为该字符串为主体的、状态码为<code>200 OK</code>，MIME类型是<code>text/html</code>的响应对象。</p>
 <p>Flask把返回值转换为响应对象的逻辑如下：</p>
-<ol type="1">
+<ol>
 <li>若返回的是一个合法的响应对象，它会从视图直接返回。</li>
 <li>若返回的是一个字符串，响应对象会用字符串数据和默认参数创建。</li>
 <li>若返回的是一个元组且元组中的元素可以提供额外的信息。这样的元组必须是<code>(response,status,headers)</code>的形式，且至少包含一个元素。status值会覆盖状态代码，headers可以是一个列表或字典，作为额外的消息标头值。</li>
@@ -635,19 +607,15 @@
 <li>若想再视图里操纵上述步骤结果的响应对象，可以使用make_response()函数。</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#假设有以下视图</span></span><br><span class="line"><span class="meta">@app.errorhandler(<span class="params"><span class="number">404</span></span>)    </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">not_found</span>(<span class="params">error</span>):</span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;error.html&#x27;</span>),<span class="number">404</span></span><br><span class="line"><span class="comment">#只需要把返回值表达式传递给make_response()，获取结果对象并修改，然后再返回它</span></span><br><span class="line"><span class="meta">@app.errorhandler(<span class="params"><span class="number">404</span></span>)    </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">not_found</span>(<span class="params">error</span>):</span><br><span class="line">    resp=make_response(render_template(<span class="string">&#x27;error.html&#x27;</span>),<span class="number">404</span>)</span><br><span class="line">    resp.headers[<span class="string">&#x27;X-Somthing&#x27;</span>]=<span class="string">&#x27;A value&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> resp</span><br></pre></td></tr></table></figure>
-<h2 id="会话">会话</h2>
-<p>除请求对象外，还有一个会话（session）对象。它允许在不同请求间存储特定用户的信息。他说在Cookies的基础上实现的，并且对Cookies进行密钥签名。这意味着用户可以查看Cookies内容但由于没有签名的密钥不能修改它。会话工作的例子如下：</p>
+<h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><p>除请求对象外，还有一个会话（session）对象。它允许在不同请求间存储特定用户的信息。他说在Cookies的基础上实现的，并且对Cookies进行密钥签名。这意味着用户可以查看Cookies内容但由于没有签名的密钥不能修改它。会话工作的例子如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,session,redirect,url_for,escape,request</span><br><span class="line">app=Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;username&#x27;</span> <span class="keyword">in</span> session:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Logged in as %s&#x27;</span> % escape(session[<span class="string">&#x27;username&#x27;</span>])</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;You are not logged in&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/login&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;POST&#x27;</span>]</span>)    </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>():</span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        session[<span class="string">&#x27;username&#x27;</span>]=request.form[<span class="string">&#x27;username&#x27;</span>]</span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;index&#x27;</span>))</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;&lt;input type=text name=username&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;&lt;input type=submit value=Login&gt;</span></span><br><span class="line"><span class="string">        &lt;/form&gt;</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/logout&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">logout</span>():</span><br><span class="line">    session.pop(<span class="string">&#x27;username&#x27;</span>,<span class="literal">None</span>)</span><br><span class="line">    <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;index&#x27;</span>))</span><br><span class="line">app.secret_kry=<span class="string">&#x27;A0Zr98j/3yX R~XHH!jmN]LWX/,?R&#x27;</span>    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()    </span><br></pre></td></tr></table></figure>
 <p>生成强密钥：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os    </span><br><span class="line"><span class="built_in">print</span>(os.urandom(<span class="number">24</span>))</span><br><span class="line"><span class="comment">#运行结果如下</span></span><br><span class="line"><span class="string">b&#x27;\x9b\xc9@\x9bN]\xd9]H\xd6,\xfam\x9c\x90\xddu\x19^\x14COG\x93&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>使用基于cookie的会话需注意：Flask会将放进会话对象的值序列化值Cookies。若发现某些值在请求之间没有持久存在，而Cookies已经启用且没有明显的错误信息。此时应检查页面响应中Cookies的大小，并与Web浏览器所支持的大小对比。</p>
-<h2 id="消息闪现">消息闪现</h2>
-<p>Flask提供了消息闪现系统，可以简单地给用户返回。消息闪现系统通常会在请求结束时记录信息，并在下一个（且仅在下一个）请求中访问记录的信息。展现这些信息通常要结果模板布局。使用flash()方法可以闪现一条消息，在模板中也可以使用。</p>
-<h2 id="日志记录">日志记录</h2>
-<p>Flask预置了日志系统，附带的logger是一个标准日志类Logger：</p>
+<h2 id="消息闪现"><a href="#消息闪现" class="headerlink" title="消息闪现"></a>消息闪现</h2><p>Flask提供了消息闪现系统，可以简单地给用户返回。消息闪现系统通常会在请求结束时记录信息，并在下一个（且仅在下一个）请求中访问记录的信息。展现这些信息通常要结果模板布局。使用flash()方法可以闪现一条消息，在模板中也可以使用。</p>
+<h2 id="日志记录"><a href="#日志记录" class="headerlink" title="日志记录"></a>日志记录</h2><p>Flask预置了日志系统，附带的logger是一个标准日志类Logger：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.logger.debug(<span class="string">&#x27;A value for debugging&#x27;</span>)</span><br><span class="line">app.logger.warning(<span class="string">&#x27;A warning occurred (%d apples)&#x27;</span>,<span class="number">42</span>)</span><br><span class="line">app.logger.error(<span class="string">&#x27;An error occurred&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="整合wsgi中间件">整合WSGI中间件</h2>
-<p>若想给应用添加WSGI中间件，可以封装内部WSGI应用。如想用Werkzrug包中的某个中间件来应付lighttpd中的bugs：</p>
+<h2 id="整合WSGI中间件"><a href="#整合WSGI中间件" class="headerlink" title="整合WSGI中间件"></a>整合WSGI中间件</h2><p>若想给应用添加WSGI中间件，可以封装内部WSGI应用。如想用Werkzrug包中的某个中间件来应付lighttpd中的bugs：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> werkzeug.contrib.fixers <span class="keyword">import</span> LighttpdCGIRootFix</span><br><span class="line">app.wsgi_app=LighttpdCGIRootFix(app.wsgi_app)</span><br></pre></td></tr></table></figure>
 
     </article>
@@ -847,7 +815,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2"><span class="toc-number">1.</span> <span class="toc-text">安装部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">创建环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BF%80%E6%B4%BBvenv%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.</span> <span class="toc-text">激活venv环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BF%80%E6%B4%BBvirtualenv%E4%B8%AD%E7%9A%84flask"><span class="toc-number">1.3.</span> <span class="toc-text">激活virtualenv中的Flask</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">2.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E6%9C%80%E5%B0%8F%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">一个最小的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%8F%AF%E8%AE%BF%E9%97%AE%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.2.</span> <span class="toc-text">外部可访问的服务器：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text">调试模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E5%90%AF%E5%8A%A8%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.3.1.</span> <span class="toc-text">方法一启动调试模式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E5%90%AF%E5%8A%A8%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.3.2.</span> <span class="toc-text">方法二启动调试模式：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1"><span class="toc-number">2.4.</span> <span class="toc-text">路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E8%A7%84%E5%88%99"><span class="toc-number">2.5.</span> <span class="toc-text">变量规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%94%AF%E4%B8%80url%E9%87%8D%E5%AE%9A%E5%90%91%E8%A1%8C%E4%B8%BA"><span class="toc-number">2.6.</span> <span class="toc-text">唯一URL&#x2F;重定向行为：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0url"><span class="toc-number">2.7.</span> <span class="toc-text">构造URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http%E6%96%B9%E6%B3%95"><span class="toc-number">2.8.</span> <span class="toc-text">HTTP方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#get"><span class="toc-number">2.8.1.</span> <span class="toc-text">GET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head"><span class="toc-number">2.8.2.</span> <span class="toc-text">HEAD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#post"><span class="toc-number">2.8.3.</span> <span class="toc-text">POST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#put"><span class="toc-number">2.8.4.</span> <span class="toc-text">PUT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete"><span class="toc-number">2.8.5.</span> <span class="toc-text">DELETE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#options"><span class="toc-number">2.8.6.</span> <span class="toc-text">OPTIONS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="toc-number">2.9.</span> <span class="toc-text">静态文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E6%B8%B2%E6%9F%93"><span class="toc-number">2.10.</span> <span class="toc-text">模板渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE"><span class="toc-number">2.11.</span> <span class="toc-text">访问请求数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="toc-number">2.11.1.</span> <span class="toc-text">环境局部变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.11.2.</span> <span class="toc-text">请求对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">2.12.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookies"><span class="toc-number">2.13.</span> <span class="toc-text">Cookies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E9%94%99%E8%AF%AF"><span class="toc-number">2.14.</span> <span class="toc-text">重定向和错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%93%8D%E5%BA%94"><span class="toc-number">2.15.</span> <span class="toc-text">关于响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D"><span class="toc-number">2.16.</span> <span class="toc-text">会话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%97%AA%E7%8E%B0"><span class="toc-number">2.17.</span> <span class="toc-text">消息闪现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95"><span class="toc-number">2.18.</span> <span class="toc-text">日志记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%90%88wsgi%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">2.19.</span> <span class="toc-text">整合WSGI中间件</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2"><span class="toc-number">1.</span> <span class="toc-text">安装部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">创建环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BF%80%E6%B4%BBvenv%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.</span> <span class="toc-text">激活venv环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BF%80%E6%B4%BBvirtualenv%E4%B8%AD%E7%9A%84Flask"><span class="toc-number">1.3.</span> <span class="toc-text">激活virtualenv中的Flask</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">2.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E6%9C%80%E5%B0%8F%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">一个最小的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%8F%AF%E8%AE%BF%E9%97%AE%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">外部可访问的服务器：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text">调试模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E5%90%AF%E5%8A%A8%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="toc-number">2.3.1.</span> <span class="toc-text">方法一启动调试模式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E5%90%AF%E5%8A%A8%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="toc-number">2.3.2.</span> <span class="toc-text">方法二启动调试模式：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1"><span class="toc-number">2.4.</span> <span class="toc-text">路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E8%A7%84%E5%88%99"><span class="toc-number">2.5.</span> <span class="toc-text">变量规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%94%AF%E4%B8%80URL-%E9%87%8D%E5%AE%9A%E5%90%91%E8%A1%8C%E4%B8%BA%EF%BC%9A"><span class="toc-number">2.6.</span> <span class="toc-text">唯一URL&#x2F;重定向行为：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0URL"><span class="toc-number">2.7.</span> <span class="toc-text">构造URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E6%96%B9%E6%B3%95"><span class="toc-number">2.8.</span> <span class="toc-text">HTTP方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GET"><span class="toc-number">2.8.1.</span> <span class="toc-text">GET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HEAD"><span class="toc-number">2.8.2.</span> <span class="toc-text">HEAD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POST"><span class="toc-number">2.8.3.</span> <span class="toc-text">POST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUT"><span class="toc-number">2.8.4.</span> <span class="toc-text">PUT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DELETE"><span class="toc-number">2.8.5.</span> <span class="toc-text">DELETE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OPTIONS"><span class="toc-number">2.8.6.</span> <span class="toc-text">OPTIONS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="toc-number">2.9.</span> <span class="toc-text">静态文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E6%B8%B2%E6%9F%93"><span class="toc-number">2.10.</span> <span class="toc-text">模板渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE"><span class="toc-number">2.11.</span> <span class="toc-text">访问请求数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="toc-number">2.11.1.</span> <span class="toc-text">环境局部变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.11.2.</span> <span class="toc-text">请求对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">2.12.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookies"><span class="toc-number">2.13.</span> <span class="toc-text">Cookies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E9%94%99%E8%AF%AF"><span class="toc-number">2.14.</span> <span class="toc-text">重定向和错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%93%8D%E5%BA%94"><span class="toc-number">2.15.</span> <span class="toc-text">关于响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D"><span class="toc-number">2.16.</span> <span class="toc-text">会话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%97%AA%E7%8E%B0"><span class="toc-number">2.17.</span> <span class="toc-text">消息闪现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95"><span class="toc-number">2.18.</span> <span class="toc-text">日志记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%90%88WSGI%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">2.19.</span> <span class="toc-text">整合WSGI中间件</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1191,7 +1159,14 @@
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -1834,7 +1809,7 @@
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -1848,6 +1823,12 @@
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span>
+            <a class="archive-post-title" href="/2025/04/12/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">Hexo博客迁移</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">04/06</span>
@@ -2311,16 +2292,6 @@
                 数据库工具
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Flask Web">
                 <span class="iconfont-archer">&#xe606;</span>
                 Flask Web
@@ -2334,6 +2305,21 @@
             <span class="sidebar-tag-name" data-tags="Web框架">
                 <span class="iconfont-archer">&#xe606;</span>
                 Web框架
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Hexo">
+                <span class="iconfont-archer">&#xe606;</span>
+                Hexo
             </span>
         
             <span class="sidebar-tag-name" data-tags="Kubernetes">
@@ -2356,19 +2342,24 @@
                 Lottie
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
-                <span class="iconfont-archer">&#xe606;</span>
-                MinIO
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="PgSQL">
                 <span class="iconfont-archer">&#xe606;</span>
                 PgSQL
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Vue">
+                <span class="iconfont-archer">&#xe606;</span>
+                Vue
             </span>
         
             <span class="sidebar-tag-name" data-tags="LLM">
@@ -2381,9 +2372,9 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Vue">
+            <span class="sidebar-tag-name" data-tags="闪退">
                 <span class="iconfont-archer">&#xe606;</span>
-                Vue
+                闪退
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2396,11 +2387,6 @@
                 前端
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2411,11 +2397,6 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="JavaScript">
                 <span class="iconfont-archer">&#xe606;</span>
                 JavaScript
@@ -2424,6 +2405,11 @@
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2461,6 +2447,11 @@
                 自动化测试
             </span>
         
+            <span class="sidebar-tag-name" data-tags="设计模式">
+                <span class="iconfont-archer">&#xe606;</span>
+                设计模式
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="XAMPP">
                 <span class="iconfont-archer">&#xe606;</span>
                 XAMPP
@@ -2469,11 +2460,6 @@
             <span class="sidebar-tag-name" data-tags="报错">
                 <span class="iconfont-archer">&#xe606;</span>
                 报错
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="设计模式">
-                <span class="iconfont-archer">&#xe606;</span>
-                设计模式
             </span>
         
     </div>
@@ -2502,6 +2488,11 @@
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="Web框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Web框架
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Docker">
             <span class="iconfont-archer">&#xe60a;</span>
             Docker
@@ -2512,14 +2503,14 @@
             大屏设计
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
-        </span>
-    
         <span class="sidebar-category-name" data-categories="操作系统">
             <span class="iconfont-archer">&#xe60a;</span>
             操作系统
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Hexo">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Hexo
         </span>
     
         <span class="sidebar-category-name" data-categories="Kubernetes">
@@ -2527,19 +2518,14 @@
             Kubernetes
         </span>
     
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
         <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
             学习笔记
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="可视化">
+            <span class="iconfont-archer">&#xe60a;</span>
+            可视化
         </span>
     
         <span class="sidebar-category-name" data-categories="数据库">
@@ -2547,9 +2533,9 @@
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="LLM">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            LLM
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2557,9 +2543,9 @@
             Vue
         </span>
     
-        <span class="sidebar-category-name" data-categories="前端">
+        <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
-            前端
+            LLM
         </span>
     
         <span class="sidebar-category-name" data-categories="edge">
@@ -2567,19 +2553,24 @@
             edge
         </span>
     
+        <span class="sidebar-category-name" data-categories="前端">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端
+        </span>
+    
         <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
             YAML
         </span>
     
-        <span class="sidebar-category-name" data-categories="Elasticsearch">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Elasticsearch
-        </span>
-    
         <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
             JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Elasticsearch
         </span>
     
         <span class="sidebar-category-name" data-categories="Lottie">
@@ -2607,11 +2598,6 @@
             前端框架
         </span>
     
-        <span class="sidebar-category-name" data-categories="自动化测试">
-            <span class="iconfont-archer">&#xe60a;</span>
-            自动化测试
-        </span>
-    
         <span class="sidebar-category-name" data-categories="Redis">
             <span class="iconfont-archer">&#xe60a;</span>
             Redis
@@ -2625,6 +2611,11 @@
         <span class="sidebar-category-name" data-categories="应用开发">
             <span class="iconfont-archer">&#xe60a;</span>
             应用开发
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="自动化测试">
+            <span class="iconfont-archer">&#xe60a;</span>
+            自动化测试
         </span>
     
         <span class="sidebar-category-name" data-categories="XAMPP">

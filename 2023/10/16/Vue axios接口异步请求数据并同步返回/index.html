@@ -335,7 +335,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">317</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">315</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -501,20 +501,11 @@
 <p>其中<code>async</code>用来修饰方法，其声明的方法为异步请求的方法，<code>await</code>只能在异步方法中使用，用于等待指定方法执行完成；<code>await</code>修饰的方法执行完成后，才会执行后续的代码。</p>
 <p><code>axios</code>的<code>.then</code>模块前把this赋值给一个变量并在<code>.then</code>中代替<code>this</code>来使用，可以防止<code>this</code>指针发生变化导致引用全局变量无效的问题，如：</p>
 <ul>
-<li><p>```json<br>  getData() {      </p>
-<pre><code>  var _this=this
-  axios.get(`https://tangmenjue.top`)
-  .then(res =&gt; &#123;
-  _this.data = res.data
-      &#125;)
-  &#125;,
-</code></pre>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">下面将介绍使用**`axios`异步请求数据不同步返回**时的处理方法：</span><br><span class="line"></span><br><span class="line">- 定义`getData`方法来发送axois请求，将请求返回值赋值给`this.data`，其中：使用`async`修饰`getData`方法，使用`await`修饰`axios`方法：</span><br><span class="line"></span><br><span class="line">	```json</span><br><span class="line">	async getData() &#123;      </span><br><span class="line">	    var _this=this</span><br><span class="line">	    await axios.get(`https://tangmenjue.top`)</span><br><span class="line">		.then(res =&gt; &#123;</span><br><span class="line">	    _this.data = res.data</span><br><span class="line">	        &#125;)</span><br><span class="line">	    &#125;,</span><br></pre></td></tr></table></figure>
-</li>
+<li><p>``<code>json   getData() &#123;             var _this=this       axios.get(</code>https://tangmenjue.top`)
+.then(res =&gt; { _this.data = res.data }) }, <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">下面将介绍使用**`axios`异步请求数据不同步返回**时的处理方法：</span><br><span class="line"></span><br><span class="line">- 定义`getData`方法来发送axois请求，将请求返回值赋值给`this.data`，其中：使用`async`修饰`getData`方法，使用`await`修饰`axios`方法：</span><br><span class="line"></span><br><span class="line">	```json</span><br><span class="line">	async getData() &#123;      </span><br><span class="line">	    var _this=this</span><br><span class="line">	    await axios.get(`https://tangmenjue.top`)</span><br><span class="line">		.then(res =&gt; &#123;</span><br><span class="line">	    _this.data = res.data</span><br><span class="line">	        &#125;)</span><br><span class="line">	    &#125;,</span><br></pre></td></tr></table></figure></p></li>
 <li><p>定义调用<code>getData</code>的方法<code>handleData</code>，其中：使用<code>async</code>修饰<code>handleData</code>方法，使用<code>await</code>修饰调用的<code>this.getData</code>方法：：</p>
-  <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">async handleData() <span class="punctuation">&#123;</span>      </span><br><span class="line">    await this.getData()</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>根据上述步骤即可实现将<code>axios</code>请求的数据同步传递给全局变量<code>this.data</code>。</p>
-</li>
+<p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">async handleData() <span class="punctuation">&#123;</span>      </span><br><span class="line">    await this.getData()</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>根据上述步骤即可实现将<code>axios</code>请求的数据同步传递给全局变量<code>this.data</code>。</p></li>
 </ul>
 
     </article>
@@ -1702,6 +1693,8 @@
         
         
         
+        
+        
     
     
     
@@ -2166,9 +2159,9 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="CSS3">
+            <span class="sidebar-tag-name" data-tags="数据库工具">
                 <span class="iconfont-archer">&#xe606;</span>
-                CSS3
+                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="CentOS 7">
@@ -2186,9 +2179,19 @@
                 网络管理
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库工具">
+            <span class="sidebar-tag-name" data-tags="CSS3">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
+                CSS3
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2206,24 +2209,9 @@
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
-                <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2241,14 +2229,19 @@
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
-                MinIO
+                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2271,11 +2264,6 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Vue.js">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue.js
@@ -2284,6 +2272,21 @@
             <span class="sidebar-tag-name" data-tags="前端">
                 <span class="iconfont-archer">&#xe606;</span>
                 前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="YAML">
@@ -2296,19 +2299,9 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2372,9 +2365,9 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="数据库工具">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Linux">
@@ -2382,14 +2375,9 @@
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库工具">
+        <span class="sidebar-category-name" data-categories="CSS3">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            CSS3
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2397,9 +2385,9 @@
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2412,14 +2400,9 @@
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="学习笔记">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习笔记
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2427,14 +2410,29 @@
             可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            学习笔记
         </span>
     
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Lottie">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2447,24 +2445,19 @@
             LLM
         </span>
     
-        <span class="sidebar-category-name" data-categories="edge">
-            <span class="iconfont-archer">&#xe60a;</span>
-            edge
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端">
             <span class="iconfont-archer">&#xe60a;</span>
             前端
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="JavaScript">
+        <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
-            JavaScript
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2472,9 +2465,19 @@
             Elasticsearch
         </span>
     
-        <span class="sidebar-category-name" data-categories="Lottie">
+        <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
+            JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2485,16 +2488,6 @@
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="人工智能">
-            <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="前端框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Redis">

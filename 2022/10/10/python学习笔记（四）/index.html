@@ -496,27 +496,38 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="切片（Slice）"><a href="#切片（Slice）" class="headerlink" title="切片（Slice）"></a>切片（Slice）</h1><p>具体形式：<code>L[0:3]</code>,其中<code>L</code>为list名称，<code>0:3</code>代表list的取值范围，与matlab中的数组取值类似。<strong>list、tuple、字符串</strong>可以用切片操作。</p>
-<h2 id="list切片"><a href="#list切片" class="headerlink" title="list切片"></a>list切片</h2><p>下面以一个list为例来说明切片的用法：</p>
+        <h1 id="切片slice">切片（Slice）</h1>
+<p>具体形式：<code>L[0:3]</code>,其中<code>L</code>为list名称，<code>0:3</code>代表list的取值范围，与matlab中的数组取值类似。<strong>list、tuple、字符串</strong>可以用切片操作。</p>
+<h2 id="list切片">list切片</h2>
+<p>下面以一个list为例来说明切片的用法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">L=[<span class="string">&#x27;Michael&#x27;</span>, <span class="string">&#x27;Sarah&#x27;</span>, <span class="string">&#x27;Tracy&#x27;</span>, <span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Jack&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(L[<span class="number">0</span>:<span class="number">3</span>])<span class="comment">#取前3个元素</span></span><br><span class="line"><span class="built_in">print</span>(L[:<span class="number">3</span>])<span class="comment">#第一个索引是0可省略</span></span><br><span class="line"><span class="built_in">print</span>(L[-<span class="number">2</span>:])<span class="comment">#取后2个元素</span></span><br><span class="line"><span class="built_in">print</span>(L[-<span class="number">2</span>:-<span class="number">1</span>])<span class="comment">#取倒数第2的元素</span></span><br><span class="line"><span class="built_in">print</span>(L[<span class="number">0</span>:<span class="number">4</span>:<span class="number">2</span>])<span class="comment">#前4个数，每两个取一个</span></span><br><span class="line"><span class="built_in">print</span>(L[::<span class="number">2</span>])<span class="comment">#所有数，每两个取一个</span></span><br><span class="line"><span class="built_in">print</span>(L[:])<span class="comment">#复制一个list</span></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[<span class="string">&#x27;Michael&#x27;</span>, <span class="string">&#x27;Sarah&#x27;</span>, <span class="string">&#x27;Tracy&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;Michael&#x27;</span>, <span class="string">&#x27;Sarah&#x27;</span>, <span class="string">&#x27;Tracy&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Jack&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;Bob&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;Michael&#x27;</span>, <span class="string">&#x27;Tracy&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;Michael&#x27;</span>, <span class="string">&#x27;Tracy&#x27;</span>, <span class="string">&#x27;Jack&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;Michael&#x27;</span>, <span class="string">&#x27;Sarah&#x27;</span>, <span class="string">&#x27;Tracy&#x27;</span>, <span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Jack&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<h2 id="tuple切片"><a href="#tuple切片" class="headerlink" title="tuple切片"></a>tuple切片</h2><p>由于tuple也是一种list，因此tuple也可以用切片操作，其操作结果仍是tuple：</p>
+<h2 id="tuple切片">tuple切片</h2>
+<p>由于tuple也是一种list，因此tuple也可以用切片操作，其操作结果仍是tuple：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">L=(<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"><span class="built_in">print</span>(L[:<span class="number">3</span>])</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="字符串切片"><a href="#字符串切片" class="headerlink" title="字符串切片"></a>字符串切片</h2><p>字符串也可以看成是一种list，因此，字符串也可以进行切片操作。</p>
+<h2 id="字符串切片">字符串切片</h2>
+<p>字符串也可以看成是一种list，因此，字符串也可以进行切片操作。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">L=<span class="string">&#x27;ZHANGSAN&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(L[:<span class="number">3</span>])</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">ZHA</span><br></pre></td></tr></table></figure>
-<h2 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h2><p>利用切片操作，实现一个<code>trim()</code>函数，去除字符串首尾的空格，注意不要调用str的<code>strip()</code>方法。</p>
+<h2 id="练习题">练习题</h2>
+<p>利用切片操作，实现一个<code>trim()</code>函数，去除字符串首尾的空格，注意不要调用str的<code>strip()</code>方法。</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">trim</span>(<span class="params">s</span>):</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    m=<span class="built_in">len</span>(s)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">        <span class="keyword">if</span> s[i]==<span class="string">&#x27; &#x27;</span>:</span><br><span class="line">            n=n+<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">        <span class="keyword">if</span> s[m-<span class="number">1</span>]==<span class="string">&#x27; &#x27;</span>:</span><br><span class="line">            m=m-<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> s[n:m]</span><br><span class="line"><span class="comment"># 测试:</span></span><br><span class="line"><span class="keyword">if</span> trim(<span class="string">&#x27;hello  &#x27;</span>) != <span class="string">&#x27;hello&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="keyword">elif</span> trim(<span class="string">&#x27;  hello&#x27;</span>) != <span class="string">&#x27;hello&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="keyword">elif</span> trim(<span class="string">&#x27;  hello  &#x27;</span>) != <span class="string">&#x27;hello&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="keyword">elif</span> trim(<span class="string">&#x27;  hello  world  &#x27;</span>) != <span class="string">&#x27;hello  world&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="keyword">elif</span> trim(<span class="string">&#x27;&#x27;</span>) != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="keyword">elif</span> trim(<span class="string">&#x27;    &#x27;</span>) != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试成功!&#x27;</span>)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">测试成功!</span><br></pre></td></tr></table></figure>
-<h1 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h1><p>通过<code>for</code>循环来遍历list或tuple称为迭代。只要是可迭代对象，无论有无下标，都可以迭代。</p>
-<h2 id="迭代dict"><a href="#迭代dict" class="headerlink" title="迭代dict"></a>迭代<code>dict</code></h2><p>默认情况下，<code>dict</code>迭代的是key。如果要迭代value，可以用<code>for value in d.values()</code>语句，如果要同时迭代key和value，可以用<code>for k,v in d.items()</code>语句。由于<code>dict</code>的存储不是按照<code>list</code>的方式顺序排列，因此迭代出的结果顺序很可能不一样。</p>
+<h1 id="迭代">迭代</h1>
+<p>通过<code>for</code>循环来遍历list或tuple称为迭代。只要是可迭代对象，无论有无下标，都可以迭代。</p>
+<h2 id="迭代dict">迭代<code>dict</code></h2>
+<p>默认情况下，<code>dict</code>迭代的是key。如果要迭代value，可以用<code>for value in d.values()</code>语句，如果要同时迭代key和value，可以用<code>for k,v in d.items()</code>语句。由于<code>dict</code>的存储不是按照<code>list</code>的方式顺序排列，因此迭代出的结果顺序很可能不一样。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">d=&#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;b&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;c&#x27;</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> d:</span><br><span class="line">    <span class="built_in">print</span>(key)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br></pre></td></tr></table></figure>
-<h2 id="迭代字符串"><a href="#迭代字符串" class="headerlink" title="迭代字符串"></a>迭代字符串</h2><p>字符串也是可迭代对象，也可以作用于for循环。</p>
+<h2 id="迭代字符串">迭代字符串</h2>
+<p>字符串也是可迭代对象，也可以作用于for循环。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">d=<span class="string">&#x27;abc&#x27;</span></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> d:</span><br><span class="line">    <span class="built_in">print</span>(key)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br></pre></td></tr></table></figure>
-<h2 id="对list实现下标循环"><a href="#对list实现下标循环" class="headerlink" title="对list实现下标循环"></a>对list实现下标循环</h2><p>通过<code>enumerate</code>函数把list变成索引-元素对，便可以在for循环中同时迭代索引和元素本身：</p>
+<h2 id="对list实现下标循环">对list实现下标循环</h2>
+<p>通过<code>enumerate</code>函数把list变成索引-元素对，便可以在for循环中同时迭代索引和元素本身：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i,value <span class="keyword">in</span> <span class="built_in">enumerate</span>([<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>]):</span><br><span class="line">    <span class="built_in">print</span>(i,value)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">0</span> A</span><br><span class="line"><span class="number">1</span> B</span><br><span class="line"><span class="number">2</span> C</span><br></pre></td></tr></table></figure>
-<h2 id="练习题-1"><a href="#练习题-1" class="headerlink" title="练习题"></a>练习题</h2><p>请使用迭代查找一个list中最小和最大值，并返回一个tuple。</p>
+<h2 id="练习题-1">练习题</h2>
+<p>请使用迭代查找一个list中最小和最大值，并返回一个tuple。</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">findMinAndMax</span>(<span class="params">L</span>):</span><br><span class="line">    minl=<span class="number">999</span></span><br><span class="line">    maxl=<span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> L==[]:</span><br><span class="line">        <span class="keyword">return</span> (<span class="literal">None</span>, <span class="literal">None</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> L:</span><br><span class="line">        <span class="keyword">if</span>(minl&gt;<span class="built_in">int</span>(i)):</span><br><span class="line">            minl=i</span><br><span class="line">        <span class="keyword">if</span>(maxl&lt;<span class="built_in">int</span>(i)):</span><br><span class="line">            maxl=i</span><br><span class="line">    <span class="keyword">return</span> (minl, maxl)</span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line"><span class="keyword">if</span> findMinAndMax([]) != (<span class="literal">None</span>, <span class="literal">None</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!1&#x27;</span>)</span><br><span class="line"><span class="keyword">elif</span> findMinAndMax([<span class="number">7</span>]) != (<span class="number">7</span>, <span class="number">7</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="keyword">elif</span> findMinAndMax([<span class="number">7</span>, <span class="number">1</span>]) != (<span class="number">1</span>, <span class="number">7</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="keyword">elif</span> findMinAndMax([<span class="number">7</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">5</span>]) != (<span class="number">1</span>, <span class="number">9</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试成功!&#x27;</span>)    </span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">测试成功!</span><br></pre></td></tr></table></figure>
-<h1 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a>列表生成式</h1><p>使用列表生成式，可以通过一个list快速生成另一个list。</p>
+<h1 id="列表生成式">列表生成式</h1>
+<p>使用列表生成式，可以通过一个list快速生成另一个list。</p>
 <p>如要生成<code>list[1,2,3,4,5,6,7,8,9]</code>可用<code>list(range(1,10))</code>生成。</p>
 <p>若要生成<code>[1x2,2x2,3x3,...,10x10]</code>可用<code>[x*x for x in range(1,11)]</code>生成。</p>
 <p>写列表生成式时，要把<strong>生成的元素放到前面</strong>，后面再跟for循环，for循环后可以加上if判断，也可以使用两层循环：</p>
@@ -526,14 +537,18 @@
 <p>因此列表生成式也可以使用两个变量来生产list：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">d=&#123;<span class="string">&#x27;x&#x27;</span>:<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;y&#x27;</span>:<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;z&#x27;</span>:<span class="string">&#x27;3&#x27;</span>&#125;</span><br><span class="line">L=[k+<span class="string">&#x27;=&#x27;</span>+v <span class="keyword">for</span> k,v <span class="keyword">in</span> d.items()]</span><br><span class="line"><span class="built_in">print</span>(L)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[<span class="string">&#x27;x=1&#x27;</span>, <span class="string">&#x27;y=2&#x27;</span>, <span class="string">&#x27;z=3&#x27;</span>]</span><br></pre></td></tr></table></figure>
 <p><strong>注意</strong>：这里的<strong>value只能为str类型</strong>，由于非字符串类型没有<code>lower()</code>方法，所以列表生成式会报错。可以使用<code>isinstance</code>函数来判断一个变量a是不是字符串，具体形式为<code>isinstance(a,str)</code>。</p>
-<h2 id="if…else"><a href="#if…else" class="headerlink" title="if…else"></a>if…else</h2><p>在<strong>使用列表生成式</strong>时，<strong>不能在最后的if加上else</strong>。这是因为跟在for后面的if是一个筛选条件，不能带else。而把<strong>if写在for前面必须加else</strong>，否则会报错。这是因为for前面的部分是一个表达式，其必须要计算出一个结果。</p>
-<h2 id="练习题-2"><a href="#练习题-2" class="headerlink" title="练习题"></a>练习题</h2><p>请修改列表生成式，通过添加<code>if</code>语句保证列表生成式能正确地执行。</p>
+<h2 id="ifelse">if…else</h2>
+<p>在<strong>使用列表生成式</strong>时，<strong>不能在最后的if加上else</strong>。这是因为跟在for后面的if是一个筛选条件，不能带else。而把<strong>if写在for前面必须加else</strong>，否则会报错。这是因为for前面的部分是一个表达式，其必须要计算出一个结果。</p>
+<h2 id="练习题-2">练习题</h2>
+<p>请修改列表生成式，通过添加<code>if</code>语句保证列表生成式能正确地执行。</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">L1 = [<span class="string">&#x27;Hello&#x27;</span>, <span class="string">&#x27;World&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;Apple&#x27;</span>, <span class="literal">None</span>]</span><br><span class="line">L2 = [k.lower() <span class="keyword">for</span> k <span class="keyword">in</span> L1 <span class="keyword">if</span> <span class="built_in">isinstance</span>(k,<span class="built_in">str</span>)==<span class="literal">True</span>]</span><br><span class="line"><span class="comment"># 测试:</span></span><br><span class="line"><span class="built_in">print</span>(L2)</span><br><span class="line"><span class="keyword">if</span> L2 == [<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;world&#x27;</span>, <span class="string">&#x27;apple&#x27;</span>]:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试通过!&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;world&#x27;</span>, <span class="string">&#x27;apple&#x27;</span>]</span><br><span class="line">测试通过!</span><br></pre></td></tr></table></figure>
-<h1 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h1><p>在循环过程中不断推算出后续元素，故不必创建完整list，从而节省大量空间的机制，称为生成器（generator）。</p>
+<h1 id="生成器">生成器</h1>
+<p>在循环过程中不断推算出后续元素，故不必创建完整list，从而节省大量空间的机制，称为生成器（generator）。</p>
 <p><strong>创建生成器</strong>:将列表生成式的<code>[]</code>改成<code>()</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">L=[x*x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]</span><br><span class="line"><span class="built_in">print</span>(L)</span><br><span class="line">g=(x*x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(g)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>, <span class="number">64</span>, <span class="number">81</span>]</span><br><span class="line">&lt;generator <span class="built_in">object</span> &lt;genexpr&gt; at <span class="number">0x7ff38be35ac0</span>&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="打印生成器的元素"><a href="#打印生成器的元素" class="headerlink" title="打印生成器的元素"></a><strong>打印生成器的元素</strong></h2><p><strong>方法一：</strong></p>
+<h2 id="打印生成器的元素"><strong>打印生成器的元素</strong></h2>
+<p><strong>方法一：</strong></p>
 <p>通过<code>next()</code>函数单个打印生成器中的元素，具体形式如下：<code>next(g)</code></p>
 <p><strong>方法二：</strong></p>
 <p>使用<code>for</code>循环打印，具体形式如下：</p>
@@ -549,19 +564,24 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params"><span class="built_in">max</span></span>):</span><br><span class="line">    n,a,b=<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n&lt;<span class="built_in">max</span>:</span><br><span class="line">        <span class="keyword">yield</span> b</span><br><span class="line">        a,b=b,a+b<span class="comment">#相当于t=(b,a+b),t是一个tuple,a=t[0],b=t[1]</span></span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;done&#x27;</span>   </span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> fib(<span class="number">6</span>):    </span><br><span class="line">    <span class="built_in">print</span>(n) </span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure>
 <p>用for循环调用generator时，是拿不到generator的return语句的返回值，若想要拿到返回值，必须捕获<code>StopIteration</code>错误，返回值包含在<code>StopIteration</code>的value中：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params"><span class="built_in">max</span></span>):</span><br><span class="line">    n,a,b=<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n&lt;<span class="built_in">max</span>:</span><br><span class="line">        <span class="keyword">yield</span> b</span><br><span class="line">        a,b=b,a+b<span class="comment">#相当于t=(b,a+b),t是一个tuple,a=t[0],b=t[1]</span></span><br><span class="line">        n=n+<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;done&#x27;</span>    </span><br><span class="line">g=fib(<span class="number">6</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        x=<span class="built_in">next</span>(g)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;g:&#x27;</span>,x)</span><br><span class="line">    <span class="keyword">except</span> StopIteration <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Generator return value:&#x27;</span>,e.value)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">g: <span class="number">1</span></span><br><span class="line">g: <span class="number">1</span></span><br><span class="line">g: <span class="number">2</span></span><br><span class="line">g: <span class="number">3</span></span><br><span class="line">g: <span class="number">5</span></span><br><span class="line">g: <span class="number">8</span></span><br><span class="line">Generator <span class="keyword">return</span> value: done</span><br></pre></td></tr></table></figure>
-<h2 id="练习题-3"><a href="#练习题-3" class="headerlink" title="练习题"></a>练习题</h2><p><a target="_blank" rel="noopener" href="http://baike.baidu.com/view/7804.htm">杨辉三角</a>定义如下：</p>
+<h2 id="练习题-3">练习题</h2>
+<p><a target="_blank" rel="noopener" href="http://baike.baidu.com/view/7804.htm">杨辉三角</a>定义如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">          1</span><br><span class="line">         / \</span><br><span class="line">        1   1</span><br><span class="line">       / \ / \</span><br><span class="line">      1   2   1</span><br><span class="line">     / \ / \ / \</span><br><span class="line">    1   3   3   1</span><br><span class="line">   / \ / \ / \ / \</span><br><span class="line">  1   4   6   4   1</span><br><span class="line"> / \ / \ / \ / \ / \</span><br><span class="line">1   5   10  10  5   1</span><br></pre></td></tr></table></figure>
 <p>把每一行看做一个list，试写一个generator，不断输出下一行的list。</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">triangles</span>():</span><br><span class="line">    L=[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">yield</span> L</span><br><span class="line">        L=[<span class="number">1</span>]+[L[n]+L[n-<span class="number">1</span>] <span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(L))]+[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 期待输出:</span></span><br><span class="line"><span class="comment"># [1]</span></span><br><span class="line"><span class="comment"># [1, 1]</span></span><br><span class="line"><span class="comment"># [1, 2, 1]</span></span><br><span class="line"><span class="comment"># [1, 3, 3, 1]</span></span><br><span class="line"><span class="comment"># [1, 4, 6, 4, 1]</span></span><br><span class="line"><span class="comment"># [1, 5, 10, 10, 5, 1]</span></span><br><span class="line"><span class="comment"># [1, 6, 15, 20, 15, 6, 1]</span></span><br><span class="line"><span class="comment"># [1, 7, 21, 35, 35, 21, 7, 1]</span></span><br><span class="line"><span class="comment"># [1, 8, 28, 56, 70, 56, 28, 8, 1]</span></span><br><span class="line"><span class="comment"># [1, 9, 36, 84, 126, 126, 84, 36, 9, 1]</span></span><br><span class="line">n = <span class="number">0</span></span><br><span class="line">results = []</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> triangles():</span><br><span class="line">    results.append(t)</span><br><span class="line">    n = n + <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">10</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> results:</span><br><span class="line">    <span class="built_in">print</span>(t)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> results == [</span><br><span class="line">    [<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">6</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">15</span>, <span class="number">6</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">7</span>, <span class="number">21</span>, <span class="number">35</span>, <span class="number">35</span>, <span class="number">21</span>, <span class="number">7</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">8</span>, <span class="number">28</span>, <span class="number">56</span>, <span class="number">70</span>, <span class="number">56</span>, <span class="number">28</span>, <span class="number">8</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">9</span>, <span class="number">36</span>, <span class="number">84</span>, <span class="number">126</span>, <span class="number">126</span>, <span class="number">84</span>, <span class="number">36</span>, <span class="number">9</span>, <span class="number">1</span>]</span><br><span class="line">]:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试通过!&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">[<span class="number">1</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">1</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">1</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">6</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">15</span>, <span class="number">6</span>, <span class="number">1</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">7</span>, <span class="number">21</span>, <span class="number">35</span>, <span class="number">35</span>, <span class="number">21</span>, <span class="number">7</span>, <span class="number">1</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">8</span>, <span class="number">28</span>, <span class="number">56</span>, <span class="number">70</span>, <span class="number">56</span>, <span class="number">28</span>, <span class="number">8</span>, <span class="number">1</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">9</span>, <span class="number">36</span>, <span class="number">84</span>, <span class="number">126</span>, <span class="number">126</span>, <span class="number">84</span>, <span class="number">36</span>, <span class="number">9</span>, <span class="number">1</span>]</span><br><span class="line">测试通过!</span><br></pre></td></tr></table></figure>
-<h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><p>可以直接作用于for循环的对象统称为可迭代对象<code>Iterable</code>。</p>
-<h2 id="判断一个对象是可迭代对象"><a href="#判断一个对象是可迭代对象" class="headerlink" title="判断一个对象是可迭代对象"></a>判断一个对象是可迭代对象</h2><p>可通过<code>collections.abc</code>模块的<code>Iterable</code>类型判断。</p>
+<h1 id="迭代器">迭代器</h1>
+<p>可以直接作用于for循环的对象统称为可迭代对象<code>Iterable</code>。</p>
+<h2 id="判断一个对象是可迭代对象">判断一个对象是可迭代对象</h2>
+<p>可通过<code>collections.abc</code>模块的<code>Iterable</code>类型判断。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections.abc <span class="keyword">import</span> Iterable</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">isinstance</span>(<span class="string">&#x27;abc&#x27;</span>,Iterable))<span class="comment">#字符串是否可迭代</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">isinstance</span>([<span class="number">1</span>,<span class="number">2.3</span>],Iterable))<span class="comment">#list是否可迭代</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">isinstance</span>(([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]),Iterable))<span class="comment">#set是否可迭代</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">isinstance</span>(<span class="number">123</span>,Iterable))<span class="comment">#整数是否可迭代</span></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="literal">False</span></span><br></pre></td></tr></table></figure>
 <p>可以被<code>next()</code>函数调用并不断返回下一个值的对象称为迭代器：<code>Iterator</code>。</p>
-<p>生成器都是<code>Iterator</code>对象，但list、dict、str虽然是<code>Iterable</code>，却不是<code>Iterator</code>。这是因为<code>Iterator</code>的对象表示的是一个 数据流，可以把这个数据流看作是一个未知长度的有序序列，<code>Iterator</code>甚至可以表示一个无限大的数据流，例如全体自然数。</p>
+<p>生成器都是<code>Iterator</code>对象，但list、dict、str虽然是<code>Iterable</code>，却不是<code>Iterator</code>。这是因为<code>Iterator</code>的对象表示的是一个
+数据流，可以把这个数据流看作是一个未知长度的有序序列，<code>Iterator</code>甚至可以表示一个无限大的数据流，例如全体自然数。</p>
 <p><strong>把list、dict、str从<code>Iterable</code>变成<code>Iterator</code></strong></p>
 <p>可以使用<code>iter()</code>函数把list、dict、str从<code>Iterable</code>变成<code>Iterator</code>，其表现形式为：<code>isinstance(iter([]),Iterator)</code>，其中，<code>[]</code>可替换为dict、str的形式。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>可作用于for循环的对象都是<code>Iterable</code>类型。</p>
+<h2 id="小结">小结</h2>
+<p>可作用于for循环的对象都是<code>Iterable</code>类型。</p>
 <p>可作用于next()函数的对象都是<code>Iterator</code>类型，它们表示一个惰性计算的序列。</p>
 <p>list、dict、str虽然是<code>Iterable</code>，却不是<code>Iterator</code>。但可以使用<code>iter()</code>函数把list、dict、str从<code>Iterable</code>变成<code>Iterator</code></p>
 
@@ -762,7 +782,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%87%E7%89%87%EF%BC%88Slice%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">切片（Slice）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#list%E5%88%87%E7%89%87"><span class="toc-number">1.1.</span> <span class="toc-text">list切片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tuple%E5%88%87%E7%89%87"><span class="toc-number">1.2.</span> <span class="toc-text">tuple切片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%87%E7%89%87"><span class="toc-number">1.3.</span> <span class="toc-text">字符串切片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3"><span class="toc-number">2.</span> <span class="toc-text">迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3dict"><span class="toc-number">2.1.</span> <span class="toc-text">迭代dict</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.2.</span> <span class="toc-text">迭代字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9list%E5%AE%9E%E7%8E%B0%E4%B8%8B%E6%A0%87%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.3.</span> <span class="toc-text">对list实现下标循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">2.4.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">列表生成式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#if%E2%80%A6else"><span class="toc-number">3.1.</span> <span class="toc-text">if…else</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-2"><span class="toc-number">3.2.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">生成器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E7%94%9F%E6%88%90%E5%99%A8%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">4.1.</span> <span class="toc-text">打印生成器的元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-3"><span class="toc-number">4.2.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%8F%AF%E8%BF%AD%E4%BB%A3%E5%AF%B9%E8%B1%A1"><span class="toc-number">5.1.</span> <span class="toc-text">判断一个对象是可迭代对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">5.2.</span> <span class="toc-text">小结</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%87%E7%89%87slice"><span class="toc-number">1.</span> <span class="toc-text">切片（Slice）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#list%E5%88%87%E7%89%87"><span class="toc-number">1.1.</span> <span class="toc-text">list切片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tuple%E5%88%87%E7%89%87"><span class="toc-number">1.2.</span> <span class="toc-text">tuple切片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%87%E7%89%87"><span class="toc-number">1.3.</span> <span class="toc-text">字符串切片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3"><span class="toc-number">2.</span> <span class="toc-text">迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3dict"><span class="toc-number">2.1.</span> <span class="toc-text">迭代dict</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.2.</span> <span class="toc-text">迭代字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9list%E5%AE%9E%E7%8E%B0%E4%B8%8B%E6%A0%87%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.3.</span> <span class="toc-text">对list实现下标循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">2.4.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">列表生成式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ifelse"><span class="toc-number">3.1.</span> <span class="toc-text">if…else</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-2"><span class="toc-number">3.2.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">生成器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E7%94%9F%E6%88%90%E5%99%A8%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">4.1.</span> <span class="toc-text">打印生成器的元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-3"><span class="toc-number">4.2.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%8F%AF%E8%BF%AD%E4%BB%A3%E5%AF%B9%E8%B1%A1"><span class="toc-number">5.1.</span> <span class="toc-text">判断一个对象是可迭代对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">5.2.</span> <span class="toc-text">小结</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1112,6 +1132,8 @@
         
         
     
+        
+        
         
         
         
@@ -2214,9 +2236,9 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="CSS3">
+            <span class="sidebar-tag-name" data-tags="数据库工具">
                 <span class="iconfont-archer">&#xe606;</span>
-                CSS3
+                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="CentOS 7">
@@ -2234,9 +2256,19 @@
                 网络管理
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库工具">
+            <span class="sidebar-tag-name" data-tags="CSS3">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
+                CSS3
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2254,24 +2286,9 @@
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
-                <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2289,14 +2306,19 @@
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
-                MinIO
+                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2319,11 +2341,6 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Vue.js">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue.js
@@ -2332,6 +2349,21 @@
             <span class="sidebar-tag-name" data-tags="前端">
                 <span class="iconfont-archer">&#xe606;</span>
                 前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="YAML">
@@ -2344,19 +2376,9 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2420,9 +2442,9 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="数据库工具">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Linux">
@@ -2430,14 +2452,9 @@
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库工具">
+        <span class="sidebar-category-name" data-categories="CSS3">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            CSS3
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2445,9 +2462,9 @@
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2460,14 +2477,9 @@
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="学习笔记">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习笔记
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2475,14 +2487,29 @@
             可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            学习笔记
         </span>
     
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Lottie">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2495,24 +2522,19 @@
             LLM
         </span>
     
-        <span class="sidebar-category-name" data-categories="edge">
-            <span class="iconfont-archer">&#xe60a;</span>
-            edge
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端">
             <span class="iconfont-archer">&#xe60a;</span>
             前端
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="JavaScript">
+        <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
-            JavaScript
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2520,9 +2542,19 @@
             Elasticsearch
         </span>
     
-        <span class="sidebar-category-name" data-categories="Lottie">
+        <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
+            JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2533,16 +2565,6 @@
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="人工智能">
-            <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="前端框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Redis">

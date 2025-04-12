@@ -435,9 +435,11 @@
                 <span class="abstract-title-text">Kubernetes实践：从yaml创建工作负载</span>
             </a>
             <div class="abstract-content">
-                PodPod是Kubernetes中的基本单位。容器本身不会直接分配到主机上，而会封装到名为Pod的对象中。Kubernetes以Pod为最小单位进行调度、伸缩并共享资源、管理生命周期。
+                Pod
+Pod是Kubernetes中的基本单位。容器本身不会直接分配到主机上，而会封装到名为Pod的对象中。Kubernetes以Pod为最小单位进行调度、伸缩并共享资源、管理生命周期。
 Pod通常表示单个应用程序，由一个或多个关系紧密的容器构成，这些容器拥有同样的生命周期，作为一个整体一起编排到Node上。这些容器共享环境、存储卷（volume）和IP空间。尽管Pod基于一个或多个容器，但应将Pod视作一个单一的整体、单独的应用程序。
-Pod模板在创建Pod时，需要定义一个模板文件（.yml文件），并将其称为Pod模板。可以用Pod模板来定义资源，以下是Pod模板的主要内容及对应说明：...
+Pod模板
+在创建Pod时，需要定义一个模板文件（.yml文件），并将其称为Pod模板。可以用Pod模板来定义资源，以下是Pod模板的主要内容...
             </div>
             <!-- read more -->
             
@@ -472,13 +474,17 @@ Pod模板在创建Pod时，需要定义一个模板文件（.yml文件），并�
                 <span class="abstract-title-text">docker-compose一键部署Elasticsearch Logstash Kibana</span>
             </a>
             <div class="abstract-content">
-                简介在使用Elasticsearch进行全文搜索时，会使用到Elasticsearch（搜索引擎）、Logstash（数据同步）、Kibana（数据可视化）这三个中间件。在开发或测试环境中部署项目时，常使用docker-compose一键部署项目所需的环境，因此本文记录使用docker-compose一键部署Elasticsearch、Logstash和Kibana的过程。
-部署端口说明
+                简介
+在使用Elasticsearch进行全文搜索时，会使用到Elasticsearch（搜索引擎）、Logstash（数据同步）、Kibana（数据可视化）这三个中间件。在开发或测试环境中部署项目时，常使用docker-compose一键部署项目所需的环境，因此本文记录使用docker-compose一键部署Elasticsearch、Logstash和Kibana的过程。
+部署
+端口说明
+
 Elasticsearch：9200（HTTP通信）和9300（TCP通信）
 Logstash：5044和9600（TCP通信）
 Kibana：5601
 
-配置文件docker-compose.yml1...
+配置文件
+docke...
             </div>
             <!-- read more -->
             
@@ -1589,6 +1595,8 @@ Kibana：5601
         
         
         
+        
+        
     
     
     
@@ -2053,9 +2061,9 @@ Kibana：5601
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="CSS3">
+            <span class="sidebar-tag-name" data-tags="数据库工具">
                 <span class="iconfont-archer">&#xe606;</span>
-                CSS3
+                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="CentOS 7">
@@ -2073,9 +2081,19 @@ Kibana：5601
                 网络管理
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库工具">
+            <span class="sidebar-tag-name" data-tags="CSS3">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
+                CSS3
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2093,24 +2111,9 @@ Kibana：5601
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
-                <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2128,14 +2131,19 @@ Kibana：5601
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
-                MinIO
+                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2158,11 +2166,6 @@ Kibana：5601
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Vue.js">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue.js
@@ -2171,6 +2174,21 @@ Kibana：5601
             <span class="sidebar-tag-name" data-tags="前端">
                 <span class="iconfont-archer">&#xe606;</span>
                 前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="YAML">
@@ -2183,19 +2201,9 @@ Kibana：5601
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2259,9 +2267,9 @@ Kibana：5601
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="数据库工具">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Linux">
@@ -2269,14 +2277,9 @@ Kibana：5601
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库工具">
+        <span class="sidebar-category-name" data-categories="CSS3">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            CSS3
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2284,9 +2287,9 @@ Kibana：5601
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2299,14 +2302,9 @@ Kibana：5601
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="学习笔记">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习笔记
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2314,14 +2312,29 @@ Kibana：5601
             可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            学习笔记
         </span>
     
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Lottie">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2334,24 +2347,19 @@ Kibana：5601
             LLM
         </span>
     
-        <span class="sidebar-category-name" data-categories="edge">
-            <span class="iconfont-archer">&#xe60a;</span>
-            edge
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端">
             <span class="iconfont-archer">&#xe60a;</span>
             前端
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="JavaScript">
+        <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
-            JavaScript
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2359,9 +2367,19 @@ Kibana：5601
             Elasticsearch
         </span>
     
-        <span class="sidebar-category-name" data-categories="Lottie">
+        <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
+            JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2372,16 +2390,6 @@ Kibana：5601
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="人工智能">
-            <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="前端框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Redis">

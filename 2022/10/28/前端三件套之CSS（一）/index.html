@@ -497,45 +497,56 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="CSS简介"><a href="#CSS简介" class="headerlink" title="CSS简介"></a>CSS简介</h1><p>CSS指层叠样式表，样式定义如何显示HTML元素。</p>
+        <h1 id="css简介">CSS简介</h1>
+<p>CSS指层叠样式表，样式定义如何显示HTML元素。</p>
 <p>样式对网页中元素位置的排版进行像素级精确控制。</p>
 <p>样式通常存储在样式表中，外部样式表通常存储在CSS文件中。</p>
 <p>多个样式定义可以层叠为一个，即对一个元素多次设置同一个样式，将使用最后一次设置的属性值。</p>
 <p>所有样式根据以下规则层叠于一个新的虚拟样式表中，其中数字4拥有最高的优先权。即意味着它将优先于以下的样式声明：</p>
-<ol>
+<ol type="1">
 <li>浏览器缺省设置</li>
 <li>外部样式表</li>
 <li>内部样式表（位于<code>&lt;head&gt;</code>标签内部）</li>
 <li>内联样式（在HTML元素内部）</li>
 </ol>
-<h1 id="CSS语法"><a href="#CSS语法" class="headerlink" title="CSS语法"></a>CSS语法</h1><p>CSS规则由两个主要的部分构成：选择器，以及一条或多条声明，语法如下：</p>
+<h1 id="css语法">CSS语法</h1>
+<p>CSS规则由两个主要的部分构成：选择器，以及一条或多条声明，语法如下：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">selector&#123;</span><br><span class="line">    property:value;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>选择器通常是需要改变样式的HTML元素，每条声明由一个属性和一个值组成。每个属性有一个值，属性和值被冒号分开，例如：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="CSS颜色值的写法"><a href="#CSS颜色值的写法" class="headerlink" title="CSS颜色值的写法"></a>CSS颜色值的写法</h2><p>在描述颜色时，除了使用英文单词，还可以使用十六进制颜色值。</p>
+<h2 id="css颜色值的写法">CSS颜色值的写法</h2>
+<p>在描述颜色时，除了使用英文单词，还可以使用十六进制颜色值。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#FF0000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>为了节约字节，可以使用CSS的缩写形式：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#F00</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>除此之外，还可以通过两种方法使用RGB值，当使用RGB百分比时，即使值为0也要写百分比符号。：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="built_in">rgb</span>(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="built_in">rgb</span>(<span class="number">100%</span>,<span class="number">0%</span>,<span class="number">0%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="CSS注释"><a href="#CSS注释" class="headerlink" title="CSS注释"></a>CSS注释</h2><p>CSS注释以”<code>/*</code>“开始，以”<code>*/</code>“结束。</p>
-<h1 id="Id和Class选择器"><a href="#Id和Class选择器" class="headerlink" title="Id和Class选择器"></a>Id和Class选择器</h1><h2 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h2><p>id选择器可以为标有特定id的HTML元素指定特定的样式。</p>
+<h2 id="css注释">CSS注释</h2>
+<p>CSS注释以”<code>/*</code>“开始，以”<code>*/</code>“结束。</p>
+<h1 id="id和class选择器">Id和Class选择器</h1>
+<h2 id="id选择器">id选择器</h2>
+<p>id选择器可以为标有特定id的HTML元素指定特定的样式。</p>
 <p>HTML元素以id属性来设置id选择器，CSS中id选择器以<code>#</code>号来显示：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#para1</span>&#123;</span><br><span class="line">    <span class="attribute">text-align</span>:center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>id属性不要以数字开头，数字开头的id在Mozilla/Firefox浏览器中不起作用。</p>
 <p>id属性只能在每个HTML文档中出现一次。</p>
-<h2 id="class类选择器"><a href="#class类选择器" class="headerlink" title="class类选择器"></a>class类选择器</h2><p>class选择器用于描述一组元素的样式，class选择器有别于id选择器，class可以在多个元素中使用。</p>
+<h2 id="class类选择器">class类选择器</h2>
+<p>class选择器用于描述一组元素的样式，class选择器有别于id选择器，class可以在多个元素中使用。</p>
 <p>class选择器在HTML中以class属性表示，在CSS中类选择器以一个点<code>.</code>号来显示：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.center</span>&#123;</span><br><span class="line">    <span class="attribute">text-align</span>:center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*也可以指定特定的HTML元素使用class,如指定所有p元素使用class=&quot;center&quot;*/</span></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.center</span>&#123;</span><br><span class="line">    <span class="attribute">text-align</span>:center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>类名不要以数字开头，数字开头的id在Mozilla/Firefox浏览器中不起作用。</p>
-<h2 id="标签选择器"><a href="#标签选择器" class="headerlink" title="标签选择器"></a>标签选择器</h2><p>以HTML标签作为CSS修饰多用的选择器：</p>
+<h2 id="标签选择器">标签选择器</h2>
+<p>以HTML标签作为CSS修饰多用的选择器：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line"><span class="selector-tag">h3</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">h3</span>&gt;hello world!&lt;/<span class="selector-tag">h3</span>&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="内联选择器"><a href="#内联选择器" class="headerlink" title="内联选择器"></a>内联选择器</h2><p>直接在标签内部写CSS代码：</p>
+<h2 id="内联选择器">内联选择器</h2>
+<p>直接在标签内部写CSS代码：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">style</span>=<span class="string">&quot;color red;&quot;</span>&gt;</span></span><br><span class="line">    hello world!</span><br><span class="line"><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这四种CSS选择器有修饰上的优先级，即：</p>
 <p>内联选择器&gt;id选择器&gt;类选择器&gt;标签选择器。</p>
-<h1 id="样式优先级"><a href="#样式优先级" class="headerlink" title="样式优先级"></a>样式优先级</h1><h2 id="多重样式优先级顺序"><a href="#多重样式优先级顺序" class="headerlink" title="多重样式优先级顺序"></a>多重样式优先级顺序</h2><p>下列是一份优先级逐级减少的选择器列表，其中数字1拥有最高的优先权：</p>
-<ol>
+<h1 id="样式优先级">样式优先级</h1>
+<h2 id="多重样式优先级顺序">多重样式优先级顺序</h2>
+<p>下列是一份优先级逐级减少的选择器列表，其中数字1拥有最高的优先权：</p>
+<ol type="1">
 <li>内联样式</li>
 <li>id选择器</li>
 <li>伪类</li>
@@ -544,9 +555,11 @@
 <li>元素（类型）选择器</li>
 <li>通用选择器（*）</li>
 </ol>
-<h2 id="important规则例外"><a href="#important规则例外" class="headerlink" title="!important规则例外"></a><code>!important</code>规则例外</h2><p>当<code>!important</code>规则被应用在一个样式声明中时，无论它处在声明列表中的哪里，该样式声明会覆盖CSS中任何其他的声明。</p>
+<h2 id="important规则例外"><code>!important</code>规则例外</h2>
+<p>当<code>!important</code>规则被应用在一个样式声明中时，无论它处在声明列表中的哪里，该样式声明会覆盖CSS中任何其他的声明。</p>
 <p>注意：只在需要覆盖全站或外部CSS的特定页面中使用<code>!important</code>，不要在全站范围的CSS上使用<code>!important</code>，不要在插件中使用<code>!important</code>。</p>
-<h2 id="优先级法则"><a href="#优先级法则" class="headerlink" title="优先级法则"></a>优先级法则</h2><p><strong>各CSS样式的权值：</strong></p>
+<h2 id="优先级法则">优先级法则</h2>
+<p><strong>各CSS样式的权值：</strong></p>
 <p>内联样式的权值：1000</p>
 <p>id选择器（#id）的权值：100</p>
 <p>类选择器（.类）的权值：10</p>
@@ -559,7 +572,8 @@
 <li>继承的CSS样式不如后来指定的CSS样式</li>
 <li>在同一组属性设置中标有“<code>!important</code>”规则的优先级最大</li>
 </ul>
-<h1 id="CSS设置背景"><a href="#CSS设置背景" class="headerlink" title="CSS设置背景"></a>CSS设置背景</h1><p>CSS背景用于定义HTML元素的背景。</p>
+<h1 id="css设置背景">CSS设置背景</h1>
+<p>CSS背景用于定义HTML元素的背景。</p>
 <p>CSS属性定义背景效果：</p>
 <ul>
 <li>background-color:背景颜色</li>
@@ -568,46 +582,57 @@
 <li>background-attachment：背景图像是否固定或随着页面的其余部分滚动</li>
 <li>background-position：背景图像的起始位置</li>
 </ul>
-<h2 id="background-color"><a href="#background-color" class="headerlink" title="background-color"></a>background-color</h2><p>background-color属性定义了元素的背景颜色。background-color属性不能继承，默认值是透明<code>transparent</code>。</p>
+<h2 id="background-color">background-color</h2>
+<p>background-color属性定义了元素的背景颜色。background-color属性不能继承，默认值是透明<code>transparent</code>。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>:<span class="number">#FF0000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="background-image"><a href="#background-image" class="headerlink" title="background-image"></a>background-image</h2><p>background-image属性描述了元素的背景图像。</p>
+<h2 id="background-image">background-image</h2>
+<p>background-image属性描述了元素的背景图像。</p>
 <p>默认情况下背景图像进行平铺重复显示，以覆盖整个元素实体，默认在页面的水平或垂直方向平铺。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">background-image</span>:<span class="built_in">url</span>(<span class="string">&#x27;图片名字&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="background-repeat"><a href="#background-repeat" class="headerlink" title="background-repeat"></a>background-repeat</h2><p>background-repeat属性可以取消图像平铺，或指定只在某个方向上平铺：</p>
+<h2 id="background-repeat">background-repeat</h2>
+<p>background-repeat属性可以取消图像平铺，或指定只在某个方向上平铺：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">background-image</span>:<span class="built_in">url</span>(<span class="string">&#x27;图片名字&#x27;</span>);</span><br><span class="line">    <span class="attribute">background-repeat</span>:no-repeat;<span class="comment">/*取消平铺*/</span></span><br><span class="line">    <span class="comment">/*background-repeat:repeat-x; 只在水平方向平铺*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="background-position"><a href="#background-position" class="headerlink" title="background-position"></a>background-position</h2><p>background-position属性可以改变图像在背景中的位置，其属性值可以使用一些关键字top、bottom、left、right和center等，也可以使用如100px或5cm的长度值，还可以只有百分比数值：</p>
+<h2 id="background-position">background-position</h2>
+<p>background-position属性可以改变图像在背景中的位置，其属性值可以使用一些关键字top、bottom、left、right和center等，也可以使用如100px或5cm的长度值，还可以只有百分比数值：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">background-image</span>:<span class="built_in">url</span>(<span class="string">&#x27;图片名字&#x27;</span>);</span><br><span class="line">     <span class="attribute">background-image</span>:no-repeat;</span><br><span class="line">    <span class="attribute">background-position</span><span class="selector-pseudo">:right</span> <span class="attribute">top</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="背景属性简写"><a href="#背景属性简写" class="headerlink" title="背景属性简写"></a>背景属性简写</h2><p>以上代码的属性都可以合并在一个属性background中：</p>
+<h2 id="背景属性简写">背景属性简写</h2>
+<p>以上代码的属性都可以合并在一个属性background中：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#FF0000</span> <span class="built_in">url</span>(<span class="string">&#x27;图片名字&#x27;</span>) no-repeat right top</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用简写属性时，属性值的顺序为：</p>
-<ol>
+<ol type="1">
 <li>background-color</li>
 <li>background-image</li>
 <li>background-repeat</li>
 <li>background-attachment</li>
 <li>background-position</li>
 </ol>
-<h1 id="Text（文本）"><a href="#Text（文本）" class="headerlink" title="Text（文本）"></a>Text（文本）</h1><h2 id="文本颜色"><a href="#文本颜色" class="headerlink" title="文本颜色"></a>文本颜色</h2><p>颜色属性可用来设置文字的颜色，如：</p>
+<h1 id="text文本">Text（文本）</h1>
+<h2 id="文本颜色">文本颜色</h2>
+<p>颜色属性可用来设置文字的颜色，如：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#00ff00</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>对于W3C标准的CSS，若定义了颜色属性，还必须定义背景色属性。</p>
-<h2 id="文本的对齐方式"><a href="#文本的对齐方式" class="headerlink" title="文本的对齐方式"></a>文本的对齐方式</h2><p>文本排列属性是用来设置文本的水平对齐方式，文本可居中或对齐到左或右或两端对齐。</p>
+<h2 id="文本的对齐方式">文本的对齐方式</h2>
+<p>文本排列属性是用来设置文本的水平对齐方式，文本可居中或对齐到左或右或两端对齐。</p>
 <p>当<code>text-align</code>设置为<code>justify</code>时，每一行被展开为宽度相等，左右外边距对齐：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>&#123;</span><br><span class="line">    <span class="attribute">text-align</span>:center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.date</span>&#123;</span><br><span class="line">    <span class="attribute">text-align</span><span class="selector-pseudo">:right</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.main</span>&#123;</span><br><span class="line">    <span class="attribute">text-align</span>:justify;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>若想把一个行内元素的第一行“缩进”，可用左内边距或外边距创造这种效果。</p>
-<h2 id="文本修饰"><a href="#文本修饰" class="headerlink" title="文本修饰"></a>文本修饰</h2><p><code>text-decoration</code>属性用来设置或删除文本的装饰，主要用来删除链接的下划线：</p>
+<h2 id="文本修饰">文本修饰</h2>
+<p><code>text-decoration</code>属性用来设置或删除文本的装饰，主要用来删除链接的下划线：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>:none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h1</span>&#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>:overline;<span class="comment">/*横线在文字上方*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h2</span>&#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>:line-through;<span class="comment">/*横线贯穿文字*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h3</span>&#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>:underline;<span class="comment">/*横线在文字下方*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="文本转换"><a href="#文本转换" class="headerlink" title="文本转换"></a>文本转换</h2><p><code>text-transform</code>属性是用来指定在一个文本中的大写和小写字母，可用于所有字句变成大写或小写字母，或每个单词的首字母大写：</p>
+<h2 id="文本转换">文本转换</h2>
+<p><code>text-transform</code>属性是用来指定在一个文本中的大写和小写字母，可用于所有字句变成大写或小写字母，或每个单词的首字母大写：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span><span class="selector-class">.uppercase</span>&#123;</span><br><span class="line">    <span class="attribute">text-transform</span>:uppercase;<span class="comment">/*文字全大写*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.lowercase</span>&#123;</span><br><span class="line">    <span class="attribute">text-transform</span>:lowercase;<span class="comment">/*文字全小写*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.capitalize</span>&#123;</span><br><span class="line">    <span class="attribute">text-transform</span>:capitalize;<span class="comment">/*文字首字母大写*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="文本缩进"><a href="#文本缩进" class="headerlink" title="文本缩进"></a>文本缩进</h2><p><code>text-indent</code>属性用来指定文本的第一行缩进：</p>
+<h2 id="文本缩进">文本缩进</h2>
+<p><code>text-indent</code>属性用来指定文本的第一行缩进：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">text-indent</span>:<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="文字间隔"><a href="#文字间隔" class="headerlink" title="文字间隔"></a>文字间隔</h2><p><code>word-spacing</code>属性可以改变字或单词之间的标准间隔（不是每个字之间，以回车键为分隔符），其默认值normal与设置值为0是一样的：</p>
+<h2 id="文字间隔">文字间隔</h2>
+<p><code>word-spacing</code>属性可以改变字或单词之间的标准间隔（不是每个字之间，以回车键为分隔符），其默认值normal与设置值为0是一样的：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">word-spacing</span>:<span class="number">30px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><p>字体系列有两种类型：</p>
+<h1 id="字体">字体</h1>
+<p>字体系列有两种类型：</p>
 <ul>
-<li><p>通用字体系列：拥有相似外观的字体系统组合（如”Serif”或”Monospace”）</p>
-</li>
-<li><p>特定字体系列：一个特定的字体系列（如“Times”或“Courier”）</p>
-</li>
+<li><p>通用字体系列：拥有相似外观的字体系统组合（如”Serif”或”Monospace”）</p></li>
+<li><p>特定字体系列：一个特定的字体系列（如“Times”或“Courier”）</p></li>
 </ul>
 <p>除了各种特定的字体系列外，CSS定义了5种通用字体系列：</p>
 <ul>
@@ -617,38 +642,44 @@
 <li>Cursive字体</li>
 <li>Fantasy字体</li>
 </ul>
-<div class="table-container">
 <table>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 31%">
+<col style="width: 51%">
+</colgroup>
 <thead>
 <tr>
-<th style="text-align:left">Generic family</th>
-<th style="text-align:left">字体系列</th>
-<th style="text-align:left">说明</th>
+<th style="text-align: left;">Generic family</th>
+<th style="text-align: left;">字体系列</th>
+<th style="text-align: left;">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Serif</td>
-<td style="text-align:left">Times New Roman Georgia</td>
-<td style="text-align:left">Serif字体中字符在行的末端拥有额外的装饰</td>
+<td style="text-align: left;">Serif</td>
+<td style="text-align: left;">Times New Roman Georgia</td>
+<td style="text-align: left;">Serif字体中字符在行的末端拥有额外的装饰</td>
 </tr>
 <tr>
-<td style="text-align:left">Sans-serif</td>
-<td style="text-align:left">Arial Verdana</td>
-<td style="text-align:left">“Sans”是指无 - 这些字体在末端没有额外的装饰</td>
+<td style="text-align: left;">Sans-serif</td>
+<td style="text-align: left;">Arial Verdana</td>
+<td style="text-align: left;">“Sans”是指无 -
+这些字体在末端没有额外的装饰</td>
 </tr>
 <tr>
-<td style="text-align:left">Monospace</td>
-<td style="text-align:left">Courier New Lucida Console</td>
-<td style="text-align:left">所有的等宽字符具有相同的宽度</td>
+<td style="text-align: left;">Monospace</td>
+<td style="text-align: left;">Courier New Lucida Console</td>
+<td style="text-align: left;">所有的等宽字符具有相同的宽度</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="字体系列"><a href="#字体系列" class="headerlink" title="字体系列"></a>字体系列</h2><p><code>font-family</code>属性设置文本的字体系列。</p>
+<h2 id="字体系列">字体系列</h2>
+<p><code>font-family</code>属性设置文本的字体系列。</p>
 <p><code>font-family</code>属性应该设置几个字体名称作为备用，若浏览器不支持第一种字体会尝试下一种字体。若字体系列的名称超过一种，第一个字体必须用引号：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">font-family</span>:<span class="string">&quot;Times New Roman&quot;</span>,Times,serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="字体样式"><a href="#字体样式" class="headerlink" title="字体样式"></a>字体样式</h2><p><code>font-style</code>属性主要用于指定斜体文字的字体样式。</p>
+<h2 id="字体样式">字体样式</h2>
+<p><code>font-style</code>属性主要用于指定斜体文字的字体样式。</p>
 <p>该属性有三个值：</p>
 <ul>
 <li>正常normal：正常显示文本</li>
@@ -662,7 +693,8 @@
 <li>oblique文本是正常竖直文本的一个倾斜版本</li>
 </ul>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span><span class="selector-class">.normal</span>&#123;</span><br><span class="line">    <span class="attribute">font-style</span>:normal;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.italic</span>&#123;</span><br><span class="line">    <span class="attribute">font-style</span>:italic;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.oblique</span>&#123;</span><br><span class="line">    <span class="attribute">font-style</span>:oblique;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="字体大小"><a href="#字体大小" class="headerlink" title="字体大小"></a>字体大小</h2><p><code>font-size</code>属性设置文本的大小，若不指定一个字体的大小，则默认大小和普通文本段落一样，是16像素（16px=1em），字体大小的值可以是绝对或相对的大小。</p>
+<h2 id="字体大小">字体大小</h2>
+<p><code>font-size</code>属性设置文本的大小，若不指定一个字体的大小，则默认大小和普通文本段落一样，是16像素（16px=1em），字体大小的值可以是绝对或相对的大小。</p>
 <p>绝对大小：</p>
 <ul>
 <li>设置一个指定大小的文本</li>
@@ -674,13 +706,17 @@
 <li>相对于周围的元素来设置大小</li>
 <li>允许用户在浏览器中改变文字的大小。</li>
 </ul>
-<h2 id="用像素设置字体大小"><a href="#用像素设置字体大小" class="headerlink" title="用像素设置字体大小"></a>用像素设置字体大小</h2><p>用像素可以在IE9、Firefox、Chrome、Opera和Safa里调整文本大小，不能在IE9以前的版本运行。通过浏览器缩放工具调整文本大小时，整个页面也随之变化。</p>
+<h2 id="用像素设置字体大小">用像素设置字体大小</h2>
+<p>用像素可以在IE9、Firefox、Chrome、Opera和Safa里调整文本大小，不能在IE9以前的版本运行。通过浏览器缩放工具调整文本大小时，整个页面也随之变化。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">40px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="用em设置字体大小"><a href="#用em设置字体大小" class="headerlink" title="用em设置字体大小"></a>用em设置字体大小</h2><p>默认1em=16px，当<code>font-size</code>为30px时，1em=30px。使用em单位可以在所有浏览器中调整文本大小。通过浏览器缩放工具调整文本大小时，会比正常的尺寸更大或更小。</p>
+<h2 id="用em设置字体大小">用em设置字体大小</h2>
+<p>默认1em=16px，当<code>font-size</code>为30px时，1em=30px。使用em单位可以在所有浏览器中调整文本大小。通过浏览器缩放工具调整文本大小时，会比正常的尺寸更大或更小。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">2.5em</span>;<span class="comment">/*40px/16=2.5em*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="使用百分比和em组合"><a href="#使用百分比和em组合" class="headerlink" title="使用百分比和em组合"></a>使用百分比和em组合</h2><p>在所有浏览器的解决方案中，先设置<code>&lt;body&gt;</code>元素的默认大小是百分比，再用em设置其他元素的字体大小。这样可以在所有浏览器中显示相同的文本大小，并允许所有浏览器缩放文本的大小：</p>
+<h2 id="使用百分比和em组合">使用百分比和em组合</h2>
+<p>在所有浏览器的解决方案中，先设置<code>&lt;body&gt;</code>元素的默认大小是百分比，再用em设置其他元素的字体大小。这样可以在所有浏览器中显示相同的文本大小，并允许所有浏览器缩放文本的大小：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">2.5em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="链接样式"><a href="#链接样式" class="headerlink" title="链接样式"></a>链接样式</h1><p>链接的样式可以用任何CSS属性，链接a具有四个链接状态：</p>
+<h1 id="链接样式">链接样式</h1>
+<p>链接的样式可以用任何CSS属性，链接a具有四个链接状态：</p>
 <ul>
 <li><code>a:link</code>：正常，未访问过的链接</li>
 <li><code>a:visited</code>：用户已访问过的链接</li>
@@ -692,49 +728,51 @@
 <li><code>a:hover</code>必须跟在<code>a.link</code>和<code>a.visited</code>后面</li>
 <li><code>a:active</code>必须跟在<code>a:hover</code>后面</li>
 </ul>
-<h2 id="背景颜色"><a href="#背景颜色" class="headerlink" title="背景颜色"></a>背景颜色</h2><p>背景颜色属性指定链接背景色：</p>
+<h2 id="背景颜色">背景颜色</h2>
+<p>背景颜色属性指定链接背景色：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-class">.link</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>:<span class="number">#FF704D</span>;</span><br><span class="line">    <span class="attribute">text-decoration</span>:none;<span class="comment">/*删除链接中的下划线*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="鼠标形状"><a href="#鼠标形状" class="headerlink" title="鼠标形状"></a>鼠标形状</h2><p>使用cursor属性可以设置鼠标形状。</p>
+<h2 id="鼠标形状">鼠标形状</h2>
+<p>使用cursor属性可以设置鼠标形状。</p>
 <p>常用鼠标形状如下所示：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:left">属性值</th>
-<th style="text-align:left">描述</th>
+<th style="text-align: left;">属性值</th>
+<th style="text-align: left;">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">default</td>
-<td style="text-align:left">默认光标，箭头</td>
+<td style="text-align: left;">default</td>
+<td style="text-align: left;">默认光标，箭头</td>
 </tr>
 <tr>
-<td style="text-align:left">pointer</td>
-<td style="text-align:left">超链接的指针，手型</td>
+<td style="text-align: left;">pointer</td>
+<td style="text-align: left;">超链接的指针，手型</td>
 </tr>
 <tr>
-<td style="text-align:left">wait</td>
-<td style="text-align:left">指示程序正在忙</td>
+<td style="text-align: left;">wait</td>
+<td style="text-align: left;">指示程序正在忙</td>
 </tr>
 <tr>
-<td style="text-align:left">help</td>
-<td style="text-align:left">指示可用的帮忙</td>
+<td style="text-align: left;">help</td>
+<td style="text-align: left;">指示可用的帮忙</td>
 </tr>
 <tr>
-<td style="text-align:left">text</td>
-<td style="text-align:left">指示文本</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">指示文本</td>
 </tr>
 <tr>
-<td style="text-align:left">crosshair</td>
-<td style="text-align:left">鼠标呈现十字状</td>
+<td style="text-align: left;">crosshair</td>
+<td style="text-align: left;">鼠标呈现十字状</td>
 </tr>
 </tbody>
 </table>
-</div>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:green;</span><br><span class="line">    <span class="attribute">cursor</span>:crosshair;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="列表样式"><a href="#列表样式" class="headerlink" title="列表样式"></a>列表样式</h1><p>CSS列表可以设置不同的列表项标记为有序列表或无序列表，设置列表项标记为图像。</p>
-<h2 id="不同的列表项标记"><a href="#不同的列表项标记" class="headerlink" title="不同的列表项标记"></a>不同的列表项标记</h2><p><code>list-style-type</code>属性指定列表项标记的类型：</p>
+<h1 id="列表样式">列表样式</h1>
+<p>CSS列表可以设置不同的列表项标记为有序列表或无序列表，设置列表项标记为图像。</p>
+<h2 id="不同的列表项标记">不同的列表项标记</h2>
+<p><code>list-style-type</code>属性指定列表项标记的类型：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span><span class="selector-class">.a</span>&#123;</span><br><span class="line">    <span class="attribute">list-style-type</span>:circle;<span class="comment">/*空心圆标记*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">ul</span><span class="selector-class">.b</span>&#123;</span><br><span class="line">    <span class="attribute">list-style-type</span>:square;<span class="comment">/*实心方块标记*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">ol</span><span class="selector-class">.c</span>&#123;</span><br><span class="line">    <span class="attribute">list-style-type</span>:upper-roman;<span class="comment">/*大写罗马数字标记*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">ol</span><span class="selector-class">.d</span>&#123;</span><br><span class="line">    <span class="attribute">list-style-type</span>:lower-alpha;<span class="comment">/*小写英文字母标记*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>list-style-type</code>属性的常见属性值有：</p>
 <p>none：不使用项目符号</p>
@@ -746,26 +784,33 @@
 <p>upper-alpha：大写英文字母</p>
 <p>lower-roman：小写罗马数字</p>
 <p>upper-roman：大写罗马数字</p>
-<h2 id="作为列表项标记的图像"><a href="#作为列表项标记的图像" class="headerlink" title="作为列表项标记的图像"></a>作为列表项标记的图像</h2><p>使用列表样式<code>list-style-image</code>属性可以指定列表项标记的图像：</p>
+<h2 id="作为列表项标记的图像">作为列表项标记的图像</h2>
+<p>使用列表样式<code>list-style-image</code>属性可以指定列表项标记的图像：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span>&#123;</span><br><span class="line">    <span class="attribute">list-style-image</span>:<span class="built_in">url</span>(<span class="string">&#x27;图像名称&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>各大主流浏览器对图像标记的显示各有差异，IE和Opera显示标记比Firefox、Chrome和Safari更高一点。</p>
-<h2 id="标记出现位置"><a href="#标记出现位置" class="headerlink" title="标记出现位置"></a>标记出现位置</h2><p><code>list-style-position</code>属性可以指定标志出现在列表项内容外（outside）还是内容内部（inside）：</p>
+<h2 id="标记出现位置">标记出现位置</h2>
+<p><code>list-style-position</code>属性可以指定标志出现在列表项内容外（outside）还是内容内部（inside）：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span>&#123;</span><br><span class="line">    <span class="attribute">list-style-position</span>:outside;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="简写属性"><a href="#简写属性" class="headerlink" title="简写属性"></a>简写属性</h2><p>与背景属性类似，列表属性也可以在单个属性<code>list-style</code>中指定所有的列表属性：</p>
+<h2 id="简写属性">简写属性</h2>
+<p>与背景属性类似，列表属性也可以在单个属性<code>list-style</code>中指定所有的列表属性：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span>&#123;</span><br><span class="line">    <span class="attribute">list-style</span>:square <span class="built_in">url</span>(<span class="string">&quot;图片名称&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用简写属性值的顺序是：</p>
-<ol>
+<ol type="1">
 <li><code>list-style-type</code></li>
 <li><code>list-style-position</code></li>
 <li><code>list-style-image</code></li>
 </ol>
-<h2 id="浏览器兼容性解决方案"><a href="#浏览器兼容性解决方案" class="headerlink" title="浏览器兼容性解决方案"></a>浏览器兼容性解决方案</h2><p>若想要在所有浏览器放置同样的标志，应解决浏览器的兼容性问题。</p>
+<h2 id="浏览器兼容性解决方案">浏览器兼容性解决方案</h2>
+<p>若想要在所有浏览器放置同样的标志，应解决浏览器的兼容性问题。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span>&#123;</span><br><span class="line">    <span class="attribute">list-style-type</span>: none;<span class="comment">/*设置列表样式类型为无列表项标记*/</span></span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0px</span>;<span class="comment">/*设置填充和边距0px，确保能在浏览器之间兼容*/</span></span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span>&#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">图像名称</span>);<span class="comment">/*设置图像并设置它只显示一次*/</span></span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-position</span>: <span class="number">0px</span> <span class="number">5px</span>;<span class="comment">/*定位图像位置*/</span></span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">14px</span>;<span class="comment">/*把文本置于列表中*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>即解决浏览器兼容性问题可以从四个方面着手：浏览器CSS样式初始化、浏览器私有属性、CSS hack语法和自动化插件。</p>
-<h3 id="浏览器CSS样式初始化"><a href="#浏览器CSS样式初始化" class="headerlink" title="浏览器CSS样式初始化"></a>浏览器CSS样式初始化</h3><p>在所有CSS开始前，先把margin和padding都设为0：</p>
+<p>即解决浏览器兼容性问题可以从四个方面着手：浏览器CSS样式初始化、浏览器私有属性、CSS
+hack语法和自动化插件。</p>
+<h3 id="浏览器css样式初始化">浏览器CSS样式初始化</h3>
+<p>在所有CSS开始前，先把margin和padding都设为0：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>若不知道浏览器CSS样式要初始化哪些内容，建议直接引用<a target="_blank" rel="noopener" href="https://github.com/necolas/normalize.css">Normalize.css</a>库。</p>
-<h3 id="浏览器私有属性"><a href="#浏览器私有属性" class="headerlink" title="浏览器私有属性"></a>浏览器私有属性</h3><p><code>-webkit-</code>、<code>-moz-</code>、<code>-ms-</code>等是经常在CSS属性前加的一些前缀，这些就是浏览器的私有属性。</p>
+<h3 id="浏览器私有属性">浏览器私有属性</h3>
+<p><code>-webkit-</code>、<code>-moz-</code>、<code>-ms-</code>等是经常在CSS属性前加的一些前缀，这些就是浏览器的私有属性。</p>
 <p>常用的前缀有：</p>
 <ul>
 <li><code>-moz</code>：代表Firefox浏览器私有属性</li>
@@ -775,9 +820,13 @@
 </ul>
 <p>要注意书写顺序，<strong>兼容性写法放到前面，标准写法放到最后：</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-<span class="attribute">transform</span>:<span class="built_in">rotate</span>(-<span class="number">3deg</span>);<span class="comment">/*Chrome、Safari*/</span></span><br><span class="line">-moz-<span class="attribute">transform</span>:<span class="built_in">rotate</span>(-<span class="number">3deg</span>);<span class="comment">/*Firefox*/</span></span><br><span class="line">-ms-<span class="attribute">transform</span>:<span class="built_in">rotate</span>(-<span class="number">3deg</span>);<span class="comment">/*IE*/</span></span><br><span class="line">-o-<span class="attribute">transform</span>:<span class="built_in">rotate</span>(-<span class="number">3deg</span>):<span class="comment">/*opera*/</span></span><br><span class="line">transform:<span class="built_in">rotate</span>(-<span class="number">3deg</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="CSS-hack"><a href="#CSS-hack" class="headerlink" title="CSS hack"></a>CSS hack</h3><p>除了以上的默认样式覆盖及私有属性添加，有时还需要针对不同浏览器甚至不同版本来编写特定的CSS样式，这一过程称之为CSS hack。在Web页面制作中尽量不要使用CSS Hack来处理兼容问题。</p>
-<p>CSS hack的写法可归纳为以下几种：条件hack、属性级hack、选择符级hack。</p>
-<h4 id="条件hack"><a href="#条件hack" class="headerlink" title="条件hack"></a>条件hack</h4><p>主要针对IE浏览器进行一些特殊的设置：</p>
+<h3 id="css-hack">CSS hack</h3>
+<p>除了以上的默认样式覆盖及私有属性添加，有时还需要针对不同浏览器甚至不同版本来编写特定的CSS样式，这一过程称之为CSS
+hack。在Web页面制作中尽量不要使用CSS Hack来处理兼容问题。</p>
+<p>CSS
+hack的写法可归纳为以下几种：条件hack、属性级hack、选择符级hack。</p>
+<h4 id="条件hack">条件hack</h4>
+<p>主要针对IE浏览器进行一些特殊的设置：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if &lt;keywords&gt;? IE &lt;version&gt;?]&gt;</span></span><br><span class="line"><span class="comment">	代码块，可以是html、css、js</span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
 <p>if后面跟的条件共包括6种选择方式：</p>
 <ul>
@@ -790,10 +839,10 @@
 </ul>
 <p>这里的版本是指IE浏览器版本，如6、7、8。<strong>注意IE10及以上版本已将条件注释特性移除</strong>：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if IE]&gt;</span></span><br><span class="line"><span class="comment">	&lt;p&gt;在非IE中看不到这条文字&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--[if IE]&gt;</span></span><br><span class="line"><span class="comment">&lt;style&gt;</span></span><br><span class="line"><span class="comment">	.test&#123;</span></span><br><span class="line"><span class="comment">		color:red;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&lt;/style&gt;</span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--[if IE 9]&gt;</span></span><br><span class="line"><span class="comment">	&lt;script src=&quot;//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js&quot;&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">	&lt;script src=&quot;//cdn.bootcss.com/respond.js/1.4.2/respond.min.js&quot;&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="属性hack"><a href="#属性hack" class="headerlink" title="属性hack"></a>属性hack</h4><p>在CSS样式属性名前加上一些只有特定浏览器才能识别的hack前缀。</p>
+<h4 id="属性hack">属性hack</h4>
+<p>在CSS样式属性名前加上一些只有特定浏览器才能识别的hack前缀。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">selector&#123;</span><br><span class="line">    &lt;hack&gt;?property:value&lt;hack&gt;?;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>属性取值及浏览器支持情况如下：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -868,19 +917,21 @@
 <td></td>
 <td>支持</td>
 <td>支持</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>注意书写顺序，低版本的兼容性写法放到最后：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#090</span>\<span class="number">9</span>;<span class="comment">/*IE6-IE10*/</span></span><br><span class="line">    *<span class="attribute">color</span>:<span class="number">#f00</span>;<span class="comment">/*IE6-IE7*/</span></span><br><span class="line">    _color:<span class="number">#ff0</span>;<span class="comment">/*IE6及更早版本*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="选择符级hack"><a href="#选择符级hack" class="headerlink" title="选择符级hack"></a>选择符级hack</h4><p>针对一些页面表现不一致或需要特殊对待的浏览器，在CSS选择器前加上一些只有某些特定浏览器才能识别的前缀进行hack：</p>
+<h4 id="选择符级hack">选择符级hack</h4>
+<p>针对一些页面表现不一致或需要特殊对待的浏览器，在CSS选择器前加上一些只有某些特定浏览器才能识别的前缀进行hack：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;hack&gt; selector&#123;</span><br><span class="line">    sRules</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>常见的选择符级hack有：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">*<span class="selector-tag">html</span> <span class="comment">/**前缀只对IE6生效*/</span></span><br><span class="line">*+<span class="selector-tag">html</span> <span class="comment">/**+前缀只对IE7生效*/</span></span><br><span class="line"><span class="keyword">@media</span> screen\<span class="number">9</span>&#123;...&#125;<span class="comment">/*只对IE6/7生效*/</span></span><br><span class="line"><span class="keyword">@media</span> \<span class="number">0s</span>creen\,screen\<span class="number">9</span>&#123;<span class="selector-tag">body</span> &#123; <span class="attribute">background</span>: blue; &#125;&#125;<span class="comment">/*只对IE6/7/8有效*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> \<span class="number">0s</span>creen &#123;<span class="selector-tag">body</span> &#123; <span class="attribute">background</span>: red; &#125;&#125;<span class="comment">/*只对IE8有效*/</span></span><br><span class="line"><span class="keyword">@media</span> screen\<span class="number">0</span> &#123;<span class="selector-tag">body</span> &#123; <span class="attribute">background</span>: green; &#125;&#125; <span class="comment">/*只对IE8/9/10有效*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">0</span>\<span class="number">0</span>) &#123;<span class="selector-tag">body</span> &#123; <span class="attribute">background</span>: gray; &#125;&#125; <span class="comment">/*只对IE9/10有效*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">-ms-high-contrast</span>: active), (<span class="attribute">-ms-high-contrast</span>: none) &#123;<span class="selector-tag">body</span> &#123; <span class="attribute">background</span>: orange; &#125;&#125; <span class="comment">/*只对IE10有效*/</span></span><br></pre></td></tr></table></figure>
 <p>例如：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*<span class="selector-tag">html</span> <span class="selector-class">.test</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#090</span>;<span class="comment">/*IE6及更早版本*/</span></span><br><span class="line">&#125;</span><br><span class="line">*+<span class="selector-tag">html</span> <span class="selector-class">.test</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#ff0</span>;<span class="comment">/*IE7*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="自动化插件"><a href="#自动化插件" class="headerlink" title="自动化插件"></a>自动化插件</h3><p>Autoprefixer是一款自动管理浏览器前缀的插件，它可以解析CSS文件并添加浏览器前缀到CSS内容里。该插件的安装和使用可在<a target="_blank" rel="noopener" href="https://juejin.cn/post/7032918076089696264">webpack指南</a>中学习。</p>
+<h3 id="自动化插件">自动化插件</h3>
+<p>Autoprefixer是一款自动管理浏览器前缀的插件，它可以解析CSS文件并添加浏览器前缀到CSS内容里。该插件的安装和使用可在<a target="_blank" rel="noopener" href="https://juejin.cn/post/7032918076089696264">webpack指南</a>中学习。</p>
 
     </article>
     <!-- license -->
@@ -1079,7 +1130,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">CSS简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">CSS语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E9%A2%9C%E8%89%B2%E5%80%BC%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">CSS颜色值的写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E6%B3%A8%E9%87%8A"><span class="toc-number">2.2.</span> <span class="toc-text">CSS注释</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Id%E5%92%8CClass%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">Id和Class选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#id%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">id选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#class%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.2.</span> <span class="toc-text">class类选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">标签选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E8%81%94%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.4.</span> <span class="toc-text">内联选择器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">4.</span> <span class="toc-text">样式优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%85%88%E7%BA%A7%E9%A1%BA%E5%BA%8F"><span class="toc-number">4.1.</span> <span class="toc-text">多重样式优先级顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#important%E8%A7%84%E5%88%99%E4%BE%8B%E5%A4%96"><span class="toc-number">4.2.</span> <span class="toc-text">!important规则例外</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E6%B3%95%E5%88%99"><span class="toc-number">4.3.</span> <span class="toc-text">优先级法则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF"><span class="toc-number">5.</span> <span class="toc-text">CSS设置背景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#background-color"><span class="toc-number">5.1.</span> <span class="toc-text">background-color</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#background-image"><span class="toc-number">5.2.</span> <span class="toc-text">background-image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#background-repeat"><span class="toc-number">5.3.</span> <span class="toc-text">background-repeat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#background-position"><span class="toc-number">5.4.</span> <span class="toc-text">background-position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E5%B1%9E%E6%80%A7%E7%AE%80%E5%86%99"><span class="toc-number">5.5.</span> <span class="toc-text">背景属性简写</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Text%EF%BC%88%E6%96%87%E6%9C%AC%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">Text（文本）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E9%A2%9C%E8%89%B2"><span class="toc-number">6.1.</span> <span class="toc-text">文本颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%9A%84%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F"><span class="toc-number">6.2.</span> <span class="toc-text">文本的对齐方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E4%BF%AE%E9%A5%B0"><span class="toc-number">6.3.</span> <span class="toc-text">文本修饰</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E8%BD%AC%E6%8D%A2"><span class="toc-number">6.4.</span> <span class="toc-text">文本转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%BC%A9%E8%BF%9B"><span class="toc-number">6.5.</span> <span class="toc-text">文本缩进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E9%97%B4%E9%9A%94"><span class="toc-number">6.6.</span> <span class="toc-text">文字间隔</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E4%BD%93"><span class="toc-number">7.</span> <span class="toc-text">字体</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E7%B3%BB%E5%88%97"><span class="toc-number">7.1.</span> <span class="toc-text">字体系列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E6%A0%B7%E5%BC%8F"><span class="toc-number">7.2.</span> <span class="toc-text">字体样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="toc-number">7.3.</span> <span class="toc-text">字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E5%83%8F%E7%B4%A0%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="toc-number">7.4.</span> <span class="toc-text">用像素设置字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8em%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="toc-number">7.5.</span> <span class="toc-text">用em设置字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%99%BE%E5%88%86%E6%AF%94%E5%92%8Cem%E7%BB%84%E5%90%88"><span class="toc-number">7.6.</span> <span class="toc-text">使用百分比和em组合</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E6%A0%B7%E5%BC%8F"><span class="toc-number">8.</span> <span class="toc-text">链接样式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2"><span class="toc-number">8.1.</span> <span class="toc-text">背景颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E5%BD%A2%E7%8A%B6"><span class="toc-number">8.2.</span> <span class="toc-text">鼠标形状</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E6%A0%B7%E5%BC%8F"><span class="toc-number">9.</span> <span class="toc-text">列表样式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E5%88%97%E8%A1%A8%E9%A1%B9%E6%A0%87%E8%AE%B0"><span class="toc-number">9.1.</span> <span class="toc-text">不同的列表项标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%BA%E5%88%97%E8%A1%A8%E9%A1%B9%E6%A0%87%E8%AE%B0%E7%9A%84%E5%9B%BE%E5%83%8F"><span class="toc-number">9.2.</span> <span class="toc-text">作为列表项标记的图像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E5%87%BA%E7%8E%B0%E4%BD%8D%E7%BD%AE"><span class="toc-number">9.3.</span> <span class="toc-text">标记出现位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%86%99%E5%B1%9E%E6%80%A7"><span class="toc-number">9.4.</span> <span class="toc-text">简写属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">9.5.</span> <span class="toc-text">浏览器兼容性解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8CSS%E6%A0%B7%E5%BC%8F%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">9.5.1.</span> <span class="toc-text">浏览器CSS样式初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7"><span class="toc-number">9.5.2.</span> <span class="toc-text">浏览器私有属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-hack"><span class="toc-number">9.5.3.</span> <span class="toc-text">CSS hack</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6hack"><span class="toc-number">9.5.3.1.</span> <span class="toc-text">条件hack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7hack"><span class="toc-number">9.5.3.2.</span> <span class="toc-text">属性hack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E7%AC%A6%E7%BA%A7hack"><span class="toc-number">9.5.3.3.</span> <span class="toc-text">选择符级hack</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8F%92%E4%BB%B6"><span class="toc-number">9.5.4.</span> <span class="toc-text">自动化插件</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#css%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">CSS简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">CSS语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#css%E9%A2%9C%E8%89%B2%E5%80%BC%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">CSS颜色值的写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css%E6%B3%A8%E9%87%8A"><span class="toc-number">2.2.</span> <span class="toc-text">CSS注释</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#id%E5%92%8Cclass%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">Id和Class选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#id%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">id选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#class%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.2.</span> <span class="toc-text">class类选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">标签选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E8%81%94%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.4.</span> <span class="toc-text">内联选择器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">4.</span> <span class="toc-text">样式优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%85%88%E7%BA%A7%E9%A1%BA%E5%BA%8F"><span class="toc-number">4.1.</span> <span class="toc-text">多重样式优先级顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#important%E8%A7%84%E5%88%99%E4%BE%8B%E5%A4%96"><span class="toc-number">4.2.</span> <span class="toc-text">!important规则例外</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E6%B3%95%E5%88%99"><span class="toc-number">4.3.</span> <span class="toc-text">优先级法则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF"><span class="toc-number">5.</span> <span class="toc-text">CSS设置背景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#background-color"><span class="toc-number">5.1.</span> <span class="toc-text">background-color</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#background-image"><span class="toc-number">5.2.</span> <span class="toc-text">background-image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#background-repeat"><span class="toc-number">5.3.</span> <span class="toc-text">background-repeat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#background-position"><span class="toc-number">5.4.</span> <span class="toc-text">background-position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E5%B1%9E%E6%80%A7%E7%AE%80%E5%86%99"><span class="toc-number">5.5.</span> <span class="toc-text">背景属性简写</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#text%E6%96%87%E6%9C%AC"><span class="toc-number">6.</span> <span class="toc-text">Text（文本）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E9%A2%9C%E8%89%B2"><span class="toc-number">6.1.</span> <span class="toc-text">文本颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%9A%84%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F"><span class="toc-number">6.2.</span> <span class="toc-text">文本的对齐方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E4%BF%AE%E9%A5%B0"><span class="toc-number">6.3.</span> <span class="toc-text">文本修饰</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E8%BD%AC%E6%8D%A2"><span class="toc-number">6.4.</span> <span class="toc-text">文本转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%BC%A9%E8%BF%9B"><span class="toc-number">6.5.</span> <span class="toc-text">文本缩进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E9%97%B4%E9%9A%94"><span class="toc-number">6.6.</span> <span class="toc-text">文字间隔</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E4%BD%93"><span class="toc-number">7.</span> <span class="toc-text">字体</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E7%B3%BB%E5%88%97"><span class="toc-number">7.1.</span> <span class="toc-text">字体系列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E6%A0%B7%E5%BC%8F"><span class="toc-number">7.2.</span> <span class="toc-text">字体样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="toc-number">7.3.</span> <span class="toc-text">字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E5%83%8F%E7%B4%A0%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="toc-number">7.4.</span> <span class="toc-text">用像素设置字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8em%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="toc-number">7.5.</span> <span class="toc-text">用em设置字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%99%BE%E5%88%86%E6%AF%94%E5%92%8Cem%E7%BB%84%E5%90%88"><span class="toc-number">7.6.</span> <span class="toc-text">使用百分比和em组合</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E6%A0%B7%E5%BC%8F"><span class="toc-number">8.</span> <span class="toc-text">链接样式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2"><span class="toc-number">8.1.</span> <span class="toc-text">背景颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E5%BD%A2%E7%8A%B6"><span class="toc-number">8.2.</span> <span class="toc-text">鼠标形状</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E6%A0%B7%E5%BC%8F"><span class="toc-number">9.</span> <span class="toc-text">列表样式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E5%88%97%E8%A1%A8%E9%A1%B9%E6%A0%87%E8%AE%B0"><span class="toc-number">9.1.</span> <span class="toc-text">不同的列表项标记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%BA%E5%88%97%E8%A1%A8%E9%A1%B9%E6%A0%87%E8%AE%B0%E7%9A%84%E5%9B%BE%E5%83%8F"><span class="toc-number">9.2.</span> <span class="toc-text">作为列表项标记的图像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E5%87%BA%E7%8E%B0%E4%BD%8D%E7%BD%AE"><span class="toc-number">9.3.</span> <span class="toc-text">标记出现位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%86%99%E5%B1%9E%E6%80%A7"><span class="toc-number">9.4.</span> <span class="toc-text">简写属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">9.5.</span> <span class="toc-text">浏览器兼容性解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8css%E6%A0%B7%E5%BC%8F%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">9.5.1.</span> <span class="toc-text">浏览器CSS样式初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7"><span class="toc-number">9.5.2.</span> <span class="toc-text">浏览器私有属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css-hack"><span class="toc-number">9.5.3.</span> <span class="toc-text">CSS hack</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6hack"><span class="toc-number">9.5.3.1.</span> <span class="toc-text">条件hack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7hack"><span class="toc-number">9.5.3.2.</span> <span class="toc-text">属性hack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E7%AC%A6%E7%BA%A7hack"><span class="toc-number">9.5.3.3.</span> <span class="toc-text">选择符级hack</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8F%92%E4%BB%B6"><span class="toc-number">9.5.4.</span> <span class="toc-text">自动化插件</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1429,6 +1480,8 @@
         
         
     
+        
+        
         
         
         
@@ -2531,9 +2584,9 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="CSS3">
+            <span class="sidebar-tag-name" data-tags="数据库工具">
                 <span class="iconfont-archer">&#xe606;</span>
-                CSS3
+                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="CentOS 7">
@@ -2551,9 +2604,19 @@
                 网络管理
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库工具">
+            <span class="sidebar-tag-name" data-tags="CSS3">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
+                CSS3
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2571,24 +2634,9 @@
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
-                <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2606,14 +2654,19 @@
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
-                MinIO
+                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2636,11 +2689,6 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Vue.js">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue.js
@@ -2649,6 +2697,21 @@
             <span class="sidebar-tag-name" data-tags="前端">
                 <span class="iconfont-archer">&#xe606;</span>
                 前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="YAML">
@@ -2661,19 +2724,9 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2737,9 +2790,9 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="数据库工具">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Linux">
@@ -2747,14 +2800,9 @@
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库工具">
+        <span class="sidebar-category-name" data-categories="CSS3">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            CSS3
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2762,9 +2810,9 @@
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2777,14 +2825,9 @@
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="学习笔记">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习笔记
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2792,14 +2835,29 @@
             可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            学习笔记
         </span>
     
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Lottie">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2812,24 +2870,19 @@
             LLM
         </span>
     
-        <span class="sidebar-category-name" data-categories="edge">
-            <span class="iconfont-archer">&#xe60a;</span>
-            edge
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端">
             <span class="iconfont-archer">&#xe60a;</span>
             前端
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="JavaScript">
+        <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
-            JavaScript
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2837,9 +2890,19 @@
             Elasticsearch
         </span>
     
-        <span class="sidebar-category-name" data-categories="Lottie">
+        <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
+            JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2850,16 +2913,6 @@
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="人工智能">
-            <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="前端框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Redis">

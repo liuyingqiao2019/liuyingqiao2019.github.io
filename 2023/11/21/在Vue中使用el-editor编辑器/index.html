@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="唐抉的个人博客">
 <meta property="og:description" content="el-editor编辑器是将Vue-quill-editor与秀米、135编辑器集成封装，以便使用">
 <meta property="og:locale">
-<meta property="og:image" content="http://tangmenjue.top/.top//editor.png">
+<meta property="og:image" content="http://tangmenjue.top/2023/11/21/%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8el-editor%E7%BC%96%E8%BE%91%E5%99%A8/editor.png">
 <meta property="article:published_time" content="2023-11-21T01:11:59.000Z">
 <meta property="article:modified_time" content="2023-11-21T01:11:59.000Z">
 <meta property="article:author" content="唐抉">
 <meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://tangmenjue.top/.top//editor.png">
+<meta name="twitter:image" content="http://tangmenjue.top/2023/11/21/%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8el-editor%E7%BC%96%E8%BE%91%E5%99%A8/editor.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
@@ -498,25 +498,37 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>实际项目中，多处使用到富文本编辑器，每次都配置会比较麻烦，故将要用到的功能封装到一起，需要时可直接调用，故发布了el-editor编辑器。</p>
-<h1 id="富文本编辑器v1-0-1"><a href="#富文本编辑器v1-0-1" class="headerlink" title="富文本编辑器v1.0.1"></a>富文本编辑器v1.0.1</h1><p><img src="/.top//editor.png" alt></p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+        <h1 id="前言">前言</h1>
+<p>实际项目中，多处使用到富文本编辑器，每次都配置会比较麻烦，故将要用到的功能封装到一起，需要时可直接调用，故发布了el-editor编辑器。</p>
+<h1 id="富文本编辑器v1.0.1">富文本编辑器v1.0.1</h1>
+<p><img src="/2023/11/21/%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8el-editor%E7%BC%96%E8%BE%91%E5%99%A8/editor.png"></p>
+<h2 id="介绍">介绍</h2>
+<ul>
 <li>编辑器基于vue-quill-editor和element封装，目前版本仅支持vue2</li>
 <li>与其他编辑器相比，本编辑器支持秀米编辑器、135编辑器样式的粘贴复制</li>
 <li>注意，当前编辑器仅提供前端代码，编辑器默认不转存秀米图表，若需要开启这一功能，需要向<code>handlePic</code>参数传真值<code>true</code>，然后编写一个后端接口来实现秀米图片的转存，接口名默认为<code>editor/get_xiumi_pic</code>，可通过参数<code>picURL</code>自行修改</li>
 </ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="下载组件"><a href="#下载组件" class="headerlink" title="下载组件"></a>下载组件</h3><p>方法一：</p>
+<h2 id="安装">安装</h2>
+<h3 id="下载组件">下载组件</h3>
+<p>方法一：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install el<span class="literal">-editor</span>@<span class="number">1.0</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>方法二：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add el<span class="literal">-editor</span>@<span class="number">1.0</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="下载html文件并放到public目录下"><a href="#下载html文件并放到public目录下" class="headerlink" title="下载html文件并放到public目录下"></a>下载html文件并放到public目录下</h3><p>文件地址：<a target="_blank" rel="noopener" href="https://tangjue.lanzouw.com/iLXdy1fgwbja">https://tangjue.lanzouw.com/iLXdy1fgwbja</a></p>
-<h2 id="引入富文本编辑器："><a href="#引入富文本编辑器：" class="headerlink" title="引入富文本编辑器："></a>引入富文本编辑器：</h2><p>在main.js中引入组件：</p>
+<h3 id="下载html文件并放到public目录下">下载html文件并放到public目录下</h3>
+<p>文件地址：https://tangjue.lanzouw.com/iLXdy1fgwbja</p>
+<h2 id="引入富文本编辑器">引入富文本编辑器：</h2>
+<p>在main.js中引入组件：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> editor <span class="keyword">from</span> <span class="string">&quot;el-editor&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;../node_modules/el-editor/el-editor.css&quot;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(editor)</span><br></pre></td></tr></table></figure>
 <p>在需要用到的页面直接使用组件：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;quill_editor :content=<span class="string">&quot;content&quot;</span> ：picURL=<span class="string">&quot;editor/get_xiumi_pic&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
 <p><strong>参数详情：</strong></p>
-<div class="table-container">
-<table>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 34%">
+<col style="width: 45%">
+<col style="width: 10%">
+</colgroup>
 <thead>
 <tr>
 <th>参数名称</th>
@@ -541,7 +553,8 @@
 <tr>
 <td>disabledStyle</td>
 <td>设置编辑器被禁用时的样式</td>
-<td>{background: “#f5f7fa”,color: “#c0c4cc”,cursor: “not-allowed”,borderRadius: “4px”,border: “1px solid #dcdfe6”}</td>
+<td>{background: “#f5f7fa”,color: “#c0c4cc”,cursor:
+“not-allowed”,borderRadius: “4px”,border: “1px solid #dcdfe6”}</td>
 <td>否</td>
 </tr>
 <tr>
@@ -582,8 +595,8 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="展示编辑器输入的内容"><a href="#展示编辑器输入的内容" class="headerlink" title="展示编辑器输入的内容"></a>展示编辑器输入的内容</h2><p>通过v-html可将输入到编辑器中的内容展示出来：</p>
+<h2 id="展示编辑器输入的内容">展示编辑器输入的内容</h2>
+<p>通过v-html可将输入到编辑器中的内容展示出来：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-html=&quot;content&quot; class=&quot;ql-editor&quot; &gt;&#123;&#123; content &#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
     </article>
@@ -783,7 +796,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8v1-0-1"><span class="toc-number">2.</span> <span class="toc-text">富文本编辑器v1.0.1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E7%BB%84%E4%BB%B6"><span class="toc-number">2.2.1.</span> <span class="toc-text">下载组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDhtml%E6%96%87%E4%BB%B6%E5%B9%B6%E6%94%BE%E5%88%B0public%E7%9B%AE%E5%BD%95%E4%B8%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text">下载html文件并放到public目录下</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%EF%BC%9A"><span class="toc-number">2.3.</span> <span class="toc-text">引入富文本编辑器：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E7%BC%96%E8%BE%91%E5%99%A8%E8%BE%93%E5%85%A5%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">2.4.</span> <span class="toc-text">展示编辑器输入的内容</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8v1.0.1"><span class="toc-number">2.</span> <span class="toc-text">富文本编辑器v1.0.1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E7%BB%84%E4%BB%B6"><span class="toc-number">2.2.1.</span> <span class="toc-text">下载组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDhtml%E6%96%87%E4%BB%B6%E5%B9%B6%E6%94%BE%E5%88%B0public%E7%9B%AE%E5%BD%95%E4%B8%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text">下载html文件并放到public目录下</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">2.3.</span> <span class="toc-text">引入富文本编辑器：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E7%BC%96%E8%BE%91%E5%99%A8%E8%BE%93%E5%85%A5%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">2.4.</span> <span class="toc-text">展示编辑器输入的内容</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1133,6 +1146,8 @@
         
         
     
+        
+        
         
         
         
@@ -2235,9 +2250,9 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="CSS3">
+            <span class="sidebar-tag-name" data-tags="数据库工具">
                 <span class="iconfont-archer">&#xe606;</span>
-                CSS3
+                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="CentOS 7">
@@ -2255,9 +2270,19 @@
                 网络管理
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库工具">
+            <span class="sidebar-tag-name" data-tags="CSS3">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
+                CSS3
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2275,24 +2300,9 @@
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
-                <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2310,14 +2320,19 @@
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
-                MinIO
+                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2340,11 +2355,6 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Vue.js">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue.js
@@ -2353,6 +2363,21 @@
             <span class="sidebar-tag-name" data-tags="前端">
                 <span class="iconfont-archer">&#xe606;</span>
                 前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="YAML">
@@ -2365,19 +2390,9 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2441,9 +2456,9 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="数据库工具">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Linux">
@@ -2451,14 +2466,9 @@
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库工具">
+        <span class="sidebar-category-name" data-categories="CSS3">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            CSS3
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2466,9 +2476,9 @@
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2481,14 +2491,9 @@
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="学习笔记">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习笔记
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2496,14 +2501,29 @@
             可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            学习笔记
         </span>
     
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Lottie">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2516,24 +2536,19 @@
             LLM
         </span>
     
-        <span class="sidebar-category-name" data-categories="edge">
-            <span class="iconfont-archer">&#xe60a;</span>
-            edge
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端">
             <span class="iconfont-archer">&#xe60a;</span>
             前端
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="JavaScript">
+        <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
-            JavaScript
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2541,9 +2556,19 @@
             Elasticsearch
         </span>
     
-        <span class="sidebar-category-name" data-categories="Lottie">
+        <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
+            JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2554,16 +2579,6 @@
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="人工智能">
-            <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="前端框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Redis">

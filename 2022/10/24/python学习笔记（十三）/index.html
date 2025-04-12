@@ -496,31 +496,51 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="常用内建模块"><a href="#常用内建模块" class="headerlink" title="常用内建模块"></a>常用内建模块</h1><h2 id="datetime"><a href="#datetime" class="headerlink" title="datetime"></a>datetime</h2><p>datetime是python处理时间和日期的标准库。</p>
-<h3 id="获取当前日期和时间"><a href="#获取当前日期和时间" class="headerlink" title="获取当前日期和时间"></a>获取当前日期和时间</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">now=datetime.now()</span><br><span class="line"><span class="built_in">print</span>(now)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">13</span> <span class="number">16</span>:01:<span class="number">58.422125</span></span><br></pre></td></tr></table></figure>
-<h3 id="获取指定日期和时间"><a href="#获取指定日期和时间" class="headerlink" title="获取指定日期和时间"></a>获取指定日期和时间</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">dt=datetime(<span class="number">2022</span>,<span class="number">4</span>,<span class="number">19</span>,<span class="number">12</span>,<span class="number">22</span>)</span><br><span class="line"><span class="built_in">print</span>(dt)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-04-<span class="number">19</span> <span class="number">12</span>:<span class="number">22</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
-<h3 id="datetime转换为timestamp"><a href="#datetime转换为timestamp" class="headerlink" title="datetime转换为timestamp"></a>datetime转换为timestamp</h3><p>在计算机中时间是用数字表示的，1970年1月1日 00:00:00 UTC+00:00时区的时刻称为epoch time，记为0，<strong>当前时间就是相对于epoch time的秒数</strong>称为timestamp。</p>
+        <h1 id="常用内建模块">常用内建模块</h1>
+<h2 id="datetime">datetime</h2>
+<p>datetime是python处理时间和日期的标准库。</p>
+<h3 id="获取当前日期和时间">获取当前日期和时间</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">now=datetime.now()</span><br><span class="line"><span class="built_in">print</span>(now)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">13</span> <span class="number">16</span>:01:<span class="number">58.422125</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取指定日期和时间">获取指定日期和时间</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">dt=datetime(<span class="number">2022</span>,<span class="number">4</span>,<span class="number">19</span>,<span class="number">12</span>,<span class="number">22</span>)</span><br><span class="line"><span class="built_in">print</span>(dt)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-04-<span class="number">19</span> <span class="number">12</span>:<span class="number">22</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
+<h3 id="datetime转换为timestamp">datetime转换为timestamp</h3>
+<p>在计算机中时间是用数字表示的，1970年1月1日 00:00:00
+UTC+00:00时区的时刻称为epoch
+time，记为0，<strong>当前时间就是相对于epoch
+time的秒数</strong>称为timestamp。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">dt=datetime(<span class="number">2022</span>,<span class="number">4</span>,<span class="number">19</span>,<span class="number">12</span>,<span class="number">22</span>)</span><br><span class="line"><span class="built_in">print</span>(dt.timestamp())</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">1650342120.0</span></span><br></pre></td></tr></table></figure>
-<h3 id="timestamp转换为datetime"><a href="#timestamp转换为datetime" class="headerlink" title="timestamp转换为datetime"></a>timestamp转换为datetime</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">dt=<span class="number">1650342120.0</span></span><br><span class="line"><span class="built_in">print</span>(datetime.fromtimestamp(dt))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-04-<span class="number">19</span> <span class="number">12</span>:<span class="number">22</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
-<h3 id="str转换为datetime"><a href="#str转换为datetime" class="headerlink" title="str转换为datetime"></a>str转换为datetime</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">dt=datetime.strptime(<span class="string">&#x27;2022-04-19 12:22:00&#x27;</span>,<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(dt)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-04-<span class="number">19</span> <span class="number">12</span>:<span class="number">22</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
-<h3 id="datetime转换为str"><a href="#datetime转换为str" class="headerlink" title="datetime转换为str"></a>datetime转换为str</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">now=datetime.now()</span><br><span class="line"><span class="built_in">print</span>(now.strftime(<span class="string">&#x27;%a, %b %d %H:%M&#x27;</span>))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Thu, Oct <span class="number">13</span> <span class="number">16</span>:<span class="number">13</span></span><br></pre></td></tr></table></figure>
-<h3 id="datetime加减"><a href="#datetime加减" class="headerlink" title="datetime加减"></a>datetime加减</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime,timedelta</span><br><span class="line">now=datetime.now()</span><br><span class="line"><span class="built_in">print</span>(now)</span><br><span class="line"><span class="built_in">print</span>(now+timedelta(hours=<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(now+timedelta(days=<span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(now+timedelta(days=<span class="number">2</span>,hours=<span class="number">12</span>))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">13</span> <span class="number">16</span>:<span class="number">17</span>:<span class="number">44.344550</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">14</span> 02:<span class="number">17</span>:<span class="number">44.344550</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">14</span> <span class="number">16</span>:<span class="number">17</span>:<span class="number">44.344550</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">16</span> 04:<span class="number">17</span>:<span class="number">44.344550</span></span><br></pre></td></tr></table></figure>
-<h3 id="本地时间转换为UTC时间"><a href="#本地时间转换为UTC时间" class="headerlink" title="本地时间转换为UTC时间"></a>本地时间转换为UTC时间</h3><p>本地时间是指系统设定时区的时间，如北京时间是UTC+8:00，UTC时间是指UTC+0:00时区的时间。</p>
+<h3 id="timestamp转换为datetime">timestamp转换为datetime</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">dt=<span class="number">1650342120.0</span></span><br><span class="line"><span class="built_in">print</span>(datetime.fromtimestamp(dt))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-04-<span class="number">19</span> <span class="number">12</span>:<span class="number">22</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
+<h3 id="str转换为datetime">str转换为datetime</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">dt=datetime.strptime(<span class="string">&#x27;2022-04-19 12:22:00&#x27;</span>,<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(dt)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-04-<span class="number">19</span> <span class="number">12</span>:<span class="number">22</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
+<h3 id="datetime转换为str">datetime转换为str</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">now=datetime.now()</span><br><span class="line"><span class="built_in">print</span>(now.strftime(<span class="string">&#x27;%a, %b %d %H:%M&#x27;</span>))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Thu, Oct <span class="number">13</span> <span class="number">16</span>:<span class="number">13</span></span><br></pre></td></tr></table></figure>
+<h3 id="datetime加减">datetime加减</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime,timedelta</span><br><span class="line">now=datetime.now()</span><br><span class="line"><span class="built_in">print</span>(now)</span><br><span class="line"><span class="built_in">print</span>(now+timedelta(hours=<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(now+timedelta(days=<span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(now+timedelta(days=<span class="number">2</span>,hours=<span class="number">12</span>))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">13</span> <span class="number">16</span>:<span class="number">17</span>:<span class="number">44.344550</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">14</span> 02:<span class="number">17</span>:<span class="number">44.344550</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">14</span> <span class="number">16</span>:<span class="number">17</span>:<span class="number">44.344550</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">16</span> 04:<span class="number">17</span>:<span class="number">44.344550</span></span><br></pre></td></tr></table></figure>
+<h3 id="本地时间转换为utc时间">本地时间转换为UTC时间</h3>
+<p>本地时间是指系统设定时区的时间，如北京时间是UTC+8:00，UTC时间是指UTC+0:00时区的时间。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime,timedelta,timezone</span><br><span class="line">tz_utc_8=timezone(timedelta(hours=<span class="number">8</span>))</span><br><span class="line">now=datetime.now()</span><br><span class="line"><span class="built_in">print</span>(now)</span><br><span class="line">dt=now.replace(tzinfo=tz_utc_8)</span><br><span class="line"><span class="built_in">print</span>(dt)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">13</span> <span class="number">16</span>:<span class="number">25</span>:<span class="number">07.688476</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">13</span> <span class="number">16</span>:<span class="number">25</span>:<span class="number">07.688476</span>+08:<span class="number">00</span></span><br></pre></td></tr></table></figure>
-<h3 id="时区转换"><a href="#时区转换" class="headerlink" title="时区转换"></a>时区转换</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime,timedelta,timezone</span><br><span class="line">utc_dt=datetime.utcnow().replace(tzinfo=timezone.utc)<span class="comment">#拿到utc时间并设置时区为UTC+0:00</span></span><br><span class="line"><span class="built_in">print</span>(utc_dt)</span><br><span class="line">bj_dt=utc_dt.astimezone(timezone(timedelta(hours=<span class="number">8</span>)))<span class="comment">#将转换时区为北京时间</span></span><br><span class="line"><span class="built_in">print</span>(bj_dt)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">13</span> 08:<span class="number">28</span>:<span class="number">08.363061</span>+<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">13</span> <span class="number">16</span>:<span class="number">28</span>:<span class="number">08.363061</span>+08:<span class="number">00</span></span><br></pre></td></tr></table></figure>
-<h2 id="collections"><a href="#collections" class="headerlink" title="collections"></a>collections</h2><p>collections是Python内建的一个集合模块，提供了许多有用的集合类。</p>
-<h3 id="namedtuple"><a href="#namedtuple" class="headerlink" title="namedtuple"></a>namedtuple</h3><p>namedtuple是一个函数，用来创建一个自定义的tuple对象，并规定了tuple元素的个数，可以用属性而不是索引来引用tuple的某个元素：</p>
+<h3 id="时区转换">时区转换</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime,timedelta,timezone</span><br><span class="line">utc_dt=datetime.utcnow().replace(tzinfo=timezone.utc)<span class="comment">#拿到utc时间并设置时区为UTC+0:00</span></span><br><span class="line"><span class="built_in">print</span>(utc_dt)</span><br><span class="line">bj_dt=utc_dt.astimezone(timezone(timedelta(hours=<span class="number">8</span>)))<span class="comment">#将转换时区为北京时间</span></span><br><span class="line"><span class="built_in">print</span>(bj_dt)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">13</span> 08:<span class="number">28</span>:<span class="number">08.363061</span>+<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">2022</span>-<span class="number">10</span>-<span class="number">13</span> <span class="number">16</span>:<span class="number">28</span>:<span class="number">08.363061</span>+08:<span class="number">00</span></span><br></pre></td></tr></table></figure>
+<h2 id="collections">collections</h2>
+<p>collections是Python内建的一个集合模块，提供了许多有用的集合类。</p>
+<h3 id="namedtuple">namedtuple</h3>
+<p>namedtuple是一个函数，用来创建一个自定义的tuple对象，并规定了tuple元素的个数，可以用属性而不是索引来引用tuple的某个元素：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</span><br><span class="line">Point=namedtuple(<span class="string">&#x27;Point&#x27;</span>,[<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;y&#x27;</span>])</span><br><span class="line">Circle=namedtuple(<span class="string">&#x27;Circle&#x27;</span>,[<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;y&#x27;</span>,<span class="string">&#x27;r&#x27;</span>])</span><br><span class="line">p=Point(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">c=Circle(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">isinstance</span>(p,Point))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">isinstance</span>(p,<span class="built_in">tuple</span>))</span><br><span class="line"><span class="built_in">print</span>(p.x,p.y)</span><br><span class="line"><span class="built_in">print</span>(c.x,c.y,c.r)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
-<h3 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h3><p>deque可以高效实现插入和删除操作的双向列表，适合用于队列和栈：</p>
+<h3 id="deque">deque</h3>
+<p>deque可以高效实现插入和删除操作的双向列表，适合用于队列和栈：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque </span><br><span class="line">q=deque([<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>])</span><br><span class="line">q.append(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">q.appendleft(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(q)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">deque([<span class="string">&#x27;y&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;x&#x27;</span>])</span><br></pre></td></tr></table></figure>
 <p>除此之外，还支持pop()、popleft()等方法，可以非常高效地往头部添加或删除元素。</p>
-<h3 id="defaultdict"><a href="#defaultdict" class="headerlink" title="defaultdict"></a>defaultdict</h3><p>使用dict时，若引用的Key不存在，就会抛出<code>KeyError</code>，若希望Key不存在时返回一个默认值，可以用defaultdict：</p>
+<h3 id="defaultdict">defaultdict</h3>
+<p>使用dict时，若引用的Key不存在，就会抛出<code>KeyError</code>，若希望Key不存在时返回一个默认值，可以用defaultdict：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line">d=defaultdict(<span class="keyword">lambda</span>:<span class="string">&#x27;N/A&#x27;</span>)</span><br><span class="line">d[<span class="string">&#x27;key1&#x27;</span>]=<span class="string">&#x27;abc&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(d[<span class="string">&#x27;key1&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(d[<span class="string">&#x27;key2&#x27;</span>])</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">abc</span><br><span class="line">N/A</span><br></pre></td></tr></table></figure>
 <p>默认值是调用函数返回的，而函数在创建defaultdict对象时传入。</p>
-<h3 id="OrderedDict"><a href="#OrderedDict" class="headerlink" title="OrderedDict"></a>OrderedDict</h3><p>使用dict时，Key是无序的。若要保持Key的顺序，可以用OrderedDict：</p>
+<h3 id="ordereddict">OrderedDict</h3>
+<p>使用dict时，Key是无序的。若要保持Key的顺序，可以用OrderedDict：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line">d=<span class="built_in">dict</span>([(<span class="string">&#x27;c&#x27;</span>,<span class="number">1</span>),(<span class="string">&#x27;a&#x27;</span>,<span class="number">2</span>),(<span class="string">&#x27;b&#x27;</span>,<span class="number">3</span>)])</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line">od=OrderedDict([(<span class="string">&#x27;b&#x27;</span>,<span class="number">1</span>),(<span class="string">&#x27;a&#x27;</span>,<span class="number">2</span>),(<span class="string">&#x27;c&#x27;</span>,<span class="number">3</span>)])</span><br><span class="line"><span class="built_in">print</span>(od)</span><br><span class="line">odd=OrderedDict()</span><br><span class="line">odd[<span class="string">&#x27;x&#x27;</span>]=<span class="number">1</span></span><br><span class="line">odd[<span class="string">&#x27;z&#x27;</span>]=<span class="number">2</span></span><br><span class="line">odd[<span class="string">&#x27;y&#x27;</span>]=<span class="number">3</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(odd.keys()))<span class="comment">#OrderedDict的Key按照插入的顺序排序，并非是Key自身的顺序，即odd是按插入值的前后排序，而不是根据&#x27;x&#x27;、&#x27;y&#x27;、&#x27;z&#x27;的顺序排</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">&#123;<span class="string">&#x27;c&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">3</span>&#125;</span><br><span class="line">OrderedDict([(<span class="string">&#x27;b&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;a&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>)])</span><br><span class="line">[<span class="string">&#x27;x&#x27;</span>, <span class="string">&#x27;z&#x27;</span>, <span class="string">&#x27;y&#x27;</span>]</span><br></pre></td></tr></table></figure>
 <p>OrderedDict可以实现一个先进先出的dict，当容量超出限制时，先删除最早添加的Key。</p>
-<h3 id="ChainMap"><a href="#ChainMap" class="headerlink" title="ChainMap"></a>ChainMap</h3><p>ChainMap可以把一组dict串起来组成一个大的dict。但在查找数据时会按照顺序在内部的dict依次查找。</p>
+<h3 id="chainmap">ChainMap</h3>
+<p>ChainMap可以把一组dict串起来组成一个大的dict。但在查找数据时会按照顺序在内部的dict依次查找。</p>
 <p>例如，使用ChainMap来实现参数的优先级查找，其顺序为：命令行参数&gt;环境变量&gt;默认参数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> ChainMap</span><br><span class="line"><span class="keyword">from</span> email.policy <span class="keyword">import</span> default</span><br><span class="line"><span class="keyword">import</span> os,argparse</span><br><span class="line"><span class="comment"># 构造默认参数:</span></span><br><span class="line">defaults=&#123;</span><br><span class="line">    <span class="string">&#x27;color&#x27;</span>:<span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;user&#x27;</span>:<span class="string">&#x27;guest&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#构造命令行参数:</span></span><br><span class="line">parser=argparse.ArgumentParser()</span><br><span class="line">parser.add_argument(<span class="string">&#x27;-u&#x27;</span>,<span class="string">&#x27;--user&#x27;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;-c&#x27;</span>,<span class="string">&#x27;--color&#x27;</span>)</span><br><span class="line">namespace=parser.parse_args()</span><br><span class="line">command_line_args=&#123;k :v <span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="built_in">vars</span>(namespace).items() <span class="keyword">if</span> v&#125;</span><br><span class="line"><span class="comment">#组合成ChainMap:</span></span><br><span class="line">combined=ChainMap(command_line_args,os.environ,defaults)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;color=%s&#x27;</span> % combined[<span class="string">&#x27;color&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;user=%s&#x27;</span> % combined[<span class="string">&#x27;user&#x27;</span>])</span><br></pre></td></tr></table></figure>
 <p>打开cmd，将路径切换到当前<code>.py</code>文件所在的目录，运行代码：</p>
@@ -529,26 +549,35 @@
 <p>当传入命令行参数时，优先使用命令行参数：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator\Desktop&gt;python learn.py -u bob</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">color=red</span><br><span class="line">user=bob</span><br></pre></td></tr></table></figure>
 <p>当同时传入命令行参数和环境变量时，也是优先使用命令行参数。</p>
-<h3 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a>Counter</h3><p>Counter是一个简单的计数器，也是dict的一个子类，可以统计字符出现的个数：</p>
+<h3 id="counter">Counter</h3>
+<p>Counter是一个简单的计数器，也是dict的一个子类，可以统计字符出现的个数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">c=Counter()</span><br><span class="line"><span class="keyword">for</span> ch <span class="keyword">in</span> <span class="string">&#x27;programming&#x27;</span>:</span><br><span class="line">    c[ch]=c[ch]+<span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(c)    </span><br><span class="line">c.update(<span class="string">&#x27;hello&#x27;</span>)<span class="comment">#更新数据</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;r&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;g&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;m&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;p&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;o&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;i&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;n&#x27;</span>: <span class="number">1</span>&#125;)</span><br><span class="line">Counter(&#123;<span class="string">&#x27;r&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;o&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;g&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;m&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;l&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;p&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;i&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;n&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;h&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;e&#x27;</span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="urllib"><a href="#urllib" class="headerlink" title="urllib"></a>urllib</h2><p>urllib提供了一系列用于操作URL的功能。</p>
-<h3 id="Get"><a href="#Get" class="headerlink" title="Get"></a>Get</h3><p>urllib的<code>request</code>模块可以非常方便地抓取URL内容，也就是发送一个GET请求到指定的页面，然后返回HTTP的响应。例如，对百度网址进行抓取，并返回响应：：</p>
+<h2 id="urllib">urllib</h2>
+<p>urllib提供了一系列用于操作URL的功能。</p>
+<h3 id="get">Get</h3>
+<p>urllib的<code>request</code>模块可以非常方便地抓取URL内容，也就是发送一个GET请求到指定的页面，然后返回HTTP的响应。例如，对百度网址进行抓取，并返回响应：：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> request.urlopen(<span class="string">&#x27;https://baidu.com/&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = f.read()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Status:&#x27;</span>, f.status, f.reason)</span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> f.getheaders():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;%s: %s&#x27;</span> % (k, v))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Data:&#x27;</span>, data.decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Status: <span class="number">200</span> OK</span><br><span class="line">Bdpagetype: <span class="number">1</span></span><br><span class="line">Bdqid: <span class="number">0x8dfa7ad90002130f</span></span><br><span class="line">Content-<span class="type">Type</span>: text/html; charset=utf-<span class="number">8</span></span><br><span class="line">Date: Mon, <span class="number">24</span> Oct <span class="number">2022</span> 09:01:<span class="number">21</span> GMT</span><br><span class="line">...</span><br><span class="line">Data: &lt;!DOCTYPE html&gt;&lt;!--STATUS OK--&gt;&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=<span class="string">&quot;Content-Type&quot;</span> content=<span class="string">&quot;text/html;charset=utf-8&quot;</span>&gt;&lt;meta http-equiv=<span class="string">&quot;X-UA-Compatible&quot;</span> content=<span class="string">&quot;IE=edge,chrome=1&quot;</span>&gt;&lt;meta content=<span class="string">&quot;always&quot;</span> name=<span class="string">&quot;referrer&quot;</span>&gt;&lt;meta name=<span class="string">&quot;theme-color&quot;</span> content=<span class="string">&quot;#ffffff&quot;</span>&gt;&lt;meta name=<span class="string">&quot;description&quot;</span> content=<span class="string">&quot;全球领先的中文...</span></span><br></pre></td></tr></table></figure>
-<p>若要模拟浏览器发送GET请求，需要使用<code>Request</code>对象，通过往<code>Request</code>对象添加HTTP头，可以把请求伪装成浏览器。例如，模拟iPhone 6去请求豆瓣首页：</p>
+<p>若要模拟浏览器发送GET请求，需要使用<code>Request</code>对象，通过往<code>Request</code>对象添加HTTP头，可以把请求伪装成浏览器。例如，模拟iPhone
+6去请求豆瓣首页：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</span><br><span class="line"></span><br><span class="line">req = request.Request(<span class="string">&#x27;http://www.douban.com/&#x27;</span>)</span><br><span class="line">req.add_header(<span class="string">&#x27;User-Agent&#x27;</span>, <span class="string">&#x27;Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> request.urlopen(req) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Status:&#x27;</span>, f.status, f.reason)</span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> f.getheaders():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;%s: %s&#x27;</span> % (k, v))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Data:&#x27;</span>, f.read().decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html itemscope itemtype=<span class="string">&quot;http://schema.org/WebPage&quot;</span> <span class="keyword">class</span>=<span class="string">&quot;ua-safari ua-mobile &quot;</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">      &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">      &lt;title&gt;豆瓣(手机版)&lt;/title&gt;</span><br><span class="line">      &lt;meta name=<span class="string">&quot;google-site-verification&quot;</span> content=<span class="string">&quot;ok0wCgT20tBBgo9_zat2iAcimtN4Ftf5ccsh092Xeyw&quot;</span> /&gt;...    </span><br></pre></td></tr></table></figure>
-<h3 id="Post"><a href="#Post" class="headerlink" title="Post"></a>Post</h3><p>若要以POST发送一个请求，只需要把参数<code>data</code>以bytes形式传入。</p>
+<h3 id="post">Post</h3>
+<p>若要以POST发送一个请求，只需要把参数<code>data</code>以bytes形式传入。</p>
 <p>例如模拟一个微博登录，先读取登录的邮箱和口令，然后按照weibo.cn的登录页的格式以<code>username=xxx&amp;password=xxx</code>的编码传入：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request, parse</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Login to weibo.cn...&#x27;</span>)</span><br><span class="line">email = <span class="built_in">input</span>(<span class="string">&#x27;Email: &#x27;</span>)</span><br><span class="line">passwd = <span class="built_in">input</span>(<span class="string">&#x27;Password: &#x27;</span>)</span><br><span class="line">login_data = parse.urlencode([</span><br><span class="line">    (<span class="string">&#x27;username&#x27;</span>, email),</span><br><span class="line">    (<span class="string">&#x27;password&#x27;</span>, passwd),</span><br><span class="line">    (<span class="string">&#x27;entry&#x27;</span>, <span class="string">&#x27;mweibo&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;client_id&#x27;</span>, <span class="string">&#x27;&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;savestate&#x27;</span>, <span class="string">&#x27;1&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;ec&#x27;</span>, <span class="string">&#x27;&#x27;</span>),</span><br><span class="line">    (<span class="string">&#x27;pagerefer&#x27;</span>, <span class="string">&#x27;https://passport.weibo.cn/signin/welcome?entry=mweibo&amp;r=http%3A%2F%2Fm.weibo.cn%2F&#x27;</span>)</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">req = request.Request(<span class="string">&#x27;https://passport.weibo.cn/sso/login&#x27;</span>)</span><br><span class="line">req.add_header(<span class="string">&#x27;Origin&#x27;</span>, <span class="string">&#x27;https://passport.weibo.cn&#x27;</span>)</span><br><span class="line">req.add_header(<span class="string">&#x27;User-Agent&#x27;</span>, <span class="string">&#x27;Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25&#x27;</span>)</span><br><span class="line">req.add_header(<span class="string">&#x27;Referer&#x27;</span>, <span class="string">&#x27;https://passport.weibo.cn/signin/login?entry=mweibo&amp;res=wel&amp;wm=3349&amp;r=http%3A%2F%2Fm.weibo.cn%2F&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> request.urlopen(req, data=login_data.encode(<span class="string">&#x27;utf-8&#x27;</span>)) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Status:&#x27;</span>, f.status, f.reason)</span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> f.getheaders():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;%s: %s&#x27;</span> % (k, v))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Data:&#x27;</span>, f.read().decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br></pre></td></tr></table></figure>
 <p>若登录成功，获得的响应如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Status: <span class="number">200</span> OK</span><br><span class="line">Server: nginx/<span class="number">1.2</span><span class="number">.0</span></span><br><span class="line">...</span><br><span class="line"><span class="type">Set</span>-Cookie: SSOLoginState=<span class="number">1432620126</span>; path=/; domain=weibo.cn</span><br><span class="line">...</span><br><span class="line">Data: &#123;<span class="string">&quot;retcode&quot;</span>:<span class="number">20000000</span>,<span class="string">&quot;msg&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;data&quot;</span>:&#123;...,<span class="string">&quot;uid&quot;</span>:<span class="string">&quot;1658384301&quot;</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
 <p>若登录失败，获得的响应如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">Data: &#123;<span class="string">&quot;retcode&quot;</span>:<span class="number">50011002</span>,<span class="string">&quot;msg&quot;</span>:<span class="string">&quot;\u7528\u6237\u540d\u6216\u5bc6\u7801\u9519\u8bef&quot;</span>,<span class="string">&quot;data&quot;</span>:&#123;<span class="string">&quot;username&quot;</span>:<span class="string">&quot;123456@qq.com&quot;</span>,<span class="string">&quot;errline&quot;</span>:<span class="number">15</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h3><p>若需要更复杂的控制，比如通过一个Proxy去访问网站，需要利用<code>ProxyHandler</code>来处理，例如：</p>
+<h3 id="handler">Handler</h3>
+<p>若需要更复杂的控制，比如通过一个Proxy去访问网站，需要利用<code>ProxyHandler</code>来处理，例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">proxy_handler = urllib.request.ProxyHandler(&#123;<span class="string">&#x27;http&#x27;</span>: <span class="string">&#x27;http://www.example.com:3128/&#x27;</span>&#125;)</span><br><span class="line">proxy_auth_handler = urllib.request.ProxyBasicAuthHandler()</span><br><span class="line">proxy_auth_handler.add_password(<span class="string">&#x27;realm&#x27;</span>, <span class="string">&#x27;host&#x27;</span>, <span class="string">&#x27;username&#x27;</span>, <span class="string">&#x27;password&#x27;</span>)</span><br><span class="line">opener = urllib.request.build_opener(proxy_handler, proxy_auth_handler)</span><br><span class="line"><span class="keyword">with</span> opener.<span class="built_in">open</span>(<span class="string">&#x27;http://www.example.com/login.html&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h1 id="常用第三方模块"><a href="#常用第三方模块" class="headerlink" title="常用第三方模块"></a>常用第三方模块</h1><h2 id="requests"><a href="#requests" class="headerlink" title="requests"></a>requests</h2><p>Python内置的urllib模块，用于访问网络资源。但是，它用起来比较麻烦，而且，缺少很多实用的高级功能。</p>
+<h1 id="常用第三方模块">常用第三方模块</h1>
+<h2 id="requests">requests</h2>
+<p>Python内置的urllib模块，用于访问网络资源。但是，它用起来比较麻烦，而且，缺少很多实用的高级功能。</p>
 <p>更好的方案是使用requests。它是一个Python第三方库，处理URL资源特别方便。</p>
 <p>安装request：<code>pip install requests</code></p>
-<h3 id="requests的使用"><a href="#requests的使用" class="headerlink" title="requests的使用"></a>requests的使用</h3><p>通过GET访问一个页面：</p>
+<h3 id="requests的使用">requests的使用</h3>
+<p>通过GET访问一个页面：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests </span><br><span class="line">r=requests.get(<span class="string">&#x27;https://www.baidu.com/&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(r.status_code)<span class="comment">#访问状态码</span></span><br><span class="line"><span class="built_in">print</span>(r.text)<span class="comment">#网页详情</span></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">200</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="string">&lt;!--STATUS OK--&gt;&lt;html&gt; &lt;head&gt;&lt;meta http-equiv=content-type content=text/html;charset=utf-8&gt;&lt;meta http-equiv=X-UA-Compatible content=IE=Edge&gt;&lt;meta content=always name=referrer&gt;&lt;link rel=stylesheet type=text/css ...&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>对于带参数的URL，传入一个dict作为params参数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests </span><br><span class="line">r=requests.get(<span class="string">&#x27;https://www.baidu.com/&#x27;</span>,params=&#123;<span class="string">&#x27;q&#x27;</span>:<span class="string">&#x27;python&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>:<span class="string">&#x27;1001&#x27;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(r.url)<span class="comment">#实际请求的URL</span></span><br><span class="line"><span class="built_in">print</span>(r.encoding)<span class="comment">#自动检测编码</span></span><br><span class="line"><span class="built_in">print</span>(r.content)<span class="comment">#获得bytes对象</span></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">https://www.baidu.com/?q=python&amp;cat=<span class="number">1001</span></span><br><span class="line">ISO-<span class="number">8859</span>-<span class="number">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;b&#x27;&lt;!DOCTYPE html&gt;\r\n&lt;!--STATUS OK--&gt;&lt;html&gt; &lt;head&gt;&lt;meta http-equiv=content-type content=text/html;charset=utf-8&gt;&lt;meta http-equiv=X-UA-Compatible content=IE=Edge&gt;&lt;meta content=always name=referrer&gt;&lt;link rel=stylesheet type=text/css ...&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -560,7 +589,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">params=&#123;<span class="string">&#x27;key&#x27;</span>: <span class="string">&#x27;value&#x27;</span>&#125;</span><br><span class="line">r=requests.post(url,json=params) <span class="comment"># 内部自动序列化为JSON</span></span><br></pre></td></tr></table></figure>
 <p>类似的，上传文件需要更复杂的编码格式，但是requests把它简化成<code>files</code>参数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">upload_files=&#123;<span class="string">&#x27;file&#x27;</span>:<span class="built_in">open</span>(<span class="string">&#x27;report.xls&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)&#125;</span><br><span class="line">r=requests.post(url,files=upload_files)</span><br></pre></td></tr></table></figure>
-<p>在读取文件时，注意务必使用<code>&#39;rb&#39;</code>即二进制模式读取，这样获取的<code>bytes</code>长度才是文件的长度。</p>
+<p>在读取文件时，注意务必使用<code>'rb'</code>即二进制模式读取，这样获取的<code>bytes</code>长度才是文件的长度。</p>
 <p>requests对获取HTTP响应的其他信息也非常简单。例如，获取响应头：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(r.headers)</span><br><span class="line"><span class="built_in">print</span>(r.headers[<span class="string">&#x27;Content-Type&#x27;</span>])</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">&#123;Content-<span class="type">Type</span><span class="string">&#x27;: &#x27;</span>text/html; charset=utf-<span class="number">8</span><span class="string">&#x27;, &#x27;</span>Transfer-Encoding<span class="string">&#x27;: &#x27;</span>chunked<span class="string">&#x27;, &#x27;</span>Content-Encoding<span class="string">&#x27;: &#x27;</span>gzip<span class="string">&#x27;, ...&#125;</span></span><br><span class="line"><span class="string">&#x27;</span>text/html; charset=utf-<span class="number">8</span><span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>requests对Cookie做了特殊处理，使得不必解析Cookie就可以轻松获取指定的Cookie：</p>
@@ -569,13 +598,17 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cs=&#123;<span class="string">&#x27;token&#x27;</span>:<span class="string">&#x27;12345&#x27;</span>,<span class="string">&#x27;status&#x27;</span>:<span class="string">&#x27;working&#x27;</span>&#125;</span><br><span class="line">r=requests.get(url,cookies=cs)</span><br></pre></td></tr></table></figure>
 <p>最后，要指定超时，传入以秒为单位的timeout参数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r=requests.get(url,timeout=<span class="number">2.5</span>) <span class="comment"># 2.5秒后超时</span></span><br></pre></td></tr></table></figure>
-<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><p>参考《OA统一待办接口协议》，使用requests访问统一待办接口，给自己生成一个待办，确认生成后，调用删除接口删除待办。</p>
+<h3 id="练习题">练习题</h3>
+<p>参考《OA统一待办接口协议》，使用requests访问统一待办接口，给自己生成一个待办，确认生成后，调用删除接口删除待办。</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests </span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment">#基础数据</span></span><br><span class="line">headers=&#123;<span class="string">&#x27;Content-Type&#x27;</span>:<span class="string">&#x27;application/json&#x27;</span>&#125;</span><br><span class="line">url=<span class="string">&#x27;GetToken的URL地址&#x27;</span><span class="comment">#URL地址以http://开头，后接ip形式的url</span></span><br><span class="line">url_create=<span class="string">&#x27;CreateTask的URL地址&#x27;</span></span><br><span class="line">url_del=<span class="string">&#x27;DeleteTask的URL地址&#x27;</span></span><br><span class="line">data=&#123;<span class="string">&quot;app_id&quot;</span>:<span class="string">&quot;app_id的数值&quot;</span>,<span class="string">&quot;app_secret&quot;</span>:<span class="string">&quot;app_secret的数值&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取调用凭证access_token</span></span><br><span class="line">r=requests.post(url,json=data)</span><br><span class="line">token=json.loads(r.text)[<span class="string">&#x27;access_token&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成待办事项</span></span><br><span class="line">data_create=&#123;<span class="string">&quot;access_token&quot;</span>:token,<span class="string">&quot;title&quot;</span>:<span class="string">&quot;20221025测试&quot;</span>,<span class="string">&quot;task_segment&quot;</span>:<span class="string">&quot;报名&quot;</span>,\</span><br><span class="line">    <span class="string">&quot;task_url&quot;</span>:<span class="string">&quot;http://tangmenjue.top/&quot;</span>,<span class="string">&quot;staff_id&quot;</span>:<span class="string">&quot;staff_id的数值&quot;</span>&#125;</span><br><span class="line">r_create=requests.post(url_create,json=data_create)</span><br><span class="line"><span class="built_in">print</span>(r_create.text)</span><br><span class="line"></span><br><span class="line">r_del=requests.post(url,json=data)</span><br><span class="line">task_id=json.loads(r_create.text)[<span class="string">&#x27;task_id&#x27;</span>]</span><br><span class="line"><span class="comment"># task_id=&#x27;17837ed5-48e4-4120-964a-477d258aaeb3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#确认待办事项已生成后，调用删除接口删除待办。</span></span><br><span class="line">data_del=&#123;<span class="string">&quot;access_token&quot;</span>:token,<span class="string">&#x27;task_id&#x27;</span>:task_id&#125;</span><br><span class="line">r_del=requests.post(url_del,json=data_del)</span><br><span class="line"><span class="built_in">print</span>(r_del.text)</span><br></pre></td></tr></table></figure>
-<h2 id="chardet"><a href="#chardet" class="headerlink" title="chardet"></a>chardet</h2><p>字符串编码一直是令人非常头疼的问题，尤其是在处理一些不规范的第三方网页的时候。虽然Python提供了Unicode表示的<code>str</code>和<code>bytes</code>两种数据类型，并且可以通过<code>encode()</code>和<code>decode()</code>方法转换，但是，在不知道编码的情况下，对<code>bytes</code>做<code>decode()</code>不好做。</p>
+<h2 id="chardet">chardet</h2>
+<p>字符串编码一直是令人非常头疼的问题，尤其是在处理一些不规范的第三方网页的时候。虽然Python提供了Unicode表示的<code>str</code>和<code>bytes</code>两种数据类型，并且可以通过<code>encode()</code>和<code>decode()</code>方法转换，但是，在不知道编码的情况下，对<code>bytes</code>做<code>decode()</code>不好做。</p>
 <p>对于未知编码的<code>bytes</code>，要把它转换成<code>str</code>，需要先“猜测”编码。猜测的方式是先收集各种编码的特征字符，根据特征字符判断，就能有很大概率“猜对”，此时可以用chardet来检测编码。</p>
-<h1 id="venv"><a href="#venv" class="headerlink" title="venv"></a>venv</h1><p>在开发Python应用程序的时候，系统安装的Python3只有一个版本：3.10。所有第三方的包都会被<code>pip</code>安装到Python3的<code>site-packages</code>目录下。</p>
-<p>如果要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python 3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？</p>
+<h1 id="venv">venv</h1>
+<p>在开发Python应用程序的时候，系统安装的Python3只有一个版本：3.10。所有第三方的包都会被<code>pip</code>安装到Python3的<code>site-packages</code>目录下。</p>
+<p>如果要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python
+3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？</p>
 <p>这种情况下，每个应用可能需要各自拥有一套“独立”的Python运行环境。venv就是用来为一个应用创建一套“隔离”的Python运行环境。</p>
 
     </article>
@@ -775,7 +808,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97"><span class="toc-number">1.</span> <span class="toc-text">常用内建模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#datetime"><span class="toc-number">1.1.</span> <span class="toc-text">datetime</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.1.</span> <span class="toc-text">获取当前日期和时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.2.</span> <span class="toc-text">获取指定日期和时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E8%BD%AC%E6%8D%A2%E4%B8%BAtimestamp"><span class="toc-number">1.1.3.</span> <span class="toc-text">datetime转换为timestamp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#timestamp%E8%BD%AC%E6%8D%A2%E4%B8%BAdatetime"><span class="toc-number">1.1.4.</span> <span class="toc-text">timestamp转换为datetime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#str%E8%BD%AC%E6%8D%A2%E4%B8%BAdatetime"><span class="toc-number">1.1.5.</span> <span class="toc-text">str转换为datetime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E8%BD%AC%E6%8D%A2%E4%B8%BAstr"><span class="toc-number">1.1.6.</span> <span class="toc-text">datetime转换为str</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E5%8A%A0%E5%87%8F"><span class="toc-number">1.1.7.</span> <span class="toc-text">datetime加减</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2%E4%B8%BAUTC%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.8.</span> <span class="toc-text">本地时间转换为UTC时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%8C%BA%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.1.9.</span> <span class="toc-text">时区转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#collections"><span class="toc-number">1.2.</span> <span class="toc-text">collections</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#namedtuple"><span class="toc-number">1.2.1.</span> <span class="toc-text">namedtuple</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deque"><span class="toc-number">1.2.2.</span> <span class="toc-text">deque</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#defaultdict"><span class="toc-number">1.2.3.</span> <span class="toc-text">defaultdict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OrderedDict"><span class="toc-number">1.2.4.</span> <span class="toc-text">OrderedDict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ChainMap"><span class="toc-number">1.2.5.</span> <span class="toc-text">ChainMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Counter"><span class="toc-number">1.2.6.</span> <span class="toc-text">Counter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#urllib"><span class="toc-number">1.3.</span> <span class="toc-text">urllib</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Get"><span class="toc-number">1.3.1.</span> <span class="toc-text">Get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Post"><span class="toc-number">1.3.2.</span> <span class="toc-text">Post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Handler"><span class="toc-number">1.3.3.</span> <span class="toc-text">Handler</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">常用第三方模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#requests"><span class="toc-number">2.1.</span> <span class="toc-text">requests</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requests%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">requests的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">2.1.2.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chardet"><span class="toc-number">2.2.</span> <span class="toc-text">chardet</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#venv"><span class="toc-number">3.</span> <span class="toc-text">venv</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97"><span class="toc-number">1.</span> <span class="toc-text">常用内建模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#datetime"><span class="toc-number">1.1.</span> <span class="toc-text">datetime</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.1.</span> <span class="toc-text">获取当前日期和时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.2.</span> <span class="toc-text">获取指定日期和时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E8%BD%AC%E6%8D%A2%E4%B8%BAtimestamp"><span class="toc-number">1.1.3.</span> <span class="toc-text">datetime转换为timestamp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#timestamp%E8%BD%AC%E6%8D%A2%E4%B8%BAdatetime"><span class="toc-number">1.1.4.</span> <span class="toc-text">timestamp转换为datetime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#str%E8%BD%AC%E6%8D%A2%E4%B8%BAdatetime"><span class="toc-number">1.1.5.</span> <span class="toc-text">str转换为datetime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E8%BD%AC%E6%8D%A2%E4%B8%BAstr"><span class="toc-number">1.1.6.</span> <span class="toc-text">datetime转换为str</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#datetime%E5%8A%A0%E5%87%8F"><span class="toc-number">1.1.7.</span> <span class="toc-text">datetime加减</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2%E4%B8%BAutc%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.8.</span> <span class="toc-text">本地时间转换为UTC时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%8C%BA%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.1.9.</span> <span class="toc-text">时区转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#collections"><span class="toc-number">1.2.</span> <span class="toc-text">collections</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#namedtuple"><span class="toc-number">1.2.1.</span> <span class="toc-text">namedtuple</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deque"><span class="toc-number">1.2.2.</span> <span class="toc-text">deque</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#defaultdict"><span class="toc-number">1.2.3.</span> <span class="toc-text">defaultdict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ordereddict"><span class="toc-number">1.2.4.</span> <span class="toc-text">OrderedDict</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chainmap"><span class="toc-number">1.2.5.</span> <span class="toc-text">ChainMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#counter"><span class="toc-number">1.2.6.</span> <span class="toc-text">Counter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#urllib"><span class="toc-number">1.3.</span> <span class="toc-text">urllib</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#get"><span class="toc-number">1.3.1.</span> <span class="toc-text">Get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#post"><span class="toc-number">1.3.2.</span> <span class="toc-text">Post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#handler"><span class="toc-number">1.3.3.</span> <span class="toc-text">Handler</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">常用第三方模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#requests"><span class="toc-number">2.1.</span> <span class="toc-text">requests</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requests%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">requests的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">2.1.2.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chardet"><span class="toc-number">2.2.</span> <span class="toc-text">chardet</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#venv"><span class="toc-number">3.</span> <span class="toc-text">venv</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1125,6 +1158,8 @@
         
         
     
+        
+        
         
         
         
@@ -2227,9 +2262,9 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="CSS3">
+            <span class="sidebar-tag-name" data-tags="数据库工具">
                 <span class="iconfont-archer">&#xe606;</span>
-                CSS3
+                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="CentOS 7">
@@ -2247,9 +2282,19 @@
                 网络管理
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库工具">
+            <span class="sidebar-tag-name" data-tags="CSS3">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
+                CSS3
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2267,24 +2312,9 @@
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
-                <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2302,14 +2332,19 @@
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
-                MinIO
+                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2332,11 +2367,6 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Vue.js">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue.js
@@ -2345,6 +2375,21 @@
             <span class="sidebar-tag-name" data-tags="前端">
                 <span class="iconfont-archer">&#xe606;</span>
                 前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="YAML">
@@ -2357,19 +2402,9 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2433,9 +2468,9 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="数据库工具">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Linux">
@@ -2443,14 +2478,9 @@
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库工具">
+        <span class="sidebar-category-name" data-categories="CSS3">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            CSS3
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2458,9 +2488,9 @@
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2473,14 +2503,9 @@
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="学习笔记">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习笔记
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2488,14 +2513,29 @@
             可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            学习笔记
         </span>
     
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Lottie">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2508,24 +2548,19 @@
             LLM
         </span>
     
-        <span class="sidebar-category-name" data-categories="edge">
-            <span class="iconfont-archer">&#xe60a;</span>
-            edge
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端">
             <span class="iconfont-archer">&#xe60a;</span>
             前端
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="JavaScript">
+        <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
-            JavaScript
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2533,9 +2568,19 @@
             Elasticsearch
         </span>
     
-        <span class="sidebar-category-name" data-categories="Lottie">
+        <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
+            JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2546,16 +2591,6 @@
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="人工智能">
-            <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="前端框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Redis">

@@ -335,7 +335,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -496,45 +496,54 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="基本语句"><a href="#基本语句" class="headerlink" title="基本语句"></a>基本语句</h1><p>输入：<code>input()</code><br>输出：<code>print()</code></p>
+        <h1 id="基本语句">基本语句</h1>
+<p>输入：<code>input()</code> 输出：<code>print()</code></p>
 <p>注释：<code>#</code></p>
 <p>字符串类型：<code>str</code></p>
-<p>空值用None表示多行输入：<code>&#39;&#39;&#39;...&#39;&#39;&#39;</code></p>
-<p>内部字符默认不转义：<code>r&#39;&#39;&#39;...&#39;&#39;&#39;</code></p>
+<p>空值用None表示多行输入：<code>'''...'''</code></p>
+<p>内部字符默认不转义：<code>r'''...'''</code></p>
 <p>获取字符的整数表示：<code>ord()</code></p>
 <p>将字符编码转化为字符：<code>chr()</code></p>
-<p>bytes类型用带b前缀的单引号或双引号表示：<code>b&#39;字符&#39;</code></p>
-<p>将str类型数据转为指定的bytesr类型数据：<code>&#39;字符&#39;.encode(&#39;原编码类型&#39;)</code></p>
+<p>bytes类型用带b前缀的单引号或双引号表示：<code>b'字符'</code></p>
+<p>将str类型数据转为指定的bytesr类型数据：<code>'字符'.encode('原编码类型')</code></p>
 <p>示例语句如下：</p>
-<p><code>print(&#39;a&#39;.encode(&#39;ascii&#39;))</code></p>
+<p><code>print('a'.encode('ascii'))</code></p>
 <p>注意：python是4个空格缩进的，区分大小写。</p>
-<p>含有中文的str类型无法用ASCII编码，在bytes中无法显示ASCII字符的字节，会以\x##代替显示</p>
-<p>将bytesr类型数据转为str类型数据：<code>b&#39;字符&#39;.decode(&#39;str的编码类型&#39;)</code></p>
+<p>含有中文的str类型无法用ASCII编码，在bytes中无法显示ASCII字符的字节，会以##代替显示</p>
+<p>将bytesr类型数据转为str类型数据：<code>b'字符'.decode('str的编码类型')</code></p>
 <p>示例语句如下：</p>
-<p><code>print(b&#39;a&#39;.decode(&#39;ascii&#39;))</code></p>
-<p>注意：若bytes中只有一小部分无效的字节，可用<code>errors=&#39;ignore&#39;</code>语句忽略错误的字节。</p>
+<p><code>print(b'a'.decode('ascii'))</code></p>
+<p>注意：若bytes中只有一小部分无效的字节，可用<code>errors='ignore'</code>语句忽略错误的字节。</p>
 <p>计算str的字符数：<code>len()</code></p>
 <p>将源代码按UTF-8编码保存：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br></pre></td></tr></table></figure>
 <p>申明UTF-8编码外，必须还要确保文本编辑器正在使用<code>UTF-8 without BOM</code>编码</p>
-<h1 id="格式化字符串的三种方法"><a href="#格式化字符串的三种方法" class="headerlink" title="格式化字符串的三种方法"></a>格式化字符串的三种方法</h1><h2 id="占位符格式化字符串："><a href="#占位符格式化字符串：" class="headerlink" title="占位符格式化字符串："></a>占位符格式化字符串：</h2><p>输出整形数据的语句：<code>print(&#39;%d&#39; % 123)</code></p>
-<p>输出小数点后2位数的语句：<code>print(&#39;%.2f&#39; % 3.1415926)</code></p>
-<h2 id="format-格式化字符串"><a href="#format-格式化字符串" class="headerlink" title="format()格式化字符串"></a>format()格式化字符串</h2><p>例子如下：</p>
+<h1 id="格式化字符串的三种方法">格式化字符串的三种方法</h1>
+<h2 id="占位符格式化字符串">占位符格式化字符串：</h2>
+<p>输出整形数据的语句：<code>print('%d' % 123)</code></p>
+<p>输出小数点后2位数的语句：<code>print('%.2f' % 3.1415926)</code></p>
+<h2 id="format格式化字符串">format()格式化字符串</h2>
+<p>例子如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;&#x27;&#123;0&#125;在考试中提升了&#123;1:.2f&#125;%,</span></span><br><span class="line"><span class="string">&#123;2&#125;在考试中提升了&#123;3:.2f&#125;%&#x27;&#x27;&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;张三&#x27;</span>,<span class="number">2.354</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="number">0.458</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="用f-string格式化字符串"><a href="#用f-string格式化字符串" class="headerlink" title="用f-string格式化字符串"></a>用f-string格式化字符串</h2><p>例子如下：</p>
+<h2 id="用f-string格式化字符串">用f-string格式化字符串</h2>
+<p>例子如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="string">&#x27;张三&#x27;</span></span><br><span class="line">b=<span class="number">2.354</span></span><br><span class="line">c=<span class="string">&#x27;李四&#x27;</span></span><br><span class="line">d=<span class="number">0.458</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;&#x27;&#x27;<span class="subst">&#123;a&#125;</span>在考试中提升了<span class="subst">&#123;b:<span class="number">.2</span>f&#125;</span>%,</span></span><br><span class="line"><span class="string"><span class="subst">&#123;c&#125;</span>在考试中提升了<span class="subst">&#123;d:<span class="number">.2</span>f&#125;</span>%&#x27;&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h2><p>小明的成绩从去年的72分提升到了今年的85分，请计算小明成绩提升的百分点，并用字符串格式化显示出<code>xx.x%</code>，只保留小数点后1位：</p>
+<h2 id="练习题">练习题</h2>
+<p>小明的成绩从去年的72分提升到了今年的85分，请计算小明成绩提升的百分点，并用字符串格式化显示出<code>xx.x%</code>，只保留小数点后1位：</p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding utf-8 -*-</span></span><br><span class="line">s1=<span class="number">72</span></span><br><span class="line">s2=<span class="number">85</span></span><br><span class="line">r=(s2-s1)/s1*<span class="number">100</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;%.1f%%&#x27;</span>%r)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#123;0:0.1f&#125;%&#x27;</span>.<span class="built_in">format</span>(r))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;r:<span class="number">0.1</span>f&#125;</span>%&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="列表list和元组tuple"><a href="#列表list和元组tuple" class="headerlink" title="列表list和元组tuple"></a>列表list和元组tuple</h1><h2 id="列表list"><a href="#列表list" class="headerlink" title="列表list"></a>列表list</h2><p>list是一种有序的集合，<strong>可随时增减其中的元素</strong>。</p>
-<p>形式如同 <code>name=[&#39;Zhangsan&#39;,&#39;Lisi&#39;,&#39;Wangwu&#39;]</code>，指的是定义一个name列表，name为该列表的名称，与C语言中的数组相似，其区别在于<strong>list中的元素数据类型可以不同</strong>，元素可以是另一个list。</p>
+<h1 id="列表list和元组tuple">列表list和元组tuple</h1>
+<h2 id="列表list">列表list</h2>
+<p>list是一种有序的集合，<strong>可随时增减其中的元素</strong>。</p>
+<p>形式如同
+<code>name=['Zhangsan','Lisi','Wangwu']</code>，指的是定义一个name列表，name为该列表的名称，与C语言中的数组相似，其区别在于<strong>list中的元素数据类型可以不同</strong>，元素可以是另一个list。</p>
 <p>定义一个空列表，其列表名称为name：<code>name()</code></p>
 <p><strong>获取列表中元素的个数</strong></p>
 <p>如获取name列表元素的个数：<code>len(name)</code></p>
 <p><strong>使用索引获取列表中的最后一个元素</strong></p>
 <p>如获取name列表中的最后一个元素：<code>name[-1]</code></p>
 <p><strong>在列表末尾增加元素</strong></p>
-<p>如在name列表末尾追加元素Bob：<code>name.append(&#39;Bob&#39;)</code></p>
+<p>如在name列表末尾追加元素Bob：<code>name.append('Bob')</code></p>
 <p><strong>将元素插入到列表中的指定位置</strong></p>
 <p>如将元素Jack插入到name列表指定的位置，如索引号为1的位置：<code>name.insert(1,Jack)</code></p>
 <p><strong>删除列表末尾的元素</strong></p>
@@ -542,11 +551,12 @@
 <p><strong>删除列表指定位置的元素</strong></p>
 <p>如删除name列表中索引号为1的元素：<code>name.pop(1)</code></p>
 <p><strong>替换列表中指定位置的元素</strong></p>
-<p>如将name列表中索引号为1的元素换成Xiaoming：<code>name[1]=&#39;Xiaoming&#39;</code></p>
+<p>如将name列表中索引号为1的元素换成Xiaoming：<code>name[1]='Xiaoming'</code></p>
 <p>列表中的元素包含另一个list时，若想要<strong>取内嵌list元素的值</strong>，可将list看做二维数组来进行取值，如下面取s列表中php的值，可写成：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s=[<span class="string">&#x27;python&#x27;</span>,<span class="string">&#x27;java&#x27;</span>,[<span class="string">&#x27;asp&#x27;</span>, <span class="string">&#x27;php&#x27;</span>],<span class="string">&#x27;scheme&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(s[<span class="number">2</span>][<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-<h2 id="元组tuple"><a href="#元组tuple" class="headerlink" title="元组tuple"></a>元组tuple</h2><p>tuple是一种有序的列表，<strong>元组一旦初始化就不能修改</strong>，tuple一旦被定义，其元素就必须要确定下来。</p>
-<p>形式如同<code>name=（&#39;Zhangsan&#39;,&#39;Lisi&#39;,&#39;Wangwu&#39;)</code>，指的是定义一个name元组，name为该元组的名称，与list类似，但tuple没有append()、insert()这类的方法，获取元素的方法与list相同，但不能给元素赋值。</p>
+<h2 id="元组tuple">元组tuple</h2>
+<p>tuple是一种有序的列表，<strong>元组一旦初始化就不能修改</strong>，tuple一旦被定义，其元素就必须要确定下来。</p>
+<p>形式如同<code>name=（'Zhangsan','Lisi','Wangwu')</code>，指的是定义一个name元组，name为该元组的名称，与list类似，但tuple没有append()、insert()这类的方法，获取元素的方法与list相同，但不能给元素赋值。</p>
 <p><strong>定义空的tuple</strong></p>
 <p>如定义空元组name：<code>name=()</code></p>
 <p><strong>定义只有1个元素的tuple</strong></p>
@@ -554,10 +564,11 @@
 <p><strong>注意</strong>：将只有1个元素的tuple若误写成name=(1)，<strong>该语句定义的不是元组tuple类型</strong>，其实际是指1经过数学小括号运算后，将结果赋给name。</p>
 <p>当元组的元素中含有列表时，可以<strong>改变元组中的列表元素</strong>，此时元组是“可变的”，但其本质上元组没变，改变的是列表。如下列代码改变的是列表中元素的值：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">name=(<span class="string">&#x27;Zhangsan&#x27;</span>,<span class="string">&#x27;Lisi&#x27;</span>,[<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>])</span><br><span class="line">name[<span class="number">2</span>][<span class="number">0</span>]=<span class="string">&#x27;X&#x27;</span></span><br><span class="line">name[<span class="number">2</span>][<span class="number">1</span>]=<span class="string">&#x27;Y&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(name)</span><br></pre></td></tr></table></figure>
-<p>此时元组name中的元素变成了<code>(&#39;Zhangsan&#39;, &#39;Lisi&#39;, [&#39;X&#39;, &#39;Y&#39;])</code>，<strong>改变的仅是列表中的元素</strong>。</p>
-<h2 id="练习题-1"><a href="#练习题-1" class="headerlink" title="练习题"></a>练习题</h2><p>请用索引取出下面list的指定元素：</p>
+<p>此时元组name中的元素变成了<code>('Zhangsan', 'Lisi', ['X', 'Y'])</code>，<strong>改变的仅是列表中的元素</strong>。</p>
+<h2 id="练习题-1">练习题</h2>
+<p>请用索引取出下面list的指定元素：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">L = [</span><br><span class="line">    [<span class="string">&#x27;Apple&#x27;</span>, <span class="string">&#x27;Google&#x27;</span>, <span class="string">&#x27;Microsoft&#x27;</span>],</span><br><span class="line">    [<span class="string">&#x27;Java&#x27;</span>, <span class="string">&#x27;Python&#x27;</span>, <span class="string">&#x27;Ruby&#x27;</span>, <span class="string">&#x27;PHP&#x27;</span>],</span><br><span class="line">    [<span class="string">&#x27;Adam&#x27;</span>, <span class="string">&#x27;Bart&#x27;</span>, <span class="string">&#x27;Lisa&#x27;</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印Apple:</span></span><br><span class="line"><span class="built_in">print</span>(L[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line"><span class="comment"># 打印Python:</span></span><br><span class="line"><span class="built_in">print</span>(L[<span class="number">1</span>][<span class="number">1</span>])</span><br><span class="line"><span class="comment"># 打印Lisa:</span></span><br><span class="line"><span class="built_in">print</span>(L[<span class="number">2</span>][<span class="number">2</span>])</span><br></pre></td></tr></table></figure></p>
+<p>代码如下： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印Apple:</span></span><br><span class="line"><span class="built_in">print</span>(L[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line"><span class="comment"># 打印Python:</span></span><br><span class="line"><span class="built_in">print</span>(L[<span class="number">1</span>][<span class="number">1</span>])</span><br><span class="line"><span class="comment"># 打印Lisa:</span></span><br><span class="line"><span class="built_in">print</span>(L[<span class="number">2</span>][<span class="number">2</span>])</span><br></pre></td></tr></table></figure></p>
 
     </article>
     <!-- license -->
@@ -756,7 +767,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.</span> <span class="toc-text">基本语句</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">格式化字符串的三种方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%A0%E4%BD%8D%E7%AC%A6%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">占位符格式化字符串：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#format-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.2.</span> <span class="toc-text">format()格式化字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8f-string%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.3.</span> <span class="toc-text">用f-string格式化字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">2.4.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8list%E5%92%8C%E5%85%83%E7%BB%84tuple"><span class="toc-number">3.</span> <span class="toc-text">列表list和元组tuple</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8list"><span class="toc-number">3.1.</span> <span class="toc-text">列表list</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%BB%84tuple"><span class="toc-number">3.2.</span> <span class="toc-text">元组tuple</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">3.3.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.</span> <span class="toc-text">基本语句</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">格式化字符串的三种方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%A0%E4%BD%8D%E7%AC%A6%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.1.</span> <span class="toc-text">占位符格式化字符串：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#format%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.2.</span> <span class="toc-text">format()格式化字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8f-string%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.3.</span> <span class="toc-text">用f-string格式化字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">2.4.</span> <span class="toc-text">练习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8list%E5%92%8C%E5%85%83%E7%BB%84tuple"><span class="toc-number">3.</span> <span class="toc-text">列表list和元组tuple</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8list"><span class="toc-number">3.1.</span> <span class="toc-text">列表list</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%BB%84tuple"><span class="toc-number">3.2.</span> <span class="toc-text">元组tuple</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98-1"><span class="toc-number">3.3.</span> <span class="toc-text">练习题</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1106,6 +1117,8 @@
         
         
     
+        
+        
         
         
         
@@ -2208,9 +2221,9 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="CSS3">
+            <span class="sidebar-tag-name" data-tags="数据库工具">
                 <span class="iconfont-archer">&#xe606;</span>
-                CSS3
+                数据库工具
             </span>
         
             <span class="sidebar-tag-name" data-tags="CentOS 7">
@@ -2228,9 +2241,19 @@
                 网络管理
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库工具">
+            <span class="sidebar-tag-name" data-tags="CSS3">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库工具
+                CSS3
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2248,24 +2271,9 @@
                 Web框架
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
-                <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2283,14 +2291,19 @@
                 Lottie
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MinIO">
+                <span class="iconfont-archer">&#xe606;</span>
+                MinIO
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="数据库">
                 <span class="iconfont-archer">&#xe606;</span>
                 数据库
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MinIO">
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
                 <span class="iconfont-archer">&#xe606;</span>
-                MinIO
+                Kubernetes
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2313,11 +2326,6 @@
                 人工智能
             </span>
         
-            <span class="sidebar-tag-name" data-tags="闪退">
-                <span class="iconfont-archer">&#xe606;</span>
-                闪退
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Vue.js">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue.js
@@ -2326,6 +2334,21 @@
             <span class="sidebar-tag-name" data-tags="前端">
                 <span class="iconfont-archer">&#xe606;</span>
                 前端
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="闪退">
+                <span class="iconfont-archer">&#xe606;</span>
+                闪退
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Elasticsearch">
+                <span class="iconfont-archer">&#xe606;</span>
+                Elasticsearch
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="YAML">
@@ -2338,19 +2361,9 @@
                 Redis
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="python">
                 <span class="iconfont-archer">&#xe606;</span>
                 python
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Elasticsearch">
-                <span class="iconfont-archer">&#xe606;</span>
-                Elasticsearch
             </span>
         
             <span class="sidebar-tag-name" data-tags="异步IO">
@@ -2414,9 +2427,9 @@
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="数据库工具">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            数据库工具
         </span>
     
         <span class="sidebar-category-name" data-categories="Linux">
@@ -2424,14 +2437,9 @@
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库工具">
+        <span class="sidebar-category-name" data-categories="CSS3">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库工具
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Web框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            CSS3
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2439,9 +2447,9 @@
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2454,14 +2462,9 @@
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="学习笔记">
-            <span class="iconfont-archer">&#xe60a;</span>
-            学习笔记
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="可视化">
@@ -2469,14 +2472,29 @@
             可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="数据库">
+        <span class="sidebar-category-name" data-categories="学习笔记">
             <span class="iconfont-archer">&#xe60a;</span>
-            数据库
+            学习笔记
         </span>
     
         <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
             MinIO
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Lottie">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="数据库">
+            <span class="iconfont-archer">&#xe60a;</span>
+            数据库
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Kubernetes">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="Vue">
@@ -2489,24 +2507,19 @@
             LLM
         </span>
     
-        <span class="sidebar-category-name" data-categories="edge">
-            <span class="iconfont-archer">&#xe60a;</span>
-            edge
-        </span>
-    
         <span class="sidebar-category-name" data-categories="前端">
             <span class="iconfont-archer">&#xe60a;</span>
             前端
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="edge">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="JavaScript">
+        <span class="sidebar-category-name" data-categories="人工智能">
             <span class="iconfont-archer">&#xe60a;</span>
-            JavaScript
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2514,9 +2527,19 @@
             Elasticsearch
         </span>
     
-        <span class="sidebar-category-name" data-categories="Lottie">
+        <span class="sidebar-category-name" data-categories="JavaScript">
             <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
+            JavaScript
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="YAML">
+            <span class="iconfont-archer">&#xe60a;</span>
+            YAML
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="前端框架">
+            <span class="iconfont-archer">&#xe60a;</span>
+            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2527,16 +2550,6 @@
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="人工智能">
-            <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="前端框架">
-            <span class="iconfont-archer">&#xe60a;</span>
-            前端框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Redis">

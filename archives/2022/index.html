@@ -435,18 +435,18 @@
                 <span class="abstract-title-text">YAML与Redis的基本运用</span>
             </a>
             <div class="abstract-content">
-                YAML
-YAML是一种数据序列化语言而不是标记语言，其语法比较简洁直观，特点是使用空格来表达层次结构，其最大的优势是在数据结构的表达上，且能配合大多数编程语言使用，因此YAML更多应用于配置文件的编写，其文件一般以.yml为后缀。
+                YAMLYAML是一种数据序列化语言而不是标记语言，其语法比较简洁直观，特点是使用空格来表达层次结构，其最大的优势是在数据结构的表达上，且能配合大多数编程语言使用，因此YAML更多应用于配置文件的编写，其文件一般以.yml为后缀。
 由于其语法的特殊性，没有编辑器可能容易写错，因而在此推荐一个无广告的yaml在线格式化网站：JS-YAML，其可以直接将yaml转化为json。
 基础语法
-
 YAML对大小写敏感
 YAML用#表示注释，且只支持单行注释
 用缩进表示层级关系
 
 缩进只能使用空格，不能用TAB字符
 缩进的空格数量不做要求，但要求同一层级的元素左侧必须对齐
-...
+
+
+一个文件中可以包含多个文...
             </div>
             <!-- read more -->
             
@@ -483,10 +483,16 @@ YAML用#表示注释，且只支持单行注释
                 <span class="abstract-title-text">Docker应用部署实战</span>
             </a>
             <div class="abstract-content">
-                Centos部署应用步骤
-配置代码运行环境
-nginx下载及配置
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#centos下载apache[root@localhost admin]# yum install httpd #centos下载nginx[root@localhost admin]# yum install epel-release[root@localhost httpd]# yum...
+                Centos部署应用步骤配置代码运行环境nginx下载及配置#centos下载apache
+[root@localhost admin]# yum install httpd 
+
+#centos下载nginx
+[root@localhost admin]# yum install epel-release
+[root@localhost httpd]# yum install -y update
+[root@localhost httpd]# yum install -y nginx
+
+#打开防火墙端口80和443
+[root@localhost httpd]# firewall-cmd...
             </div>
             <!-- read more -->
             
@@ -523,13 +529,9 @@ nginx下载及配置
                 <span class="abstract-title-text">Docker应用部署基础</span>
             </a>
             <div class="abstract-content">
-                Docker
-容器简介
-什么是Linux容器
-Linux容器是与系统其他部分隔离开的一系列进程。它在另一个镜像中运行，并由该镜像提供支持进程所需的全部文件。容器提供的镜像包括了应用的所有依赖项，因此在开发到测试再到生产的过程中，容器都具有可移植性和一致性。
-容器等同于虚拟化吗
-容器不完全是虚拟化。虚拟化使得许多系统可同时在单个系统上运行，而容器可共享同一个操作系统的内核，将应用进程与系统其他部分隔离开。
-这便意味着，即使是让多个操作系统在单个虚拟机监控程序上运行以实现虚拟化，也不能达到和使用容器同等的轻量级效果。Linux容器可从单个操作系统运行，在所有容器中共享该操作系统，...
+                Docker容器简介什么是Linux容器Linux容器是与系统其他部分隔离开的一系列进程。它在另一个镜像中运行，并由该镜像提供支持进程所需的全部文件。容器提供的镜像包括了应用的所有依赖项，因此在开发到测试再到生产的过程中，容器都具有可移植性和一致性。
+容器等同于虚拟化吗容器不完全是虚拟化。虚拟化使得许多系统可同时在单个系统上运行，而容器可共享同一个操作系统的内核，将应用进程与系统其他部分隔离开。
+这便意味着，即使是让多个操作系统在单个虚拟机监控程序上运行以实现虚拟化，也不能达到和使用容器同等的轻量级效果。Linux容器可从单个操作系统运行，在所有容器中共享该操作系统，因此应用和服务能够保...
             </div>
             <!-- read more -->
             
@@ -566,21 +568,16 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
                 <span class="abstract-title-text">企业微信之企业应用开发流程</span>
             </a>
             <div class="abstract-content">
-                创建应用
-创建准备
-
+                创建应用创建准备
 成功注册企业微信企业
 企业微信账号拥有当前企业的超级管理员或分级管理员的权限
 
-创建应用
-登录 企业微信管理后台，在【应用管理】界面-【应用】-【自建】点击【创建应用】，在弹出框填写应用的图标、标题、描述和可见范围基本信息。填写完成后，点击【创建应用】，将会跳转至应用详情页面。
-配置信息
-可见范围
-在【应用管理】界面-【应用】-【自建】点击刚刚创建好的应用，进入应用信息页面，点击编辑。
+创建应用登录 企业微信管理后台，在【应用管理】界面-【应用】-【自建】点击【创建应用】，在弹出框填写应用的图标、标题、描述和可见范围基本信息。填写完成后，点击【创建应用】，将会跳转至应用详情页面。
+配置信息可见范围在【应用管理】界面-【应用】-【自建】点击刚刚创建好的应用，进入应用信息页面，点击编辑。
 
 点击可见范围旁边的添加，即可编辑可见范围。
-应用主页
-配置成员从工作台打开应用时打开的页面URL，假设应用打开的网页为:http://tangmenju...
+应用主页配置成员从工作台打开应用时打开的页面URL，假设应用打开的网页为:http://tangmenjue.top/。
+在应用信息页面点击编辑，...
             </div>
             <!-- read more -->
             
@@ -617,12 +614,7 @@ Linux容器是与系统其他部分隔离开的一系列进程。它在另一个
                 <span class="abstract-title-text">CentOS 7之关于网络管理的那些知识</span>
             </a>
             <div class="abstract-content">
-                前置知识
-Linux常见目录
-
-
-
-
+                前置知识Linux常见目录
 
 
 
@@ -644,7 +636,8 @@ Linux常见目录
 存放Linux启动时内核及引导系统程序所需要的核心文件，内核文件和grub系统引导管理器都位于此目录
 
 
-/dev...
+/dev
+存放Linux系统下的设备文件，如光驱、磁盘等。访问该目录下的文...
             </div>
             <!-- read more -->
             
@@ -683,12 +676,14 @@ Linux常见目录
                 <span class="abstract-title-text">Vue.js实战：博客页面前端</span>
             </a>
             <div class="abstract-content">
-                基于Vue-cli的前端项目初始化
-初始化
-Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“使用npm安装”内容。
+                基于Vue-cli的前端项目初始化初始化Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“使用npm安装”内容。
 
 初始化一个新项目，创建文件夹tutorproject作为项目目录，打开一个终端将切换路径到tutorproject，运行代码以创建front-end文件夹：
-12345678910PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject&gt; vue create front-end运行结果如下：Vue CLI v5.0.8? Please pick ...
+  PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject&gt; vue create front-end
+
+运行结果如下：
+Vue CLI v5.0.8
+? Please pick a preset: (U...
             </div>
             <!-- read more -->
             
@@ -725,11 +720,19 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
                 <span class="abstract-title-text">前端框架之Vue.js（六）</span>
             </a>
             <div class="abstract-content">
-                可复用性&amp;组合
-混入
-基础
-混入用于分发Vue组件中是可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。
-1234567891011121314151617//定义一个混入对象var myMixin=&#123;  created:function()&#123;    this.hello()  &#125;,  methods:&#123;    hello:function()&#123;      console.log(&#x27;hello from mixin!&#x27;)    &#1...
+                可复用性&amp;组合混入基础混入用于分发Vue组件中是可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。
+//定义一个混入对象
+var myMixin=&#123;
+  created:function()&#123;
+    this.hello()
+  &#125;,
+  methods:&#123;
+    hello:function()&#123;
+      console.log('hello from mixin!')
+    &#125;
+  &#125;
+&#125;
+//定义一个使用混入对象的组...
             </div>
             <!-- read more -->
             
@@ -766,15 +769,11 @@ Vue-cli环境配置详情见前端框架之Vue.js（一）安装小节里的“�
                 <span class="abstract-title-text">前端框架之Vue.js（五）</span>
             </a>
             <div class="abstract-content">
-                深入了解组件
-动态组件&amp;异步组件
-在动态组件上使用keep-alive
-之前曾在一个多标签的页面使用is
-attribute来切换不同的组件：
-1&lt;component v-bind:is=&quot;currentTabComponent&quot;&gt;&lt;/component&gt;
-当这些组件之间来回切换时，会发现原来点击的内容被销毁了，由于
-每次切换新标签时，Vue都创建了一个新实例，因此切回去时是不会保留之前选择的选项的。
-若想把那些标签的组件实例能够被在它们第一次被创建时缓存下来，可以使用&lt;keep-alive&gt;元素把动态组件包...
+                深入了解组件动态组件&amp;异步组件在动态组件上使用keep-alive之前曾在一个多标签的页面使用is attribute来切换不同的组件：
+&lt;component v-bind:is="currentTabComponent">&lt;/component>
+当这些组件之间来回切换时，会发现原来点击的内容被销毁了，由于 每次切换新标签时，Vue都创建了一个新实例，因此切回去时是不会保留之前选择的选项的。
+若想把那些标签的组件实例能够被在它们第一次被创建时缓存下来，可以使用&lt;keep-alive&gt;元素把动态组件包裹起来，如：
+&lt;!-- 失活的组件将会被缓存 --...
             </div>
             <!-- read more -->
             
@@ -811,19 +810,16 @@ attribute来切换不同的组件：
                 <span class="abstract-title-text">前端框架之Vue.js（四）</span>
             </a>
             <div class="abstract-content">
-                深入了解组件
-组件注册
-组件名
-注册一个组件时，要给组件起名，如在全局注册中，组件名就是Vue.component的第一个参数：
-1Vue component(&#x27;my-component-name&#x27;,&#123;&#125;)
+                深入了解组件组件注册组件名注册一个组件时，要给组件起名，如在全局注册中，组件名就是Vue.component的第一个参数：
+Vue component('my-component-name',&#123;&#125;)
 组件名应当遵守W3C规范中的自定义组件名（字母全小写且必须包含一个连字符）
-组件名大小写
-定义组件名的方式由两种：
+组件名大小写定义组件名的方式由两种：
 
 使用短横线分隔命名:my-component-name
 使用首字母大写命名：MyComponentName
 
-两种命名法都可以使用，但需注意的是，直接在DOM（即非字符串的模板）中使用时，只有短横线分隔命...
+两种命名法都可以使用，但需注意的是，直接在DOM（即非字符串的模板）中使用时，只有短横线分隔命名是有效的。
+全局注册使用全局注册的组件，在它们注册之...
             </div>
             <!-- read more -->
             
@@ -861,9 +857,13 @@ attribute来切换不同的组件：
             </a>
             <div class="abstract-content">
                 初始化一个新项目
-
 要初始化一个新项目，创建一个文件夹test作为项目目录，打开一个终端将切换路径到test，运行代码：
-12345678910PS C:\Users\Administrator\Desktop\test&gt; vue create test运行结果如下： Your connection to the default yarn registry seems to be slow.   Use https://registry.npmmirror.com for faster installation? (Y/n)输入Y回车   Vue CLI v5.0.8? Pl...
+  PS C:\Users\Administrator\Desktop\test&gt; vue create test
+
+运行结果如下：
+ Your connection to the default yarn registry seems to be slow.
+   Use https:&#x2F;&#x2F;registry.npmmirror.com for faster installation? (Y&#x2F;n)输入Y回车
+   Vue CLI v5....
             </div>
             <!-- read more -->
             
@@ -1978,6 +1978,12 @@ attribute来切换不同的组件：
         
         
         
+        
+        
+        
+        
+        
+        
     
     
     
@@ -2447,6 +2453,11 @@ attribute来切换不同的组件：
                 数据库工具
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2460,21 +2471,6 @@ attribute来切换不同的组件：
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS3">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS3
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2492,9 +2488,29 @@ attribute来切换不同的组件：
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2517,14 +2533,14 @@ attribute来切换不同的组件：
                 MinIO
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="LLM">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                LLM
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2535,16 +2551,6 @@ attribute来切换不同的组件：
             <span class="sidebar-tag-name" data-tags="Vue">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="LLM">
-                <span class="iconfont-archer">&#xe606;</span>
-                LLM
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="人工智能">
-                <span class="iconfont-archer">&#xe606;</span>
-                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2567,11 +2573,6 @@ attribute来切换不同的组件：
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2580,6 +2581,11 @@ attribute来切换不同的组件：
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2653,14 +2659,19 @@ attribute来切换不同的组件：
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2668,9 +2679,9 @@ attribute来切换不同的组件：
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2683,14 +2694,9 @@ attribute来切换不同的组件：
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2698,34 +2704,29 @@ attribute来切换不同的组件：
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Lottie">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="可视化">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
+            可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="Vue">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            Vue
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
             LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2738,9 +2739,9 @@ attribute来切换不同的组件：
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="人工智能">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2753,14 +2754,24 @@ attribute来切换不同的组件：
             JavaScript
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2771,11 +2782,6 @@ attribute来切换不同的组件：
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2848,20 +2854,5 @@ attribute来切换不同的组件：
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+    </body>
 </html>

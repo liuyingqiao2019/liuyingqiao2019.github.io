@@ -499,608 +499,612 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="postgresql数据类型">PostgreSQL数据类型</h1>
-<h2 id="数值类型">数值类型</h2>
-<p>数值类型由 2 字节、4 字节或 8 字节的整数以及 4 字节或 8
-字节的浮点数和可选精度的十进制数组成。</p>
+        <h1 id="PostgreSQL数据类型"><a href="#PostgreSQL数据类型" class="headerlink" title="PostgreSQL数据类型"></a>PostgreSQL数据类型</h1><h2 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h2><p>数值类型由 2 字节、4 字节或 8 字节的整数以及 4 字节或 8 字节的浮点数和可选精度的十进制数组成。</p>
 <p>下表列出了PgSQL所支持的数值类型：</p>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 18%">
-<col style="width: 9%">
-<col style="width: 22%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr>
-<th style="text-align: left;">名字</th>
-<th style="text-align: left;">存储长度</th>
-<th style="text-align: left;">描述</th>
-<th style="text-align: left;">范围</th>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">存储长度</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">范围</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">smallint</td>
-<td style="text-align: left;">2 字节</td>
-<td style="text-align: left;">小范围整数</td>
-<td style="text-align: left;">-32768 到 +32767</td>
+<td style="text-align:left">smallint</td>
+<td style="text-align:left">2 字节</td>
+<td style="text-align:left">小范围整数</td>
+<td style="text-align:left">-32768 到 +32767</td>
 </tr>
 <tr>
-<td style="text-align: left;">integer</td>
-<td style="text-align: left;">4 字节</td>
-<td style="text-align: left;">常用的整数</td>
-<td style="text-align: left;">-2147483648 到 +2147483647</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">4 字节</td>
+<td style="text-align:left">常用的整数</td>
+<td style="text-align:left">-2147483648 到 +2147483647</td>
 </tr>
 <tr>
-<td style="text-align: left;">bigint</td>
-<td style="text-align: left;">8 字节</td>
-<td style="text-align: left;">大范围整数</td>
-<td style="text-align: left;">-9223372036854775808 到
-+9223372036854775807</td>
+<td style="text-align:left">bigint</td>
+<td style="text-align:left">8 字节</td>
+<td style="text-align:left">大范围整数</td>
+<td style="text-align:left">-9223372036854775808 到 +9223372036854775807</td>
 </tr>
 <tr>
-<td style="text-align: left;">decimal</td>
-<td style="text-align: left;">可变长</td>
-<td style="text-align: left;">用户指定的精度，精确</td>
-<td style="text-align: left;">小数点前 131072 位；小数点后 16383 位</td>
+<td style="text-align:left">decimal</td>
+<td style="text-align:left">可变长</td>
+<td style="text-align:left">用户指定的精度，精确</td>
+<td style="text-align:left">小数点前 131072 位；小数点后 16383 位</td>
 </tr>
 <tr>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">可变长</td>
-<td style="text-align: left;">用户指定的精度，精确</td>
-<td style="text-align: left;">小数点前 131072 位；小数点后 16383 位</td>
+<td style="text-align:left">numeric</td>
+<td style="text-align:left">可变长</td>
+<td style="text-align:left">用户指定的精度，精确</td>
+<td style="text-align:left">小数点前 131072 位；小数点后 16383 位</td>
 </tr>
 <tr>
-<td style="text-align: left;">real</td>
-<td style="text-align: left;">4 字节</td>
-<td style="text-align: left;">可变精度，不精确</td>
-<td style="text-align: left;">6 位十进制数字精度</td>
+<td style="text-align:left">real</td>
+<td style="text-align:left">4 字节</td>
+<td style="text-align:left">可变精度，不精确</td>
+<td style="text-align:left">6 位十进制数字精度</td>
 </tr>
 <tr>
-<td style="text-align: left;">double precision</td>
-<td style="text-align: left;">8 字节</td>
-<td style="text-align: left;">可变精度，不精确</td>
-<td style="text-align: left;">15 位十进制数字精度</td>
+<td style="text-align:left">double precision</td>
+<td style="text-align:left">8 字节</td>
+<td style="text-align:left">可变精度，不精确</td>
+<td style="text-align:left">15 位十进制数字精度</td>
 </tr>
 <tr>
-<td style="text-align: left;">smallserial</td>
-<td style="text-align: left;">2 字节</td>
-<td style="text-align: left;">自增的小范围整数</td>
-<td style="text-align: left;">1 到 32767</td>
+<td style="text-align:left">smallserial</td>
+<td style="text-align:left">2 字节</td>
+<td style="text-align:left">自增的小范围整数</td>
+<td style="text-align:left">1 到 32767</td>
 </tr>
 <tr>
-<td style="text-align: left;">serial</td>
-<td style="text-align: left;">4 字节</td>
-<td style="text-align: left;">自增整数</td>
-<td style="text-align: left;">1 到 2147483647</td>
+<td style="text-align:left">serial</td>
+<td style="text-align:left">4 字节</td>
+<td style="text-align:left">自增整数</td>
+<td style="text-align:left">1 到 2147483647</td>
 </tr>
 <tr>
-<td style="text-align: left;">bigserial</td>
-<td style="text-align: left;">8 字节</td>
-<td style="text-align: left;">自增的大范围整数</td>
-<td style="text-align: left;">1 到 9223372036854775807</td>
+<td style="text-align:left">bigserial</td>
+<td style="text-align:left">8 字节</td>
+<td style="text-align:left">自增的大范围整数</td>
+<td style="text-align:left">1 到 9223372036854775807</td>
 </tr>
 </tbody>
 </table>
-<h2 id="货币类型">货币类型</h2>
-<p>money类型存储带有固定小数精度的货币金额。numeric、int和bigint类型的值可以转换为money。</p>
+</div>
+<h2 id="货币类型"><a href="#货币类型" class="headerlink" title="货币类型"></a>货币类型</h2><p>money类型存储带有固定小数精度的货币金额。numeric、int和bigint类型的值可以转换为money。</p>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 7%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 68%">
-</colgroup>
 <thead>
 <tr>
-<th style="text-align: left;">名字</th>
-<th style="text-align: left;">存储容量</th>
-<th style="text-align: left;">描述</th>
-<th style="text-align: left;">范围</th>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">存储容量</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">范围</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">money</td>
-<td style="text-align: left;">8 字节</td>
-<td style="text-align: left;">货币金额</td>
-<td style="text-align: left;">-92233720368547758.08 到
-+92233720368547758.07</td>
+<td style="text-align:left">money</td>
+<td style="text-align:left">8 字节</td>
+<td style="text-align:left">货币金额</td>
+<td style="text-align:left">-92233720368547758.08 到 +92233720368547758.07</td>
 </tr>
 </tbody>
 </table>
-<h2 id="字符类型">字符类型</h2>
-<p>下表列出了PgSQL所支持的字符类型：</p>
+</div>
+<h2 id="字符类型"><a href="#字符类型" class="headerlink" title="字符类型"></a>字符类型</h2><p>下表列出了PgSQL所支持的字符类型：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">名字</th>
-<th style="text-align: left;">描述</th>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">character varying(n),varchar(n)</td>
-<td style="text-align: left;">变长，有长度限制</td>
+<td style="text-align:left">character varying(n),varchar(n)</td>
+<td style="text-align:left">变长，有长度限制</td>
 </tr>
 <tr>
-<td style="text-align: left;">character(n), char(n)</td>
-<td style="text-align: left;">f定长,不足补空白</td>
+<td style="text-align:left">character(n), char(n)</td>
+<td style="text-align:left">f定长,不足补空白</td>
 </tr>
 <tr>
-<td style="text-align: left;">text</td>
-<td style="text-align: left;">变长，无长度限制</td>
+<td style="text-align:left">text</td>
+<td style="text-align:left">变长，无长度限制</td>
 </tr>
 </tbody>
 </table>
-<h2 id="日期时间类型">日期/时间类型</h2>
-<p>下表列出了PgSQL所支持的日期和时间类型：</p>
+</div>
+<h2 id="日期-时间类型"><a href="#日期-时间类型" class="headerlink" title="日期/时间类型"></a>日期/时间类型</h2><p>下表列出了PgSQL所支持的日期和时间类型：</p>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 38%">
-<col style="width: 6%">
-<col style="width: 20%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-</colgroup>
 <thead>
 <tr>
-<th style="text-align: left;">名字</th>
-<th style="text-align: left;">存储空间</th>
-<th style="text-align: left;">描述</th>
-<th style="text-align: left;">最低值</th>
-<th style="text-align: left;">最高值</th>
-<th style="text-align: left;">分辨率</th>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">存储空间</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">最低值</th>
+<th style="text-align:left">最高值</th>
+<th style="text-align:left">分辨率</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">timestamp [ ( <em>p</em> ) ] [ without
-time zone ]</td>
-<td style="text-align: left;">8 字节</td>
-<td style="text-align: left;">日期和时间(无时区)</td>
-<td style="text-align: left;">4713 BC</td>
-<td style="text-align: left;">294276 AD</td>
-<td style="text-align: left;">1 毫秒 / 14 位</td>
+<td style="text-align:left">timestamp [  ( <em>p</em> )  ]  [ without time zone ]</td>
+<td style="text-align:left">8 字节</td>
+<td style="text-align:left">日期和时间(无时区)</td>
+<td style="text-align:left">4713 BC</td>
+<td style="text-align:left">294276 AD</td>
+<td style="text-align:left">1 毫秒 / 14 位</td>
 </tr>
 <tr>
-<td style="text-align: left;">timestamp [ ( <em>p</em> ) ] with time
-zone</td>
-<td style="text-align: left;">8 字节</td>
-<td style="text-align: left;">日期和时间，有时区</td>
-<td style="text-align: left;">4713 BC</td>
-<td style="text-align: left;">294276 AD</td>
-<td style="text-align: left;">1 毫秒 / 14 位</td>
+<td style="text-align:left">timestamp [  ( <em>p</em> )  ] with time zone</td>
+<td style="text-align:left">8 字节</td>
+<td style="text-align:left">日期和时间，有时区</td>
+<td style="text-align:left">4713 BC</td>
+<td style="text-align:left">294276 AD</td>
+<td style="text-align:left">1 毫秒 / 14 位</td>
 </tr>
 <tr>
-<td style="text-align: left;">date</td>
-<td style="text-align: left;">4 字节</td>
-<td style="text-align: left;">只用于日期</td>
-<td style="text-align: left;">4713 BC</td>
-<td style="text-align: left;">5874897 AD</td>
-<td style="text-align: left;">1 天</td>
+<td style="text-align:left">date</td>
+<td style="text-align:left">4 字节</td>
+<td style="text-align:left">只用于日期</td>
+<td style="text-align:left">4713 BC</td>
+<td style="text-align:left">5874897 AD</td>
+<td style="text-align:left">1 天</td>
 </tr>
 <tr>
-<td style="text-align: left;">time [ ( <em>p</em> ) ] [ without time
-zone ]</td>
-<td style="text-align: left;">8 字节</td>
-<td style="text-align: left;">只用于一日内时间</td>
-<td style="text-align: left;">00:00:00</td>
-<td style="text-align: left;">24:00:00</td>
-<td style="text-align: left;">1 毫秒 / 14 位</td>
+<td style="text-align:left">time [  ( <em>p</em> )  ]  [ without time zone ]</td>
+<td style="text-align:left">8 字节</td>
+<td style="text-align:left">只用于一日内时间</td>
+<td style="text-align:left">00:00:00</td>
+<td style="text-align:left">24:00:00</td>
+<td style="text-align:left">1 毫秒 / 14 位</td>
 </tr>
 <tr>
-<td style="text-align: left;">time [ ( <em>p</em> ) ] with time
-zone</td>
-<td style="text-align: left;">12 字节</td>
-<td style="text-align: left;">只用于一日内时间，带时区</td>
-<td style="text-align: left;">00:00:00+1459</td>
-<td style="text-align: left;">24:00:00-1459</td>
-<td style="text-align: left;">1 毫秒 / 14 位</td>
+<td style="text-align:left">time [  ( <em>p</em> )  ] with time zone</td>
+<td style="text-align:left">12 字节</td>
+<td style="text-align:left">只用于一日内时间，带时区</td>
+<td style="text-align:left">00:00:00+1459</td>
+<td style="text-align:left">24:00:00-1459</td>
+<td style="text-align:left">1 毫秒 / 14 位</td>
 </tr>
 <tr>
-<td style="text-align: left;">interval [ <em>fields</em> ] [ (
-<em>p</em> ) ]</td>
-<td style="text-align: left;">12 字节</td>
-<td style="text-align: left;">时间间隔</td>
-<td style="text-align: left;">-178000000 年</td>
-<td style="text-align: left;">178000000 年</td>
-<td style="text-align: left;">1 毫秒 / 14 位</td>
+<td style="text-align:left">interval [  <em>fields</em>  ] [  ( <em>p</em> )  ]</td>
+<td style="text-align:left">12 字节</td>
+<td style="text-align:left">时间间隔</td>
+<td style="text-align:left">-178000000 年</td>
+<td style="text-align:left">178000000 年</td>
+<td style="text-align:left">1 毫秒 / 14 位</td>
 </tr>
 </tbody>
 </table>
-<h2 id="布尔类型">布尔类型</h2>
-<p>boolean有true或false两个状态，第三种未知状态（unknown）用NULL表示。</p>
+</div>
+<h2 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h2><p>boolean有true或false两个状态，第三种未知状态（unknown）用NULL表示。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">名称</th>
-<th style="text-align: left;">存储格式</th>
-<th style="text-align: left;">描述</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">存储格式</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">boolean</td>
-<td style="text-align: left;">1 字节</td>
-<td style="text-align: left;">true/false</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">1 字节</td>
+<td style="text-align:left">true/false</td>
 </tr>
 </tbody>
 </table>
-<h2 id="枚举类型">枚举类型</h2>
-<p>PgSQL种的枚举类型类似于C语言中的enum类型，包含静态和值的有序集合的数据类型。与其他类型不同的是枚举类型需要使用<code>create type</code>命令创建。枚举类型一旦创建，便可用于变和函数定义。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> type mood <span class="keyword">as</span> enum(<span class="string">&#x27;sad&#x27;</span>,<span class="string">&#x27;ok&#x27;</span>,<span class="string">&#x27;happy&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="几何类型">几何类型</h2>
-<p>几何类型表示二维的平面物体。</p>
+</div>
+<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><p>PgSQL种的枚举类型类似于C语言中的enum类型，包含静态和值的有序集合的数据类型。与其他类型不同的是枚举类型需要使用<code>create type</code>命令创建。枚举类型一旦创建，便可用于变和函数定义。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">create type mood as enum(&#39;sad&#39;,&#39;ok&#39;,&#39;happy&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="几何类型"><a href="#几何类型" class="headerlink" title="几何类型"></a>几何类型</h2><p>几何类型表示二维的平面物体。</p>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 10%">
-<col style="width: 16%">
-<col style="width: 32%">
-<col style="width: 41%">
-</colgroup>
 <thead>
 <tr>
-<th style="text-align: left;">名字</th>
-<th style="text-align: left;">存储空间</th>
-<th style="text-align: left;">说明</th>
-<th style="text-align: left;">表现形式</th>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">存储空间</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">表现形式</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">point</td>
-<td style="text-align: left;">16 字节</td>
-<td style="text-align: left;">平面中的点</td>
-<td style="text-align: left;">(x,y)</td>
+<td style="text-align:left">point</td>
+<td style="text-align:left">16 字节</td>
+<td style="text-align:left">平面中的点</td>
+<td style="text-align:left">(x,y)</td>
 </tr>
 <tr>
-<td style="text-align: left;">line</td>
-<td style="text-align: left;">32 字节</td>
-<td style="text-align: left;">(无穷)直线(未完全实现)</td>
-<td style="text-align: left;">( ( x1,y1 ) , ( x2,y2 ) )</td>
+<td style="text-align:left">line</td>
+<td style="text-align:left">32 字节</td>
+<td style="text-align:left">(无穷)直线(未完全实现)</td>
+<td style="text-align:left">( ( x1,y1 ) , ( x2,y2 ) )</td>
 </tr>
 <tr>
-<td style="text-align: left;">lseg</td>
-<td style="text-align: left;">32 字节</td>
-<td style="text-align: left;">(有限)线段</td>
-<td style="text-align: left;">( ( x1,y1 ), ( x2,y2 ) )</td>
+<td style="text-align:left">lseg</td>
+<td style="text-align:left">32 字节</td>
+<td style="text-align:left">(有限)线段</td>
+<td style="text-align:left">( ( x1,y1 ), ( x2,y2 ) )</td>
 </tr>
 <tr>
-<td style="text-align: left;">box</td>
-<td style="text-align: left;">32 字节</td>
-<td style="text-align: left;">矩形</td>
-<td style="text-align: left;">( ( x1,y1 ), ( x2,y2 ) )</td>
+<td style="text-align:left">box</td>
+<td style="text-align:left">32 字节</td>
+<td style="text-align:left">矩形</td>
+<td style="text-align:left">( ( x1,y1 ), ( x2,y2 ) )</td>
 </tr>
 <tr>
-<td style="text-align: left;">path</td>
-<td style="text-align: left;">16+16n 字节</td>
-<td style="text-align: left;">闭合路径(与多边形类似)</td>
-<td style="text-align: left;">( ( x1,y1 ), … )</td>
+<td style="text-align:left">path</td>
+<td style="text-align:left">16+16n 字节</td>
+<td style="text-align:left">闭合路径(与多边形类似)</td>
+<td style="text-align:left">( ( x1,y1 ), … )</td>
 </tr>
 <tr>
-<td style="text-align: left;">path</td>
-<td style="text-align: left;">16+16n 字节</td>
-<td style="text-align: left;">开放路径</td>
-<td style="text-align: left;">[ ( x1,y1 ) , … ]</td>
+<td style="text-align:left">path</td>
+<td style="text-align:left">16+16n 字节</td>
+<td style="text-align:left">开放路径</td>
+<td style="text-align:left">[ ( x1,y1 ) , … ]</td>
 </tr>
 <tr>
-<td style="text-align: left;">polygon</td>
-<td style="text-align: left;">40+16n 字节</td>
-<td style="text-align: left;">多边形(与闭合路径相似)</td>
-<td style="text-align: left;">( ( x1,y1 ) , … )</td>
+<td style="text-align:left">polygon</td>
+<td style="text-align:left">40+16n 字节</td>
+<td style="text-align:left">多边形(与闭合路径相似)</td>
+<td style="text-align:left">( ( x1,y1 ) , … )</td>
 </tr>
 <tr>
-<td style="text-align: left;">circle</td>
-<td style="text-align: left;">24 字节</td>
-<td style="text-align: left;">圆</td>
-<td style="text-align: left;">&lt; ( x,y ) , r &gt; (圆心和半径)</td>
+<td style="text-align:left">circle</td>
+<td style="text-align:left">24 字节</td>
+<td style="text-align:left">圆</td>
+<td style="text-align:left">&lt; ( x,y ) , r &gt; (圆心和半径)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="网络地址类型">网络地址类型</h2>
-<p>PgSQL提供用于存储IPv4、IPv6、MAC地址的数据类型。在对inet或cidr数据类型进行排序时，IPv4地址总是排在IPv6前面，包括那些封装或是映射在IPv6地址里的IPv4地址。</p>
+</div>
+<h2 id="网络地址类型"><a href="#网络地址类型" class="headerlink" title="网络地址类型"></a>网络地址类型</h2><p>PgSQL提供用于存储IPv4、IPv6、MAC地址的数据类型。在对inet或cidr数据类型进行排序时，IPv4地址总是排在IPv6前面，包括那些封装或是映射在IPv6地址里的IPv4地址。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">名字</th>
-<th style="text-align: left;">存储空间</th>
-<th style="text-align: left;">描述</th>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">存储空间</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">cidr</td>
-<td style="text-align: left;">7 或 19 字节</td>
-<td style="text-align: left;">IPv4 或 IPv6 网络</td>
+<td style="text-align:left">cidr</td>
+<td style="text-align:left">7 或 19 字节</td>
+<td style="text-align:left">IPv4 或 IPv6 网络</td>
 </tr>
 <tr>
-<td style="text-align: left;">inet</td>
-<td style="text-align: left;">7 或 19 字节</td>
-<td style="text-align: left;">IPv4 或 IPv6 主机和网络</td>
+<td style="text-align:left">inet</td>
+<td style="text-align:left">7 或 19 字节</td>
+<td style="text-align:left">IPv4 或 IPv6 主机和网络</td>
 </tr>
 <tr>
-<td style="text-align: left;">macaddr</td>
-<td style="text-align: left;">6 字节</td>
-<td style="text-align: left;">MAC 地址</td>
+<td style="text-align:left">macaddr</td>
+<td style="text-align:left">6 字节</td>
+<td style="text-align:left">MAC 地址</td>
 </tr>
 </tbody>
 </table>
-<h2 id="位串类型">位串类型</h2>
-<p>位串是一串1和0的字符串，可以用于存储和直观化位掩码。</p>
+</div>
+<h2 id="位串类型"><a href="#位串类型" class="headerlink" title="位串类型"></a>位串类型</h2><p>位串是一串1和0的字符串，可以用于存储和直观化位掩码。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">名字</th>
-<th style="text-align: left;">描述</th>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">bit(n)</td>
-<td style="text-align: left;">必须准确匹配长度n(n位正整数)</td>
+<td style="text-align:left">bit(n)</td>
+<td style="text-align:left">必须准确匹配长度n(n位正整数)</td>
 </tr>
 <tr>
-<td style="text-align: left;">bit var ying(n)</td>
-<td style="text-align: left;">最长n的变长类型</td>
+<td style="text-align:left">bit var ying(n)</td>
+<td style="text-align:left">最长n的变长类型</td>
 </tr>
 </tbody>
 </table>
-<h2 id="文本搜索类型">文本搜索类型</h2>
-<p>全文检索即通过自然语言文档的集合来找到那些匹配一个查询的检索。</p>
+</div>
+<h2 id="文本搜索类型"><a href="#文本搜索类型" class="headerlink" title="文本搜索类型"></a>文本搜索类型</h2><p>全文检索即通过自然语言文档的集合来找到那些匹配一个查询的检索。</p>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 11%">
-<col style="width: 88%">
-</colgroup>
 <thead>
 <tr>
-<th style="text-align: left;">名字</th>
-<th style="text-align: left;">描述</th>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">tsvector</td>
-<td style="text-align: left;">其值是一个无重复值的lexemes排序列表，即一些同一个词的不同变种的标准化</td>
+<td style="text-align:left">tsvector</td>
+<td style="text-align:left">其值是一个无重复值的lexemes排序列表，即一些同一个词的不同变种的标准化</td>
 </tr>
 <tr>
-<td style="text-align: left;">tsquery</td>
-<td style="text-align: left;">存储用于检索的词汇，且使用布尔操作符&amp;(AND),|(OR)和!(NOT)来组合它们，括号用来强调操作符的分组。</td>
+<td style="text-align:left">tsquery</td>
+<td style="text-align:left">存储用于检索的词汇，且使用布尔操作符&amp;(AND),\</td>
+<td>(OR)和!(NOT)来组合它们，括号用来强调操作符的分组。</td>
 </tr>
 </tbody>
 </table>
-<h2 id="uuid类型">UUID类型</h2>
-<p>uuid 数据类型用来存储 RFC 4122，ISO/IEF 9834-8:2005
-以及相关标准定义的通用唯一标识符（UUID）。在一些系统里也叫GUID。这个标识符是一个由算法产生的
-128
-位标识符，使它不可能在已知使用相同算法的模块中和其他方式产生的标识符相同。
-其用小写的十六进制数字序列表示。</p>
-<h2 id="xml类型">XML类型</h2>
-<p>要使用这个数据类型，编译时必须使用<code>configure --with -libxml</code>。</p>
-<p>xmlvalue IS DOCUMENT 表达式可以用来判断一个特定的 xml
-值是一个完整的文件还是内容片段。</p>
+</div>
+<h2 id="UUID类型"><a href="#UUID类型" class="headerlink" title="UUID类型"></a>UUID类型</h2><p>uuid 数据类型用来存储 RFC 4122，ISO/IEF 9834-8:2005 以及相关标准定义的通用唯一标识符（UUID）。在一些系统里也叫GUID。这个标识符是一个由算法产生的 128 位标识符，使它不可能在已知使用相同算法的模块中和其他方式产生的标识符相同。 其用小写的十六进制数字序列表示。</p>
+<h2 id="XML类型"><a href="#XML类型" class="headerlink" title="XML类型"></a>XML类型</h2><p>要使用这个数据类型，编译时必须使用<code>configure --with -libxml</code>。</p>
+<p>xmlvalue IS DOCUMENT 表达式可以用来判断一个特定的 xml 值是一个完整的文件还是内容片段。</p>
 <p>使用xmlparse来从字符数据产生xml类型的值：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">XMLPARSE (DOCUMENT <span class="string">&#x27;&lt;?xml version=&quot;1.0&quot;?&gt;&lt;book&gt;&lt;title&gt;Manual&lt;/title&gt;&lt;chapter&gt;...&lt;/chapter&gt;&lt;/book&gt;&#x27;</span>)</span><br><span class="line">XMLPARSE (CONTENT <span class="string">&#x27;abc&lt;foo&gt;bar&lt;/foo&gt;&lt;bar&gt;foo&lt;/bar&gt;&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="json类型">json类型</h2>
-<p>json 数据类型可以用来存储 JSON（JavaScript Object Notation）数据，
-这样的数据也可以存储为 text，但是 json
-数据类型更有利于检查每个存储的数值是可用的 JSON 值。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">XMLPARSE (DOCUMENT &#39;&lt;?xml version&#x3D;&quot;1.0&quot;?&gt;&lt;book&gt;&lt;title&gt;Manual&lt;&#x2F;title&gt;&lt;chapter&gt;...&lt;&#x2F;chapter&gt;&lt;&#x2F;book&gt;&#39;)
+XMLPARSE (CONTENT &#39;abc&lt;foo&gt;bar&lt;&#x2F;foo&gt;&lt;bar&gt;foo&lt;&#x2F;bar&gt;&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="json类型"><a href="#json类型" class="headerlink" title="json类型"></a>json类型</h2><p>json 数据类型可以用来存储 JSON（JavaScript Object Notation）数据， 这样的数据也可以存储为 text，但是 json 数据类型更有利于检查每个存储的数值是可用的 JSON 值。</p>
 <p>此外还有相关的函数来处理 json 数据：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">实例</th>
-<th style="text-align: center;">实例结果</th>
+<th style="text-align:left">实例</th>
+<th style="text-align:center">实例结果</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>array_to_json('&#123; &#123;1,5&#125;,&#123;99,100&#125; &#125;'::int[])</code></td>
-<td style="text-align: center;"><code>[ [1,5],[99,100] ]</code></td>
+<td style="text-align:left"><code>array_to_json(&#39;&#123; &#123;1,5&#125;,&#123;99,100&#125; &#125;&#39;::int[])</code></td>
+<td style="text-align:center"><code>[ [1,5],[99,100] ]</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>row_to_json(row(1,'foo'))</code></td>
-<td style="text-align: center;"><code>&#123;"f1":1,"f2":"foo"&#125;</code></td>
+<td style="text-align:left"><code>row_to_json(row(1,&#39;foo&#39;))</code></td>
+<td style="text-align:center"><code>&#123;&quot;f1&quot;:1,&quot;f2&quot;:&quot;foo&quot;&#125;</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="数组类型">数组类型</h2>
-<p>数组类型可以是任何基本类型或用户定义类型，枚举类型或复合类型。</p>
+</div>
+<h2 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h2><p>数组类型可以是任何基本类型或用户定义类型，枚举类型或复合类型。</p>
 <p><strong>声明数组</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE sal_emp (</span><br><span class="line">    name            text,</span><br><span class="line">    pay_by_quarter  integer[],</span><br><span class="line">    schedule        text[][]，</span><br><span class="line">    pay_by_quarter integer ARRAY[4]</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">CREATE TABLE sal_emp (
+    name            text,
+    pay_by_quarter  integer[],
+    schedule        text[][]，
+    pay_by_quarter integer ARRAY[4]
+);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>插入值：</strong></p>
 <p>插入值使用花括号 {}，元素在 {} 使用逗号隔开：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> sal_emp</span><br><span class="line">    <span class="keyword">VALUES</span> (<span class="string">&#x27;Bill&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;&#123;10000, 10000, 10000, 10000&#125;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;&#123; &#123; &quot;meeting&quot;, &quot;lunch&quot; &#125;, &#123; &quot;training&quot;, &quot;presentation&quot; &#125; &#125;&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">INSERT INTO sal_emp
+    VALUES (&#39;Bill&#39;,
+    &#39;&#123;10000, 10000, 10000, 10000&#125;&#39;,
+    &#39;&#123; &#123; &quot;meeting&quot;, &quot;lunch&quot; &#125;, &#123; &quot;training&quot;, &quot;presentation&quot; &#125; &#125;&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>访问数组：</strong></p>
 <p>数组的下标数字是写在方括号里的。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> sal_emp <span class="keyword">WHERE</span> pay_by_quarter[<span class="number">1</span>] <span class="operator">&lt;&gt;</span> pay_by_quarter[<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">SELECT name FROM sal_emp WHERE pay_by_quarter[1] &lt;&gt; pay_by_quarter[2];<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>修改数组：</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> sal_emp <span class="keyword">SET</span> pay_by_quarter <span class="operator">=</span> <span class="string">&#x27;&#123;25000,25000,27000,27000&#125;&#x27;</span></span><br><span class="line">    <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;Carol&#x27;</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> sal_emp <span class="keyword">SET</span> pay_by_quarter <span class="operator">=</span> <span class="keyword">ARRAY</span>[<span class="number">25000</span>,<span class="number">25000</span>,<span class="number">27000</span>,<span class="number">27000</span>]</span><br><span class="line">    <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;Carol&#x27;</span>;    </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">UPDATE sal_emp SET pay_by_quarter &#x3D; &#39;&#123;25000,25000,27000,27000&#125;&#39;
+    WHERE name &#x3D; &#39;Carol&#39;;
+UPDATE sal_emp SET pay_by_quarter &#x3D; ARRAY[25000,25000,27000,27000]
+    WHERE name &#x3D; &#39;Carol&#39;;    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>数组中检索：</strong></p>
 <p>要搜索一个数组中的数值，就必须检查该数组的每一个值。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> sal_emp <span class="keyword">WHERE</span> <span class="number">10000</span> <span class="operator">=</span> <span class="keyword">ALL</span> (pay_by_quarter);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span></span><br><span class="line">   (<span class="keyword">SELECT</span> pay_by_quarter,</span><br><span class="line">           generate_subscripts(pay_by_quarter, <span class="number">1</span>) <span class="keyword">AS</span> s</span><br><span class="line">      <span class="keyword">FROM</span> sal_emp) <span class="keyword">AS</span> foo</span><br><span class="line"> <span class="keyword">WHERE</span> pay_by_quarter[s] <span class="operator">=</span> <span class="number">10000</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="复合类型">复合类型</h2>
-<p>复合类型表示一行或一条记录的结构，它实际上只是一个字段名和它们的数据类型的列表。<strong>复合类型可以实现建表时可以自定义字段</strong>。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">SELECT * FROM sal_emp WHERE 10000 &#x3D; ALL (pay_by_quarter);
+
+SELECT * FROM
+   (SELECT pay_by_quarter,
+           generate_subscripts(pay_by_quarter, 1) AS s
+      FROM sal_emp) AS foo
+ WHERE pay_by_quarter[s] &#x3D; 10000;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="复合类型"><a href="#复合类型" class="headerlink" title="复合类型"></a>复合类型</h2><p>复合类型表示一行或一条记录的结构，它实际上只是一个字段名和它们的数据类型的列表。<strong>复合类型可以实现建表时可以自定义字段</strong>。</p>
 <p>声明复合类型的语法类似于<code>create table</code>，只是<strong>这里只可以声明字段名字和类型</strong>，定义类型后就可以用它来创建表：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> TYPE complex <span class="keyword">AS</span> (</span><br><span class="line">    r       <span class="type">double precision</span>,</span><br><span class="line">    i       <span class="type">double precision</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TYPE inventory_item <span class="keyword">AS</span> (</span><br><span class="line">    name            text,</span><br><span class="line">    supplier_id     <span class="type">integer</span>,</span><br><span class="line">    price           <span class="type">numeric</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> on_hand (</span><br><span class="line">    item      inventory_item,</span><br><span class="line">    count     <span class="type">integer</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> on_hand <span class="keyword">VALUES</span> (<span class="type">ROW</span>(<span class="string">&#x27;fuzzy dice&#x27;</span>, <span class="number">42</span>, <span class="number">1.99</span>), <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="复合类型输入">复合类型输入</h3>
-<p>要用文本常量属性复合类型值，在圆括号里包围字段值并用逗号分隔他们。可以在任何字段周围放上双引号，若<strong>值本身包含逗号或圆括号，则必须要用双引号括起来</strong>。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">CREATE TYPE complex AS (
+    r       double precision,
+    i       double precision
+);
+
+CREATE TYPE inventory_item AS (
+    name            text,
+    supplier_id     integer,
+    price           numeric
+);
+CREATE TABLE on_hand (
+    item      inventory_item,
+    count     integer
+);
+INSERT INTO on_hand VALUES (ROW(&#39;fuzzy dice&#39;, 42, 1.99), 1000);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="复合类型输入"><a href="#复合类型输入" class="headerlink" title="复合类型输入"></a>复合类型输入</h3><p>要用文本常量属性复合类型值，在圆括号里包围字段值并用逗号分隔他们。可以在任何字段周围放上双引号，若<strong>值本身包含逗号或圆括号，则必须要用双引号括起来</strong>。</p>
 <p>复合类型常量的一般格式如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;( value1 , value2 , ... )&#x27;</span></span><br><span class="line"><span class="string">&#x27;(&quot;fuzzy dice&quot;,42,1.99)&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="访问复合类型">访问复合类型</h3>
-<p>若要访问复合类型字段的一个域，则必须要用圆括号把域的名字括起来：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> (item).name <span class="keyword">FROM</span> on_hand <span class="keyword">WHERE</span> (item).price <span class="operator">&gt;</span> <span class="number">9.99</span>;</span><br><span class="line"><span class="keyword">SELECT</span> (on_hand.item).name <span class="keyword">FROM</span> on_hand <span class="keyword">WHERE</span> (on_hand.item).price <span class="operator">&gt;</span> <span class="number">9.99</span>;#需要用到表名时的写法</span><br></pre></td></tr></table></figure>
-<h2 id="范围类型">范围类型</h2>
-<p>范围类型代表这某一元素类型在一定范围内的值。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">&#39;( value1 , value2 , ... )&#39;
+&#39;(&quot;fuzzy dice&quot;,42,1.99)&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="访问复合类型"><a href="#访问复合类型" class="headerlink" title="访问复合类型"></a>访问复合类型</h3><p>若要访问复合类型字段的一个域，则必须要用圆括号把域的名字括起来：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">SELECT (item).name FROM on_hand WHERE (item).price &gt; 9.99;
+SELECT (on_hand.item).name FROM on_hand WHERE (on_hand.item).price &gt; 9.99;#需要用到表名时的写法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="范围类型"><a href="#范围类型" class="headerlink" title="范围类型"></a>范围类型</h2><p>范围类型代表这某一元素类型在一定范围内的值。</p>
 <p>PostgreSQL 内置的范围类型有：</p>
 <ul>
 <li>integer的范围：int4range</li>
 <li>bigint的范围：int8range</li>
-<li>numeric的范围：numrange</li>
+<li>numeric的范围：numrange </li>
 <li>timestamp without time zone的范围：tsrange</li>
 <li>timestamp with time zone的范围：tstzrange</li>
 <li>date的范围：daterange</li>
 </ul>
 <p>此外也可以定义自己的范围类型：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> reservation (room <span class="type">int</span>, during tsrange);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> reservation <span class="keyword">VALUES</span></span><br><span class="line">    (<span class="number">1108</span>, <span class="string">&#x27;[2010-01-01 14:30, 2010-01-01 15:30)&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 包含</span></span><br><span class="line"><span class="keyword">SELECT</span> int4range(<span class="number">10</span>, <span class="number">20</span>) @<span class="operator">&gt;</span> <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 重叠</span></span><br><span class="line"><span class="keyword">SELECT</span> numrange(<span class="number">11.1</span>, <span class="number">22.2</span>) <span class="operator">&amp;&amp;</span> numrange(<span class="number">20.0</span>, <span class="number">30.0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 提取上边界</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">upper</span>(int8range(<span class="number">15</span>, <span class="number">25</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 计算交叉</span></span><br><span class="line"><span class="keyword">SELECT</span> int4range(<span class="number">10</span>, <span class="number">20</span>) <span class="operator">*</span> int4range(<span class="number">15</span>, <span class="number">25</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 范围是否为空</span></span><br><span class="line"><span class="keyword">SELECT</span> isempty(numrange(<span class="number">1</span>, <span class="number">5</span>));</span><br></pre></td></tr></table></figure>
-<p>范围值的输入必须遵循下面的格式：()、(]、[)、[]和空。圆括号或者方括号显示下边界和上边界是不包含的还是包含的。注意最后的格式是
-空，代表着一个空的范围（一个不含有值的范围）。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 包括3，不包括7，并且包括二者之间的所有点</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;[3,7)&#x27;</span>::int4range;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 不包括3和7，但是包括二者之间所有点</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;(3,7)&#x27;</span>::int4range;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 只包括单一值4</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;[4,4]&#x27;</span>::int4range;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 不包括点（被标准化为‘空’）</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;[4,4)&#x27;</span>::int4range;</span><br></pre></td></tr></table></figure>
-<h2 id="对象标识符类型">对象标识符类型</h2>
-<p>PgSQL 在内部使用对象标识符(OID)作为各种系统表的主键。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">CREATE TABLE reservation (room int, during tsrange);
+INSERT INTO reservation VALUES
+    (1108, &#39;[2010-01-01 14:30, 2010-01-01 15:30)&#39;);
+
+-- 包含
+SELECT int4range(10, 20) @&gt; 3;
+
+-- 重叠
+SELECT numrange(11.1, 22.2) &amp;&amp; numrange(20.0, 30.0);
+
+-- 提取上边界
+SELECT upper(int8range(15, 25));
+
+-- 计算交叉
+SELECT int4range(10, 20) * int4range(15, 25);
+
+-- 范围是否为空
+SELECT isempty(numrange(1, 5));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>范围值的输入必须遵循下面的格式：()、(]、[)、[]和空。圆括号或者方括号显示下边界和上边界是不包含的还是包含的。注意最后的格式是 空，代表着一个空的范围（一个不含有值的范围）。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 包括3，不包括7，并且包括二者之间的所有点
+SELECT &#39;[3,7)&#39;::int4range;
+
+-- 不包括3和7，但是包括二者之间所有点
+SELECT &#39;(3,7)&#39;::int4range;
+
+-- 只包括单一值4
+SELECT &#39;[4,4]&#39;::int4range;
+
+-- 不包括点（被标准化为‘空’）
+SELECT &#39;[4,4)&#39;::int4range;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="对象标识符类型"><a href="#对象标识符类型" class="headerlink" title="对象标识符类型"></a>对象标识符类型</h2><p>PgSQL 在内部使用对象标识符(OID)作为各种系统表的主键。</p>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 16%">
-<col style="width: 15%">
-<col style="width: 22%">
-<col style="width: 46%">
-</colgroup>
 <thead>
 <tr>
-<th style="text-align: left;">名字</th>
-<th style="text-align: left;">引用</th>
-<th style="text-align: left;">描述</th>
-<th style="text-align: left;">数值例子</th>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">引用</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">数值例子</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">oid</td>
-<td style="text-align: left;">任意</td>
-<td style="text-align: left;">数字化的对象标识符</td>
-<td style="text-align: left;">564182</td>
+<td style="text-align:left">oid</td>
+<td style="text-align:left">任意</td>
+<td style="text-align:left">数字化的对象标识符</td>
+<td style="text-align:left">564182</td>
 </tr>
 <tr>
-<td style="text-align: left;">regproc</td>
-<td style="text-align: left;">pg_proc</td>
-<td style="text-align: left;">函数名字</td>
-<td style="text-align: left;">sum</td>
+<td style="text-align:left">regproc</td>
+<td style="text-align:left">pg_proc</td>
+<td style="text-align:left">函数名字</td>
+<td style="text-align:left">sum</td>
 </tr>
 <tr>
-<td style="text-align: left;">regprocedure</td>
-<td style="text-align: left;">pg_proc</td>
-<td style="text-align: left;">带参数类型的函数</td>
-<td style="text-align: left;">sum(int4)</td>
+<td style="text-align:left">regprocedure</td>
+<td style="text-align:left">pg_proc</td>
+<td style="text-align:left">带参数类型的函数</td>
+<td style="text-align:left">sum(int4)</td>
 </tr>
 <tr>
-<td style="text-align: left;">regoper</td>
-<td style="text-align: left;">pg_operator</td>
-<td style="text-align: left;">操作符名</td>
-<td style="text-align: left;">+</td>
+<td style="text-align:left">regoper</td>
+<td style="text-align:left">pg_operator</td>
+<td style="text-align:left">操作符名</td>
+<td style="text-align:left">+</td>
 </tr>
 <tr>
-<td style="text-align: left;">regoperator</td>
-<td style="text-align: left;">pg_operator</td>
-<td style="text-align: left;">带参数类型的操作符</td>
-<td style="text-align: left;">*(integer,integer) 或 -(NONE,integer)</td>
+<td style="text-align:left">regoperator</td>
+<td style="text-align:left">pg_operator</td>
+<td style="text-align:left">带参数类型的操作符</td>
+<td style="text-align:left">*(integer,integer) 或 -(NONE,integer)</td>
 </tr>
 <tr>
-<td style="text-align: left;">regclass</td>
-<td style="text-align: left;">pg_class</td>
-<td style="text-align: left;">关系名</td>
-<td style="text-align: left;">pg_type</td>
+<td style="text-align:left">regclass</td>
+<td style="text-align:left">pg_class</td>
+<td style="text-align:left">关系名</td>
+<td style="text-align:left">pg_type</td>
 </tr>
 <tr>
-<td style="text-align: left;">regtype</td>
-<td style="text-align: left;">pg_type</td>
-<td style="text-align: left;">数据类型名</td>
-<td style="text-align: left;">integer</td>
+<td style="text-align:left">regtype</td>
+<td style="text-align:left">pg_type</td>
+<td style="text-align:left">数据类型名</td>
+<td style="text-align:left">integer</td>
 </tr>
 <tr>
-<td style="text-align: left;">regconfig</td>
-<td style="text-align: left;">pg_ts_config</td>
-<td style="text-align: left;">文本搜索配置</td>
-<td style="text-align: left;">english</td>
+<td style="text-align:left">regconfig</td>
+<td style="text-align:left">pg_ts_config</td>
+<td style="text-align:left">文本搜索配置</td>
+<td style="text-align:left">english</td>
 </tr>
 <tr>
-<td style="text-align: left;">regdictionary</td>
-<td style="text-align: left;">pg_ts_dict</td>
-<td style="text-align: left;">文本搜索字典</td>
-<td style="text-align: left;">simple</td>
+<td style="text-align:left">regdictionary</td>
+<td style="text-align:left">pg_ts_dict</td>
+<td style="text-align:left">文本搜索字典</td>
+<td style="text-align:left">simple</td>
 </tr>
 </tbody>
 </table>
-<h2 id="伪类型">伪类型</h2>
-<p>PgSQL类型系统包含一系列特殊用途的条目，
-它们按照类别来说叫做伪类型。<strong>伪类型不能作为字段的数据类型</strong>，
-但是它<strong>可以用于声明一个函数的参数或者结果类型</strong>。
-伪类型<strong>在一个函数不只是简单地接受并返回某种SQL
-数据类型的情况下很有用</strong>。</p>
+</div>
+<h2 id="伪类型"><a href="#伪类型" class="headerlink" title="伪类型"></a>伪类型</h2><p>PgSQL类型系统包含一系列特殊用途的条目， 它们按照类别来说叫做伪类型。<strong>伪类型不能作为字段的数据类型</strong>， 但是它<strong>可以用于声明一个函数的参数或者结果类型</strong>。 伪类型<strong>在一个函数不只是简单地接受并返回某种SQL 数据类型的情况下很有用</strong>。</p>
 <p>下表列出了所有的伪类型：</p>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 24%">
-<col style="width: 75%">
-</colgroup>
 <thead>
 <tr>
-<th style="text-align: left;">名字</th>
-<th style="text-align: left;">描述</th>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">any</td>
-<td style="text-align: left;">表示一个函数接受任何输入数据类型。</td>
+<td style="text-align:left">any</td>
+<td style="text-align:left">表示一个函数接受任何输入数据类型。</td>
 </tr>
 <tr>
-<td style="text-align: left;">anyelement</td>
-<td style="text-align: left;">表示一个函数接受任何数据类型。</td>
+<td style="text-align:left">anyelement</td>
+<td style="text-align:left">表示一个函数接受任何数据类型。</td>
 </tr>
 <tr>
-<td style="text-align: left;">anyarray</td>
-<td style="text-align: left;">表示一个函数接受任意数组数据类型。</td>
+<td style="text-align:left">anyarray</td>
+<td style="text-align:left">表示一个函数接受任意数组数据类型。</td>
 </tr>
 <tr>
-<td style="text-align: left;">anynonarray</td>
-<td style="text-align: left;">表示一个函数接受任意非数组数据类型。</td>
+<td style="text-align:left">anynonarray</td>
+<td style="text-align:left">表示一个函数接受任意非数组数据类型。</td>
 </tr>
 <tr>
-<td style="text-align: left;">anyenum</td>
-<td style="text-align: left;">表示一个函数接受任意枚举数据类型。</td>
+<td style="text-align:left">anyenum</td>
+<td style="text-align:left">表示一个函数接受任意枚举数据类型。</td>
 </tr>
 <tr>
-<td style="text-align: left;">anyrange</td>
-<td style="text-align: left;">表示一个函数接受任意范围数据类型。</td>
+<td style="text-align:left">anyrange</td>
+<td style="text-align:left">表示一个函数接受任意范围数据类型。</td>
 </tr>
 <tr>
-<td style="text-align: left;">cstring</td>
-<td style="text-align: left;">表示一个函数接受或者返回一个空结尾的 C
-字符串。</td>
+<td style="text-align:left">cstring</td>
+<td style="text-align:left">表示一个函数接受或者返回一个空结尾的 C 字符串。</td>
 </tr>
 <tr>
-<td style="text-align: left;">internal</td>
-<td style="text-align: left;">表示一个函数接受或者返回一种服务器内部的数据类型。</td>
+<td style="text-align:left">internal</td>
+<td style="text-align:left">表示一个函数接受或者返回一种服务器内部的数据类型。</td>
 </tr>
 <tr>
-<td style="text-align: left;">language_handler</td>
-<td style="text-align: left;">一个过程语言调用处理器声明为返回language_handler。</td>
+<td style="text-align:left">language_handler</td>
+<td style="text-align:left">一个过程语言调用处理器声明为返回language_handler。</td>
 </tr>
 <tr>
-<td style="text-align: left;">fdw_handler</td>
-<td style="text-align: left;">一个外部数据封装器声明为返回fdw_handler。</td>
+<td style="text-align:left">fdw_handler</td>
+<td style="text-align:left">一个外部数据封装器声明为返回fdw_handler。</td>
 </tr>
 <tr>
-<td style="text-align: left;">record</td>
-<td style="text-align: left;">标识一个函数返回一个未声明的行类型。</td>
+<td style="text-align:left">record</td>
+<td style="text-align:left">标识一个函数返回一个未声明的行类型。</td>
 </tr>
 <tr>
-<td style="text-align: left;">trigger</td>
-<td style="text-align: left;">一个触发器函数声明为返回trigger。</td>
+<td style="text-align:left">trigger</td>
+<td style="text-align:left">一个触发器函数声明为返回trigger。</td>
 </tr>
 <tr>
-<td style="text-align: left;">void</td>
-<td style="text-align: left;">表示一个函数不返回数值。</td>
+<td style="text-align:left">void</td>
+<td style="text-align:left">表示一个函数不返回数值。</td>
 </tr>
 <tr>
-<td style="text-align: left;">opaque</td>
-<td style="text-align: left;">一个已经过时的类型，以前用于所有上面这些用途。</td>
+<td style="text-align:left">opaque</td>
+<td style="text-align:left">一个已经过时的类型，以前用于所有上面这些用途。</td>
 </tr>
 </tbody>
 </table>
+</div>
 
     </article>
     <!-- license -->
@@ -1299,7 +1303,7 @@ zone</td>
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#postgresql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">PostgreSQL数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">数值类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%A7%E5%B8%81%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">货币类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">字符类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text">日期&#x2F;时间类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.</span> <span class="toc-text">布尔类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">枚举类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">几何类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.8.</span> <span class="toc-text">网络地址类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.9.</span> <span class="toc-text">位串类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.10.</span> <span class="toc-text">文本搜索类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#uuid%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.11.</span> <span class="toc-text">UUID类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.12.</span> <span class="toc-text">XML类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#json%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.13.</span> <span class="toc-text">json类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.14.</span> <span class="toc-text">数组类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.15.</span> <span class="toc-text">复合类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B%E8%BE%93%E5%85%A5"><span class="toc-number">1.15.1.</span> <span class="toc-text">复合类型输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.15.2.</span> <span class="toc-text">访问复合类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.16.</span> <span class="toc-text">范围类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%A0%87%E8%AF%86%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.17.</span> <span class="toc-text">对象标识符类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.18.</span> <span class="toc-text">伪类型</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PostgreSQL%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">PostgreSQL数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">数值类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%A7%E5%B8%81%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">货币类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">字符类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F-%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text">日期&#x2F;时间类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.</span> <span class="toc-text">布尔类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">枚举类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">几何类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.8.</span> <span class="toc-text">网络地址类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.9.</span> <span class="toc-text">位串类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.10.</span> <span class="toc-text">文本搜索类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UUID%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.11.</span> <span class="toc-text">UUID类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XML%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.12.</span> <span class="toc-text">XML类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#json%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.13.</span> <span class="toc-text">json类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.14.</span> <span class="toc-text">数组类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.15.</span> <span class="toc-text">复合类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B%E8%BE%93%E5%85%A5"><span class="toc-number">1.15.1.</span> <span class="toc-text">复合类型输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.15.2.</span> <span class="toc-text">访问复合类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.16.</span> <span class="toc-text">范围类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%A0%87%E8%AF%86%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.17.</span> <span class="toc-text">对象标识符类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.18.</span> <span class="toc-text">伪类型</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1649,6 +1653,12 @@ zone</td>
         
         
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2758,6 +2768,11 @@ zone</td>
                 数据库工具
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2771,21 +2786,6 @@ zone</td>
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS3">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS3
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2803,9 +2803,29 @@ zone</td>
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2828,14 +2848,14 @@ zone</td>
                 MinIO
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="LLM">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                LLM
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2846,16 +2866,6 @@ zone</td>
             <span class="sidebar-tag-name" data-tags="Vue">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="LLM">
-                <span class="iconfont-archer">&#xe606;</span>
-                LLM
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="人工智能">
-                <span class="iconfont-archer">&#xe606;</span>
-                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2878,11 +2888,6 @@ zone</td>
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2891,6 +2896,11 @@ zone</td>
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2964,14 +2974,19 @@ zone</td>
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2979,9 +2994,9 @@ zone</td>
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2994,14 +3009,9 @@ zone</td>
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -3009,34 +3019,29 @@ zone</td>
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Lottie">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="可视化">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
+            可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="Vue">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            Vue
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
             LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -3049,9 +3054,9 @@ zone</td>
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="人工智能">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -3064,14 +3069,24 @@ zone</td>
             JavaScript
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -3082,11 +3097,6 @@ zone</td>
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -3161,20 +3171,5 @@ zone</td>
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+    </body>
 </html>

@@ -343,7 +343,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.5k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -504,60 +504,164 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="postgresql命令">PostgreSQL命令</h1>
-<p>由于Pgsql数据库的命令在运行时会自动转换为小写英文字母，故命令语句也可以用小写字母编写。</p>
-<h2 id="使用pgadmin工具创建数据库">使用pgAdmin工具创建数据库</h2>
-<p>右键点击batabases，选择弹出的数据库的菜单。</p>
-<p><img src="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/1.png"></p>
-<h2 id="pgadmin工具界面语言设成中文">pgAdmin工具界面语言设成中文</h2>
-<p>左键点击File，弹出的Preferences。</p>
-<p><img src="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/2.png"></p>
-<p>选择左下角的User
-language，点击右上角的箭头，选择Chinese(Simplified)，点击Save保存。在弹出的Refresh
-required窗口中点击Refresh保存即可。</p>
-<p><img src="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/3.png"></p>
-<h2 id="pgadmin创建sql脚本">pgAdmin创建SQL脚本</h2>
-<p>在已经创建好的数据库名称中右键点击，选择CREATE
-脚本，即可创建SQL脚本。可以在SQL脚本里编写PgSQL语句。</p>
-<p><img src="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/4.png"></p>
+        <h1 id="PostgreSQL命令"><a href="#PostgreSQL命令" class="headerlink" title="PostgreSQL命令"></a>PostgreSQL命令</h1><p>由于Pgsql数据库的命令在运行时会自动转换为小写英文字母，故命令语句也可以用小写字母编写。</p>
+<h2 id="使用pgAdmin工具创建数据库"><a href="#使用pgAdmin工具创建数据库" class="headerlink" title="使用pgAdmin工具创建数据库"></a>使用pgAdmin工具创建数据库</h2><p>右键点击batabases，选择弹出的数据库的菜单。</p>
+<p><img src="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/1.png" alt></p>
+<h2 id="pgAdmin工具界面语言设成中文"><a href="#pgAdmin工具界面语言设成中文" class="headerlink" title="pgAdmin工具界面语言设成中文"></a>pgAdmin工具界面语言设成中文</h2><p>左键点击File，弹出的Preferences。</p>
+<p><img src="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/2.png" alt></p>
+<p>选择左下角的User language，点击右上角的箭头，选择Chinese(Simplified)，点击Save保存。在弹出的Refresh required窗口中点击Refresh保存即可。</p>
+<p><img src="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/3.png" alt></p>
+<h2 id="pgAdmin创建SQL脚本"><a href="#pgAdmin创建SQL脚本" class="headerlink" title="pgAdmin创建SQL脚本"></a>pgAdmin创建SQL脚本</h2><p>在已经创建好的数据库名称中右键点击，选择CREATE 脚本，即可创建SQL脚本。可以在SQL脚本里编写PgSQL语句。</p>
+<p><img src="/2022/10/17/PgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/4.png" alt></p>
 <p><strong>注意：SQL脚本中尽量不要直接点击运行代码。</strong>这样在创建过一次表后，直接点击运行代码时会再次运行建表的语句，会报表格已存在的错。<strong>通常是选中需要运行的代码块后再点击执行按钮。</strong>数据库只运行选中的代码，这样不会重复执行先前写好的代码，若没有选中任何代码，则默认为选中全部。</p>
-<h2 id="pgsql创建数据库">PgSQL创建数据库</h2>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- create database 数据库名</span></span><br><span class="line"><span class="comment">-- 	   with</span></span><br><span class="line"><span class="comment">--     关于数据库的说明</span></span><br><span class="line"><span class="keyword">create</span> database postgres</span><br><span class="line">    <span class="keyword">with</span></span><br><span class="line">    owner<span class="operator">=</span>postgres <span class="comment">-- 该数据库的拥有者</span></span><br><span class="line">    encoding<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> <span class="comment">-- 数据库中使用的字符集编码</span></span><br><span class="line"> 	lc_collate<span class="operator">=</span><span class="string">&#x27;Chinese (Simplified)_China.936&#x27;</span> <span class="comment">-- 在数据库中使用的排序规则顺序</span></span><br><span class="line">    lc_ctype<span class="operator">=</span><span class="string">&#x27;Chinese (Simplified)_China.936&#x27;</span><span class="comment">-- 在数据库中使用的字符分类</span></span><br><span class="line">    tablespace<span class="operator">=</span>pg_default<span class="comment">-- 与数据库相关联的表空间名称</span></span><br><span class="line">    connection limit<span class="operator">=</span><span class="number">-1</span> <span class="comment">-- 数据库允许多少并发连接，-1表示没有限制</span></span><br><span class="line">    is_template<span class="operator">=</span><span class="literal">false</span>; <span class="comment">-- 若为真，则具有CREATEDB特权的用户都可以从 这个数据库克隆。如果为假（默认），则只有超级用户或者该数据库的拥有者 可以克隆它。</span></span><br></pre></td></tr></table></figure>
-<h2 id="pgsql的crud语句">PgSQL的CRUD语句</h2>
-<h3 id="create建表">create建表</h3>
-<p>使用create语句创建表：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- create table 表名(</span></span><br><span class="line">	<span class="comment">-- 属性名 数据类型 条件约束 </span></span><br><span class="line"><span class="comment">-- )</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> rpt_tutorial( </span><br><span class="line">	id serial <span class="keyword">primary</span> key <span class="keyword">not</span> <span class="keyword">null</span>,<span class="comment">-- 建立自增id</span></span><br><span class="line">	name text <span class="keyword">not</span> <span class="keyword">null</span>,<span class="comment">-- 建立文本型属性</span></span><br><span class="line">	age <span class="type">int</span> <span class="keyword">not</span> <span class="keyword">null</span>,<span class="comment">-- 建立整数型属性</span></span><br><span class="line">	datetime <span class="type">date</span> <span class="keyword">not</span> <span class="keyword">null</span><span class="comment">-- 建立日期型属性</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h2 id="create创建复合类型">create创建复合类型</h2>
-<p>使用create语句创建复合类型：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- create type 复合类型名 as （类型名 数据类型)</span></span><br><span class="line"><span class="keyword">create</span> type profession <span class="keyword">as</span> (profession <span class="type">char</span>(<span class="number">50</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="PgSQL创建数据库"><a href="#PgSQL创建数据库" class="headerlink" title="PgSQL创建数据库"></a>PgSQL创建数据库</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- create database 数据库名
+-- 	   with
+--     关于数据库的说明
+create database postgres
+    with
+    owner&#x3D;postgres -- 该数据库的拥有者
+    encoding&#x3D;&#39;UTF8&#39; -- 数据库中使用的字符集编码
+ 	lc_collate&#x3D;&#39;Chinese (Simplified)_China.936&#39; -- 在数据库中使用的排序规则顺序
+    lc_ctype&#x3D;&#39;Chinese (Simplified)_China.936&#39;-- 在数据库中使用的字符分类
+    tablespace&#x3D;pg_default-- 与数据库相关联的表空间名称
+    connection limit&#x3D;-1 -- 数据库允许多少并发连接，-1表示没有限制
+    is_template&#x3D;false; -- 若为真，则具有CREATEDB特权的用户都可以从 这个数据库克隆。如果为假（默认），则只有超级用户或者该数据库的拥有者 可以克隆它。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="PgSQL的CRUD语句"><a href="#PgSQL的CRUD语句" class="headerlink" title="PgSQL的CRUD语句"></a>PgSQL的CRUD语句</h2><h3 id="create建表"><a href="#create建表" class="headerlink" title="create建表"></a>create建表</h3><p>使用create语句创建表：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- create table 表名(
+	-- 属性名 数据类型 条件约束 
+-- )
+create table rpt_tutorial( 
+	id serial primary key not null,-- 建立自增id
+	name text not null,-- 建立文本型属性
+	age int not null,-- 建立整数型属性
+	datetime date not null-- 建立日期型属性
+);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="create创建复合类型"><a href="#create创建复合类型" class="headerlink" title="create创建复合类型"></a>create创建复合类型</h2><p>使用create语句创建复合类型：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- create type 复合类型名 as （类型名 数据类型)
+create type profession as (profession char(50));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>创建复合类型后，可实现在表中自定义字段名称，其格式为：<code>属性名 复合类型名 条件约束</code></p>
-<h3 id="insert插入数据">insert插入数据</h3>
-<p>使用insert语句查询数据：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> rpt_tutorial(name,age,datetime,prof)</span><br><span class="line"><span class="keyword">values</span>(<span class="string">&#x27;Zhangsan&#x27;</span>,<span class="number">30</span>,<span class="string">&#x27;2022-10-14&#x27;</span>,<span class="string">&#x27;(teacher)&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="read读数据">read读数据</h3>
-<p>使用select语句查询数据：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- select 属性名 form 表名 where 条件约束</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> rpt_tutorial;</span><br><span class="line"><span class="keyword">select</span> name <span class="keyword">from</span> rpt_tutorial <span class="keyword">where</span> age<span class="operator">&gt;=</span><span class="number">30</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="update更新数据">update更新数据</h3>
-<p>使用update…set语句更新数据：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- update 表名 set 更新的属性名=更新的数值 where 条件约束更新的属性名=原数值</span></span><br><span class="line"><span class="keyword">update</span> rpt_tutorial <span class="keyword">set</span> datetime<span class="operator">=</span><span class="string">&#x27;2022-10-17&#x27;</span> <span class="keyword">where</span> datetime<span class="operator">=</span><span class="string">&#x27;2022-10-14&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="deletedrop删除数据">delete&amp;drop删除数据</h3>
-<p>使用delete或drop语句删除数据：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除表中的记录</span></span><br><span class="line"><span class="comment">-- delete from 表名 </span></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> rpt_tutorial</span><br><span class="line"><span class="comment">-- 删除表</span></span><br><span class="line"><span class="comment">-- delete table 表名 </span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> rpt_tutorial</span><br><span class="line"><span class="comment">-- 删除复合类型</span></span><br><span class="line"><span class="keyword">drop</span> type profession</span><br><span class="line"><span class="comment">-- 重置自增id为1，删除所有数据</span></span><br><span class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> rpt_tutorial restart <span class="keyword">identity</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="使用python进行pgsql数据库连接">使用python进行PgSQL数据库连接</h2>
-<p>Psycopy是针对python的Postgres数据库的适配模块，安装psycopg2可以整合python和Postgres。可在cmd中输入命令进行安装：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install psycopg2</span><br></pre></td></tr></table></figure>
+<h3 id="insert插入数据"><a href="#insert插入数据" class="headerlink" title="insert插入数据"></a>insert插入数据</h3><p>使用insert语句查询数据：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">insert into rpt_tutorial(name,age,datetime,prof)
+values(&#39;Zhangsan&#39;,30,&#39;2022-10-14&#39;,&#39;(teacher)&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="read读数据"><a href="#read读数据" class="headerlink" title="read读数据"></a>read读数据</h3><p>使用select语句查询数据：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- select 属性名 form 表名 where 条件约束
+select * from rpt_tutorial;
+select name from rpt_tutorial where age&gt;&#x3D;30;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="update更新数据"><a href="#update更新数据" class="headerlink" title="update更新数据"></a>update更新数据</h3><p>使用update…set语句更新数据：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- update 表名 set 更新的属性名&#x3D;更新的数值 where 条件约束更新的属性名&#x3D;原数值
+update rpt_tutorial set datetime&#x3D;&#39;2022-10-17&#39; where datetime&#x3D;&#39;2022-10-14&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="delete-amp-drop删除数据"><a href="#delete-amp-drop删除数据" class="headerlink" title="delete&amp;drop删除数据"></a>delete&amp;drop删除数据</h3><p>使用delete或drop语句删除数据：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">-- 删除表中的记录
+-- delete from 表名 
+delete from rpt_tutorial
+-- 删除表
+-- delete table 表名 
+drop table rpt_tutorial
+-- 删除复合类型
+drop type profession
+-- 重置自增id为1，删除所有数据
+truncate table rpt_tutorial restart identity;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="使用python进行PgSQL数据库连接"><a href="#使用python进行PgSQL数据库连接" class="headerlink" title="使用python进行PgSQL数据库连接"></a>使用python进行PgSQL数据库连接</h2><p>Psycopy是针对python的Postgres数据库的适配模块，安装psycopg2可以整合python和Postgres。可在cmd中输入命令进行安装：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pip install psycopg2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>导入psycopg2模块，并进行sql操作，其语句格式如下。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">conn=psycopg2.connect(database=<span class="string">&quot;数据库名&quot;</span>,user=<span class="string">&quot;数据库用户名&quot;</span>,password=<span class="string">&quot;数据库密码&quot;</span>,host=<span class="string">&quot;127.0.0.1&quot;</span>,port=<span class="string">&quot;5432&quot;</span>)<span class="comment">#127.0.0.1为默认的本地ip地址，port为数据库默认地址</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Opened database successfully&quot;</span>)</span><br><span class="line">cur=conn.cursor()<span class="comment">#创建一个cursor对象</span></span><br><span class="line">cur.execute(<span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">sql操作语句</span></span><br><span class="line"><span class="string">);&#x27;&#x27;&#x27;</span>)</span><br><span class="line">conn.commit()</span><br><span class="line">cur.close()</span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
-<h2 id="使用python将csv文本的数据导入导出至pqsql">使用python将csv文本的数据导入导出至pqsql</h2>
-<p>方法一：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">conn&#x3D;psycopg2.connect(database&#x3D;&quot;数据库名&quot;,user&#x3D;&quot;数据库用户名&quot;,password&#x3D;&quot;数据库密码&quot;,host&#x3D;&quot;127.0.0.1&quot;,port&#x3D;&quot;5432&quot;)#127.0.0.1为默认的本地ip地址，port为数据库默认地址
+print(&quot;Opened database successfully&quot;)
+cur&#x3D;conn.cursor()#创建一个cursor对象
+cur.execute(&#39;&#39;&#39;
+sql操作语句
+);&#39;&#39;&#39;)
+conn.commit()
+cur.close()
+conn.close()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="使用python将csv文本的数据导入导出至pqsql"><a href="#使用python将csv文本的数据导入导出至pqsql" class="headerlink" title="使用python将csv文本的数据导入导出至pqsql"></a>使用python将csv文本的数据导入导出至pqsql</h2><p>方法一：</p>
 <p>使用psycopg2模块中的copy语句操作文本，由于csv文件默认以逗号分隔单元格，故导入导出时要注意加上或减去逗号：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#读csv文件</span></span><br><span class="line"><span class="comment">#resourcefilenames为csv文件地址</span></span><br><span class="line"><span class="comment">#targettablename为要导入的数据库表名</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(resourcefilenames,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">next</span>(f)</span><br><span class="line">    cur.copy_from(f,targettablename,sep=<span class="string">&#x27;,&#x27;</span>,)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#写文本</span></span><br><span class="line"><span class="comment">#targetfilenames为导出的csv文件名</span></span><br><span class="line">write_head=<span class="literal">True</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(targetfilenames,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    columns=[<span class="string">&#x27;id&#x27;</span>,<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;age&#x27;</span>,<span class="string">&#x27;datetime&#x27;</span>]</span><br><span class="line">    <span class="keyword">if</span> write_head:</span><br><span class="line">        s=<span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> columns:</span><br><span class="line">            s+=k+<span class="string">&#x27;,&#x27;</span></span><br><span class="line">        s=s[:-<span class="number">1</span>]</span><br><span class="line">        f.write(s+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        write_head=<span class="literal">False</span>    </span><br><span class="line">    cur.copy_to(f,targettablename,sep=<span class="string">&#x27;,&#x27;</span>,columns=columns) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Export csv successfully&quot;</span>)  </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">#读csv文件
+#resourcefilenames为csv文件地址
+#targettablename为要导入的数据库表名
+with open(resourcefilenames,&#39;r&#39;,encoding&#x3D;&#39;utf-8&#39;) as f:
+    next(f)
+    cur.copy_from(f,targettablename,sep&#x3D;&#39;,&#39;,)
+    
+#写文本
+#targetfilenames为导出的csv文件名
+write_head&#x3D;True
+with open(targetfilenames,&#39;w&#39;,encoding&#x3D;&#39;utf-8&#39;) as f:
+    columns&#x3D;[&#39;id&#39;,&#39;name&#39;,&#39;age&#39;,&#39;datetime&#39;]
+    if write_head:
+        s&#x3D;&#39;&#39;
+        for k in columns:
+            s+&#x3D;k+&#39;,&#39;
+        s&#x3D;s[:-1]
+        f.write(s+&#39;\n&#39;)
+        write_head&#x3D;False    
+    cur.copy_to(f,targettablename,sep&#x3D;&#39;,&#39;,columns&#x3D;columns) 
+print(&quot;Export csv successfully&quot;)  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>方法二：</p>
 <p>运用xlrd、xlwt模块导入导出数据：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入数据</span></span><br><span class="line"><span class="keyword">import</span> xlrd</span><br><span class="line">workbook = xlrd.open_workbook(filename=<span class="string">&#x27;C:/文件名&#x27;</span>)<span class="comment">#仅支持xls文件</span></span><br><span class="line"><span class="comment"># 需要先指定sheet工作表</span></span><br><span class="line">table = workbook.sheet_by_name(sheet_name=<span class="string">&#x27;sheet表名&#x27;</span>)</span><br><span class="line"><span class="comment"># 获取行数</span></span><br><span class="line">rows = table.nrows</span><br><span class="line"><span class="comment"># 获取列数</span></span><br><span class="line">cols = table.ncols</span><br><span class="line"><span class="comment"># 循环获取每行的数据</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(cols):</span><br><span class="line">        value = table.cell_value(row, col)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;第&#123;&#125;行&#123;&#125;列的数据为：&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(row, col, value))</span><br><span class="line"><span class="comment">#导出数据</span></span><br><span class="line"><span class="keyword">import</span> xlwt</span><br><span class="line"><span class="comment"># 创建一个workbook并设置编码</span></span><br><span class="line">workbook = xlwt.Workbook(encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># 添加sheet</span></span><br><span class="line">worksheet = workbook.add_sheet(<span class="string">&#x27;text2&#x27;</span>)</span><br><span class="line"><span class="comment"># 写入excel, 参数对应 行, 列, 值</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(cols):</span><br><span class="line">        value = table.cell_value(row, col)</span><br><span class="line">        worksheet.write(row, col, value)</span><br><span class="line">workbook.save(<span class="string">&#x27;text2.csv&#x27;</span>)   </span><br><span class="line"><span class="comment">#导出数据方法2</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">outdata</span>(<span class="params">data,file,sheetname</span>):</span><br><span class="line">    <span class="comment"># work_book=xlrd.open_workbook(filename=file)</span></span><br><span class="line">    work_book=xlwt.Workbook(encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    sheet=work_book.add_sheet(sheetname)</span><br><span class="line">    sheet.write(<span class="number">0</span>,<span class="number">0</span>,<span class="string">&#x27;id&#x27;</span>)</span><br><span class="line">    sheet.write(<span class="number">0</span>,<span class="number">1</span>,<span class="string">&#x27;name&#x27;</span>)</span><br><span class="line">    sheet.write(<span class="number">0</span>,<span class="number">2</span>,<span class="string">&#x27;age&#x27;</span>)</span><br><span class="line">    sheet.write(<span class="number">0</span>,<span class="number">3</span>,<span class="string">&#x27;datetime&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data[i])):</span><br><span class="line">            sheet.write(i+<span class="number">1</span>,j,<span class="string">&#x27;%s&#x27;</span> % data[i][j])</span><br><span class="line">    work_book.save(file)              </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Data output successfully&quot;</span>) </span><br><span class="line">outdata(rows,targetfilenames,<span class="string">&#x27;test&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">#导入数据
+import xlrd
+workbook &#x3D; xlrd.open_workbook(filename&#x3D;&#39;C:&#x2F;文件名&#39;)#仅支持xls文件
+# 需要先指定sheet工作表
+table &#x3D; workbook.sheet_by_name(sheet_name&#x3D;&#39;sheet表名&#39;)
+# 获取行数
+rows &#x3D; table.nrows
+# 获取列数
+cols &#x3D; table.ncols
+# 循环获取每行的数据
+for row in range(rows):
+    for col in range(cols):
+        value &#x3D; table.cell_value(row, col)
+        print(&#39;第&#123;&#125;行&#123;&#125;列的数据为：&#123;&#125;&#39;.format(row, col, value))
+#导出数据
+import xlwt
+# 创建一个workbook并设置编码
+workbook &#x3D; xlwt.Workbook(encoding &#x3D; &#39;utf-8&#39;)
+# 添加sheet
+worksheet &#x3D; workbook.add_sheet(&#39;text2&#39;)
+# 写入excel, 参数对应 行, 列, 值
+for row in range(rows):
+    for col in range(cols):
+        value &#x3D; table.cell_value(row, col)
+        worksheet.write(row, col, value)
+workbook.save(&#39;text2.csv&#39;)   
+#导出数据方法2
+def outdata(data,file,sheetname):
+    # work_book&#x3D;xlrd.open_workbook(filename&#x3D;file)
+    work_book&#x3D;xlwt.Workbook(encoding&#x3D;&#39;utf-8&#39;)
+    sheet&#x3D;work_book.add_sheet(sheetname)
+    sheet.write(0,0,&#39;id&#39;)
+    sheet.write(0,1,&#39;name&#39;)
+    sheet.write(0,2,&#39;age&#39;)
+    sheet.write(0,3,&#39;datetime&#39;)
+    for i in range(len(data)):
+        for j in range(len(data[i])):
+            sheet.write(i+1,j,&#39;%s&#39; % data[i][j])
+    work_book.save(file)              
+    print(&quot;Data output successfully&quot;) 
+outdata(rows,targetfilenames,&#39;test&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>方法三：</p>
 <p>运用csv模块导入导出数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入数据</span></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">from</span> re <span class="keyword">import</span> A</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">readfile</span>():</span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&#x27;文件名&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">    csv_reader = csv.reader(f)</span><br><span class="line">    a=[]</span><br><span class="line">    <span class="keyword">for</span> row_data <span class="keyword">in</span> csv_reader:</span><br><span class="line">        a.append(row_data)</span><br><span class="line">        <span class="built_in">print</span>(a)</span><br><span class="line">    f.close()         </span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"><span class="comment">#导出数据    </span></span><br><span class="line">a=readfile()</span><br><span class="line">csvFile3 = <span class="built_in">open</span>(<span class="string">&#x27;新文件名&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>,newline=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">writer2 = csv.DictWriter(csvFile3,fieldnames=[<span class="string">&#x27;属性名&#x27;</span>])</span><br><span class="line">key=a[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(key)):</span><br><span class="line">    writer2 = csv.writer(csvFile3)</span><br><span class="line">    writer2.writerow(a[t])</span><br><span class="line">csvFile3.close()  </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">#导入数据
+import csv
+from re import A
+def readfile():
+    f &#x3D; open(&#39;文件名&#39;, &#39;r&#39;)
+    csv_reader &#x3D; csv.reader(f)
+    a&#x3D;[]
+    for row_data in csv_reader:
+        a.append(row_data)
+        print(a)
+    f.close()         
+    return a
+#导出数据    
+a&#x3D;readfile()
+csvFile3 &#x3D; open(&#39;新文件名&#39;,&#39;w&#39;,encoding&#x3D;&#39;utf-8&#39;,newline&#x3D;&#39;&#39;)
+writer2 &#x3D; csv.DictWriter(csvFile3,fieldnames&#x3D;[&#39;属性名&#39;])
+key&#x3D;a[0]
+for t in range(len(key)):
+    writer2 &#x3D; csv.writer(csvFile3)
+    writer2.writerow(a[t])
+csvFile3.close()  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
     </article>
     <!-- license -->
@@ -756,7 +860,7 @@ required窗口中点击Refresh保存即可。</p>
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#postgresql%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">PostgreSQL命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8pgadmin%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text">使用pgAdmin工具创建数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pgadmin%E5%B7%A5%E5%85%B7%E7%95%8C%E9%9D%A2%E8%AF%AD%E8%A8%80%E8%AE%BE%E6%88%90%E4%B8%AD%E6%96%87"><span class="toc-number">1.2.</span> <span class="toc-text">pgAdmin工具界面语言设成中文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pgadmin%E5%88%9B%E5%BB%BAsql%E8%84%9A%E6%9C%AC"><span class="toc-number">1.3.</span> <span class="toc-text">pgAdmin创建SQL脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pgsql%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.4.</span> <span class="toc-text">PgSQL创建数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pgsql%E7%9A%84crud%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.5.</span> <span class="toc-text">PgSQL的CRUD语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create%E5%BB%BA%E8%A1%A8"><span class="toc-number">1.5.1.</span> <span class="toc-text">create建表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create%E5%88%9B%E5%BB%BA%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">create创建复合类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#insert%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.1.</span> <span class="toc-text">insert插入数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#read%E8%AF%BB%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.2.</span> <span class="toc-text">read读数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#update%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.3.</span> <span class="toc-text">update更新数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deletedrop%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.4.</span> <span class="toc-text">delete&amp;drop删除数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8python%E8%BF%9B%E8%A1%8Cpgsql%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.7.</span> <span class="toc-text">使用python进行PgSQL数据库连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8python%E5%B0%86csv%E6%96%87%E6%9C%AC%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E8%87%B3pqsql"><span class="toc-number">1.8.</span> <span class="toc-text">使用python将csv文本的数据导入导出至pqsql</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PostgreSQL%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">PostgreSQL命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8pgAdmin%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text">使用pgAdmin工具创建数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pgAdmin%E5%B7%A5%E5%85%B7%E7%95%8C%E9%9D%A2%E8%AF%AD%E8%A8%80%E8%AE%BE%E6%88%90%E4%B8%AD%E6%96%87"><span class="toc-number">1.2.</span> <span class="toc-text">pgAdmin工具界面语言设成中文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pgAdmin%E5%88%9B%E5%BB%BASQL%E8%84%9A%E6%9C%AC"><span class="toc-number">1.3.</span> <span class="toc-text">pgAdmin创建SQL脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PgSQL%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.4.</span> <span class="toc-text">PgSQL创建数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PgSQL%E7%9A%84CRUD%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.5.</span> <span class="toc-text">PgSQL的CRUD语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create%E5%BB%BA%E8%A1%A8"><span class="toc-number">1.5.1.</span> <span class="toc-text">create建表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create%E5%88%9B%E5%BB%BA%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">create创建复合类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#insert%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.1.</span> <span class="toc-text">insert插入数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#read%E8%AF%BB%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.2.</span> <span class="toc-text">read读数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#update%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.3.</span> <span class="toc-text">update更新数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete-amp-drop%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.4.</span> <span class="toc-text">delete&amp;drop删除数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8python%E8%BF%9B%E8%A1%8CPgSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.7.</span> <span class="toc-text">使用python进行PgSQL数据库连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8python%E5%B0%86csv%E6%96%87%E6%9C%AC%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E8%87%B3pqsql"><span class="toc-number">1.8.</span> <span class="toc-text">使用python将csv文本的数据导入导出至pqsql</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1106,6 +1210,12 @@ required窗口中点击Refresh保存即可。</p>
         
         
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2215,6 +2325,11 @@ required窗口中点击Refresh保存即可。</p>
                 数据库工具
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2228,21 +2343,6 @@ required窗口中点击Refresh保存即可。</p>
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS3">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS3
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2260,9 +2360,29 @@ required窗口中点击Refresh保存即可。</p>
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2285,14 +2405,14 @@ required窗口中点击Refresh保存即可。</p>
                 MinIO
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="LLM">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                LLM
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2303,16 +2423,6 @@ required窗口中点击Refresh保存即可。</p>
             <span class="sidebar-tag-name" data-tags="Vue">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="LLM">
-                <span class="iconfont-archer">&#xe606;</span>
-                LLM
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="人工智能">
-                <span class="iconfont-archer">&#xe606;</span>
-                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2335,11 +2445,6 @@ required窗口中点击Refresh保存即可。</p>
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2348,6 +2453,11 @@ required窗口中点击Refresh保存即可。</p>
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2421,14 +2531,19 @@ required窗口中点击Refresh保存即可。</p>
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2436,9 +2551,9 @@ required窗口中点击Refresh保存即可。</p>
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2451,14 +2566,9 @@ required窗口中点击Refresh保存即可。</p>
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2466,34 +2576,29 @@ required窗口中点击Refresh保存即可。</p>
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Lottie">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="可视化">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
+            可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="Vue">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            Vue
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
             LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2506,9 +2611,9 @@ required窗口中点击Refresh保存即可。</p>
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="人工智能">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2521,14 +2626,24 @@ required窗口中点击Refresh保存即可。</p>
             JavaScript
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2539,11 +2654,6 @@ required窗口中点击Refresh保存即可。</p>
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2618,20 +2728,5 @@ required窗口中点击Refresh保存即可。</p>
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+    </body>
 </html>

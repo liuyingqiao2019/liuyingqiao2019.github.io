@@ -345,7 +345,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">5.7k</span>阅读时长: <span class="post-count reading-time">30 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">6.1k</span>阅读时长: <span class="post-count reading-time">33 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -506,229 +506,824 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="创建一个flask-restful-api">创建一个Flask RESTful API</h1>
-<p>本节的目的为搭建Flask应用，并提供一个测试API，客户端访问<code>/ping</code>后会返回<code>pong!</code>响应。</p>
-<h2 id="配置flask">配置Flask</h2>
-<p>确保python3已安装后，在合适的位置新建<code>tutorproject</code>项目目录，在<code>tutorproject</code>里新建<code>back-end</code>目录，作为后端API应用所在的位置。在<code>C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end</code>的目录下右键，选择在终端打开后，按照以下步骤搭建Flask所需的环境。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建虚拟环境venv</span></span><br><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;python -m venv venv</span><br><span class="line"><span class="comment">#激活环境venv</span></span><br><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;venv\Scripts\activate</span><br><span class="line"><span class="comment">#虚拟环境中导入flask模块</span></span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install flask</span><br><span class="line"><span class="comment">#把系统环境信息写到txt中</span></span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt;requirements.txt</span><br></pre></td></tr></table></figure>
-<h2 id="应用工厂">应用工厂</h2>
-<p>创建<code>tutorweb</code>目录，并在<code>tutorweb</code>目录下新建<code>__init__.py</code>文件，在<code>__init__.py</code>中，使用应用工厂函数来创建Flask应用：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> Config</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_app</span>(<span class="params">config_class=Config</span>):</span><br><span class="line">    app=Flask(__name__)</span><br><span class="line">    app.config.from_object(config_class)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#注册blueprint</span></span><br><span class="line">    <span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp <span class="keyword">as</span> api_bp</span><br><span class="line">    app.register_blueprint(api_bp,url_prefix=<span class="string">&#x27;/api&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> app  </span><br></pre></td></tr></table></figure>
+        <h1 id="创建一个Flask-RESTful-API"><a href="#创建一个Flask-RESTful-API" class="headerlink" title="创建一个Flask RESTful API"></a>创建一个Flask RESTful API</h1><p>本节的目的为搭建Flask应用，并提供一个测试API，客户端访问<code>/ping</code>后会返回<code>pong!</code>响应。</p>
+<h2 id="配置Flask"><a href="#配置Flask" class="headerlink" title="配置Flask"></a>配置Flask</h2><p>确保python3已安装后，在合适的位置新建<code>tutorproject</code>项目目录，在<code>tutorproject</code>里新建<code>back-end</code>目录，作为后端API应用所在的位置。在<code>C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end</code>的目录下右键，选择在终端打开后，按照以下步骤搭建Flask所需的环境。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#创建虚拟环境venv
+PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;python -m venv venv
+#激活环境venv
+PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;venv\Scripts\activate
+#虚拟环境中导入flask模块
+(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install flask
+#把系统环境信息写到txt中
+(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt;requirements.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="应用工厂"><a href="#应用工厂" class="headerlink" title="应用工厂"></a>应用工厂</h2><p>创建<code>tutorweb</code>目录，并在<code>tutorweb</code>目录下新建<code>__init__.py</code>文件，在<code>__init__.py</code>中，使用应用工厂函数来创建Flask应用：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from flask import Flask
+from config import Config
+
+def create_app(config_class&#x3D;Config):
+    app&#x3D;Flask(__name__)
+    app.config.from_object(config_class)
+
+    #注册blueprint
+    from tutorweb.api import bp as api_bp
+    app.register_blueprint(api_bp,url_prefix&#x3D;&#39;&#x2F;api&#39;)
+    
+    return app  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>创建<code>tutorweb/api</code>目录，并在<code>api</code>目录下新建<code>__init__.py</code>文件，定义蓝图：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Blueprint</span><br><span class="line">bp=Blueprint(<span class="string">&#x27;api&#x27;</span>,__name__)</span><br><span class="line"><span class="comment">#防止循环导入ping.py文件</span></span><br><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> ping</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from flask import Blueprint
+bp&#x3D;Blueprint(&#39;api&#39;,__name__)
+#防止循环导入ping.py文件
+from tutorweb.api import ping<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在<code>api</code>目录下新建<code>ping.py</code>文件，定义路由函数，当客户端访问<code>/ping</code>时返回包含<code>JSON</code>的数据：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> jsonify</span><br><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/ping&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ping</span>():</span><br><span class="line">    <span class="comment">#vue.js用来测试与后端Flask API的连通性</span></span><br><span class="line">    <span class="keyword">return</span> jsonify(<span class="string">&#x27;Pong!&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="应用启动文件">应用启动文件</h2>
-<p>在<code>back-end</code>目录下新建<code>madblog.py</code>文件：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> create_app</span><br><span class="line"></span><br><span class="line">app=create_app()</span><br></pre></td></tr></table></figure>
-<h2 id="配置文件">配置文件</h2>
-<p>在<code>back-end</code>目录下新建<code>config.py</code>文件：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os </span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv</span><br><span class="line"></span><br><span class="line">basedir=os.path.abspath(os.path.dirname(__file__))</span><br><span class="line">load_dotenv(os.path.join(basedir,<span class="string">&#x27;.env&#x27;</span>),encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Config</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h2 id="读取环境变量信息">读取环境变量信息</h2>
-<p>将Flask应用所需的系统环境变量写到<code>back-end/.env</code>中，可先使用<code>python-dotenv</code>这个包来读取环境变量信息，再把系统环境写到txt中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install python-dotenv</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt;requirements.txt</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from flask import jsonify
+from tutorweb.api import bp
+
+@bp.route(&#39;&#x2F;ping&#39;,methods&#x3D;[&#39;GET&#39;])
+def ping():
+    #vue.js用来测试与后端Flask API的连通性
+    return jsonify(&#39;Pong!&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="应用启动文件"><a href="#应用启动文件" class="headerlink" title="应用启动文件"></a>应用启动文件</h2><p>在<code>back-end</code>目录下新建<code>madblog.py</code>文件：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from tutorweb import create_app
+
+app&#x3D;create_app()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>在<code>back-end</code>目录下新建<code>config.py</code>文件：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import os 
+from dotenv import load_dotenv
+
+basedir&#x3D;os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir,&#39;.env&#39;),encoding&#x3D;&#39;utf-8&#39;)
+
+class Config(object):
+    pass<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="读取环境变量信息"><a href="#读取环境变量信息" class="headerlink" title="读取环境变量信息"></a>读取环境变量信息</h2><p>将Flask应用所需的系统环境变量写到<code>back-end/.env</code>中，可先使用<code>python-dotenv</code>这个包来读取环境变量信息，再把系统环境写到txt中：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install python-dotenv
+(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt;requirements.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>在<code>back-end</code>目录下新建<code>.env</code>文件，用记事本打开后写入以下信息保存：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FLASK_APP=madblog.py</span><br><span class="line">FLASK_DEBUG=<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h2 id="启动应用">启动应用</h2>
-<p>输入flask run即可启动应用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask run </span><br><span class="line"></span><br><span class="line"> * Serving Flask app <span class="string">&#x27;madblog.py&#x27;</span></span><br><span class="line"> * Debug mode: on</span><br><span class="line">WARNING: This is a development server. Do not use it <span class="keyword">in</span> a production deployment. Use a production WSGI server instead.</span><br><span class="line"> * Running on http://127.0.0.1:5000</span><br><span class="line">Press CTRL+C to quit</span><br><span class="line"> * Restarting with <span class="built_in">stat</span></span><br><span class="line"> * Debugger is active!</span><br><span class="line"> * Debugger PIN: 354-979-609</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">FLASK_APP&#x3D;madblog.py
+FLASK_DEBUG&#x3D;1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="启动应用"><a href="#启动应用" class="headerlink" title="启动应用"></a>启动应用</h2><p>输入flask run即可启动应用：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask run 
+
+ * Serving Flask app &#39;madblog.py&#39;
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http:&#x2F;&#x2F;127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 354-979-609<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>启动应用后，打开浏览器，访问<code>http://127.0.0.1:5000/api/ping</code>，若出现<code>Pong!</code>则说明所定义的<code>Ping-Pong</code>测试路由正常。</p>
-<p><img src="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/1.png"></p>
+<p><img src="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/1.png" alt></p>
 <p>在cmd页面按下ctrl+c即可停止应用运行。</p>
 <p><strong>此时的目录结构如下：</strong></p>
-<p><img src="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/2.png"></p>
-<h1 id="flask设计user用户相关api">Flask设计User用户相关API</h1>
-<p>本节的内容为：Flask后端针对“用户资源”提供部分RESTful
-API，基于token认证，支持添加用户、查看单个或多个用户、修改用户，使用HTTPie或Postman测试API通过。</p>
-<h2 id="数据库">数据库</h2>
-<h3 id="ormsqlalchemy">ORM：SQLAlchemy</h3>
-<p>安装<code>Flask-SQLAlchemy</code>插件和数据表结构有变化后进行迁移的<code>Flask-Migrate</code>插件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install flask-sqlalchemy flask-migrate</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/2.png" alt></p>
+<h1 id="Flask设计User用户相关API"><a href="#Flask设计User用户相关API" class="headerlink" title="Flask设计User用户相关API"></a>Flask设计User用户相关API</h1><p>本节的内容为：Flask后端针对“用户资源”提供部分RESTful API，基于token认证，支持添加用户、查看单个或多个用户、修改用户，使用HTTPie或Postman测试API通过。</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="ORM：SQLAlchemy"><a href="#ORM：SQLAlchemy" class="headerlink" title="ORM：SQLAlchemy"></a>ORM：SQLAlchemy</h3><p>安装<code>Flask-SQLAlchemy</code>插件和数据表结构有变化后进行迁移的<code>Flask-Migrate</code>插件：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install flask-sqlalchemy flask-migrate
+(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt; requirements.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>修改配置文件<code>back-end/config.py</code>，默认使用<code>SQLite</code>数据库：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os </span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv</span><br><span class="line"></span><br><span class="line">basedir=os.path.abspath(os.path.dirname(__file__))</span><br><span class="line">load_dotenv(os.path.join(basedir,<span class="string">&#x27;.env&#x27;</span>),encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Config</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    SQLALCHEMY_DATABASE_URI=os.environ.get(<span class="string">&#x27;DATABASE_URL&#x27;</span>) <span class="keyword">or</span> \</span><br><span class="line">        <span class="string">&#x27;sqlite:///&#x27;</span>+os.path.join(basedir,<span class="string">&#x27;tutorweb.db&#x27;</span>)</span><br><span class="line">    SQLALCHEMY_TRACK_MODIFICATIONS=<span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import os 
+from dotenv import load_dotenv
+
+basedir&#x3D;os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir,&#39;.env&#39;),encoding&#x3D;&#39;utf-8&#39;)
+
+class Config(object):
+    SQLALCHEMY_DATABASE_URI&#x3D;os.environ.get(&#39;DATABASE_URL&#39;) or \
+        &#39;sqlite:&#x2F;&#x2F;&#x2F;&#39;+os.path.join(basedir,&#39;tutorweb.db&#39;)
+    SQLALCHEMY_TRACK_MODIFICATIONS&#x3D;False<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>修改<code>tutorweb/__init__.py</code>，引入并初始化插件：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"><span class="keyword">from</span> flask_migrate <span class="keyword">import</span> Migrate</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> Config</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义Flack_SQLAlchemy</span></span><br><span class="line">db=SQLAlchemy()</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义Flack_Migrate </span></span><br><span class="line">migrate=Migrate()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_app</span>(<span class="params">config_class=Config</span>):</span><br><span class="line">    app=Flask(__name__)</span><br><span class="line">    app.config.from_object(config_class)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#启用CORS</span></span><br><span class="line">    CORS(app)</span><br><span class="line">    <span class="comment">#初始化Flack_SQLAlchemy</span></span><br><span class="line">    db.init_app(app)</span><br><span class="line">    <span class="comment">#初始化Flack_Migrate </span></span><br><span class="line">    migrate.init_app(app,db)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#注册blueprint</span></span><br><span class="line">    <span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp <span class="keyword">as</span> api_bp</span><br><span class="line">    app.register_blueprint(api_bp,url_prefix=<span class="string">&#x27;/api&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> app   </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from flask import Flask
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from config import Config
+
+#定义Flack_SQLAlchemy
+db&#x3D;SQLAlchemy()
+
+#定义Flack_Migrate 
+migrate&#x3D;Migrate()
+
+def create_app(config_class&#x3D;Config):
+    app&#x3D;Flask(__name__)
+    app.config.from_object(config_class)
+
+    #启用CORS
+    CORS(app)
+    #初始化Flack_SQLAlchemy
+    db.init_app(app)
+    #初始化Flack_Migrate 
+    migrate.init_app(app,db)
+
+    #注册blueprint
+    from tutorweb.api import bp as api_bp
+    app.register_blueprint(api_bp,url_prefix&#x3D;&#39;&#x2F;api&#39;)
+    
+    return app   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在<code>back-end</code>目录下新建tutorweb.db文件作为数据库文件，修改<code>back-end</code>目录下的<code>madblog.py</code>文件如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> create_app,db</span><br><span class="line"></span><br><span class="line">app=create_app()</span><br></pre></td></tr></table></figure>
-<h3 id="定义user用户数据模型">定义User用户数据模型</h3>
-<p>创建<code>tutorweb/models.py</code>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> db</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(db.Model):</span><br><span class="line">    <span class="built_in">id</span>=db.Column(db.Integer,primary_key=<span class="literal">True</span>)</span><br><span class="line">    username=db.Column(db.String(<span class="number">64</span>),index=<span class="literal">True</span>,unique=<span class="literal">True</span>)</span><br><span class="line">    email=db.Column(db.String(<span class="number">120</span>),index=<span class="literal">True</span>,unique=<span class="literal">True</span>)</span><br><span class="line">    password_hash=db.Column(db.String(<span class="number">128</span>))<span class="comment">#不保留原始密码</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__repr__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&lt;User &#123;&#125;&gt;&#x27;</span>.<span class="built_in">format</span>(self.username)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from tutorweb import create_app,db
+
+app&#x3D;create_app()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="定义User用户数据模型"><a href="#定义User用户数据模型" class="headerlink" title="定义User用户数据模型"></a>定义User用户数据模型</h3><p>创建<code>tutorweb/models.py</code>:</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from tutorweb import db
+
+class User(db.Model):
+    id&#x3D;db.Column(db.Integer,primary_key&#x3D;True)
+    username&#x3D;db.Column(db.String(64),index&#x3D;True,unique&#x3D;True)
+    email&#x3D;db.Column(db.String(120),index&#x3D;True,unique&#x3D;True)
+    password_hash&#x3D;db.Column(db.String(128))#不保留原始密码
+
+    def __repr__(self):
+        return &#39;&lt;User &#123;&#125;&gt;&#39;.format(self.username)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>修改<code>tutorweb/__init__.py</code>，在文件末尾添加：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> models</span><br></pre></td></tr></table></figure>
-<h3 id="第一次数据库迁移">第一次数据库迁移</h3>
-<p>创建迁移数据库：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db init</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from tutorweb import models<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="第一次数据库迁移"><a href="#第一次数据库迁移" class="headerlink" title="第一次数据库迁移"></a>第一次数据库迁移</h3><p>创建迁移数据库：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db init<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>生成迁移脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db migrate -m <span class="string">&quot;add users table&quot;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db migrate -m &quot;add users table&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>将迁移脚本应用到数据库中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db upgrade</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db upgrade<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>若要回滚上次的迁移，可用<code>flask db downgrade</code>命令回滚。</p>
 <p>存储用户密码的hash值：</p>
 <p>使用<code>werkzeug.security</code>库的<code>generate_password_hash</code>和<code>check_password_hash</code>来创建哈希密码和验证密码的hash是否一致：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; python</span><br><span class="line">Python <span class="number">3.10</span><span class="number">.5</span> (tags/v3<span class="number">.10</span><span class="number">.5</span>:f377153, Jun  <span class="number">6</span> <span class="number">2022</span>, <span class="number">16</span>:<span class="number">14</span>:<span class="number">13</span>) [MSC v<span class="number">.1929</span> <span class="number">64</span> bit (AMD64)] on win32</span><br><span class="line"><span class="type">Type</span> <span class="string">&quot;help&quot;</span>, <span class="string">&quot;copyright&quot;</span>, <span class="string">&quot;credits&quot;</span> <span class="keyword">or</span> <span class="string">&quot;license&quot;</span> <span class="keyword">for</span> more information.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> werkzeug.security <span class="keyword">import</span> generate_password_hash, check_password_hash</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">hash</span> = generate_password_hash(<span class="string">&#x27;123&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">hash</span></span><br><span class="line"><span class="string">&#x27;pbkdf2:sha256:260000$RBvmqvkVP61YXGy0$52d3ea1ae76f51d284ba66d2665c8bcfdd069b47cdff7e3211e46d5d98a9d01a&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>check_password_hash(<span class="built_in">hash</span>, <span class="string">&#x27;foobar&#x27;</span>)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>check_password_hash(<span class="built_in">hash</span>, <span class="string">&#x27;123&#x27;</span>)</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; python
+Python 3.10.5 (tags&#x2F;v3.10.5:f377153, Jun  6 2022, 16:14:13) [MSC v.1929 64 bit (AMD64)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; from werkzeug.security import generate_password_hash, check_password_hash
+&gt;&gt;&gt; hash &#x3D; generate_password_hash(&#39;123&#39;)
+&gt;&gt;&gt; hash
+&#39;pbkdf2:sha256:260000$RBvmqvkVP61YXGy0$52d3ea1ae76f51d284ba66d2665c8bcfdd069b47cdff7e3211e46d5d98a9d01a&#39;
+&gt;&gt;&gt; check_password_hash(hash, &#39;foobar&#39;)
+False
+&gt;&gt;&gt; check_password_hash(hash, &#39;123&#39;)
+True<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>注意：</strong>使用<code>generate_password_hash</code>生成不同的3个’123’哈希值，并复制其值保存下来备用，以作为后面用户密码使用。</p>
 <p>修改<code>tutorweb/models.py</code>，增加创建密码和验证密码两个方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> werkzeug.security <span class="keyword">import</span> generate_password_hash,check_password_hash</span><br><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> db</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(db.Model):</span><br><span class="line">    <span class="built_in">id</span>=db.Column(db.Integer,primary_key=<span class="literal">True</span>)</span><br><span class="line">    username=db.Column(db.String(<span class="number">64</span>),index=<span class="literal">True</span>,unique=<span class="literal">True</span>)</span><br><span class="line">    email=db.Column(db.String(<span class="number">120</span>),index=<span class="literal">True</span>,unique=<span class="literal">True</span>)</span><br><span class="line">    password_hash=db.Column(db.String(<span class="number">128</span>))<span class="comment">#不保留原始密码</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__repr__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&lt;User &#123;&#125;&gt;&#x27;</span>.<span class="built_in">format</span>(self.username)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_password</span>(<span class="params">self,password</span>):</span><br><span class="line">        self.password_hash=generate_password_hash(password) </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">check_password</span>(<span class="params">self,password</span>):</span><br><span class="line">        <span class="keyword">return</span> check_password_hash(self.password_hash,password)</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from werkzeug.security import generate_password_hash,check_password_hash
+from tutorweb import db
+
+class User(db.Model):
+    id&#x3D;db.Column(db.Integer,primary_key&#x3D;True)
+    username&#x3D;db.Column(db.String(64),index&#x3D;True,unique&#x3D;True)
+    email&#x3D;db.Column(db.String(120),index&#x3D;True,unique&#x3D;True)
+    password_hash&#x3D;db.Column(db.String(128))#不保留原始密码
+
+    def __repr__(self):
+        return &#39;&lt;User &#123;&#125;&gt;&#39;.format(self.username)
+
+    def set_password(self,password):
+        self.password_hash&#x3D;generate_password_hash(password) 
+
+    def check_password(self,password):
+        return check_password_hash(self.password_hash,password)
+   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>配置Flask Shell上下文环境：</p>
 <p><code>flask shell</code>命令是继<code>flask run</code>后被实现的第二个“核心”命令，其目的是启动一个python解释器包含应用的上下文：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; flask shell</span><br><span class="line">Python 3.10.5 (tags/v3.10.5:f377153, Jun  6 2022, 16:14:13) [MSC v.1929 64 bit (AMD64)] on win32</span><br><span class="line">App: tutorweb</span><br><span class="line">Instance: C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\instance</span><br><span class="line">&gt;&gt;&gt; tutorweb</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;&lt;console&gt;&quot;</span>, line 1, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">NameError: name <span class="string">&#x27;tutorweb&#x27;</span> is not defined</span><br><span class="line">&gt;&gt;&gt; app</span><br><span class="line">&lt;Flask <span class="string">&#x27;tutorweb&#x27;</span>&gt;</span><br><span class="line">&gt;&gt;&gt; db</span><br><span class="line">&lt;SQLAlchemy sqlite:///C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\tutorweb.db&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; flask shell
+Python 3.10.5 (tags&#x2F;v3.10.5:f377153, Jun  6 2022, 16:14:13) [MSC v.1929 64 bit (AMD64)] on win32
+App: tutorweb
+Instance: C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\instance
+&gt;&gt;&gt; tutorweb
+Traceback (most recent call last):
+  File &quot;&lt;console&gt;&quot;, line 1, in &lt;module&gt;
+NameError: name &#39;tutorweb&#39; is not defined
+&gt;&gt;&gt; app
+&lt;Flask &#39;tutorweb&#39;&gt;
+&gt;&gt;&gt; db
+&lt;SQLAlchemy sqlite:&#x2F;&#x2F;&#x2F;C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\tutorweb.db&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>修改<code>back-end/madblog.py</code>，添加一个方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> create_app,db</span><br><span class="line"><span class="keyword">from</span> tutorweb.models <span class="keyword">import</span> User</span><br><span class="line"></span><br><span class="line">app=create_app()</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.shell_context_processor</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_shell_context</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;db&#x27;</span>:db,<span class="string">&#x27;User&#x27;</span>:User&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from tutorweb import create_app,db
+from tutorweb.models import User
+
+app&#x3D;create_app()
+
+@app.shell_context_processor
+def make_shell_context():
+    return &#123;&#39;db&#39;:db,&#39;User&#39;:User&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>再次运行<code>flask shell</code>命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; flask shell</span><br><span class="line">Python 3.10.5 (tags/v3.10.5:f377153, Jun  6 2022, 16:14:13) [MSC v.1929 64 bit (AMD64)] on win32</span><br><span class="line">App: tutorweb</span><br><span class="line">Instance: C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\instance</span><br><span class="line">&gt;&gt;&gt; app</span><br><span class="line">&lt;Flask <span class="string">&#x27;tutorweb&#x27;</span>&gt;</span><br><span class="line">&gt;&gt;&gt; db</span><br><span class="line">&lt;SQLAlchemy sqlite:///C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\tutorweb.db&gt;</span><br><span class="line">&gt;&gt;&gt; User</span><br><span class="line">&lt;class <span class="string">&#x27;tutorweb.models.User&#x27;</span>&gt;</span><br><span class="line">&gt;&gt;&gt; u=User(username=<span class="string">&#x27;tom&#x27;</span>,email=<span class="string">&#x27;tom@163.com&#x27;</span>)</span><br><span class="line">&gt;&gt;&gt; u.set_password(<span class="string">&#x27;123456&#x27;</span>)</span><br><span class="line">&gt;&gt;&gt; u.check_password(<span class="string">&#x27;123456&#x27;</span>)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; u.check_password(<span class="string">&#x27;654321&#x27;</span>)</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
-<h2 id="restful-api设计">RESTful API设计</h2>
-<p>用户资源暂时提供以下几个API：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; flask shell
+Python 3.10.5 (tags&#x2F;v3.10.5:f377153, Jun  6 2022, 16:14:13) [MSC v.1929 64 bit (AMD64)] on win32
+App: tutorweb
+Instance: C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\instance
+&gt;&gt;&gt; app
+&lt;Flask &#39;tutorweb&#39;&gt;
+&gt;&gt;&gt; db
+&lt;SQLAlchemy sqlite:&#x2F;&#x2F;&#x2F;C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end\tutorweb.db&gt;
+&gt;&gt;&gt; User
+&lt;class &#39;tutorweb.models.User&#39;&gt;
+&gt;&gt;&gt; u&#x3D;User(username&#x3D;&#39;tom&#39;,email&#x3D;&#39;tom@163.com&#39;)
+&gt;&gt;&gt; u.set_password(&#39;123456&#39;)
+&gt;&gt;&gt; u.check_password(&#39;123456&#39;)
+True
+&gt;&gt;&gt; u.check_password(&#39;654321&#39;)
+False<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="RESTful-API设计"><a href="#RESTful-API设计" class="headerlink" title="RESTful API设计"></a>RESTful API设计</h2><p>用户资源暂时提供以下几个API：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">HTTP方法</th>
-<th style="text-align: left;">资源URL</th>
-<th style="text-align: left;">说明</th>
+<th style="text-align:left">HTTP方法</th>
+<th style="text-align:left">资源URL</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>GET</code></td>
-<td style="text-align: left;"><code>/api/users</code></td>
-<td style="text-align: left;">返回所有用户的集合</td>
+<td style="text-align:left"><code>GET</code></td>
+<td style="text-align:left"><code>/api/users</code></td>
+<td style="text-align:left">返回所有用户的集合</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>POST</code></td>
-<td style="text-align: left;"><code>/api/users</code></td>
-<td style="text-align: left;">注册一个新用户</td>
+<td style="text-align:left"><code>POST</code></td>
+<td style="text-align:left"><code>/api/users</code></td>
+<td style="text-align:left">注册一个新用户</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>GET</code></td>
-<td style="text-align: left;"><code>/api/users/&lt;id&gt;</code></td>
-<td style="text-align: left;">返回一个用户</td>
+<td style="text-align:left"><code>GET</code></td>
+<td style="text-align:left"><code>/api/users/&lt;id&gt;</code></td>
+<td style="text-align:left">返回一个用户</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>PUT</code></td>
-<td style="text-align: left;"><code>/api/users/&lt;id&gt;</code></td>
-<td style="text-align: left;">修改一个用户</td>
+<td style="text-align:left"><code>PUT</code></td>
+<td style="text-align:left"><code>/api/users/&lt;id&gt;</code></td>
+<td style="text-align:left">修改一个用户</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>DELETE</code></td>
-<td style="text-align: left;"><code>/api/users/&lt;id&gt;</code></td>
-<td style="text-align: left;">删除一个用户</td>
+<td style="text-align:left"><code>DELETE</code></td>
+<td style="text-align:left"><code>/api/users/&lt;id&gt;</code></td>
+<td style="text-align:left">删除一个用户</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>创建<code>tutorweb/api/users.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users&#x27;</span>, methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_user</span>():</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;注册一个新用户&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_users</span>():</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;返回所有用户的集合&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;返回一个用户&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>, methods=[<span class="string">&#x27;PUT&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;修改一个用户&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>, methods=[<span class="string">&#x27;DELETE&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;删除一个用户&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from tutorweb.api import bp
+
+@bp.route(&#39;&#x2F;users&#39;, methods&#x3D;[&#39;POST&#39;])
+def create_user():
+    &#39;&#39;&#39;注册一个新用户&#39;&#39;&#39;
+    pass
+
+@bp.route(&#39;&#x2F;users&#39;, methods&#x3D;[&#39;GET&#39;])
+def get_users():
+    &#39;&#39;&#39;返回所有用户的集合&#39;&#39;&#39;
+    pass
+
+@bp.route(&#39;&#x2F;users&#x2F;&lt;int:id&gt;&#39;, methods&#x3D;[&#39;GET&#39;])
+def get_user(id):
+    &#39;&#39;&#39;返回一个用户&#39;&#39;&#39;
+    pass
+
+@bp.route(&#39;&#x2F;users&#x2F;&lt;int:id&gt;&#39;, methods&#x3D;[&#39;PUT&#39;])
+def update_user(id):
+    &#39;&#39;&#39;修改一个用户&#39;&#39;&#39;
+    pass
+
+@bp.route(&#39;&#x2F;users&#x2F;&lt;int:id&gt;&#39;, methods&#x3D;[&#39;DELETE&#39;])
+def delete_user(id):
+    &#39;&#39;&#39;删除一个用户&#39;&#39;&#39;
+    pass<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>修改 <code>tutorweb/api/__init__.py</code>，在末尾添加：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> ping,users</span><br></pre></td></tr></table></figure>
-<h3 id="用户对象转换成json">用户对象转换成JSON</h3>
-<p>Flask使用的都是User实例对象，返回响应给前端时，需要传递<code>JSON</code>对象。</p>
-<p>修改 <code>tutorweb/models.py</code>，给 User 数据模型添加
-<code>to_dict</code> 方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> url_for</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(db.Model):</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">to_dict</span>(<span class="params">self, include_email=<span class="literal">False</span></span>):</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&#x27;id&#x27;</span>: self.<span class="built_in">id</span>,</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span>: self.username,</span><br><span class="line">            <span class="string">&#x27;_links&#x27;</span>: &#123;</span><br><span class="line">                <span class="string">&#x27;self&#x27;</span>: url_for(<span class="string">&#x27;api.get_user&#x27;</span>, <span class="built_in">id</span>=self.<span class="built_in">id</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> include_email:</span><br><span class="line">            data[<span class="string">&#x27;email&#x27;</span>] = self.email</span><br><span class="line">        <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
-<p>只有当用户请求自己的数据时才包含 <code>email</code>，使用
-<code>include_email</code>
-标志来确定该字段是否包含在字典中。<strong>调用该方法返回字典，再用
-<code>flask.jsonify</code> 将字典转换成 JSON 响应</strong></p>
-<h3 id="用户集合转换成json">用户集合转换成JSON</h3>
-<p>API 中有 <code>POST /users</code> 需要返回用户集合，所以还需要添加
-<code>to_collection_dict</code> 方法。考虑到后续会创建 <code>Post</code>
-等数据模型。</p>
-<p>在 <code>tutorweb/models.py</code> 中设计一个通用类
-<code>PaginatedAPIMixin</code>，放到User类前：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PaginatedAPIMixin</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">to_collection_dict</span>(<span class="params">query, page, per_page, endpoint, **kwargs</span>):</span><br><span class="line">        resources = query.paginate(page=page,per_page=per_page,error_out=<span class="literal">False</span>)</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&#x27;items&#x27;</span>: [item.to_dict() <span class="keyword">for</span> item <span class="keyword">in</span> resources.items],</span><br><span class="line">            <span class="string">&#x27;_meta&#x27;</span>: &#123;</span><br><span class="line">                <span class="string">&#x27;page&#x27;</span>: page,</span><br><span class="line">                <span class="string">&#x27;per_page&#x27;</span>: per_page,</span><br><span class="line">                <span class="string">&#x27;total_pages&#x27;</span>: resources.pages,</span><br><span class="line">                <span class="string">&#x27;total_items&#x27;</span>: resources.total</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&#x27;_links&#x27;</span>: &#123;</span><br><span class="line">                <span class="string">&#x27;self&#x27;</span>: url_for(endpoint, page=page, per_page=per_page,</span><br><span class="line">                                **kwargs),</span><br><span class="line">                <span class="string">&#x27;next&#x27;</span>: url_for(endpoint, page=page + <span class="number">1</span>, per_page=per_page,</span><br><span class="line">                                **kwargs) <span class="keyword">if</span> resources.has_next <span class="keyword">else</span> <span class="literal">None</span>,</span><br><span class="line">                <span class="string">&#x27;prev&#x27;</span>: url_for(endpoint, page=page - <span class="number">1</span>, per_page=per_page,</span><br><span class="line">                                **kwargs) <span class="keyword">if</span> resources.has_prev <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from tutorweb.api import ping,users<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="用户对象转换成JSON"><a href="#用户对象转换成JSON" class="headerlink" title="用户对象转换成JSON"></a>用户对象转换成JSON</h3><p>Flask使用的都是User实例对象，返回响应给前端时，需要传递<code>JSON</code>对象。</p>
+<p>修改 <code>tutorweb/models.py</code>，给 User 数据模型添加 <code>to_dict</code> 方法：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from flask import url_for
+...
+
+class User(db.Model):
+    ...
+    def to_dict(self, include_email&#x3D;False):
+        data &#x3D; &#123;
+            &#39;id&#39;: self.id,
+            &#39;username&#39;: self.username,
+            &#39;_links&#39;: &#123;
+                &#39;self&#39;: url_for(&#39;api.get_user&#39;, id&#x3D;self.id)
+            &#125;
+        &#125;
+        if include_email:
+            data[&#39;email&#39;] &#x3D; self.email
+        return data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>只有当用户请求自己的数据时才包含 <code>email</code>，使用 <code>include_email</code> 标志来确定该字段是否包含在字典中。<strong>调用该方法返回字典，再用 <code>flask.jsonify</code> 将字典转换成 JSON 响应</strong></p>
+<h3 id="用户集合转换成JSON"><a href="#用户集合转换成JSON" class="headerlink" title="用户集合转换成JSON"></a>用户集合转换成JSON</h3><p>API 中有 <code>POST /users</code> 需要返回用户集合，所以还需要添加 <code>to_collection_dict</code> 方法。考虑到后续会创建 <code>Post</code> 等数据模型。</p>
+<p>在 <code>tutorweb/models.py</code> 中设计一个通用类 <code>PaginatedAPIMixin</code>，放到User类前：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">class PaginatedAPIMixin(object):
+    @staticmethod
+    def to_collection_dict(query, page, per_page, endpoint, **kwargs):
+        resources &#x3D; query.paginate(page&#x3D;page,per_page&#x3D;per_page,error_out&#x3D;False)
+        data &#x3D; &#123;
+            &#39;items&#39;: [item.to_dict() for item in resources.items],
+            &#39;_meta&#39;: &#123;
+                &#39;page&#39;: page,
+                &#39;per_page&#39;: per_page,
+                &#39;total_pages&#39;: resources.pages,
+                &#39;total_items&#39;: resources.total
+            &#125;,
+            &#39;_links&#39;: &#123;
+                &#39;self&#39;: url_for(endpoint, page&#x3D;page, per_page&#x3D;per_page,
+                                **kwargs),
+                &#39;next&#39;: url_for(endpoint, page&#x3D;page + 1, per_page&#x3D;per_page,
+                                **kwargs) if resources.has_next else None,
+                &#39;prev&#39;: url_for(endpoint, page&#x3D;page - 1, per_page&#x3D;per_page,
+                                **kwargs) if resources.has_prev else None
+            &#125;
+        &#125;
+        return data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后，由User类继承这个类：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(PaginatedAPIMixin, db.Model):</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-<h3 id="json转换成用户对象">JSON转换成用户对象</h3>
-<p>前端发送过来 JSON 对象，需要转换成 User 对象：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">from_dict</span>(<span class="params">self, data, new_user=<span class="literal">False</span></span>):</span><br><span class="line">    <span class="keyword">for</span> field <span class="keyword">in</span> [<span class="string">&#x27;username&#x27;</span>, <span class="string">&#x27;email&#x27;</span>]:</span><br><span class="line">        <span class="keyword">if</span> field <span class="keyword">in</span> data:</span><br><span class="line">            <span class="built_in">setattr</span>(self, field, data[field])</span><br><span class="line">    <span class="keyword">if</span> new_user <span class="keyword">and</span> <span class="string">&#x27;password&#x27;</span> <span class="keyword">in</span> data:</span><br><span class="line">        self.set_password(data[<span class="string">&#x27;password&#x27;</span>])</span><br></pre></td></tr></table></figure>
-<h3 id="错误处理">错误处理</h3>
-<p>创建 <code>tutorweb/api/errors.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> jsonify</span><br><span class="line"><span class="keyword">from</span> werkzeug.http <span class="keyword">import</span> HTTP_STATUS_CODES</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">error_response</span>(<span class="params">status_code, message=<span class="literal">None</span></span>):</span><br><span class="line">    payload = &#123;<span class="string">&#x27;error&#x27;</span>: HTTP_STATUS_CODES.get(status_code, <span class="string">&#x27;Unknown error&#x27;</span>)&#125;</span><br><span class="line">    <span class="keyword">if</span> message:</span><br><span class="line">        payload[<span class="string">&#x27;message&#x27;</span>] = message</span><br><span class="line">    response = jsonify(payload)</span><br><span class="line">    response.status_code = status_code</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bad_request</span>(<span class="params">message</span>):</span><br><span class="line">    <span class="comment">#最常用的错误：400：错误的请求</span></span><br><span class="line">    <span class="keyword">return</span> error_response(<span class="number">400</span>, message)</span><br></pre></td></tr></table></figure>
-<h3 id="注册新用户">注册新用户</h3>
-<p>修改<code>tutorweb/api/users.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re </span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request,jsonify,url_for</span><br><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> db</span><br><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp</span><br><span class="line"><span class="keyword">from</span> tutorweb.api.errors <span class="keyword">import</span> bad_request</span><br><span class="line"><span class="keyword">from</span> tutorweb.models <span class="keyword">import</span> User</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users&#x27;</span>,methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_user</span>():</span><br><span class="line">    <span class="comment">#注册一个新用户</span></span><br><span class="line">    data=request.get_json()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">return</span> bad_request(<span class="string">&#x27;You must post JSON data.&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    message=&#123;&#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;username&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> data <span class="keyword">or</span> <span class="keyword">not</span> data.get(<span class="string">&#x27;username&#x27;</span>, <span class="literal">None</span>):</span><br><span class="line">        message[<span class="string">&#x27;username&#x27;</span>] = <span class="string">&#x27;Please provide a valid username.&#x27;</span></span><br><span class="line">    pattern = <span class="string">&#x27;^(([^&lt;&gt;()\[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()\[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;email&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> data <span class="keyword">or</span> <span class="keyword">not</span> re.<span class="keyword">match</span>(pattern, data.get(<span class="string">&#x27;email&#x27;</span>, <span class="literal">None</span>)):</span><br><span class="line">        message[<span class="string">&#x27;email&#x27;</span>] = <span class="string">&#x27;Please provide a valid email address.&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;password&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> data <span class="keyword">or</span> <span class="keyword">not</span> data.get(<span class="string">&#x27;password&#x27;</span>, <span class="literal">None</span>):</span><br><span class="line">        message[<span class="string">&#x27;password&#x27;</span>] = <span class="string">&#x27;Please provide a valid password.&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> User.query.filter_by(username=data.get(<span class="string">&#x27;username&#x27;</span>, <span class="literal">None</span>)).first():</span><br><span class="line">        message[<span class="string">&#x27;username&#x27;</span>] = <span class="string">&#x27;Please use a different username.&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> User.query.filter_by(email=data.get(<span class="string">&#x27;email&#x27;</span>, <span class="literal">None</span>)).first():</span><br><span class="line">        message[<span class="string">&#x27;email&#x27;</span>] = <span class="string">&#x27;Please use a different email address.&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> message:</span><br><span class="line">        <span class="keyword">return</span> bad_request(message)      </span><br><span class="line"></span><br><span class="line">    user=User()</span><br><span class="line">    user.from_dict(data,new_user=<span class="literal">True</span>)</span><br><span class="line">    db.session.add(user)</span><br><span class="line">    db.session.commit()</span><br><span class="line">    response=jsonify(user.to_dict())</span><br><span class="line">    response.status_code=<span class="number">201</span></span><br><span class="line">    <span class="comment">#HTTP协议要求201响应包含一个值为新资源URL的Location头部</span></span><br><span class="line">    response.headers[<span class="string">&#x27;Location&#x27;</span>]=url_for(<span class="string">&#x27;api.get_user&#x27;</span>,<span class="built_in">id</span>=user.<span class="built_in">id</span>)</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">class User(PaginatedAPIMixin, db.Model):
+    ...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="JSON转换成用户对象"><a href="#JSON转换成用户对象" class="headerlink" title="JSON转换成用户对象"></a>JSON转换成用户对象</h3><p>前端发送过来 JSON 对象，需要转换成 User 对象：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">def from_dict(self, data, new_user&#x3D;False):
+    for field in [&#39;username&#39;, &#39;email&#39;]:
+        if field in data:
+            setattr(self, field, data[field])
+    if new_user and &#39;password&#39; in data:
+        self.set_password(data[&#39;password&#39;])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>创建 <code>tutorweb/api/errors.py</code>：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from flask import jsonify
+from werkzeug.http import HTTP_STATUS_CODES
+
+def error_response(status_code, message&#x3D;None):
+    payload &#x3D; &#123;&#39;error&#39;: HTTP_STATUS_CODES.get(status_code, &#39;Unknown error&#39;)&#125;
+    if message:
+        payload[&#39;message&#39;] &#x3D; message
+    response &#x3D; jsonify(payload)
+    response.status_code &#x3D; status_code
+    return response
+
+def bad_request(message):
+    #最常用的错误：400：错误的请求
+    return error_response(400, message)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="注册新用户"><a href="#注册新用户" class="headerlink" title="注册新用户"></a>注册新用户</h3><p>修改<code>tutorweb/api/users.py</code>：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import re 
+from flask import request,jsonify,url_for
+from tutorweb import db
+from tutorweb.api import bp
+from tutorweb.api.errors import bad_request
+from tutorweb.models import User
+
+@bp.route(&#39;&#x2F;users&#39;,methods&#x3D;[&#39;POST&#39;])
+def create_user():
+    #注册一个新用户
+    data&#x3D;request.get_json()
+    if not data:
+        return bad_request(&#39;You must post JSON data.&#39;)
+
+    message&#x3D;&#123;&#125;
+    if &#39;username&#39; not in data or not data.get(&#39;username&#39;, None):
+        message[&#39;username&#39;] &#x3D; &#39;Please provide a valid username.&#39;
+    pattern &#x3D; &#39;^(([^&lt;&gt;()\[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()\[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$&#39;
+    if &#39;email&#39; not in data or not re.match(pattern, data.get(&#39;email&#39;, None)):
+        message[&#39;email&#39;] &#x3D; &#39;Please provide a valid email address.&#39;
+    if &#39;password&#39; not in data or not data.get(&#39;password&#39;, None):
+        message[&#39;password&#39;] &#x3D; &#39;Please provide a valid password.&#39;
+
+    if User.query.filter_by(username&#x3D;data.get(&#39;username&#39;, None)).first():
+        message[&#39;username&#39;] &#x3D; &#39;Please use a different username.&#39;
+    if User.query.filter_by(email&#x3D;data.get(&#39;email&#39;, None)).first():
+        message[&#39;email&#39;] &#x3D; &#39;Please use a different email address.&#39;
+    if message:
+        return bad_request(message)      
+
+    user&#x3D;User()
+    user.from_dict(data,new_user&#x3D;True)
+    db.session.add(user)
+    db.session.commit()
+    response&#x3D;jsonify(user.to_dict())
+    response.status_code&#x3D;201
+    #HTTP协议要求201响应包含一个值为新资源URL的Location头部
+    response.headers[&#39;Location&#39;]&#x3D;url_for(&#39;api.get_user&#39;,id&#x3D;user.id)
+    return response<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在<code>C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end</code>的目录下右键，选择在终端打开后，运行应用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; venv\Scripts\activate</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; pip install --upgrade httpie</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; flask run</span><br><span class="line"></span><br><span class="line"> * Serving Flask app <span class="string">&#x27;madblog.py&#x27;</span></span><br><span class="line">WARNING: This is a development server. Do not use it <span class="keyword">in</span> a production deployment. Use a production WSGI server instead.</span><br><span class="line"> * Running on http://127.0.0.1:5000</span><br><span class="line">Press CTRL+C to quit</span><br><span class="line"> * Restarting with <span class="built_in">stat</span></span><br><span class="line"> * Debugger is active!</span><br><span class="line"> * Debugger PIN: 354-979-609</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; venv\Scripts\activate
+(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; pip install --upgrade httpie
+(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; flask run
+
+ * Serving Flask app &#39;madblog.py&#39;
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http:&#x2F;&#x2F;127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 354-979-609<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>保持应用处于运行的状态后，打开另一个终端并激活环境。使用HTTPie或Postman测试API接口：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http POST http://localhost:5000/api/users username=lisi password=123 email=lisi@163.com</span><br><span class="line"></span><br><span class="line">HTTP/1.1 201 CREATED</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 82</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 03:12:01 GMT</span><br><span class="line">Location: /api/users/5</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/5&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: 5,</span><br><span class="line">    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;lisi&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http POST http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;users username&#x3D;lisi password&#x3D;123 email&#x3D;lisi@163.com
+
+HTTP&#x2F;1.1 201 CREATED
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Length: 82
+Content-Type: application&#x2F;json
+Date: Mon, 24 Oct 2022 03:12:01 GMT
+Location: &#x2F;api&#x2F;users&#x2F;5
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+
+&#123;
+    &quot;_links&quot;: &#123;
+        &quot;self&quot;: &quot;&#x2F;api&#x2F;users&#x2F;5&quot;
+    &#125;,
+    &quot;id&quot;: 5,
+    &quot;username&quot;: &quot;lisi&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>若应用没有运行，会报错：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http POST http://localhost:5000/api/users username=lisi password=123 email=lisi@163.com</span><br><span class="line"></span><br><span class="line">http: error: ConnectionError: HTTPConnectionPool(host=<span class="string">&#x27;localhost&#x27;</span>, port=5000): Max retries exceeded with url: /api/users (Caused by NewConnectionError(<span class="string">&#x27;&lt;urllib3.connection.HTTPConnection object at 0x0000022A6C404550&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。&#x27;</span>)) <span class="keyword">while</span> doing a POST request to URL: http://localhost:5000/api/users</span><br></pre></td></tr></table></figure>
-<h3 id="检索单个用户">检索单个用户</h3>
-<p>修改<code>tutorweb/api/users.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="comment">#返回一个用户</span></span><br><span class="line">    <span class="keyword">return</span> jsonify(User.query.get_or_404(<span class="built_in">id</span>).to_dict())</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http POST http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;users username&#x3D;lisi password&#x3D;123 email&#x3D;lisi@163.com
+
+http: error: ConnectionError: HTTPConnectionPool(host&#x3D;&#39;localhost&#39;, port&#x3D;5000): Max retries exceeded with url: &#x2F;api&#x2F;users (Caused by NewConnectionError(&#39;&lt;urllib3.connection.HTTPConnection object at 0x0000022A6C404550&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。&#39;)) while doing a POST request to URL: http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;users<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="检索单个用户"><a href="#检索单个用户" class="headerlink" title="检索单个用户"></a>检索单个用户</h3><p>修改<code>tutorweb/api/users.py</code>：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">@bp.route(&#39;&#x2F;users&#x2F;&lt;int:id&gt;&#39;, methods&#x3D;[&#39;GET&#39;])
+def get_user(id):
+    #返回一个用户
+    return jsonify(User.query.get_or_404(id).to_dict())<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>保持应用处于运行的状态后，在另一个终端检索用户：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:5000/api/users/4 </span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 03:16:47 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/4&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: 4,</span><br><span class="line">    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;zhangsan&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;users&#x2F;4 
+
+HTTP&#x2F;1.1 200 OK
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Type: application&#x2F;json
+Date: Mon, 24 Oct 2022 03:16:47 GMT
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+
+&#123;
+    &quot;_links&quot;: &#123;
+        &quot;self&quot;: &quot;&#x2F;api&#x2F;users&#x2F;4&quot;
+    &#125;,
+    &quot;id&quot;: 4,
+    &quot;username&quot;: &quot;zhangsan&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>若查询的用户id不存在，返回404错误</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:5000/api/users/7 </span><br><span class="line"></span><br><span class="line">HTTP/1.1 404 NOT FOUND</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 207</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Date: Mon, 24 Oct 2022 03:19:48 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html lang=en&gt;</span><br><span class="line">&lt;title&gt;404 Not Found&lt;/title&gt;</span><br><span class="line">&lt;h1&gt;Not Found&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;users&#x2F;7 
+
+HTTP&#x2F;1.1 404 NOT FOUND
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Length: 207
+Content-Type: text&#x2F;html; charset&#x3D;utf-8
+Date: Mon, 24 Oct 2022 03:19:48 GMT
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+
+&lt;!doctype html&gt;
+&lt;html lang&#x3D;en&gt;
+&lt;title&gt;404 Not Found&lt;&#x2F;title&gt;
+&lt;h1&gt;Not Found&lt;&#x2F;h1&gt;
+&lt;p&gt;The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.&lt;&#x2F;p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>修改<code>tutorweb/api/errors.py</code>，设置返回JSON错误信息</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> db</span><br><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.app_errorhandler(<span class="params"><span class="number">404</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">not_found_error</span>(<span class="params">error</span>):</span><br><span class="line">    <span class="keyword">return</span> error_response(<span class="number">404</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.app_errorhandler(<span class="params"><span class="number">500</span></span>)  </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">internal_error</span>(<span class="params">error</span>):</span><br><span class="line">    db.session.rollback()</span><br><span class="line">    <span class="keyword">return</span> error_response(<span class="number">500</span>)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from tutorweb import db
+from tutorweb.api import bp
+...
+
+@bp.app_errorhandler(404)
+def not_found_error(error):
+    return error_response(404)
+
+@bp.app_errorhandler(500)  
+def internal_error(error):
+    db.session.rollback()
+    return error_response(500)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>若查询的用户id不存在，此时返回404错误信息为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:5000/api/users/7</span><br><span class="line">HTTP/1.1 404 NOT FOUND</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 27</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 03:17:01 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;Not Found&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="检索用户集合">检索用户集合</h3>
-<p>修改<code>tutorweb/api/users.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_users</span>():</span><br><span class="line">    <span class="comment">#返回所有用户的集合</span></span><br><span class="line">    page=request.args.get(<span class="string">&#x27;page&#x27;</span>,<span class="number">1</span>,<span class="built_in">type</span>=<span class="built_in">int</span>)</span><br><span class="line">    per_page=<span class="built_in">min</span>(request.args.get(<span class="string">&#x27;per_page&#x27;</span>,<span class="number">10</span>,<span class="built_in">type</span>=<span class="built_in">int</span>),<span class="number">100</span>)</span><br><span class="line">    data=User.to_collection_dict(User.query,page,per_page,<span class="string">&#x27;api.get_users&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> jsonify(data)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;users&#x2F;7
+HTTP&#x2F;1.1 404 NOT FOUND
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Length: 27
+Content-Type: application&#x2F;json
+Date: Mon, 24 Oct 2022 03:17:01 GMT
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+
+&#123;
+    &quot;error&quot;: &quot;Not Found&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="检索用户集合"><a href="#检索用户集合" class="headerlink" title="检索用户集合"></a>检索用户集合</h3><p>修改<code>tutorweb/api/users.py</code>：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">@bp.route(&#39;&#x2F;users&#39;,methods&#x3D;[&#39;GET&#39;])
+def get_users():
+    #返回所有用户的集合
+    page&#x3D;request.args.get(&#39;page&#39;,1,type&#x3D;int)
+    per_page&#x3D;min(request.args.get(&#39;per_page&#39;,10,type&#x3D;int),100)
+    data&#x3D;User.to_collection_dict(User.query,page,per_page,&#39;api.get_users&#39;)
+    return jsonify(data)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>终端测试如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:5000/api/users </span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 889</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 06:24:27 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;next&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;prev&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users?page=1&amp;per_page=10&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;_meta&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;page&quot;</span>: 1,</span><br><span class="line">        <span class="string">&quot;per_page&quot;</span>: 10,</span><br><span class="line">        <span class="string">&quot;total_items&quot;</span>: 6,</span><br><span class="line">        <span class="string">&quot;total_pages&quot;</span>: 1</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;items&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/1&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 1,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;alice&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/2&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 2,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;bob&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/3&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 3,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;madman&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/4&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 4,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;zhangsan&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/5&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 5,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;lisi&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/6&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: 6,</span><br><span class="line">            <span class="string">&quot;username&quot;</span>: <span class="string">&quot;wangwu&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="修改用户">修改用户</h3>
-<p>修改<code>tutorweb/api/users.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>,methods=[<span class="string">&#x27;PUT&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="comment">#修改一个用户</span></span><br><span class="line">    user=User.query.get_or_404(<span class="built_in">id</span>)</span><br><span class="line">    data=request.get_json()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">return</span> bad_request(<span class="string">&#x27;You must post JSON data.&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    message=&#123;&#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;username&#x27;</span> <span class="keyword">in</span> data <span class="keyword">and</span> <span class="keyword">not</span> data.get(<span class="string">&#x27;username&#x27;</span>, <span class="literal">None</span>):</span><br><span class="line">        message[<span class="string">&#x27;username&#x27;</span>]=<span class="string">&#x27;Please provide a valid username.&#x27;</span></span><br><span class="line">    pattern=<span class="string">&#x27;^(([^&lt;&gt;()\[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()\[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;email&#x27;</span> <span class="keyword">in</span> data <span class="keyword">and</span> <span class="keyword">not</span> re.<span class="keyword">match</span>(pattern, data.get(<span class="string">&#x27;email&#x27;</span>, <span class="literal">None</span>)):</span><br><span class="line">        message[<span class="string">&#x27;email&#x27;</span>]=<span class="string">&#x27;Please provide a valid email address.&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;username&#x27;</span> <span class="keyword">in</span> data <span class="keyword">and</span> data[<span class="string">&#x27;username&#x27;</span>] != user.username <span class="keyword">and</span> \</span><br><span class="line">            User.query.filter_by(username=data[<span class="string">&#x27;username&#x27;</span>]).first():</span><br><span class="line">        message[<span class="string">&#x27;username&#x27;</span>]=<span class="string">&#x27;Please use a different username.&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;email&#x27;</span> <span class="keyword">in</span> data <span class="keyword">and</span> data[<span class="string">&#x27;email&#x27;</span>] != user.email <span class="keyword">and</span> \</span><br><span class="line">            User.query.filter_by(email=data[<span class="string">&#x27;email&#x27;</span>]).first():</span><br><span class="line">        message[<span class="string">&#x27;email&#x27;</span>]=<span class="string">&#x27;Please use a different email address.&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> message:</span><br><span class="line">        <span class="keyword">return</span> bad_request(message) </span><br><span class="line">        </span><br><span class="line">    user.from_dict(data,new_user=<span class="literal">False</span>)    </span><br><span class="line">    db.session.commit()</span><br><span class="line">    <span class="keyword">return</span> jsonify(user.to_dict())</span><br></pre></td></tr></table></figure>
-<p>终端测试如下： <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http PUT http://localhost:5000/api/users/5 email=madman@gmail.com </span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 82</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 05:16:38 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/5&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: 5,</span><br><span class="line">    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;lisi&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="api认证">API认证</h2>
-<p>为了简化使用 <code>token</code>
-认证时客户端和服务器之间的交互，可以使用 <code>Flask-HTTPAuth</code>
-插件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install flask-httpauth</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
-<p>当客户端想要开始与 API 交互时，它需要使用用户名和密码进行 Basic Auth
-验证，然后获得一个临时 token。只要 token 有效，客户端就可以发送附带
-token 的 API 请求以通过认证。一旦 token 到期，需要申请新的 token。</p>
-<h3 id="user-数据模型添加-token">User 数据模型添加 token</h3>
-<p>修改 <code>tutorweb/models.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, timedelta</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(PaginatedAPIMixin, db.Model):</span><br><span class="line">    ...</span><br><span class="line">    token = db.Column(db.String(<span class="number">32</span>), index=<span class="literal">True</span>, unique=<span class="literal">True</span>)</span><br><span class="line">    token_expiration = db.Column(db.DateTime)</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_token</span>(<span class="params">self, expires_in=<span class="number">3600</span></span>):</span><br><span class="line">        now = datetime.utcnow()</span><br><span class="line">        <span class="keyword">if</span> self.token <span class="keyword">and</span> self.token_expiration &gt; now + timedelta(seconds=<span class="number">60</span>):</span><br><span class="line">            <span class="keyword">return</span> self.token</span><br><span class="line">        self.token = base64.b64encode(os.urandom(<span class="number">24</span>)).decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        self.token_expiration = now + timedelta(seconds=expires_in)</span><br><span class="line">        db.session.add(self)</span><br><span class="line">        <span class="keyword">return</span> self.token</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">revoke_token</span>(<span class="params">self</span>):</span><br><span class="line">        self.token_expiration = datetime.utcnow() - timedelta(seconds=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">check_token</span>(<span class="params">token</span>):</span><br><span class="line">        user = User.query.filter_by(token=token).first()</span><br><span class="line">        <span class="keyword">if</span> user <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> user.token_expiration &lt; datetime.utcnow():</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> user</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;users 
+
+HTTP&#x2F;1.1 200 OK
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Length: 889
+Content-Type: application&#x2F;json
+Date: Mon, 24 Oct 2022 06:24:27 GMT
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+
+&#123;
+    &quot;_links&quot;: &#123;
+        &quot;next&quot;: null,
+        &quot;prev&quot;: null,
+        &quot;self&quot;: &quot;&#x2F;api&#x2F;users?page&#x3D;1&amp;per_page&#x3D;10&quot;
+    &#125;,
+    &quot;_meta&quot;: &#123;
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 10,
+        &quot;total_items&quot;: 6,
+        &quot;total_pages&quot;: 1
+    &#125;,
+    &quot;items&quot;: [
+        &#123;
+            &quot;_links&quot;: &#123;
+                &quot;self&quot;: &quot;&#x2F;api&#x2F;users&#x2F;1&quot;
+            &#125;,
+            &quot;id&quot;: 1,
+            &quot;username&quot;: &quot;alice&quot;
+        &#125;,
+        &#123;
+            &quot;_links&quot;: &#123;
+                &quot;self&quot;: &quot;&#x2F;api&#x2F;users&#x2F;2&quot;
+            &#125;,
+            &quot;id&quot;: 2,
+            &quot;username&quot;: &quot;bob&quot;
+        &#125;,
+        &#123;
+            &quot;_links&quot;: &#123;
+                &quot;self&quot;: &quot;&#x2F;api&#x2F;users&#x2F;3&quot;
+            &#125;,
+            &quot;id&quot;: 3,
+            &quot;username&quot;: &quot;madman&quot;
+        &#125;,
+        &#123;
+            &quot;_links&quot;: &#123;
+                &quot;self&quot;: &quot;&#x2F;api&#x2F;users&#x2F;4&quot;
+            &#125;,
+            &quot;id&quot;: 4,
+            &quot;username&quot;: &quot;zhangsan&quot;
+        &#125;,
+        &#123;
+            &quot;_links&quot;: &#123;
+                &quot;self&quot;: &quot;&#x2F;api&#x2F;users&#x2F;5&quot;
+            &#125;,
+            &quot;id&quot;: 5,
+            &quot;username&quot;: &quot;lisi&quot;
+        &#125;,
+        &#123;
+            &quot;_links&quot;: &#123;
+                &quot;self&quot;: &quot;&#x2F;api&#x2F;users&#x2F;6&quot;
+            &#125;,
+            &quot;id&quot;: 6,
+            &quot;username&quot;: &quot;wangwu&quot;
+        &#125;
+    ]
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="修改用户"><a href="#修改用户" class="headerlink" title="修改用户"></a>修改用户</h3><p>修改<code>tutorweb/api/users.py</code>：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">@bp.route(&#39;&#x2F;users&#x2F;&lt;int:id&gt;&#39;,methods&#x3D;[&#39;PUT&#39;])
+def update_user(id):
+    #修改一个用户
+    user&#x3D;User.query.get_or_404(id)
+    data&#x3D;request.get_json()
+    if not data:
+        return bad_request(&#39;You must post JSON data.&#39;)
+
+    message&#x3D;&#123;&#125;
+    if &#39;username&#39; in data and not data.get(&#39;username&#39;, None):
+        message[&#39;username&#39;]&#x3D;&#39;Please provide a valid username.&#39;
+    pattern&#x3D;&#39;^(([^&lt;&gt;()\[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()\[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$&#39;
+    if &#39;email&#39; in data and not re.match(pattern, data.get(&#39;email&#39;, None)):
+        message[&#39;email&#39;]&#x3D;&#39;Please provide a valid email address.&#39;
+    if &#39;username&#39; in data and data[&#39;username&#39;] !&#x3D; user.username and \
+            User.query.filter_by(username&#x3D;data[&#39;username&#39;]).first():
+        message[&#39;username&#39;]&#x3D;&#39;Please use a different username.&#39;
+    if &#39;email&#39; in data and data[&#39;email&#39;] !&#x3D; user.email and \
+            User.query.filter_by(email&#x3D;data[&#39;email&#39;]).first():
+        message[&#39;email&#39;]&#x3D;&#39;Please use a different email address.&#39;
+
+    if message:
+        return bad_request(message) 
+        
+    user.from_dict(data,new_user&#x3D;False)    
+    db.session.commit()
+    return jsonify(user.to_dict())<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>终端测试如下：<br><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http PUT http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;users&#x2F;5 email&#x3D;madman@gmail.com 
+
+HTTP&#x2F;1.1 200 OK
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Length: 82
+Content-Type: application&#x2F;json
+Date: Mon, 24 Oct 2022 05:16:38 GMT
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+
+&#123;
+    &quot;_links&quot;: &#123;
+        &quot;self&quot;: &quot;&#x2F;api&#x2F;users&#x2F;5&quot;
+    &#125;,
+    &quot;id&quot;: 5,
+    &quot;username&quot;: &quot;lisi&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+<h2 id="API认证"><a href="#API认证" class="headerlink" title="API认证"></a>API认证</h2><p>为了简化使用 <code>token</code> 认证时客户端和服务器之间的交互，可以使用 <code>Flask-HTTPAuth</code> 插件</p>
+<pre class="line-numbers language-none"><code class="language-none">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip install flask-httpauth
+(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;pip freeze &gt; requirements.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>当客户端想要开始与 API 交互时，它需要使用用户名和密码进行 Basic Auth 验证，然后获得一个临时 token。只要 token 有效，客户端就可以发送附带 token 的 API 请求以通过认证。一旦 token 到期，需要申请新的 token。</p>
+<h3 id="User-数据模型添加-token"><a href="#User-数据模型添加-token" class="headerlink" title="User 数据模型添加 token"></a>User 数据模型添加 token</h3><p>修改 <code>tutorweb/models.py</code>：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import base64
+from datetime import datetime, timedelta
+import os
+...
+
+class User(PaginatedAPIMixin, db.Model):
+    ...
+    token &#x3D; db.Column(db.String(32), index&#x3D;True, unique&#x3D;True)
+    token_expiration &#x3D; db.Column(db.DateTime)
+    ...
+
+    def get_token(self, expires_in&#x3D;3600):
+        now &#x3D; datetime.utcnow()
+        if self.token and self.token_expiration &gt; now + timedelta(seconds&#x3D;60):
+            return self.token
+        self.token &#x3D; base64.b64encode(os.urandom(24)).decode(&#39;utf-8&#39;)
+        self.token_expiration &#x3D; now + timedelta(seconds&#x3D;expires_in)
+        db.session.add(self)
+        return self.token
+
+    def revoke_token(self):
+        self.token_expiration &#x3D; datetime.utcnow() - timedelta(seconds&#x3D;1)
+
+    @staticmethod
+    def check_token(token):
+        user &#x3D; User.query.filter_by(token&#x3D;token).first()
+        if user is None or user.token_expiration &lt; datetime.utcnow():
+            return None
+        return user<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>创建数据库迁移脚本并应用：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db migrate -m &quot;user add tokens&quot;</span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db upgrade</span><br></pre></td></tr></table></figure>
-<h3 id="http-basic-authentication">HTTP Basic Authentication</h3>
-<p>创建 <code>tutorweb/api/auth.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> g</span><br><span class="line"><span class="keyword">from</span> flask_httpauth <span class="keyword">import</span> HTTPBasicAuth,HTTPTokenAuth</span><br><span class="line"><span class="keyword">from</span> tutorweb.models <span class="keyword">import</span> User</span><br><span class="line"><span class="keyword">from</span> tutorweb.api.errors <span class="keyword">import</span> error_response</span><br><span class="line"></span><br><span class="line">basic_auth=HTTPBasicAuth()</span><br><span class="line"></span><br><span class="line"><span class="meta">@basic_auth.verify_password</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">verify_password</span>(<span class="params">username,password</span>):</span><br><span class="line">    <span class="comment">#用于检查用户提供的用户名和密码</span></span><br><span class="line">    user=User.query.filter_by(username=username).first()</span><br><span class="line">    <span class="keyword">if</span> user <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    g.current_user=user</span><br><span class="line">    <span class="keyword">return</span> user.check_password(password)</span><br><span class="line"></span><br><span class="line"><span class="meta">@basic_auth.error_handler</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">basic_auth_error</span>():</span><br><span class="line">    <span class="comment">#用于在认证失败情况下返回错误响应</span></span><br><span class="line">    <span class="keyword">return</span> error_response(<span class="number">401</span>)   </span><br></pre></td></tr></table></figure>
-<h3 id="客户端申请-token">客户端申请 Token</h3>
-<p>目前已经实现了 Basic Auth 验证的支持，因此可以添加一条 token
-检索路由，以便客户端在需要 token 时调用。</p>
+<pre class="line-numbers language-none"><code class="language-none">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db migrate -m &quot;user add tokens&quot;
+(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt;flask db upgrade<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="HTTP-Basic-Authentication"><a href="#HTTP-Basic-Authentication" class="headerlink" title="HTTP Basic Authentication"></a>HTTP Basic Authentication</h3><p>创建 <code>tutorweb/api/auth.py</code>：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from flask import g
+from flask_httpauth import HTTPBasicAuth,HTTPTokenAuth
+from tutorweb.models import User
+from tutorweb.api.errors import error_response
+
+basic_auth&#x3D;HTTPBasicAuth()
+
+@basic_auth.verify_password
+def verify_password(username,password):
+    #用于检查用户提供的用户名和密码
+    user&#x3D;User.query.filter_by(username&#x3D;username).first()
+    if user is None:
+        return False
+    g.current_user&#x3D;user
+    return user.check_password(password)
+
+@basic_auth.error_handler
+def basic_auth_error():
+    #用于在认证失败情况下返回错误响应
+    return error_response(401)   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="客户端申请-Token"><a href="#客户端申请-Token" class="headerlink" title="客户端申请 Token"></a>客户端申请 Token</h3><p>目前已经实现了 Basic Auth 验证的支持，因此可以添加一条 token 检索路由，以便客户端在需要 token 时调用。</p>
 <p>创建 <code>tutorweb/api/tokens.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> jsonify,g</span><br><span class="line"><span class="keyword">from</span> tutorweb <span class="keyword">import</span> db</span><br><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> bp</span><br><span class="line"><span class="keyword">from</span> tutorweb.api.auth <span class="keyword">import</span> basic_auth,token_auth</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/tokens&#x27;</span>,methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="meta">@basic_auth.login_required</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_token</span>():</span><br><span class="line">    token=g.current_user.get_token()</span><br><span class="line">    db.session.commit()</span><br><span class="line">    <span class="keyword">return</span> jsonify(&#123;<span class="string">&#x27;token&#x27;</span>:token&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/tokens&#x27;</span>,methods=[<span class="string">&#x27;DELETE&#x27;</span>]</span>)    </span></span><br><span class="line"><span class="meta">@token_auth.login_required</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">revoke_token</span>():</span><br><span class="line">    g.current_user.revoke_token()</span><br><span class="line">    db.session.commit()</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>,<span class="number">204</span></span><br></pre></td></tr></table></figure>
-<p>装饰器 <code>@basic_auth.login_required</code> 将指示
-<code>Flask-HTTPAuth</code> 验证身份，当通过 Basic Auth
-验证后，才使用用户模型的 <code>get_token()</code> 方法来生成
-token，数据库提交在生成 token 后发出，以确保 token
-及其到期时间被写回到数据库。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from flask import jsonify,g
+from tutorweb import db
+from tutorweb.api import bp
+from tutorweb.api.auth import basic_auth,token_auth
+
+@bp.route(&#39;&#x2F;tokens&#39;,methods&#x3D;[&#39;POST&#39;])
+@basic_auth.login_required
+
+def get_token():
+    token&#x3D;g.current_user.get_token()
+    db.session.commit()
+    return jsonify(&#123;&#39;token&#39;:token&#125;)
+
+@bp.route(&#39;&#x2F;tokens&#39;,methods&#x3D;[&#39;DELETE&#39;])    
+@token_auth.login_required
+def revoke_token():
+    g.current_user.revoke_token()
+    db.session.commit()
+    return &#39;&#39;,204<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>装饰器 <code>@basic_auth.login_required</code> 将指示 <code>Flask-HTTPAuth</code> 验证身份，当通过 Basic Auth 验证后，才使用用户模型的 <code>get_token()</code> 方法来生成 token，数据库提交在生成 token 后发出，以确保 token 及其到期时间被写回到数据库。</p>
 <p>修改 <code>tutorweb/api/__init__.py</code>，在末尾添加：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb.api <span class="keyword">import</span> ping, users, tokens</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from tutorweb.api import ping, users, tokens<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如果尝试直接向 token API 路由发送 POST 请求，则会发生以下情况：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http POST http://localhost:5000/api/tokens</span><br><span class="line"></span><br><span class="line">HTTP/1.1 401 UNAUTHORIZED</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 30</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 04:51:39 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line">WWW-Authenticate: Basic realm=<span class="string">&quot;Authentication Required&quot;</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;Unauthorized&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http POST http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;tokens
+
+HTTP&#x2F;1.1 401 UNAUTHORIZED
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Length: 30
+Content-Type: application&#x2F;json
+Date: Mon, 24 Oct 2022 04:51:39 GMT
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+WWW-Authenticate: Basic realm&#x3D;&quot;Authentication Required&quot;
+
+&#123;
+    &quot;error&quot;: &quot;Unauthorized&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>如果在 POST 请求附带上了 Basic Auth 需要的凭证：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http --auth madman:<span class="number">123</span> POST http://localhost:<span class="number">5000</span>/api/tokens</span><br><span class="line">                </span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: <span class="number">50</span></span><br><span class="line">Content-<span class="type">Type</span>: application/json</span><br><span class="line">Date: Mon, <span class="number">24</span> Oct <span class="number">2022</span> 04:<span class="number">52</span>:<span class="number">22</span> GMT</span><br><span class="line">Server: Werkzeug/<span class="number">2.2</span><span class="number">.2</span> Python/<span class="number">3.10</span><span class="number">.5</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;token&quot;</span>: <span class="string">&quot;q2L2Umakr5/iSrf1L4mglZmYoBD/K9Je&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="http-token-authentication">HTTP Token Authentication</h2>
-<p>用户通过 Basic Auth 拿到 token 后，之后的请求只要附带这个 token
-就能够访问其它 API，修改 <code>tutorweb/api/auth.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_httpauth <span class="keyword">import</span> HTTPBasicAuth,HTTPTokenAuth</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">token_auth=HTTPTokenAuth()</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">@token_auth.verify_token</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">verify_token</span>(<span class="params">token</span>):</span><br><span class="line">    <span class="comment">#用于检查用户请求是否有token,且token真实存在，还在有效期内</span></span><br><span class="line">    g.current_user=User.check_token(token) <span class="keyword">if</span> token <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">return</span> g.current_user <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@token_auth.error_handler</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">token_auth_error</span>():</span><br><span class="line">    <span class="comment">#用于在Token Auth认证失败的情况下返回错误响应</span></span><br><span class="line">    <span class="keyword">return</span> error_response(<span class="number">401</span>)        </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http --auth madman:123 POST http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;tokens
+                
+HTTP&#x2F;1.1 200 OK
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Length: 50
+Content-Type: application&#x2F;json
+Date: Mon, 24 Oct 2022 04:52:22 GMT
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+
+&#123;
+    &quot;token&quot;: &quot;q2L2Umakr5&#x2F;iSrf1L4mglZmYoBD&#x2F;K9Je&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="HTTP-Token-Authentication"><a href="#HTTP-Token-Authentication" class="headerlink" title="HTTP Token Authentication"></a>HTTP Token Authentication</h2><p>用户通过 Basic Auth 拿到 token 后，之后的请求只要附带这个 token 就能够访问其它 API，修改 <code>tutorweb/api/auth.py</code>：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from flask_httpauth import HTTPBasicAuth,HTTPTokenAuth
+...
+
+token_auth&#x3D;HTTPTokenAuth()
+...
+
+@token_auth.verify_token
+def verify_token(token):
+    #用于检查用户请求是否有token,且token真实存在，还在有效期内
+    g.current_user&#x3D;User.check_token(token) if token else None
+    return g.current_user is not None
+
+@token_auth.error_handler
+def token_auth_error():
+    #用于在Token Auth认证失败的情况下返回错误响应
+    return error_response(401)        <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>修改<code>tutorweb/api/users.py</code>，在文件开头导入模块：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb.api.auth <span class="keyword">import</span> token_auth</span><br></pre></td></tr></table></figure>
-<h3 id="使用-token-机制保护-api-路由">使用 Token 机制保护 API 路由</h3>
-<p>除 <code>create_user()</code> 之外的所有 API 视图函数需要添加
-<code>@token_auth.login_required</code> 装饰器，
-<code>create_user()</code>函数不能使用 token
-认证，因为用户不存在时不会有 token 。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="meta">@token_auth.login_required</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_users</span>():</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/users/&lt;int:id&gt;&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="meta">@token_auth.login_required</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>若直接对上面列出的受 token 保护的 endpoint 发起请求，则会得到一个
-<code>401</code> 错误：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:5000/api/users/5</span><br><span class="line"></span><br><span class="line">HTTP/1.1 401 UNAUTHORIZED</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 30</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 04:56:51 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line">WWW-Authenticate: Bearer realm=<span class="string">&quot;Authentication Required&quot;</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;Unauthorized&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>为了成功访问，需要添加 <code>Authorization</code> 头部，其值是请求
-<code>/api/tokens</code> 获得的 token 的值：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http://localhost:<span class="number">5000</span>/api/users/<span class="number">5</span> <span class="string">&quot;Authorization:Bearer q2L2Umakr5/iSrf1L4mglZmYoBD/K9Je&quot;</span></span><br><span class="line"></span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: <span class="number">82</span></span><br><span class="line">Content-<span class="type">Type</span>: application/json</span><br><span class="line">Date: Mon, <span class="number">24</span> Oct <span class="number">2022</span> 04:<span class="number">58</span>:<span class="number">20</span> GMT</span><br><span class="line">Server: Werkzeug/<span class="number">2.2</span><span class="number">.2</span> Python/<span class="number">3.10</span><span class="number">.5</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_links&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;self&quot;</span>: <span class="string">&quot;/api/users/5&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;lisi&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="撤销-token">撤销 Token</h3>
-<p>修改 <code>tutorweb/api/tokens.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorweb.api.auth <span class="keyword">import</span> basic_auth,token_auth</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">@bp.route(<span class="params"><span class="string">&#x27;/tokens&#x27;</span>,methods=[<span class="string">&#x27;DELETE&#x27;</span>]</span>)    </span></span><br><span class="line"><span class="meta">@token_auth.login_required</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">revoke_token</span>():</span><br><span class="line">    g.current_user.revoke_token()</span><br><span class="line">    db.session.commit()</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>,<span class="number">204</span></span><br></pre></td></tr></table></figure>
-<p>客户端可以向 <code>/api/tokens</code> URL发送 <code>DELETE</code>
-请求，以使 token 失效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http DELETE http://localhost:5000/api/tokens <span class="string">&quot;Authorization:Bearer QYnLb1pN/l4I4j2KwZWzr7+imtyekI66&quot;</span></span><br><span class="line"></span><br><span class="line">HTTP/1.1 204 NO CONTENT</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Date: Mon, 24 Oct 2022 03:31:11 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line"></span><br><span class="line">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http DELETE http://localhost:5000/api/tokens <span class="string">&quot;Authorization:Bearer QYnLb1pN/l4I4j2KwZWzr7+imtyekI66&quot;</span></span><br><span class="line"></span><br><span class="line">HTTP/1.1 401 UNAUTHORIZED</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 24 Oct 2022 03:32:00 GMT</span><br><span class="line">Server: Werkzeug/2.2.2 Python/3.10.5</span><br><span class="line">WWW-Authenticate: Bearer realm=<span class="string">&quot;Authentication Required&quot;</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;error&quot;</span>: <span class="string">&quot;Unauthorized&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from tutorweb.api.auth import token_auth<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="使用-Token-机制保护-API-路由"><a href="#使用-Token-机制保护-API-路由" class="headerlink" title="使用 Token 机制保护 API 路由"></a>使用 Token 机制保护 API 路由</h3><p>除 <code>create_user()</code> 之外的所有 API 视图函数需要添加 <code>@token_auth.login_required</code> 装饰器， <code>create_user()</code>函数不能使用 token 认证，因为用户不存在时不会有 token 。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">@bp.route(&#39;&#x2F;users&#39;, methods&#x3D;[&#39;GET&#39;])
+@token_auth.login_required
+def get_users():
+    ...
+
+@bp.route(&#39;&#x2F;users&#x2F;&lt;int:id&gt;&#39;, methods&#x3D;[&#39;GET&#39;])
+@token_auth.login_required
+def get_user(id):
+    ...
+
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>若直接对上面列出的受 token 保护的 endpoint 发起请求，则会得到一个 <code>401</code> 错误：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;users&#x2F;5
+
+HTTP&#x2F;1.1 401 UNAUTHORIZED
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Length: 30
+Content-Type: application&#x2F;json
+Date: Mon, 24 Oct 2022 04:56:51 GMT
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+WWW-Authenticate: Bearer realm&#x3D;&quot;Authentication Required&quot;
+
+&#123;
+    &quot;error&quot;: &quot;Unauthorized&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>为了成功访问，需要添加 <code>Authorization</code> 头部，其值是请求 <code>/api/tokens</code> 获得的 token 的值：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http GET http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;users&#x2F;5 &quot;Authorization:Bearer q2L2Umakr5&#x2F;iSrf1L4mglZmYoBD&#x2F;K9Je&quot;
+
+HTTP&#x2F;1.1 200 OK
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Length: 82
+Content-Type: application&#x2F;json
+Date: Mon, 24 Oct 2022 04:58:20 GMT
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+
+&#123;
+    &quot;_links&quot;: &#123;
+        &quot;self&quot;: &quot;&#x2F;api&#x2F;users&#x2F;5&quot;
+    &#125;,
+    &quot;id&quot;: 5,
+    &quot;username&quot;: &quot;lisi&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="撤销-Token"><a href="#撤销-Token" class="headerlink" title="撤销 Token"></a>撤销 Token</h3><p>修改 <code>tutorweb/api/tokens.py</code>：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from tutorweb.api.auth import basic_auth,token_auth
+...
+
+@bp.route(&#39;&#x2F;tokens&#39;,methods&#x3D;[&#39;DELETE&#39;])    
+@token_auth.login_required
+def revoke_token():
+    g.current_user.revoke_token()
+    db.session.commit()
+    return &#39;&#39;,204<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>客户端可以向 <code>/api/tokens</code> URL发送 <code>DELETE</code> 请求，以使 token 失效</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http DELETE http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;tokens &quot;Authorization:Bearer QYnLb1pN&#x2F;l4I4j2KwZWzr7+imtyekI66&quot;
+
+HTTP&#x2F;1.1 204 NO CONTENT
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Type: text&#x2F;html; charset&#x3D;utf-8
+Date: Mon, 24 Oct 2022 03:31:11 GMT
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+
+(venv) PS C:\Users\Administrator\Desktop\code_learn\flask_exercise\tutorproject\back-end&gt; http DELETE http:&#x2F;&#x2F;localhost:5000&#x2F;api&#x2F;tokens &quot;Authorization:Bearer QYnLb1pN&#x2F;l4I4j2KwZWzr7+imtyekI66&quot;
+
+HTTP&#x2F;1.1 401 UNAUTHORIZED
+Access-Control-Allow-Origin: *
+Connection: close
+Content-Type: application&#x2F;json
+Date: Mon, 24 Oct 2022 03:32:00 GMT
+Server: Werkzeug&#x2F;2.2.2 Python&#x2F;3.10.5
+WWW-Authenticate: Bearer realm&#x3D;&quot;Authentication Required&quot;
+
+&#123;
+    &quot;error&quot;: &quot;Unauthorized&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>至此，Flask后端已成功配置。最终的代码目录如下：</p>
-<p><img src="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/3.png"></p>
+<p><img src="/2022/10/24/Flask%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/3.png" alt></p>
 
     </article>
     <!-- license -->
@@ -927,7 +1522,7 @@ token，数据库提交在生成 token 后发出，以确保 token
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAflask-restful-api"><span class="toc-number">1.</span> <span class="toc-text">创建一个Flask RESTful API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEflask"><span class="toc-number">1.1.</span> <span class="toc-text">配置Flask</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B7%A5%E5%8E%82"><span class="toc-number">1.2.</span> <span class="toc-text">应用工厂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">应用启动文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%BF%A1%E6%81%AF"><span class="toc-number">1.5.</span> <span class="toc-text">读取环境变量信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8"><span class="toc-number">1.6.</span> <span class="toc-text">启动应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#flask%E8%AE%BE%E8%AE%A1user%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3api"><span class="toc-number">2.</span> <span class="toc-text">Flask设计User用户相关API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ormsqlalchemy"><span class="toc-number">2.1.1.</span> <span class="toc-text">ORM：SQLAlchemy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89user%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.2.</span> <span class="toc-text">定义User用户数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB"><span class="toc-number">2.1.3.</span> <span class="toc-text">第一次数据库迁移</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#restful-api%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.2.</span> <span class="toc-text">RESTful API设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%88%90json"><span class="toc-number">2.2.1.</span> <span class="toc-text">用户对象转换成JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E9%9B%86%E5%90%88%E8%BD%AC%E6%8D%A2%E6%88%90json"><span class="toc-number">2.2.2.</span> <span class="toc-text">用户集合转换成JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#json%E8%BD%AC%E6%8D%A2%E6%88%90%E7%94%A8%E6%88%B7%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.2.3.</span> <span class="toc-text">JSON转换成用户对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">2.2.4.</span> <span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E6%96%B0%E7%94%A8%E6%88%B7"><span class="toc-number">2.2.5.</span> <span class="toc-text">注册新用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E5%8D%95%E4%B8%AA%E7%94%A8%E6%88%B7"><span class="toc-number">2.2.6.</span> <span class="toc-text">检索单个用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E7%94%A8%E6%88%B7%E9%9B%86%E5%90%88"><span class="toc-number">2.2.7.</span> <span class="toc-text">检索用户集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7"><span class="toc-number">2.2.8.</span> <span class="toc-text">修改用户</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#api%E8%AE%A4%E8%AF%81"><span class="toc-number">2.3.</span> <span class="toc-text">API认证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#user-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E6%B7%BB%E5%8A%A0-token"><span class="toc-number">2.3.1.</span> <span class="toc-text">User 数据模型添加 token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http-basic-authentication"><span class="toc-number">2.3.2.</span> <span class="toc-text">HTTP Basic Authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%94%B3%E8%AF%B7-token"><span class="toc-number">2.3.3.</span> <span class="toc-text">客户端申请 Token</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-token-authentication"><span class="toc-number">2.4.</span> <span class="toc-text">HTTP Token Authentication</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-token-%E6%9C%BA%E5%88%B6%E4%BF%9D%E6%8A%A4-api-%E8%B7%AF%E7%94%B1"><span class="toc-number">2.4.1.</span> <span class="toc-text">使用 Token 机制保护 API 路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%92%A4%E9%94%80-token"><span class="toc-number">2.4.2.</span> <span class="toc-text">撤销 Token</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAFlask-RESTful-API"><span class="toc-number">1.</span> <span class="toc-text">创建一个Flask RESTful API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEFlask"><span class="toc-number">1.1.</span> <span class="toc-text">配置Flask</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B7%A5%E5%8E%82"><span class="toc-number">1.2.</span> <span class="toc-text">应用工厂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">应用启动文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%BF%A1%E6%81%AF"><span class="toc-number">1.5.</span> <span class="toc-text">读取环境变量信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8"><span class="toc-number">1.6.</span> <span class="toc-text">启动应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Flask%E8%AE%BE%E8%AE%A1User%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3API"><span class="toc-number">2.</span> <span class="toc-text">Flask设计User用户相关API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ORM%EF%BC%9ASQLAlchemy"><span class="toc-number">2.1.1.</span> <span class="toc-text">ORM：SQLAlchemy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89User%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.2.</span> <span class="toc-text">定义User用户数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB"><span class="toc-number">2.1.3.</span> <span class="toc-text">第一次数据库迁移</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RESTful-API%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.2.</span> <span class="toc-text">RESTful API设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%88%90JSON"><span class="toc-number">2.2.1.</span> <span class="toc-text">用户对象转换成JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E9%9B%86%E5%90%88%E8%BD%AC%E6%8D%A2%E6%88%90JSON"><span class="toc-number">2.2.2.</span> <span class="toc-text">用户集合转换成JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON%E8%BD%AC%E6%8D%A2%E6%88%90%E7%94%A8%E6%88%B7%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.2.3.</span> <span class="toc-text">JSON转换成用户对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">2.2.4.</span> <span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E6%96%B0%E7%94%A8%E6%88%B7"><span class="toc-number">2.2.5.</span> <span class="toc-text">注册新用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E5%8D%95%E4%B8%AA%E7%94%A8%E6%88%B7"><span class="toc-number">2.2.6.</span> <span class="toc-text">检索单个用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E7%94%A8%E6%88%B7%E9%9B%86%E5%90%88"><span class="toc-number">2.2.7.</span> <span class="toc-text">检索用户集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7"><span class="toc-number">2.2.8.</span> <span class="toc-text">修改用户</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API%E8%AE%A4%E8%AF%81"><span class="toc-number">2.3.</span> <span class="toc-text">API认证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#User-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E6%B7%BB%E5%8A%A0-token"><span class="toc-number">2.3.1.</span> <span class="toc-text">User 数据模型添加 token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-Basic-Authentication"><span class="toc-number">2.3.2.</span> <span class="toc-text">HTTP Basic Authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%94%B3%E8%AF%B7-Token"><span class="toc-number">2.3.3.</span> <span class="toc-text">客户端申请 Token</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-Token-Authentication"><span class="toc-number">2.4.</span> <span class="toc-text">HTTP Token Authentication</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Token-%E6%9C%BA%E5%88%B6%E4%BF%9D%E6%8A%A4-API-%E8%B7%AF%E7%94%B1"><span class="toc-number">2.4.1.</span> <span class="toc-text">使用 Token 机制保护 API 路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%92%A4%E9%94%80-Token"><span class="toc-number">2.4.2.</span> <span class="toc-text">撤销 Token</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1277,6 +1872,12 @@ token，数据库提交在生成 token 后发出，以确保 token
         
         
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2386,6 +2987,11 @@ token，数据库提交在生成 token 后发出，以确保 token
                 数据库工具
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2399,21 +3005,6 @@ token，数据库提交在生成 token 后发出，以确保 token
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS3">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS3
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2431,9 +3022,29 @@ token，数据库提交在生成 token 后发出，以确保 token
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2456,14 +3067,14 @@ token，数据库提交在生成 token 后发出，以确保 token
                 MinIO
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="LLM">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                LLM
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2474,16 +3085,6 @@ token，数据库提交在生成 token 后发出，以确保 token
             <span class="sidebar-tag-name" data-tags="Vue">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="LLM">
-                <span class="iconfont-archer">&#xe606;</span>
-                LLM
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="人工智能">
-                <span class="iconfont-archer">&#xe606;</span>
-                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2506,11 +3107,6 @@ token，数据库提交在生成 token 后发出，以确保 token
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2519,6 +3115,11 @@ token，数据库提交在生成 token 后发出，以确保 token
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2592,14 +3193,19 @@ token，数据库提交在生成 token 后发出，以确保 token
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2607,9 +3213,9 @@ token，数据库提交在生成 token 后发出，以确保 token
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2622,14 +3228,9 @@ token，数据库提交在生成 token 后发出，以确保 token
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2637,34 +3238,29 @@ token，数据库提交在生成 token 后发出，以确保 token
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Lottie">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="可视化">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
+            可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="Vue">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            Vue
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
             LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2677,9 +3273,9 @@ token，数据库提交在生成 token 后发出，以确保 token
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="人工智能">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2692,14 +3288,24 @@ token，数据库提交在生成 token 后发出，以确保 token
             JavaScript
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2710,11 +3316,6 @@ token，数据库提交在生成 token 后发出，以确保 token
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2789,20 +3390,5 @@ token，数据库提交在生成 token 后发出，以确保 token
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+    </body>
 </html>

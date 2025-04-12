@@ -19,12 +19,12 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="基本概念 css中有两种形式实现动画效果：过渡动画transition和自定义动画animation。其中，animation动画可以循环多次执行，而过渡动画transition只执行一遍。 transition 若通过用户的交互直接改变css样式，呈现的形式是立即转变。若希望这个变化是有过渡效果的，便需要使用到过渡动画transition。使用transition的例子如下： 12345">
+    <meta name="description" content="基本概念css中有两种形式实现动画效果：过渡动画transition和自定义动画animation。其中，animation动画可以循环多次执行，而过渡动画transition只执行一遍。 transition若通过用户的交互直接改变css样式，呈现的形式是立即转变。若希望这个变化是有过渡效果的，便需要使用到过渡动画transition。使用transition的例子如下： &lt;templat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS3动画详解">
 <meta property="og:url" content="http://tangmenjue.top/2023/12/25/CSS3%E5%8A%A8%E7%94%BB%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="唐抉的个人博客">
-<meta property="og:description" content="基本概念 css中有两种形式实现动画效果：过渡动画transition和自定义动画animation。其中，animation动画可以循环多次执行，而过渡动画transition只执行一遍。 transition 若通过用户的交互直接改变css样式，呈现的形式是立即转变。若希望这个变化是有过渡效果的，便需要使用到过渡动画transition。使用transition的例子如下： 12345">
+<meta property="og:description" content="基本概念css中有两种形式实现动画效果：过渡动画transition和自定义动画animation。其中，animation动画可以循环多次执行，而过渡动画transition只执行一遍。 transition若通过用户的交互直接改变css样式，呈现的形式是立即转变。若希望这个变化是有过渡效果的，便需要使用到过渡动画transition。使用transition的例子如下： &lt;templat">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-12-25T02:24:47.000Z">
 <meta property="article:modified_time" content="2023-12-25T02:24:47.000Z">
@@ -496,21 +496,49 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="基本概念">基本概念</h1>
-<p>css中有两种形式实现动画效果：过渡动画<code>transition</code>和自定义动画<code>animation</code>。其中，animation动画可以循环多次执行，而过渡动画transition只执行一遍。</p>
-<h1 id="transition">transition</h1>
-<p>若通过用户的交互直接改变css样式，呈现的形式是立即转变。若希望这个变化是有过渡效果的，便需要使用到过渡动画<code>transition</code>。使用transition的例子如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleVisibility&quot;&gt;切换元素&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot;&gt;</span><br><span class="line">      &lt;div v-if=&quot;isVisible&quot; key=&quot;myElement&quot; class=&quot;fade-element&quot;&gt;</span><br><span class="line">        这是一个会淡入淡出的元素</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isVisible: true,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    toggleVisibility() &#123;</span><br><span class="line">      this.isVisible = !this.isVisible;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.fade-enter-active, .fade-leave-active &#123;</span><br><span class="line">  transition: opacity 0.5s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.fade-enter, .fade-leave-to &#123;</span><br><span class="line">  opacity: 0;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="transition简写方式">transition简写方式</h2>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transition</span>: 使用过渡效果的属性名称  过渡时间 过渡方式</span><br></pre></td></tr></table></figure>
-<h2 id="常见属性">常见属性</h2>
-<h3 id="transition-property指定使用过渡效果的css属性">transition-property：指定使用过渡效果的css属性</h3>
-<p>默认值为all，即<strong>所有能够被transition支持的属性都会有过渡效果</strong>。在实际使用时最好<strong>指定具体生效的属性</strong>，如只改变字体大小便设置为<code>transition-property：font-size</code>。</p>
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>css中有两种形式实现动画效果：过渡动画<code>transition</code>和自定义动画<code>animation</code>。其中，animation动画可以循环多次执行，而过渡动画transition只执行一遍。</p>
+<h1 id="transition"><a href="#transition" class="headerlink" title="transition"></a>transition</h1><p>若通过用户的交互直接改变css样式，呈现的形式是立即转变。若希望这个变化是有过渡效果的，便需要使用到过渡动画<code>transition</code>。使用transition的例子如下：</p>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click&#x3D;&quot;toggleVisibility&quot;&gt;切换元素&lt;&#x2F;button&gt;
+    &lt;transition name&#x3D;&quot;fade&quot;&gt;
+      &lt;div v-if&#x3D;&quot;isVisible&quot; key&#x3D;&quot;myElement&quot; class&#x3D;&quot;fade-element&quot;&gt;
+        这是一个会淡入淡出的元素
+      &lt;&#x2F;div&gt;
+    &lt;&#x2F;transition&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+
+&lt;script&gt;
+export default &#123;
+  data() &#123;
+    return &#123;
+      isVisible: true,
+    &#125;;
+  &#125;,
+  methods: &#123;
+    toggleVisibility() &#123;
+      this.isVisible &#x3D; !this.isVisible;
+    &#125;,
+  &#125;,
+&#125;;
+&lt;&#x2F;script&gt;
+
+&lt;style&gt;
+.fade-enter-active, .fade-leave-active &#123;
+  transition: opacity 0.5s;
+&#125;
+
+.fade-enter, .fade-leave-to &#123;
+  opacity: 0;
+&#125;
+&lt;&#x2F;style&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="transition简写方式"><a href="#transition简写方式" class="headerlink" title="transition简写方式"></a>transition简写方式</h2><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">transition</span><span class="token punctuation">:</span> 使用过渡效果的属性名称  过渡时间 过渡方式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="常见属性"><a href="#常见属性" class="headerlink" title="常见属性"></a>常见属性</h2><h3 id="transition-property：指定使用过渡效果的css属性"><a href="#transition-property：指定使用过渡效果的css属性" class="headerlink" title="transition-property：指定使用过渡效果的css属性"></a>transition-property：指定使用过渡效果的css属性</h3><p>默认值为all，即<strong>所有能够被transition支持的属性都会有过渡效果</strong>。在实际使用时最好<strong>指定具体生效的属性</strong>，如只改变字体大小便设置为<code>transition-property：font-size</code>。</p>
 <p><strong>目前transition不支持的过渡项有：<code>z-index</code>、<code>display</code></strong>。</p>
-<h3 id="transition-duration动画过渡时间">transition-duration：动画过渡时间</h3>
-<p>定义动画过渡时间，<strong>默认为0秒</strong></p>
-<h3 id="transition-timing-function动画过渡方式">transition-timing-function：动画过渡方式</h3>
-<p>定义动画的事件函数，控制动画速度，可以配置动画随时间变化的运动速率和轨迹。</p>
+<h3 id="transition-duration：动画过渡时间"><a href="#transition-duration：动画过渡时间" class="headerlink" title="transition-duration：动画过渡时间"></a>transition-duration：动画过渡时间</h3><p>定义动画过渡时间，<strong>默认为0秒</strong></p>
+<h3 id="transition-timing-function：动画过渡方式"><a href="#transition-timing-function：动画过渡方式" class="headerlink" title="transition-timing-function：动画过渡方式"></a>transition-timing-function：动画过渡方式</h3><p>定义动画的事件函数，控制动画速度，可以配置动画随时间变化的运动速率和轨迹。</p>
 <p>可选值：</p>
 <ul>
 <li>linear：动画的速度从头到尾都是相同的</li>
@@ -518,43 +546,73 @@
 <li>ease-in：动画以低速开始</li>
 <li>ease-out：动画以低速结束</li>
 <li>ease-in-out：动画以低速开始和结束</li>
-<li>cubic-bezier(n,n,n,n)：贝塞尔曲线（自定义数组），可到<a target="_blank" rel="noopener" href="https://cubic-bezier.com/#.17,.67,.83,.67">网站
-cubic-bezier.com</a>进行可视化配置</li>
+<li>cubic-bezier(n,n,n,n)：贝塞尔曲线（自定义数组），可到<a target="_blank" rel="noopener" href="https://cubic-bezier.com/#.17,.67,.83,.67">网站 cubic-bezier.com</a>进行可视化配置</li>
 </ul>
-<h3 id="transition-delay-动画延迟时间"><strong>transition-delay：</strong>
-动画延迟时间</h3>
-<p>设置动画延时时间，单位为秒。</p>
+<h3 id="transition-delay：-动画延迟时间"><a href="#transition-delay：-动画延迟时间" class="headerlink" title="transition-delay： 动画延迟时间"></a><strong>transition-delay：</strong> 动画延迟时间</h3><p>设置动画延时时间，单位为秒。</p>
 <p>若想要立即触发动画，只在恢复时延迟过渡，可以在动画触发时重新设置<code>transition-delay：0s</code>。这样动画一旦触发就会应用对应的样式表，动画执行完毕后延时0秒恢复原样式。</p>
 <p>当同时使用多个动画时，可依次定义每个动画的延迟执行时间，依次来区分每一个动画。</p>
-<h3 id="多属性累加">多属性累加</h3>
-<p>需要对每个属性的过渡效果分别设置时，可以使用逗号<code>,</code>来分隔开。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transition-property</span>: width, heitht, color ;</span><br><span class="line">trnasition-duration: <span class="number">1s</span>, <span class="number">1.5s</span>, <span class="number">2s</span> ;</span><br><span class="line"><span class="attribute">transition-timing-function</span>: ease, linear, ease-in-out ;</span><br><span class="line"><span class="attribute">transition-delay</span>: <span class="number">0s</span>, <span class="number">1s</span>, <span class="number">0s</span> ;</span><br></pre></td></tr></table></figure>
+<h3 id="多属性累加"><a href="#多属性累加" class="headerlink" title="多属性累加"></a>多属性累加</h3><p>需要对每个属性的过渡效果分别设置时，可以使用逗号<code>,</code>来分隔开。</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">transition-property</span><span class="token punctuation">:</span> width<span class="token punctuation">,</span> heitht<span class="token punctuation">,</span> color <span class="token punctuation">;</span>
+<span class="token property">trnasition-duration</span><span class="token punctuation">:</span> 1s<span class="token punctuation">,</span> 1.5s<span class="token punctuation">,</span> 2s <span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> ease<span class="token punctuation">,</span> linear<span class="token punctuation">,</span> ease-in-out <span class="token punctuation">;</span>
+<span class="token property">transition-delay</span><span class="token punctuation">:</span> 0s<span class="token punctuation">,</span> 1s<span class="token punctuation">,</span> 0s <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以上代码也可以使用<strong>简写方式</strong>来分隔，如：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transition</span>: width <span class="number">1s</span> ease ,heitht <span class="number">1.5s</span> linear <span class="number">1s</span>, color <span class="number">2s</span> ease-in-out ;</span><br></pre></td></tr></table></figure>
-<h1 id="animation">animation</h1>
-<p>自定义动画通过<code>@keyframes</code>来设置关键帧动画。可以对每一帧动画进行设置动画名称、时长、缓动函数、循环函数等信息。其语法如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> animationName &#123;</span><br><span class="line">  <span class="number">0%</span> &#123;</span><br><span class="line">    <span class="comment">/* 样式定义 */</span></span><br><span class="line">    <span class="attribute">width</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">50px</span>;      </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">50%</span> &#123;</span><br><span class="line">    <span class="comment">/* 样式定义 */</span></span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100px</span>;      </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="comment">/* 样式定义 */</span></span><br><span class="line">    <span class="attribute">width</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">50px</span>;      </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 应用动画 */</span></span><br><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: animationName <span class="number">3s</span> ease-in-out infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">transition</span><span class="token punctuation">:</span> width 1s ease <span class="token punctuation">,</span>heitht 1.5s linear 1s<span class="token punctuation">,</span> color 2s ease-in-out <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h1><p>自定义动画通过<code>@keyframes</code>来设置关键帧动画。可以对每一帧动画进行设置动画名称、时长、缓动函数、循环函数等信息。其语法如下：</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token atrule"><span class="token rule">@keyframes</span> animationName</span> <span class="token punctuation">&#123;</span>
+  <span class="token selector">0%</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">/* 样式定义 */</span>
+    <span class="token property">width</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>      
+  <span class="token punctuation">&#125;</span>
+  <span class="token selector">50%</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">/* 样式定义 */</span>
+    <span class="token property">width</span><span class="token punctuation">:</span>100px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span>100px<span class="token punctuation">;</span>      
+  <span class="token punctuation">&#125;</span>
+  <span class="token selector">100%</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">/* 样式定义 */</span>
+    <span class="token property">width</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>      
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/* 应用动画 */</span>
+<span class="token selector">.element</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">animation</span><span class="token punctuation">:</span> animationName 3s ease-in-out infinite<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其中，使用百分比来<code>%</code>指定变化时的状态，<code>0%</code>和<code>100%</code>代表首尾帧，也可分别使用<code>from</code>和<code>to</code>来替代。</p>
 <p><strong>注意</strong>：若自定义<strong>动画没有自定义首尾帧</strong>，首尾帧将会应用<strong>元素原有的样式</strong>。</p>
 <p>例如：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> animationName &#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;</span><br><span class="line">    <span class="comment">/* 样式定义 */</span></span><br><span class="line">    <span class="attribute">width</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">50%</span> &#123;</span><br><span class="line">    <span class="comment">/* 样式定义 */</span></span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100px</span>;      </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">to</span> &#123;</span><br><span class="line">    <span class="comment">/* 样式定义 */</span></span><br><span class="line">    <span class="attribute">width</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">50px</span>;      </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 将动画应用到元素上 */</span></span><br><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: animationName <span class="number">3s</span> ease-in-out infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="animation简写方式">animation简写方式</h2>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">animation</span>: 动画持续时间  延迟时间 执行关键帧名称 运动方式 循环次数 结束状态 动画执行顺序</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token atrule"><span class="token rule">@keyframes</span> animationName</span> <span class="token punctuation">&#123;</span>
+  <span class="token selector">from</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">/* 样式定义 */</span>
+    <span class="token property">width</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token selector">50%</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">/* 样式定义 */</span>
+    <span class="token property">width</span><span class="token punctuation">:</span>100px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span>100px<span class="token punctuation">;</span>      
+  <span class="token punctuation">&#125;</span>
+  <span class="token selector">to</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">/* 样式定义 */</span>
+    <span class="token property">width</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>      
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/* 将动画应用到元素上 */</span>
+<span class="token selector">.element</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">animation</span><span class="token punctuation">:</span> animationName 3s ease-in-out infinite<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="animation简写方式"><a href="#animation简写方式" class="headerlink" title="animation简写方式"></a>animation简写方式</h2><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">animation</span><span class="token punctuation">:</span> 动画持续时间  延迟时间 执行关键帧名称 运动方式 循环次数 结束状态 动画执行顺序<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>最简方式：</strong>（其中执行时间和延迟时间顺序不可调整）</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">animation</span>: 动画执行时间 执行关键帧名称</span><br></pre></td></tr></table></figure>
-<h2 id="常见属性-1">常见属性</h2>
-<h3 id="animation-name指定使用的-keyframes-名称">animation-name:指定使用的
-<code>@keyframes</code> 名称</h3>
-<p>若元素想要使用对应名称的动画，则需要配置animation-name。</p>
-<h3 id="animation-duration-动画持续时间"><strong>animation-duration：</strong>
-动画持续时间</h3>
-<p>定义动画持续时间，<strong>默认为0秒</strong></p>
-<h3 id="animation-iteration-count-动画循环次数"><strong>animation-iteration-count：</strong>
-动画循环次数</h3>
-<p>定义动画迭代次数/执行次数，<strong>默认为1次</strong></p>
-<h3 id="animation-timing-function-动画运动方式"><strong>animation-timing-function：</strong>
-动画运动方式</h3>
-<p>定义动画的缓动函数，控制动画速度，可以配置动画随时间变化的运动速率和轨迹。</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">animation</span><span class="token punctuation">:</span> 动画执行时间 执行关键帧名称<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="常见属性-1"><a href="#常见属性-1" class="headerlink" title="常见属性"></a>常见属性</h2><h3 id="animation-name-指定使用的-keyframes-名称"><a href="#animation-name-指定使用的-keyframes-名称" class="headerlink" title="animation-name:指定使用的 @keyframes 名称"></a>animation-name:指定使用的 <code>@keyframes</code> 名称</h3><p>若元素想要使用对应名称的动画，则需要配置animation-name。</p>
+<h3 id="animation-duration：-动画持续时间"><a href="#animation-duration：-动画持续时间" class="headerlink" title="animation-duration： 动画持续时间"></a><strong>animation-duration：</strong> 动画持续时间</h3><p>定义动画持续时间，<strong>默认为0秒</strong></p>
+<h3 id="animation-iteration-count：-动画循环次数"><a href="#animation-iteration-count：-动画循环次数" class="headerlink" title="animation-iteration-count： 动画循环次数"></a><strong>animation-iteration-count：</strong> 动画循环次数</h3><p>定义动画迭代次数/执行次数，<strong>默认为1次</strong></p>
+<h3 id="animation-timing-function：-动画运动方式"><a href="#animation-timing-function：-动画运动方式" class="headerlink" title="animation-timing-function： 动画运动方式"></a><strong>animation-timing-function：</strong> 动画运动方式</h3><p>定义动画的缓动函数，控制动画速度，可以配置动画随时间变化的运动速率和轨迹。</p>
 <p>可选值：</p>
 <ul>
 <li>linear：动画的速度从头到尾都是相同的</li>
@@ -562,16 +620,11 @@ cubic-bezier.com</a>进行可视化配置</li>
 <li>ease-in：动画以低速开始</li>
 <li>ease-out：动画以低速结束</li>
 <li>ease-in-out：动画以低速开始和结束</li>
-<li>cubic-bezier(n,n,n,n)：贝塞尔曲线（自定义数组），可到<a target="_blank" rel="noopener" href="https://cubic-bezier.com/#.17,.67,.83,.67">网站
-cubic-bezier.com</a>进行可视化配置</li>
+<li>cubic-bezier(n,n,n,n)：贝塞尔曲线（自定义数组），可到<a target="_blank" rel="noopener" href="https://cubic-bezier.com/#.17,.67,.83,.67">网站 cubic-bezier.com</a>进行可视化配置</li>
 </ul>
-<h3 id="animation-delay-动画延迟时间"><strong>animation-delay：</strong>
-动画延迟时间</h3>
-<p>设置动画延时时间，单位为秒。</p>
+<h3 id="animation-delay：-动画延迟时间"><a href="#animation-delay：-动画延迟时间" class="headerlink" title="animation-delay： 动画延迟时间"></a><strong>animation-delay：</strong> 动画延迟时间</h3><p>设置动画延时时间，单位为秒。</p>
 <p>当同时使用多个动画时，可依次定义每个动画的延迟执行时间，依次来区分每一个动画。</p>
-<h3 id="animation-direction-动画执行顺序播放方向"><strong>animation-direction：</strong>
-动画执行顺序（播放方向）</h3>
-<p>设置动画执行的方向。</p>
+<h3 id="animation-direction：-动画执行顺序（播放方向）"><a href="#animation-direction：-动画执行顺序（播放方向）" class="headerlink" title="animation-direction： 动画执行顺序（播放方向）"></a><strong>animation-direction：</strong> 动画执行顺序（播放方向）</h3><p>设置动画执行的方向。</p>
 <p>可选值：</p>
 <ul>
 <li>normal：默认值，动画按正常播放</li>
@@ -580,51 +633,161 @@ cubic-bezier.com</a>进行可视化配置</li>
 <li>alternate-reverse：动画反正（反向-&gt;正向）交替执行</li>
 <li>inherit：从父元素继承该属性</li>
 </ul>
-<h3 id="animation-fill-mode动画结束状态">animation-fill-mode：动画结束状态</h3>
-<p>设置动画的填充模式</p>
+<h3 id="animation-fill-mode：动画结束状态"><a href="#animation-fill-mode：动画结束状态" class="headerlink" title="animation-fill-mode：动画结束状态"></a>animation-fill-mode：动画结束状态</h3><p>设置动画的填充模式</p>
 <p>可选值：</p>
 <ul>
 <li>none：默认值，动画在动画执行前后，不会应用任何样式到目标元素。</li>
-<li>forwards：在动画结束后（<strong>由 animation-iteration-count
-决定</strong>），目标元素将保持应用<strong>最后帧</strong>动画。</li>
-<li>backwards：在动画结束后（<strong>由 animation-iteration-count
-决定</strong>），目标元素将保持应用<strong>起始帧</strong>动画。</li>
+<li>forwards：在动画结束后（<strong>由 animation-iteration-count 决定</strong>），目标元素将保持应用<strong>最后帧</strong>动画。</li>
+<li>backwards：在动画结束后（<strong>由 animation-iteration-count 决定</strong>），目标元素将保持应用<strong>起始帧</strong>动画。</li>
 </ul>
-<h3 id="animation-play-state动画执行状态">animation-play-state：动画执行状态</h3>
-<p>设置动画的执行状态</p>
+<h3 id="animation-play-state：动画执行状态"><a href="#animation-play-state：动画执行状态" class="headerlink" title="animation-play-state：动画执行状态"></a>animation-play-state：动画执行状态</h3><p>设置动画的执行状态</p>
 <p>可选值：</p>
 <ul>
 <li>running：允许</li>
 <li>paused：暂停。动画将停止执行</li>
 </ul>
-<h3 id="多动画累加">多动画累加</h3>
-<p>若元素应用多个动画时，可以通过给animation属性分别不同值来分别控制各个动画的属性。各个值之间使用逗号<code>,</code>来分隔开。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">animation-name</span>: bgcolor, bodera, rotat;</span><br><span class="line"><span class="attribute">animation-duration</span>: <span class="number">2s</span>, <span class="number">2s</span>, <span class="number">3s</span>;</span><br><span class="line"><span class="attribute">animation-iteration-count</span>: <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>;</span><br><span class="line"><span class="attribute">animation-direction</span>: reverse, normal, normal;</span><br><span class="line"><span class="attribute">animation-fill-mode</span>: forwards, forwards, forwards;</span><br></pre></td></tr></table></figure>
-<p>应用多个动画时，所有动画是并发执行的，因此<strong>计算动画结束事件只需要知道执行时间最长的动画</strong>即可，<strong>执行时间
-x
-单次执行时间=动画总时间</strong>。因此上述代码的最大时间=max(2x2,2x2,3x1=4s。</p>
-<h2 id="animation用法示例">animation用法示例</h2>
-<p>播放时长为2秒的浮动动画的Vue代码示例如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;<span class="selector-tag">div</span> :class=<span class="string">&quot;&#123; &#x27;custom-animation&#x27;: isAnimating &#125;&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isAnimating: true, // 根据需要设置是否启用动画</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line"><span class="keyword">@keyframes</span> customAnimation &#123;</span><br><span class="line">  <span class="number">0%</span>, <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">50%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">30px</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.custom-animation</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: green;</span><br><span class="line">  <span class="attribute">animation</span>: customAnimation <span class="number">2s</span> ease-in-out infinite; <span class="comment">/* 设置动画名称、时长、缓动函数和循环次数 */</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="常见错误及解决方案">常见错误及解决方案</h2>
-<h3 id="keyframes不能实现突变的状态变化"><code>@keyframes</code>不能实现突变的状态变化</h3>
-<p><code>@keyframes</code>是将样式从一个状态慢慢转变为另一个状态，因此不能实现突变的状态，例如：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">animation</span>: appear <span class="number">2s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@keyframes</span> appear &#123;</span><br><span class="line">    <span class="selector-tag">from</span> &#123; <span class="attribute">display</span>:none; &#125;</span><br><span class="line">    <span class="selector-tag">to</span>   &#123; <span class="attribute">display</span>:block;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多动画累加"><a href="#多动画累加" class="headerlink" title="多动画累加"></a>多动画累加</h3><p>若元素应用多个动画时，可以通过给animation属性分别不同值来分别控制各个动画的属性。各个值之间使用逗号<code>,</code>来分隔开。</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">animation-name</span><span class="token punctuation">:</span> bgcolor<span class="token punctuation">,</span> bodera<span class="token punctuation">,</span> rotat<span class="token punctuation">;</span>
+<span class="token property">animation-duration</span><span class="token punctuation">:</span> 2s<span class="token punctuation">,</span> 2s<span class="token punctuation">,</span> 3s<span class="token punctuation">;</span>
+<span class="token property">animation-iteration-count</span><span class="token punctuation">:</span> 2<span class="token punctuation">,</span> 2<span class="token punctuation">,</span> 1<span class="token punctuation">;</span>
+<span class="token property">animation-direction</span><span class="token punctuation">:</span> reverse<span class="token punctuation">,</span> normal<span class="token punctuation">,</span> normal<span class="token punctuation">;</span>
+<span class="token property">animation-fill-mode</span><span class="token punctuation">:</span> forwards<span class="token punctuation">,</span> forwards<span class="token punctuation">,</span> forwards<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>应用多个动画时，所有动画是并发执行的，因此<strong>计算动画结束事件只需要知道执行时间最长的动画</strong>即可，<strong>执行时间 x 单次执行时间=动画总时间</strong>。因此上述代码的最大时间=max(2x2,2x2,3x1=4s。</p>
+<h2 id="animation用法示例"><a href="#animation用法示例" class="headerlink" title="animation用法示例"></a>animation用法示例</h2><p>播放时长为2秒的浮动动画的Vue代码示例如下：</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">&lt;template>
+  &lt;div :class="&#123; 'custom-animation': isAnimating &#125;">&lt;/div>
+&lt;/template>
+
+&lt;script>
+export default</span> <span class="token punctuation">&#123;</span>
+  <span class="token selector">data()</span> <span class="token punctuation">&#123;</span>
+    <span class="token selector">return</span> <span class="token punctuation">&#123;</span>
+      <span class="token property">isAnimating</span><span class="token punctuation">:</span> true<span class="token punctuation">,</span> // 根据需要设置是否启用动画
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+&lt;/script>
+
+&lt;style>
+<span class="token atrule"><span class="token rule">@keyframes</span> customAnimation</span> <span class="token punctuation">&#123;</span>
+  <span class="token selector">0%, 100%</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateY</span><span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token selector">50%</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateY</span><span class="token punctuation">(</span>-30px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token selector">.custom-animation</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
+  <span class="token property">animation</span><span class="token punctuation">:</span> customAnimation 2s ease-in-out infinite<span class="token punctuation">;</span> <span class="token comment">/* 设置动画名称、时长、缓动函数和循环次数 */</span>
+<span class="token punctuation">&#125;</span>
+&lt;/style><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="常见错误及解决方案"><a href="#常见错误及解决方案" class="headerlink" title="常见错误及解决方案"></a>常见错误及解决方案</h2><h3 id="keyframes不能实现突变的状态变化"><a href="#keyframes不能实现突变的状态变化" class="headerlink" title="@keyframes不能实现突变的状态变化"></a><code>@keyframes</code>不能实现突变的状态变化</h3><p><code>@keyframes</code>是将样式从一个状态慢慢转变为另一个状态，因此不能实现突变的状态，例如：</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">div</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">animation</span><span class="token punctuation">:</span> appear 2s<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token atrule"><span class="token rule">@keyframes</span> appear</span> <span class="token punctuation">&#123;</span>
+    <span class="token selector">from</span> <span class="token punctuation">&#123;</span> <span class="token property">display</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+    <span class="token selector">to</span>   <span class="token punctuation">&#123;</span> <span class="token property">display</span><span class="token punctuation">:</span>block<span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上述代码中<code>display:none;</code>是将div不占空间地隐藏，而<code>display:block;</code>是显示div并占用空间。这里从<code>display:none;</code>到<code>display:block;</code>的状态是突变的，因此<code>@keyframes</code>无法实现上述的状态变化</p>
 <p><strong>替代方法：</strong></p>
 <ul>
 <li><p>占据空间的隐藏：使用visibility来代替display。</p>
-<p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">animation</span>: appear <span class="number">2s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@keyframes</span> appear &#123;</span><br><span class="line">    <span class="selector-tag">from</span> &#123; </span><br><span class="line">        <span class="attribute">opacity</span>:<span class="number">1</span>;</span><br><span class="line">        <span class="attribute">visibility</span>:visible; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">to</span>   &#123; </span><br><span class="line">        <span class="attribute">opacity</span>:<span class="number">0</span>;</span><br><span class="line">        <span class="attribute">visibility</span>:hidden;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">div</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">animation</span><span class="token punctuation">:</span> appear 2s<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token atrule"><span class="token rule">@keyframes</span> appear</span> <span class="token punctuation">&#123;</span>
+    <span class="token selector">from</span> <span class="token punctuation">&#123;</span> 
+        <span class="token property">opacity</span><span class="token punctuation">:</span>1<span class="token punctuation">;</span>
+        <span class="token property">visibility</span><span class="token punctuation">:</span>visible<span class="token punctuation">;</span> 
+    <span class="token punctuation">&#125;</span>
+    <span class="token selector">to</span>   <span class="token punctuation">&#123;</span> 
+        <span class="token property">opacity</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>
+        <span class="token property">visibility</span><span class="token punctuation">:</span>hidden<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>不占据空间地隐藏：使用绝对定位+visibility组合，其中绝对定位使元素脱离文档流，搭配z-index层级关系来使他出现或消失。</p>
-<p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">animation</span>: appear <span class="number">2s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@keyframes</span> appear &#123;</span><br><span class="line">    <span class="selector-tag">from</span> &#123; </span><br><span class="line">        <span class="attribute">opacity</span>:<span class="number">1</span>;</span><br><span class="line">        <span class="attribute">visibility</span>:visible; </span><br><span class="line">        <span class="attribute">z-index</span>:<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">to</span>   &#123; </span><br><span class="line">        <span class="attribute">opacity</span>:<span class="number">0</span>;</span><br><span class="line">        <span class="attribute">visibility</span>:hidden;</span><br><span class="line">         <span class="attribute">z-index</span>:<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">div</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">position</span><span class="token punctuation">:</span>absolute<span class="token punctuation">;</span>
+    <span class="token property">top</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>
+    <span class="token property">left</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>
+    <span class="token property">animation</span><span class="token punctuation">:</span> appear 2s<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token atrule"><span class="token rule">@keyframes</span> appear</span> <span class="token punctuation">&#123;</span>
+    <span class="token selector">from</span> <span class="token punctuation">&#123;</span> 
+        <span class="token property">opacity</span><span class="token punctuation">:</span>1<span class="token punctuation">;</span>
+        <span class="token property">visibility</span><span class="token punctuation">:</span>visible<span class="token punctuation">;</span> 
+        <span class="token property">z-index</span><span class="token punctuation">:</span>10<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token selector">to</span>   <span class="token punctuation">&#123;</span> 
+        <span class="token property">opacity</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>
+        <span class="token property">visibility</span><span class="token punctuation">:</span>hidden<span class="token punctuation">;</span>
+         <span class="token property">z-index</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>消失前占据空间但消失后不占空间：使用setTimeout和visibility组合。</p>
-<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;button @click=&quot;hideElement&quot;&gt;隐藏元素&lt;/button&gt;</span><br><span class="line">    &lt;div :class=&quot;&#123; &#x27;fade-out&#x27;: isVisible, &#x27;hidden&#x27;: !isVisible &#125;&quot;&gt;</span><br><span class="line">      这是一个会消失的元素</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isVisible: true,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    hideElement() &#123;</span><br><span class="line">      this.isVisible = false;</span><br><span class="line">      // 使用 setTimeout 设置一定的延迟，确保元素在消失前渲染一段时间</span><br><span class="line">      setTimeout(() =&gt; &#123;</span><br><span class="line">        this.isVisible = true;</span><br><span class="line">      &#125;, 500); // 设置的时间可以根据需要调整</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.fade-out &#123;</span><br><span class="line">  visibility: visible;</span><br><span class="line">  opacity: 1;</span><br><span class="line">  transition: opacity 0.5s ease-in-out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.hidden &#123;</span><br><span class="line">  visibility: hidden;</span><br><span class="line">  opacity: 0;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click&#x3D;&quot;hideElement&quot;&gt;隐藏元素&lt;&#x2F;button&gt;
+    &lt;div :class&#x3D;&quot;&#123; &#39;fade-out&#39;: isVisible, &#39;hidden&#39;: !isVisible &#125;&quot;&gt;
+      这是一个会消失的元素
+    &lt;&#x2F;div&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+
+&lt;script&gt;
+export default &#123;
+  data() &#123;
+    return &#123;
+      isVisible: true,
+    &#125;;
+  &#125;,
+  methods: &#123;
+    hideElement() &#123;
+      this.isVisible &#x3D; false;
+      &#x2F;&#x2F; 使用 setTimeout 设置一定的延迟，确保元素在消失前渲染一段时间
+      setTimeout(() &#x3D;&gt; &#123;
+        this.isVisible &#x3D; true;
+      &#125;, 500); &#x2F;&#x2F; 设置的时间可以根据需要调整
+    &#125;,
+  &#125;,
+&#125;;
+&lt;&#x2F;script&gt;
+
+&lt;style&gt;
+.fade-out &#123;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+&#125;
+
+.hidden &#123;
+  visibility: hidden;
+  opacity: 0;
+&#125;
+&lt;&#x2F;style&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h3 id="keyframes会增添覆盖属性"><code>@keyframes</code>会增添/覆盖属性</h3>
-<p>以下为覆盖属性的例子：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* div 在2s内下移200px</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">animation</span>: move <span class="number">2s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@keyframes</span> move &#123;</span><br><span class="line">    <span class="selector-tag">from</span> &#123; <span class="attribute">top</span>:<span class="number">20px</span>; &#125;</span><br><span class="line">    <span class="selector-tag">to</span>   &#123; <span class="attribute">top</span>:<span class="number">200px</span>;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在例子里，div的初始状态是
-<code>top:0px;</code>，在动画启动前，<code>@keyframes</code>先用<code>top:20px;</code>覆盖原属性，然后再开始播放动画</p>
+<h3 id="keyframes会增添-覆盖属性"><a href="#keyframes会增添-覆盖属性" class="headerlink" title="@keyframes会增添/覆盖属性"></a><code>@keyframes</code>会增添/覆盖属性</h3><p>以下为覆盖属性的例子：</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/*
+* div 在2s内下移200px
+*/</span>
+<span class="token selector">div</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">position</span><span class="token punctuation">:</span>absolute<span class="token punctuation">;</span>
+    <span class="token property">top</span><span class="token punctuation">:</span>0px<span class="token punctuation">;</span>
+    <span class="token property">animation</span><span class="token punctuation">:</span> move 2s<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token atrule"><span class="token rule">@keyframes</span> move</span> <span class="token punctuation">&#123;</span>
+    <span class="token selector">from</span> <span class="token punctuation">&#123;</span> <span class="token property">top</span><span class="token punctuation">:</span>20px<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
+    <span class="token selector">to</span>   <span class="token punctuation">&#123;</span> <span class="token property">top</span><span class="token punctuation">:</span>200px<span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在例子里，div的初始状态是 <code>top:0px;</code>，在动画启动前，<code>@keyframes</code>先用<code>top:20px;</code>覆盖原属性，然后再开始播放动画</p>
 
     </article>
     <!-- license -->
@@ -823,14 +986,7 @@ x
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#transition"><span class="toc-number">2.</span> <span class="toc-text">transition</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#transition%E7%AE%80%E5%86%99%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text">transition简写方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%B1%9E%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text">常见属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transition-property%E6%8C%87%E5%AE%9A%E4%BD%BF%E7%94%A8%E8%BF%87%E6%B8%A1%E6%95%88%E6%9E%9C%E7%9A%84css%E5%B1%9E%E6%80%A7"><span class="toc-number">2.2.1.</span> <span class="toc-text">transition-property：指定使用过渡效果的css属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transition-duration%E5%8A%A8%E7%94%BB%E8%BF%87%E6%B8%A1%E6%97%B6%E9%97%B4"><span class="toc-number">2.2.2.</span> <span class="toc-text">transition-duration：动画过渡时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transition-timing-function%E5%8A%A8%E7%94%BB%E8%BF%87%E6%B8%A1%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.3.</span> <span class="toc-text">transition-timing-function：动画过渡方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transition-delay-%E5%8A%A8%E7%94%BB%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4"><span class="toc-number">2.2.4.</span> <span class="toc-text">transition-delay：
-动画延迟时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%B1%9E%E6%80%A7%E7%B4%AF%E5%8A%A0"><span class="toc-number">2.2.5.</span> <span class="toc-text">多属性累加</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#animation"><span class="toc-number">3.</span> <span class="toc-text">animation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#animation%E7%AE%80%E5%86%99%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">animation简写方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%B1%9E%E6%80%A7-1"><span class="toc-number">3.2.</span> <span class="toc-text">常见属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-name%E6%8C%87%E5%AE%9A%E4%BD%BF%E7%94%A8%E7%9A%84-keyframes-%E5%90%8D%E7%A7%B0"><span class="toc-number">3.2.1.</span> <span class="toc-text">animation-name:指定使用的
-@keyframes 名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-duration-%E5%8A%A8%E7%94%BB%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4"><span class="toc-number">3.2.2.</span> <span class="toc-text">animation-duration：
-动画持续时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-iteration-count-%E5%8A%A8%E7%94%BB%E5%BE%AA%E7%8E%AF%E6%AC%A1%E6%95%B0"><span class="toc-number">3.2.3.</span> <span class="toc-text">animation-iteration-count：
-动画循环次数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-timing-function-%E5%8A%A8%E7%94%BB%E8%BF%90%E5%8A%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">3.2.4.</span> <span class="toc-text">animation-timing-function：
-动画运动方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-delay-%E5%8A%A8%E7%94%BB%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4"><span class="toc-number">3.2.5.</span> <span class="toc-text">animation-delay：
-动画延迟时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-direction-%E5%8A%A8%E7%94%BB%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E6%92%AD%E6%94%BE%E6%96%B9%E5%90%91"><span class="toc-number">3.2.6.</span> <span class="toc-text">animation-direction：
-动画执行顺序（播放方向）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-fill-mode%E5%8A%A8%E7%94%BB%E7%BB%93%E6%9D%9F%E7%8A%B6%E6%80%81"><span class="toc-number">3.2.7.</span> <span class="toc-text">animation-fill-mode：动画结束状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-play-state%E5%8A%A8%E7%94%BB%E6%89%A7%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="toc-number">3.2.8.</span> <span class="toc-text">animation-play-state：动画执行状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%8A%A8%E7%94%BB%E7%B4%AF%E5%8A%A0"><span class="toc-number">3.2.9.</span> <span class="toc-text">多动画累加</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#animation%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.3.</span> <span class="toc-text">animation用法示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">3.4.</span> <span class="toc-text">常见错误及解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#keyframes%E4%B8%8D%E8%83%BD%E5%AE%9E%E7%8E%B0%E7%AA%81%E5%8F%98%E7%9A%84%E7%8A%B6%E6%80%81%E5%8F%98%E5%8C%96"><span class="toc-number">3.4.1.</span> <span class="toc-text">@keyframes不能实现突变的状态变化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keyframes%E4%BC%9A%E5%A2%9E%E6%B7%BB%E8%A6%86%E7%9B%96%E5%B1%9E%E6%80%A7"><span class="toc-number">3.4.2.</span> <span class="toc-text">@keyframes会增添&#x2F;覆盖属性</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#transition"><span class="toc-number">2.</span> <span class="toc-text">transition</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#transition%E7%AE%80%E5%86%99%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text">transition简写方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%B1%9E%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text">常见属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transition-property%EF%BC%9A%E6%8C%87%E5%AE%9A%E4%BD%BF%E7%94%A8%E8%BF%87%E6%B8%A1%E6%95%88%E6%9E%9C%E7%9A%84css%E5%B1%9E%E6%80%A7"><span class="toc-number">2.2.1.</span> <span class="toc-text">transition-property：指定使用过渡效果的css属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transition-duration%EF%BC%9A%E5%8A%A8%E7%94%BB%E8%BF%87%E6%B8%A1%E6%97%B6%E9%97%B4"><span class="toc-number">2.2.2.</span> <span class="toc-text">transition-duration：动画过渡时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transition-timing-function%EF%BC%9A%E5%8A%A8%E7%94%BB%E8%BF%87%E6%B8%A1%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.3.</span> <span class="toc-text">transition-timing-function：动画过渡方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transition-delay%EF%BC%9A-%E5%8A%A8%E7%94%BB%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4"><span class="toc-number">2.2.4.</span> <span class="toc-text">transition-delay： 动画延迟时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%B1%9E%E6%80%A7%E7%B4%AF%E5%8A%A0"><span class="toc-number">2.2.5.</span> <span class="toc-text">多属性累加</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#animation"><span class="toc-number">3.</span> <span class="toc-text">animation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#animation%E7%AE%80%E5%86%99%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">animation简写方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%B1%9E%E6%80%A7-1"><span class="toc-number">3.2.</span> <span class="toc-text">常见属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-name-%E6%8C%87%E5%AE%9A%E4%BD%BF%E7%94%A8%E7%9A%84-keyframes-%E5%90%8D%E7%A7%B0"><span class="toc-number">3.2.1.</span> <span class="toc-text">animation-name:指定使用的 @keyframes 名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-duration%EF%BC%9A-%E5%8A%A8%E7%94%BB%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4"><span class="toc-number">3.2.2.</span> <span class="toc-text">animation-duration： 动画持续时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-iteration-count%EF%BC%9A-%E5%8A%A8%E7%94%BB%E5%BE%AA%E7%8E%AF%E6%AC%A1%E6%95%B0"><span class="toc-number">3.2.3.</span> <span class="toc-text">animation-iteration-count： 动画循环次数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-timing-function%EF%BC%9A-%E5%8A%A8%E7%94%BB%E8%BF%90%E5%8A%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">3.2.4.</span> <span class="toc-text">animation-timing-function： 动画运动方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-delay%EF%BC%9A-%E5%8A%A8%E7%94%BB%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4"><span class="toc-number">3.2.5.</span> <span class="toc-text">animation-delay： 动画延迟时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-direction%EF%BC%9A-%E5%8A%A8%E7%94%BB%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%EF%BC%88%E6%92%AD%E6%94%BE%E6%96%B9%E5%90%91%EF%BC%89"><span class="toc-number">3.2.6.</span> <span class="toc-text">animation-direction： 动画执行顺序（播放方向）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-fill-mode%EF%BC%9A%E5%8A%A8%E7%94%BB%E7%BB%93%E6%9D%9F%E7%8A%B6%E6%80%81"><span class="toc-number">3.2.7.</span> <span class="toc-text">animation-fill-mode：动画结束状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animation-play-state%EF%BC%9A%E5%8A%A8%E7%94%BB%E6%89%A7%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="toc-number">3.2.8.</span> <span class="toc-text">animation-play-state：动画执行状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%8A%A8%E7%94%BB%E7%B4%AF%E5%8A%A0"><span class="toc-number">3.2.9.</span> <span class="toc-text">多动画累加</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#animation%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.3.</span> <span class="toc-text">animation用法示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">3.4.</span> <span class="toc-text">常见错误及解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#keyframes%E4%B8%8D%E8%83%BD%E5%AE%9E%E7%8E%B0%E7%AA%81%E5%8F%98%E7%9A%84%E7%8A%B6%E6%80%81%E5%8F%98%E5%8C%96"><span class="toc-number">3.4.1.</span> <span class="toc-text">@keyframes不能实现突变的状态变化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keyframes%E4%BC%9A%E5%A2%9E%E6%B7%BB-%E8%A6%86%E7%9B%96%E5%B1%9E%E6%80%A7"><span class="toc-number">3.4.2.</span> <span class="toc-text">@keyframes会增添&#x2F;覆盖属性</span></a></li></ol></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1180,6 +1336,12 @@ x
         
         
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2289,6 +2451,11 @@ x
                 数据库工具
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2302,21 +2469,6 @@ x
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS3">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS3
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2334,9 +2486,29 @@ x
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2359,14 +2531,14 @@ x
                 MinIO
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="LLM">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                LLM
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2377,16 +2549,6 @@ x
             <span class="sidebar-tag-name" data-tags="Vue">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="LLM">
-                <span class="iconfont-archer">&#xe606;</span>
-                LLM
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="人工智能">
-                <span class="iconfont-archer">&#xe606;</span>
-                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2409,11 +2571,6 @@ x
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2422,6 +2579,11 @@ x
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2495,14 +2657,19 @@ x
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2510,9 +2677,9 @@ x
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2525,14 +2692,9 @@ x
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2540,34 +2702,29 @@ x
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Lottie">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="可视化">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
+            可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="Vue">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            Vue
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
             LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2580,9 +2737,9 @@ x
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="人工智能">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2595,14 +2752,24 @@ x
             JavaScript
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2613,11 +2780,6 @@ x
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2692,20 +2854,5 @@ x
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+    </body>
 </html>

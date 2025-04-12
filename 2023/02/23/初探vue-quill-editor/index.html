@@ -341,7 +341,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">982</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -502,40 +502,155 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="富文本编辑器vue-quill-editor">富文本编辑器：vue-quill-editor</h1>
-<p>vue-quill-editor是一款可适配PC端和移动端富文本编辑器，具有可设置自定义配置项、外观简洁且轻量的优点。</p>
-<p>PC端效果图如下：<img src="/2023/02/23/%E5%88%9D%E6%8E%A2vue-quill-editor/1.png"></p>
-<p>移动端的效果图如下：<img src="/2023/02/23/%E5%88%9D%E6%8E%A2vue-quill-editor/2.png"></p>
-<h1 id="vue-quill-editor配置">vue-quill-editor配置</h1>
-<ul>
+        <h1 id="富文本编辑器：vue-quill-editor"><a href="#富文本编辑器：vue-quill-editor" class="headerlink" title="富文本编辑器：vue-quill-editor"></a>富文本编辑器：vue-quill-editor</h1><p>vue-quill-editor是一款可适配PC端和移动端富文本编辑器，具有可设置自定义配置项、外观简洁且轻量的优点。</p>
+<p>PC端效果图如下：<img src="/2023/02/23/%E5%88%9D%E6%8E%A2vue-quill-editor/1.png" alt></p>
+<p>移动端的效果图如下：<img src="/2023/02/23/%E5%88%9D%E6%8E%A2vue-quill-editor/2.png" alt></p>
+<h1 id="vue-quill-editor配置"><a href="#vue-quill-editor配置" class="headerlink" title="vue-quill-editor配置"></a>vue-quill-editor配置</h1><ul>
 <li><p>在项目目录下载vue-quill-editor：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vue-quill-editor -S</span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm i vue-quill-editor -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
 <li><p>在Vue页面的script模块中引入vue-quill-editor：</p>
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Quill</span> <span class="keyword">from</span> <span class="string">&quot;quill&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; quillEditor &#125; <span class="keyword">from</span> <span class="string">&quot;vue-quill-editor&quot;</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;quill/dist/quill.core.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;quill/dist/quill.snow.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;quill/dist/quill.bubble.css&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(quillEditor)<span class="comment">//注册组件的方式之一</span></span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> Quill <span class="token keyword">from</span> <span class="token string">"quill"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> quillEditor <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"vue-quill-editor"</span><span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> <span class="token string">'quill/dist/quill.core.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'quill/dist/quill.snow.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'quill/dist/quill.bubble.css'</span><span class="token punctuation">;</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>quillEditor<span class="token punctuation">)</span><span class="token comment">//注册组件的方式之一</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>在Vue页面的template模块中引入组件：</p>
-<p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">quill-editor</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">v-model</span>=<span class="string">&quot;content&quot;</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">ref</span>=<span class="string">&quot;myQuillEditor&quot;</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">:options</span>=<span class="string">&quot;editorOption&quot;</span> </span></span><br><span class="line"><span class="tag">    @<span class="attr">blur</span>=<span class="string">&quot;onEditorBlur($event)&quot;</span> </span></span><br><span class="line"><span class="tag">    @<span class="attr">focus</span>=<span class="string">&quot;onEditorFocus($event)&quot;</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">change</span>=<span class="string">&quot;onEditorChange($event)&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">quill-editor</span>&gt;</span></span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>quill-editor</span> 
+    <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span> 
+    <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>myQuillEditor<span class="token punctuation">"</span></span> 
+    <span class="token attr-name">:options</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>editorOption<span class="token punctuation">"</span></span> 
+    <span class="token attr-name">@blur</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>onEditorBlur($event)<span class="token punctuation">"</span></span> 
+    <span class="token attr-name">@focus</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>onEditorFocus($event)<span class="token punctuation">"</span></span>
+    <span class="token attr-name">@change</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>onEditorChange($event)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>quill-editor</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>在Vue页面的scripts模块中完善组件的设置，完整的scripts模块代码如下：</p>
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Quill</span> <span class="keyword">from</span> <span class="string">&quot;quill&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; quillEditor &#125; <span class="keyword">from</span> <span class="string">&quot;vue-quill-editor&quot;</span>; </span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;quill/dist/quill.core.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;quill/dist/quill.snow.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;quill/dist/quill.bubble.css&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">components</span>: &#123;</span><br><span class="line">    quillEditor,<span class="comment">//另一种组件注册方式</span></span><br><span class="line">&#125;,</span><br><span class="line">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">content</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">str</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">editorOption</span>: &#123;</span><br><span class="line">        <span class="attr">placeholder</span>: <span class="string">&quot;请在这里输入&quot;</span>,</span><br><span class="line">        <span class="attr">modules</span>:&#123;</span><br><span class="line">          <span class="attr">toolbar</span>:[</span><br><span class="line">            [<span class="string">&#x27;bold&#x27;</span>, <span class="string">&#x27;italic&#x27;</span>, <span class="string">&#x27;underline&#x27;</span>, <span class="string">&#x27;strike&#x27;</span>],    <span class="comment">//加粗，斜体，下划线，删除线</span></span><br><span class="line">            [<span class="string">&#x27;blockquote&#x27;</span>, <span class="string">&#x27;code-block&#x27;</span>],     <span class="comment">//引用，代码块</span></span><br><span class="line">            [&#123; <span class="string">&#x27;header&#x27;</span>: <span class="number">1</span> &#125;, &#123; <span class="string">&#x27;header&#x27;</span>: <span class="number">2</span> &#125;],        <span class="comment">// 标题，键值对的形式；1、2表示字体大小</span></span><br><span class="line">            [&#123; <span class="string">&#x27;list&#x27;</span>: <span class="string">&#x27;ordered&#x27;</span>&#125;, &#123; <span class="string">&#x27;list&#x27;</span>: <span class="string">&#x27;bullet&#x27;</span> &#125;],     <span class="comment">//列表</span></span><br><span class="line">            [&#123; <span class="string">&#x27;script&#x27;</span>: <span class="string">&#x27;sub&#x27;</span>&#125;, &#123; <span class="string">&#x27;script&#x27;</span>: <span class="string">&#x27;super&#x27;</span> &#125;],   <span class="comment">// 上下标</span></span><br><span class="line">            [&#123; <span class="string">&#x27;indent&#x27;</span>: <span class="string">&#x27;-1&#x27;</span>&#125;, &#123; <span class="string">&#x27;indent&#x27;</span>: <span class="string">&#x27;+1&#x27;</span> &#125;],     <span class="comment">// 缩进</span></span><br><span class="line">            [&#123; <span class="string">&#x27;direction&#x27;</span>: <span class="string">&#x27;rtl&#x27;</span> &#125;], <span class="comment">// 文本方向</span></span><br><span class="line">            [&#123; <span class="string">&#x27;header&#x27;</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="literal">false</span>] &#125;],     <span class="comment">//几级标题</span></span><br><span class="line">            [&#123; <span class="string">&#x27;color&#x27;</span>: [] &#125;, &#123; <span class="string">&#x27;background&#x27;</span>: [] &#125;],     <span class="comment">// 字体颜色，字体背景颜色</span></span><br><span class="line">            [&#123; <span class="string">&#x27;font&#x27;</span>: []&#125;],</span><br><span class="line">            [&#123;<span class="string">&#x27;align&#x27;</span>: []&#125;],    <span class="comment">//对齐方式</span></span><br><span class="line">            [<span class="string">&#x27;clean&#x27;</span>],    <span class="comment">//清除字体样式</span></span><br><span class="line">            [<span class="string">&#x27;image&#x27;</span>,<span class="string">&#x27;video&#x27;</span>]    <span class="comment">//上传图片、上传视频</span></span><br><span class="line">          ],</span><br><span class="line">        &#125;,   </span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">      <span class="title function_">onEditorReady</span>(<span class="params">editor</span>) &#123;&#125;,<span class="comment">// 准备编辑器</span></span><br><span class="line">      <span class="title function_">onEditorBlur</span>(<span class="params"></span>)&#123;&#125;, <span class="comment">// 失去焦点事件</span></span><br><span class="line">      <span class="title function_">onEditorFocus</span>(<span class="params"></span>)&#123;&#125;, <span class="comment">// 获得焦点事件</span></span><br><span class="line">      <span class="comment">// 内容改变事件--给父组件传值</span></span><br><span class="line">      <span class="title function_">onEditorChange</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.$emit(<span class="string">&quot;input&quot;</span>, <span class="variable language_">this</span>.<span class="property">content</span>);</span><br><span class="line">      &#125;, </span><br><span class="line">      <span class="comment">// 转码</span></span><br><span class="line">      <span class="title function_">escapeStringHTML</span>(<span class="params">str</span>) &#123;</span><br><span class="line">            str = str.<span class="title function_">replace</span>(<span class="regexp">/&amp;lt;/g</span>,<span class="string">&#x27;&lt;&#x27;</span>);</span><br><span class="line">            str = str.<span class="title function_">replace</span>(<span class="regexp">/&amp;gt;/g</span>,<span class="string">&#x27;&gt;&#x27;</span>);</span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line">        &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">computed</span>: &#123;</span><br><span class="line">      <span class="title function_">editor</span>(<span class="params"></span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$refs</span>.<span class="property">myQuillEditor</span>.<span class="property">quill</span>;</span><br><span class="line">      &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">    <span class="title function_">mounted</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> content = <span class="string">&#x27;&#x27;</span>;  <span class="comment">// 请求后台返回的内容字符串</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">str</span> = <span class="variable language_">this</span>.escapeStringHTML(content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> Quill <span class="token keyword">from</span> <span class="token string">"quill"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> quillEditor <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"vue-quill-editor"</span><span class="token punctuation">;</span> 
+<span class="token keyword">import</span> <span class="token string">'quill/dist/quill.core.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'quill/dist/quill.snow.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'quill/dist/quill.bubble.css'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
+  components<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    quillEditor<span class="token punctuation">,</span><span class="token comment">//另一种组件注册方式</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+      content<span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+      str<span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+      editorOption<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        placeholder<span class="token operator">:</span> <span class="token string">"请在这里输入"</span><span class="token punctuation">,</span>
+        modules<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+          toolbar<span class="token operator">:</span><span class="token punctuation">[</span>
+            <span class="token punctuation">[</span><span class="token string">'bold'</span><span class="token punctuation">,</span> <span class="token string">'italic'</span><span class="token punctuation">,</span> <span class="token string">'underline'</span><span class="token punctuation">,</span> <span class="token string">'strike'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token comment">//加粗，斜体，下划线，删除线</span>
+            <span class="token punctuation">[</span><span class="token string">'blockquote'</span><span class="token punctuation">,</span> <span class="token string">'code-block'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>     <span class="token comment">//引用，代码块</span>
+            <span class="token punctuation">[</span><span class="token punctuation">&#123;</span> <span class="token string">'header'</span><span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'header'</span><span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>        <span class="token comment">// 标题，键值对的形式；1、2表示字体大小</span>
+            <span class="token punctuation">[</span><span class="token punctuation">&#123;</span> <span class="token string">'list'</span><span class="token operator">:</span> <span class="token string">'ordered'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'list'</span><span class="token operator">:</span> <span class="token string">'bullet'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>     <span class="token comment">//列表</span>
+            <span class="token punctuation">[</span><span class="token punctuation">&#123;</span> <span class="token string">'script'</span><span class="token operator">:</span> <span class="token string">'sub'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'script'</span><span class="token operator">:</span> <span class="token string">'super'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>   <span class="token comment">// 上下标</span>
+            <span class="token punctuation">[</span><span class="token punctuation">&#123;</span> <span class="token string">'indent'</span><span class="token operator">:</span> <span class="token string">'-1'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'indent'</span><span class="token operator">:</span> <span class="token string">'+1'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>     <span class="token comment">// 缩进</span>
+            <span class="token punctuation">[</span><span class="token punctuation">&#123;</span> <span class="token string">'direction'</span><span class="token operator">:</span> <span class="token string">'rtl'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 文本方向</span>
+            <span class="token punctuation">[</span><span class="token punctuation">&#123;</span> <span class="token string">'header'</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">]</span> <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>     <span class="token comment">//几级标题</span>
+            <span class="token punctuation">[</span><span class="token punctuation">&#123;</span> <span class="token string">'color'</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token string">'background'</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>     <span class="token comment">// 字体颜色，字体背景颜色</span>
+            <span class="token punctuation">[</span><span class="token punctuation">&#123;</span> <span class="token string">'font'</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token string">'align'</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token comment">//对齐方式</span>
+            <span class="token punctuation">[</span><span class="token string">'clean'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token comment">//清除字体样式</span>
+            <span class="token punctuation">[</span><span class="token string">'image'</span><span class="token punctuation">,</span><span class="token string">'video'</span><span class="token punctuation">]</span>    <span class="token comment">//上传图片、上传视频</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>   
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  methods<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">onEditorReady</span><span class="token punctuation">(</span><span class="token parameter">editor</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token comment">// 准备编辑器</span>
+      <span class="token function">onEditorBlur</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token comment">// 失去焦点事件</span>
+      <span class="token function">onEditorFocus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token comment">// 获得焦点事件</span>
+      <span class="token comment">// 内容改变事件--给父组件传值</span>
+      <span class="token function">onEditorChange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">"input"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> 
+      <span class="token comment">// 转码</span>
+      <span class="token function">escapeStringHTML</span><span class="token punctuation">(</span><span class="token parameter">str</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            str <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">&amp;lt;</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span><span class="token string">'&lt;'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            str <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">&amp;gt;</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span><span class="token string">'>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> str<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  computed<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">editor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>myQuillEditor<span class="token punctuation">.</span>quill<span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">let</span> content <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>  <span class="token comment">// 请求后台返回的内容字符串</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>str <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">escapeStringHTML</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>至此便可以使用富文本了。需要注意的是，该富文本编辑器的所编辑的内容，在存储数据时会按照html的格式存储，例如：</p>
-<p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入内容为123时，</span><br><span class="line">存储到后台的实际文本为<span class="tag">&lt;<span class="name">p</span>&gt;</span>123<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">输入内容为123时，
+存储到后台的实际文本为<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>123<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
 <li><p>因此要从后台读取数据时，需要使用<code>v-html</code>的方式来解析数据，在需要让存储数据显示的Vue页面里，添加如下代码即可：</p>
-<p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-html</span>=<span class="string">&quot;item.answer&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ql-editor&quot;</span> &gt;</span></span><br><span class="line">  &#123;&#123;content&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&lt;--其中content为存储vue-quill-editor内容的参数--&gt;</span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-html</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item.answer<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ql-editor<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+  &#123;&#123;content&#125;&#125;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>--其中content为存储vue-quill-editor内容的参数--</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
 <p>使用<code>v-html</code>解析数据时，会出现所展示的图片尺寸异常的情况，若想让图片显示出正常的大小，只需在样式style中添加以下CSS代码即可：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.ql-editor</span> <span class="selector-tag">img</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="调整图片尺寸图片拖拽上传pc端">调整图片尺寸&amp;图片拖拽上传（PC端）</h1>
-<p>直接使用vue-quill-editor上传图片时，图片是不能实现调整图片尺寸和图片拖拽上传的，若想要实现这些功能，则需要下载插件<code>quill-image-resize-module</code>和<code>quill-image-drop-module</code>。</p>
-<h2 id="插件配置">插件配置</h2>
-<ul>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.ql-editor img</span><span class="token punctuation">&#123;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h1 id="调整图片尺寸-amp-图片拖拽上传（PC端）"><a href="#调整图片尺寸-amp-图片拖拽上传（PC端）" class="headerlink" title="调整图片尺寸&amp;图片拖拽上传（PC端）"></a>调整图片尺寸&amp;图片拖拽上传（PC端）</h1><p>直接使用vue-quill-editor上传图片时，图片是不能实现调整图片尺寸和图片拖拽上传的，若想要实现这些功能，则需要下载插件<code>quill-image-resize-module</code>和<code>quill-image-drop-module</code>。</p>
+<h2 id="插件配置"><a href="#插件配置" class="headerlink" title="插件配置"></a>插件配置</h2><ul>
 <li><p>首先需要下载插件：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i quill-image-drop-module -S</span><br><span class="line">npm i quill-image-resize-module -S</span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">npm i quill-image-drop-module -S
+npm i quill-image-resize-module -S<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
 <li><p>然后在Vue页面的script模块中引入这两个插件：</p>
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ImageDrop</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;quill-image-drop-module&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ImageResize</span> <span class="keyword">from</span> <span class="string">&#x27;quill-image-resize-module&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Quill</span>.<span class="title function_">register</span>(<span class="string">&#x27;modules/imageDrop&#x27;</span>,<span class="title class_">ImageDrop</span>);</span><br><span class="line"><span class="title class_">Quill</span>.<span class="title function_">register</span>(<span class="string">&#x27;modules/imageResize&#x27;</span>, <span class="title class_">ImageResize</span>);</span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> ImageDrop <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'quill-image-drop-module'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ImageResize <span class="token keyword">from</span> <span class="token string">'quill-image-resize-module'</span><span class="token punctuation">;</span>
+
+Quill<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'modules/imageDrop'</span><span class="token punctuation">,</span>ImageDrop<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Quill<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'modules/imageResize'</span><span class="token punctuation">,</span> ImageResize<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>然后在<code>data return</code> 中引入插件的配置如下：</p>
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">editorOption</span>: &#123;</span><br><span class="line">  <span class="attr">modules</span>:&#123;               </span><br><span class="line">    <span class="attr">imageDrop</span>:<span class="literal">true</span>,</span><br><span class="line">    <span class="attr">imageResize</span>:&#123;</span><br><span class="line">      <span class="attr">displaySize</span>:&#123;</span><br><span class="line">        <span class="attr">backgroundColor</span>: <span class="string">&quot;black&quot;</span>,</span><br><span class="line">        <span class="attr">border</span>: <span class="string">&quot;none&quot;</span>,</span><br><span class="line">        <span class="attr">color</span>: <span class="string">&quot;white&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">modules</span>:[<span class="string">&#x27;Resize&#x27;</span>,<span class="string">&#x27;DisplaySize&#x27;</span>,<span class="string">&#x27;Toolbar&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">editorOption<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+  modules<span class="token operator">:</span><span class="token punctuation">&#123;</span>               
+    imageDrop<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span>
+    imageResize<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+      displaySize<span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        backgroundColor<span class="token operator">:</span> <span class="token string">"black"</span><span class="token punctuation">,</span>
+        border<span class="token operator">:</span> <span class="token string">"none"</span><span class="token punctuation">,</span>
+        color<span class="token operator">:</span> <span class="token string">"white"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      modules<span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">'Resize'</span><span class="token punctuation">,</span><span class="token string">'DisplaySize'</span><span class="token punctuation">,</span><span class="token string">'Toolbar'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>配置引入后，在<code>vue.config.js</code>文件中引入一下配置：</p>
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>);</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">    <span class="attr">plugins</span>:[</span><br><span class="line">      <span class="keyword">new</span> webpack.<span class="title class_">ProvidePlugin</span>(&#123;</span><br><span class="line">        <span class="string">&#x27;window.Quill&#x27;</span>:<span class="string">&#x27;quill/dist/quill.js&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Quill&#x27;</span>:<span class="string">&#x27;quill/dist/quill.js&#x27;</span></span><br><span class="line">      &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p></li>
-<li><p>重启vue-cli后，便可在PC端实现调整图片尺寸和图片拖拽上传的功能</p></li>
+  <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> webpack <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'webpack'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  configureWebpack<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    plugins<span class="token operator">:</span><span class="token punctuation">[</span>
+      <span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>ProvidePlugin</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        <span class="token string">'window.Quill'</span><span class="token operator">:</span><span class="token string">'quill/dist/quill.js'</span><span class="token punctuation">,</span>
+        <span class="token string">'Quill'</span><span class="token operator">:</span><span class="token string">'quill/dist/quill.js'</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>重启vue-cli后，便可在PC端实现调整图片尺寸和图片拖拽上传的功能</p>
+</li>
 </ul>
 
     </article>
@@ -735,7 +850,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8vue-quill-editor"><span class="toc-number">1.</span> <span class="toc-text">富文本编辑器：vue-quill-editor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vue-quill-editor%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">vue-quill-editor配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E5%9B%BE%E7%89%87%E6%8B%96%E6%8B%BD%E4%B8%8A%E4%BC%A0pc%E7%AB%AF"><span class="toc-number">3.</span> <span class="toc-text">调整图片尺寸&amp;图片拖拽上传（PC端）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text">插件配置</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%EF%BC%9Avue-quill-editor"><span class="toc-number">1.</span> <span class="toc-text">富文本编辑器：vue-quill-editor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vue-quill-editor%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">vue-quill-editor配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8-amp-%E5%9B%BE%E7%89%87%E6%8B%96%E6%8B%BD%E4%B8%8A%E4%BC%A0%EF%BC%88PC%E7%AB%AF%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">调整图片尺寸&amp;图片拖拽上传（PC端）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text">插件配置</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1085,6 +1200,12 @@
         
         
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2194,6 +2315,11 @@
                 数据库工具
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2207,21 +2333,6 @@
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS3">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS3
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2239,9 +2350,29 @@
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2264,14 +2395,14 @@
                 MinIO
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="LLM">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                LLM
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2282,16 +2413,6 @@
             <span class="sidebar-tag-name" data-tags="Vue">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="LLM">
-                <span class="iconfont-archer">&#xe606;</span>
-                LLM
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="人工智能">
-                <span class="iconfont-archer">&#xe606;</span>
-                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2314,11 +2435,6 @@
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2327,6 +2443,11 @@
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2400,14 +2521,19 @@
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2415,9 +2541,9 @@
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2430,14 +2556,9 @@
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2445,34 +2566,29 @@
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Lottie">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="可视化">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
+            可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="Vue">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            Vue
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
             LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2485,9 +2601,9 @@
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="人工智能">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2500,14 +2616,24 @@
             JavaScript
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2518,11 +2644,6 @@
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2597,20 +2718,5 @@
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+    </body>
 </html>

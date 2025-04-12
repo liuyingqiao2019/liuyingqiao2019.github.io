@@ -338,7 +338,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.6k</span>阅读时长: <span class="post-count reading-time">15 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.7k</span>阅读时长: <span class="post-count reading-time">15 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -499,113 +499,274 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="yaml">YAML</h1>
-<p>YAML是一种<strong>数据序列化语言</strong>而不是标记语言，其语法比较简洁直观，特点是使用空格来表达层次结构，其最大的优势是在数据结构的表达上，且能配合大多数编程语言使用，因此YAML更多应用于配置文件的编写，其文件一般以<code>.yml</code>为后缀。</p>
+        <h1 id="YAML"><a href="#YAML" class="headerlink" title="YAML"></a>YAML</h1><p>YAML是一种<strong>数据序列化语言</strong>而不是标记语言，其语法比较简洁直观，特点是使用空格来表达层次结构，其最大的优势是在数据结构的表达上，且能配合大多数编程语言使用，因此YAML更多应用于配置文件的编写，其文件一般以<code>.yml</code>为后缀。</p>
 <p>由于其语法的特殊性，没有编辑器可能容易写错，因而在此推荐一个无广告的yaml在线格式化网站：<a target="_blank" rel="noopener" href="http://nodeca.github.io/js-yaml/">JS-YAML</a>，其可以直接将yaml转化为json。</p>
-<h2 id="基础语法">基础语法</h2>
-<ul>
-<li><p>YAML对大小写敏感</p></li>
-<li><p>YAML用<code>#</code>表示注释，且<strong>只支持单行注释</strong></p></li>
+<h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><ul>
+<li>YAML对大小写敏感</li>
+<li>YAML用<code>#</code>表示注释，且<strong>只支持单行注释</strong></li>
 <li><p>用缩进表示层级关系</p>
 <ul>
 <li><strong>缩进只能使用空格</strong>，不能用TAB字符</li>
 <li>缩进的空格数量不做要求，但要求<strong>同一层级的元素左侧必须对齐</strong></li>
-</ul></li>
+</ul>
+</li>
 <li><p>一个文件中可以包含多个文件的内容</p>
 <ul>
-<li><p>用三个破折号<code>"---"</code>表示一份内容的开始</p></li>
-<li><p>用三个小数点<code>"..."</code>表示一份内容的结束（非强制）</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 这是第一份内容</span></span><br><span class="line"><span class="string">one:1</span></span><br><span class="line"><span class="comment"># 其他内容</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 这是第二份内容</span></span><br><span class="line"><span class="string">two:2</span></span><br><span class="line"><span class="comment"># 其他内容</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一份内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#x27;one:1&#x27;</span></span><br><span class="line"><span class="comment"># 第二份内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#x27;two:2&#x27;</span></span><br></pre></td></tr></table></figure></p></li>
-</ul></li>
+<li><p>用三个破折号<code>&quot;---&quot;</code>表示一份内容的开始</p>
+</li>
+<li><p>用三个小数点<code>&quot;...&quot;</code>表示一份内容的结束（非强制）</p>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">---
+# 这是第一份内容
+one:1
+# 其他内容
+...
+
+---
+# 这是第二份内容
+two:2
+# 其他内容
+
+# 第一份内容转换结果如下：
+# &#39;one:1&#39;
+# 第二份内容转换结果如下：
+# &#39;two:2&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h2 id="数据结构与类型">数据结构与类型</h2>
-<h3 id="对象">对象</h3>
-<p>用来表示以键值对（key:value）形式出现的数据。</p>
+</li>
+</ul>
+<h2 id="数据结构与类型"><a href="#数据结构与类型" class="headerlink" title="数据结构与类型"></a>数据结构与类型</h2><h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>用来表示以键值对（key:value）形式出现的数据。</p>
 <ul>
-<li><p>使用“冒号+空格”来分开键与值，对应JSON中的<code>"key"："value"</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#yaml</span></span><br><span class="line"><span class="string">key:value</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内容转换结果如下： </span></span><br><span class="line"><span class="comment"># &#x27;key:value&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>使用“冒号+空格”来分开键与值，对应JSON中的<code>&quot;key&quot;：&quot;value&quot;</code></p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">#yaml
+key:value
+
+# 内容转换结果如下： 
+# &#39;key:value&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>支持多层嵌套（<strong>用缩进表示层级关系</strong>）</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">key:</span></span><br><span class="line">  <span class="string">child-key1:value1</span></span><br><span class="line">  <span class="string">child-key2:value2</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 内容转换结果如下：  </span></span><br><span class="line"><span class="comment"># &#123; key: &#x27;child-key1:value1 child-key2:value2&#x27; &#125;  </span></span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">key:
+  child-key1:value1
+  child-key2:value2
+  
+# 内容转换结果如下：  
+# &#123; key: &#39;child-key1:value1 child-key2:value2&#39; &#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>支持用<strong>花括号包裹，逗号加空格分隔</strong>的流式风格语法：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">key:&#123;</span> <span class="string">child-key1:value1,</span> <span class="string">child-key2:value2</span> <span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内容转换结果如下： </span></span><br><span class="line"><span class="comment"># &#x27;key:&#123; child-key1:value1, child-key2:value2 &#125;&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">key:&#123; child-key1:value1, child-key2:value2 &#125;
+
+# 内容转换结果如下： 
+# &#39;key:&#123; child-key1:value1, child-key2:value2 &#125;&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>用<strong>问号声明一个复杂对象</strong>，且允许使用多个词汇（数组）来组成键：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">?</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">keypart1</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">keypart2</span></span><br><span class="line"><span class="string">:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">value1</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">value2</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#123; &#x27;keypart1,keypart2&#x27;: [ &#x27;value1&#x27;, &#x27;value2&#x27; ] &#125;</span></span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">?
+  - keypart1
+  - keypart2
+:
+  - value1
+  - value2
+  
+# 内容转换结果如下：
+# &#123; &#39;keypart1,keypart2&#39;: [ &#39;value1&#39;, &#39;value2&#39; ] &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h3 id="数组">数组</h3>
-<ul>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><ul>
 <li><p>一组以<strong>破折号+空格</strong>的区块形式为开头的数据便组成了一个数组：</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">values:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">value1</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">value2</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">value3</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#123; values: [ &#x27;value1&#x27;, &#x27;value2&#x27;, &#x27;value3&#x27; ] &#125;</span></span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">values:
+  - value1
+  - value2
+  - value3
+  
+# 内容转换结果如下：
+# &#123; values: [ &#39;value1&#39;, &#39;value2&#39;, &#39;value3&#39; ] &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>与此同时也支持<strong>用方括号包裹、逗号加空格分隔</strong>的内联格式来表达</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">values:[value1,</span> <span class="string">value2,</span> <span class="string">value3]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#x27;values:[value1, value2, value3]&#x27;</span></span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">values:[value1, value2, value3]
+
+# 内容转换结果如下：
+# &#39;values:[value1, value2, value3]&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p>支持多为数组（用缩进表示层级关系）</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">values:</span></span><br><span class="line">  <span class="bullet">-</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">value1</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">value2</span></span><br><span class="line">  <span class="bullet">-</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">value3</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">value4</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#123; values: [ [ &#x27;value1&#x27;, &#x27;value2&#x27; ], [ &#x27;value3&#x27;, &#x27;value4&#x27; ] ] &#125;</span></span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">values:
+  -
+    - value1
+    - value2
+  -
+    - value3
+    - value4
+    
+# 内容转换结果如下：
+# &#123; values: [ [ &#39;value1&#39;, &#39;value2&#39; ], [ &#39;value3&#39;, &#39;value4&#39; ] ] &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h3 id="标量">标量</h3>
-<p>表示YAML中最基本的数据类型</p>
-<h3 id="字符串">字符串</h3>
-<ul>
-<li><p>字符串一般不需要引号包裹，但是如果字符串中使用了反斜杠<code>"\"</code>开头的转义字符就必须使用引号包裹</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">strings:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Hello</span> <span class="string">without</span> <span class="string">quote</span> <span class="comment"># 不用引号包裹</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Hello</span></span><br><span class="line">   <span class="string">world</span> <span class="comment">#拆成多行后会自动在中间添加空格</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;Hello with single quotes&#x27;</span> <span class="comment"># 单引号包裹</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&quot;Hello with double quotes&quot;</span> <span class="comment"># 双引号包裹</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&quot;I am fine. \u263A&quot;</span> <span class="comment"># 使用双引号包裹时支持Unicode编码</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&quot;\x0d\x0a is \r\n&quot;</span> <span class="comment"># 使用双引号包裹时还支持Hex编码</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;He said: &quot;Hello!&quot;&#x27;</span> <span class="comment"># 单双引号支持嵌套</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内容转换结果如下：  </span></span><br><span class="line"><span class="comment"># &#123; strings: </span></span><br><span class="line"><span class="comment">#    [ &#x27;Hello without quote&#x27;,</span></span><br><span class="line"><span class="comment">#      &#x27;Hello world&#x27;,</span></span><br><span class="line"><span class="comment">#      &#x27;Hello with single quotes&#x27;,</span></span><br><span class="line"><span class="comment">#      &#x27;Hello with double quotes&#x27;,</span></span><br><span class="line"><span class="comment">#      &#x27;I am fine. ☺&#x27;,</span></span><br><span class="line"><span class="comment">#      &#x27;\r\n is \r\n&#x27;,</span></span><br><span class="line"><span class="comment">#      &#x27;He said: &quot;Hello!&quot;&#x27; ] &#125;</span></span><br></pre></td></tr></table></figure></p></li>
-<li><p>对于多行的文字，YAML提供了两种特殊的语法支持</p></li>
+<h3 id="标量"><a href="#标量" class="headerlink" title="标量"></a>标量</h3><p>表示YAML中最基本的数据类型</p>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><ul>
+<li><p>字符串一般不需要引号包裹，但是如果字符串中使用了反斜杠<code>&quot;\&quot;</code>开头的转义字符就必须使用引号包裹</p>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">strings:
+  - Hello without quote # 不用引号包裹
+  - Hello
+   world #拆成多行后会自动在中间添加空格
+  - &#39;Hello with single quotes&#39; # 单引号包裹
+  - &quot;Hello with double quotes&quot; # 双引号包裹
+  - &quot;I am fine. \u263A&quot; # 使用双引号包裹时支持Unicode编码
+  - &quot;\x0d\x0a is \r\n&quot; # 使用双引号包裹时还支持Hex编码
+  - &#39;He said: &quot;Hello!&quot;&#39; # 单双引号支持嵌套
+
+# 内容转换结果如下：  
+# &#123; strings: 
+#    [ &#39;Hello without quote&#39;,
+#      &#39;Hello world&#39;,
+#      &#39;Hello with single quotes&#39;,
+#      &#39;Hello with double quotes&#39;,
+#      &#39;I am fine. ☺&#39;,
+#      &#39;\r\n is \r\n&#39;,
+#      &#39;He said: &quot;Hello!&quot;&#39; ] &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>对于多行的文字，YAML提供了两种特殊的语法支持</p>
+</li>
 <li><p>保留换行</p>
 <ul>
-<li><p>使用竖线符<code>"|"</code>来表示该语法，每行的缩进和行尾空白都会被去掉，而额外的缩进会被保留</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">lines:</span> <span class="string">|</span></span><br><span class="line"><span class="string">  我是第一行</span></span><br><span class="line"><span class="string">  我是第二行</span></span><br><span class="line"><span class="string">    我是第三行</span></span><br><span class="line"><span class="string">      我是第四行</span></span><br><span class="line"><span class="string">  我是第五行  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="comment"># 内容转换结果如下：  </span></span><br><span class="line"><span class="comment"># &#123; lines: &#x27;我是第一行\n我是第二行\n  我是第三行\n    我是第四行\n我是第五行 \n&#x27; &#125;</span></span><br></pre></td></tr></table></figure></p></li>
-</ul></li>
+<li><p>使用竖线符<code>&quot;|&quot;</code>来表示该语法，每行的缩进和行尾空白都会被去掉，而额外的缩进会被保留</p>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">lines: |
+  我是第一行
+  我是第二行
+    我是第三行
+      我是第四行
+  我是第五行  
+
+# 内容转换结果如下：  
+# &#123; lines: &#39;我是第一行\n我是第二行\n  我是第三行\n    我是第四行\n我是第五行 \n&#39; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+</li>
 <li><p>折叠换行</p>
 <ul>
-<li><p>使用右尖括号<code>"&gt;"</code>来表示该语法，只有空白行才会被识别为换行，原来的换行符都会被转换成空格</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">lines:</span> <span class="string">&gt;</span></span><br><span class="line"><span class="string">  我是第一行</span></span><br><span class="line"><span class="string">  我也是第一行</span></span><br><span class="line"><span class="string">  我还是第一行</span></span><br><span class="line"><span class="string">  我仍然是第一行</span></span><br><span class="line"><span class="string"></span>  </span><br><span class="line">  <span class="string">我是第二行</span></span><br><span class="line">  <span class="string">我也是第二行</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 内容转换结果如下：  </span></span><br><span class="line"><span class="comment"># &#123; lines: &#x27;我是第一行 我也是第一行 我还是第一行 我仍然是第一行\n我是第二行 我也是第二行\n&#x27; &#125;</span></span><br></pre></td></tr></table></figure></p></li>
-</ul></li>
+<li><p>使用右尖括号<code>&quot;&gt;&quot;</code>来表示该语法，只有空白行才会被识别为换行，原来的换行符都会被转换成空格</p>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">lines: &gt;
+  我是第一行
+  我也是第一行
+  我还是第一行
+  我仍然是第一行
+  
+  我是第二行
+  我也是第二行
+  
+# 内容转换结果如下：  
+# &#123; lines: &#39;我是第一行 我也是第一行 我还是第一行 我仍然是第一行\n我是第二行 我也是第二行\n&#39; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h3 id="布尔值">布尔值</h3>
-<ul>
-<li><p>“true”、“True”、“TRUE”、“yes”、“Yes”和“YES”皆为<strong>真</strong></p></li>
-<li><p>“false”、“False”、“FALSE”、“no”、“No”和“NO”皆为<strong>假</strong></p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">boolean:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="literal">true</span> <span class="comment"># True、TRUE</span></span><br><span class="line">  <span class="bullet">-</span> <span class="literal">yes</span> <span class="comment"># Yes、YES</span></span><br><span class="line">  <span class="bullet">-</span> <span class="literal">false</span> <span class="comment"># False、FALSE</span></span><br><span class="line">  <span class="bullet">-</span> <span class="literal">no</span> <span class="comment"># No、NO</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#123; boolean: [ true, &#x27;yes&#x27;, false, &#x27;no&#x27; ] &#125;</span></span><br></pre></td></tr></table></figure></p></li>
+</li>
 </ul>
-<h3 id="整数">整数</h3>
-<ul>
+<h3 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h3><ul>
+<li><p>“true”、”True”、”TRUE”、”yes”、”Yes”和“YES”皆为<strong>真</strong></p>
+</li>
+<li><p>“false”、”False”、”FALSE”、”no”、”No”和“NO”皆为<strong>假</strong></p>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">boolean:
+  - true # True、TRUE
+  - yes # Yes、YES
+  - false # False、FALSE
+  - no # No、NO
+  
+# 内容转换结果如下：
+# &#123; boolean: [ true, &#39;yes&#39;, false, &#39;no&#39; ] &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h3><ul>
 <li><p>支持二进制表示</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">int:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="number">666</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">0001_0000</span> <span class="comment">#二进制表示</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#123; int: [ 666, 10000 ] &#125;</span></span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">int:
+  - 666
+  - 0001_0000 #二进制表示
+  
+# 内容转换结果如下：
+# &#123; int: [ 666, 10000 ] &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h3 id="浮点数">浮点数</h3>
-<ul>
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><ul>
 <li><p>支持科学计数法</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">float:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="number">3.14</span></span><br><span class="line">  <span class="bullet">-</span> <span class="number">6.8523015e+5</span> <span class="comment"># 使用科学计数法</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#123; float: [ 3.14, 685230.15 ] &#125;</span></span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">float:
+  - 3.14
+  - 6.8523015e+5 # 使用科学计数法
+  
+# 内容转换结果如下：
+# &#123; float: [ 3.14, 685230.15 ] &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h3 id="空值null">空值（Null）</h3>
-<ul>
-<li><p>“null”、“Null”和”~“都是空，不指定值默认也是空</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">nulls:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="literal">null</span></span><br><span class="line">  <span class="bullet">-</span> <span class="literal">Null</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">~</span></span><br><span class="line">  <span class="bullet">-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#123; nulls: [ null, null, null, null ] &#125;</span></span><br></pre></td></tr></table></figure></p></li>
+<h3 id="空值（Null）"><a href="#空值（Null）" class="headerlink" title="空值（Null）"></a>空值（Null）</h3><ul>
+<li><p>“null”、”Null”和”~”都是空，不指定值默认也是空</p>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">nulls:
+  - null
+  - Null
+  - ~
+  -
+
+# 内容转换结果如下：
+# &#123; nulls: [ null, null, null, null ] &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h3 id="时间戳">时间戳</h3>
-<ul>
+<h3 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h3><ul>
 <li><p>YAML也支持ISO 8601格式的时间数据</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">date1:</span> <span class="number">2020-05-26</span></span><br><span class="line"><span class="attr">date2:</span> <span class="number">2020-05-26T01:00:00+08:00</span></span><br><span class="line"><span class="attr">date3:</span> <span class="number">2020-05-26T02:00:00.10+08:00</span></span><br><span class="line"><span class="attr">date4:</span> <span class="number">2020-05-26 03:00:00.10 +8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#123; date1: Tue May 26 2020 08:00:00 GMT+0800 (中国标准时间),</span></span><br><span class="line"><span class="comment">#   date2: Tue May 26 2020 01:00:00 GMT+0800 (中国标准时间),</span></span><br><span class="line"><span class="comment">#   date3: Tue May 26 2020 02:00:00 GMT+0800 (中国标准时间),</span></span><br><span class="line"><span class="comment">#   date4: Tue May 26 2020 03:00:00 GMT+0800 (中国标准时间) &#125;</span></span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">date1: 2020-05-26
+date2: 2020-05-26T01:00:00+08:00
+date3: 2020-05-26T02:00:00.10+08:00
+date4: 2020-05-26 03:00:00.10 +8
+
+# 内容转换结果如下：
+# &#123; date1: Tue May 26 2020 08:00:00 GMT+0800 (中国标准时间),
+#   date2: Tue May 26 2020 01:00:00 GMT+0800 (中国标准时间),
+#   date3: Tue May 26 2020 02:00:00 GMT+0800 (中国标准时间),
+#   date4: Tue May 26 2020 03:00:00 GMT+0800 (中国标准时间) &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h3 id="类型转换">类型转换</h3>
-<ul>
-<li><p>YAML支持使用严格类型标签的双感叹号+目标类型形式，即（“<code>!!</code>”）来强制转换类型</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">a:</span> <span class="type">!!float</span> <span class="string">&#x27;666&#x27;</span></span><br><span class="line"><span class="attr">b:</span> <span class="string">&#x27;666&#x27;</span></span><br><span class="line"><span class="attr">c:</span> <span class="type">!!str</span> <span class="number">666</span></span><br><span class="line"><span class="attr">d:</span> <span class="type">!!str</span> <span class="number">666.66</span></span><br><span class="line"><span class="attr">e:</span> <span class="type">!!str</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">f:</span> <span class="type">!!str</span> <span class="literal">yes</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#123; a: 666, b: &#x27;666&#x27;, c: &#x27;666&#x27;, d: &#x27;666.66&#x27;, e: &#x27;true&#x27;, f: &#x27;yes&#x27; &#125;</span></span><br></pre></td></tr></table></figure></p></li>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><ul>
+<li><p>YAML支持使用严格类型标签的双感叹号+目标类型形式，即（”<code>!!</code>“）来强制转换类型</p>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">a: !!float &#39;666&#39;
+b: &#39;666&#39;
+c: !!str 666
+d: !!str 666.66
+e: !!str true
+f: !!str yes
+
+# 内容转换结果如下：
+# &#123; a: 666, b: &#39;666&#39;, c: &#39;666&#39;, d: &#39;666.66&#39;, e: &#39;true&#39;, f: &#39;yes&#39; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h3 id="其他高级类型">其他高级类型</h3>
-<p>YAML也可以使用更高级的类型，但不一定兼容所有解析器，包括集合、有序映射、十六进制数据和二进制数据等</p>
-<h3 id="数据重用与合并">数据重用与合并</h3>
-<ul>
-<li><p>为了避免过多重复的定义，YAML提供了由锚点标签<code>"&amp;"</code>和引用标签<code>"*"</code>组成的语法，凭借此可以快速引用一些相同的数据</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">a:</span> <span class="string">&amp;anchor</span> <span class="comment">#设置锚点</span></span><br><span class="line">  <span class="attr">one:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">two:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">three:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">b:</span> <span class="string">*anchor</span> <span class="comment">#引用锚点 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#123; a: &#123; one: 1, two: 2, three: 3 &#125;,</span></span><br><span class="line"><span class="comment">#   b: &#123; one: 1, two: 2, three: 3 &#125; &#125;</span></span><br></pre></td></tr></table></figure></p></li>
-<li><p>配合合并标签<code>"&lt;&lt;"</code>使用可以与任意数据进行合并，以此实现类似于C++中继承的功能</p>
-<p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">human:</span> <span class="string">&amp;base</span> <span class="comment"># 添加名为base的锚点</span></span><br><span class="line">    <span class="attr">body:</span> <span class="number">1</span></span><br><span class="line">    <span class="attr">hair:</span> <span class="number">999</span></span><br><span class="line"><span class="attr">singer:</span></span><br><span class="line">    <span class="string">&lt;&lt;:</span> <span class="string">*base</span> <span class="comment"># 引用base锚点，实例化时会自动展开</span></span><br><span class="line">    <span class="attr">skill:</span> <span class="string">sing</span> <span class="comment"># 添加额外的属性</span></span><br><span class="line"><span class="attr">programer:</span></span><br><span class="line">    <span class="string">&lt;&lt;:</span> <span class="string">*base</span> <span class="comment"># 引用base锚点，实例化时会自动展开</span></span><br><span class="line">    <span class="attr">hair:</span> <span class="number">6</span> <span class="comment"># 复写base中的属性</span></span><br><span class="line">    <span class="attr">skill:</span> <span class="string">code</span> <span class="comment"># 添加额外的属性  </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内容转换结果如下：</span></span><br><span class="line"><span class="comment"># &#123; human: &#123; body: 1, hair: 999 &#125;,</span></span><br><span class="line"><span class="comment">#   singer: &#123; body: 1, hair: 999, skill: &#x27;sing&#x27; &#125;,</span></span><br><span class="line"><span class="comment">#   programer: &#123; body: 1, hair: 6, skill: &#x27;code&#x27; &#125; &#125;</span></span><br></pre></td></tr></table></figure></p></li>
+<h3 id="其他高级类型"><a href="#其他高级类型" class="headerlink" title="其他高级类型"></a>其他高级类型</h3><p>YAML也可以使用更高级的类型，但不一定兼容所有解析器，包括集合、有序映射、十六进制数据和二进制数据等</p>
+<h3 id="数据重用与合并"><a href="#数据重用与合并" class="headerlink" title="数据重用与合并"></a>数据重用与合并</h3><ul>
+<li><p>为了避免过多重复的定义，YAML提供了由锚点标签<code>&quot;&amp;&quot;</code>和引用标签<code>&quot;*&quot;</code>组成的语法，凭借此可以快速引用一些相同的数据</p>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">a: &amp;anchor #设置锚点
+  one: 1
+  two: 2
+  three: 3
+b: *anchor #引用锚点 
+
+# 内容转换结果如下：
+# &#123; a: &#123; one: 1, two: 2, three: 3 &#125;,
+#   b: &#123; one: 1, two: 2, three: 3 &#125; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>配合合并标签<code>&quot;&lt;&lt;&quot;</code>使用可以与任意数据进行合并，以此实现类似于C++中继承的功能</p>
+  <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">human: &amp;base # 添加名为base的锚点
+    body: 1
+    hair: 999
+singer:
+    &lt;&lt;: *base # 引用base锚点，实例化时会自动展开
+    skill: sing # 添加额外的属性
+programer:
+    &lt;&lt;: *base # 引用base锚点，实例化时会自动展开
+    hair: 6 # 复写base中的属性
+    skill: code # 添加额外的属性  
+
+# 内容转换结果如下：
+# &#123; human: &#123; body: 1, hair: 999 &#125;,
+#   singer: &#123; body: 1, hair: 999, skill: &#39;sing&#39; &#125;,
+#   programer: &#123; body: 1, hair: 6, skill: &#39;code&#39; &#125; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h1 id="redis">Redis</h1>
-<p>Redis是一个用C语言编写的、开源的、基于内存运行并支持持久化的、高性能的NoSQL数据库，具有支持数据持久化、支持多种数据结构、支持数据备份等特点，通常被称为数据结构服务器。</p>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p>Redis是一个用C语言编写的、开源的、基于内存运行并支持持久化的、高性能的NoSQL数据库，具有支持数据持久化、支持多种数据结构、支持数据备份等特点，通常被称为数据结构服务器。</p>
 <p>NoSQL数据库泛指非关系型数据库，其去掉了关系数据库的关系型特性，是为了解决大规模数据集合多重数据种类带来的问题而生。</p>
-<h2 id="windows安装">Windows安装</h2>
-<p>Redis下载地址：<a target="_blank" rel="noopener" href="https://github.com/microsoftarchive/redis/releases">点击前往</a></p>
+<h2 id="Windows安装"><a href="#Windows安装" class="headerlink" title="Windows安装"></a>Windows安装</h2><p>Redis下载地址：<a target="_blank" rel="noopener" href="https://github.com/microsoftarchive/redis/releases">点击前往</a></p>
 <p>打开上述的下载地址后，可以在网页下方的Assets处看到目前支持的版本，找到最新的版本下载安装即可。</p>
 <p>注：msi格式的为Windows的安装文件，双击即可进行安装，而zip包和tar.gz包则需要先解压再安装。</p>
 <p>安装好后，需要<strong>着重关注</strong>以下几个文件：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -640,59 +801,144 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
-<li></li>
+<li><h2 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h2></li>
 </ul>
-<h2 id="redis数据类型">Redis数据类型</h2>
 <p>Redis支持五种数据类型：string（字符串）、hash（哈希）、list（列表）、set（集合）及zset（有序集合）。</p>
-<h3 id="string类型">String类型</h3>
-<p>string是Redis最基本的类型，一个key对应一个value（即键值对）。Redis的string可以包含任何数据，如jpg图片或序列化图像等，其一个键最大可以存储512MB的数据。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置website值</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> website tangmenjue.top</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取website值</span></span><br><span class="line">127.0.0.1:6379&gt; get website</span><br><span class="line"><span class="string">&quot;tangmenjue.top&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除website值</span></span><br><span class="line">127.0.0.1:6379&gt; del website</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
-<h3 id="hash类型">Hash类型</h3>
-<p>hash是一个键值对集合，其是一个string类型的field和value的映射表，适合用于存储对象，每个hash可以存储
-4294967295个键值对。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置一个对象webinfo，它的键webname对应的值为tangmenjue，键weburl对应的值为tangmenjue.top，webtype对应的类型为it</span></span><br><span class="line">127.0.0.1:6379&gt; hmset webinfo webname tangmenjue  weburl tangmenjue.top  webtype it</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取webinfo对象中，weburl、webname、webtype的键值</span></span><br><span class="line">127.0.0.1:6379&gt; hmget webinfo weburl webname webtype</span><br><span class="line">1) <span class="string">&quot;tangmenjue.top&quot;</span></span><br><span class="line">2) <span class="string">&quot;tangmenjue&quot;</span></span><br><span class="line">3) <span class="string">&quot;it&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除对象webinfo</span></span><br><span class="line">127.0.0.1:6379&gt; del webinfo</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
-<h3 id="list类型">List类型</h3>
-<p>Redis的list类型是简单的字符串列表，按照插入顺序排序，可以添加一个元素到列表的左边或右边。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#向列表tangmenjue.top里添加Redis、Vue 和Pgsql3个元素</span></span><br><span class="line">127.0.0.1:6379&gt; lpush tangmenjue.top Redis Vue Pgsql</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取列表tangmenjue.top的下标从0到3的数据</span></span><br><span class="line">127.0.0.1:6379&gt; lrange tangmenjue.top 0 3</span><br><span class="line">1) <span class="string">&quot;Pgsql&quot;</span></span><br><span class="line">2) <span class="string">&quot;Vue&quot;</span></span><br><span class="line">3) <span class="string">&quot;Redis&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除值</span></span><br><span class="line">127.0.0.1:6379&gt; del tangmenjue.top</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
-<h3 id="set类型">Set类型</h3>
-<p>Redis的Set是string类型的无序集合，集合是通过哈希表来实现的，因此添加、删除、查找的复杂度都是O(1)。每个集合中最大可存储4294967295个成员。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#向集合tangmenjue.top添加Redis、Vue 和Pgsql3个元素</span></span><br><span class="line">127.0.0.1:6379&gt; sadd tangmenjue.top Redis Vue Pgsql</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line"><span class="comment">#继续向集合tangmenjue.top添加元素Sqlserver，此时返回1表示成功</span></span><br><span class="line">127.0.0.1:6379&gt; sadd tangmenjue.top Sqlserver</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"><span class="comment">#继续向集合tangmenjue.top添加元素Redis，此时返回0表示失败。因为集合中已有Redis，不可重复插入</span></span><br><span class="line">127.0.0.1:6379&gt; sadd tangmenjue.top Redis</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取集合tangmenjue.top的所有元素</span></span><br><span class="line">127.0.0.1:6379&gt; smembers tangmenjue.top</span><br><span class="line">1) <span class="string">&quot;Pgsql&quot;</span></span><br><span class="line">2) <span class="string">&quot;Sqlserver&quot;</span></span><br><span class="line">3) <span class="string">&quot;Vue&quot;</span></span><br><span class="line">4) <span class="string">&quot;Redis&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除集合tangmenjue.top</span></span><br><span class="line">127.0.0.1:6379&gt; del tangmenjue.top</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
-<h3 id="zset类型">ZSet类型</h3>
-<p>zset和set一样也是string类型元素的集合且不允许成员重复。</p>
+<h3 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h3><p>string是Redis最基本的类型，一个key对应一个value（即键值对）。Redis的string可以包含任何数据，如jpg图片或序列化图像等，其一个键最大可以存储512MB的数据。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#设置website值
+127.0.0.1:6379&gt; set website tangmenjue.top
+OK
+
+#获取website值
+127.0.0.1:6379&gt; get website
+&quot;tangmenjue.top&quot;
+
+#删除website值
+127.0.0.1:6379&gt; del website
+(integer) 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Hash类型"><a href="#Hash类型" class="headerlink" title="Hash类型"></a>Hash类型</h3><p>hash是一个键值对集合，其是一个string类型的field和value的映射表，适合用于存储对象，每个hash可以存储 4294967295个键值对。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#设置一个对象webinfo，它的键webname对应的值为tangmenjue，键weburl对应的值为tangmenjue.top，webtype对应的类型为it
+127.0.0.1:6379&gt; hmset webinfo webname tangmenjue  weburl tangmenjue.top  webtype it
+OK
+
+#获取webinfo对象中，weburl、webname、webtype的键值
+127.0.0.1:6379&gt; hmget webinfo weburl webname webtype
+1) &quot;tangmenjue.top&quot;
+2) &quot;tangmenjue&quot;
+3) &quot;it&quot;
+
+#删除对象webinfo
+127.0.0.1:6379&gt; del webinfo
+(integer) 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="List类型"><a href="#List类型" class="headerlink" title="List类型"></a>List类型</h3><p>Redis的list类型是简单的字符串列表，按照插入顺序排序，可以添加一个元素到列表的左边或右边。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#向列表tangmenjue.top里添加Redis、Vue 和Pgsql3个元素
+127.0.0.1:6379&gt; lpush tangmenjue.top Redis Vue Pgsql
+(integer) 3
+
+#获取列表tangmenjue.top的下标从0到3的数据
+127.0.0.1:6379&gt; lrange tangmenjue.top 0 3
+1) &quot;Pgsql&quot;
+2) &quot;Vue&quot;
+3) &quot;Redis&quot;
+
+#删除值
+127.0.0.1:6379&gt; del tangmenjue.top
+(integer) 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Set类型"><a href="#Set类型" class="headerlink" title="Set类型"></a>Set类型</h3><p>Redis的Set是string类型的无序集合，集合是通过哈希表来实现的，因此添加、删除、查找的复杂度都是O(1)。每个集合中最大可存储4294967295个成员。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#向集合tangmenjue.top添加Redis、Vue 和Pgsql3个元素
+127.0.0.1:6379&gt; sadd tangmenjue.top Redis Vue Pgsql
+(integer) 3
+
+#继续向集合tangmenjue.top添加元素Sqlserver，此时返回1表示成功
+127.0.0.1:6379&gt; sadd tangmenjue.top Sqlserver
+(integer) 1
+
+#继续向集合tangmenjue.top添加元素Redis，此时返回0表示失败。因为集合中已有Redis，不可重复插入
+127.0.0.1:6379&gt; sadd tangmenjue.top Redis
+(integer) 0
+
+#获取集合tangmenjue.top的所有元素
+127.0.0.1:6379&gt; smembers tangmenjue.top
+1) &quot;Pgsql&quot;
+2) &quot;Sqlserver&quot;
+3) &quot;Vue&quot;
+4) &quot;Redis&quot;
+
+#删除集合tangmenjue.top
+127.0.0.1:6379&gt; del tangmenjue.top
+(integer) 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="ZSet类型"><a href="#ZSet类型" class="headerlink" title="ZSet类型"></a>ZSet类型</h3><p>zset和set一样也是string类型元素的集合且不允许成员重复。</p>
 <p>与set不同的是，每个元素都会关联一个double类型的分数，通过这个分数来为集合中的成员按从大到小进行排序。zset成员是唯一的，但分数（score）是可以重复的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#向有序集合tangmenjue.top添加分数为0的Redis值</span></span><br><span class="line">127.0.0.1:6379&gt; zadd tangmenjue.top 0 Redis</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"><span class="comment">#向有序集合tangmenjue.top添加分数为1的Vue值</span></span><br><span class="line">127.0.0.1:6379&gt; zadd tangmenjue.top 1 Vue</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"><span class="comment">#向有序集合tangmenjue.top添加分数为2的Pgsql值和分数为3的Sqlserver值</span></span><br><span class="line">127.0.0.1:6379&gt; zadd tangmenjue.top 2 Pgsql 3 Sqlserver</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取有序集合tangmenjue.top的所有数据，并打印出分数</span></span><br><span class="line">127.0.0.1:6379&gt; zrange tangmenjue.top 0 -1 withscores</span><br><span class="line">1) <span class="string">&quot;Redis&quot;</span></span><br><span class="line">2) <span class="string">&quot;0&quot;</span></span><br><span class="line">3) <span class="string">&quot;Vue&quot;</span></span><br><span class="line">4) <span class="string">&quot;1&quot;</span></span><br><span class="line">5) <span class="string">&quot;Pgsql&quot;</span></span><br><span class="line">6) <span class="string">&quot;2&quot;</span></span><br><span class="line">7) <span class="string">&quot;Sqlserver&quot;</span></span><br><span class="line">8) <span class="string">&quot;3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除有序集合tangmenjue.top</span></span><br><span class="line">127.0.0.1:6379&gt; del tangmenjue.top</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
-<h2 id="连接本地redis">连接本地Redis</h2>
-<p>进入到Redis所在目录，在地址栏输入cmd，此时会在当前目录打开命令行窗口，如下图所示：</p>
-<p><img src="/2022/12/16/YAML%E4%B8%8ERedis%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%94%A8/1.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#向有序集合tangmenjue.top添加分数为0的Redis值
+127.0.0.1:6379&gt; zadd tangmenjue.top 0 Redis
+(integer) 1
+
+#向有序集合tangmenjue.top添加分数为1的Vue值
+127.0.0.1:6379&gt; zadd tangmenjue.top 1 Vue
+(integer) 1
+
+#向有序集合tangmenjue.top添加分数为2的Pgsql值和分数为3的Sqlserver值
+127.0.0.1:6379&gt; zadd tangmenjue.top 2 Pgsql 3 Sqlserver
+(integer) 2
+
+#获取有序集合tangmenjue.top的所有数据，并打印出分数
+127.0.0.1:6379&gt; zrange tangmenjue.top 0 -1 withscores
+1) &quot;Redis&quot;
+2) &quot;0&quot;
+3) &quot;Vue&quot;
+4) &quot;1&quot;
+5) &quot;Pgsql&quot;
+6) &quot;2&quot;
+7) &quot;Sqlserver&quot;
+8) &quot;3&quot;
+
+#删除有序集合tangmenjue.top
+127.0.0.1:6379&gt; del tangmenjue.top
+(integer) 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="连接本地Redis"><a href="#连接本地Redis" class="headerlink" title="连接本地Redis"></a>连接本地Redis</h2><p>进入到Redis所在目录，在地址栏输入cmd，此时会在当前目录打开命令行窗口，如下图所示：</p>
+<p><img src="/2022/12/16/YAML%E4%B8%8ERedis%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%94%A8/1.png" alt></p>
 <ul>
 <li><p>在命令行中输入以下命令后回车，启动redis server客户端:</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">E:\Redis&gt;redis-server.exe</span><br><span class="line">[4524] 16 Dec 11:48:29.399 <span class="comment"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span></span><br><span class="line">[4524] 16 Dec 11:48:29.399 <span class="comment"># Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=4524, just started</span></span><br><span class="line">[4524] 16 Dec 11:48:29.399 <span class="comment"># Configuration loaded</span></span><br><span class="line">[4524] 16 Dec 11:48:29.401 <span class="comment"># Could not create server TCP listening socket 127.0.0.1:6379: bind: 操作成功完成。</span></span><br></pre></td></tr></table></figure></p>
-<p>此时可以看到redis server的运行信息，说明redis
-server运行成功。</p></li>
-<li><p>接下来不要关闭这个Redis
-server，重新在地址栏输入cmd，打开一个新的命令行。在命令行中输入以下命令后回车，启动redis
-client端：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Redis&gt; redis-cli.exe</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure></p>
-<p>看到127.0.0.1:6379则表明此时已经成功连接上了本地Redis服务器。</p></li>
-<li><p>在redis
-client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端是否能连接上redis服务器：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; ping</span><br><span class="line">PONG</span><br><span class="line"></span><br><span class="line"><span class="comment">#当看到输出PONG时则表示连接成功</span></span><br></pre></td></tr></table></figure></p></li>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\Redis&gt;redis-server.exe
+[4524] 16 Dec 11:48:29.399 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[4524] 16 Dec 11:48:29.399 # Redis version&#x3D;5.0.14.1, bits&#x3D;64, commit&#x3D;ec77f72d, modified&#x3D;0, pid&#x3D;4524, just started
+[4524] 16 Dec 11:48:29.399 # Configuration loaded
+[4524] 16 Dec 11:48:29.401 # Could not create server TCP listening socket 127.0.0.1:6379: bind: 操作成功完成。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  此时可以看到redis server的运行信息，说明redis server运行成功。</p>
+</li>
+<li><p>接下来不要关闭这个Redis server，重新在地址栏输入cmd，打开一个新的命令行。在命令行中输入以下命令后回车，启动redis client端：</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PS E:\Redis&gt; redis-cli.exe
+127.0.0.1:6379&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>  看到127.0.0.1:6379则表明此时已经成功连接上了本地Redis服务器。</p>
+</li>
+<li><p>在redis client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端是否能连接上redis服务器：</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">127.0.0.1:6379&gt; ping
+PONG
+
+#当看到输出PONG时则表示连接成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
 <p><strong>注意：</strong>若是启动redis server客户端时出现以下错误：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">E:\Redis&gt;redis-server.exe</span><br><span class="line">[7976] 16 Dec 11:41:31.720 <span class="comment"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span></span><br><span class="line">[7976] 16 Dec 11:41:31.720 <span class="comment"># Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=7976, just started</span></span><br><span class="line">[7976] 16 Dec 11:41:31.721 <span class="comment"># Warning: no config file specified, using the default config. In order to specify a config file use redis-server.exe /path/to/redis.conf</span></span><br><span class="line">[7976] 16 Dec 11:41:31.724 <span class="comment"># Could not create server TCP listening socket *:6379: bind: 在一个非套接字上尝试了一个操作。</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\Redis&gt;redis-server.exe
+[7976] 16 Dec 11:41:31.720 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[7976] 16 Dec 11:41:31.720 # Redis version&#x3D;5.0.14.1, bits&#x3D;64, commit&#x3D;ec77f72d, modified&#x3D;0, pid&#x3D;7976, just started
+[7976] 16 Dec 11:41:31.721 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server.exe &#x2F;path&#x2F;to&#x2F;redis.conf
+[7976] 16 Dec 11:41:31.724 # Could not create server TCP listening socket *:6379: bind: 在一个非套接字上尝试了一个操作。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>出现这一错误则则可以将启动命令改为如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E:\Redis&gt;redis-server.exe redis.windows.conf</span><br></pre></td></tr></table></figure>
-<h2 id="连接远程redis">连接远程Redis</h2>
-<p>在Redis根目录下打开cmd，使用redis-cli客户端，连接远程redis服务的语法为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h host -p port -a password</span><br><span class="line"><span class="comment">#其中：host为服务器所在的ip地址</span></span><br><span class="line"><span class="comment">#port为Redis服务的监听端口</span></span><br><span class="line"><span class="comment">#password为Redis服务的密码，若没有开启认证则不需要这一参数</span></span><br></pre></td></tr></table></figure>
-<h2 id="redis配置">Redis配置</h2>
-<p>使用redis-cli客户端连接上redis服务器后，可以使用config命令来查看或设置redis的配置，也可以直接修改安装目录下的redis.windows.conf文件来修改配置。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">E:\Redis&gt;redis-server.exe redis.windows.conf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="连接远程Redis"><a href="#连接远程Redis" class="headerlink" title="连接远程Redis"></a>连接远程Redis</h2><p>在Redis根目录下打开cmd，使用redis-cli客户端，连接远程redis服务的语法为：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">redis-cli -h host -p port -a password
+#其中：host为服务器所在的ip地址
+#port为Redis服务的监听端口
+#password为Redis服务的密码，若没有开启认证则不需要这一参数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Redis配置"><a href="#Redis配置" class="headerlink" title="Redis配置"></a>Redis配置</h2><p>使用redis-cli客户端连接上redis服务器后，可以使用config命令来查看或设置redis的配置，也可以直接修改安装目录下的redis.windows.conf文件来修改配置。</p>
 <p>config相关命令如下：</p>
 <ul>
 <li><code>config get key</code>：获取配置项为key的配置，配置项不存在时返回<code>(empty list or set)</code></li>
 <li><code>config get *</code>：获取所有配置</li>
-<li><code>config set key "value"</code>：设置配置项key的值为value</li>
+<li><code>config set key &quot;value&quot;</code>：设置配置项key的值为value</li>
 </ul>
 
     </article>
@@ -892,7 +1138,7 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#yaml"><span class="toc-number">1.</span> <span class="toc-text">YAML</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">基础语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">数据结构与类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.1.</span> <span class="toc-text">对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%87%8F"><span class="toc-number">1.2.3.</span> <span class="toc-text">标量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.2.4.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%80%BC"><span class="toc-number">1.2.5.</span> <span class="toc-text">布尔值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E6%95%B0"><span class="toc-number">1.2.6.</span> <span class="toc-text">整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">1.2.7.</span> <span class="toc-text">浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%80%BCnull"><span class="toc-number">1.2.8.</span> <span class="toc-text">空值（Null）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%88%B3"><span class="toc-number">1.2.9.</span> <span class="toc-text">时间戳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.10.</span> <span class="toc-text">类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%AB%98%E7%BA%A7%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.11.</span> <span class="toc-text">其他高级类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%87%8D%E7%94%A8%E4%B8%8E%E5%90%88%E5%B9%B6"><span class="toc-number">1.2.12.</span> <span class="toc-text">数据重用与合并</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#redis"><span class="toc-number">2.</span> <span class="toc-text">Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#windows%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">Windows安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">Redis数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#string%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">String类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hash%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text">Hash类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.3.</span> <span class="toc-text">List类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.4.</span> <span class="toc-text">Set类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zset%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.5.</span> <span class="toc-text">ZSet类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0redis"><span class="toc-number">2.3.</span> <span class="toc-text">连接本地Redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8Bredis"><span class="toc-number">2.4.</span> <span class="toc-text">连接远程Redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis%E9%85%8D%E7%BD%AE"><span class="toc-number">2.5.</span> <span class="toc-text">Redis配置</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#YAML"><span class="toc-number">1.</span> <span class="toc-text">YAML</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">基础语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">数据结构与类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.1.</span> <span class="toc-text">对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%87%8F"><span class="toc-number">1.2.3.</span> <span class="toc-text">标量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.2.4.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%80%BC"><span class="toc-number">1.2.5.</span> <span class="toc-text">布尔值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E6%95%B0"><span class="toc-number">1.2.6.</span> <span class="toc-text">整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">1.2.7.</span> <span class="toc-text">浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%80%BC%EF%BC%88Null%EF%BC%89"><span class="toc-number">1.2.8.</span> <span class="toc-text">空值（Null）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%88%B3"><span class="toc-number">1.2.9.</span> <span class="toc-text">时间戳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.10.</span> <span class="toc-text">类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%AB%98%E7%BA%A7%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.11.</span> <span class="toc-text">其他高级类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%87%8D%E7%94%A8%E4%B8%8E%E5%90%88%E5%B9%B6"><span class="toc-number">1.2.12.</span> <span class="toc-text">数据重用与合并</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis"><span class="toc-number">2.</span> <span class="toc-text">Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">Windows安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">Redis数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">String类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text">Hash类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.3.</span> <span class="toc-text">List类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.4.</span> <span class="toc-text">Set类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZSet%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.5.</span> <span class="toc-text">ZSet类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0Redis"><span class="toc-number">2.3.</span> <span class="toc-text">连接本地Redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8BRedis"><span class="toc-number">2.4.</span> <span class="toc-text">连接远程Redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E9%85%8D%E7%BD%AE"><span class="toc-number">2.5.</span> <span class="toc-text">Redis配置</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1242,6 +1488,12 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
         
         
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2351,6 +2603,11 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
                 数据库工具
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2364,21 +2621,6 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS3">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS3
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2396,9 +2638,29 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2421,14 +2683,14 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
                 MinIO
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="LLM">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                LLM
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2439,16 +2701,6 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
             <span class="sidebar-tag-name" data-tags="Vue">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="LLM">
-                <span class="iconfont-archer">&#xe606;</span>
-                LLM
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="人工智能">
-                <span class="iconfont-archer">&#xe606;</span>
-                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2471,11 +2723,6 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2484,6 +2731,11 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2557,14 +2809,19 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2572,9 +2829,9 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2587,14 +2844,9 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2602,34 +2854,29 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Lottie">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="可视化">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
+            可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="Vue">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            Vue
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
             LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2642,9 +2889,9 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="人工智能">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2657,14 +2904,24 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
             JavaScript
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2675,11 +2932,6 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2754,20 +3006,5 @@ client端的cmd上输入以下命令后回车,以此来测试redis-cli客户端�
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+    </body>
 </html>

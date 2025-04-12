@@ -338,7 +338,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.4k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -499,58 +499,202 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="进程和线程">进程和线程</h1>
-<h2 id="多线程">多线程</h2>
-<p>Python的标准库提供了两个模块：<code>_thread</code>和<code>threading</code>，其中<code>_thread</code>是低级模块，<code>threading</code>是高级模块，对<code>_thread</code>进行了封装，绝大多数情况下，只是使用高级模块<code>thread</code>。<strong>任何进程默认会启动一个线程</strong>，将其称之为<strong>主线程</strong>，由<strong>主线程启动的新线程</strong>称之为<strong>子线程</strong>。</p>
+        <h1 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h1><h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>Python的标准库提供了两个模块：<code>_thread</code>和<code>threading</code>，其中<code>_thread</code>是低级模块，<code>threading</code>是高级模块，对<code>_thread</code>进行了封装，绝大多数情况下，只是使用高级模块<code>thread</code>。<strong>任何进程默认会启动一个线程</strong>，将其称之为<strong>主线程</strong>，由<strong>主线程启动的新线程</strong>称之为<strong>子线程</strong>。</p>
 <p>启动一个线程需要把一个函数传入并创建<code>Thread</code>实例，然后调用<code>start()</code>执行：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time,threading </span><br><span class="line"><span class="comment">#新线程执行的代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">loop</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;thread %s is running...&#x27;</span>%threading.current_thread().name)</span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> n&lt;<span class="number">5</span>:</span><br><span class="line">        n=n+<span class="number">1</span> </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;thread %s &gt;&gt;&gt;%s&#x27;</span>% (threading.current_thread().name,n))</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;thread %s ended.&#x27;</span>% threading.current_thread().name)</span><br><span class="line"><span class="comment"># current_thread()可以返回当前线程的实例</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;thread %s is running...&#x27;</span>%threading.current_thread().name)</span><br><span class="line">t=threading.Thread(target=loop,name=<span class="string">&#x27;LoopThread&#x27;</span>)<span class="comment">#用LoopThread命名子线程，默认名字为Thread-1,Thread-2...</span></span><br><span class="line">t.start()</span><br><span class="line">t.join()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;thread %s ended.&#x27;</span>% threading.current_thread().name)</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">thread MainThread <span class="keyword">is</span> running...<span class="comment">#主线程为MainThread</span></span><br><span class="line">thread LoopThread <span class="keyword">is</span> running...</span><br><span class="line">thread LoopThread &gt;&gt;&gt;<span class="number">1</span></span><br><span class="line">thread LoopThread &gt;&gt;&gt;<span class="number">2</span></span><br><span class="line">thread LoopThread &gt;&gt;&gt;<span class="number">3</span></span><br><span class="line">thread LoopThread &gt;&gt;&gt;<span class="number">4</span></span><br><span class="line">thread LoopThread &gt;&gt;&gt;<span class="number">5</span></span><br><span class="line">thread LoopThread ended.</span><br><span class="line">thread MainThread ended.</span><br></pre></td></tr></table></figure>
-<h3 id="lock">Lock</h3>
-<p>多进程中，同一个变量各自有一份拷贝存在于每个进程中，<strong>多个进程之间的变量之间互不影响。</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import time,threading 
+#新线程执行的代码
+def loop():
+    print(&#39;thread %s is running...&#39;%threading.current_thread().name)
+    n&#x3D;0
+    while n&lt;5:
+        n&#x3D;n+1 
+        print(&#39;thread %s &gt;&gt;&gt;%s&#39;% (threading.current_thread().name,n))
+        time.sleep(1)
+    print(&#39;thread %s ended.&#39;% threading.current_thread().name)
+# current_thread()可以返回当前线程的实例
+print(&#39;thread %s is running...&#39;%threading.current_thread().name)
+t&#x3D;threading.Thread(target&#x3D;loop,name&#x3D;&#39;LoopThread&#39;)#用LoopThread命名子线程，默认名字为Thread-1,Thread-2...
+t.start()
+t.join()
+print(&#39;thread %s ended.&#39;% threading.current_thread().name)
+
+#运行结果如下：
+thread MainThread is running...#主线程为MainThread
+thread LoopThread is running...
+thread LoopThread &gt;&gt;&gt;1
+thread LoopThread &gt;&gt;&gt;2
+thread LoopThread &gt;&gt;&gt;3
+thread LoopThread &gt;&gt;&gt;4
+thread LoopThread &gt;&gt;&gt;5
+thread LoopThread ended.
+thread MainThread ended.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h3><p>多进程中，同一个变量各自有一份拷贝存在于每个进程中，<strong>多个进程之间的变量之间互不影响。</strong></p>
 <p>多线程中，所有<strong>变量都由所有线程共享</strong>，所以任何一个变量都可以被任何线程修改，即容易发生像在<code>sql</code>数据库中的读脏数据的情况。<strong>若要避免线程读脏数据的情况，就要给变量上锁</strong>。</p>
 <p>可以通过<code>threading.Lock()</code>来创建一个锁：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time,threading</span><br><span class="line">balance=<span class="number">0</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">change_it</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">global</span> balance</span><br><span class="line">    balance=balance+n</span><br><span class="line">    balance=balance-n</span><br><span class="line"></span><br><span class="line">lock=threading.Lock()<span class="comment">#创建锁</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_thread</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100000</span>):</span><br><span class="line">        <span class="comment">#获取锁</span></span><br><span class="line">        lock.acquire()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            change_it(n)<span class="comment">#可修改的变量</span></span><br><span class="line">        <span class="keyword">finally</span>:</span><br><span class="line">            lock.release()<span class="comment">#释放锁</span></span><br><span class="line">t1=threading.Thread(target=run_thread,args=(<span class="number">5</span>,))</span><br><span class="line">t2=threading.Thread(target=run_thread,args=(<span class="number">8</span>,))</span><br><span class="line">t1.start()</span><br><span class="line">t2.start()</span><br><span class="line">t1.join()</span><br><span class="line">t2.join()</span><br><span class="line"><span class="built_in">print</span>(balance)</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import time,threading
+balance&#x3D;0
+def change_it(n):
+    global balance
+    balance&#x3D;balance+n
+    balance&#x3D;balance-n
+
+lock&#x3D;threading.Lock()#创建锁
+def run_thread(n):
+    for i in range(100000):
+        #获取锁
+        lock.acquire()
+        try:
+            change_it(n)#可修改的变量
+        finally:
+            lock.release()#释放锁
+t1&#x3D;threading.Thread(target&#x3D;run_thread,args&#x3D;(5,))
+t2&#x3D;threading.Thread(target&#x3D;run_thread,args&#x3D;(8,))
+t1.start()
+t2.start()
+t1.join()
+t2.join()
+print(balance)
+
+#运行结果如下：
+0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>当<strong>多个线程同时执行<code>lock.acquire（）</code>时，只有一个线程能成功获取锁</strong>，然后继续执行代码，其他线程就继续等待直到获得锁为止。<strong>获得锁的线程用完后一定要释放锁</strong>，否则其他等待的线程将永远等下去。</p>
-<h3 id="多核cpu">多核CPU</h3>
-<p>一个死循环线程会100%占用一个CPU。若有两个死循环线程，在多核CPU中会占用200%的CPU，即两个CPU核心。若想把n核CPU的核心全部跑满，就必须启动n个死循环线程。</p>
+<h3 id="多核CPU"><a href="#多核CPU" class="headerlink" title="多核CPU"></a>多核CPU</h3><p>一个死循环线程会100%占用一个CPU。若有两个死循环线程，在多核CPU中会占用200%的CPU，即两个CPU核心。若想把n核CPU的核心全部跑满，就必须启动n个死循环线程。</p>
 <p>但在6核CPU中运行python启动6个死循环线程，CPU占用率也就仅有25%。死循环线程代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading,multiprocessing</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">loop</span>():</span><br><span class="line">    x=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        x=x^<span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(multiprocessing.cpu_count()):</span><br><span class="line">    t=threading.Thread(target=loop)</span><br><span class="line">    t.start()</span><br></pre></td></tr></table></figure>
-<h4 id="gil锁">GIL锁</h4>
-<p>这是因为python解释器执行代码时，有一个<strong>GIL锁</strong>（Global
-Interoreter
-Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后每执行100条字节码，解释器就自动释放GIL锁。</strong>这个GIL全局锁实际上给所有线程的执行代码都上了锁。因此<strong>多线程在python中只能交替执行</strong>，即使有100个线程跑在100核CPU上，也<strong>只能用到1个核</strong>。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import threading,multiprocessing
+def loop():
+    x&#x3D;0
+    while True:
+        x&#x3D;x^1
+for i in range(multiprocessing.cpu_count()):
+    t&#x3D;threading.Thread(target&#x3D;loop)
+    t.start()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="GIL锁"><a href="#GIL锁" class="headerlink" title="GIL锁"></a>GIL锁</h4><p>这是因为python解释器执行代码时，有一个<strong>GIL锁</strong>（Global Interoreter Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后每执行100条字节码，解释器就自动释放GIL锁。</strong>这个GIL全局锁实际上给所有线程的执行代码都上了锁。因此<strong>多线程在python中只能交替执行</strong>，即使有100个线程跑在100核CPU上，也<strong>只能用到1个核</strong>。</p>
 <p>因此在python中可以使用多线程，却不能够有效地利用多核。python虽然不能实现多线程并发，但可以通过多线程实现多核任务。多个python进程有各自独立的GIL锁，互不影响。</p>
-<h2 id="threadlocal"><code>ThreadLocal</code></h2>
-<p>在多线程环境下，每个线程都有自己的数据。一个线程使用局部变量比使用全局变量好。而全局变量的每次修改都要加锁，因此可以考虑用一个全局<code>dict</code>存放所有对象，然后以thread自身作为key来获得线程对应的对象，而在<code>ThreadLocal</code>中可以自动做这件事：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line">local_school=threading.local()<span class="comment">#创建全局ThreadLocal对象</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">process_student</span>():</span><br><span class="line">    std=local_school.student<span class="comment">#获取当前线程关联的student</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Hello,%s (in %s)&#x27;</span>%(std,threading.current_thread().name))</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">process_thread</span>(<span class="params">name</span>):</span><br><span class="line">    local_school.student=name<span class="comment">#绑定ThreadLocal的student</span></span><br><span class="line">    process_student()</span><br><span class="line">t1=threading.Thread(target=process_thread,args=(<span class="string">&#x27;Alice&#x27;</span>,),name=<span class="string">&#x27;Thread-A&#x27;</span>)</span><br><span class="line">t2=threading.Thread(target=process_thread,args=(<span class="string">&#x27;Bob&#x27;</span>,),name=<span class="string">&#x27;Thread-B&#x27;</span>)    </span><br><span class="line">t1.start()</span><br><span class="line">t2.start()</span><br><span class="line">t1.join()</span><br><span class="line">t2.join()</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">Hello,Alice (<span class="keyword">in</span> Thread-A)</span><br><span class="line">Hello,Bob (<span class="keyword">in</span> Thread-B)</span><br></pre></td></tr></table></figure>
+<h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a><code>ThreadLocal</code></h2><p>在多线程环境下，每个线程都有自己的数据。一个线程使用局部变量比使用全局变量好。而全局变量的每次修改都要加锁，因此可以考虑用一个全局<code>dict</code>存放所有对象，然后以thread自身作为key来获得线程对应的对象，而在<code>ThreadLocal</code>中可以自动做这件事：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import threading
+local_school&#x3D;threading.local()#创建全局ThreadLocal对象
+def process_student():
+    std&#x3D;local_school.student#获取当前线程关联的student
+    print(&#39;Hello,%s (in %s)&#39;%(std,threading.current_thread().name))
+def process_thread(name):
+    local_school.student&#x3D;name#绑定ThreadLocal的student
+    process_student()
+t1&#x3D;threading.Thread(target&#x3D;process_thread,args&#x3D;(&#39;Alice&#39;,),name&#x3D;&#39;Thread-A&#39;)
+t2&#x3D;threading.Thread(target&#x3D;process_thread,args&#x3D;(&#39;Bob&#39;,),name&#x3D;&#39;Thread-B&#39;)    
+t1.start()
+t2.start()
+t1.join()
+t2.join()
+#运行结果如下：
+Hello,Alice (in Thread-A)
+Hello,Bob (in Thread-B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>可以理解为全局变量<code>local_school</code>是一个<code>dict</code>，其不但可以用<code>local_school.student</code>，还可以绑定其他变量。</p>
 <p><code>ThreadLocal</code>最常用在为每个线程绑定一个数据库连接、HTTP请求、用户身份信息等。</p>
-<h2 id="进程-vs-线程">进程 vs 线程</h2>
-<p>要实现多任务通常会设计Master-Worker模式，Master复制分配任务，Worker负责执行任务，故在多任务环境下，通常是一个Master，多个Worker。</p>
+<h2 id="进程-vs-线程"><a href="#进程-vs-线程" class="headerlink" title="进程 vs 线程"></a>进程 vs 线程</h2><p>要实现多任务通常会设计Master-Worker模式，Master复制分配任务，Worker负责执行任务，故在多任务环境下，通常是一个Master，多个Worker。</p>
 <p>用多进程实现Master-Worker，主进程就是Master，其他进程就是Worker。</p>
 <p>用多线程实现Master-Worker，主线程就是Master，其他进程就是Worker。</p>
 <p><strong>多进程模式最大的优点是稳定性高。</strong>一个子进程崩溃了不会影响主进程核其他进程。<strong>其缺点是创建进程的开销大</strong>，占用系统资源较多，且操作系统同时运行的进程数也有限。</p>
 <p><strong>多线程模式通常比多进程快一点，其缺点是任何一个线程挂掉都可能直接造成整个进程崩溃。</strong></p>
-<h3 id="线程切换">线程切换</h3>
-<p>操作系统在切换进程或线程时，需要先保存当前执行的现场环境（CPU寄存器状态、内存页等），然后把新任务的执行环境准备好（恢复上次的寄存器状态、切换内存页等），才能开始执行。</p>
-<h3 id="计算密集型-vs-io密集型">计算密集型 vs IO密集型</h3>
-<p>把任务分为计算密集型和IO密集型，并以此来考虑是否采用多任务。</p>
+<h3 id="线程切换"><a href="#线程切换" class="headerlink" title="线程切换"></a>线程切换</h3><p>操作系统在切换进程或线程时，需要先保存当前执行的现场环境（CPU寄存器状态、内存页等），然后把新任务的执行环境准备好（恢复上次的寄存器状态、切换内存页等），才能开始执行。</p>
+<h3 id="计算密集型-vs-IO密集型"><a href="#计算密集型-vs-IO密集型" class="headerlink" title="计算密集型 vs IO密集型"></a>计算密集型 vs IO密集型</h3><p>把任务分为计算密集型和IO密集型，并以此来考虑是否采用多任务。</p>
 <p><strong>计算密集型任务的特点</strong>是<strong>进行大量的计算，消耗CPU资源</strong>。要最高效的利用CPU，<strong>计算密集型任务同时进行的数量应当等于CPU的核数</strong>。python做计算密集型任务的运行效率很低，故最好是用C语言编写计算密集型任务。</p>
 <p><strong>IO密集型任务的特点</strong>是<strong>CPU消耗很少，任务的大部分时间都在等待IO操作完成</strong>。对于IO密集型任务，<strong>在一定限度内的任务最多，CPU效率越高</strong>。</p>
-<h3 id="异步io">异步IO</h3>
-<p>若充分利用操作系统提供的异步IO支持，就能用单线程模型来执行多任务，这种全新的模型称为<strong>事件驱动模型</strong>。对于python来说，<strong>单线程的异步编程模型称为协程</strong>，有了协程的支持，就可以基于事件驱动编写高效的多任务程序。</p>
-<h2 id="分布式进程">分布式进程</h2>
-<p>在线程和进程中，应当优先选择进程。因为进程更稳定，而且<strong>进程可以分布到多台机器</strong>上，而<strong>线程最多只能分布到同一台机器的多个CPU上</strong>。</p>
+<h3 id="异步IO"><a href="#异步IO" class="headerlink" title="异步IO"></a>异步IO</h3><p>若充分利用操作系统提供的异步IO支持，就能用单线程模型来执行多任务，这种全新的模型称为<strong>事件驱动模型</strong>。对于python来说，<strong>单线程的异步编程模型称为协程</strong>，有了协程的支持，就可以基于事件驱动编写高效的多任务程序。</p>
+<h2 id="分布式进程"><a href="#分布式进程" class="headerlink" title="分布式进程"></a>分布式进程</h2><p>在线程和进程中，应当优先选择进程。因为进程更稳定，而且<strong>进程可以分布到多台机器</strong>上，而<strong>线程最多只能分布到同一台机器的多个CPU上</strong>。</p>
 <p>python的<code>multiprocessing</code>模块不但支持多进程，其中的<code>managers</code>子模块还支持把多进程分布到多台机器上。一个服务进程可以作为调度者，将任务分布到其他多个进程中，依靠网络通信。</p>
 <p>若有一个通过<code>Queue</code>通信的多进程程序在同一台机器上运行，现在要把发送任务的进程和处理任务的进程分布到两台机器上。原有的<code>Queue</code>可以继续用，通过<code>managers</code>模块把<code>Queue</code>通过网络暴露出去，其他机器的进程就可以访问<code>Queue</code>了。其实现如下：</p>
 <p>服务器端Master的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random,time,queue</span><br><span class="line"><span class="keyword">from</span> multiprocessing.managers <span class="keyword">import</span> BaseManager</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> freeze_support  <span class="comment">#server启动报错，提示需要引用此包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#发送任务的队列</span></span><br><span class="line">task_queue = queue.Queue()</span><br><span class="line"><span class="comment">#接收结果的队列</span></span><br><span class="line">result_queue = queue.Queue()</span><br><span class="line"></span><br><span class="line"><span class="comment">#从BaseManager继承的QueueManager</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">QueueManager</span>(<span class="title class_ inherited__">BaseManager</span>):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment">#win10 64 貌似不支持callable下调用匿名函数lambda，这里封装一下</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">return_task_queue</span>():</span><br><span class="line">    <span class="keyword">global</span> task_queue</span><br><span class="line">    <span class="keyword">return</span> task_queue</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">return_result_queue</span>():</span><br><span class="line">    <span class="keyword">global</span> result_queue</span><br><span class="line">    <span class="keyword">return</span> result_queue</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>():</span><br><span class="line">    <span class="comment">#把两个Queue注册到网络上，callable参数关联了Queue对象</span></span><br><span class="line">    <span class="comment">#QueueManager.register(&#x27;get_task_queue&#x27;,callable=lambda:task_queue)</span></span><br><span class="line">    <span class="comment">#QueueManager.register(&#x27;get_result_queue&#x27;,callable=lambda:result_queue)</span></span><br><span class="line">    QueueManager.register(<span class="string">&#x27;get_task_queue&#x27;</span>,<span class="built_in">callable</span>=return_task_queue)</span><br><span class="line">    QueueManager.register(<span class="string">&#x27;get_result_queue&#x27;</span>,<span class="built_in">callable</span>=return_result_queue)</span><br><span class="line">    <span class="comment">#绑定端口5000，设置验证码‘abc’</span></span><br><span class="line">    manager = QueueManager(address=(<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">5000</span>),authkey=<span class="string">b&#x27;abc&#x27;</span>)<span class="comment">#这里必须加上本地默认ip地址127.0.0.1</span></span><br><span class="line">    <span class="comment">#启动Queue</span></span><br><span class="line">    manager.start()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;start server master&#x27;</span>)</span><br><span class="line">    <span class="comment">#获得通过网络访问的Queue对象</span></span><br><span class="line">    task = manager.get_task_queue()</span><br><span class="line">    result = manager.get_result_queue()</span><br><span class="line">    <span class="comment">#放几个任务进去</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        n = random.randint(<span class="number">0</span>,<span class="number">10000</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;put task %d...&#x27;</span> % n)</span><br><span class="line">        task.put(n)</span><br><span class="line">    <span class="comment">#从result队列读取结果</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;try get results...&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        r = result.get(timeout=<span class="number">10</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;result:%s&#x27;</span> % r)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#关闭</span></span><br><span class="line">    manager.shutdown()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;master exit&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    freeze_support()</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import random,time,queue
+from multiprocessing.managers import BaseManager
+from multiprocessing import freeze_support  #server启动报错，提示需要引用此包
+
+#发送任务的队列
+task_queue &#x3D; queue.Queue()
+#接收结果的队列
+result_queue &#x3D; queue.Queue()
+
+#从BaseManager继承的QueueManager
+class QueueManager(BaseManager):
+    pass
+#win10 64 貌似不支持callable下调用匿名函数lambda，这里封装一下
+def return_task_queue():
+    global task_queue
+    return task_queue
+def return_result_queue():
+    global result_queue
+    return result_queue
+
+def test():
+    #把两个Queue注册到网络上，callable参数关联了Queue对象
+    #QueueManager.register(&#39;get_task_queue&#39;,callable&#x3D;lambda:task_queue)
+    #QueueManager.register(&#39;get_result_queue&#39;,callable&#x3D;lambda:result_queue)
+    QueueManager.register(&#39;get_task_queue&#39;,callable&#x3D;return_task_queue)
+    QueueManager.register(&#39;get_result_queue&#39;,callable&#x3D;return_result_queue)
+    #绑定端口5000，设置验证码‘abc’
+    manager &#x3D; QueueManager(address&#x3D;(&#39;127.0.0.1&#39;,5000),authkey&#x3D;b&#39;abc&#39;)#这里必须加上本地默认ip地址127.0.0.1
+    #启动Queue
+    manager.start()
+    print(&#39;start server master&#39;)
+    #获得通过网络访问的Queue对象
+    task &#x3D; manager.get_task_queue()
+    result &#x3D; manager.get_result_queue()
+    #放几个任务进去
+    for i in range(10):
+        n &#x3D; random.randint(0,10000)
+        print(&#39;put task %d...&#39; % n)
+        task.put(n)
+    #从result队列读取结果
+    print(&#39;try get results...&#39;)
+    for i in range(10):
+        r &#x3D; result.get(timeout&#x3D;10)
+        print(&#39;result:%s&#39; % r)
+
+    #关闭
+    manager.shutdown()
+    print(&#39;master exit&#39;)
+
+if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+    freeze_support()
+    test()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在另一个文件里写非服务端Worker的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time,sys,queue</span><br><span class="line"><span class="keyword">from</span> multiprocessing.managers <span class="keyword">import</span> BaseManager</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建类似的QueueManager</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">QueueManager</span>(<span class="title class_ inherited__">BaseManager</span>):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#由于这个QueueManager只从网络上获取Queue，所以注册时只提供名字即可</span></span><br><span class="line">QueueManager.register(<span class="string">&#x27;get_task_queue&#x27;</span>)</span><br><span class="line">QueueManager.register(<span class="string">&#x27;get_result_queue&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#连接到服务器，也就是运行task_master.py的机器</span></span><br><span class="line">server_addr = <span class="string">&#x27;127.0.0.1&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;connect to server %s...&#x27;</span>% server_addr)</span><br><span class="line"><span class="comment">#端口和验证码注意要保持完全一致</span></span><br><span class="line">m = QueueManager(address=(server_addr,<span class="number">5000</span>),authkey=<span class="string">b&#x27;abc&#x27;</span>)</span><br><span class="line"><span class="comment">#从网络连接</span></span><br><span class="line">m.connect()</span><br><span class="line"><span class="comment">#获取Queue的对象</span></span><br><span class="line">task = m.get_task_queue()</span><br><span class="line">result = m.get_result_queue()</span><br><span class="line"><span class="comment">#从task队列获取任务，并把结果写入result队列</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        n = task.get(timeout=<span class="number">1</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;run task %d * %d...&#x27;</span>% (n,n))</span><br><span class="line">        r = <span class="string">&#x27;%d * %d = %d&#x27;</span> % (n,n,n*n)</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        result.put(r)</span><br><span class="line">    <span class="keyword">except</span> queue.Empty:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;task queue is empty&#x27;</span>)</span><br><span class="line"><span class="comment">#处理结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;worker exit&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import time,sys,queue
+from multiprocessing.managers import BaseManager
+
+#创建类似的QueueManager
+class QueueManager(BaseManager):
+    pass
+
+#由于这个QueueManager只从网络上获取Queue，所以注册时只提供名字即可
+QueueManager.register(&#39;get_task_queue&#39;)
+QueueManager.register(&#39;get_result_queue&#39;)
+
+#连接到服务器，也就是运行task_master.py的机器
+server_addr &#x3D; &#39;127.0.0.1&#39;
+print(&#39;connect to server %s...&#39;% server_addr)
+#端口和验证码注意要保持完全一致
+m &#x3D; QueueManager(address&#x3D;(server_addr,5000),authkey&#x3D;b&#39;abc&#39;)
+#从网络连接
+m.connect()
+#获取Queue的对象
+task &#x3D; m.get_task_queue()
+result &#x3D; m.get_result_queue()
+#从task队列获取任务，并把结果写入result队列
+for i in range(10):
+    try:
+        n &#x3D; task.get(timeout&#x3D;1)
+        print(&#39;run task %d * %d...&#39;% (n,n))
+        r &#x3D; &#39;%d * %d &#x3D; %d&#39; % (n,n,n*n)
+        time.sleep(1)
+        result.put(r)
+    except queue.Empty:
+        print(&#39;task queue is empty&#39;)
+#处理结果
+print(&#39;worker exit&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>先运行服务端Marker的代码，再运行非服务端Worker的代码，运行结果如下：</p>
 <p>服务端Marker的运行结果如下图：</p>
-<p><img src="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/1.png"></p>
+<p><img src="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/1.png" alt></p>
 <p>非服务端Worker的运行结果如下图：</p>
-<p><img src="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/2.png"></p>
+<p><img src="/2022/10/13/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/2.png" alt></p>
 
     </article>
     <!-- license -->
@@ -749,7 +893,7 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">进程和线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lock"><span class="toc-number">1.1.1.</span> <span class="toc-text">Lock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%A0%B8cpu"><span class="toc-number">1.1.2.</span> <span class="toc-text">多核CPU</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gil%E9%94%81"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">GIL锁</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#threadlocal"><span class="toc-number">1.2.</span> <span class="toc-text">ThreadLocal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B-vs-%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">进程 vs 线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%88%87%E6%8D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">线程切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%AF%86%E9%9B%86%E5%9E%8B-vs-io%E5%AF%86%E9%9B%86%E5%9E%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">计算密集型 vs IO密集型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5io"><span class="toc-number">1.3.3.</span> <span class="toc-text">异步IO</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">分布式进程</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">进程和线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Lock"><span class="toc-number">1.1.1.</span> <span class="toc-text">Lock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%A0%B8CPU"><span class="toc-number">1.1.2.</span> <span class="toc-text">多核CPU</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GIL%E9%94%81"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">GIL锁</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ThreadLocal"><span class="toc-number">1.2.</span> <span class="toc-text">ThreadLocal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B-vs-%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">进程 vs 线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%88%87%E6%8D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">线程切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%AF%86%E9%9B%86%E5%9E%8B-vs-IO%E5%AF%86%E9%9B%86%E5%9E%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">计算密集型 vs IO密集型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5IO"><span class="toc-number">1.3.3.</span> <span class="toc-text">异步IO</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">分布式进程</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1099,6 +1243,12 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
         
         
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2208,6 +2358,11 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
                 数据库工具
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2221,21 +2376,6 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS3">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS3
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2253,9 +2393,29 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2278,14 +2438,14 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
                 MinIO
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="LLM">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                LLM
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2296,16 +2456,6 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
             <span class="sidebar-tag-name" data-tags="Vue">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="LLM">
-                <span class="iconfont-archer">&#xe606;</span>
-                LLM
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="人工智能">
-                <span class="iconfont-archer">&#xe606;</span>
-                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2328,11 +2478,6 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2341,6 +2486,11 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2414,14 +2564,19 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2429,9 +2584,9 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2444,14 +2599,9 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2459,34 +2609,29 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Lottie">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="可视化">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
+            可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="Vue">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            Vue
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
             LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2499,9 +2644,9 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="人工智能">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2514,14 +2659,24 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
             JavaScript
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2532,11 +2687,6 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2611,20 +2761,5 @@ Lock），<strong>任何python线程执行前，必须先获得GIL锁，然后�
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+    </body>
 </html>

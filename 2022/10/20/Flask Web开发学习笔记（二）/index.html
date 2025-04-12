@@ -341,7 +341,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.3k</span>阅读时长: <span class="post-count reading-time">14 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.2k</span>阅读时长: <span class="post-count reading-time">13 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -502,85 +502,249 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h1 id="创建应用教程">创建应用教程</h1>
-<h2 id="创建文件夹">创建文件夹</h2>
-<p>先创建应用所需的文件夹，接下来会直接把数据库模式和主模块放在这个目录中。用户可以通过HTTP访问static文件夹中的文件，即存放css和javascript文件的地方：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/tutorweb</span><br><span class="line">    /static</span><br><span class="line">    /templates</span><br></pre></td></tr></table></figure>
-<h2 id="创建数据库模式">创建数据库模式</h2>
-<p>创建schema.sql文件，文件里编写以下内容，放到tutorweb文件中：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">exists</span> entries;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> entries(</span><br><span class="line">	id <span class="type">integer</span> <span class="keyword">primary</span> key autoincrement,</span><br><span class="line">	title string <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">	text string <span class="keyword">not</span> <span class="keyword">null</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+        <h1 id="创建应用教程"><a href="#创建应用教程" class="headerlink" title="创建应用教程"></a>创建应用教程</h1><h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><p>先创建应用所需的文件夹，接下来会直接把数据库模式和主模块放在这个目录中。用户可以通过HTTP访问static文件夹中的文件，即存放css和javascript文件的地方：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">&#x2F;tutorweb
+    &#x2F;static
+    &#x2F;templates<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="创建数据库模式"><a href="#创建数据库模式" class="headerlink" title="创建数据库模式"></a>创建数据库模式</h2><p>创建schema.sql文件，文件里编写以下内容，放到tutorweb文件中：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">drop table if exists entries;
+create table entries(
+	id integer primary key autoincrement,
+	title string not null,
+	text string not null
+);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>该模式包含一个名为entries的表，该表中的每行都包含一个id、一个title和一个text。id是一个自增的整数，也是主键，其余的两个是字符串且不允许为空。</p>
-<h2 id="应用设置代码">应用设置代码</h2>
-<h3 id="创建应用模块">创建应用模块</h3>
-<p>创建应用的模块tutorweb.py并放置在tutorweb目录下。从添加所需的导入语句和添加配置部分开始。对于小型应用，可以直接把配置放在主模块里，但更简洁的方案是创建独立的<code>.ini</code>或<code>.py</code>文件，并载入里面的值。</p>
+<h2 id="应用设置代码"><a href="#应用设置代码" class="headerlink" title="应用设置代码"></a>应用设置代码</h2><h3 id="创建应用模块"><a href="#创建应用模块" class="headerlink" title="创建应用模块"></a>创建应用模块</h3><p>创建应用的模块tutorweb.py并放置在tutorweb目录下。从添加所需的导入语句和添加配置部分开始。对于小型应用，可以直接把配置放在主模块里，但更简洁的方案是创建独立的<code>.ini</code>或<code>.py</code>文件，并载入里面的值。</p>
 <p>首先在tutorweb.py里导入内容：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入所有模块</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sqlite3</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,request,session,g,redirect,url_for,abort,\</span><br><span class="line">    render_template,flash</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置文件</span></span><br><span class="line">DATABASE=<span class="string">&#x27;./sqlite_db&#x27;</span></span><br><span class="line">USERNAME=<span class="string">&#x27;admin&#x27;</span></span><br><span class="line">PASSWORD=<span class="string">&#x27;default&#x27;</span></span><br><span class="line">DEBUG=<span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#创建应用</span></span><br><span class="line">app=Flask(__name__)</span><br><span class="line">app.config.from_object(__name__)</span><br><span class="line">app.secret_key=<span class="string">&#x27;develop key&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="数据库路径">数据库路径</h3>
-<p>操作系统有进程当前工作目录的概念，但由于在Web应用中相同的进程运用多个应用，因此不能依赖此概念。Flask提供了<code>app.root_path</code>属性以获取应用的路径，配合<code>os.path</code>模块的使用，可以轻松到达任意文件。在本例中，数据库放在根目录下。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">#导入所有模块
+import os
+import sqlite3
+from flask import Flask,request,session,g,redirect,url_for,abort,\
+    render_template,flash
+
+#配置文件
+DATABASE&#x3D;&#39;.&#x2F;sqlite_db&#39;
+USERNAME&#x3D;&#39;admin&#39;
+PASSWORD&#x3D;&#39;default&#39;
+DEBUG&#x3D;True
+
+#创建应用
+app&#x3D;Flask(__name__)
+app.config.from_object(__name__)
+app.secret_key&#x3D;&#39;develop key&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="数据库路径"><a href="#数据库路径" class="headerlink" title="数据库路径"></a>数据库路径</h3><p>操作系统有进程当前工作目录的概念，但由于在Web应用中相同的进程运用多个应用，因此不能依赖此概念。Flask提供了<code>app.root_path</code>属性以获取应用的路径，配合<code>os.path</code>模块的使用，可以轻松到达任意文件。在本例中，数据库放在根目录下。</p>
 <p>通常只能加载一个单独的、环境特定的配置文件。Flask中使用<code>from_envvar()</code>方法可以实现允许导入多份配置文件，并使用最后的导入的设置。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.config.from_envvar(<span class="string">&#x27;FLASKR_SETTINGS&#x27;</span>,slient=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">app.config.from_envvar(&#39;FLASKR_SETTINGS&#39;,slient&#x3D;True)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>只需要设置一个名为<code>FLASKR_SETTINGS</code>的环境变量指向要加载的配置文件，启动静默模式告诉Flask在没有设置该环境变量的情况下噤声。</p>
 <p>此外还可以使用配置对象上的<code>from_object()</code>方法，并传递一个模块的导入名作为参数。Flask会从这个模块初始化变量，注意<strong>只有名称全为大写字母的变量才会被采用</strong>。</p>
 <p><code>secret_key</code>是保证客户端会话安全的重要所在。尽量选择一个尽可能难猜测、尽可能复杂的密钥。</p>
 <p>调试标志关系交互式调试器的开启。永远<strong>不要在生产系统中激活调试模式</strong>，因为它将允许用户在服务器上执行代码。</p>
-<p>添加一个连接到指定数据的方法是，用于请求时开启一个数据库连接，并在交互式Python
-shell和脚本中也能使用。在tutorweb.py文件中创建一个简单的SQLite数据库的连接，并让它用sqlite3.Row表示数据库中的行，使得可以通过字典而不是元组的形式访问行：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">connect_db</span>():</span><br><span class="line">    <span class="comment">#连接特定的数据库      </span></span><br><span class="line">    rv=sqlite3.connect(app.config[<span class="string">&#x27;DATABASE&#x27;</span>])</span><br><span class="line">    rv.row_factory=sqlite3.Row</span><br><span class="line">    <span class="keyword">return</span> rv</span><br></pre></td></tr></table></figure>
+<p>添加一个连接到指定数据的方法是，用于请求时开启一个数据库连接，并在交互式Python shell和脚本中也能使用。在tutorweb.py文件中创建一个简单的SQLite数据库的连接，并让它用sqlite3.Row表示数据库中的行，使得可以通过字典而不是元组的形式访问行：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">def connect_db():
+    #连接特定的数据库      
+    rv&#x3D;sqlite3.connect(app.config[&#39;DATABASE&#39;])
+    rv.row_factory&#x3D;sqlite3.Row
+    return rv<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>最后，若想要把这个文件当作独立应用来运行，只需在可启动服务器文件tutorweb.py的末尾加上这行代码即可运行这个应用：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
-<p>此时在浏览器中访问服务器会遇到404 page not
-found错误，这是因为还没有创建任何视图的缘故。在创建视图之前，应该先让数据库工作起来。</p>
-<h2 id="数据库连接">数据库连接</h2>
-<p>Flask提供了两种环境：应用环境和请求环境。不同环境有不同的特殊变量。例如request变量与当前请求的请求对象有关，而g是当前应用环境有关的通用变量。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">if __name__&#x3D;&#x3D;&#39;__main__&#39;:
+    app.run()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>此时在浏览器中访问服务器会遇到404 page not found错误，这是因为还没有创建任何视图的缘故。在创建视图之前，应该先让数据库工作起来。</p>
+<h2 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h2><p>Flask提供了两种环境：应用环境和请求环境。不同环境有不同的特殊变量。例如request变量与当前请求的请求对象有关，而g是当前应用环境有关的通用变量。</p>
 <p>在tutorweb.py文件中可以写一个辅助函数把数据库连接存放在g对象上。这个函数首次调用时会为当前的函数创建一个数据库连接，调用成功后返回已经建立好的连接：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_db</span>():</span><br><span class="line">    <span class="comment">#打开一个新数据库连接</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">hasattr</span>(g,<span class="string">&#x27;sqlite_db&#x27;</span>):</span><br><span class="line">        g.sqlite_db=connect_db()</span><br><span class="line">        <span class="keyword">return</span> g.sqlite_db    </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">def get_db():
+    #打开一个新数据库连接
+    if not hasattr(g,&#39;sqlite_db&#39;):
+        g.sqlite_db&#x3D;connect_db()
+        return g.sqlite_db    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Flask提供了<code>teardown_appcontext()</code>装饰器来断开数据库连接，它将在每次应用环境销毁时执行：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.teardown_appcontext</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">close_db</span>(<span class="params">error</span>):</span><br><span class="line">    <span class="comment">#断开数据库连接</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">hasattr</span>(g,<span class="string">&#x27;sqlite_db&#x27;</span>):</span><br><span class="line">        g.sqlite_db.close()</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">@app.teardown_appcontext
+def close_db(error):
+    #断开数据库连接
+    if hasattr(g,&#39;sqlite_db&#39;):
+        g.sqlite_db.close()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>本质上，应用环境在请求传入前创建，每当请求结束时销毁。销毁有两种原因：一切正常（错误参数是None）或发送异常，后者错误会被传递给销毁函数。</p>
-<h2 id="创建数据库">创建数据库</h2>
-<p>Flask是一个由关系数据库驱动的应用。关系数据库系统需要一个模式来决定存储信息的方式。</p>
-<h3 id="创建模式">创建模式</h3>
-<p>可以通过管道把schema.sql作为sqlite3命令的输入来创建这个模式：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3 /tmp/flaskr.db &lt; schema.sql</span><br></pre></td></tr></table></figure>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>Flask是一个由关系数据库驱动的应用。关系数据库系统需要一个模式来决定存储信息的方式。</p>
+<h3 id="创建模式"><a href="#创建模式" class="headerlink" title="创建模式"></a>创建模式</h3><p>可以通过管道把schema.sql作为sqlite3命令的输入来创建这个模式：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">sqlite3 &#x2F;tmp&#x2F;flaskr.db &lt; schema.sql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>这种方法的缺点是需要安装sqlite3命令，且必须提供数据库的路径，否则会报错。因此比较推荐使用函数来初始化数据库。</p>
 <p>创建一个名为init_db的函数来初始化数据库，只需要把这个函数放在tutorweb.py里的connect_db函数后面并调用<code>init_db()</code>函数来创建数据库：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">init_db</span>():</span><br><span class="line"><span class="comment">#建立应用环境，在with内部，g对象与app关联，在语句结束出会释放这个关联并执行所有销毁函数，即数据库连接会在提交后断开</span></span><br><span class="line">    <span class="keyword">with</span> app.app_context():   </span><br><span class="line">        db=get_db()</span><br><span class="line">        <span class="comment">#open_resource可以打开应用提供的资源，在tutorweb文件夹打开文件并允许读取它，用它来在数据库连接上执行脚本</span></span><br><span class="line">        <span class="keyword">with</span> app.open_resource(<span class="string">&#x27;schema.sql&#x27;</span>,mode=<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            db.cursor().executescript(f.read())</span><br><span class="line">        db.commit()       </span><br><span class="line">init_db() </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">def init_db():
+#建立应用环境，在with内部，g对象与app关联，在语句结束出会释放这个关联并执行所有销毁函数，即数据库连接会在提交后断开
+    with app.app_context():   
+        db&#x3D;get_db()
+        #open_resource可以打开应用提供的资源，在tutorweb文件夹打开文件并允许读取它，用它来在数据库连接上执行脚本
+        with app.open_resource(&#39;schema.sql&#39;,mode&#x3D;&#39;r&#39;) as f:
+            db.cursor().executescript(f.read())
+        db.commit()       
+init_db() <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>应用环境在每次请求传入时创建，这里并没有请求，故需要手动创建一个应用环境。g在应用环境外无法获知它属于哪个应用，因为可能会有多个应用同时存在。</p>
 <p>SQLite的数据库连接对象提供了一个游标对象，游标上有一个方法可以执行完整的脚本。最后只需提交变更，SQLite3和其他支持事务的数据库只会在显示提交的时候提交。</p>
-<h2 id="视图函数">视图函数</h2>
-<p>数据库连接正常工作后，共需要写四个视图函数。</p>
-<h3 id="显示条目">显示条目</h3>
-<p>这个视图显示数据库中存储的所有条目，它绑定在应用的根地址，并从数据库查询出文章的标题和正文。id值最大的条目（最新的条目）会显示在最上方。从指针返回的行是按select语句中声明的列组织元组。</p>
+<h2 id="视图函数"><a href="#视图函数" class="headerlink" title="视图函数"></a>视图函数</h2><p>数据库连接正常工作后，共需要写四个视图函数。</p>
+<h3 id="显示条目"><a href="#显示条目" class="headerlink" title="显示条目"></a>显示条目</h3><p>这个视图显示数据库中存储的所有条目，它绑定在应用的根地址，并从数据库查询出文章的标题和正文。id值最大的条目（最新的条目）会显示在最上方。从指针返回的行是按select语句中声明的列组织元组。</p>
 <p>视图函数会将条目作为字典传递给<code>show_entries.html</code>模板，并返回渲染结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>) </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">show_entries</span>():</span><br><span class="line">    <span class="comment">#显示条目</span></span><br><span class="line">    g.db=get_db()</span><br><span class="line">    cur=g.db.execute(<span class="string">&#x27;select title, text from entries order by id desc&#x27;</span>)</span><br><span class="line">    entries=[<span class="built_in">dict</span>(title=row[<span class="number">0</span>],text=row[<span class="number">1</span>]) <span class="keyword">for</span> row <span class="keyword">in</span> cur.fetchall()]</span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;show_entries.html&#x27;</span>,entries=entries)</span><br></pre></td></tr></table></figure>
-<h2 id="添加条目">添加条目</h2>
-<p>这个视图允许已登入的用户添加新条目，并只响应POST请求，实际的表单显示在<code>show_entries</code>页。若一切工作正常，用flash()向下一次请求发送提示消息，并重定向回<code>show_entries</code>页：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/add&#x27;</span>,methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add_entry</span>():</span><br><span class="line">    <span class="comment">#添加条目</span></span><br><span class="line">    g.db=get_db()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> session.get(<span class="string">&#x27;logged_in&#x27;</span>):</span><br><span class="line">        abort(<span class="number">401</span>)</span><br><span class="line">    g.db.execute(<span class="string">&#x27;insert into entries (title,text) values (?,?)&#x27;</span>,</span><br><span class="line">                    [request.form[<span class="string">&#x27;title&#x27;</span>],request.form[<span class="string">&#x27;text&#x27;</span>]])       </span><br><span class="line">    g.db.commit()</span><br><span class="line">    flash(<span class="string">&#x27;New entry was successfully posted&#x27;</span>)                 </span><br><span class="line">    <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;show_entries&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">@app.route(&#39;&#x2F;&#39;) 
+def show_entries():
+    #显示条目
+    g.db&#x3D;get_db()
+    cur&#x3D;g.db.execute(&#39;select title, text from entries order by id desc&#39;)
+    entries&#x3D;[dict(title&#x3D;row[0],text&#x3D;row[1]) for row in cur.fetchall()]
+    return render_template(&#39;show_entries.html&#39;,entries&#x3D;entries)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="添加条目"><a href="#添加条目" class="headerlink" title="添加条目"></a>添加条目</h2><p>这个视图允许已登入的用户添加新条目，并只响应POST请求，实际的表单显示在<code>show_entries</code>页。若一切工作正常，用flash()向下一次请求发送提示消息，并重定向回<code>show_entries</code>页：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">@app.route(&#39;&#x2F;add&#39;,methods&#x3D;[&#39;POST&#39;])
+def add_entry():
+    #添加条目
+    g.db&#x3D;get_db()
+    if not session.get(&#39;logged_in&#39;):
+        abort(401)
+    g.db.execute(&#39;insert into entries (title,text) values (?,?)&#39;,
+                    [request.form[&#39;title&#39;],request.form[&#39;text&#39;]])       
+    g.db.commit()
+    flash(&#39;New entry was successfully posted&#39;)                 
+    return redirect(url_for(&#39;show_entries&#39;))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意这里的用户登入检查（logged_in键在会话中存在且为True）</p>
-<h3 id="安全提示">安全提示：</h3>
-<p>确保像上面代码一样使用问号标记来构建SQL语句。否则当使用格式化字符串构建SQL语句时，所建立的应用容易遭受SQL注入。</p>
-<h2 id="登入和登出">登入和登出</h2>
-<p>这个函数用来让用户登入。登入通过与配置文件中的数据比较检查用户名和密码，并设定会话中的<code>logged_in</code>键值。若用户成功登入，这个键值会被设为True，并跳转回<code>show_entries</code>页。此外还会有信息闪现来提示用户登入成功。如果发生一个错误，模板会通知并提示重新登录。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/login&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;POST&#x27;</span>]</span>)    </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>():</span><br><span class="line">    <span class="comment">#登入和登出</span></span><br><span class="line">    error=<span class="literal">None</span></span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> request.form[<span class="string">&#x27;username&#x27;</span>]!=app.config[<span class="string">&#x27;USERNAME&#x27;</span>]:</span><br><span class="line">            error=<span class="string">&#x27;Invalid username&#x27;</span></span><br><span class="line">        <span class="keyword">elif</span> request.form[<span class="string">&#x27;password&#x27;</span>]!=app.config[<span class="string">&#x27;PASSWORD&#x27;</span>]:</span><br><span class="line">            error=<span class="string">&#x27;Invalid password&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            session[<span class="string">&#x27;logged_in&#x27;</span>]=<span class="literal">True</span></span><br><span class="line">            flash(<span class="string">&#x27;You were logged in&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;show_entries&#x27;</span>))</span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;login.html&#x27;</span>,error=error)            </span><br></pre></td></tr></table></figure>
+<h3 id="安全提示："><a href="#安全提示：" class="headerlink" title="安全提示："></a>安全提示：</h3><p>确保像上面代码一样使用问号标记来构建SQL语句。否则当使用格式化字符串构建SQL语句时，所建立的应用容易遭受SQL注入。</p>
+<h2 id="登入和登出"><a href="#登入和登出" class="headerlink" title="登入和登出"></a>登入和登出</h2><p>这个函数用来让用户登入。登入通过与配置文件中的数据比较检查用户名和密码，并设定会话中的<code>logged_in</code>键值。若用户成功登入，这个键值会被设为True，并跳转回<code>show_entries</code>页。此外还会有信息闪现来提示用户登入成功。如果发生一个错误，模板会通知并提示重新登录。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">@app.route(&#39;&#x2F;login&#39;,methods&#x3D;[&#39;GET&#39;,&#39;POST&#39;])    
+def login():
+    #登入和登出
+    error&#x3D;None
+    if request.method&#x3D;&#x3D;&#39;POST&#39;:
+        if request.form[&#39;username&#39;]!&#x3D;app.config[&#39;USERNAME&#39;]:
+            error&#x3D;&#39;Invalid username&#39;
+        elif request.form[&#39;password&#39;]!&#x3D;app.config[&#39;PASSWORD&#39;]:
+            error&#x3D;&#39;Invalid password&#39;
+        else:
+            session[&#39;logged_in&#39;]&#x3D;True
+            flash(&#39;You were logged in&#39;)
+            return redirect(url_for(&#39;show_entries&#39;))
+    return render_template(&#39;login.html&#39;,error&#x3D;error)            <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这个函数用来让用户登出。从会话中删除<code>logged_in</code>键。使用字典的pop()方法并传入第二个参数（默认），以从字典删除这个键，若这个键不存在则什么都不做。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/logout&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">logout</span>():</span><br><span class="line">    <span class="comment">#登出</span></span><br><span class="line">    session.pop(<span class="string">&#x27;logged_in&#x27;</span>,<span class="literal">None</span>)</span><br><span class="line">    flash(<span class="string">&#x27;You were logged out&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;show_entries&#x27;</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="模板">模板</h2>
-<p>若现在请求URL，只会得到Flask无法找到模板的异常。模板使用Jinja2语法并默认开启自动转义。这意味着除非使用Markup标记或在模板中使用<code>|safe</code>过滤器，否则Jinja2会确保特殊字符，比如<code>&lt;</code>或<code>&gt;</code>被转义为等价的XML实体。</p>
-<h3 id="layout.html">layout.html</h3>
-<p>将下面的模板放进templates文件夹里。这个模板包含HTML主体结构、标题和一个登入链接（用户已登入则提供登出）。若有，它会显示闪现消息。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block body %&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">@app.route(&#39;&#x2F;logout&#39;)
+def logout():
+    #登出
+    session.pop(&#39;logged_in&#39;,None)
+    flash(&#39;You were logged out&#39;)
+    return redirect(url_for(&#39;show_entries&#39;))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>若现在请求URL，只会得到Flask无法找到模板的异常。模板使用Jinja2语法并默认开启自动转义。这意味着除非使用Markup标记或在模板中使用<code>|safe</code>过滤器，否则Jinja2会确保特殊字符，比如<code>&lt;</code>或<code>&gt;</code>被转义为等价的XML实体。</p>
+<h3 id="layout-html"><a href="#layout-html" class="headerlink" title="layout.html"></a>layout.html</h3><p>将下面的模板放进templates文件夹里。这个模板包含HTML主体结构、标题和一个登入链接（用户已登入则提供登出）。若有，它会显示闪现消息。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">&#123;% block body %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>模块可以被子模版中相同名字的块（body）替换。</p>
 <p>session字典在模板中也是可用的，可以用它来检查用户是否已登入。在Jinja中你<strong>可以访问不存在的对象、字典属性或成员</strong>。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>tutorweb<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">stylesheet</span> <span class="attr">type</span>=<span class="string">text/css</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123;url_for(&#x27;static&#x27;,filename=&#x27;style.css&#x27;)&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">page</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>tutorweb<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>    </span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">metanav</span>&gt;</span></span><br><span class="line">  &#123;% if not session.logged_in %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123;url_for(&#x27;login&#x27;)&#125;&#125;&quot;</span>&gt;</span>log in<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  &#123;% else %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123;url_for(&#x27;logout&#x27;)&#125;&#125;&quot;</span>&gt;</span>log out<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  &#123;% endif %&#125;        </span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &#123;% for message in get_flashed_messages() %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">flash</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &#123;% endfor %&#125;</span><br><span class="line">  &#123;% block body %&#125;&#123;% endblock %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="show_entries.html">show_entries.html</h3>
-<p>这个模板继承了上面的<code>layout.html</code>模板来显示消息。注意for循环会遍历并输出所有<code>render_template()</code>函数传入的消息。还告诉表单使用HTTP的POST方法提交信息到<code>add_entry</code>函数：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &quot;layout.html&quot; %&#125;<span class="comment">&lt;!--模板继承，继承layout.html的内容--&gt;</span></span><br><span class="line">&#123;% block body %&#125;</span><br><span class="line">  &#123;% if session.logged_in %&#125;<span class="comment">&lt;!--初次登录，session.logged_in为假，下面的内容不显示--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&#123;&#123;url_for(&#x27;add_entry&#x27;)&#125;&#125;&quot;</span> <span class="attr">method</span>=<span class="string">post</span> <span class="attr">class</span>=<span class="string">add-entry</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dt</span>&gt;</span>Title:</span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">text</span> <span class="attr">size</span>=<span class="string">30</span> <span class="attr">name</span>=<span class="string">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dt</span>&gt;</span>Text </span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">text</span> <span class="attr">rows</span>=<span class="string">5</span> <span class="attr">cols</span>=<span class="string">40</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">submit</span> <span class="attr">value</span>=<span class="string">Share</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">entries</span>&gt;</span></span><br><span class="line">  &#123;% for entry in entries %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;entry.title&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span>&#123;&#123;entry.text|safe&#125;&#125;</span><br><span class="line">  &#123;% else %&#125;<span class="comment">&lt;!--此次登录默认显示以下内容--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span>Unbelievable. No entries here so far<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line">  &#123;% endfor %&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span>                        </span><br><span class="line">&#123;% endblock %&#125;           </span><br></pre></td></tr></table></figure>
-<h3 id="login.html">login.html</h3>
-<p>最后是登入模板，简单地显示一个允许用户登入的表单：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &quot;layout.html&quot; %&#125;<span class="comment">&lt;!--模板继承layout.html的内容--&gt;</span></span><br><span class="line">&#123;% block body %&#125;<span class="comment">&lt;!--重载--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--error不为None时显示出错误原因--&gt;</span></span><br><span class="line">  &#123;% if error %&#125;<span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">error</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>Error:<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>&#123;&#123;error&#125;&#125;&#123;% endif %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&#123;&#123;url_for(&#x27;login&#x27;)&#125;&#125;&quot;</span> <span class="attr">method</span>=<span class="string">post</span>&gt;</span><span class="comment">&lt;!--action后是form表单提交的地址--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dt</span>&gt;</span>Username:</span><br><span class="line">      <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">text</span> <span class="attr">name</span>=<span class="string">username</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dt</span>&gt;</span>Password </span><br><span class="line">      <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">password</span> <span class="attr">name</span>=<span class="string">password</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">submit</span> <span class="attr">value</span>=<span class="string">Login</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span>                     </span><br><span class="line">&#123;% endblock %&#125;          </span><br></pre></td></tr></table></figure>
-<h2 id="添加样式">添加样式</h2>
-<p>现在其他的一切都可以正常工作，是时候给应用添加样式了。只需在static文件夹中创建一个名为style.css的样式表即可：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">font-family</span>:sans-serif;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span>,<span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#377BAB</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>&#123;</span><br><span class="line">    <span class="attribute">font-family</span>:<span class="string">&#x27;Georgia&#x27;</span>,serif;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h1</span>&#123;</span><br><span class="line">    <span class="attribute">border-bottom</span>:<span class="number">2px</span> solid <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h2</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">1.2em</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.page</span>&#123;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">2em</span> auto;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">35em</span>;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">5px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">0.8em</span>;</span><br><span class="line">    <span class="attribute">background</span>:white;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.entries</span>&#123;</span><br><span class="line">    <span class="attribute">list-style</span>:none;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.entries</span> <span class="selector-tag">li</span>&#123;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">0.8em</span> <span class="number">1.2em</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.entries</span> <span class="selector-tag">li</span> <span class="selector-tag">h2</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>:-<span class="number">1em</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.add-entry</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">0.9em</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>:<span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.add-entry</span> <span class="selector-tag">dl</span>&#123;</span><br><span class="line">    <span class="attribute">font-weight</span>:bold;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.metanav</span>&#123;</span><br><span class="line">    <span class="attribute">text-align</span><span class="selector-pseudo">:right</span>;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">0.8em</span>;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">0.3em</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>:<span class="number">1em</span>;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#fafafa</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.toturweb</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#CEE5F5</span>;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">0.5em</span>;;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">1px</span> solid <span class="number">#AACBE2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.error</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#F0D6D6</span>;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">0.5em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">doctype</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>tutorweb<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>stylesheet</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>text/css</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123;url_for(<span class="token punctuation">'</span>static<span class="token punctuation">'</span>,filename=<span class="token punctuation">'</span>style.css<span class="token punctuation">'</span>)&#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>page</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>tutorweb<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>    
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>metanav</span><span class="token punctuation">></span></span>
+  &#123;% if not session.logged_in %&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123;url_for(<span class="token punctuation">'</span>login<span class="token punctuation">'</span>)&#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>log in<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+  &#123;% else %&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123;url_for(<span class="token punctuation">'</span>logout<span class="token punctuation">'</span>)&#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>log out<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+  &#123;% endif %&#125;        
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  &#123;% for message in get_flashed_messages() %&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>flash</span><span class="token punctuation">></span></span>&#123;&#123;message&#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  &#123;% endfor %&#125;
+  &#123;% block body %&#125;&#123;% endblock %&#125;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="show-entries-html"><a href="#show-entries-html" class="headerlink" title="show_entries.html"></a>show_entries.html</h3><p>这个模板继承了上面的<code>layout.html</code>模板来显示消息。注意for循环会遍历并输出所有<code>render_template()</code>函数传入的消息。还告诉表单使用HTTP的POST方法提交信息到<code>add_entry</code>函数：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">&#123;% extends "layout.html" %&#125;<span class="token comment">&lt;!--模板继承，继承layout.html的内容--></span>
+&#123;% block body %&#125;
+  &#123;% if session.logged_in %&#125;<span class="token comment">&lt;!--初次登录，session.logged_in为假，下面的内容不显示--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123;url_for(<span class="token punctuation">'</span>add_entry<span class="token punctuation">'</span>)&#125;&#125;<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>post</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>add-entry</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Title:
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>text</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>30</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>title</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Text 
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>textarea</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>text</span> <span class="token attr-name">rows</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>5</span> <span class="token attr-name">cols</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>40</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>textarea</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>submit</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>Share</span><span class="token punctuation">></span></span>  
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+  &#123;% endif %&#125;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>entries</span><span class="token punctuation">></span></span>
+  &#123;% for entry in entries %&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>&#123;&#123;entry.title&#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>&#123;&#123;entry.text|safe&#125;&#125;
+  &#123;% else %&#125;<span class="token comment">&lt;!--此次登录默认显示以下内容--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>em</span><span class="token punctuation">></span></span>Unbelievable. No entries here so far<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>em</span><span class="token punctuation">></span></span>
+  &#123;% endfor %&#125;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>                        
+&#123;% endblock %&#125;           <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="login-html"><a href="#login-html" class="headerlink" title="login.html"></a>login.html</h3><p>最后是登入模板，简单地显示一个允许用户登入的表单：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">&#123;% extends "layout.html" %&#125;<span class="token comment">&lt;!--模板继承layout.html的内容--></span>
+&#123;% block body %&#125;<span class="token comment">&lt;!--重载--></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>Login<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+  <span class="token comment">&lt;!--error不为None时显示出错误原因--></span>
+  &#123;% if error %&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>error</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">></span></span>Error:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">></span></span>&#123;&#123;error&#125;&#125;&#123;% endif %&#125;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123;url_for(<span class="token punctuation">'</span>login<span class="token punctuation">'</span>)&#125;&#125;<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>post</span><span class="token punctuation">></span></span><span class="token comment">&lt;!--action后是form表单提交的地址--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Username:
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>text</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>username</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Password 
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>password</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>password</span><span class="token punctuation">></span></span>  
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>submit</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>Login</span><span class="token punctuation">></span></span>  
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>                     
+&#123;% endblock %&#125;          <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="添加样式"><a href="#添加样式" class="headerlink" title="添加样式"></a>添加样式</h2><p>现在其他的一切都可以正常工作，是时候给应用添加样式了。只需在static文件夹中创建一个名为style.css的样式表即可：</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">body</span><span class="token punctuation">&#123;</span>
+    <span class="token property">font-family</span><span class="token punctuation">:</span>sans-serif<span class="token punctuation">;</span>
+    <span class="token property">background</span><span class="token punctuation">:</span>#eee<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token selector">a,h1,h2</span><span class="token punctuation">&#123;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span>#377BAB<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">h1,h2</span><span class="token punctuation">&#123;</span>
+    <span class="token property">font-family</span><span class="token punctuation">:</span><span class="token string">'Georgia'</span><span class="token punctuation">,</span>serif<span class="token punctuation">;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">h1</span><span class="token punctuation">&#123;</span>
+    <span class="token property">border-bottom</span><span class="token punctuation">:</span>2px solid #eee<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">h2</span><span class="token punctuation">&#123;</span>
+    <span class="token property">font-size</span><span class="token punctuation">:</span>1.2em<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.page</span><span class="token punctuation">&#123;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span>2em auto<span class="token punctuation">;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span>35em<span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span>5px solid #ccc<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span>0.8em<span class="token punctuation">;</span>
+    <span class="token property">background</span><span class="token punctuation">:</span>white<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.entries</span><span class="token punctuation">&#123;</span>
+    <span class="token property">list-style</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.entries li</span><span class="token punctuation">&#123;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span>0.8em 1.2em<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.entries li h2</span><span class="token punctuation">&#123;</span>
+    <span class="token property">margin-left</span><span class="token punctuation">:</span>-1em<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.add-entry</span><span class="token punctuation">&#123;</span>
+    <span class="token property">font-size</span><span class="token punctuation">:</span>0.9em<span class="token punctuation">;</span>
+    <span class="token property">border-bottom</span><span class="token punctuation">:</span>1px solid #ccc<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.add-entry dl</span><span class="token punctuation">&#123;</span>
+    <span class="token property">font-weight</span><span class="token punctuation">:</span>bold<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.metanav</span><span class="token punctuation">&#123;</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span>right<span class="token punctuation">;</span>
+    <span class="token property">font-size</span><span class="token punctuation">:</span>0.8em<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span>0.3em<span class="token punctuation">;</span>
+    <span class="token property">margin-bottom</span><span class="token punctuation">:</span>1em<span class="token punctuation">;</span>
+    <span class="token property">background</span><span class="token punctuation">:</span>#fafafa<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.toturweb</span><span class="token punctuation">&#123;</span>
+    <span class="token property">background</span><span class="token punctuation">:</span>#CEE5F5<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span>0.5em<span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span>1px solid #AACBE2<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.error</span><span class="token punctuation">&#123;</span>
+    <span class="token property">background</span><span class="token punctuation">:</span>#F0D6D6<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span>0.5em<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>最后运行tutorweb.py程序即可在<code>127.0.0.0:5000</code>上看到创建的应用。</p>
 
     </article>
@@ -780,7 +944,7 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E6%95%99%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">创建应用教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">1.1.</span> <span class="toc-text">创建文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">创建数据库模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.</span> <span class="toc-text">应用设置代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.1.</span> <span class="toc-text">创建应用模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B7%AF%E5%BE%84"><span class="toc-number">1.3.2.</span> <span class="toc-text">数据库路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.4.</span> <span class="toc-text">数据库连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.5.</span> <span class="toc-text">创建数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.5.1.</span> <span class="toc-text">创建模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0"><span class="toc-number">1.6.</span> <span class="toc-text">视图函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%9D%A1%E7%9B%AE"><span class="toc-number">1.6.1.</span> <span class="toc-text">显示条目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%9D%A1%E7%9B%AE"><span class="toc-number">1.7.</span> <span class="toc-text">添加条目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%8F%90%E7%A4%BA"><span class="toc-number">1.7.1.</span> <span class="toc-text">安全提示：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BB%E5%85%A5%E5%92%8C%E7%99%BB%E5%87%BA"><span class="toc-number">1.8.</span> <span class="toc-text">登入和登出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.9.</span> <span class="toc-text">模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#layout.html"><span class="toc-number">1.9.1.</span> <span class="toc-text">layout.html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#show_entries.html"><span class="toc-number">1.9.2.</span> <span class="toc-text">show_entries.html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#login.html"><span class="toc-number">1.9.3.</span> <span class="toc-text">login.html</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.10.</span> <span class="toc-text">添加样式</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E6%95%99%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">创建应用教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">1.1.</span> <span class="toc-text">创建文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">创建数据库模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.</span> <span class="toc-text">应用设置代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.1.</span> <span class="toc-text">创建应用模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B7%AF%E5%BE%84"><span class="toc-number">1.3.2.</span> <span class="toc-text">数据库路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.4.</span> <span class="toc-text">数据库连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.5.</span> <span class="toc-text">创建数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.5.1.</span> <span class="toc-text">创建模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0"><span class="toc-number">1.6.</span> <span class="toc-text">视图函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%9D%A1%E7%9B%AE"><span class="toc-number">1.6.1.</span> <span class="toc-text">显示条目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%9D%A1%E7%9B%AE"><span class="toc-number">1.7.</span> <span class="toc-text">添加条目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%8F%90%E7%A4%BA%EF%BC%9A"><span class="toc-number">1.7.1.</span> <span class="toc-text">安全提示：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BB%E5%85%A5%E5%92%8C%E7%99%BB%E5%87%BA"><span class="toc-number">1.8.</span> <span class="toc-text">登入和登出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.9.</span> <span class="toc-text">模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#layout-html"><span class="toc-number">1.9.1.</span> <span class="toc-text">layout.html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#show-entries-html"><span class="toc-number">1.9.2.</span> <span class="toc-text">show_entries.html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#login-html"><span class="toc-number">1.9.3.</span> <span class="toc-text">login.html</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.10.</span> <span class="toc-text">添加样式</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1130,6 +1294,12 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
         
         
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2239,6 +2409,11 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
                 数据库工具
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2252,21 +2427,6 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS3">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS3
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2284,9 +2444,29 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2309,14 +2489,14 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
                 MinIO
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="LLM">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                LLM
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2327,16 +2507,6 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
             <span class="sidebar-tag-name" data-tags="Vue">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="LLM">
-                <span class="iconfont-archer">&#xe606;</span>
-                LLM
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="人工智能">
-                <span class="iconfont-archer">&#xe606;</span>
-                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2359,11 +2529,6 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2372,6 +2537,11 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2445,14 +2615,19 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2460,9 +2635,9 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2475,14 +2650,9 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2490,34 +2660,29 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Lottie">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="可视化">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
+            可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="Vue">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            Vue
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
             LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2530,9 +2695,9 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="人工智能">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2545,14 +2710,24 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
             JavaScript
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2563,11 +2738,6 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2642,20 +2812,5 @@ found错误，这是因为还没有创建任何视图的缘故。在创建视图
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+    </body>
 </html>

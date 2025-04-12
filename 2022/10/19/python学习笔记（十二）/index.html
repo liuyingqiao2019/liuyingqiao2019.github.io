@@ -335,7 +335,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">5k</span>阅读时长: <span class="post-count reading-time">21 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">5.1k</span>阅读时长: <span class="post-count reading-time">22 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -496,104 +496,95 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h2 id="python语言特点">python语言特点</h2>
-<p>python语言特点：</p>
+        <h2 id="python语言特点"><a href="#python语言特点" class="headerlink" title="python语言特点"></a>python语言特点</h2><p>python语言特点：</p>
 <ul>
 <li>开源</li>
 <li>免费</li>
 <li>跨平台</li>
 <li>解析执行</li>
 </ul>
-<h3 id="复制copy和deepcopy">复制=、copy()和deepcopy()</h3>
-<ul>
+<h3 id="复制-、copy-和deepcopy"><a href="#复制-、copy-和deepcopy" class="headerlink" title="复制=、copy()和deepcopy()"></a>复制=、copy()和deepcopy()</h3><ul>
 <li>用=复制元素，原object改变，现object也随之改变</li>
 <li>用copy()复制object，原object改变，现object不变，若object中包含了list，改变原object的list元素，现object的list元素也随之改变。</li>
 <li>用deepcopy()复制object，原object改变，现object的任何元素都不会变。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>]]</span><br><span class="line">b = a<span class="comment">#a变b也变,</span></span><br><span class="line">c = copy.copy(a)<span class="comment">#a变c不变,a里的list[&#x27;a&#x27;, &#x27;b&#x27;]变，c也会变</span></span><br><span class="line">d = copy.deepcopy(a)<span class="comment">#a变d不变，a里的list[&#x27;a&#x27;, &#x27;b&#x27;]变，d也不会变</span></span><br><span class="line">a.append(<span class="number">5</span>)</span><br><span class="line">a[<span class="number">4</span>].append(<span class="string">&#x27;c&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"><span class="comment">#运行结果如下</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>], <span class="number">5</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>], <span class="number">5</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>]]</span><br></pre></td></tr></table></figure>
-<h2 id="python自带的模块">Python自带的模块</h2>
-<p>Python有着形形色色爬虫相关的库,以下哪个库Python自带不需要额外下载。A</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import copy
+a &#x3D; [1, 2, 3, 4, [&#39;a&#39;, &#39;b&#39;]]
+b &#x3D; a#a变b也变,
+c &#x3D; copy.copy(a)#a变c不变,a里的list[&#39;a&#39;, &#39;b&#39;]变，c也会变
+d &#x3D; copy.deepcopy(a)#a变d不变，a里的list[&#39;a&#39;, &#39;b&#39;]变，d也不会变
+a.append(5)
+a[4].append(&#39;c&#39;)
+print(a)
+print(b)
+print(c)
+print(d)
+#运行结果如下
+[1, 2, 3, 4, [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], 5]
+[1, 2, 3, 4, [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], 5]
+[1, 2, 3, 4, [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]]
+[1, 2, 3, 4, [&#39;a&#39;, &#39;b&#39;]]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Python自带的模块"><a href="#Python自带的模块" class="headerlink" title="Python自带的模块"></a>Python自带的模块</h2><p> Python有着形形色色爬虫相关的库,以下哪个库Python自带不需要额外下载。A</p>
 <p>A.urlib python内置，用于爬虫</p>
 <p>B.urlib3 第三方库</p>
 <p>C.Requests python内置，用于http</p>
 <p>D.lxml 第三方库</p>
-<h2 id="extend方法">extend方法</h2>
-<p>extend()
-函数用于在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表），添加数据时要用<code>[]</code>把数据括起来。</p>
-<p>在Python3中，程序运行结果为： lists = [1, 1, 2, 3, 4, 5, 6]
-lists.remove(1) lists.extend([7,8,9]) print(lists)。C</p>
-<p>A.[2,3,4,5,6]</p>
+<h2 id="extend方法"><a href="#extend方法" class="headerlink" title="extend方法"></a>extend方法</h2><p>extend() 函数用于在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表），添加数据时要用<code>[]</code>把数据括起来。</p>
+<p>在Python3中，程序运行结果为： lists = [1, 1, 2, 3, 4, 5, 6] lists.remove(1) lists.extend([7,8,9]) print(lists)。C</p>
+<p>A.[2,3,4,5,6] </p>
 <p>B.[1,2,3,4,5,6,[7,8,9]]</p>
 <p>C.[1,2,3,4,5,6,7,8,9]</p>
 <p>D.[2,3,4,5,6,7,8,9]</p>
-<h2 id="del方法">del方法</h2>
-<p>将列表内的所有元素均删除，且列表存在，使用del方法</p>
-<h2 id="字符串变换">字符串变换</h2>
-<p>字符串是不可变类型，无法直接修改字符串的某一位字符。replace()函数用于替换字符串，其用法为<code>字符串序列.replace(旧子串, 新子串, 替换次数)</code>。</p>
+<h2 id="del方法"><a href="#del方法" class="headerlink" title="del方法"></a>del方法</h2><p>将列表内的所有元素均删除，且列表存在，使用del方法</p>
+<h2 id="字符串变换"><a href="#字符串变换" class="headerlink" title="字符串变换"></a>字符串变换</h2><p>字符串是不可变类型，无法直接修改字符串的某一位字符。replace()函数用于替换字符串，其用法为<code>字符串序列.replace(旧子串, 新子串, 替换次数)</code>。</p>
 <p>若a = ‘abcd’，若想将a变为’ebcd’，则下列语句正确的是。 D</p>
-<p>A.a[0] = ‘e’</p>
-<p>B.a.replace(‘a”, “e’)</p>
-<p>C.a[1] = ‘e’</p>
+<p>A.a[0] = ‘e’  </p>
+<p>B.a.replace(‘a”, “e’) </p>
+<p>C.a[1] = ‘e’ </p>
 <p>D.a = ‘e’ + “bcd”</p>
-<h2 id="divmod函数">divmod()函数</h2>
-<p>divmod(a,b)函数把除数和余数运算结果结合起来，返回一个包含商和余数的元组(a//b,a%b)</p>
+<h2 id="divmod-函数"><a href="#divmod-函数" class="headerlink" title="divmod()函数"></a>divmod()函数</h2><p>divmod(a,b)函数把除数和余数运算结果结合起来，返回一个包含商和余数的元组(a//b,a%b)</p>
 <p>下面代码的输出结果是 x=10 y=3 print(divmod(x,y))。D</p>
-<p>A.(1, 3)</p>
-<p>B.3,1</p>
-<p>C.1,3</p>
+<p>A.(1, 3) </p>
+<p>B.3,1 </p>
+<p>C.1,3 </p>
 <p>D.(3, 1)</p>
-<h2 id="python2与python3除法的区别">python2与python3除法的区别</h2>
-<p>在python2中，由于“地板除”的
-缘故，每次除完后只剩整数。在python3中的除法是精确计算。</p>
-<p>在Python3中，下列程序循环的次数为： n = 1000 while n &gt; 1: print(n)
-n = n / 2。B</p>
-<p>A.9</p>
-<p>B.10</p>
-<p>C.11</p>
+<h2 id="python2与python3除法的区别"><a href="#python2与python3除法的区别" class="headerlink" title="python2与python3除法的区别"></a>python2与python3除法的区别</h2><p>在python2中，由于“地板除”的 缘故，每次除完后只剩整数。在python3中的除法是精确计算。</p>
+<p>在Python3中，下列程序循环的次数为： n = 1000 while n &gt; 1: print(n) n = n / 2。B  </p>
+<p>A.9 </p>
+<p>B.10 </p>
+<p>C.11 </p>
 <p>D.无限循环</p>
-<p>python2里只有9次，因为500、250、125、62、31、15、7、3、1
-。python3里有10次，因为500、250、125、62.5、31.25、15.625、7.8125、3.90625、1.953125、0.9765625。</p>
-<h2 id="函数返回值">函数返回值</h2>
-<p>以下程序的输出结果是 def hub(ss, x = 2.0,y = 4.0): ss += x * y ss =
-10 print(ss, hub(ss, 3))。B</p>
-<p>A.22.0 None</p>
-<p>B.10 None 函数hub设置没有返回值，ss默认为10，hub默认返回done</p>
-<p>C.22 None</p>
+<p>python2里只有9次，因为500、250、125、62、31、15、7、3、1 。python3里有10次，因为500、250、125、62.5、31.25、15.625、7.8125、3.90625、1.953125、0.9765625。</p>
+<h2 id="函数返回值"><a href="#函数返回值" class="headerlink" title="函数返回值"></a>函数返回值</h2><p>以下程序的输出结果是 def hub(ss, x = 2.0,y = 4.0): ss += x * y ss = 10 print(ss, hub(ss, 3))。B</p>
+<p>A.22.0 None </p>
+<p>B.10 None  函数hub设置没有返回值，ss默认为10，hub默认返回done</p>
+<p>C.22 None </p>
 <p>D.10.0 22.0</p>
-<h2 id="python查找顺序">python查找顺序</h2>
-<p>当使用import导入模块时，按python查找模块的不同顺序可划分为以下几种：
-①环境变量中的PYTHONPATH ②内建模块 ③python安装路径
-④当前路径，即执行python脚本文件所在的路径
-其中查找顺序正确的一组是。C</p>
-<p>A.①④②③ B.②①④③ C.②④①③ D.①②③④</p>
-<h2 id="range范围">range范围</h2>
-<p>range(n)实际上是取值0~n-1。</p>
-<p>sum([i*i for i in range(3)])的计算结果是。B</p>
-<p>A.3</p>
-<p>B.5</p>
-<p>C.2</p>
+<h2 id="python查找顺序"><a href="#python查找顺序" class="headerlink" title="python查找顺序"></a>python查找顺序</h2><p>当使用import导入模块时，按python查找模块的不同顺序可划分为以下几种： ①环境变量中的PYTHONPATH ②内建模块 ③python安装路径 ④当前路径，即执行python脚本文件所在的路径 其中查找顺序正确的一组是。C</p>
+<p> A.①④②③ B.②①④③ C.②④①③ D.①②③④</p>
+<h2 id="range范围"><a href="#range范围" class="headerlink" title="range范围"></a>range范围</h2><p>range(n)实际上是取值0~n-1。</p>
+<p> sum([i*i for i in range(3)])的计算结果是。B</p>
+<p>A.3 </p>
+<p>B.5 </p>
+<p>C.2 </p>
 <p>D.14</p>
-<h2 id="readlines函数">readlines函数</h2>
-<p><code>read(size)</code>方法，每次最多读取size个字节的内容。不需要通过close函数关闭文件。</p>
-<p>关于以下代码的描述，错误的选项是()with open( ’ abtxt ’ , ’ r+’ ) as
-f:lines = f.readlines() for item in lines:print(item)。A</p>
-<p>A.执行代码后，abc.txt文件未关闭，必须通过close()函数关闭</p>
-<p>B.打印输出abc.txt文件内容</p>
-<p>C.item是字符串类型</p>
+<h2 id="readlines函数"><a href="#readlines函数" class="headerlink" title="readlines函数"></a>readlines函数</h2><p><code>read(size)</code>方法，每次最多读取size个字节的内容。不需要通过close函数关闭文件。</p>
+<p>关于以下代码的描述，错误的选项是()with open( ‘ abtxt ‘ , ‘ r+’ ) as f:lines = f.readlines() for item in lines:print(item)。A</p>
+<p>A.执行代码后，abc.txt文件未关闭，必须通过close()函数关闭 </p>
+<p>B.打印输出abc.txt文件内容 </p>
+<p>C.item是字符串类型 </p>
 <p>D.lines是列表类型</p>
-<h2 id="lambda表达式">lambda表达式</h2>
-<ul>
+<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><ul>
 <li>lambda只是一个表达式不是代码块，而def是一个语句。</li>
 <li>在内部只能包含一行代码，自动返回最后一个表达式的值，没有return，参数列表不需要用括号。</li>
 <li>if、for或print语句不能用于lambda中，不能共享给其他程序调用。</li>
 </ul>
 <p>关于匿名函数叙述正确的是（）。ABC</p>
-<p>A.lambda只是一个表达式，函数体比def简单很多</p>
-<p>B.lambda的主体不是一个代码块</p>
-<p>C.lambda函数只能写一行</p>
+<p>A.lambda只是一个表达式，函数体比def简单很多 </p>
+<p>B.lambda的主体不是一个代码块 </p>
+<p>C.lambda函数只能写一行 </p>
 <p>D.可以访问全局变量和函数体以外的变量</p>
-<h2 id="运算符优先级">运算符优先级</h2>
-<ol type="1">
+<h2 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h2><ol>
 <li>括号：()</li>
 <li>幂运算：**</li>
 <li>按位取反：~</li>
@@ -605,117 +596,135 @@ f:lines = f.readlines() for item in lines:print(item)。A</p>
 <li>按位“异或”、按位“或”：^、|</li>
 <li>比较运算符：&lt;=、&lt;、&gt;、&gt;=</li>
 <li>等于、不等于：==、!=</li>
-<li>赋值运算符：=、%=、/=、//、//=、-=、+=、*=、**=</li>
+<li>赋值运算符：=、%=、/=、//\、//=、-=、+=、<em>=、*</em>=</li>
 <li>身份运算符：is、is not</li>
 <li>成员运算符：in、not in</li>
 <li>逻辑运算符：and、or、not</li>
 </ol>
 <p>Python中，运算符由高到低为。C</p>
-<p>A.逻辑运算符&gt;比较运算符&gt;赋值运算符&gt;位运算符</p>
-<p>B.位运算符&gt;赋值运算符&gt;比较运算符&gt;逻辑运算符</p>
-<p>C.位运算符&gt;比较运算符&gt;赋值运算符&gt;逻辑运算符</p>
+<p>A.逻辑运算符&gt;比较运算符&gt;赋值运算符&gt;位运算符 </p>
+<p>B.位运算符&gt;赋值运算符&gt;比较运算符&gt;逻辑运算符 </p>
+<p>C.位运算符&gt;比较运算符&gt;赋值运算符&gt;逻辑运算符 </p>
 <p>D.逻辑运算符&gt;赋值运算符&gt;比较运算符&gt;位运算符</p>
 <p>下列哪些语句在Python中是合法的。ACD</p>
-<p>A.x = y = z=1</p>
-<p>B.x =(y = z+ 1)</p>
-<p>C.x,y = y,x</p>
+<p> A.x = y = z=1 </p>
+<p>B.x =(y = z+ 1) </p>
+<p>C.x,y = y,x </p>
 <p>D.x+= y</p>
-<h2 id="for-ix-in-enumerate-函数">for i,x in enumerate() 函数</h2>
-<p>enumerate是枚举的意思，把元素一个个列举出来，它返回的是元素以及对应的索引。例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i,j <span class="keyword">in</span> <span class="built_in">enumerate</span>(line):</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span>(i,j)</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span></span><br><span class="line"><span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="number">3</span> <span class="number">4</span></span><br><span class="line"><span class="number">4</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
-<p>在Python3中，下列程序运行结果为： lists = [1, 2, 3, 4] tmp = 0 for
-i,j in enumerate(lists): tmp += i * j print(tmp) 。A</p>
-<p>A.20 <code>tmp=0+1*2+2*3+3*4=2+6+12=20</code></p>
-<p>B.30</p>
-<p>C.100</p>
+<h2 id="for-i-x-in-enumerate-函数"><a href="#for-i-x-in-enumerate-函数" class="headerlink" title="for i,x in enumerate() 函数"></a>for i,x in enumerate() 函数</h2><p>enumerate是枚举的意思，把元素一个个列举出来，它返回的是元素以及对应的索引。例如：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">&gt;&gt;&gt; line &#x3D; [1,2,3,4,5]
+&gt;&gt;&gt; for i,j in enumerate(line):
+...     print(i,j)
+...
+0 1
+1 2
+2 3
+3 4
+4 5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在Python3中，下列程序运行结果为： lists = [1, 2, 3, 4] tmp = 0 for i,j in enumerate(lists): tmp += i * j print(tmp) 。A</p>
+<p>A.20  <code>tmp=0+1*2+2*3+3*4=2+6+12=20</code></p>
+<p>B.30 </p>
+<p>C.100 </p>
 <p>D.None</p>
-<h2 id="replace函数">replace函数</h2>
-<p><strong>replace函数不会改变原string的内容。</strong></p>
-<p>执行以下程序，输入”93python22”，输出结果是 w =
-input(“请输入数字和字母构成的字符串：”) for x in w: if ‘0’&lt;= x &lt;=
-‘9’: continue else: w.replace(x,’’) print(w)。C</p>
-<p>A.python9322</p>
-<p>B.python</p>
-<p>C.93python22</p>
+<h2 id="replace函数"><a href="#replace函数" class="headerlink" title="replace函数"></a>replace函数</h2><p><strong>replace函数不会改变原string的内容。</strong></p>
+<p>执行以下程序，输入”93python22”，输出结果是 w = input(“请输入数字和字母构成的字符串：”) for x in w: if ‘0’&lt;= x &lt;= ‘9’: continue else: w.replace(x,’’) print(w)。C</p>
+<p> A.python9322 </p>
+<p>B.python </p>
+<p>C.93python22 </p>
 <p>D.9322</p>
-<h2 id="floor函数">floor函数</h2>
-<p><strong>math.floor(x)函数</strong>用于将x向下取整，它接收数字/数字表达式并<strong>返回不大于数字的最大整数值</strong>。<strong>math.ceil(x)函数</strong>用于x向上取整，它接收数字/数字表达式并<strong>返回最接近的数字最小整数值</strong>。</p>
+<h2 id="floor函数"><a href="#floor函数" class="headerlink" title="floor函数"></a>floor函数</h2><p><strong>math.floor(x)函数</strong>用于将x向下取整，它接收数字/数字表达式并<strong>返回不大于数字的最大整数值</strong>。<strong>math.ceil(x)函数</strong>用于x向上取整，它接收数字/数字表达式并<strong>返回最接近的数字最小整数值</strong>。</p>
 <p>以下代码运行结果是什么?0import math print math.floor(5.5)。A</p>
-<p>A.5</p>
-<p>B.5.0</p>
-<p>C.5.5</p>
+<p> A.5 </p>
+<p>B.5.0 </p>
+<p>C.5.5 </p>
 <p>D.6</p>
-<h2 id="按位与计算">按位与&amp;计算</h2>
-<p>python 中 &amp; (按位与) 和 | (按位或) 是把
-2个数据转为二进制然后在做相应的计算。如</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span>  <span class="comment"># 10的二进制为1010</span></span><br><span class="line">b = <span class="number">18</span>  <span class="comment"># 18的二进制为10010</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">按位与运算符:</span></span><br><span class="line"><span class="string">&amp; : 如果两个相应位都为1,则该位的结果为1,否则为0</span></span><br><span class="line"><span class="string">01010</span></span><br><span class="line"><span class="string">10010</span></span><br><span class="line"><span class="string">计算的结果为:</span></span><br><span class="line"><span class="string">00010</span></span><br><span class="line"><span class="string">把二进制00010转10进制结果为2,所以下面的打印结果应该为2</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(a &amp; b)  <span class="comment"># 打印结果为2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">按位或运算符:</span></span><br><span class="line"><span class="string">| : 只要对应的二个二进位有一个为1时，结果位就为1</span></span><br><span class="line"><span class="string">01010</span></span><br><span class="line"><span class="string">10010</span></span><br><span class="line"><span class="string">计算的结果为:</span></span><br><span class="line"><span class="string">11010</span></span><br><span class="line"><span class="string">把二进制11010转10进制结果为26,所以下面的打印结果应该为26</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(a | b)  <span class="comment"># 打印结果为26</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">按位异或运算符:</span></span><br><span class="line"><span class="string">^ : 当两对应的二进位相异时，结果为1</span></span><br><span class="line"><span class="string">01010</span></span><br><span class="line"><span class="string">10010</span></span><br><span class="line"><span class="string">计算的结果为:</span></span><br><span class="line"><span class="string">11000</span></span><br><span class="line"><span class="string">把二进制11000转10进制结果为24,所以下面的打印结果应该为24</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(a ^ b)  <span class="comment"># 打印结果为24</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">按位取反运算符:</span></span><br><span class="line"><span class="string">~ : 对数据的每个二进制位取反,即把1变为0,把0变为1 </span></span><br><span class="line"><span class="string">01010</span></span><br><span class="line"><span class="string">计算的结果为:</span></span><br><span class="line"><span class="string">10101</span></span><br><span class="line"><span class="string">把二进制10101转10进制结果为-11,所以下面的打印结果应该为-11</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(~a)  <span class="comment"># 打印结果为-11</span></span><br></pre></td></tr></table></figure>
+<h2 id="按位与-amp-计算"><a href="#按位与-amp-计算" class="headerlink" title="按位与&amp;计算"></a>按位与&amp;计算</h2><p>python 中 &amp; (按位与) 和 | (按位或) 是把 2个数据转为二进制然后在做相应的计算。如</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a &#x3D; 10  # 10的二进制为1010
+b &#x3D; 18  # 18的二进制为10010
+&quot;&quot;&quot;
+按位与运算符:
+&amp; : 如果两个相应位都为1,则该位的结果为1,否则为0
+01010
+10010
+计算的结果为:
+00010
+把二进制00010转10进制结果为2,所以下面的打印结果应该为2
+&quot;&quot;&quot;
+print(a &amp; b)  # 打印结果为2
+
+
+&quot;&quot;&quot;
+按位或运算符:
+| : 只要对应的二个二进位有一个为1时，结果位就为1
+01010
+10010
+计算的结果为:
+11010
+把二进制11010转10进制结果为26,所以下面的打印结果应该为26
+&quot;&quot;&quot;
+print(a | b)  # 打印结果为26
+&quot;&quot;&quot;
+按位异或运算符:
+^ : 当两对应的二进位相异时，结果为1
+01010
+10010
+计算的结果为:
+11000
+把二进制11000转10进制结果为24,所以下面的打印结果应该为24
+&quot;&quot;&quot;
+print(a ^ b)  # 打印结果为24
+&quot;&quot;&quot;
+按位取反运算符:
+~ : 对数据的每个二进制位取反,即把1变为0,把0变为1 
+01010
+计算的结果为:
+10101
+把二进制10101转10进制结果为-11,所以下面的打印结果应该为-11
+&quot;&quot;&quot;
+print(~a)  # 打印结果为-11<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>下面描述正确的是。ABC</p>
-<p>A. 在python中逻辑与运算符不能写作&amp;&amp;，要写作and</p>
-<p>B.&amp;是两个数字按二进制位作与运算的操作符</p>
-<p>C.3&amp;2的结果为2 00011 00010=&gt;00010=2</p>
-<p>D.3&amp;3的结果为0 00011 00011=&gt;00011=3</p>
-<h2 id="python保留字符">python保留字符</h2>
-<p>以下哪些是Python中的保留字符?ABCD</p>
-<p>A.def</p>
-<p>B.global</p>
-<p>C.finally</p>
+<p>A. 在python中逻辑与运算符不能写作&amp;&amp;，要写作and </p>
+<p>B.&amp;是两个数字按二进制位作与运算的操作符 </p>
+<p>C.3&amp;2的结果为2  00011  00010=&gt;00010=2</p>
+<p>D.3&amp;3的结果为0  00011  00011=&gt;00011=3</p>
+<h2 id="python保留字符"><a href="#python保留字符" class="headerlink" title="python保留字符"></a>python保留字符</h2><p>以下哪些是Python中的保留字符?ABCD</p>
+<p>A.def </p>
+<p>B.global </p>
+<p>C.finally </p>
 <p>D.yield</p>
-<h2 id="可变数据类型和不可变数据类型">可变数据类型和不可变数据类型</h2>
-<p>可变数据类型：list(列表)、dict(字典)、set(集合)</p>
+<h2 id="可变数据类型和不可变数据类型"><a href="#可变数据类型和不可变数据类型" class="headerlink" title="可变数据类型和不可变数据类型"></a>可变数据类型和不可变数据类型</h2><p>可变数据类型：list(列表)、dict(字典)、set(集合)</p>
 <p>不可变数据类型：数值类型(int、float、bool)、string(字符串)、tuple(元组)</p>
 <p>下列选项属于不可变类型的是。CD</p>
-<p>A.列表</p>
-<p>B.字典</p>
-<p>C.元组</p>
+<p> A.列表 </p>
+<p>B.字典 </p>
+<p>C.元组 </p>
 <p>D.字符串</p>
-<h2 id="python内置函数">python内置函数</h2>
+<h2 id="python内置函数"><a href="#python内置函数" class="headerlink" title="python内置函数"></a>python内置函数</h2><div class="table-container">
 <table>
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
 <thead>
 <tr>
-<th style="text-align: left;">内置函数</th>
+<th style="text-align:left">内置函数</th>
 <th></th>
 <th></th>
-<th style="text-align: left;"></th>
+<th style="text-align:left"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>A</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#abs"><code>abs()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#aiter"><code>aiter()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#all"><code>all()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#any"><code>any()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#anext"><code>anext()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#ascii"><code>ascii()</code></a>
-<strong>B</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#bin"><code>bin()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#bool"><code>bool()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#breakpoint"><code>breakpoint()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-bytearray"><code>bytearray()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-bytes"><code>bytes()</code></a>
-<strong>C</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#callable"><code>callable()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#chr"><code>chr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#classmethod"><code>classmethod()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#compile"><code>compile()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#complex"><code>complex()</code></a>
-<strong>D</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#delattr"><code>delattr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-dict"><code>dict()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#dir"><code>dir()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#divmod"><code>divmod()</code></a></td>
-<td><strong>E</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#enumerate"><code>enumerate()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#eval"><code>eval()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#exec"><code>exec()</code></a>
-<strong>F</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#filter"><code>filter()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#float"><code>float()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#format"><code>format()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-frozenset"><code>frozenset()</code></a>
-<strong>G</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#getattr"><code>getattr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#globals"><code>globals()</code></a>
-<strong>H</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#hasattr"><code>hasattr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#hash"><code>hash()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#help"><code>help()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#hex"><code>hex()</code></a>
-<strong>I</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#id"><code>id()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#input"><code>input()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#int"><code>int()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#isinstance"><code>isinstance()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#issubclass"><code>issubclass()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#iter"><code>iter()</code></a></td>
-<td><strong>L</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#len"><code>len()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-list"><code>list()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#locals"><code>locals()</code></a>
-<strong>M</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#map"><code>map()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#max"><code>max()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-memoryview"><code>memoryview()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#min"><code>min()</code></a>
-<strong>N</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#next"><code>next()</code></a>
-<strong>O</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#object"><code>object()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#oct"><code>oct()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#open"><code>open()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#ord"><code>ord()</code></a>
-<strong>P</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#pow"><code>pow()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#print"><code>print()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#property"><code>property()</code></a></td>
-<td style="text-align: left;"><strong>R</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-range"><code>range()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#repr"><code>repr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#reversed"><code>reversed()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#round"><code>round()</code></a>
-<strong>S</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-set"><code>set()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#setattr"><code>setattr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#slice"><code>slice()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#sorted"><code>sorted()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#staticmethod"><code>staticmethod()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-str"><code>str()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#sum"><code>sum()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#super"><code>super()</code></a>
-<strong>T</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-tuple"><code>tuple()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#type"><code>type()</code></a>
-<strong>V</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#vars"><code>vars()</code></a>
-<strong>Z</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#zip"><code>zip()</code></a>
-**_**<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#import__"><code>__import__()</code></a></td>
+<td style="text-align:left"><strong>A</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#abs"><code>abs()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#aiter"><code>aiter()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#all"><code>all()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#any"><code>any()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#anext"><code>anext()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#ascii"><code>ascii()</code></a> <strong>B</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#bin"><code>bin()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#bool"><code>bool()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#breakpoint"><code>breakpoint()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-bytearray"><code>bytearray()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-bytes"><code>bytes()</code></a> <strong>C</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#callable"><code>callable()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#chr"><code>chr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#classmethod"><code>classmethod()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#compile"><code>compile()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#complex"><code>complex()</code></a> <strong>D</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#delattr"><code>delattr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-dict"><code>dict()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#dir"><code>dir()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#divmod"><code>divmod()</code></a></td>
+<td><strong>E</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#enumerate"><code>enumerate()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#eval"><code>eval()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#exec"><code>exec()</code></a> <strong>F</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#filter"><code>filter()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#float"><code>float()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#format"><code>format()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-frozenset"><code>frozenset()</code></a> <strong>G</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#getattr"><code>getattr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#globals"><code>globals()</code></a> <strong>H</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#hasattr"><code>hasattr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#hash"><code>hash()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#help"><code>help()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#hex"><code>hex()</code></a> <strong>I</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#id"><code>id()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#input"><code>input()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#int"><code>int()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#isinstance"><code>isinstance()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#issubclass"><code>issubclass()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#iter"><code>iter()</code></a></td>
+<td><strong>L</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#len"><code>len()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-list"><code>list()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#locals"><code>locals()</code></a> <strong>M</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#map"><code>map()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#max"><code>max()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-memoryview"><code>memoryview()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#min"><code>min()</code></a> <strong>N</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#next"><code>next()</code></a> <strong>O</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#object"><code>object()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#oct"><code>oct()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#open"><code>open()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#ord"><code>ord()</code></a> <strong>P</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#pow"><code>pow()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#print"><code>print()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#property"><code>property()</code></a></td>
+<td style="text-align:left"><strong>R</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-range"><code>range()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#repr"><code>repr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#reversed"><code>reversed()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#round"><code>round()</code></a> <strong>S</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-set"><code>set()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#setattr"><code>setattr()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#slice"><code>slice()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#sorted"><code>sorted()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#staticmethod"><code>staticmethod()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-str"><code>str()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#sum"><code>sum()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#super"><code>super()</code></a> <strong>T</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#func-tuple"><code>tuple()</code></a><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#type"><code>type()</code></a> <strong>V</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#vars"><code>vars()</code></a> <strong>Z</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#zip"><code>zip()</code></a> <strong>_</strong><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#import__"><code>__import__()</code></a></td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>以下属于python3内置函数的是。ABCD</p>
-<p>A.str()</p>
-<p>B.sum()</p>
-<p>C.zip()</p>
+<p> A.str() </p>
+<p>B.sum() </p>
+<p>C.zip() </p>
 <p>D.sorted()</p>
-<h2 id="python数据类型">python数据类型</h2>
-<p>python中有六个标准的数据类型：</p>
+<h2 id="python数据类型"><a href="#python数据类型" class="headerlink" title="python数据类型"></a>python数据类型</h2><p>python中有六个标准的数据类型：</p>
 <ul>
 <li>Number(数字)</li>
 <li>String(字符串)</li>
@@ -726,107 +735,96 @@ input(“请输入数字和字母构成的字符串：”) for x in w: if ‘0�
 </ul>
 <p>其中Number里包含了int、float、bool、complex(复数)。在python3中只有一种整数类型int，没有python2中的长整型long。</p>
 <p>以下哪些是Python的数字类型。ACD</p>
-<p>A.long</p>
-<p>B.double</p>
-<p>C.float</p>
+<p> A.long </p>
+<p>B.double </p>
+<p>C.float </p>
 <p>D.complex</p>
-<h2 id="控制循环语句">控制循环语句</h2>
-<p><strong>continue：</strong>将控制返回到循环的开始</p>
+<h2 id="控制循环语句"><a href="#控制循环语句" class="headerlink" title="控制循环语句"></a>控制循环语句</h2><p><strong>continue：</strong>将控制返回到循环的开始</p>
 <p><strong>break：</strong>将控制带出循环</p>
 <p><strong>pass：</strong>编写空循环，除此之外还用于空的控制语句、函数和类</p>
 <p>Python中，循环控制语句有。BCD</p>
-<p>A.goto</p>
-<p>B.break</p>
-<p>C.continue</p>
+<p> A.goto </p>
+<p>B.break </p>
+<p>C.continue </p>
 <p>D.pass</p>
-<h2 id="name__"><code>__name__</code></h2>
-<p><code>__name__</code>是python的一个内置类属性，它存储模块的名称。</p>
+<h2 id="name"><a href="#name" class="headerlink" title="__name__"></a><code>__name__</code></h2><p><code>__name__</code>是python的一个内置类属性，它存储模块的名称。</p>
 <p>python模块既可以被调用，也可以独立运行。而调用时<code>__name__</code>存储的是py文件名（模块名称），独立运行时存储的是<code>__main__</code>。其作用主要是用来区分当前模块是独立运行还是被调用。</p>
 <p>关于<code>__name__</code>的说法，下列描述正确的是。BCD</p>
-<p>A.它是Python提供的一个方法</p>
-<p>B.每个模块内部都有一个<code>__name__</code>属性</p>
-<p>C.当它的值为’main‘时，表示模块自身在运行</p>
+<p> A.它是Python提供的一个方法 </p>
+<p>B.每个模块内部都有一个<code>__name__</code>属性 </p>
+<p>C.当它的值为’main‘时，表示模块自身在运行 </p>
 <p>D.当它的值不为’main’时，表示模块被引用</p>
-<h2 id="json.dumps与json.loads">json.dumps()与json.loads()</h2>
-<p><strong>json.dumps()：</strong>将python对象编码成Json字符串</p>
+<h2 id="json-dumps-与json-loads"><a href="#json-dumps-与json-loads" class="headerlink" title="json.dumps()与json.loads()"></a>json.dumps()与json.loads()</h2><p><strong>json.dumps()：</strong>将python对象编码成Json字符串</p>
 <p><strong>json.dump()：</strong>将python对象转化成Json储存到文件中</p>
 <p><strong>json.loads()：</strong>将Json字符串解码成python对象</p>
 <p><strong>json.load()：</strong>将文件中的json格式转化成python对象提取</p>
 <p>运行下列代码段，输出结果为True的是（ ）。BD</p>
-<ol type="A">
-<li></li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">data=<span class="string">&#x27;&#123;&quot;one&quot;:&quot;1&quot;,&quot;two&quot;:&quot;2&quot;,&quot;three&quot;:&quot;3&quot;,&quot;four&quot;:&quot;4&quot;,&quot;five&quot;:&quot;5&quot;&#125;&#x27;</span></span><br><span class="line">text = json.loads(data)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data)==<span class="built_in">type</span>(text)) </span><br></pre></td></tr></table></figure>
-<ol start="2" type="A">
-<li></li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data=<span class="string">&#x27;&#123;&quot;one&quot;:&quot;1&quot;,&quot;two&quot;:&quot;2&quot;,&quot;three&quot;:&quot;3&quot;,&quot;four&quot;:&quot;4&quot;,&quot;five&quot;:&quot;5&quot;&#125;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data)==<span class="built_in">type</span>(<span class="string">&#x27;123&#x27;</span>)) </span><br></pre></td></tr></table></figure>
-<ol start="3" type="A">
-<li></li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">data=<span class="string">&#x27;&#123;&quot;one&quot;:&quot;1&quot;,&quot;two&quot;:&quot;2&quot;,&quot;three&quot;:&quot;3&quot;,&quot;four&quot;:&quot;4&quot;,&quot;five&quot;:&quot;5&quot;&#125;&#x27;</span></span><br><span class="line">text = json.loads(data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;1&#x27;</span> <span class="keyword">in</span> text) </span><br></pre></td></tr></table></figure>
-<ol start="4" type="A">
-<li></li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">data = <span class="string">&#x27;&#123;&quot;one&quot;:&quot;1&quot;,&quot;two&quot;:&quot;2&quot;,&quot;three&quot;:&quot;3&quot;,&quot;four&quot;:&quot;4&quot;,&quot;five&quot;:&quot;5&quot;&#125;&#x27;</span></span><br><span class="line">text = json.dumps(data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;1&#x27;</span> <span class="keyword">in</span> text) </span><br></pre></td></tr></table></figure>
-<h2 id="类定义体组成">类定义体组成</h2>
-<p>类定义体组成：</p>
+<p> A.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import json
+data&#x3D;&#39;&#123;&quot;one&quot;:&quot;1&quot;,&quot;two&quot;:&quot;2&quot;,&quot;three&quot;:&quot;3&quot;,&quot;four&quot;:&quot;4&quot;,&quot;five&quot;:&quot;5&quot;&#125;&#39;
+text &#x3D; json.loads(data)
+print(type(data)&#x3D;&#x3D;type(text)) <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>B. </p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">data&#x3D;&#39;&#123;&quot;one&quot;:&quot;1&quot;,&quot;two&quot;:&quot;2&quot;,&quot;three&quot;:&quot;3&quot;,&quot;four&quot;:&quot;4&quot;,&quot;five&quot;:&quot;5&quot;&#125;&#39;
+print(type(data)&#x3D;&#x3D;type(&#39;123&#39;)) <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>C.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import json
+data&#x3D;&#39;&#123;&quot;one&quot;:&quot;1&quot;,&quot;two&quot;:&quot;2&quot;,&quot;three&quot;:&quot;3&quot;,&quot;four&quot;:&quot;4&quot;,&quot;five&quot;:&quot;5&quot;&#125;&#39;
+text &#x3D; json.loads(data)
+print(&#39;1&#39; in text) <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>D.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import json
+data &#x3D; &#39;&#123;&quot;one&quot;:&quot;1&quot;,&quot;two&quot;:&quot;2&quot;,&quot;three&quot;:&quot;3&quot;,&quot;four&quot;:&quot;4&quot;,&quot;five&quot;:&quot;5&quot;&#125;&#39;
+text &#x3D; json.dumps(data)
+print(&#39;1&#39; in text) <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="类定义体组成"><a href="#类定义体组成" class="headerlink" title="类定义体组成"></a>类定义体组成</h2><p>类定义体组成：</p>
 <ul>
 <li>成员的控制访问信息（public、protected、private)</li>
 <li>数据成员</li>
 <li>成员函数</li>
 </ul>
 <p>在类的定义形式中,组成了类定义体是。ABC</p>
-<p>A.成员的访问控制信息</p>
-<p>B.数据成员</p>
-<p>C.成员函数</p>
+<p> A.成员的访问控制信息 </p>
+<p>B.数据成员 </p>
+<p>C.成员函数 </p>
 <p>D.私有消息</p>
-<h2 id="关于return函数">关于return函数</h2>
-<p>在python中，关于函数return语句的正确说法是。ACD</p>
-<p>A.return指定函数返回值，用来结束函数</p>
-<p>B.在python中return语句只可返回一个值</p>
-<p>C.无返回值函数中可以没有return语句</p>
+<h2 id="关于return函数"><a href="#关于return函数" class="headerlink" title="关于return函数"></a>关于return函数</h2><p>在python中，关于函数return语句的正确说法是。ACD</p>
+<p> A.return指定函数返回值，用来结束函数 </p>
+<p>B.在python中return语句只可返回一个值 </p>
+<p>C.无返回值函数中可以没有return语句 </p>
 <p>D.如果不给return，函数默认返回None</p>
 <p>无返回值函数是指void这一类的函数。</p>
-<h2 id="万物皆为对象">万物皆为对象</h2>
-<p>容器对象（list、dict、set等）中可以存放任何对象，包括整数、字符串，函数也可以作存放到容器对象中。</p>
+<h2 id="万物皆为对象"><a href="#万物皆为对象" class="headerlink" title="万物皆为对象"></a>万物皆为对象</h2><p>容器对象（list、dict、set等）中可以存放任何对象，包括整数、字符串，函数也可以作存放到容器对象中。</p>
 <p>Python中函数是对象，描述正确的是。ABCD</p>
-<p>A.函数可以赋值给一个变量</p>
-<p>B.函数可以作为元素添加到集合对象中</p>
-<p>C.函数可以作为参数值传递给其它函数</p>
+<p> A.函数可以赋值给一个变量 </p>
+<p>B.函数可以作为元素添加到集合对象中 </p>
+<p>C.函数可以作为参数值传递给其它函数 </p>
 <p>D.函数可以当做函数的返回值</p>
-<h2 id="切片取数">切片取数</h2>
-<p>L[0:3]表示从索引0开始取数，直到索引3为止，但不包括索引3的元素。</p>
+<h2 id="切片取数"><a href="#切片取数" class="headerlink" title="切片取数"></a>切片取数</h2><p>L[0:3]表示从索引0开始取数，直到索引3为止，但不包括索引3的元素。</p>
 <p>若输入的字符串str=’asdfgh’，想要输出为’asdfg’，则可以使用以下方法。AC</p>
-<p>A.str[:-1]</p>
-<p>B.str[:-2]</p>
-<p>C.str[:5]</p>
+<p> A.str[:-1] </p>
+<p>B.str[:-2] </p>
+<p>C.str[:5] </p>
 <p>D.str[:4]</p>
 <p>下列可以得到字符串’ccc’的Python语句是。ABD</p>
-<p>A.cc’+‘c’</p>
-<p>B.’c’*3</p>
-<p>C.’bcccb’[1:3]</p>
+<p> A.cc’+’c’ </p>
+<p>B.’c’*3 </p>
+<p>C.’bcccb’[1:3] </p>
 <p>D.’bcccb’[1:4]</p>
 <p>若a = range(100)，以下哪些操作是合法的。ABCD</p>
-<p>A.a[-3]</p>
-<p>B.a[2:13]</p>
-<p>C.a[::3]</p>
+<p> A.a[-3] </p>
+<p>B.a[2:13] </p>
+<p>C.a[::3] </p>
 <p>D.a[2-3]</p>
-<h2 id="函数调用">函数调用</h2>
-<p>在模块A导入B模块的函数func（），并执行函数调用，下列写法正确的是。AC
-A. 导入：import B 调用 B.func() B. 导入：import B 调用 func() C.
-导入：form B import func 调用 func() D. 导入：form B import func 调用B.
-func()</p>
-<h2 id="python不能正常启动">python不能正常启动</h2>
-<p>python不能正常启动的项有：</p>
+<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p>在模块A导入B模块的函数func（），并执行函数调用，下列写法正确的是。AC<br>A. 导入：import B 调用 B.func()<br>B. 导入：import B 调用 func()<br>C. 导入：form B import func 调用 func()<br>D. 导入：form B import func 调用B. func()</p>
+<h2 id="python不能正常启动"><a href="#python不能正常启动" class="headerlink" title="python不能正常启动"></a>python不能正常启动</h2><p>python不能正常启动的项有：</p>
 <ul>
 <li>拼写错误</li>
 <li>错误表达式</li>
 <li>缩进错误</li>
 </ul>
 <p>只有手动抛出异常才能正常启动。</p>
-<h2 id="python的六种进程间通信方式">python的六种进程间通信方式</h2>
-<ul>
+<h2 id="python的六种进程间通信方式"><a href="#python的六种进程间通信方式" class="headerlink" title="python的六种进程间通信方式"></a>python的六种进程间通信方式</h2><ul>
 <li>msg_queue(消息队列)</li>
 <li>pipeline for single duplex(单工管道)</li>
 <li>pipeline for half duplex(双工管道)</li>
@@ -835,68 +833,183 @@ func()</p>
 <li>semaphore(信号量)</li>
 </ul>
 <p>在python3中进程之间通信通常可以采用如下哪些方式。ABD</p>
-<p>A.Queue</p>
-<p>B.Pipe</p>
-<p>C.全局变量</p>
+<p> A.Queue </p>
+<p>B.Pipe </p>
+<p>C.全局变量 </p>
 <p>D.共享数据</p>
-<h2 id="new__和__init__的区别"><code>__new__</code>和<code>__init__</code>的区别</h2>
-<p><strong>相同点：</strong></p>
+<h2 id="new-和-init-的区别"><a href="#new-和-init-的区别" class="headerlink" title="__new__和__init__的区别"></a><code>__new__</code>和<code>__init__</code>的区别</h2><p><strong>相同点：</strong></p>
 <ul>
 <li>两者都是python面向对象语言的函数。</li>
 </ul>
 <p><strong>不同点：</strong></p>
 <ul>
 <li><code>__new__</code>是在实例<strong>创建之前</strong>被调用的，是个<strong>静态方法</strong>。因为它的任务是<strong>创建实例</strong>然后返回该实例对象。</li>
-<li><code>__init__</code>是当实例对象<strong>创建完成后</strong>被调用的，然后设置对象属性的一些初始值，是一个<strong>实例方法</strong>。通常用于<strong>初始化一个类实例</strong>。</li>
-</ul>
+<li><p><code>__init__</code>是当实例对象<strong>创建完成后</strong>被调用的，然后设置对象属性的一些初始值，是一个<strong>实例方法</strong>。通常用于<strong>初始化一个类实例</strong>。</p>
 <p>关于<code>__new__</code>与<code>__init__</code>的区别，说法正确的是。ABCD</p>
-<p>A.<code>__new__</code>是一个静态方法，而<code>__init__</code>是一个实例方法</p>
+<p>A.<code>__new__</code>是一个静态方法，而<code>__init__</code>是一个实例方法 </p>
+</li>
+</ul>
 <p>B.<code>__new__</code>方法会返回一个创建的实例，而<code>__init__</code>什么都不返回</p>
-<p>C.只有在<code>__new__</code>返回一个创建的实例时，后面的<code>__init__</code>才能被调用</p>
+<p>C.只有在<code>__new__</code>返回一个创建的实例时，后面的<code>__init__</code>才能被调用 </p>
 <p>D.当创建一个新实例时调用<code>__new__</code>,初始化一个实例时用<code>__init__</code></p>
-<h2 id="输入输出总结">输入输出总结</h2>
-<h3 id="单行输入">单行输入</h3>
-<ul>
-<li><p><strong>同一行里空格分隔输入两个数</strong>：<code>a,b=list(map(int,input().split()))</code></p></li>
-<li><p><strong>同一行里逗号分隔输入两个数</strong>：<code>a,b=list(map(int,input().split(','))</code>)</p></li>
+<h2 id="输入输出总结"><a href="#输入输出总结" class="headerlink" title="输入输出总结"></a>输入输出总结</h2><h3 id="单行输入"><a href="#单行输入" class="headerlink" title="单行输入"></a>单行输入</h3><ul>
+<li><p><strong>同一行里空格分隔输入两个数</strong>：<code>a,b=list(map(int,input().split()))</code></p>
+</li>
+<li><p><strong>同一行里逗号分隔输入两个数</strong>：<code>a,b=list(map(int,input().split(&#39;,&#39;))</code>)</p>
+</li>
 <li><p><strong>使用sys模块输入多位数：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="comment">#输入数据，返回一个包含多个字符串的列表a,strip()用于截取掉末尾的换行符</span></span><br><span class="line">a=sys.stdin.readline().strip()</span><br><span class="line"></span><br><span class="line"><span class="comment">#a中的数据以逗号分隔时，去掉逗号，返回一个包含多个字符串的列表b</span></span><br><span class="line">b=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,a.split(<span class="string">&#x27;,&#x27;</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment">#a中的数据以空格分隔时，去掉空格，返回一个包含多个字符串的列表c</span></span><br><span class="line">c=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,a.split()))</span><br><span class="line"></span><br><span class="line"><span class="comment">#同一行中输入以空格分隔的两位数n,m</span></span><br><span class="line">n,m=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,sys.stdin.readline().strip().split()))</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import sys
+#输入数据，返回一个包含多个字符串的列表a,strip()用于截取掉末尾的换行符
+a&#x3D;sys.stdin.readline().strip()
+
+#a中的数据以逗号分隔时，去掉逗号，返回一个包含多个字符串的列表b
+b&#x3D;list(map(int,a.split(&#39;,&#39;)))
+
+#a中的数据以空格分隔时，去掉空格，返回一个包含多个字符串的列表c
+c&#x3D;list(map(int,a.split()))
+
+#同一行中输入以空格分隔的两位数n,m
+n,m&#x3D;list(map(int,sys.stdin.readline().strip().split()))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h3 id="多行输入">多行输入</h3>
-<ul>
+<h3 id="多行输入"><a href="#多行输入" class="headerlink" title="多行输入"></a>多行输入</h3><ul>
 <li><p><strong>把所有行合在一个列表中：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="built_in">list</span>=[]</span><br><span class="line">list_new=[]</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    list_new=line.split()</span><br><span class="line">    <span class="built_in">list</span>.append(list_new)</span><br><span class="line">    <span class="comment"># list.extend(list_new)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">list</span>)</span><br><span class="line"><span class="comment">#使用append的输出结果：</span></span><br><span class="line"><span class="number">3</span> <span class="number">2</span></span><br><span class="line">[[<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;2&#x27;</span>]]</span><br><span class="line"><span class="number">1</span> <span class="number">5</span> <span class="number">6</span></span><br><span class="line">[[<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;2&#x27;</span>], [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>]]</span><br><span class="line"><span class="number">1</span> <span class="number">3</span></span><br><span class="line">[[<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;2&#x27;</span>], [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>], [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;3&#x27;</span>]]</span><br><span class="line"><span class="comment">#使用extend的输出结果：</span></span><br><span class="line"><span class="number">3</span> <span class="number">2</span></span><br><span class="line">[<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;2&#x27;</span>]</span><br><span class="line"><span class="number">1</span> <span class="number">5</span> <span class="number">6</span></span><br><span class="line">[<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>]</span><br><span class="line"><span class="number">1</span> <span class="number">3</span></span><br><span class="line">[<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;3&#x27;</span>]</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import sys
+list&#x3D;[]
+list_new&#x3D;[]
+for line in sys.stdin:
+    list_new&#x3D;line.split()
+    list.append(list_new)
+    # list.extend(list_new)
+    print(list)
+#使用append的输出结果：
+3 2
+[[&#39;3&#39;, &#39;2&#39;]]
+1 5 6
+[[&#39;3&#39;, &#39;2&#39;], [&#39;1&#39;, &#39;5&#39;, &#39;6&#39;]]
+1 3
+[[&#39;3&#39;, &#39;2&#39;], [&#39;1&#39;, &#39;5&#39;, &#39;6&#39;], [&#39;1&#39;, &#39;3&#39;]]
+#使用extend的输出结果：
+3 2
+[&#39;3&#39;, &#39;2&#39;]
+1 5 6
+[&#39;3&#39;, &#39;2&#39;, &#39;1&#39;, &#39;5&#39;, &#39;6&#39;]
+1 3
+[&#39;3&#39;, &#39;2&#39;, &#39;1&#39;, &#39;5&#39;, &#39;6&#39;, &#39;1&#39;, &#39;3&#39;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p><strong>行数固定且第一行给出，各行独立获取：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">lines=sys.stdin.readlines()</span><br><span class="line">n=<span class="built_in">int</span>(lines[<span class="number">0</span>])</span><br><span class="line">x1=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,lines[<span class="number">1</span>].split()))</span><br><span class="line">x2=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,lines[<span class="number">2</span>].split()))</span><br><span class="line">x3=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,lines[<span class="number">3</span>].split()))</span><br><span class="line"><span class="built_in">print</span>(n,x1,x2,x3)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">输入：</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">1</span> <span class="number">5</span> <span class="number">6</span></span><br><span class="line"><span class="number">1</span>  </span><br><span class="line"><span class="number">8</span></span><br><span class="line">windows系统同时按下ctrl+z+enter结束输入</span><br><span class="line">输出结果为：</span><br><span class="line"><span class="number">3</span> [<span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>] [<span class="number">1</span>] [<span class="number">8</span>]</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import sys
+lines&#x3D;sys.stdin.readlines()
+n&#x3D;int(lines[0])
+x1&#x3D;list(map(int,lines[1].split()))
+x2&#x3D;list(map(int,lines[2].split()))
+x3&#x3D;list(map(int,lines[3].split()))
+print(n,x1,x2,x3)
+#运行结果如下：
+输入：
+3
+1 5 6
+1  
+8
+windows系统同时按下ctrl+z+enter结束输入
+输出结果为：
+3 [1, 5, 6] [1] [8]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p><strong>第一行输入人数n和科目m，后续每行录入每人的m科成绩：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">n,m=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split()))</span><br><span class="line">lines=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    lines.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split())))</span><br><span class="line"><span class="built_in">print</span>(lines)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">输入：</span><br><span class="line"><span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="number">15</span> <span class="number">32</span> <span class="number">23</span></span><br><span class="line"><span class="number">58</span> <span class="number">20</span> <span class="number">69</span></span><br><span class="line">输出结果为：</span><br><span class="line">[[<span class="number">15</span>, <span class="number">32</span>, <span class="number">23</span>], [<span class="number">58</span>, <span class="number">20</span>, <span class="number">69</span>]]</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">n,m&#x3D;list(map(int,input().split()))
+lines&#x3D;[]
+for i in range(n):
+    lines.append(list(map(int,input().split())))
+print(lines)
+#运行结果如下：
+输入：
+2 3
+15 32 23
+58 20 69
+输出结果为：
+[[15, 32, 23], [58, 20, 69]]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 <li><p><strong>行数未知时，输入多行数字序列：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">res=[]</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        res.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split())))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="built_in">print</span>(res)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">输入：</span><br><span class="line"><span class="number">3</span> <span class="number">63</span> <span class="number">72</span> <span class="number">72</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">52</span> <span class="number">62</span> <span class="number">5</span> <span class="number">1</span>  </span><br><span class="line"><span class="number">2</span> <span class="number">4</span> <span class="number">7</span></span><br><span class="line"><span class="number">5</span> <span class="number">8</span> <span class="number">9</span> <span class="number">3</span> <span class="number">53</span> <span class="number">12</span> <span class="number">74</span></span><br><span class="line">windows系统同时按下ctrl+z+enter结束输入</span><br><span class="line">输出结果为：</span><br><span class="line">[[<span class="number">3</span>, <span class="number">63</span>, <span class="number">72</span>, <span class="number">72</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">52</span>, <span class="number">62</span>, <span class="number">5</span>, <span class="number">1</span>], [<span class="number">2</span>, <span class="number">4</span>, <span class="number">7</span>], [<span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">53</span>, <span class="number">12</span>, <span class="number">74</span>]]</span><br></pre></td></tr></table></figure></li>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">res&#x3D;[]
+while True:
+    try:
+        res.append(list(map(int,input().split())))
+    except:
+        break
+print(res)
+#运行结果如下：
+输入：
+3 63 72 72 1
+1 52 62 5 1  
+2 4 7
+5 8 9 3 53 12 74
+windows系统同时按下ctrl+z+enter结束输入
+输出结果为：
+[[3, 63, 72, 72, 1], [1, 52, 62, 5, 1], [2, 4, 7], [5, 8, 9, 3, 53, 12, 74]]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ul>
-<h3 id="单行输出">单行输出</h3>
-<p><strong>同一行里逗号分隔输出两个数：</strong><code>print(str(a)+','+str(b))</code></p>
-<h3 id="多行输出">多行输出</h3>
-<p><strong>按行遍历输出多行输入中的元素，注意：不是输出一个list或tuple：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">data=[]</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    line=sys.stdin.readline().strip()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> line:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    tmp=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,line.split()))</span><br><span class="line">    data.append(tmp)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(data)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(data[i])):</span><br><span class="line">        <span class="comment"># print(i[k])</span></span><br><span class="line">        <span class="keyword">if</span> j==(<span class="built_in">len</span>(data[i])-<span class="number">1</span>):</span><br><span class="line">            <span class="built_in">print</span>(data[i][j])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">str</span>(data[i][j])+<span class="string">&#x27; &#x27;</span>,end=<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="comment">#运行结果如下：</span></span><br><span class="line">输入：</span><br><span class="line"><span class="number">3</span> <span class="number">63</span> <span class="number">72</span> <span class="number">72</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">52</span> <span class="number">62</span> <span class="number">5</span> <span class="number">1</span>  </span><br><span class="line"><span class="number">2</span> <span class="number">4</span> <span class="number">7</span></span><br><span class="line"><span class="number">5</span> <span class="number">8</span> <span class="number">9</span> <span class="number">3</span> <span class="number">53</span> <span class="number">12</span> <span class="number">74</span></span><br><span class="line">windows系统同时按下ctrl+z+enter结束输入</span><br><span class="line">输出结果为：</span><br><span class="line"><span class="number">3</span> <span class="number">63</span> <span class="number">71</span> <span class="number">71</span> <span class="number">1</span></span><br><span class="line"><span class="number">1</span> <span class="number">52</span> <span class="number">62</span> <span class="number">5</span> <span class="number">1</span></span><br><span class="line"><span class="number">2</span> <span class="number">4</span> <span class="number">7</span></span><br><span class="line"><span class="number">5</span> <span class="number">8</span> <span class="number">9</span> <span class="number">3</span> <span class="number">53</span> <span class="number">12</span> <span class="number">74</span></span><br></pre></td></tr></table></figure>
-<h2 id="补充">补充</h2>
-<ul>
-<li><p>标准库OS的listdir()方法默认只能列出指定文件夹中当前层级的文件和文件夹列表，而不能列出其子文件夹中的文件。</p></li>
-<li><p><strong>递归</strong>是从问题的<strong>最终目标</strong>出发，逐渐将复杂问题化为简单问题，最终求得问题。<strong>递推</strong>是从简单问题触发，一步步的向前，最终求得问题。</p></li>
-<li><p>列表对象的extend()方法属于原地操作，调用前后列表对象的地址不变。</p></li>
-<li><p>Python中子类能继承父类全部的<strong>公有</strong>属性和方法。</p></li>
-<li><p>使用print()函数可以将信息写入文件：<code>print("Hello, World!", file=open('file.txt', 'w'))</code>。</p></li>
-<li><p>两个特殊的形参关键字形参和命名关键字形参不能设定默认值，或者说它们默认值就是空元组和空字典。</p></li>
-<li><p>为了限制开头几个参数只能按位置传递，从python3.8开始，正式引入<strong>限定位置形参，</strong>它们必须放在形参表的最前面，并在后面使用斜杠/（独占一个参数位）与普通形参分隔。如<code>def fun(a,b,c,/,d) #a,b,c成为限定位置形参</code>。</p></li>
-<li><p>默认值可以从限定位置形参或普通形参中的任意一个开始设定，<strong>除了命名关键字形参</strong>，所有带默认值的形参必须位于五默认值的形参之后。</p></li>
-<li><p>定义函数时，带有默认值的参数必须出现在参数列表的最右端，任何一个带有默认值的参数右边不允许出现没有默认值的参数。</p></li>
-<li><p>使用print()函数时，使用<code>\n</code>可以进行换行输出。</p></li>
-<li><p>表达式<code>[1,3,2] &gt; [1,2,3]</code>的值为<code>True</code>，<code>&#123;1,3,2&#125; &gt; &#123;1,2,3&#125;</code>的值为<code>False</code>。</p></li>
-<li><p>使用if <code>'__name__'</code>==
-<code>'__main__'</code>，可以保证模块被导入时，其内的代码不会被执行。</p></li>
-<li><p>表达式<code>pow(3, 2)==3**2</code>的值为<code>True</code>。其中<code>**</code>代表乘方。</p></li>
-<li><p>所有的except子句一定在else和finally的前面。</p></li>
-<li><p>Python中break和continue语句不可以单独使用，只能在循环中使用。</p></li>
-<li><p>split()将一个字符串分割为子字符串，然后将结果作为字符数组返回。</p></li>
+<h3 id="单行输出"><a href="#单行输出" class="headerlink" title="单行输出"></a>单行输出</h3><p><strong>同一行里逗号分隔输出两个数：</strong><code>print(str(a)+&#39;,&#39;+str(b))</code></p>
+<h3 id="多行输出"><a href="#多行输出" class="headerlink" title="多行输出"></a>多行输出</h3><p><strong>按行遍历输出多行输入中的元素，注意：不是输出一个list或tuple：</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import sys
+data&#x3D;[]
+while True:
+    line&#x3D;sys.stdin.readline().strip()
+    if not line:
+        break
+    tmp&#x3D;list(map(int,line.split()))
+    data.append(tmp)
+for i in range(0,len(data)):
+    for j in range(0,len(data[i])):
+        # print(i[k])
+        if j&#x3D;&#x3D;(len(data[i])-1):
+            print(data[i][j])
+        else:
+            print(str(data[i][j])+&#39; &#39;,end&#x3D;&quot;&quot;)
+#运行结果如下：
+输入：
+3 63 72 72 1
+1 52 62 5 1  
+2 4 7
+5 8 9 3 53 12 74
+windows系统同时按下ctrl+z+enter结束输入
+输出结果为：
+3 63 71 71 1
+1 52 62 5 1
+2 4 7
+5 8 9 3 53 12 74<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><ul>
+<li><p>标准库OS的listdir()方法默认只能列出指定文件夹中当前层级的文件和文件夹列表，而不能列出其子文件夹中的文件。</p>
+</li>
+<li><p><strong>递归</strong>是从问题的<strong>最终目标</strong>出发，逐渐将复杂问题化为简单问题，最终求得问题。<strong>递推</strong>是从简单问题触发，一步步的向前，最终求得问题。</p>
+</li>
+<li><p>列表对象的extend()方法属于原地操作，调用前后列表对象的地址不变。</p>
+</li>
+<li><p>Python中子类能继承父类全部的<strong>公有</strong>属性和方法。</p>
+</li>
+<li><p>使用print()函数可以将信息写入文件：<code>print(&quot;Hello, World!&quot;, file=open(&#39;file.txt&#39;, &#39;w&#39;))</code>。</p>
+</li>
+<li><p>两个特殊的形参关键字形参和命名关键字形参不能设定默认值，或者说它们默认值就是空元组和空字典。</p>
+</li>
+<li><p>为了限制开头几个参数只能按位置传递，从python3.8开始，正式引入<strong>限定位置形参，</strong>它们必须放在形参表的最前面，并在后面使用斜杠/（独占一个参数位）与普通形参分隔。如<code>def fun(a,b,c,/,d) #a,b,c成为限定位置形参</code>。</p>
+</li>
+<li><p>默认值可以从限定位置形参或普通形参中的任意一个开始设定，<strong>除了命名关键字形参</strong>，所有带默认值的形参必须位于五默认值的形参之后。</p>
+</li>
+<li><p>定义函数时，带有默认值的参数必须出现在参数列表的最右端，任何一个带有默认值的参数右边不允许出现没有默认值的参数。</p>
+</li>
+<li><p>使用print()函数时，使用<code>\n</code>可以进行换行输出。</p>
+</li>
+<li><p>表达式<code>[1,3,2] &gt; [1,2,3]</code>的值为<code>True</code>，<code>&#123;1,3,2&#125; &gt; &#123;1,2,3&#125;</code>的值为<code>False</code>。</p>
+</li>
+<li><p>使用if <code>&#39;__name__&#39;</code>== <code>&#39;__main__&#39;</code>，可以保证模块被导入时，其内的代码不会被执行。</p>
+</li>
+<li><p>表达式<code>pow(3, 2)==3**2</code>的值为<code>True</code>。其中<code>**</code>代表乘方。</p>
+</li>
+<li><p>所有的except子句一定在else和finally的前面。</p>
+</li>
+<li><p>Python中break和continue语句不可以单独使用，只能在循环中使用。</p>
+</li>
+<li><p>split()将一个字符串分割为子字符串，然后将结果作为字符数组返回。</p>
+</li>
 </ul>
 
     </article>
@@ -1096,7 +1209,7 @@ func()</p>
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E8%AF%AD%E8%A8%80%E7%89%B9%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">python语言特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6copy%E5%92%8Cdeepcopy"><span class="toc-number">1.1.</span> <span class="toc-text">复制&#x3D;、copy()和deepcopy()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E8%87%AA%E5%B8%A6%E7%9A%84%E6%A8%A1%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">Python自带的模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#extend%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">extend方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#del%E6%96%B9%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">del方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%98%E6%8D%A2"><span class="toc-number">5.</span> <span class="toc-text">字符串变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#divmod%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">divmod()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python2%E4%B8%8Epython3%E9%99%A4%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">7.</span> <span class="toc-text">python2与python3除法的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">8.</span> <span class="toc-text">函数返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E6%9F%A5%E6%89%BE%E9%A1%BA%E5%BA%8F"><span class="toc-number">9.</span> <span class="toc-text">python查找顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#range%E8%8C%83%E5%9B%B4"><span class="toc-number">10.</span> <span class="toc-text">range范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#readlines%E5%87%BD%E6%95%B0"><span class="toc-number">11.</span> <span class="toc-text">readlines函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">12.</span> <span class="toc-text">lambda表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">13.</span> <span class="toc-text">运算符优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-ix-in-enumerate-%E5%87%BD%E6%95%B0"><span class="toc-number">14.</span> <span class="toc-text">for i,x in enumerate() 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#replace%E5%87%BD%E6%95%B0"><span class="toc-number">15.</span> <span class="toc-text">replace函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#floor%E5%87%BD%E6%95%B0"><span class="toc-number">16.</span> <span class="toc-text">floor函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E4%BD%8D%E4%B8%8E%E8%AE%A1%E7%AE%97"><span class="toc-number">17.</span> <span class="toc-text">按位与&amp;计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E4%BF%9D%E7%95%99%E5%AD%97%E7%AC%A6"><span class="toc-number">18.</span> <span class="toc-text">python保留字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">19.</span> <span class="toc-text">可变数据类型和不可变数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="toc-number">20.</span> <span class="toc-text">python内置函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">21.</span> <span class="toc-text">python数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5"><span class="toc-number">22.</span> <span class="toc-text">控制循环语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#name__"><span class="toc-number">23.</span> <span class="toc-text">__name__</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#json.dumps%E4%B8%8Ejson.loads"><span class="toc-number">24.</span> <span class="toc-text">json.dumps()与json.loads()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%AE%9A%E4%B9%89%E4%BD%93%E7%BB%84%E6%88%90"><span class="toc-number">25.</span> <span class="toc-text">类定义体组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Ereturn%E5%87%BD%E6%95%B0"><span class="toc-number">26.</span> <span class="toc-text">关于return函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%87%E7%89%A9%E7%9A%86%E4%B8%BA%E5%AF%B9%E8%B1%A1"><span class="toc-number">27.</span> <span class="toc-text">万物皆为对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87%E5%8F%96%E6%95%B0"><span class="toc-number">28.</span> <span class="toc-text">切片取数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="toc-number">29.</span> <span class="toc-text">函数调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8"><span class="toc-number">30.</span> <span class="toc-text">python不能正常启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E7%9A%84%E5%85%AD%E7%A7%8D%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="toc-number">31.</span> <span class="toc-text">python的六种进程间通信方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new__%E5%92%8C__init__%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">32.</span> <span class="toc-text">__new__和__init__的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%80%BB%E7%BB%93"><span class="toc-number">33.</span> <span class="toc-text">输入输出总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E8%BE%93%E5%85%A5"><span class="toc-number">33.1.</span> <span class="toc-text">单行输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E8%BE%93%E5%85%A5"><span class="toc-number">33.2.</span> <span class="toc-text">多行输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E8%BE%93%E5%87%BA"><span class="toc-number">33.3.</span> <span class="toc-text">单行输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E8%BE%93%E5%87%BA"><span class="toc-number">33.4.</span> <span class="toc-text">多行输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">34.</span> <span class="toc-text">补充</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E8%AF%AD%E8%A8%80%E7%89%B9%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">python语言特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6-%E3%80%81copy-%E5%92%8Cdeepcopy"><span class="toc-number">1.1.</span> <span class="toc-text">复制&#x3D;、copy()和deepcopy()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python%E8%87%AA%E5%B8%A6%E7%9A%84%E6%A8%A1%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">Python自带的模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#extend%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">extend方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#del%E6%96%B9%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">del方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%98%E6%8D%A2"><span class="toc-number">5.</span> <span class="toc-text">字符串变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#divmod-%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">divmod()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python2%E4%B8%8Epython3%E9%99%A4%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">7.</span> <span class="toc-text">python2与python3除法的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">8.</span> <span class="toc-text">函数返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E6%9F%A5%E6%89%BE%E9%A1%BA%E5%BA%8F"><span class="toc-number">9.</span> <span class="toc-text">python查找顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#range%E8%8C%83%E5%9B%B4"><span class="toc-number">10.</span> <span class="toc-text">range范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#readlines%E5%87%BD%E6%95%B0"><span class="toc-number">11.</span> <span class="toc-text">readlines函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">12.</span> <span class="toc-text">lambda表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">13.</span> <span class="toc-text">运算符优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-i-x-in-enumerate-%E5%87%BD%E6%95%B0"><span class="toc-number">14.</span> <span class="toc-text">for i,x in enumerate() 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#replace%E5%87%BD%E6%95%B0"><span class="toc-number">15.</span> <span class="toc-text">replace函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#floor%E5%87%BD%E6%95%B0"><span class="toc-number">16.</span> <span class="toc-text">floor函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E4%BD%8D%E4%B8%8E-amp-%E8%AE%A1%E7%AE%97"><span class="toc-number">17.</span> <span class="toc-text">按位与&amp;计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E4%BF%9D%E7%95%99%E5%AD%97%E7%AC%A6"><span class="toc-number">18.</span> <span class="toc-text">python保留字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">19.</span> <span class="toc-text">可变数据类型和不可变数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="toc-number">20.</span> <span class="toc-text">python内置函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">21.</span> <span class="toc-text">python数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5"><span class="toc-number">22.</span> <span class="toc-text">控制循环语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#name"><span class="toc-number">23.</span> <span class="toc-text">__name__</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#json-dumps-%E4%B8%8Ejson-loads"><span class="toc-number">24.</span> <span class="toc-text">json.dumps()与json.loads()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%AE%9A%E4%B9%89%E4%BD%93%E7%BB%84%E6%88%90"><span class="toc-number">25.</span> <span class="toc-text">类定义体组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Ereturn%E5%87%BD%E6%95%B0"><span class="toc-number">26.</span> <span class="toc-text">关于return函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%87%E7%89%A9%E7%9A%86%E4%B8%BA%E5%AF%B9%E8%B1%A1"><span class="toc-number">27.</span> <span class="toc-text">万物皆为对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87%E5%8F%96%E6%95%B0"><span class="toc-number">28.</span> <span class="toc-text">切片取数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="toc-number">29.</span> <span class="toc-text">函数调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8"><span class="toc-number">30.</span> <span class="toc-text">python不能正常启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E7%9A%84%E5%85%AD%E7%A7%8D%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="toc-number">31.</span> <span class="toc-text">python的六种进程间通信方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new-%E5%92%8C-init-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">32.</span> <span class="toc-text">__new__和__init__的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%80%BB%E7%BB%93"><span class="toc-number">33.</span> <span class="toc-text">输入输出总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E8%BE%93%E5%85%A5"><span class="toc-number">33.1.</span> <span class="toc-text">单行输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E8%BE%93%E5%85%A5"><span class="toc-number">33.2.</span> <span class="toc-text">多行输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E8%BE%93%E5%87%BA"><span class="toc-number">33.3.</span> <span class="toc-text">单行输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E8%BE%93%E5%87%BA"><span class="toc-number">33.4.</span> <span class="toc-text">多行输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">34.</span> <span class="toc-text">补充</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -1446,6 +1559,12 @@ func()</p>
         
         
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2555,6 +2674,11 @@ func()</p>
                 数据库工具
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2568,21 +2692,6 @@ func()</p>
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS3">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS3
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2600,9 +2709,29 @@ func()</p>
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2625,14 +2754,14 @@ func()</p>
                 MinIO
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="LLM">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                LLM
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2643,16 +2772,6 @@ func()</p>
             <span class="sidebar-tag-name" data-tags="Vue">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="LLM">
-                <span class="iconfont-archer">&#xe606;</span>
-                LLM
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="人工智能">
-                <span class="iconfont-archer">&#xe606;</span>
-                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2675,11 +2794,6 @@ func()</p>
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2688,6 +2802,11 @@ func()</p>
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2761,14 +2880,19 @@ func()</p>
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2776,9 +2900,9 @@ func()</p>
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2791,14 +2915,9 @@ func()</p>
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2806,34 +2925,29 @@ func()</p>
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Lottie">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="可视化">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
+            可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="Vue">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            Vue
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
             LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2846,9 +2960,9 @@ func()</p>
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="人工智能">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2861,14 +2975,24 @@ func()</p>
             JavaScript
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2879,11 +3003,6 @@ func()</p>
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2958,20 +3077,5 @@ func()</p>
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+    </body>
 </html>

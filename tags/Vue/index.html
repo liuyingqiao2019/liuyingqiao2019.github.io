@@ -435,15 +435,14 @@
                 <span class="abstract-title-text">在Vue中使用el-editor编辑器</span>
             </a>
             <div class="abstract-content">
-                前言
-实际项目中，多处使用到富文本编辑器，每次都配置会比较麻烦，故将要用到的功能封装到一起，需要时可直接调用，故发布了el-editor编辑器。
+                前言实际项目中，多处使用到富文本编辑器，每次都配置会比较麻烦，故将要用到的功能封装到一起，需要时可直接调用，故发布了el-editor编辑器。
 富文本编辑器v1.0.1
-
 介绍
-
 编辑器基于vue-quill-editor和element封装，目前版本仅支持vue2
 与其他编辑器相比，本编辑器支持秀米编辑器、135编辑器样式的粘贴复制
-注意，当前编辑器仅提供前端代码，编辑器默认不转存秀米图表，若需要开启这一功能，需要向handlePic参数传真值true，然后编写一个后端接口来实现秀米图片的转存，接口名默认为editor/get_xiumi_pic，可通过参数picUR...
+注意，当前编辑器仅提供前端代码，编辑器默认不转存秀米图表，若需要开启这一功能，需要向handlePic参数传真值true，然后编写一个后端接口来实现秀米图片的转存，接口名默认为editor/get_xiumi_pic，可通过参数picURL自行修改
+
+安装下载...
             </div>
             <!-- read more -->
             
@@ -480,9 +479,12 @@
             <div class="abstract-content">
                 在项目中遇到需要反复使用的代码时，通常会将其封装起来以待下一次的调用。若想要在不同项目里也能使用这些代码时，比较难在众多代码中找到需要的代码。而将组件打包并发布到npm库中，只需要记住相应的包名，便可从npm下载直接安装使用。
 全局注册组件
-
 在完成对应组件editor.vue的封装后，在组件存放目录下（这里默认为components)新建一个index.js文件用于将封装好的组件注册为全局组件，内容如下：
-123456789101112131415161718192021import editor from &#x27;./editor.vue&#x27;const compo...
+  import editor from './editor.vue'
+const components = [
+  editor
+]
+// 定义 install 方法，接收 Vue ...
             </div>
             <!-- read more -->
             
@@ -520,7 +522,13 @@
                 在js文件中编写功能函数时，常常要调用vue文件内的方法并传值，下面记录js传值的方法：
 
 首先在vue页面的mounted模块将要调用的方法注册到window对象上，并引入对应的js文件后：
-123456789mounted()&#123;  window.exampleFunction=this.exampleFunction&#125;,method:&#123;    exampleFunction(data)&#123;        console.log(&#x27;收到方法调用&#x27;)        console.log(data,&#x27;data&#x...
+  mounted()&#123;
+  window.exampleFunction&#x3D;this.exampleFunction
+&#125;,
+method:&#123;
+    exampleFunction(data)&#123;
+        console.log(&#39;收到方法调用&#39;)
+        console.log(data,&#39;data&#39;...
             </div>
             <!-- read more -->
             
@@ -562,7 +570,9 @@ axios可以通过async/await来实现同步请求。
 其中async用来修饰方法，其声明的方法为异步请求的方法，await只能在异步方法中使用，用于等待指定方法执行完成；await修饰的方法执行完成后，才会执行后续的代码。
 axios的.then模块前把this赋值给一个变量并在.then中代替this来使用，可以防止this指针发生变化导致引用全局变量无效的问题，如：
 
-``json   getData() &#123;             var _this=this       axios.get(https:/...
+```json  getData() {      
+  var _this=this
+  axios.get(`https://tangmenjue.top`)...
             </div>
             <!-- read more -->
             
@@ -600,9 +610,11 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
                 在实际项目开发中，有时会遇到组件B需要监听兄弟组件A的数据是否有改动，并根据兄弟组件A的改动来更新自身数据或执行一定操作的需求。下面将介绍实现这一过程的方法：
 
 在Vue项目的main.js中 添加下面语句：
-1Vue.prototype.$eventBus = new Vue()
-在兄弟组件A中所要监听的事件中添加如下自定义事件的代码this.$eventBus.$emit('SyncData')。如需要监听addDataA事件的变化，则组件A中script模块的代码如下所示：
-123456789101112 methods: &#123;  addDataA() &#123...
+Vue.prototype.$eventBus &#x3D; new Vue()
+
+在兄弟组件A中所要监听的事件中添加如下自定义事件的代码this.$eventBus.$emit(&#39;SyncData&#39;)。如需要监听addDataA事件的变化，则组件A中script模块的代码如下所示：
+ methods: &#123;
+  addDataA() &#123;&#x2F...
             </div>
             <!-- read more -->
             
@@ -640,9 +652,13 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
                 通过使用Vue的生命周期钩子函数和window对象的resize事件来实现水印根据窗口大小适配的功能：
 
 在Vue文件的script模块中 引入水印组件：
-1import watermark from &#x27;@zsit/watermark&#x27;;  
+ import watermark from &#39;@zsit&#x2F;watermark&#39;;  
+
 在script模块的export default里，通过钩子函数mounted监听窗口大小的变化，并在销毁组件前移除事件监听器：
-123456mounted()&#123;  window.addEventListener(&#x27;resize&#x27;,this.handleResize)&#125;,befo...
+ mounted()&#123;
+  window.addEventListener(&#39;resize&#39;,this.handleResize)
+&#125;,
+beforeDes...
             </div>
             <!-- read more -->
             
@@ -1111,6 +1127,12 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
         
         
     
+        
+        
+        
+        
+        
+        
         
         
         
@@ -2220,6 +2242,11 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
                 数据库工具
             </span>
         
+            <span class="sidebar-tag-name" data-tags="CSS3">
+                <span class="iconfont-archer">&#xe606;</span>
+                CSS3
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="CentOS 7">
                 <span class="iconfont-archer">&#xe606;</span>
                 CentOS 7
@@ -2233,21 +2260,6 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
             <span class="sidebar-tag-name" data-tags="网络管理">
                 <span class="iconfont-archer">&#xe606;</span>
                 网络管理
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="CSS3">
-                <span class="iconfont-archer">&#xe606;</span>
-                CSS3
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Docker">
-                <span class="iconfont-archer">&#xe606;</span>
-                Docker
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="应用部署">
-                <span class="iconfont-archer">&#xe606;</span>
-                应用部署
             </span>
         
             <span class="sidebar-tag-name" data-tags="Flask Web">
@@ -2265,9 +2277,29 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
                 Web框架
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Docker">
+                <span class="iconfont-archer">&#xe606;</span>
+                Docker
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="应用部署">
+                <span class="iconfont-archer">&#xe606;</span>
+                应用部署
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Hexo">
                 <span class="iconfont-archer">&#xe606;</span>
                 Hexo
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Kubernetes">
+                <span class="iconfont-archer">&#xe606;</span>
+                Kubernetes
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="数据库">
+                <span class="iconfont-archer">&#xe606;</span>
+                数据库
             </span>
         
             <span class="sidebar-tag-name" data-tags="可视化">
@@ -2290,14 +2322,14 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
                 MinIO
             </span>
         
-            <span class="sidebar-tag-name" data-tags="数据库">
+            <span class="sidebar-tag-name" data-tags="LLM">
                 <span class="iconfont-archer">&#xe606;</span>
-                数据库
+                LLM
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Kubernetes">
+            <span class="sidebar-tag-name" data-tags="人工智能">
                 <span class="iconfont-archer">&#xe606;</span>
-                Kubernetes
+                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="PgSQL">
@@ -2308,16 +2340,6 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
             <span class="sidebar-tag-name" data-tags="Vue">
                 <span class="iconfont-archer">&#xe606;</span>
                 Vue
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="LLM">
-                <span class="iconfont-archer">&#xe606;</span>
-                LLM
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="人工智能">
-                <span class="iconfont-archer">&#xe606;</span>
-                人工智能
             </span>
         
             <span class="sidebar-tag-name" data-tags="Vue.js">
@@ -2340,11 +2362,6 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
                 Elasticsearch
             </span>
         
-            <span class="sidebar-tag-name" data-tags="JavaScript">
-                <span class="iconfont-archer">&#xe606;</span>
-                JavaScript
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="YAML">
                 <span class="iconfont-archer">&#xe606;</span>
                 YAML
@@ -2353,6 +2370,11 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
             <span class="sidebar-tag-name" data-tags="Redis">
                 <span class="iconfont-archer">&#xe606;</span>
                 Redis
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="JavaScript">
+                <span class="iconfont-archer">&#xe606;</span>
+                JavaScript
             </span>
         
             <span class="sidebar-tag-name" data-tags="python">
@@ -2426,14 +2448,19 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
             数据库工具
         </span>
     
+        <span class="sidebar-category-name" data-categories="CSS3">
+            <span class="iconfont-archer">&#xe60a;</span>
+            CSS3
+        </span>
+    
         <span class="sidebar-category-name" data-categories="Linux">
             <span class="iconfont-archer">&#xe60a;</span>
             Linux
         </span>
     
-        <span class="sidebar-category-name" data-categories="CSS3">
+        <span class="sidebar-category-name" data-categories="Web框架">
             <span class="iconfont-archer">&#xe60a;</span>
-            CSS3
+            Web框架
         </span>
     
         <span class="sidebar-category-name" data-categories="Docker">
@@ -2441,9 +2468,9 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
             Docker
         </span>
     
-        <span class="sidebar-category-name" data-categories="Web框架">
+        <span class="sidebar-category-name" data-categories="大屏设计">
             <span class="iconfont-archer">&#xe60a;</span>
-            Web框架
+            大屏设计
         </span>
     
         <span class="sidebar-category-name" data-categories="操作系统">
@@ -2456,14 +2483,9 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
             Hexo
         </span>
     
-        <span class="sidebar-category-name" data-categories="大屏设计">
+        <span class="sidebar-category-name" data-categories="Kubernetes">
             <span class="iconfont-archer">&#xe60a;</span>
-            大屏设计
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="可视化">
-            <span class="iconfont-archer">&#xe60a;</span>
-            可视化
+            Kubernetes
         </span>
     
         <span class="sidebar-category-name" data-categories="学习笔记">
@@ -2471,34 +2493,29 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
             学习笔记
         </span>
     
-        <span class="sidebar-category-name" data-categories="MinIO">
-            <span class="iconfont-archer">&#xe60a;</span>
-            MinIO
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Lottie">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Lottie
-        </span>
-    
         <span class="sidebar-category-name" data-categories="数据库">
             <span class="iconfont-archer">&#xe60a;</span>
             数据库
         </span>
     
-        <span class="sidebar-category-name" data-categories="Kubernetes">
+        <span class="sidebar-category-name" data-categories="可视化">
             <span class="iconfont-archer">&#xe60a;</span>
-            Kubernetes
+            可视化
         </span>
     
-        <span class="sidebar-category-name" data-categories="Vue">
+        <span class="sidebar-category-name" data-categories="MinIO">
             <span class="iconfont-archer">&#xe60a;</span>
-            Vue
+            MinIO
         </span>
     
         <span class="sidebar-category-name" data-categories="LLM">
             <span class="iconfont-archer">&#xe60a;</span>
             LLM
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Vue">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Vue
         </span>
     
         <span class="sidebar-category-name" data-categories="前端">
@@ -2511,9 +2528,9 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
             edge
         </span>
     
-        <span class="sidebar-category-name" data-categories="人工智能">
+        <span class="sidebar-category-name" data-categories="YAML">
             <span class="iconfont-archer">&#xe60a;</span>
-            人工智能
+            YAML
         </span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch">
@@ -2526,14 +2543,24 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
             JavaScript
         </span>
     
-        <span class="sidebar-category-name" data-categories="YAML">
+        <span class="sidebar-category-name" data-categories="Lottie">
             <span class="iconfont-archer">&#xe60a;</span>
-            YAML
+            Lottie
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="人工智能">
+            <span class="iconfont-archer">&#xe60a;</span>
+            人工智能
         </span>
     
         <span class="sidebar-category-name" data-categories="前端框架">
             <span class="iconfont-archer">&#xe60a;</span>
             前端框架
+        </span>
+    
+        <span class="sidebar-category-name" data-categories="Redis">
+            <span class="iconfont-archer">&#xe60a;</span>
+            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="python">
@@ -2544,11 +2571,6 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
         <span class="sidebar-category-name" data-categories="企业微信">
             <span class="iconfont-archer">&#xe60a;</span>
             企业微信
-        </span>
-    
-        <span class="sidebar-category-name" data-categories="Redis">
-            <span class="iconfont-archer">&#xe60a;</span>
-            Redis
         </span>
     
         <span class="sidebar-category-name" data-categories="异步IO">
@@ -2621,20 +2643,5 @@ axios的.then模块前把this赋值给一个变量并在.then中代替this来使
             <script> $.noConflict(); </script> 
             <script type="text/javascript" src="/scripts/codecopy.js" async></script>
         
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-</body>
+    </body>
 </html>
